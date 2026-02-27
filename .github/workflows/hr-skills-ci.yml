@@ -1,5 +1,8 @@
 name: HR Skills CI
 
+permissions:
+  contents: read
+
 on:
   push:
     branches: [main, dev]
