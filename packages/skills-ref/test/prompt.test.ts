@@ -1,5 +1,5 @@
-import { describe, expect, it } from 'bun:test'
 import { join } from 'node:path'
+import { describe, expect, it } from 'bun:test'
 import { toPrompt } from '../src/prompt.js'
 
 const SKILLS_DIR = join(import.meta.dir, '../../../skills')

@@ -1,7 +1,7 @@
-import { describe, expect, it } from 'bun:test'
 import { mkdtempSync, rmSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
+import { describe, expect, it } from 'bun:test'
 import { ParseError } from '../src/errors.js'
 import { findSkillMd, parseFrontmatter, readProperties } from '../src/parser.js'
 

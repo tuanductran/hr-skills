@@ -1,6 +1,6 @@
-import { describe, expect, it } from 'bun:test'
 import { existsSync } from 'node:fs'
 import { join } from 'node:path'
+import { describe, expect, it } from 'bun:test'
 import { HR_SKILLS, SKILLS_DIR } from '../src/config.js'
 
 describe('HR_SKILLS', () => {

@@ -15,3 +15,4 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - `parseFrontmatter(content)` — parses YAML frontmatter from markdown content
 - CLI: `skills-ref validate <path>`, `read-properties <path>`, `to-prompt <paths...>`
 - Compiled with `bun build --target bun` to `dist/cli.js`
+- Unit and integration tests via `bun test` in `test/` (31 tests)
