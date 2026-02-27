@@ -1,0 +1,62 @@
+name: Bug Report
+description: Report incorrect content, broken validation, or tooling errors
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a bug. Please fill in as much detail as possible.
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Skill content (SKILL.md)
+        - Validation tooling (hr-skills-build)
+        - skills-ref library
+        - CI / GitHub Actions
+        - Documentation
+    validations:
+      required: true
+
+  - type: input
+    id: skill
+    attributes:
+      label: Affected skill (if applicable)
+      placeholder: e.g. hr-recruiting
+    validations:
+      required: false
+
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened?
+      description: Describe the bug clearly. Include error messages or unexpected output.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect?
+    validations:
+      required: true
+
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Run `bun run validate`
+        2. See error: ...
+    validations:
+      required: false
+
+  - type: input
+    id: bun-version
+    attributes:
+      label: Bun version
+      placeholder: e.g. 1.1.0
+    validations:
+      required: false

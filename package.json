@@ -1,0 +1,54 @@
+{
+  "name": "hr-skills",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A collection of 15 HR AI skills for Claude — covering recruiting, performance management, compliance, analytics, and all major HR domains.",
+  "author": "Tuan Duc Tran",
+  "license": "MIT",
+  "homepage": "https://github.com/tuanductran/hr-skills#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tuanductran/hr-skills.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tuanductran/hr-skills/issues"
+  },
+  "keywords": [
+    "hr",
+    "human-resources",
+    "skills",
+    "ai-skills",
+    "claude",
+    "llm",
+    "agents",
+    "recruiting",
+    "performance-management",
+    "compliance"
+  ],
+  "engines": {
+    "bun": ">=1.0"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "bun run --filter '*' build",
+    "validate": "bun run --filter hr-skills-build validate",
+    "catalog": "bun run --filter hr-skills-build catalog",
+    "sync": "bun run --filter hr-skills-build sync",
+    "skills-ref:build": "bun run --filter skills-ref build",
+    "typecheck": "bun run --filter '*' typecheck",
+    "lint": "eslint . --cache",
+    "lint:fix": "eslint . --cache --fix",
+    "lint:md": "markdownlint --ignore-path=.gitignore 'skills/**/*.md' 'docs/**/*.md' 'packages/**/README.md' README.md AGENTS.md SECURITY.md CHANGELOG.md && case-police 'skills/**/*.md' 'docs/**/*.md' 'packages/**/README.md' README.md AGENTS.md SECURITY.md CHANGELOG.md",
+    "lint:md:fix": "markdownlint --ignore-path=.gitignore 'skills/**/*.md' 'docs/**/*.md' 'packages/**/README.md' README.md AGENTS.md SECURITY.md CHANGELOG.md --fix && case-police 'skills/**/*.md' 'docs/**/*.md' 'packages/**/README.md' README.md AGENTS.md SECURITY.md CHANGELOG.md --fix"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^7.6.1",
+    "@types/bun": "^1.3.9",
+    "case-police": "^2.2.0",
+    "eslint": "^10.0.2",
+    "markdownlint-cli": "^0.47.0",
+    "typescript": "^5.7.0"
+  }
+}

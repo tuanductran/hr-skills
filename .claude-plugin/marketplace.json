@@ -1,0 +1,126 @@
+{
+  "name": "hr-skills",
+  "description": "A collection of AI skills for HR managers covering recruiting, performance management, compensation, compliance, and all major HR domains. Built by Tuan Duc Tran for the Zalo HR/TA Job Onsite/Hybrid/Remote community.",
+  "plugins": [
+    {
+      "name": "hr-analytics",
+      "source": "./",
+      "description": "Help HR managers with HR analytics and data management. Use when asked to \"analyze employee data\", \"create HR metrics\", \"build an HR dashboard\", \"analyze turnover data\", \"develop HR reports\", \"build predictive analytics models\", \"create a data governance strategy\", or any HR data and analytics task.",
+      "skills": [
+        "./skills/hr-analytics"
+      ]
+    },
+    {
+      "name": "hr-compensation-benefits",
+      "source": "./",
+      "description": "Help HR managers with compensation and benefits programs. Use when asked to \"analyze compensation data\", \"design a bonus plan\", \"create benefits programs\", \"conduct a job evaluation\", \"write a compensation philosophy\", \"calculate pay rates\", \"develop retention strategies\", or any compensation and benefits task.",
+      "skills": [
+        "./skills/hr-compensation-benefits"
+      ]
+    },
+    {
+      "name": "hr-compliance",
+      "source": "./",
+      "description": "Help HR managers with HR compliance and workplace policies. Use when asked to \"write an employee handbook\", \"develop OSHA compliance\", \"manage EEO compliance\", \"handle FMLA\", \"conduct a compliance audit\", \"create background check policies\", \"develop immigration compliance strategies\", or any HR compliance task.",
+      "skills": [
+        "./skills/hr-compliance"
+      ]
+    },
+    {
+      "name": "hr-conflict-resolution",
+      "source": "./",
+      "description": "Help HR managers with workplace conflict resolution. Use when asked to \"resolve a workplace conflict\", \"mediate between employees\", \"facilitate a difficult conversation\", \"develop conflict resolution training\", \"address a team dispute\", \"create a conflict resolution policy\", or any workplace conflict task.",
+      "skills": [
+        "./skills/hr-conflict-resolution"
+      ]
+    },
+    {
+      "name": "hr-diversity-inclusion",
+      "source": "./",
+      "description": "Help HR managers with diversity, equity, and inclusion initiatives. Use when asked to \"develop a D&I strategy\", \"create inclusive job descriptions\", \"conduct unconscious bias training\", \"build employee resource groups\", \"measure diversity metrics\", \"develop a DEI scorecard\", or any diversity and inclusion task.",
+      "skills": [
+        "./skills/hr-diversity-inclusion"
+      ]
+    },
+    {
+      "name": "hr-employee-engagement",
+      "source": "./",
+      "description": "Help HR managers with employee engagement strategies. Use when asked to \"improve employee engagement\", \"design recognition programs\", \"conduct engagement surveys\", \"boost employee morale\", \"reduce burnout\", \"develop a culture strategy\", \"create team-building activities\", or any employee engagement task.",
+      "skills": [
+        "./skills/hr-employee-engagement"
+      ]
+    },
+    {
+      "name": "hr-employee-relations",
+      "source": "./",
+      "description": "Help HR managers with employee relations matters. Use when asked to \"handle a grievance\", \"conduct an exit interview\", \"manage workplace investigations\", \"create a remote work policy\", \"write employee contracts\", \"manage accommodations\", \"conduct satisfaction surveys\", or any employee relations task.",
+      "skills": [
+        "./skills/hr-employee-relations"
+      ]
+    },
+    {
+      "name": "hr-leadership-development",
+      "source": "./",
+      "description": "Help HR managers with leadership development programs. Use when asked to \"create a leadership program\", \"develop leadership competencies\", \"conduct leadership assessments\", \"design executive coaching\", \"create a leadership succession plan\", \"develop cross-cultural leadership training\", or any leadership development task.",
+      "skills": [
+        "./skills/hr-leadership-development"
+      ]
+    },
+    {
+      "name": "hr-onboarding",
+      "source": "./",
+      "description": "Help HR managers with employee onboarding and offboarding. Use when asked to \"create an onboarding plan\", \"design orientation programs\", \"build a buddy system\", \"write onboarding checklists\", \"conduct exit interviews\", \"manage knowledge transfer\", \"create offboarding processes\", or any employee onboarding or offboarding task.",
+      "skills": [
+        "./skills/hr-onboarding"
+      ]
+    },
+    {
+      "name": "hr-performance-management",
+      "source": "./",
+      "description": "Help HR managers with performance management processes. Use when asked to \"write a performance review\", \"create a PIP\", \"design performance appraisal forms\", \"set employee goals\", \"conduct 360-degree feedback\", \"develop performance metrics\", or any other performance management task.",
+      "skills": [
+        "./skills/hr-performance-management"
+      ]
+    },
+    {
+      "name": "hr-recruiting",
+      "source": "./",
+      "description": "Help HR managers with end-to-end recruiting and talent acquisition. Use when asked to \"write a job description\", \"create interview questions\", \"screen resumes\", \"develop employer branding\", \"send offer letters\", \"conduct reference checks\", or any other recruiting and hiring task.",
+      "skills": [
+        "./skills/hr-recruiting"
+      ]
+    },
+    {
+      "name": "hr-technology",
+      "source": "./",
+      "description": "Help HR managers with HR technology strategy and implementation. Use when asked to \"evaluate HR systems\", \"implement an HRIS\", \"create an HR technology roadmap\", \"select an ATS\", \"develop HR chatbots\", \"manage HR automation\", \"write an HR technology RFP\", or any HR technology task.",
+      "skills": [
+        "./skills/hr-technology"
+      ]
+    },
+    {
+      "name": "hr-training-development",
+      "source": "./",
+      "description": "Help HR managers with learning and development programs. Use when asked to \"design a training program\", \"create an e-learning course\", \"develop a coaching plan\", \"conduct a needs assessment\", \"write a competency model\", \"design a mentorship program\", \"create a learning plan\", or any training and development task.",
+      "skills": [
+        "./skills/hr-training-development"
+      ]
+    },
+    {
+      "name": "hr-vietnam-context",
+      "source": "./",
+      "description": "Vietnam-specific HR guidance covering the Labor Code, Social Insurance Law, personal income tax registration, work permits for foreign workers, trade union obligations, and cultural norms for managing teams in Vietnam. Use when you need to navigate Vietnam employment law, onboard foreign staff, handle disciplinary procedures under Vietnamese law, or adapt global HR practices for the Vietnam market.",
+      "skills": [
+        "./skills/hr-vietnam-context"
+      ]
+    },
+    {
+      "name": "hr-workforce-planning",
+      "source": "./",
+      "description": "Help HR managers with workforce planning and strategy. Use when asked to \"create a workforce plan\", \"conduct a skills gap analysis\", \"develop a succession plan\", \"build workforce models\", \"analyze headcount\", \"forecast hiring needs\", \"develop workforce diversity strategies\", or any workforce planning task.",
+      "skills": [
+        "./skills/hr-workforce-planning"
+      ]
+    }
+  ]
+}

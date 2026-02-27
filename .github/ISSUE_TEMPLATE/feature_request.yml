@@ -1,0 +1,53 @@
+name: Feature Request
+description: Suggest an improvement to an existing skill or the build tooling
+labels: [enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template for improvements to existing skills or the tooling packages.
+        For proposing a **brand new skill**, use the [New Skill Request](./new_skill.yml) template.
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Existing skill content
+        - Validation tooling (hr-skills-build)
+        - skills-ref library
+        - CI / GitHub Actions
+        - Documentation
+    validations:
+      required: true
+
+  - type: input
+    id: skill
+    attributes:
+      label: Affected skill (if applicable)
+      placeholder: e.g. hr-performance-management
+    validations:
+      required: false
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem does this solve?
+      description: Describe the gap or limitation you have encountered.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: What should change? Be as specific as possible.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+    validations:
+      required: false

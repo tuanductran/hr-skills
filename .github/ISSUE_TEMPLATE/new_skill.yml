@@ -1,0 +1,54 @@
+name: New Skill Request
+description: Propose a new HR skill to add to the collection
+labels: [enhancement, new-skill]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template to propose a new HR skill. A good skill covers a distinct HR domain
+        that isn't already handled by the [14 existing skills](../../docs/skills.md).
+
+  - type: input
+    id: name
+    attributes:
+      label: Proposed skill name
+      description: Must be kebab-case and start with `hr-`
+      placeholder: e.g. hr-compensation-strategy
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: What HR domain does this skill cover?
+      description: Explain the scope. What tasks would it handle that existing skills don't?
+    validations:
+      required: true
+
+  - type: textarea
+    id: triggers
+    attributes:
+      label: Example trigger phrases
+      description: What would an HR manager say to activate this skill?
+      placeholder: |
+        - "Write a compensation philosophy"
+        - "Design a pay band structure"
+        - "Benchmark our salaries against the market"
+    validations:
+      required: true
+
+  - type: textarea
+    id: tasks
+    attributes:
+      label: Supported tasks (8–12)
+      description: List the specific tasks this skill would handle
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: overlap
+    attributes:
+      label: Overlap check
+      options:
+        - label: I have reviewed the existing 14 skills and confirmed this is not already covered
+          required: true

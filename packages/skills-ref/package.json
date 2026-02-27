@@ -1,0 +1,46 @@
+{
+  "name": "skills-ref",
+  "type": "module",
+  "version": "0.1.0",
+  "description": "Reference library for Agent Skills — validate, read, and generate prompts from SKILL.md files",
+  "author": "Tuan Duc Tran",
+  "license": "Apache-2.0",
+  "homepage": "https://github.com/tuanductran/hr-skills/tree/main/packages/skills-ref#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tuanductran/hr-skills.git",
+    "directory": "packages/skills-ref"
+  },
+  "bugs": {
+    "url": "https://github.com/tuanductran/hr-skills/issues"
+  },
+  "keywords": [
+    "skills",
+    "ai-skills",
+    "agent-skills",
+    "claude",
+    "llm",
+    "agents",
+    "skill-md",
+    "hr"
+  ],
+  "main": "./src/index.ts",
+  "module": "./src/index.ts",
+  "types": "./src/index.ts",
+  "bin": {
+    "skills-ref": "./dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "engines": {
+    "bun": ">=1.0"
+  },
+  "scripts": {
+    "build": "bun build ./src/cli.ts --outdir ./dist --target bun --minify",
+    "dev": "bun build ./src/cli.ts --outdir ./dist --target bun --watch",
+    "typecheck": "bunx tsc --noEmit",
+    "clean": "rm -rf dist"
+  }
+}

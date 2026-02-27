@@ -1,0 +1,38 @@
+{
+  "name": "hr-skills-build",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Build tooling for HR Skills — validates, catalogs, and packages HR skill definitions",
+  "author": "Tuan Duc Tran",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tuanductran/hr-skills.git",
+    "directory": "packages/hr-skills-build"
+  },
+  "keywords": [
+    "hr",
+    "human-resources",
+    "skills",
+    "ai-skills",
+    "claude",
+    "llm",
+    "agents"
+  ],
+  "engines": {
+    "bun": ">=1.0"
+  },
+  "scripts": {
+    "build": "bun run validate && bun run catalog",
+    "validate": "bun src/validate.ts",
+    "catalog": "bun src/catalog.ts",
+    "sync": "bun src/sync.ts",
+    "list": "bun src/catalog.ts --list",
+    "dev": "bun --watch src/validate.ts",
+    "typecheck": "bunx tsc --noEmit"
+  },
+  "dependencies": {
+    "consola": "^3.4.2"
+  }
+}
