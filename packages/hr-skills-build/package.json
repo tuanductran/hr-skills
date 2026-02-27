@@ -29,6 +29,7 @@
     "catalog": "bun src/catalog.ts",
     "sync": "bun src/sync.ts",
     "list": "bun src/catalog.ts --list",
+    "test": "bun test",
     "dev": "bun --watch src/validate.ts",
     "typecheck": "bunx tsc --noEmit"
   },

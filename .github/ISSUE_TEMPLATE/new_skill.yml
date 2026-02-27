@@ -6,7 +6,7 @@ body:
     attributes:
       value: |
         Use this template to propose a new HR skill. A good skill covers a distinct HR domain
-        that isn't already handled by the [14 existing skills](../../docs/skills.md).
+        that isn't already handled by the [15 existing skills](../../docs/skills.md).
 
   - type: input
     id: name
@@ -50,5 +50,5 @@ body:
     attributes:
       label: Overlap check
       options:
-        - label: I have reviewed the existing 14 skills and confirmed this is not already covered
+        - label: I have reviewed the existing 15 skills and confirmed this is not already covered
           required: true
