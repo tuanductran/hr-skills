@@ -37,6 +37,7 @@
     "catalog": "bun run --filter hr-skills-build catalog",
     "sync": "bun run --filter hr-skills-build sync",
     "skills-ref:build": "bun run --filter skills-ref build",
+    "test": "bun run --filter '*' test",
     "typecheck": "bun run --filter '*' typecheck",
     "lint": "eslint . --cache",
     "lint:fix": "eslint . --cache --fix",
