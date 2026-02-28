@@ -43,7 +43,7 @@
     "lint:fix": "eslint . --cache --fix",
     "lint:md": "markdownlint --ignore-path=.gitignore 'skills/**/*.md' 'docs/**/*.md' 'packages/**/README.md' README.md AGENTS.md SECURITY.md CHANGELOG.md && case-police 'skills/**/*.md' 'docs/**/*.md' 'packages/**/README.md' README.md AGENTS.md SECURITY.md CHANGELOG.md",
     "lint:md:fix": "markdownlint --ignore-path=.gitignore 'skills/**/*.md' 'docs/**/*.md' 'packages/**/README.md' README.md AGENTS.md SECURITY.md CHANGELOG.md --fix && case-police 'skills/**/*.md' 'docs/**/*.md' 'packages/**/README.md' README.md AGENTS.md SECURITY.md CHANGELOG.md --fix",
-    "zip": "cd skills && for dir in */; do zip -r \"${dir%/}.zip\" \"$dir\"; done"
+    "zip": "cd skills && rm -f ./*.zip && for dir in */; do zip -r -X \"${dir%/}.zip\" \"$dir\" -x \"*/.DS_Store\"; done"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^7.6.1",
