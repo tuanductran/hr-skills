@@ -76,9 +76,10 @@ bun run lint:md:fix  # Markdown lint with auto-fix
 bun run typecheck    # Type-check all packages with tsc
 bun run build        # Build packages (skills-ref CLI → dist/)
 bun run catalog      # Regenerate skills/CATALOG.md
+bun run zip          # Regenerate all skills/*.zip packages (requires the system `zip` CLI — install it first if not available)
 ```
 
-When you add a new skill directory (for example `skills/hr-new-skill/SKILL.md`), run `bun run sync` first. It auto-updates `config.ts`, all documentation tables, `marketplace.json`, and skill counts across the project — no manual edits needed.
+When you add a new skill directory (for example `skills/hr-new-skill/SKILL.md`), run `bun run sync` first. It auto-updates `config.ts`, all documentation tables, `marketplace.json`, and skill counts across the project — no manual edits needed. Then run `bun run zip` to regenerate the zip packages.
 
 ## Packages
 
