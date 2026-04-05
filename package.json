@@ -41,16 +41,16 @@
     "typecheck": "bun run --filter '*' typecheck",
     "lint": "eslint . --cache",
     "lint:fix": "eslint . --cache --fix",
-    "lint:md": "markdownlint --ignore-path=.gitignore 'skills/**/*.md' 'docs/**/*.md' 'packages/**/README.md' README.md AGENTS.md SECURITY.md CHANGELOG.md && case-police 'skills/**/*.md' 'docs/**/*.md' 'packages/**/README.md' README.md AGENTS.md SECURITY.md CHANGELOG.md",
-    "lint:md:fix": "markdownlint --ignore-path=.gitignore 'skills/**/*.md' 'docs/**/*.md' 'packages/**/README.md' README.md AGENTS.md SECURITY.md CHANGELOG.md --fix && case-police 'skills/**/*.md' 'docs/**/*.md' 'packages/**/README.md' README.md AGENTS.md SECURITY.md CHANGELOG.md --fix",
+    "lint:md": "markdownlint --ignore-path=.gitignore '**/*.md' && case-police '**/*.md'",
+    "lint:md:fix": "markdownlint --ignore-path=.gitignore '**/*.md' --fix && case-police '**/*.md' --fix",
     "zip": "cd skills && rm -f ./*.zip && for dir in */; do zip -r -X \"${dir%/}.zip\" \"$dir\" -x \"*/.DS_Store\"; done"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^7.6.1",
-    "@types/bun": "^1.3.9",
+    "@antfu/eslint-config": "^8.0.0",
+    "@types/bun": "^1.3.11",
     "case-police": "^2.2.0",
-    "eslint": "^10.0.2",
+    "eslint": "^10.2.0",
     "markdownlint-cli": "^0.48.0",
-    "typescript": "^5.7.0"
+    "typescript": "^6.0.2"
   }
 }

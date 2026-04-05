@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 /**
  * Sync all skill references across the project.
  *
@@ -15,7 +15,7 @@
  *   bun run sync
  */
 
-import { access, readdir, readFile, writeFile } from 'node:fs/promises'
+import { readdir } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { consola } from 'consola'
@@ -23,6 +23,20 @@ import { consola } from 'consola'
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(__dirname, '../../..')
 const SKILLS_DIR = join(ROOT, 'skills')
+
+// Regex patterns
+const fmRegex = /^---\n([\s\S]*?)\n---/
+const nameRegex = /^name:[ \t]*(\S[^\n\r]*)$/m
+const descriptionRegex = /^description:[ \t]*(\S[^\n\r]*)$/m
+const tasksRegex = /## Supported tasks\n\n([\s\S]*?)(?=\n##)/
+const keyPromptsRegex = /## Key prompts\n\n([\s\S]*?)(?=\n## Tips|\n---\n|$)/
+const quotedPromptRegex = /^(?:\d+\. |[-*] )"([^"]+)"/gm
+const hrSkillsRegex = /export const HR_SKILLS = \[\n[\s\S]*?\] as const/
+const agentsTableRegex = /\| Skill \| Scope \|\n\|[-|]+\|\n[\s\S]*?(?=\n## )/
+const installationTableRegex = /\| Skill \| What it covers \|\n\|[-|]+\|\n[\s\S]*?(?=\nSee \[skills\.md\])/
+const useWhenRegex = /Use when/i
+const periodRegex = /\.$/
+const dashSpaceRegex = /^- /
 
 // ---------------------------------------------------------------------------
 // Types
@@ -48,13 +62,7 @@ interface SkillMeta {
 // ---------------------------------------------------------------------------
 
 async function exists(path: string): Promise<boolean> {
-  try {
-    await access(path)
-    return true
-  }
-  catch {
-    return false
-  }
+  return Bun.file(path).exists()
 }
 
 /** Discover all skill directories that contain a SKILL.md file */
@@ -73,30 +81,30 @@ async function discoverSkills(): Promise<string[]> {
 
 /** Parse SKILL.md and extract all metadata needed for syncing */
 async function parseSkillMeta(skillName: string): Promise<SkillMeta> {
-  const content = await readFile(join(SKILLS_DIR, skillName, 'SKILL.md'), 'utf-8')
+  const content = await Bun.file(join(SKILLS_DIR, skillName, 'SKILL.md')).text()
 
   // Frontmatter
-  const yaml = content.match(/^---\n([\s\S]*?)\n---/)?.[1] ?? ''
-  const name = (yaml.match(/^name:[ \t]*(\S[^\n\r]*)$/m)?.[1] ?? skillName).trim()
-  const description = (yaml.match(/^description:[ \t]*(\S[^\n\r]*)$/m)?.[1] ?? '').trim()
+  const yaml = content.match(fmRegex)?.[1] ?? ''
+  const name = (yaml.match(nameRegex)?.[1] ?? skillName).trim()
+  const description = (yaml.match(descriptionRegex)?.[1] ?? '').trim()
 
   // Split description into coverage (before "Use when") and trigger context
-  const useWhenIdx = description.search(/Use when/i)
+  const useWhenIdx = description.search(useWhenRegex)
   const coverage = useWhenIdx !== -1
-    ? description.slice(0, useWhenIdx).trim().replace(/\.$/, '')
-    : description.trim().replace(/\.$/, '')
+    ? description.slice(0, useWhenIdx).trim().replace(periodRegex, '')
+    : description.trim().replace(periodRegex, '')
 
   // Supported tasks
-  const tasksBlock = content.match(/## Supported tasks\n\n([\s\S]*?)(?=\n##)/)?.[1] ?? ''
+  const tasksBlock = content.match(tasksRegex)?.[1] ?? ''
   const supportedTasks = tasksBlock
     .split('\n')
     .filter(l => l.startsWith('- '))
-    .map(l => l.replace(/^- /, '').trim())
+    .map(l => l.replace(dashSpaceRegex, '').trim())
 
   // Extract up to 5 quoted prompts from Key prompts section for trigger phrases
-  const keyPromptsBlock = content.match(/## Key prompts\n\n([\s\S]*?)(?=\n## Tips|\n---\n|$)/)?.[1] ?? ''
+  const keyPromptsBlock = content.match(keyPromptsRegex)?.[1] ?? ''
   const quotedPrompts: string[] = []
-  for (const m of keyPromptsBlock.matchAll(/^(?:\d+\. |[-*] )"([^"]+)"/gm)) {
+  for (const m of keyPromptsBlock.matchAll(quotedPromptRegex)) {
     if (quotedPrompts.length >= 5)
       break
     quotedPrompts.push(m[1])
@@ -143,22 +151,22 @@ function updateCounts(content: string, count: number): string {
 /** Rebuild the HR_SKILLS array in config.ts */
 async function syncConfig(skills: string[]): Promise<boolean> {
   const path = join(__dirname, 'config.ts')
-  const original = await readFile(path, 'utf-8')
+  const original = await Bun.file(path).text()
   const list = skills.map(s => `  '${s}',`).join('\n')
   const updated = original.replace(
-    /export const HR_SKILLS = \[\n[\s\S]*?\] as const/,
+    hrSkillsRegex,
     `export const HR_SKILLS = [\n${list}\n] as const`,
   )
   if (updated === original)
     return false
-  await writeFile(path, updated)
+  await Bun.write(path, updated)
   return true
 }
 
 /** Rebuild the plugins array in marketplace.json */
 async function syncMarketplace(metas: SkillMeta[]): Promise<boolean> {
   const path = join(ROOT, '.claude-plugin/marketplace.json')
-  const raw = await readFile(path, 'utf-8')
+  const raw = await Bun.file(path).text()
   const json = JSON.parse(raw) as { name: string, description: string, plugins: unknown[] }
 
   const plugins = metas.map(m => ({
@@ -172,33 +180,33 @@ async function syncMarketplace(metas: SkillMeta[]): Promise<boolean> {
   const updated = `${JSON.stringify(json, null, 2)}\n`
   if (updated === raw)
     return false
-  await writeFile(path, updated)
+  await Bun.write(path, updated)
   return true
 }
 
 /** Rebuild the skill scopes table in AGENTS.md (between ## Skill scopes and next ##) */
 async function syncAgentsTable(metas: SkillMeta[]): Promise<boolean> {
   const path = join(ROOT, 'AGENTS.md')
-  const original = await readFile(path, 'utf-8')
+  const original = await Bun.file(path).text()
 
   const tableHeader = '| Skill | Scope |\n|-------|-------|'
   const rows = metas.map(m => `| **${m.name}** | ${m.scopeSentence} |`).join('\n')
   const newTable = `${tableHeader}\n${rows}`
 
   const updated = original.replace(
-    /\| Skill \| Scope \|\n\|[-|]+\|\n[\s\S]*?(?=\n## )/,
+    agentsTableRegex,
     `${newTable}\n`,
   )
   if (updated === original)
     return false
-  await writeFile(path, updateCounts(updated, metas.length))
+  await Bun.write(path, updateCounts(updated, metas.length))
   return true
 }
 
 /** Rebuild the skills table in docs/installation.md (between the table header and the "See skills.md" line) */
 async function syncInstallationTable(metas: SkillMeta[]): Promise<boolean> {
   const path = join(ROOT, 'docs/installation.md')
-  const original = await readFile(path, 'utf-8')
+  const original = await Bun.file(path).text()
 
   const tableHeader = '| Skill | What it covers |\n|----------------|--------|'
   const rows = metas
@@ -207,19 +215,19 @@ async function syncInstallationTable(metas: SkillMeta[]): Promise<boolean> {
   const newTable = `${tableHeader}\n${rows}`
 
   const updated = original.replace(
-    /\| Skill \| What it covers \|\n\|[-|]+\|\n[\s\S]*?(?=\nSee \[skills\.md\])/,
+    installationTableRegex,
     `${newTable}\n\n`,
   )
   if (updated === original)
     return false
-  await writeFile(path, updateCounts(updated, metas.length))
+  await Bun.write(path, updateCounts(updated, metas.length))
   return true
 }
 
 /** Add missing skill sections to docs/skills.md without touching existing ones */
 async function syncSkillsDocs(metas: SkillMeta[]): Promise<boolean> {
   const path = join(ROOT, 'docs/skills.md')
-  let content = await readFile(path, 'utf-8')
+  let content = await Bun.file(path).text()
   let changed = false
 
   for (const m of metas) {
@@ -248,8 +256,8 @@ async function syncSkillsDocs(metas: SkillMeta[]): Promise<boolean> {
     changed = true
   }
 
-  if (changed || content !== await readFile(path, 'utf-8')) {
-    await writeFile(path, updateCounts(content, metas.length))
+  if (changed || content !== await Bun.file(path).text()) {
+    await Bun.write(path, updateCounts(content, metas.length))
     return true
   }
   return false
@@ -257,11 +265,11 @@ async function syncSkillsDocs(metas: SkillMeta[]): Promise<boolean> {
 
 /** Apply count updates to simple files (README.md, package.json, docs/, packages/) */
 async function syncCountsInFile(filePath: string, count: number): Promise<boolean> {
-  const original = await readFile(filePath, 'utf-8')
+  const original = await Bun.file(filePath).text()
   const updated = updateCounts(original, count)
   if (updated === original)
     return false
-  await writeFile(filePath, updated)
+  await Bun.write(filePath, updated)
   return true
 }
 

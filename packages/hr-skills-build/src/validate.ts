@@ -1,13 +1,19 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 /**
  * Validate all HR skill SKILL.md files for correct structure and required fields
  */
 
-import { readFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import process from 'node:process'
 import { consola } from 'consola'
 import { HR_SKILLS, SKILLS_DIR } from './config.js'
+
+// Regex patterns
+const frontmatterRegex = /^---\n([\s\S]*?)\n---/
+const nameRegex = /^name:[ \t]*(\S[^\n\r]*)$/m
+const descriptionRegex = /^description:[ \t]*(\S[^\n\r]*)$/m
+const authorRegex = /^[ \t]+author:[ \t]*(\S[^\n\r]*)$/m
+const versionRegex = /^[ \t]+version:[ \t]*"?(\S[^"\n\r]*?)"?$/m
 
 interface ValidationError {
   skill: string
@@ -27,23 +33,23 @@ interface SkillFrontmatter {
  * Parse YAML-style frontmatter from a SKILL.md file
  */
 function parseFrontmatter(content: string): SkillFrontmatter {
-  const match = content.match(/^---\n([\s\S]*?)\n---/)
+  const match = content.match(frontmatterRegex)
   if (!match)
     return {}
 
   const yaml = match[1]
   const result: SkillFrontmatter = {}
 
-  const nameMatch = yaml.match(/^name:[ \t]*(\S[^\n\r]*)$/m)
+  const nameMatch = yaml.match(nameRegex)
   if (nameMatch)
     result.name = nameMatch[1].trim()
 
-  const descMatch = yaml.match(/^description:[ \t]*(\S[^\n\r]*)$/m)
+  const descMatch = yaml.match(descriptionRegex)
   if (descMatch)
     result.description = descMatch[1].trim()
 
-  const authorMatch = yaml.match(/^[ \t]+author:[ \t]*(\S[^\n\r]*)$/m)
-  const versionMatch = yaml.match(/^[ \t]+version:[ \t]*"?(\S[^"\n\r]*?)"?$/m)
+  const authorMatch = yaml.match(authorRegex)
+  const versionMatch = yaml.match(versionRegex)
   if (authorMatch || versionMatch) {
     result.metadata = {}
     if (authorMatch)
@@ -64,7 +70,7 @@ async function validateSkill(skillName: string): Promise<ValidationError[]> {
 
   let content: string
   try {
-    content = await readFile(skillFile, 'utf-8')
+    content = await Bun.file(skillFile).text()
   }
   catch {
     errors.push({ skill: skillName, message: 'SKILL.md file not found' })

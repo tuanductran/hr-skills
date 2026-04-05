@@ -1,13 +1,21 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 /**
  * Generate a catalog of all HR skills with their names and descriptions
  */
 
-import { readFile, writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import process from 'node:process'
 import { consola } from 'consola'
 import { HR_SKILLS, SKILLS_DIR } from './config.js'
+
+// Regex patterns
+const fmRegex = /^---\n([\s\S]*?)\n---/
+const nameRegex = /^name:[ \t]*(\S[^\n\r]*)$/m
+const descriptionRegex = /^description:[ \t]*(\S[^\n\r]*)$/m
+const authorRegex = /^[ \t]+author:[ \t]*(\S[^\n\r]*)$/m
+const versionRegex = /^[ \t]+version:[ \t]*"?(\S[^"\n\r]*?)"?$/m
+const tasksRegex = /## Supported tasks\n\n([\s\S]*?)(?=\n##)/
+const dashSpaceRegex = /^- /
 
 interface SkillCatalogEntry {
   name: string
@@ -25,7 +33,7 @@ async function parseSkill(skillName: string): Promise<SkillCatalogEntry | null> 
 
   let content: string
   try {
-    content = await readFile(skillFile, 'utf-8')
+    content = await Bun.file(skillFile).text()
   }
   catch {
     consola.error(`Could not read ${skillName}/SKILL.md`)
@@ -33,21 +41,21 @@ async function parseSkill(skillName: string): Promise<SkillCatalogEntry | null> 
   }
 
   // Parse frontmatter
-  const fmMatch = content.match(/^---\n([\s\S]*?)\n---/)
+  const fmMatch = content.match(fmRegex)
   const yaml = fmMatch ? fmMatch[1] : ''
 
-  const name = (yaml.match(/^name:[ \t]*(\S[^\n\r]*)$/m)?.[1] ?? skillName).trim()
-  const description = (yaml.match(/^description:[ \t]*(\S[^\n\r]*)$/m)?.[1] ?? '').trim()
-  const author = (yaml.match(/^[ \t]+author:[ \t]*(\S[^\n\r]*)$/m)?.[1] ?? '').trim()
-  const version = (yaml.match(/^[ \t]+version:[ \t]*"?(\S[^"\n\r]*?)"?$/m)?.[1] ?? '1.0.0').trim()
+  const name = (yaml.match(nameRegex)?.[1] ?? skillName).trim()
+  const description = (yaml.match(descriptionRegex)?.[1] ?? '').trim()
+  const author = (yaml.match(authorRegex)?.[1] ?? '').trim()
+  const version = (yaml.match(versionRegex)?.[1] ?? '1.0.0').trim()
 
   // Extract supported tasks
-  const tasksMatch = content.match(/## Supported tasks\n\n([\s\S]*?)(?=\n##)/)
+  const tasksMatch = content.match(tasksRegex)
   const supportedTasks = tasksMatch
     ? tasksMatch[1]
         .split('\n')
         .filter(line => line.startsWith('- '))
-        .map(line => line.replace(/^- /, '').trim())
+        .map(line => line.replace(dashSpaceRegex, '').trim())
     : []
 
   return { name, description, author, version, supportedTasks }
@@ -101,7 +109,7 @@ async function catalog() {
   if (!listOnly) {
     const catalogContent = generateCatalog(skills)
     const outputFile = join(SKILLS_DIR, 'CATALOG.md')
-    await writeFile(outputFile, catalogContent, 'utf-8')
+    await Bun.write(outputFile, catalogContent)
     consola.success(`Catalog written to skills/CATALOG.md (${skills.length} skills)`)
   }
 }
