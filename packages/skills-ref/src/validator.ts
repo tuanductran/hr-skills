@@ -8,6 +8,8 @@ import { findSkillMd, parseFrontmatter } from './parser.js'
 
 const MAX_SKILL_NAME_LENGTH = 64
 const MAX_DESCRIPTION_LENGTH = 1024
+
+const skillNameRegex = /^[a-z0-9-]+$/
 const MAX_COMPATIBILITY_LENGTH = 500
 
 const ALLOWED_FIELDS = new Set([
@@ -46,7 +48,7 @@ function validateName(name: unknown, skillDir: string): string[] {
     errors.push('Skill name cannot contain consecutive hyphens')
   }
 
-  if (!/^[a-z0-9-]+$/.test(n)) {
+  if (!skillNameRegex.test(n)) {
     errors.push(
       `Skill name '${n}' contains invalid characters. Only letters, digits, and hyphens are allowed.`,
     )

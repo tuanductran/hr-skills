@@ -5,6 +5,8 @@ import { existsSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { ParseError, ValidationError } from './errors.js'
 
+const nonWhitespaceRegex = /\S/
+
 /** Find SKILL.md in a skill directory. Prefers uppercase, accepts lowercase. */
 export function findSkillMd(skillDir: string): string | null {
   for (const name of ['SKILL.md', 'skill.md']) {
@@ -55,7 +57,7 @@ function parseSimpleYaml(yaml: string): Record<string, unknown> {
 
     const key = trimmed.slice(0, colonIdx).trim()
     const rest = trimmed.slice(colonIdx + 1).trim()
-    const indent = line.search(/\S/)
+    const indent = line.search(nonWhitespaceRegex)
 
     if (rest === '' || rest === '|' || rest === '>') {
       // Nested object: collect indented children
@@ -68,7 +70,7 @@ function parseSimpleYaml(yaml: string): Record<string, unknown> {
           i++
           break
         }
-        const childIndent = childLine.search(/\S/)
+        const childIndent = childLine.search(nonWhitespaceRegex)
         if (childIndent <= indent)
           break
         const childColon = childTrimmed.indexOf(':')
