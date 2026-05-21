@@ -1,22 +1,44 @@
 /** Generate <available_skills> XML prompt block for agent system prompts. */
 
-import { join, resolve } from 'node:path'
-import { findSkillMd, readProperties } from './parser.js'
+import { join, resolve } from 'node:path';
+import { findSkillMd, readProperties } from './parser.js';
 
-function escapeXml(str: string): string {
-  return str
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&apos;')
+// -----------------------------------------------------------------------------
+// Helpers
+// -----------------------------------------------------------------------------
+
+function escapeXml(value: string): string {
+	return value
+		.replaceAll('&', '&amp;')
+		.replaceAll('<', '&lt;')
+		.replaceAll('>', '&gt;')
+		.replaceAll('"', '&quot;')
+		.replaceAll("'", '&apos;');
 }
 
+function createSkillBlock(skillDir: string): string {
+	const resolvedPath = resolve(skillDir);
+
+	const properties = readProperties(resolvedPath);
+
+	const skillMdPath = findSkillMd(resolvedPath) ?? join(resolvedPath, 'SKILL.md');
+
+	return [
+		'<skill>',
+		`<name>${escapeXml(properties.name)}</name>`,
+		`<description>${escapeXml(properties.description)}</description>`,
+		`<location>${escapeXml(skillMdPath)}</location>`,
+		'</skill>',
+	].join('\n');
+}
+
+// -----------------------------------------------------------------------------
+// Public API
+// -----------------------------------------------------------------------------
+
 /**
- * Generate the <available_skills> XML block for inclusion in agent prompts.
- *
- * @param skillDirs - List of paths to skill directories
- * @returns XML string with <available_skills> block
+ * Generate an <available_skills> XML block
+ * for inclusion in agent system prompts.
  *
  * @example
  * ```xml
@@ -30,32 +52,11 @@ function escapeXml(str: string): string {
  * ```
  */
 export function toPrompt(skillDirs: string[]): string {
-  if (skillDirs.length === 0) {
-    return '<available_skills>\n</available_skills>'
-  }
+	if (skillDirs.length === 0) {
+		return '<available_skills>\n</available_skills>';
+	}
 
-  const lines: string[] = ['<available_skills>']
+	const skillBlocks = skillDirs.map(createSkillBlock);
 
-  for (const skillDir of skillDirs) {
-    const resolved = resolve(skillDir)
-    const props = readProperties(resolved)
-
-    lines.push('<skill>')
-    lines.push('<name>')
-    lines.push(escapeXml(props.name))
-    lines.push('</name>')
-    lines.push('<description>')
-    lines.push(escapeXml(props.description))
-    lines.push('</description>')
-
-    const skillMdPath = findSkillMd(resolved)
-    lines.push('<location>')
-    lines.push(skillMdPath ?? join(resolved, 'SKILL.md'))
-    lines.push('</location>')
-
-    lines.push('</skill>')
-  }
-
-  lines.push('</available_skills>')
-  return lines.join('\n')
+	return ['<available_skills>', ...skillBlocks, '</available_skills>'].join('\n');
 }

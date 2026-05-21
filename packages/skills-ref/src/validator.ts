@@ -1,162 +1,190 @@
 /** Skill validation logic. */
 
-import { existsSync, readFileSync, statSync } from 'node:fs'
-import { basename } from 'node:path'
+import { existsSync, readFileSync, statSync } from 'node:fs';
 
-import { ParseError } from './errors.js'
-import { findSkillMd, parseFrontmatter } from './parser.js'
+import { basename } from 'node:path';
 
-const MAX_SKILL_NAME_LENGTH = 64
-const MAX_DESCRIPTION_LENGTH = 1024
+import { ParseError } from './errors.js';
 
-const skillNameRegex = /^[a-z0-9-]+$/
-const MAX_COMPATIBILITY_LENGTH = 500
+import { findSkillMd, parseFrontmatter } from './parser.js';
 
-const ALLOWED_FIELDS = new Set([
-  'name',
-  'description',
-  'license',
-  'allowed-tools',
-  'metadata',
-  'compatibility',
-])
+// -----------------------------------------------------------------------------
+// Constants
+// -----------------------------------------------------------------------------
+
+const MAX_SKILL_NAME_LENGTH = 64;
+
+const MAX_DESCRIPTION_LENGTH = 1024;
+
+const MAX_COMPATIBILITY_LENGTH = 500;
+
+const SKILL_NAME_REGEX = /^[a-z0-9-]+$/;
+
+const ALLOWED_FRONTMATTER_FIELDS = new Set([
+	'name',
+	'description',
+	'license',
+	'allowed-tools',
+	'metadata',
+	'compatibility',
+]);
+
+// -----------------------------------------------------------------------------
+// Validators
+// -----------------------------------------------------------------------------
 
 function validateName(name: unknown, skillDir: string): string[] {
-  const errors: string[] = []
+	if (typeof name !== 'string' || name.trim().length === 0) {
+		return ["Field 'name' must be a non-empty string"];
+	}
 
-  if (name == null || typeof name !== 'string' || name.trim().length === 0) {
-    return ['Field \'name\' must be a non-empty string']
-  }
+	const normalizedName = name.trim();
 
-  const n = name.trim()
+	const errors: string[] = [];
 
-  if (n.length > MAX_SKILL_NAME_LENGTH) {
-    errors.push(
-      `Skill name '${n}' exceeds ${MAX_SKILL_NAME_LENGTH} character limit (${n.length} chars)`,
-    )
-  }
+	if (normalizedName.length > MAX_SKILL_NAME_LENGTH) {
+		errors.push(
+			`Skill name '${normalizedName}' exceeds ${MAX_SKILL_NAME_LENGTH} character limit (${normalizedName.length} chars)`,
+		);
+	}
 
-  if (n !== n.toLowerCase()) {
-    errors.push(`Skill name '${n}' must be lowercase`)
-  }
+	if (normalizedName !== normalizedName.toLowerCase()) {
+		errors.push(`Skill name '${normalizedName}' must be lowercase`);
+	}
 
-  if (n.startsWith('-') || n.endsWith('-')) {
-    errors.push('Skill name cannot start or end with a hyphen')
-  }
+	if (normalizedName.startsWith('-') || normalizedName.endsWith('-')) {
+		errors.push('Skill name cannot start or end with a hyphen');
+	}
 
-  if (n.includes('--')) {
-    errors.push('Skill name cannot contain consecutive hyphens')
-  }
+	if (normalizedName.includes('--')) {
+		errors.push('Skill name cannot contain consecutive hyphens');
+	}
 
-  if (!skillNameRegex.test(n)) {
-    errors.push(
-      `Skill name '${n}' contains invalid characters. Only letters, digits, and hyphens are allowed.`,
-    )
-  }
+	if (!SKILL_NAME_REGEX.test(normalizedName)) {
+		errors.push(
+			`Skill name '${normalizedName}' contains invalid characters. Only lowercase letters, digits, and hyphens are allowed.`,
+		);
+	}
 
-  const dirName = basename(skillDir)
-  if (dirName !== n) {
-    errors.push(`Directory name '${dirName}' must match skill name '${n}'`)
-  }
+	const directoryName = basename(skillDir);
 
-  return errors
+	if (directoryName !== normalizedName) {
+		errors.push(
+			`Directory name '${directoryName}' must match skill name '${normalizedName}'`,
+		);
+	}
+
+	return errors;
 }
 
 function validateDescription(description: unknown): string[] {
-  if (description == null || typeof description !== 'string' || description.trim().length === 0) {
-    return ['Field \'description\' must be a non-empty string']
-  }
+	if (typeof description !== 'string' || description.trim().length === 0) {
+		return ["Field 'description' must be a non-empty string"];
+	}
 
-  if (description.length > MAX_DESCRIPTION_LENGTH) {
-    return [
-      `Description exceeds ${MAX_DESCRIPTION_LENGTH} character limit (${description.length} chars)`,
-    ]
-  }
+	if (description.length > MAX_DESCRIPTION_LENGTH) {
+		return [
+			`Description exceeds ${MAX_DESCRIPTION_LENGTH} character limit (${description.length} chars)`,
+		];
+	}
 
-  return []
+	return [];
 }
 
 function validateCompatibility(compatibility: unknown): string[] {
-  if (typeof compatibility !== 'string') {
-    return ['Field \'compatibility\' must be a string']
-  }
+	if (typeof compatibility !== 'string') {
+		return ["Field 'compatibility' must be a string"];
+	}
 
-  if (compatibility.length > MAX_COMPATIBILITY_LENGTH) {
-    return [
-      `Compatibility exceeds ${MAX_COMPATIBILITY_LENGTH} character limit (${compatibility.length} chars)`,
-    ]
-  }
+	if (compatibility.length > MAX_COMPATIBILITY_LENGTH) {
+		return [
+			`Compatibility exceeds ${MAX_COMPATIBILITY_LENGTH} character limit (${compatibility.length} chars)`,
+		];
+	}
 
-  return []
+	return [];
 }
 
-function validateMetadataFields(metadata: Record<string, unknown>): string[] {
-  const extra = Object.keys(metadata).filter(k => !ALLOWED_FIELDS.has(k))
-  if (extra.length > 0) {
-    return [
-      `Unexpected fields in frontmatter: ${extra.sort().join(', ')}. Only ${[...ALLOWED_FIELDS].sort().join(', ')} are allowed.`,
-    ]
-  }
-  return []
+function validateFrontmatterFields(metadata: Record<string, unknown>): string[] {
+	const invalidFields = Object.keys(metadata)
+		.filter((field) => !ALLOWED_FRONTMATTER_FIELDS.has(field))
+		.sort();
+
+	if (invalidFields.length === 0) {
+		return [];
+	}
+
+	return [
+		`Unexpected fields in frontmatter: ${invalidFields.join(', ')}. Only ${[...ALLOWED_FRONTMATTER_FIELDS].sort().join(', ')} are allowed.`,
+	];
 }
+
+// -----------------------------------------------------------------------------
+// Public API
+// -----------------------------------------------------------------------------
 
 /**
  * Validate a skill directory.
- * Returns a list of error messages. Empty list means valid.
+ *
+ * Returns a list of validation errors.
+ * An empty array means the skill is valid.
  */
 export function validate(skillDir: string): string[] {
-  if (!existsSync(skillDir)) {
-    return [`Path does not exist: ${skillDir}`]
-  }
+	if (!existsSync(skillDir)) {
+		return [`Path does not exist: ${skillDir}`];
+	}
 
-  const stat = statSync(skillDir)
-  if (!stat.isDirectory()) {
-    return [`Not a directory: ${skillDir}`]
-  }
+	const stats = statSync(skillDir);
 
-  const skillMd = findSkillMd(skillDir)
-  if (skillMd == null) {
-    return ['Missing required file: SKILL.md']
-  }
+	if (!stats.isDirectory()) {
+		return [`Not a directory: ${skillDir}`];
+	}
 
-  let content: string
-  try {
-    content = readFileSync(skillMd, 'utf8')
-  }
-  catch (e) {
-    return [`Failed to read SKILL.md: ${String(e)}`]
-  }
+	const skillMdPath = findSkillMd(skillDir);
 
-  let metadata: Record<string, unknown>
-  try {
-    [metadata] = parseFrontmatter(content)
-  }
-  catch (e) {
-    if (e instanceof ParseError)
-      return [e.message]
-    return [`Failed to parse SKILL.md: ${String(e)}`]
-  }
+	if (skillMdPath == null) {
+		return ['Missing required file: SKILL.md'];
+	}
 
-  const errors: string[] = []
-  errors.push(...validateMetadataFields(metadata))
+	let content: string;
 
-  if (!('name' in metadata)) {
-    errors.push('Missing required field in frontmatter: name')
-  }
-  else {
-    errors.push(...validateName(metadata.name, skillDir))
-  }
+	try {
+		content = readFileSync(skillMdPath, 'utf8');
+	} catch (error) {
+		return [`Failed to read SKILL.md: ${String(error)}`];
+	}
 
-  if (!('description' in metadata)) {
-    errors.push('Missing required field in frontmatter: description')
-  }
-  else {
-    errors.push(...validateDescription(metadata.description))
-  }
+	let metadata: Record<string, unknown>;
 
-  if ('compatibility' in metadata) {
-    errors.push(...validateCompatibility(metadata.compatibility))
-  }
+	try {
+		[metadata] = parseFrontmatter(content);
+	} catch (error) {
+		if (error instanceof ParseError) {
+			return [error.message];
+		}
 
-  return errors
+		return [`Failed to parse SKILL.md: ${String(error)}`];
+	}
+
+	const errors: string[] = [];
+
+	errors.push(...validateFrontmatterFields(metadata));
+
+	if (!('name' in metadata)) {
+		errors.push('Missing required field in frontmatter: name');
+	} else {
+		errors.push(...validateName(metadata.name, skillDir));
+	}
+
+	if (!('description' in metadata)) {
+		errors.push('Missing required field in frontmatter: description');
+	} else {
+		errors.push(...validateDescription(metadata.description));
+	}
+
+	if ('compatibility' in metadata) {
+		errors.push(...validateCompatibility(metadata.compatibility));
+	}
+
+	return errors;
 }

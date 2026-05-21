@@ -1,0 +1,75 @@
+{
+	"$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+	"files": {
+		"includes": [
+			"./**/*.js",
+			"./**/*.ts",
+			"./**/*.json",
+			"!skills",
+			"!!**/dist",
+			"!!**/node_modules"
+		]
+	},
+	"assist": {
+		"actions": {
+			"source": {
+				"organizeImports": "on"
+			}
+		}
+	},
+	"formatter": {
+		"enabled": true,
+
+		"attributePosition": "multiline",
+		"indentStyle": "tab",
+		"indentWidth": 4,
+		"lineEnding": "lf",
+		"lineWidth": 90
+	},
+	"javascript": {
+		"formatter": {
+			"enabled": true,
+
+			"arrowParentheses": "always",
+			"attributePosition": "multiline",
+			"bracketSameLine": true,
+			"bracketSpacing": true,
+			"jsxQuoteStyle": "single",
+			"quoteStyle": "single",
+			"semicolons": "always",
+			"trailingCommas": "all"
+		}
+	},
+	"linter": {
+		"enabled": true,
+		"rules": {
+			"recommended": true,
+			"complexity": {
+				"recommended": true
+			},
+			"correctness": {
+				"recommended": true
+			},
+			"nursery": {
+				"recommended": true
+			},
+			"performance": {
+				"recommended": true
+			},
+			"security": {
+				"recommended": true
+			},
+			"suspicious": {
+				"recommended": true
+			},
+			"style": {
+				"recommended": true
+			}
+		}
+	},
+	"vcs": {
+		"defaultBranch": "main",
+		"clientKind": "git",
+		"enabled": true
+	}
+}

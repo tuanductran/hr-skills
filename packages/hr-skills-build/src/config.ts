@@ -1,30 +1,60 @@
 /**
  * Configuration for HR Skills build tooling
+ *
+ * Auto-discovers all skills that start with the `hr-` prefix.
  */
 
-import { dirname, join } from 'node:path'
-import { fileURLToPath } from 'node:url'
+import { readdir } from 'node:fs/promises';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-const __dirname = dirname(fileURLToPath(import.meta.url))
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
-export const SKILLS_DIR = join(__dirname, '../../..', 'skills')
+export const SKILLS_DIR = join(__dirname, '../../..', 'skills');
 
-export const HR_SKILLS = [
-  'hr-analytics',
-  'hr-compensation-benefits',
-  'hr-compliance',
-  'hr-conflict-resolution',
-  'hr-diversity-inclusion',
-  'hr-employee-engagement',
-  'hr-employee-relations',
-  'hr-leadership-development',
-  'hr-onboarding',
-  'hr-performance-management',
-  'hr-recruiting',
-  'hr-technology',
-  'hr-training-development',
-  'hr-vietnam-context',
-  'hr-workforce-planning',
-] as const
+export const HR_SKILL_PREFIX = 'hr-';
 
-export type HRSkillName = typeof HR_SKILLS[number]
+interface SkillDirectoryOptions {
+	readonly prefix?: string;
+	readonly sort?: boolean;
+}
+
+/**
+ * Discover all HR skill directories automatically.
+ *
+ * Rules:
+ * - Must be a directory
+ * - Must start with `hr-`
+ * - Must contain `SKILL.md`
+ */
+export async function getHrSkills(
+	options: SkillDirectoryOptions = {},
+): Promise<string[]> {
+	const { prefix = HR_SKILL_PREFIX, sort = true } = options;
+
+	const entries = await readdir(SKILLS_DIR, {
+		withFileTypes: true,
+	});
+
+	const skills: string[] = [];
+
+	for (const entry of entries) {
+		if (!entry.isDirectory()) {
+			continue;
+		}
+
+		if (!entry.name.startsWith(prefix)) {
+			continue;
+		}
+
+		const skillFile = Bun.file(join(SKILLS_DIR, entry.name, 'SKILL.md'));
+
+		if (!(await skillFile.exists())) {
+			continue;
+		}
+
+		skills.push(entry.name);
+	}
+
+	return sort ? skills.sort() : skills;
+}

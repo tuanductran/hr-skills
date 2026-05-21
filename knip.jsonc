@@ -1,0 +1,20 @@
+{
+  "$schema": "./node_modules/knip/schema.json",
+
+  "workspaces": {
+    "packages/hr-skills-build": {
+      "project": [
+        "src/**/*.ts"
+      ]
+    },
+
+    "packages/skills-ref": {
+      "entry": [
+        "src/cli.ts"
+      ],
+      "project": [
+        "src/**/*.ts"
+      ]
+    }
+  }
+}

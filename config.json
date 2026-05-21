@@ -1,0 +1,16 @@
+{
+	"ignorePatterns": [
+		{
+			"pattern": "^/"
+		},
+		{
+			"pattern": "^https?://"
+		},
+		{
+			"pattern": "^#"
+		},
+		{
+			"pattern": "^\\d"
+		}
+	]
+}

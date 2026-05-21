@@ -1,39 +1,78 @@
-import { existsSync } from 'node:fs'
-import { join } from 'node:path'
-import { describe, expect, it } from 'bun:test'
-import { HR_SKILLS, SKILLS_DIR } from '../src/config.js'
+import { describe, expect, it } from 'bun:test';
+import { existsSync } from 'node:fs';
+import { join } from 'node:path';
+import { getHrSkills, HR_SKILL_PREFIX, SKILLS_DIR } from '../src/config.js';
 
-describe('HR_SKILLS', () => {
-  it('has 15 skills', () => {
-    expect(HR_SKILLS.length).toBe(15)
-  })
+describe('getHrSkills()', () => {
+	it('returns at least one skill', async () => {
+		const skills = await getHrSkills();
 
-  it('all names are lowercase kebab-case', () => {
-    for (const name of HR_SKILLS) {
-      expect(name).toMatch(/^[a-z][a-z0-9-]*[a-z0-9]$/)
-    }
-  })
+		expect(skills.length).toBeGreaterThan(0);
+	});
 
-  it('all names start with hr-', () => {
-    for (const name of HR_SKILLS) {
-      expect(name.startsWith('hr-')).toBe(true)
-    }
-  })
+	it('all names are lowercase kebab-case', async () => {
+		const skills = await getHrSkills();
 
-  it('has no duplicates', () => {
-    const set = new Set(HR_SKILLS)
-    expect(set.size).toBe(HR_SKILLS.length)
-  })
-})
+		for (const name of skills) {
+			expect(name).toMatch(/^[a-z][a-z0-9-]*[a-z0-9]$/);
+		}
+	});
+
+	it('all names start with hr- prefix', async () => {
+		const skills = await getHrSkills();
+
+		for (const name of skills) {
+			expect(name.startsWith(HR_SKILL_PREFIX)).toBe(true);
+		}
+	});
+
+	it('has no duplicate skill names', async () => {
+		const skills = await getHrSkills();
+
+		const uniqueSkills = new Set(skills);
+
+		expect(uniqueSkills.size).toBe(skills.length);
+	});
+
+	it('returns alphabetically sorted skills by default', async () => {
+		const skills = await getHrSkills();
+
+		const sorted = [...skills].sort();
+
+		expect(skills).toEqual(sorted);
+	});
+
+	it('every discovered skill contains SKILL.md', async () => {
+		const skills = await getHrSkills();
+
+		for (const skill of skills) {
+			const skillFile = join(SKILLS_DIR, skill, 'SKILL.md');
+
+			expect(existsSync(skillFile)).toBe(true);
+		}
+	});
+
+	it('supports disabling sorting', async () => {
+		const skills = await getHrSkills({
+			sort: false,
+		});
+
+		expect(Array.isArray(skills)).toBe(true);
+	});
+
+	it('supports custom prefixes', async () => {
+		const skills = await getHrSkills({
+			prefix: 'hr-',
+		});
+
+		for (const skill of skills) {
+			expect(skill.startsWith('hr-')).toBe(true);
+		}
+	});
+});
 
 describe('SKILLS_DIR', () => {
-  it('points to an existing directory', () => {
-    expect(existsSync(SKILLS_DIR)).toBe(true)
-  })
-
-  it('contains all expected skill subdirectories', () => {
-    for (const name of HR_SKILLS) {
-      expect(existsSync(join(SKILLS_DIR, name))).toBe(true)
-    }
-  })
-})
+	it('points to an existing directory', () => {
+		expect(existsSync(SKILLS_DIR)).toBe(true);
+	});
+});

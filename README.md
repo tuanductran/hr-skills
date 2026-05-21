@@ -194,25 +194,31 @@ Each skill contains:
 
 ## Development
 
-This is a [Bun](https://bun.sh/) monorepo. Run all commands from the project root.
+This is a [Bun](https://bun.sh/) and [Turborepo](https://turborepo.dev/) monorepo. Run all commands from the project root.
 
 ```bash
 bun install          # Install all dependencies
 bun run validate     # Validate all 15 skill SKILL.md files
 bun run catalog      # Regenerate skills/CATALOG.md
-bun run build        # Build packages (skills-ref CLI → dist/)
-bun run typecheck    # Type-check all packages with tsc
-bun run lint         # ESLint on TypeScript sources
-bun run lint:fix     # ESLint with auto-fix
+bun run sync         # Sync skill references and generated project metadata
+bun run build        # Build all workspace packages through Turborepo
+bun run test         # Run tests across all workspace packages
+bun run typecheck    # Type-check all workspace packages
+bun run check        # Run Biome checks without applying changes
+bun run lint         # Run Biome checks with auto-fix
+bun run format       # Format files with Biome
 bun run lint:md      # markdownlint + case-police on Markdown files
 bun run lint:md:fix  # markdownlint + case-police with auto-fix
+bun run lint:links   # Check Markdown links in skills/
+bun run knip         # Detect unused files and dependencies
+bun run zip          # Generate distributable skill zip packages
 ```
 
 ### Packages
 
 | Package | Description |
 |---------|-------------|
-| `packages/hr-skills-build` | Scripts for validating skills and generating `CATALOG.md` |
+| `packages/hr-skills-build` | Build and maintenance tooling for validating skills, generating catalogs, syncing metadata, and packaging skills |
 | `packages/skills-ref` | TypeScript library + CLI for reading, validating, and prompting skill files |
 
 ## License
