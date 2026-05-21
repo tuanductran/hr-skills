@@ -20,8 +20,6 @@ Help HR managers with HR analytics and data management. Use when asked to "analy
 - Developing HR data governance and privacy strategies
 - Analyzing talent acquisition ROI
 - Writing HR audit reports and data management policies
-- Creating diversity and inclusion scorecards
-- Developing workforce segmentation strategies
 
 ---
 
@@ -41,8 +39,6 @@ Help HR managers with compensation and benefits programs. Use when asked to "ana
 - Managing employee benefits and flexible spending accounts
 - Designing paid time off and leave of absence policies
 - Creating total rewards statements and reports
-- Writing compensation philosophy statements
-- Developing retention strategies
 
 ---
 
@@ -62,10 +58,6 @@ Help HR managers with HR compliance and workplace policies. Use when asked to "w
 - Developing employment, drug testing, and background check policies
 - Writing employee handbooks and privacy policies
 - Managing work permits, visas, and immigration compliance
-- Disability inclusion and reasonable accommodations
-- Writing workplace accommodation and anti-bullying policies
-- Developing ethical business conduct policies
-- Vietnam Labor Code and Social Insurance compliance
 
 ---
 
@@ -85,8 +77,6 @@ Help HR managers with workplace conflict resolution. Use when asked to "resolve 
 - Managing conflicts arising from diversity and inclusion issues
 - Providing coaching support for conflict resolution
 - Conducting conflict resolution workshops
-- Rebuilding trust and team relationships post-conflict
-- Addressing conflicts related to performance, workload, and organizational change
 
 ---
 
@@ -106,8 +96,6 @@ Help HR managers with diversity, equity, and inclusion initiatives. Use when ask
 - Creating diversity scorecards and tracking progress
 - Developing mentorship programs that promote equity
 - Addressing systemic bias in talent processes
-- Creating inclusive onboarding and leadership development
-- Promoting pay equity and transparency
 
 ---
 
@@ -127,8 +115,6 @@ Help HR managers with employee engagement strategies. Use when asked to "improve
 - Reducing burnout and improving employee well-being
 - Developing communication strategies that foster transparency
 - Improving engagement in remote and hybrid work environments
-- Promoting employee autonomy and innovation
-- Building a sense of purpose and belonging at work
 
 ---
 
@@ -148,9 +134,6 @@ Help HR managers with employee relations matters. Use when asked to "handle a gr
 - Conducting employee satisfaction surveys
 - Developing diversity and inclusion training
 - Developing conflict resolution and team-building strategies
-- Creating internal communications strategies
-- Developing employee assistance programs (EAPs)
-- Labor union engagement and collective bargaining support
 
 ---
 
@@ -170,8 +153,6 @@ Help HR managers with leadership development programs. Use when asked to "create
 - Developing succession plans for key leadership roles
 - Designing cross-cultural and digital leadership training
 - Conducting executive onboarding programs
-- Writing leadership coaching manuals and communication strategies
-- Managing global leadership development
 
 ---
 
@@ -191,8 +172,6 @@ Help HR managers with employee onboarding and offboarding. Use when asked to "cr
 - Conducting exit interviews and managing offboarding processes
 - Managing knowledge transfer for departing employees
 - Measuring onboarding effectiveness and gathering feedback
-- Creating onboarding portals and digital platforms
-- Addressing diverse and inclusive onboarding needs
 
 ---
 
@@ -212,8 +191,6 @@ Help HR managers with performance management processes. Use when asked to "write
 - Developing performance metrics and KPIs
 - Running performance calibration sessions
 - Designing employee recognition and awards programs
-- Writing talent review reports
-- Developing succession planning programs
 
 ---
 
@@ -233,8 +210,6 @@ Help HR managers with end-to-end recruiting and talent acquisition. Use when ask
 - Writing offer letters, rejection letters, and counter-offer letters
 - Managing ATS (Applicant Tracking Systems)
 - Building employee referral programs
-- Implementing campus recruiting programs
-- Conducting exit surveys to improve retention
 
 ---
 
@@ -254,8 +229,6 @@ Help HR managers with HR technology strategy and implementation. Use when asked 
 - Creating HR self-service portals and data governance frameworks
 - Managing HR automation and data integration projects
 - Writing HR technology RFPs and business cases
-- Developing HR gamification platforms
-- Managing HR technology vendors and data visualization platforms
 
 ---
 
@@ -275,8 +248,6 @@ Help HR managers with learning and development programs. Use when asked to "desi
 - Developing microlearning modules and gamified training
 - Conducting train-the-trainer sessions
 - Writing performance review templates and learning objectives
-- Creating employee handbooks and orientation materials
-- Developing digital badges and credentials programs
 
 ---
 
@@ -296,8 +267,6 @@ Vietnam-specific HR guidance covering the Labor Code, Social Insurance Law, pers
 - Disciplinary procedures and termination under Vietnam Labor Code
 - Trade union obligations and worker representative engagement
 - Managing Vietnam-specific leave entitlements (annual, maternity, sick, Tet)
-- Adapting global HR policies for Vietnam cultural norms
-- Navigating Vietnam's data localization and cybersecurity law
 
 ---
 
@@ -317,7 +286,3 @@ Help HR managers with workforce planning and strategy. Use when asked to "create
 - Developing global and diversity workforce strategies
 - Managing strategic workforce planning projects
 - Creating workforce segmentation plans
-- Contingent workforce and contract labor strategy
-- Conducting workforce benchmarking studies
-
----
