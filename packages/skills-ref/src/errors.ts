@@ -3,23 +3,21 @@
 export class SkillError extends Error {
 	constructor(message: string) {
 		super(message);
-		this.name = 'SkillError';
+
+		this.name = new.target.name;
+
+		Object.setPrototypeOf(this, new.target.prototype);
 	}
 }
 
-export class ParseError extends SkillError {
-	constructor(message: string) {
-		super(message);
-		this.name = 'ParseError';
-	}
-}
+export class ParseError extends SkillError {}
 
 export class ValidationError extends SkillError {
-	readonly errors: string[];
+	public readonly errors: readonly string[];
 
 	constructor(message: string, errors?: string[]) {
 		super(message);
-		this.name = 'ValidationError';
-		this.errors = errors ?? [message];
+
+		this.errors = Object.freeze(errors ?? [message]);
 	}
 }

@@ -11,8 +11,8 @@ describe('SkillError', () => {
 		expect(err.name).toBe('SkillError');
 		expect(err.message).toBe('msg');
 
-		// prototype chain correctness (important in JS inheritance)
-		expect(Object.getPrototypeOf(err)).toBeInstanceOf(SkillError);
+		// correct prototype chain check
+		expect(Object.getPrototypeOf(err)).toBe(SkillError.prototype);
 	});
 });
 
@@ -27,7 +27,8 @@ describe('ParseError', () => {
 		expect(err.name).toBe('ParseError');
 		expect(err.message).toBe('parse fail');
 
-		expect(Object.getPrototypeOf(err)).toBeInstanceOf(ParseError);
+		// correct prototype chain check
+		expect(Object.getPrototypeOf(err)).toBe(ParseError.prototype);
 	});
 });
 
@@ -41,6 +42,7 @@ describe('ValidationError', () => {
 
 		expect(err.name).toBe('ValidationError');
 		expect(err.message).toBe('invalid');
+
 		expect(err.errors).toEqual(['invalid']);
 	});
 
@@ -55,6 +57,8 @@ describe('ValidationError', () => {
 		const err = new ValidationError('x');
 
 		expect(Array.isArray(err.errors)).toBe(true);
-		expect(Object.isFrozen?.(err.errors) ?? true).toBe(true);
+
+		// ensure immutability
+		expect(Object.isFrozen(err.errors)).toBe(true);
 	});
 });
