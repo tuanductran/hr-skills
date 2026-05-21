@@ -62,7 +62,7 @@ jobs:
         run: bun run lint:md
 
   lint:
-    name: ESLint
+    name: Biome
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
@@ -73,7 +73,7 @@ jobs:
       - name: Install dependencies
         run: bun install
 
-      - name: Run ESLint
+      - name: Run Biome
         run: bun run lint
 
   typecheck:

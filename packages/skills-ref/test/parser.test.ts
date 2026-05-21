@@ -1,87 +1,125 @@
-import { mkdtempSync, rmSync, writeFileSync } from 'node:fs'
-import { tmpdir } from 'node:os'
-import { join } from 'node:path'
-import { describe, expect, it } from 'bun:test'
-import { ParseError } from '../src/errors.js'
-import { findSkillMd, parseFrontmatter, readProperties } from '../src/parser.js'
+import { describe, expect, it } from 'bun:test';
+import { mkdtempSync, rmSync, writeFileSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
 
-const SKILLS_DIR = join(import.meta.dir, '../../../skills')
+import { ParseError, ValidationError } from '../src/errors.js';
+import { findSkillMd, parseFrontmatter, readProperties } from '../src/parser.js';
+
+const SKILLS_DIR = join(import.meta.dir, '../../../skills');
+
+// -----------------------------------------------------------------------------
+// parseFrontmatter
+// -----------------------------------------------------------------------------
 
 describe('parseFrontmatter', () => {
-  it('parses valid frontmatter', () => {
-    const content = `---\nname: hr-test\ndescription: A test skill\n---\n\n## Body\n`
-    const [meta, body] = parseFrontmatter(content)
-    expect(meta.name).toBe('hr-test')
-    expect(meta.description).toBe('A test skill')
-    expect(body).toContain('## Body')
-  })
+	it('parses valid frontmatter', () => {
+		const content = '---\nname: hr-test\ndescription: A test skill\n---\n\n## Body\n';
 
-  it('parses nested metadata fields', () => {
-    const content = `---\nname: hr-test\ndescription: desc\nmetadata:\n  author: Alice\n  version: "1.0"\n---\n`
-    const [meta] = parseFrontmatter(content)
-    expect(meta.metadata).toEqual({ author: 'Alice', version: '1.0' })
-  })
+		const [meta, body] = parseFrontmatter(content);
 
-  it('throws ParseError if content does not start with ---', () => {
-    expect(() => parseFrontmatter('no frontmatter')).toThrow(ParseError)
-  })
+		expect(meta.name).toBe('hr-test');
+		expect(meta.description).toBe('A test skill');
+		expect(body).toContain('## Body');
+	});
 
-  it('throws ParseError if frontmatter is not closed', () => {
-    expect(() => parseFrontmatter('---\nname: hr-test\n')).toThrow(ParseError)
-  })
+	it('parses nested metadata fields', () => {
+		const content =
+			'---\nname: hr-test\ndescription: desc\nmetadata:\n  author: Alice\n  version: "1.0"\n---\n';
 
-  it('handles quoted string values', () => {
-    const content = `---\nname: "hr-test"\ndescription: "A quoted skill"\n---\n`
-    const [meta] = parseFrontmatter(content)
-    expect(meta.name).toBe('hr-test')
-    expect(meta.description).toBe('A quoted skill')
-  })
-})
+		const [meta] = parseFrontmatter(content);
+
+		expect(meta.metadata).toEqual({
+			author: 'Alice',
+			version: '1.0',
+		});
+	});
+
+	it('throws ParseError if content does not start with ---', () => {
+		expect(() => parseFrontmatter('no frontmatter')).toThrow(ParseError);
+	});
+
+	it('throws ParseError if frontmatter is not closed', () => {
+		expect(() => parseFrontmatter('---\nname: hr-test\n')).toThrow(ParseError);
+	});
+
+	it('handles quoted string values', () => {
+		const content = '---\nname: "hr-test"\ndescription: "A quoted skill"\n---\n';
+
+		const [meta] = parseFrontmatter(content);
+
+		expect(meta.name).toBe('hr-test');
+		expect(meta.description).toBe('A quoted skill');
+	});
+});
+
+// -----------------------------------------------------------------------------
+// findSkillMd
+// -----------------------------------------------------------------------------
 
 describe('findSkillMd', () => {
-  it('returns path for existing SKILL.md', () => {
-    const result = findSkillMd(join(SKILLS_DIR, 'hr-recruiting'))
-    expect(result).not.toBeNull()
-    expect(result).toContain('SKILL.md')
-  })
+	it('returns path for existing SKILL.md', () => {
+		const result = findSkillMd(join(SKILLS_DIR, 'hr-recruiting'));
 
-  it('returns null for directory without SKILL.md', () => {
-    const tmp = mkdtempSync(join(tmpdir(), 'skill-test-'))
-    try {
-      expect(findSkillMd(tmp)).toBeNull()
-    }
-    finally {
-      rmSync(tmp, { recursive: true })
-    }
-  })
-})
+		expect(result).not.toBeNull();
+		expect(result).toContain('SKILL.md');
+	});
+
+	it('returns null for directory without SKILL.md', () => {
+		const tmp = mkdtempSync(join(tmpdir(), 'skill-test-'));
+
+		try {
+			expect(findSkillMd(tmp)).toBeNull();
+		} finally {
+			rmSync(tmp, { recursive: true, force: true });
+		}
+	});
+});
+
+// -----------------------------------------------------------------------------
+// readProperties
+// -----------------------------------------------------------------------------
 
 describe('readProperties', () => {
-  it('reads properties from a real skill directory', () => {
-    const props = readProperties(join(SKILLS_DIR, 'hr-recruiting'))
-    expect(props.name).toBe('hr-recruiting')
-    expect(typeof props.description).toBe('string')
-    expect(props.description.length).toBeGreaterThan(0)
-  })
+	it('reads properties from a real skill directory', () => {
+		const props = readProperties(join(SKILLS_DIR, 'hr-recruiting'));
 
-  it('throws ParseError if no SKILL.md found', () => {
-    const tmp = mkdtempSync(join(tmpdir(), 'skill-test-'))
-    try {
-      expect(() => readProperties(tmp)).toThrow(ParseError)
-    }
-    finally {
-      rmSync(tmp, { recursive: true })
-    }
-  })
+		expect(props.name).toBe('hr-recruiting');
+		expect(typeof props.description).toBe('string');
+		expect(props.description.length).toBeGreaterThan(0);
+	});
 
-  it('throws ValidationError if name field is missing', () => {
-    const tmp = mkdtempSync(join(tmpdir(), 'skill-test-'))
-    writeFileSync(join(tmp, 'SKILL.md'), `---\ndescription: desc\n---\n`)
-    try {
-      expect(() => readProperties(tmp)).toThrow()
-    }
-    finally {
-      rmSync(tmp, { recursive: true })
-    }
-  })
-})
+	it('throws ParseError if no SKILL.md found', () => {
+		const tmp = mkdtempSync(join(tmpdir(), 'skill-test-'));
+
+		try {
+			expect(() => readProperties(tmp)).toThrow(ParseError);
+		} finally {
+			rmSync(tmp, { recursive: true, force: true });
+		}
+	});
+
+	it('throws ValidationError if name field is missing', () => {
+		const tmp = mkdtempSync(join(tmpdir(), 'skill-test-'));
+
+		writeFileSync(join(tmp, 'SKILL.md'), '---\ndescription: desc\n---\n');
+
+		try {
+			expect(() => readProperties(tmp)).toThrow(ValidationError);
+		} finally {
+			rmSync(tmp, { recursive: true, force: true });
+		}
+	});
+
+	it('throws ValidationError if description is missing', () => {
+		const tmp = mkdtempSync(join(tmpdir(), 'skill-test-'));
+
+		writeFileSync(join(tmp, 'SKILL.md'), '---\nname: hr-test\n---\n');
+
+		try {
+			expect(() => readProperties(tmp)).toThrow(ValidationError);
+		} finally {
+			rmSync(tmp, { recursive: true, force: true });
+		}
+	});
+});

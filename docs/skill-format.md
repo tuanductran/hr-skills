@@ -2,15 +2,24 @@
 
 Every HR skill is a single `SKILL.md` file inside a named directory under `skills/`.
 
+This repository uses a Bun + Turborepo workspace structure. Skill content lives in `skills/`, while tooling and automation scripts live in `packages/`.
+
 ## Directory structure
 
 ```text
-skills/
-  hr-your-skill/
-    SKILL.md
+.
+├── skills/
+│   └── hr-your-skill/
+│       └── SKILL.md
+├── packages/
+│   ├── hr-skills-build/
+│   └── skills-ref/
+├── docs/
+├── scripts/
+└── turbo.json
 ```
 
-The directory name must match the `name` field in the frontmatter exactly.
+The skill directory name must match the `name` field in the frontmatter exactly.
 
 ## File structure
 
@@ -35,7 +44,7 @@ metadata:
 | Field | Required | Description |
 |-------|----------|-------------|
 | `name` | Yes | Skill name in `kebab-case`. Must match the directory name. |
-| `description` | Yes | One sentence. What the skill does and **when to activate it**. Include realistic HR trigger phrases. |
+| `description` | Yes | One sentence describing what the skill does and when Claude should activate it. Include realistic HR trigger phrases. |
 | `metadata.author` | Yes | Skill author's name |
 | `metadata.version` | Yes | Semantic version string, for example `"1.0.0"` |
 | `license` | No | SPDX license identifier, for example `MIT` |
@@ -43,23 +52,23 @@ metadata:
 
 ### Writing a good `description`
 
-The description is the most important field — it determines when Claude loads the skill. Be specific and include real trigger phrases HR professionals use:
+The description is the most important field because it determines when Claude activates the skill. Be specific and include realistic HR trigger phrases:
 
 ```yaml
 # Too vague
 description: Helps with HR tasks related to recruiting.
 
-# Good — specific domain + concrete trigger phrases
+# Better — specific domain + clear trigger phrases
 description: Help HR managers with end-to-end recruiting and talent acquisition.
   Use when asked to "write a job description", "create interview questions",
-  "screen resumes", "develop employer branding", or any other recruiting task.
+  "screen resumes", "develop employer branding", or similar recruiting tasks.
 ```
 
 ## Body sections
 
 The body must contain these three sections in order.
 
-### `## Supported Tasks`
+### `## Supported tasks`
 
 A bullet list of 8–12 concrete HR tasks this skill handles.
 
@@ -71,9 +80,9 @@ A bullet list of 8–12 concrete HR tasks this skill handles.
 - Screening resumes and evaluating candidates
 ```
 
-### `## Key Prompts`
+### `## Key prompts`
 
-Grouped prompt templates organised by subtopic (3–6 subtopics, 4–7 prompts each). Use numbered lists. Use `[placeholders]` for variable inputs.
+Grouped prompt templates organised by subtopic (3–6 subtopics, 4–7 prompts each). Use numbered lists and `[placeholders]` for variable inputs.
 
 ```markdown
 ## Key prompts
@@ -90,13 +99,13 @@ Grouped prompt templates organised by subtopic (3–6 subtopics, 4–7 prompts e
 
 ### `## Tips`
 
-4–6 bullet points of professional best-practice guidance. Should be actionable and non-obvious.
+4–6 bullet points of professional best-practice guidance. Keep them actionable and practical.
 
 ```markdown
 ## Tips
 
 - Standardise interview scoring rubrics to reduce bias and improve hiring quality.
-- Track recruiting metrics (time-to-fill, offer acceptance rate) to improve over time.
+- Track recruiting metrics such as time-to-fill and offer acceptance rate.
 ```
 
 ## Quality checklist
@@ -104,24 +113,52 @@ Grouped prompt templates organised by subtopic (3–6 subtopics, 4–7 prompts e
 Before committing a skill, verify:
 
 - [ ] `name` matches the directory name exactly
-- [ ] `description` contains specific trigger phrases
-- [ ] `description` is a single sentence (or a compact multi-line YAML scalar)
+- [ ] `description` contains realistic HR trigger phrases
+- [ ] `description` is concise and activation-focused
 - [ ] `metadata.author` and `metadata.version` are set
-- [ ] `## Supported Tasks` has 8–12 items
-- [ ] `## Key Prompts` is grouped into 3–6 named subtopics
+- [ ] `## Supported tasks` has 8–12 items
+- [ ] `## Key prompts` is grouped into 3–6 named subtopics
 - [ ] Each subtopic has 4–7 prompts
 - [ ] Prompts use `[placeholders]` for variable inputs
-- [ ] `## Tips` has 4–6 actionable tips
+- [ ] `## Tips` has 4–6 actionable recommendations
 - [ ] File is under 500 lines
-- [ ] No time-sensitive content (laws, tool names, version numbers)
+- [ ] No time-sensitive content such as laws, versions, or vendor-specific details
 - [ ] `bun run validate` passes with 0 errors
 
 ## Validation
 
-Run `bun run validate` from the project root to check all skills automatically:
+Run validation from the project root:
 
 ```bash
 bun run validate
 ```
 
-This checks frontmatter fields, required sections, and minimum content length.
+This validates frontmatter fields, required sections, naming conventions, and minimum content structure.
+
+## Development workflow
+
+This repository uses Turborepo task orchestration with Bun workspaces.
+
+Common commands:
+
+```bash
+bun run build
+bun run test
+bun run typecheck
+bun run validate
+bun run sync
+```
+
+Run a task for a specific package:
+
+```bash
+turbo run build --filter=skills-ref
+turbo run typecheck --filter=hr-skills-build
+```
+
+Run a package script directly with Bun:
+
+```bash
+bun run --filter skills-ref build
+bun run --filter hr-skills-build validate
+```

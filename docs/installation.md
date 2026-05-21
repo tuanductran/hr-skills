@@ -2,7 +2,7 @@
 
 HR Skills can be used with **Claude Code** (CLI) or **claude.ai** (web). Choose the method that matches how you use Claude.
 
-## Claude code
+## Claude Code
 
 Claude Code reads skills from `~/.claude/skills/` on your machine.
 
@@ -12,7 +12,7 @@ Claude Code reads skills from `~/.claude/skills/` on your machine.
 cp -r skills/hr-recruiting ~/.claude/skills/
 ```
 
-### Install all 15 skills at once
+### Install all skills at once
 
 ```bash
 cp -r skills/hr-* ~/.claude/skills/
@@ -39,7 +39,7 @@ Draft a return-to-office policy for a hybrid team
 ```
 
 ```text
-Analyse our employee turnover data and suggest retention strategies
+Analyze our employee turnover data and suggest retention strategies
 ```
 
 ## claude.ai
@@ -88,5 +88,27 @@ For deep focus work (for example a full recruiting campaign), create a dedicated
 | `hr-training-development` | Learning needs, training design, and competency models |
 | `hr-vietnam-context` | Vietnam Labor Code, Social Insurance, work permits, and cultural HR practices |
 | `hr-workforce-planning` | Headcount planning, skills gaps, and succession |
+
+## Development
+
+This repository uses Bun workspaces with Turborepo for builds, task orchestration, and caching.
+
+Common development commands:
+
+```bash
+bun install
+bun run build
+bun run test
+bun run typecheck
+bun run check
+bun run lint
+```
+
+Run a task for a specific package with Turbo filters:
+
+```bash
+turbo run build --filter=skills-ref
+turbo run typecheck --filter=hr-skills-build
+```
 
 See [skills.md](./skills.md) for full descriptions and example trigger phrases.

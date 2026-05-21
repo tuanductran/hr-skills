@@ -1,6 +1,10 @@
 # HR skills reference
 
-All 15 skills, with descriptions and example prompts that activate each skill.
+A complete reference for all available HR skills, including coverage areas and example trigger phrases that activate each skill in Claude.
+
+> Skills are stored in `skills/<skill-name>/SKILL.md`.
+>
+> This repository is maintained as a Bun + Turborepo monorepo. Some documentation and references are generated automatically via `bun run sync`.
 
 ---
 

@@ -1,17 +1,17 @@
 {
-  "compilerOptions": {
-    "target": "ESNext",
-    "lib": ["ESNext"],
-    "moduleDetection": "force",
-    "module": "Preserve",
-    "moduleResolution": "bundler",
-    "types": ["@types/bun"],
-    "strict": true,
-    "noFallthroughCasesInSwitch": true,
-    "noEmit": true,
-    "verbatimModuleSyntax": true,
-    "skipLibCheck": true
-  },
-  "include": ["src", "test"],
-  "exclude": ["node_modules", "dist"]
+	"compilerOptions": {
+		"target": "ESNext",
+		"lib": ["ESNext"],
+		"moduleDetection": "force",
+		"module": "Preserve",
+		"moduleResolution": "bundler",
+		"types": ["@types/bun"],
+		"strict": true,
+		"noFallthroughCasesInSwitch": true,
+		"noEmit": true,
+		"verbatimModuleSyntax": true,
+		"skipLibCheck": true
+	},
+	"include": ["src", "test"],
+	"exclude": ["node_modules", "dist"]
 }

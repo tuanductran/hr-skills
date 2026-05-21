@@ -1,6 +1,6 @@
 # Getting started
 
-HR Skills is a collection of 15 AI skill files for Claude that cover the full range of HR work — from recruiting and onboarding to compliance, analytics, and leadership development.
+HR Skills is a collection of AI skill files for Claude that cover the full range of HR work — from recruiting and onboarding to compliance, analytics, and leadership development.
 
 Each skill is a `SKILL.md` file that Claude reads to understand what HR tasks it can help with and how to approach them professionally.
 
@@ -12,7 +12,7 @@ Each skill is a `SKILL.md` file that Claude reads to understand what HR tasks it
 
 ## Quick start
 
-### Claude code (CLI)
+### Claude Code (CLI)
 
 Copy any skill into your `~/.claude/skills/` directory:
 
@@ -47,6 +47,26 @@ The fastest way to see HR Skills in action:
    ```
 
 Claude will use the recruiting skill to generate structured, competency-based questions.
+
+## Development
+
+This repository uses Bun workspaces with Turborepo for task orchestration and caching.
+
+Run commands from the project root:
+
+```bash
+bun install
+bun run build
+bun run test
+bun run typecheck
+```
+
+You can also run tasks for a single package with Turbo filters:
+
+```bash
+turbo run build --filter=skills-ref
+turbo run typecheck --filter=hr-skills-build
+```
 
 ## Next steps
 

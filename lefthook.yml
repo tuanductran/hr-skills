@@ -1,0 +1,42 @@
+pre-commit:
+  parallel: true
+
+  jobs:
+    - name: biome
+      glob: "*.{js,jsx,ts,tsx,mjs,cjs,json,jsonc}"
+      exclude:
+        - "**/dist/**"
+        - "**/node_modules/**"
+        - "skills/**"
+      run: bunx biome check --write --no-errors-on-unmatched {staged_files}
+      stage_fixed: true
+
+    - name: markdown
+      glob: "*.md"
+      exclude:
+        - "**/node_modules/**"
+      run: bun run lint:md
+
+commit-msg:
+  jobs:
+    - name: commitlint
+      run: bunx commitlint --edit {1}
+
+pre-push:
+  parallel: true
+
+  jobs:
+    - name: typecheck
+      run: bun run typecheck
+
+    - name: knip
+      run: bunx knip
+
+post-merge:
+  jobs:
+    - name: install
+      glob:
+        - "package.json"
+        - "bun.lock"
+        - "packages/*/package.json"
+      run: bun install

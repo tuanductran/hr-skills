@@ -57,10 +57,10 @@ docs(installation): add claude.ai paste method
 ```text
 feat(hr-onboarding): add virtual onboarding prompts
 fix(hr-analytics): correct turnover formula in tips
-chore: upgrade markdownlint-cli to 0.47
+chore: upgrade markdownlint-cli to latest
 docs: add skill-format specification to docs/
 build(skills-ref): switch build target to bun
-ci: add ESLint job to hr-skills-ci workflow
+ci: add Biome job to hr-skills-ci workflow
 ```
 
 After completing any task, validate skills and run the linter:
@@ -69,23 +69,32 @@ After completing any task, validate skills and run the linter:
 bun install          # Install all dependencies (run once, or after package changes)
 bun run sync         # Sync skill references across all docs (run after adding/removing a skill)
 bun run validate     # Validate all 15 skill SKILL.md files
-bun run lint         # ESLint on TypeScript sources (0 errors required)
-bun run lint:fix     # ESLint with auto-fix
+bun run check        # Run Biome checks without writing changes
+bun run lint         # Run Biome checks with auto-fix
+bun run format       # Format files with Biome formatter
 bun run lint:md      # markdownlint + case-police on Markdown files
 bun run lint:md:fix  # Markdown lint with auto-fix
-bun run typecheck    # Type-check all packages with tsc
-bun run build        # Build packages (skills-ref CLI → dist/)
-bun run catalog      # Regenerate skills/CATALOG.md
-bun run zip          # Regenerate all skills/*.zip packages (requires the system `zip` CLI — install it first if not available)
+bun run typecheck    # Run type-checking across workspace packages
+bun run build        # Run all workspace build tasks through Turborepo
+bun run catalog      # Regenerate the generated skills catalog
+bun run zip          # Generate cross-platform distributable skill zip packages
 ```
 
-When you add a new skill directory (for example `skills/hr-new-skill/SKILL.md`), run `bun run sync` first. It auto-updates `config.ts`, all documentation tables, `marketplace.json`, and skill counts across the project — no manual edits needed. Then run `bun run zip` to regenerate the zip packages.
+Build, test, and typecheck tasks are orchestrated through Turborepo.
+
+Tasks may run in parallel and use local caching based on `turbo.json`.
+
+When you add a new skill directory (for example `skills/hr-new-skill/SKILL.md`), run `bun run sync` first. It auto-updates `config.ts`, all documentation tables, `marketplace.json`, and skill counts across the project — no manual edits needed. Then run `bun run catalog` and `bun run zip` to regenerate the zip packages.
 
 ## Packages
 
+This repository uses Bun workspaces with Turborepo task orchestration. All packages are located in `packages/*`.
+
+Generated files and package build outputs are cached through Turborepo based on the task configuration in `turbo.json`.
+
 | Package | Description |
 |---------|-------------|
-| `packages/hr-skills-build` | `validate.ts` and `catalog.ts` scripts — run via `bun run validate` / `bun run catalog` from root |
+| `packages/hr-skills-build` | Build and maintenance tooling for validating skills, generating catalogs, syncing metadata, and packaging skill distributions |
 | `packages/skills-ref` | TypeScript library + CLI (`skills-ref`) for reading, validating, and generating prompts from skill files |
 
 ## Skill scopes

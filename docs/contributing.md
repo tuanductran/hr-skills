@@ -1,10 +1,10 @@
 # Contributing
 
-Contributions are welcome — new skills, improvements to existing skills, and fixes to the build tooling.
+Contributions are welcome — new HR skills, improvements to existing skills, documentation updates, and enhancements to the build and tooling workflow.
 
 ## Prerequisites
 
-- [Bun](https://bun.sh/) ≥ 1.0
+- [Bun](https://bun.sh/) ≥ 1.3.9
 - Node.js is not required — Bun handles everything
 
 ## Setup
@@ -19,14 +19,17 @@ bun install
 
 Run the full check suite from the project root:
 
+Build and typecheck tasks are orchestrated through Turborepo and may run in parallel across workspace packages.
+
 ```bash
 bun run validate    # All 15 SKILL.md files must pass
-bun run lint        # 0 ESLint errors required
+bun run check       # 0 Biome check errors required
 bun run lint:md     # 0 markdownlint errors required
 bun run typecheck   # 0 TypeScript errors required
+bun run build       # All workspace builds must complete successfully
 ```
 
-All four checks must pass before opening a pull request.
+All checks must pass before opening a pull request.
 
 ## Adding a new skill
 
@@ -45,7 +48,7 @@ Use this template:
 ```markdown
 ---
 name: hr-your-skill-name
-description: One-sentence description. Include trigger phrases like "Write a ...", "Conduct a ...", or "Analyse ...".
+description: One-sentence description. Include trigger phrases like "Write a ...", "Conduct a ...", or "Analyze ...".
 metadata:
   author: Your Name
   version: "1.0.0"
@@ -84,7 +87,7 @@ See [skill-format.md](./skill-format.md) for the full specification.
 
 ### 3. Sync skill references
 
-Run the sync script to auto-update all references (config, docs, tables, counts, marketplace):
+Run the sync script to auto-update generated references and metadata:
 
 ```bash
 bun run sync
@@ -92,11 +95,12 @@ bun run sync
 
 This updates `config.ts`, `AGENTS.md`, `docs/installation.md`, `docs/skills.md`, `.claude-plugin/marketplace.json`, and all skill count references across the project. No manual edits are needed.
 
-### 4. Validate and regenerate the catalog
+### 4. Validate and regenerate generated artifacts
 
 ```bash
 bun run validate   # Must pass with 0 errors
 bun run catalog    # Regenerates skills/CATALOG.md
+bun run zip        # Regenerates distributable skill packages
 ```
 
 ### 5. Open a pull request
@@ -116,11 +120,19 @@ bun run lint:md
 
 ## Improving the build tooling
 
-The TypeScript packages live in `packages/`. Changes there should:
+The TypeScript workspace packages and build tooling live in `packages/`.
+
+Workspace build outputs are cached through Turborepo based on the task configuration in `turbo.json`.
+
+Changes there should:
 
 - Keep `bun run lint` at 0 errors
 - Keep `bun run typecheck` at 0 errors
-- Not break `bun run validate` or `bun run catalog`
+- Not break `bun run build`
+- Not break `bun run validate`
+- Not break `bun run catalog`
+- Not break `bun run sync`
+- Not break generated package outputs
 
 ## Questions
 

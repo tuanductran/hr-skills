@@ -1,154 +1,225 @@
 /** YAML frontmatter parsing for SKILL.md files. */
 
-import type { SkillProperties } from './models.js'
-import { existsSync, readFileSync } from 'node:fs'
-import { join } from 'node:path'
-import { ParseError, ValidationError } from './errors.js'
+import { existsSync, readFileSync } from 'node:fs';
+import { join } from 'node:path';
+import { ParseError, ValidationError } from './errors.js';
+import type { SkillProperties } from './models.js';
 
-const nonWhitespaceRegex = /\S/
+const NON_WHITESPACE_REGEX = /\S/;
 
-/** Find SKILL.md in a skill directory. Prefers uppercase, accepts lowercase. */
-export function findSkillMd(skillDir: string): string | null {
-  for (const name of ['SKILL.md', 'skill.md']) {
-    const p = join(skillDir, name)
-    if (existsSync(p))
-      return p
-  }
-  return null
-}
+const FRONTMATTER_DELIMITER = '---';
 
-/** Parse YAML frontmatter from SKILL.md content. Returns [metadata, body]. */
-export function parseFrontmatter(content: string): [Record<string, unknown>, string] {
-  if (!content.startsWith('---')) {
-    throw new ParseError('SKILL.md must start with YAML frontmatter (---)')
-  }
+const SKILL_MD_FILENAMES = ['SKILL.md', 'skill.md'] as const;
 
-  const parts = content.split('---')
-  if (parts.length < 3) {
-    throw new ParseError('SKILL.md frontmatter not properly closed with ---')
-  }
+// -----------------------------------------------------------------------------
+// Helpers
+// -----------------------------------------------------------------------------
 
-  const frontmatterStr = parts[1]
-  const body = parts.slice(2).join('---').trim()
-
-  const metadata = parseSimpleYaml(frontmatterStr)
-  return [metadata, body]
-}
-
-/** Minimal YAML parser for SKILL.md frontmatter (key: value, nested via indentation). */
-function parseSimpleYaml(yaml: string): Record<string, unknown> {
-  const result: Record<string, unknown> = {}
-  const lines = yaml.split('\n')
-
-  let i = 0
-  while (i < lines.length) {
-    const line = lines[i]
-    const trimmed = line.trimEnd()
-    if (!trimmed || trimmed.startsWith('#')) {
-      i++
-      continue
-    }
-
-    const colonIdx = trimmed.indexOf(':')
-    if (colonIdx === -1) {
-      i++
-      continue
-    }
-
-    const key = trimmed.slice(0, colonIdx).trim()
-    const rest = trimmed.slice(colonIdx + 1).trim()
-    const indent = line.search(nonWhitespaceRegex)
-
-    if (rest === '' || rest === '|' || rest === '>') {
-      // Nested object: collect indented children
-      const nested: Record<string, string> = {}
-      i++
-      while (i < lines.length) {
-        const childLine = lines[i]
-        const childTrimmed = childLine.trimEnd()
-        if (!childTrimmed) {
-          i++
-          break
-        }
-        const childIndent = childLine.search(nonWhitespaceRegex)
-        if (childIndent <= indent)
-          break
-        const childColon = childTrimmed.indexOf(':')
-        if (childColon !== -1) {
-          const ck = childTrimmed.slice(0, childColon).trim()
-          const cv = childTrimmed.slice(childColon + 1).trim()
-          nested[ck] = unquote(cv)
-        }
-        i++
-      }
-      result[key] = nested
-      continue
-    }
-
-    result[key] = unquote(rest)
-    i++
-  }
-
-  return result
+function isPlainObject(value: unknown): value is Record<string, unknown> {
+	return value != null && typeof value === 'object' && !Array.isArray(value);
 }
 
 function unquote(value: string): string {
-  if (
-    (value.startsWith('"') && value.endsWith('"'))
-    || (value.startsWith('\'') && value.endsWith('\''))
-  ) {
-    return value.slice(1, -1)
-  }
-  return value
+	if (
+		(value.startsWith('"') && value.endsWith('"')) ||
+		(value.startsWith("'") && value.endsWith("'"))
+	) {
+		return value.slice(1, -1);
+	}
+
+	return value;
 }
 
-/** Type guard: checks that a value is a plain (non-array) object. */
-function isPlainObject(v: unknown): v is Record<string, unknown> {
-  return v != null && typeof v === 'object' && !Array.isArray(v)
+function toStringOrUndefined(value: unknown): string | undefined {
+	return value != null ? String(value).trim() || undefined : undefined;
+}
+
+// -----------------------------------------------------------------------------
+// File discovery
+// -----------------------------------------------------------------------------
+
+/**
+ * Find SKILL.md in a skill directory.
+ *
+ * Prefers uppercase filename but also supports lowercase.
+ */
+export function findSkillMd(skillDir: string): string | null {
+	for (const filename of SKILL_MD_FILENAMES) {
+		const filepath = join(skillDir, filename);
+
+		if (existsSync(filepath)) {
+			return filepath;
+		}
+	}
+
+	return null;
+}
+
+// -----------------------------------------------------------------------------
+// Frontmatter parsing
+// -----------------------------------------------------------------------------
+
+/**
+ * Parse YAML frontmatter from SKILL.md content.
+ *
+ * Returns:
+ * [metadata, body]
+ */
+export function parseFrontmatter(content: string): [Record<string, unknown>, string] {
+	if (!content.startsWith(FRONTMATTER_DELIMITER)) {
+		throw new ParseError('SKILL.md must start with YAML frontmatter (---)');
+	}
+
+	const parts = content.split(FRONTMATTER_DELIMITER);
+
+	if (parts.length < 3) {
+		throw new ParseError('SKILL.md frontmatter not properly closed with ---');
+	}
+
+	const frontmatter = parts[1];
+
+	const body = parts.slice(2).join(FRONTMATTER_DELIMITER).trim();
+
+	return [parseSimpleYaml(frontmatter), body];
 }
 
 /**
+ * Minimal YAML parser for SKILL.md frontmatter.
+ *
+ * Supports:
+ * - key: value
+ * - nested objects via indentation
+ */
+function parseSimpleYaml(yaml: string): Record<string, unknown> {
+	const result: Record<string, unknown> = {};
+
+	const lines = yaml.split('\n');
+
+	let index = 0;
+
+	while (index < lines.length) {
+		const line = lines[index];
+
+		const trimmedLine = line.trimEnd();
+
+		if (trimmedLine.length === 0 || trimmedLine.startsWith('#')) {
+			index++;
+			continue;
+		}
+
+		const colonIndex = trimmedLine.indexOf(':');
+
+		if (colonIndex === -1) {
+			index++;
+			continue;
+		}
+
+		const key = trimmedLine.slice(0, colonIndex).trim();
+
+		const value = trimmedLine.slice(colonIndex + 1).trim();
+
+		const indent = line.search(NON_WHITESPACE_REGEX);
+
+		// Nested object
+		if (value === '' || value === '|' || value === '>') {
+			const nested: Record<string, string> = {};
+
+			index++;
+
+			while (index < lines.length) {
+				const childLine = lines[index];
+
+				const childTrimmed = childLine.trimEnd();
+
+				if (childTrimmed.length === 0) {
+					index++;
+					continue;
+				}
+
+				const childIndent = childLine.search(NON_WHITESPACE_REGEX);
+
+				if (childIndent <= indent) {
+					break;
+				}
+
+				const childColonIndex = childTrimmed.indexOf(':');
+
+				if (childColonIndex !== -1) {
+					const childKey = childTrimmed.slice(0, childColonIndex).trim();
+
+					const childValue = childTrimmed.slice(childColonIndex + 1).trim();
+
+					nested[childKey] = unquote(childValue);
+				}
+
+				index++;
+			}
+
+			result[key] = nested;
+
+			continue;
+		}
+
+		result[key] = unquote(value);
+
+		index++;
+	}
+
+	return result;
+}
+
+// -----------------------------------------------------------------------------
+// Property reader
+// -----------------------------------------------------------------------------
+
+/**
  * Read skill properties from SKILL.md frontmatter.
- * Does NOT perform full validation — use validate() for that.
+ *
+ * This does NOT perform full validation.
+ * Use validate() for strict validation rules.
  */
 export function readProperties(skillDir: string): SkillProperties {
-  const skillMd = findSkillMd(skillDir)
-  if (skillMd == null) {
-    throw new ParseError(`SKILL.md not found in ${skillDir}`)
-  }
+	const skillMd = findSkillMd(skillDir);
 
-  const content = readFileSync(skillMd, 'utf8')
-  const [metadata] = parseFrontmatter(content)
+	if (skillMd == null) {
+		throw new ParseError(`SKILL.md not found in ${skillDir}`);
+	}
 
-  if (!('name' in metadata)) {
-    throw new ValidationError('Missing required field in frontmatter: name')
-  }
-  if (!('description' in metadata)) {
-    throw new ValidationError('Missing required field in frontmatter: description')
-  }
+	const content = readFileSync(skillMd, 'utf8');
 
-  const rawName = metadata.name
-  const rawDescription = metadata.description
+	const [metadata] = parseFrontmatter(content);
 
-  if (typeof rawName !== 'string' || rawName.trim().length === 0) {
-    throw new ValidationError('Field \'name\' must be a non-empty string')
-  }
-  if (typeof rawDescription !== 'string' || rawDescription.trim().length === 0) {
-    throw new ValidationError('Field \'description\' must be a non-empty string')
-  }
+	const rawName = metadata.name;
 
-  const metaRecord: Record<string, string> | undefined = isPlainObject(metadata.metadata)
-    ? Object.fromEntries(
-        Object.entries(metadata.metadata).map(([k, v]) => [k, String(v)]),
-      )
-    : undefined
+	const rawDescription = metadata.description;
 
-  return {
-    name: rawName.trim(),
-    description: rawDescription.trim(),
-    license: metadata.license != null ? String(metadata.license) : undefined,
-    compatibility: metadata.compatibility != null ? String(metadata.compatibility) : undefined,
-    allowedTools: metadata['allowed-tools'] != null ? String(metadata['allowed-tools']) : undefined,
-    metadata: metaRecord,
-  }
+	if (typeof rawName !== 'string' || rawName.trim().length === 0) {
+		throw new ValidationError("Field 'name' must be a non-empty string");
+	}
+
+	if (typeof rawDescription !== 'string' || rawDescription.trim().length === 0) {
+		throw new ValidationError("Field 'description' must be a non-empty string");
+	}
+
+	const metadataObject = isPlainObject(metadata.metadata)
+		? Object.fromEntries(
+				Object.entries(metadata.metadata).map(([key, value]) => [
+					key,
+					String(value),
+				]),
+			)
+		: undefined;
+
+	return {
+		name: rawName.trim(),
+		description: rawDescription.trim(),
+
+		license: toStringOrUndefined(metadata.license),
+
+		compatibility: toStringOrUndefined(metadata.compatibility),
+
+		allowedTools: toStringOrUndefined(metadata['allowed-tools']),
+
+		metadata: metadataObject,
+	};
 }
