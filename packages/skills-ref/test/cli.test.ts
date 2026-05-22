@@ -5,9 +5,9 @@ const CLI = join(import.meta.dir, '../src/cli.ts');
 const SKILLS_DIR = join(import.meta.dir, '../../../skills');
 
 /**
- * Run CLI safely with Bun.spawn
- * - đảm bảo collect stdout/stderr đầy đủ
- * - normalize exit code về number
+ * Safely execute CLI commands using Bun.spawn
+ * - ensures complete stdout/stderr collection
+ * - normalizes exit codes to numeric values
  */
 async function runCli(
 	...args: string[]

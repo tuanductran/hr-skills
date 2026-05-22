@@ -6,6 +6,10 @@
 			"outputs": ["dist/**"]
 		},
 
+		"dev": {
+			"dependsOn": ["^dev"]
+		},
+
 		"typecheck": {
 			"dependsOn": ["^typecheck"]
 		},

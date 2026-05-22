@@ -11,17 +11,12 @@
 
 import { basename, dirname, resolve } from 'node:path';
 import process from 'node:process';
+import pkg from '../package.json';
 import { SkillError } from './errors.js';
 import { toDict } from './models.js';
 import { readProperties } from './parser.js';
 import { toPrompt } from './prompt.js';
 import { validate } from './validator.js';
-
-// -----------------------------------------------------------------------------
-// Constants
-// -----------------------------------------------------------------------------
-
-const VERSION = '0.1.0';
 
 // -----------------------------------------------------------------------------
 // Helpers
@@ -38,7 +33,7 @@ function resolveSkillPath(path: string): string {
 function printUsage(): void {
 	console.log(
 		`
-skills-ref v${VERSION}
+skills-ref v${pkg.version}
 
 Reference library for Agent Skills.
 
@@ -166,7 +161,7 @@ function main(): void {
 	}
 
 	if (command === 'version' || command === '--version' || command === '-v') {
-		console.log(`skills-ref v${VERSION}`);
+		console.log(`skills-ref v${pkg.version}`);
 
 		process.exit(0);
 	}
