@@ -2,7 +2,7 @@
 
 Reference library for Agent Skills — validate, read, and generate prompts from `SKILL.md` files.
 
-TypeScript port of [agentskills/agentskills skills-ref](https://github.com/agentskills/agentskills/tree/main/skills-ref), compiled with `tsc`.
+TypeScript port of [agentskills/agentskills skills-ref](https://github.com/agentskills/agentskills/tree/main/skills-ref), compiled with `bun build`.
 
 ## Installation
 
@@ -15,13 +15,13 @@ bun run build
 
 ```bash
 # Validate a skill directory
-node dist/cli.js validate path/to/skill
+bun dist/cli.js validate path/to/skill
 
 # Read skill properties as JSON
-node dist/cli.js read-properties path/to/skill
+bun dist/cli.js read-properties path/to/skill
 
 # Generate <available_skills> XML for agent prompts
-node dist/cli.js to-prompt path/to/skill-a path/to/skill-b
+bun dist/cli.js to-prompt path/to/skill-a path/to/skill-b
 ```
 
 After `bun link` or installing globally, use `skills-ref` directly:

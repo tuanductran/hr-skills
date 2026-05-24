@@ -1,10 +1,21 @@
 import { describe, expect, it } from 'bun:test';
-import { mkdtempSync, rmSync, writeFileSync } from 'node:fs';
+import { mkdtempSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { validate } from '../src/validator.js';
 
 const SKILLS_DIR = join(import.meta.dir, '../../../skills');
+
+/**
+ * Dynamically discover all HR skill directories so this test automatically
+ * covers every skill that exists — no manual list to keep in sync.
+ */
+function discoverSkillNames(): string[] {
+	return readdirSync(SKILLS_DIR, { withFileTypes: true })
+		.filter((entry) => entry.isDirectory() && entry.name.startsWith('hr-'))
+		.map((entry) => entry.name)
+		.sort();
+}
 
 function makeTempSkill(content: string): string {
 	const tmp = mkdtempSync(join(tmpdir(), 'skill-test-'));
@@ -19,26 +30,13 @@ describe('validate', () => {
 	});
 
 	it('validates all HR skills without errors', () => {
-		const skillNames = [
-			'hr-analytics',
-			'hr-compensation-benefits',
-			'hr-compliance',
-			'hr-conflict-resolution',
-			'hr-diversity-inclusion',
-			'hr-employee-engagement',
-			'hr-employee-relations',
-			'hr-leadership-development',
-			'hr-onboarding',
-			'hr-performance-management',
-			'hr-recruiting',
-			'hr-technology',
-			'hr-training-development',
-			'hr-vietnam-context',
-			'hr-workforce-planning',
-		];
+		const skillNames = discoverSkillNames();
+
+		expect(skillNames.length).toBeGreaterThan(0);
 
 		for (const name of skillNames) {
 			const errors = validate(join(SKILLS_DIR, name));
+
 			expect(errors).toEqual([]);
 		}
 	});

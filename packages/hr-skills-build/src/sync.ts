@@ -15,9 +15,17 @@
  *   bun run sync
  */
 
-import { readdir } from 'node:fs/promises';
 import { join } from 'node:path';
 import { consola } from 'consola';
+
+import { getHrSkills, SKILLS_DIR } from './config.js';
+import {
+	DESCRIPTION_REGEX,
+	extractMatch,
+	FRONTMATTER_REGEX,
+	NAME_REGEX,
+	TASKS_REGEX,
+} from './utils.js';
 
 // -----------------------------------------------------------------------------
 // Paths
@@ -25,19 +33,9 @@ import { consola } from 'consola';
 
 const ROOT = join(import.meta.dir, '../../..');
 
-const SKILLS_DIR = join(ROOT, 'skills');
-
 // -----------------------------------------------------------------------------
-// Regex patterns
+// Regex patterns (sync-specific)
 // -----------------------------------------------------------------------------
-
-const FRONTMATTER_REGEX = /^---\n([\s\S]*?)\n---/;
-
-const NAME_REGEX = /^name:[ \t]*(.+)$/m;
-
-const DESCRIPTION_REGEX = /^description:[ \t]*(.+)$/m;
-
-const TASKS_REGEX = /## Supported tasks\n\n([\s\S]*?)(?=\n##|$)/;
 
 const KEY_PROMPTS_REGEX = /## Key prompts\n\n([\s\S]*?)(?=\n## Tips|\n---\n|$)/;
 
@@ -66,52 +64,6 @@ interface SkillMeta {
 	scopeSentence: string;
 	triggerPhrases: string[];
 	supportedTasks: string[];
-}
-
-// -----------------------------------------------------------------------------
-// Helpers
-// -----------------------------------------------------------------------------
-
-async function exists(path: string): Promise<boolean> {
-	return Bun.file(path).exists();
-}
-
-function extractMatch(regex: RegExp, content: string): string | null {
-	return regex.exec(content)?.[1]?.trim() ?? null;
-}
-
-/**
- * Discover all HR skills dynamically from the filesystem.
- *
- * Rules:
- * - Must be a directory
- * - Must start with "hr-"
- * - Must contain SKILL.md
- */
-async function discoverSkills(): Promise<string[]> {
-	const entries = await readdir(SKILLS_DIR, {
-		withFileTypes: true,
-	});
-
-	const skills: string[] = [];
-
-	for (const entry of entries) {
-		if (!entry.isDirectory()) {
-			continue;
-		}
-
-		if (!entry.name.startsWith('hr-')) {
-			continue;
-		}
-
-		const skillFile = join(SKILLS_DIR, entry.name, 'SKILL.md');
-
-		if (await exists(skillFile)) {
-			skills.push(entry.name);
-		}
-	}
-
-	return skills.sort();
 }
 
 // -----------------------------------------------------------------------------
@@ -256,7 +208,7 @@ async function syncInstallationTable(metas: SkillMeta[]): Promise<boolean> {
 
 	const table = `${tableHeader}\n${rows}`;
 
-	const updated = original.replace(INSTALLATION_TABLE_REGEX, `${table}\n\n`);
+	const updated = original.replace(INSTALLATION_TABLE_REGEX, `${table}\n`);
 
 	if (updated === original) {
 		return false;
@@ -324,7 +276,7 @@ async function syncSkillsDocs(metas: SkillMeta[]): Promise<boolean> {
 async function sync(): Promise<void> {
 	consola.start('Syncing HR skills project...');
 
-	const skillNames = await discoverSkills();
+	const skillNames = await getHrSkills();
 
 	consola.info(`Discovered ${skillNames.length} HR skills`);
 

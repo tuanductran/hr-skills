@@ -1,7 +1,7 @@
 import { readdir, rm, stat } from 'node:fs/promises';
 import { join } from 'node:path';
 
-const SKILLS_DIR = join(process.cwd(), 'skills');
+const SKILLS_DIR = join(import.meta.dir, '../skills');
 
 /**
  * Cross-platform junk files that should NEVER be included in zip archives.

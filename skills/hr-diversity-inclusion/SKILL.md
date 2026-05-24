@@ -1,6 +1,6 @@
 ---
 name: hr-diversity-inclusion
-description: Help HR managers with diversity, equity, and inclusion initiatives. Use when asked to "develop a D&I strategy", "create inclusive job descriptions", "conduct unconscious bias training", "build employee resource groups", "measure diversity metrics", "develop a DEI scorecard", or any diversity and inclusion task.
+description: Help HR managers with diversity, equity, and inclusion initiatives. Use when asked to "develop a diversity and inclusion strategy", "create inclusive job descriptions", "conduct unconscious bias training", "build employee resource groups", "measure diversity metrics", "develop a DEI scorecard", or any diversity and inclusion task.
 metadata:
   author: Tuan Duc Tran
   version: "1.0.0"
@@ -8,15 +8,15 @@ metadata:
 
 # HR diversity, equity and inclusion
 
-Comprehensive DEI support — from building D&I strategies and training programs to measuring inclusion metrics, managing ERGs, addressing bias, and creating equitable HR processes.
+Comprehensive DEI support — from building diversity and inclusion strategies and training programs to measuring inclusion metrics, managing ERGs, addressing bias, and creating equitable HR processes.
 
 ## Supported tasks
 
-- Developing comprehensive D&I strategies
+- Developing comprehensive diversity and inclusion strategies
 - Creating inclusive recruiting and job description practices
 - Designing unconscious bias training for employees and managers
 - Building employee resource groups (ERGs) and affinity networks
-- Conducting D&I surveys and measuring inclusion metrics
+- Conducting diversity and inclusion surveys and measuring inclusion metrics
 - Creating diversity scorecards and tracking progress
 - Developing mentorship programs that promote equity
 - Addressing systemic bias in talent processes
@@ -25,14 +25,14 @@ Comprehensive DEI support — from building D&I strategies and training programs
 
 ## Key prompts
 
-### D&I strategy
+### Diversity and inclusion strategy
 
 1. "Describe the business case for diversity and inclusion and its impact on organizational performance."
-2. "Provide guidance on creating a comprehensive D&I strategy aligned with [organization's] mission and goals."
+2. "Provide guidance on creating a comprehensive diversity and inclusion strategy aligned with [organization's] mission and goals."
 3. "What measures can ensure that diversity and inclusion are embedded in our organization's core values?"
-4. "How should I develop a D&I roadmap with measurable milestones for [1 year/3 years]?"
-5. "How can HR managers address resistance from senior leadership when introducing D&I initiatives?"
-6. "Share examples of successful D&I initiatives that resulted in positive cultural and business outcomes."
+4. "How should I develop a diversity and inclusion roadmap with measurable milestones for [1 year/3 years]?"
+5. "How can HR managers address resistance from senior leadership when introducing diversity and inclusion initiatives?"
+6. "Share examples of successful diversity and inclusion initiatives that resulted in positive cultural and business outcomes."
 
 ### Inclusive recruiting
 
@@ -60,9 +60,9 @@ Comprehensive DEI support — from building D&I strategies and training programs
 
 ### Measuring inclusion
 
-1. "Provide guidance on conducting D&I surveys to assess employee perceptions and experiences of inclusion."
+1. "Provide guidance on conducting diversity and inclusion surveys to assess employee perceptions and experiences of inclusion."
 2. "How can I create a diversity and inclusion scorecard that tracks representation and inclusion over time?"
-3. "What metrics should I include in a D&I dashboard for executive leadership?"
+3. "What metrics should I include in a diversity, equity, and inclusion dashboard for executive leadership?"
 4. "How can I use HR data to identify equity gaps in hiring, promotion, pay, and development?"
 5. "Implementing a diversity and inclusion scorecard to track progress — what KPIs matter most?"
 
@@ -87,13 +87,13 @@ Comprehensive DEI support — from building D&I strategies and training programs
 1. "How can HR managers address conflicts related to diversity-related tensions or misunderstandings?"
 2. "Describe the importance of fostering an inclusive feedback culture that values diverse perspectives."
 3. "How can I promote a culture of allyship and advocacy for underrepresented groups?"
-4. "What measures help ensure D&I efforts are communicated effectively to all employees?"
+4. "What measures help ensure diversity, equity, and inclusion efforts are communicated effectively to all employees?"
 5. "How can I address cultural misunderstandings and promote cultural intelligence in the workplace?"
 
 ## Tips
 
-- Ground D&I work in data — measure representation, equity gaps, and inclusion experience to focus efforts where they matter most.
+- Ground diversity, equity, and inclusion work in data — measure representation, equity gaps, and inclusion experience to focus efforts where they matter most.
 - Make inclusion everyone's responsibility, not just HR's — engage managers and senior leaders as visible champions.
 - Address bias in systems and processes, not just in individuals — systemic changes create more durable equity.
-- Create psychological safety for D&I conversations — employees need to feel safe to discuss these topics openly.
-- Set specific, measurable D&I goals with accountability — what gets measured gets done.
+- Create psychological safety for diversity, equity, and inclusion conversations — employees need to feel safe to discuss these topics openly.
+- Set specific, measurable diversity, equity, and inclusion goals with accountability — what gets measured gets done.

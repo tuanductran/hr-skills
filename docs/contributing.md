@@ -22,7 +22,7 @@ Run the full check suite from the project root:
 Build and typecheck tasks are orchestrated through Turborepo and may run in parallel across workspace packages.
 
 ```bash
-bun run validate    # All 15 SKILL.md files must pass
+bun run validate    # Validate all SKILL.md files
 bun run check       # 0 Biome check errors required
 bun run lint:md     # 0 markdownlint errors required
 bun run typecheck   # 0 TypeScript errors required

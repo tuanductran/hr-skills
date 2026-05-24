@@ -68,7 +68,7 @@ After completing any task, validate skills and run the linter:
 ```bash
 bun install          # Install all dependencies (run once, or after package changes)
 bun run sync         # Sync skill references across all docs (run after adding/removing a skill)
-bun run validate     # Validate all 15 skill SKILL.md files
+bun run validate     # Validate all skill SKILL.md files
 bun run check        # Run Biome checks without writing changes
 bun run lint         # Run Biome checks with auto-fix
 bun run format       # Format files with Biome formatter
@@ -101,19 +101,29 @@ Generated files and package build outputs are cached through Turborepo based on 
 
 | Skill | Scope |
 |-------|-------|
+| **hr-ai** | Help HR managers, recruiters, and talent acquisition teams understand Artificial Intelligence (AI), Machine Learning (ML), Generative AI, LLM Engineering, AI Infrastructure, and modern AI product development workflows. |
 | **hr-analytics** | Help HR managers with HR analytics and data management. |
+| **hr-backend** | Help HR managers, recruiters, and talent acquisition teams understand Backend Engineering concepts, hiring requirements, backend ecosystems, candidate evaluation, APIs, databases, scalability, cloud infrastructure, and modern server-side workflows. |
 | **hr-compensation-benefits** | Help HR managers with compensation and benefits programs. |
 | **hr-compliance** | Help HR managers with HR compliance and workplace policies. |
 | **hr-conflict-resolution** | Help HR managers with workplace conflict resolution. |
+| **hr-data** | Help HR managers, recruiters, and talent acquisition teams understand Data Engineering, Data Analytics, Data Science, Business Intelligence, Machine Learning, and modern data ecosystems. |
+| **hr-devops** | Help HR managers, recruiters, and talent acquisition teams understand DevOps, Platform Engineering, Site Reliability Engineering (SRE), cloud infrastructure, CI/CD, and modern software delivery workflows. |
 | **hr-diversity-inclusion** | Help HR managers with diversity, equity, and inclusion initiatives. |
 | **hr-employee-engagement** | Help HR managers with employee engagement strategies. |
 | **hr-employee-relations** | Help HR managers with employee relations matters. |
+| **hr-frontend** | Help HR managers, recruiters, and talent acquisition teams understand Frontend Engineering concepts, hiring requirements, frontend ecosystems, candidate evaluation, and modern frontend workflows. |
+| **hr-fullstack** | Help HR managers, recruiters, and talent acquisition teams understand Fullstack Engineering concepts, hiring requirements, cross-functional engineering workflows, frontend-backend integration, and modern end-to-end product development. |
 | **hr-leadership-development** | Help HR managers with leadership development programs. |
+| **hr-mobile** | Help HR managers, recruiters, and talent acquisition teams understand Mobile Development, iOS, Android, cross-platform engineering, mobile app architecture, and modern mobile ecosystems. |
 | **hr-onboarding** | Help HR managers with employee onboarding and offboarding. |
 | **hr-performance-management** | Help HR managers with performance management processes. |
+| **hr-qa** | Help HR managers, recruiters, and talent acquisition teams understand Quality Assurance (QA), Software Testing, Test Automation, and modern Quality Engineering concepts. |
 | **hr-recruiting** | Help HR managers with end-to-end recruiting and talent acquisition. |
+| **hr-security** | Help HR managers, recruiters, and talent acquisition teams understand Cybersecurity, Application Security, Cloud Security, Security Operations, Penetration Testing, and modern security engineering workflows. |
 | **hr-technology** | Help HR managers with HR technology strategy and implementation. |
 | **hr-training-development** | Help HR managers with learning and development programs. |
+| **hr-uiux** | Help HR managers, recruiters, and talent acquisition teams understand UI/UX Design, Product Design, Design Systems, User Research, Interaction Design, and modern digital product design workflows. |
 | **hr-vietnam-context** | Vietnam-specific HR guidance covering the Labor Code, Social Insurance Law, personal income tax registration, work permits for foreign workers, trade union obligations, and cultural norms for managing teams in Vietnam. |
 | **hr-workforce-planning** | Help HR managers with workforce planning and strategy. |
 

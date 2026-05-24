@@ -12,22 +12,19 @@ import { join } from 'node:path';
 import { consola } from 'consola';
 
 import { getHrSkills, SKILLS_DIR } from './config.js';
+import {
+	AUTHOR_REGEX,
+	DESCRIPTION_REGEX,
+	extractMatch,
+	FRONTMATTER_REGEX,
+	NAME_REGEX,
+	TASKS_REGEX,
+	VERSION_REGEX,
+} from './utils.js';
 
 // -----------------------------------------------------------------------------
-// Regex patterns
+// Regex patterns (catalog-specific)
 // -----------------------------------------------------------------------------
-
-const FRONTMATTER_REGEX = /^---\n([\s\S]*?)\n---/;
-
-const NAME_REGEX = /^name:[ \t]*(.+)$/m;
-
-const DESCRIPTION_REGEX = /^description:[ \t]*(.+)$/m;
-
-const AUTHOR_REGEX = /^[ \t]+author:[ \t]*(.+)$/m;
-
-const VERSION_REGEX = /^[ \t]+version:[ \t]*"?(.+?)"?$/m;
-
-const TASKS_REGEX = /## Supported tasks\n\n([\s\S]*?)(?=\n##|$)/;
 
 const TASK_ITEM_REGEX = /^- /;
 
@@ -46,10 +43,6 @@ interface SkillCatalogEntry {
 // -----------------------------------------------------------------------------
 // Helpers
 // -----------------------------------------------------------------------------
-
-function extractMatch(regex: RegExp, content: string): string | null {
-	return regex.exec(content)?.[1]?.trim() ?? null;
-}
 
 function extractTasks(content: string): string[] {
 	const tasksBlock = extractMatch(TASKS_REGEX, content);
@@ -71,7 +64,7 @@ function createSection(skill: SkillCatalogEntry): string {
 		'',
 		skill.description,
 		'',
-		`**Version:** ${skill.version} | **Author:** ${skill.author}`,
+		`Version: ${skill.version} · Author: ${skill.author}`,
 	];
 
 	if (skill.supportedTasks.length > 0) {
