@@ -46,6 +46,7 @@
 		"catalog": "turbo run catalog --filter=hr-skills-build",
 		"validate": "turbo run validate --filter=hr-skills-build",
 		"zip": "bun scripts/zip.ts",
+		"bump": "bumpp",
 		"prepare": "lefthook install",
 		"preinstall": "bunx only-allow bun",
 		"commitlint": "commitlint --edit"
@@ -55,6 +56,7 @@
 		"@commitlint/cli": "^21.0.1",
 		"@commitlint/config-conventional": "^21.0.1",
 		"@types/bun": "^1.3.14",
+		"bumpp": "^11.1.0",
 		"case-police": "^2.2.1",
 		"knip": "^6.14.2",
 		"lefthook": "^2.1.8",
