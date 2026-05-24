@@ -208,7 +208,7 @@ async function syncInstallationTable(metas: SkillMeta[]): Promise<boolean> {
 
 	const table = `${tableHeader}\n${rows}`;
 
-	const updated = original.replace(INSTALLATION_TABLE_REGEX, `${table}\n\n`);
+	const updated = original.replace(INSTALLATION_TABLE_REGEX, `${table}\n`);
 
 	if (updated === original) {
 		return false;

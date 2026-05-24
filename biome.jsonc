@@ -7,7 +7,9 @@
 			"./**/*.json",
 			"!skills",
 			"!!**/dist",
-			"!!**/node_modules"
+			"!!**/node_modules",
+			"!!**/.turbo",
+			"!!**/.claude-plugin"
 		]
 	},
 	"assist": {
