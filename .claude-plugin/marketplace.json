@@ -3,10 +3,22 @@
 	"description": "A collection of AI skills for HR managers covering recruiting, performance management, compensation, compliance, and all major HR domains. Built by Tuan Duc Tran for the Zalo HR/TA Job Onsite/Hybrid/Remote community.",
 	"plugins": [
 		{
+			"name": "hr-ai",
+			"source": "./",
+			"description": "Help HR managers, recruiters, and talent acquisition teams understand Artificial Intelligence (AI), Machine Learning (ML), Generative AI, LLM Engineering, AI Infrastructure, and modern AI product development workflows. Use when asked to \"explain AI engineering\", \"screen AI engineers\", \"understand machine learning roles\", \"compare AI and data science\", \"evaluate AI skills\", \"create AI interview questions\", \"understand LLM systems\", or any AI and machine learning hiring and recruiting task.",
+			"skills": ["./skills/hr-ai"]
+		},
+		{
 			"name": "hr-analytics",
 			"source": "./",
 			"description": "Help HR managers with HR analytics and data management. Use when asked to \"analyze employee data\", \"create HR metrics\", \"build an HR dashboard\", \"analyze turnover data\", \"develop HR reports\", \"build predictive analytics models\", \"create a data governance strategy\", or any HR data and analytics task.",
 			"skills": ["./skills/hr-analytics"]
+		},
+		{
+			"name": "hr-backend",
+			"source": "./",
+			"description": "Help HR managers, recruiters, and talent acquisition teams understand Backend Engineering concepts, hiring requirements, backend ecosystems, candidate evaluation, APIs, databases, scalability, cloud infrastructure, and modern server-side workflows. Use when asked to \"explain backend development\", \"screen backend candidates\", \"understand APIs and databases\", \"compare backend frameworks\", \"evaluate backend skills\", \"create backend interview questions\", \"understand microservices\", \"understand cloud backend systems\", or any backend hiring and recruiting task.",
+			"skills": ["./skills/hr-backend"]
 		},
 		{
 			"name": "hr-compensation-benefits",
@@ -27,9 +39,21 @@
 			"skills": ["./skills/hr-conflict-resolution"]
 		},
 		{
+			"name": "hr-data",
+			"source": "./",
+			"description": "Help HR managers, recruiters, and talent acquisition teams understand Data Engineering, Data Analytics, Data Science, Business Intelligence, Machine Learning, and modern data ecosystems. Use when asked to \"explain data roles\", \"screen data engineers or data scientists\", \"understand analytics workflows\", \"compare data engineering and data science\", \"evaluate data skills\", \"create data interview questions\", \"understand AI and machine learning teams\", or any data and analytics hiring and recruiting task.",
+			"skills": ["./skills/hr-data"]
+		},
+		{
+			"name": "hr-devops",
+			"source": "./",
+			"description": "Help HR managers, recruiters, and talent acquisition teams understand DevOps, Platform Engineering, Site Reliability Engineering (SRE), cloud infrastructure, CI/CD, and modern software delivery workflows. Use when asked to \"explain DevOps\", \"screen DevOps candidates\", \"understand CI/CD\", \"compare DevOps and SRE\", \"evaluate infrastructure skills\", \"create DevOps interview questions\", \"understand cloud systems\", or any DevOps hiring and recruiting task.",
+			"skills": ["./skills/hr-devops"]
+		},
+		{
 			"name": "hr-diversity-inclusion",
 			"source": "./",
-			"description": "Help HR managers with diversity, equity, and inclusion initiatives. Use when asked to \"develop a D&I strategy\", \"create inclusive job descriptions\", \"conduct unconscious bias training\", \"build employee resource groups\", \"measure diversity metrics\", \"develop a DEI scorecard\", or any diversity and inclusion task.",
+			"description": "Help HR managers with diversity, equity, and inclusion initiatives. Use when asked to \"develop a diversity and inclusion strategy\", \"create inclusive job descriptions\", \"conduct unconscious bias training\", \"build employee resource groups\", \"measure diversity metrics\", \"develop a DEI scorecard\", or any diversity and inclusion task.",
 			"skills": ["./skills/hr-diversity-inclusion"]
 		},
 		{
@@ -45,10 +69,28 @@
 			"skills": ["./skills/hr-employee-relations"]
 		},
 		{
+			"name": "hr-frontend",
+			"source": "./",
+			"description": "Help HR managers, recruiters, and talent acquisition teams understand Frontend Engineering concepts, hiring requirements, frontend ecosystems, candidate evaluation, and modern frontend workflows. Use when asked to \"explain frontend development\", \"screen frontend candidates\", \"understand React/Vue/Angular\", \"compare frontend frameworks\", \"evaluate frontend skills\", \"create frontend interview questions\", \"understand frontend architecture\", or any frontend hiring and recruiting task.",
+			"skills": ["./skills/hr-frontend"]
+		},
+		{
+			"name": "hr-fullstack",
+			"source": "./",
+			"description": "Help HR managers, recruiters, and talent acquisition teams understand Fullstack Engineering concepts, hiring requirements, cross-functional engineering workflows, frontend-backend integration, and modern end-to-end product development. Use when asked to \"explain fullstack development\", \"screen fullstack candidates\", \"understand frontend and backend together\", \"evaluate fullstack skills\", \"compare fullstack stacks\", \"create fullstack interview questions\", \"understand end-to-end product engineering\", or any fullstack hiring and recruiting task.",
+			"skills": ["./skills/hr-fullstack"]
+		},
+		{
 			"name": "hr-leadership-development",
 			"source": "./",
 			"description": "Help HR managers with leadership development programs. Use when asked to \"create a leadership program\", \"develop leadership competencies\", \"conduct leadership assessments\", \"design executive coaching\", \"create a leadership succession plan\", \"develop cross-cultural leadership training\", or any leadership development task.",
 			"skills": ["./skills/hr-leadership-development"]
+		},
+		{
+			"name": "hr-mobile",
+			"source": "./",
+			"description": "Help HR managers, recruiters, and talent acquisition teams understand Mobile Development, iOS, Android, cross-platform engineering, mobile app architecture, and modern mobile ecosystems. Use when asked to \"explain mobile development\", \"screen mobile developers\", \"understand React Native or Flutter\", \"compare native and cross-platform development\", \"evaluate mobile skills\", \"create mobile interview questions\", \"understand iOS and Android workflows\", or any mobile engineering hiring and recruiting task.",
+			"skills": ["./skills/hr-mobile"]
 		},
 		{
 			"name": "hr-onboarding",
@@ -63,10 +105,22 @@
 			"skills": ["./skills/hr-performance-management"]
 		},
 		{
+			"name": "hr-qa",
+			"source": "./",
+			"description": "Help HR managers, recruiters, and talent acquisition teams understand Quality Assurance (QA), Software Testing, Test Automation, and modern Quality Engineering concepts. Use when asked to \"explain QA testing\", \"screen QA candidates\", \"understand automation testing\", \"compare manual QA and SDET\", \"evaluate QA skills\", \"create QA interview questions\", \"understand software testing workflows\", or any QA hiring and recruiting task.",
+			"skills": ["./skills/hr-qa"]
+		},
+		{
 			"name": "hr-recruiting",
 			"source": "./",
 			"description": "Help HR managers with end-to-end recruiting and talent acquisition. Use when asked to \"write a job description\", \"create interview questions\", \"screen resumes\", \"develop employer branding\", \"send offer letters\", \"conduct reference checks\", or any other recruiting and hiring task.",
 			"skills": ["./skills/hr-recruiting"]
+		},
+		{
+			"name": "hr-security",
+			"source": "./",
+			"description": "Help HR managers, recruiters, and talent acquisition teams understand Cybersecurity, Application Security, Cloud Security, Security Operations, Penetration Testing, and modern security engineering workflows. Use when asked to \"explain cybersecurity\", \"screen security engineers\", \"understand SOC or AppSec\", \"compare security roles\", \"evaluate cybersecurity skills\", \"create security interview questions\", \"understand modern security systems\", or any cybersecurity hiring and recruiting task.",
+			"skills": ["./skills/hr-security"]
 		},
 		{
 			"name": "hr-technology",
@@ -79,6 +133,12 @@
 			"source": "./",
 			"description": "Help HR managers with learning and development programs. Use when asked to \"design a training program\", \"create an e-learning course\", \"develop a coaching plan\", \"conduct a needs assessment\", \"write a competency model\", \"design a mentorship program\", \"create a learning plan\", or any training and development task.",
 			"skills": ["./skills/hr-training-development"]
+		},
+		{
+			"name": "hr-uiux",
+			"source": "./",
+			"description": "Help HR managers, recruiters, and talent acquisition teams understand UI/UX Design, Product Design, Design Systems, User Research, Interaction Design, and modern digital product design workflows. Use when asked to \"explain UI/UX\", \"screen product designers\", \"understand UX research\", \"compare UI and UX\", \"evaluate design portfolios\", \"create UI/UX interview questions\", \"understand product design workflows\", or any design hiring and recruiting task.",
+			"skills": ["./skills/hr-uiux"]
 		},
 		{
 			"name": "hr-vietnam-context",

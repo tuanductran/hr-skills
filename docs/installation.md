@@ -71,23 +71,35 @@ For deep focus work (for example a full recruiting campaign), create a dedicated
 
 ## Available skills
 
-| Skill directory | Domain |
+| Skill | What it covers |
 |----------------|--------|
-| `hr-analytics` | HR metrics, dashboards, and predictive models |
-| `hr-compensation-benefits` | Pay analysis, bonuses, and total rewards |
-| `hr-compliance` | Anti-discrimination, workplace safety, statutory leave, work permits, and employee handbooks |
-| `hr-conflict-resolution` | Mediation, de-escalation, and conflict policies |
-| `hr-diversity-inclusion` | DEI strategy, inclusive recruiting, and ERGs |
-| `hr-employee-engagement` | Surveys, recognition, culture, and burnout prevention |
-| `hr-employee-relations` | Grievances, investigations, and policy writing |
-| `hr-leadership-development` | Leadership programs, coaching, and 360 assessments |
-| `hr-onboarding` | Onboarding programs, orientation, and offboarding |
-| `hr-performance-management` | Reviews, PIPs, goal setting, and calibration |
-| `hr-recruiting` | Job descriptions, interviews, screening, and offers |
-| `hr-technology` | HRIS selection, implementation, and HR automation |
-| `hr-training-development` | Learning needs, training design, and competency models |
-| `hr-vietnam-context` | Vietnam Labor Code, Social Insurance, work permits, and cultural HR practices |
-| `hr-workforce-planning` | Headcount planning, skills gaps, and succession |
+| `hr-ai` | Help HR managers, recruiters, and talent acquisition teams und… |
+| `hr-analytics` | Help HR managers with HR analytics and data management |
+| `hr-backend` | Help HR managers, recruiters, and talent acquisition teams und… |
+| `hr-compensation-benefits` | Help HR managers with compensation and benefits programs |
+| `hr-compliance` | Help HR managers with HR compliance and workplace policies |
+| `hr-conflict-resolution` | Help HR managers with workplace conflict resolution |
+| `hr-data` | Help HR managers, recruiters, and talent acquisition teams und… |
+| `hr-devops` | Help HR managers, recruiters, and talent acquisition teams und… |
+| `hr-diversity-inclusion` | Help HR managers with diversity, equity, and inclusion initiat… |
+| `hr-employee-engagement` | Help HR managers with employee engagement strategies |
+| `hr-employee-relations` | Help HR managers with employee relations matters |
+| `hr-frontend` | Help HR managers, recruiters, and talent acquisition teams und… |
+| `hr-fullstack` | Help HR managers, recruiters, and talent acquisition teams und… |
+| `hr-leadership-development` | Help HR managers with leadership development programs |
+| `hr-mobile` | Help HR managers, recruiters, and talent acquisition teams und… |
+| `hr-onboarding` | Help HR managers with employee onboarding and offboarding |
+| `hr-performance-management` | Help HR managers with performance management processes |
+| `hr-qa` | Help HR managers, recruiters, and talent acquisition teams und… |
+| `hr-recruiting` | Help HR managers with end-to-end recruiting and talent acquisi… |
+| `hr-security` | Help HR managers, recruiters, and talent acquisition teams und… |
+| `hr-technology` | Help HR managers with HR technology strategy and implementation |
+| `hr-training-development` | Help HR managers with learning and development programs |
+| `hr-uiux` | Help HR managers, recruiters, and talent acquisition teams und… |
+| `hr-vietnam-context` | Vietnam-specific HR guidance covering the Labor Code, Social I… |
+| `hr-workforce-planning` | Help HR managers with workforce planning and strategy |
+
+See [skills.md](./skills.md) for full descriptions and example trigger phrases.
 
 ## Development
 
@@ -110,5 +122,3 @@ Run a task for a specific package with Turbo filters:
 turbo run build --filter=skills-ref
 turbo run typecheck --filter=hr-skills-build
 ```
-
-See [skills.md](./skills.md) for full descriptions and example trigger phrases.

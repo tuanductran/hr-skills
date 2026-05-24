@@ -8,7 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
-- 15 HR skill definitions covering the full HR domain
+- Technical recruiting and HR AI skills covering modern engineering, hiring, compliance, analytics, onboarding, and workforce management domains
 - `packages/hr-skills-build` — build tooling (validate + catalog) using Bun
 - `packages/skills-ref` — TypeScript library & CLI for reading and validating skills
 - `.claude-plugin/marketplace.json` — Claude marketplace plugin manifest

@@ -4,7 +4,7 @@
 	"packageManager": "bun@1.3.9",
 	"type": "module",
 	"private": true,
-	"description": "A collection of 15 HR AI skills for Claude — covering recruiting, performance management, compliance, analytics, and all major HR domains.",
+	"description": "AI skills and technical recruiting knowledge for modern HR and talent acquisition teams.",
 	"author": "Tuan Duc Tran",
 	"license": "MIT",
 	"homepage": "https://github.com/tuanductran/hr-skills#readme",

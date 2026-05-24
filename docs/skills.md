@@ -215,3 +215,143 @@ A complete reference for all available HR skills, including coverage areas and e
 - "Draft a Vietnam-compliant employment contract"
 - "Explain Social Insurance obligations in Vietnam"
 - "Adapt our global HR policies for Vietnam"
+
+---
+
+## hr-ai
+
+**What it covers:** Help HR managers, recruiters, and talent acquisition teams understand Artificial Intelligence (AI), Machine Learning (ML), Generative AI, LLM Engineering, AI Infrastructure, and modern AI product development workflows.
+
+**Use when you say:**
+
+- "Explain AI engineering in simple terms for recruiters."
+- "What does an AI Engineer actually do day to day?"
+- "What is the difference between AI Engineer, ML Engineer, Data Scientist, and Research Engineer?"
+- "Why are companies investing heavily in AI products?"
+- "What AI skills are most important in 2026?"
+
+---
+
+## hr-backend
+
+**What it covers:** Help HR managers, recruiters, and talent acquisition teams understand Backend Engineering concepts, hiring requirements, backend ecosystems, candidate evaluation, APIs, databases, scalability, cloud infrastructure, and modern server-side workflows.
+
+**Use when you say:**
+
+- "Explain backend development in simple terms for recruiters."
+- "What does a Backend Developer actually do day to day?"
+- "What is the difference between frontend, backend, and DevOps?"
+- "What backend skills are most important in modern software development?"
+- "How does backend engineering impact scalability, security, and business performance?"
+
+---
+
+## hr-data
+
+**What it covers:** Help HR managers, recruiters, and talent acquisition teams understand Data Engineering, Data Analytics, Data Science, Business Intelligence, Machine Learning, and modern data ecosystems.
+
+**Use when you say:**
+
+- "Explain data engineering and analytics in simple terms for recruiters."
+- "What does a Data Engineer actually do day to day?"
+- "What is the difference between Data Analyst, Data Engineer, Data Scientist, and AI Engineer?"
+- "Why are modern companies investing heavily in data infrastructure?"
+- "What data skills are most important in 2026?"
+
+---
+
+## hr-devops
+
+**What it covers:** Help HR managers, recruiters, and talent acquisition teams understand DevOps, Platform Engineering, Site Reliability Engineering (SRE), cloud infrastructure, CI/CD, and modern software delivery workflows.
+
+**Use when you say:**
+
+- "Explain DevOps in simple terms for recruiters."
+- "What does a DevOps Engineer actually do day to day?"
+- "What is the difference between DevOps, SRE, Platform Engineer, and Cloud Engineer?"
+- "Why is DevOps important in modern engineering teams?"
+- "What DevOps skills are most important in 2026?"
+
+---
+
+## hr-frontend
+
+**What it covers:** Help HR managers, recruiters, and talent acquisition teams understand Frontend Engineering concepts, hiring requirements, frontend ecosystems, candidate evaluation, and modern frontend workflows.
+
+**Use when you say:**
+
+- "Explain frontend development in simple terms for recruiters."
+- "What does a Frontend Developer actually do day to day?"
+- "What is the difference between frontend, backend, and fullstack development?"
+- "What frontend skills are most important in modern web development?"
+- "How does frontend engineering impact user experience and business performance?"
+
+---
+
+## hr-fullstack
+
+**What it covers:** Help HR managers, recruiters, and talent acquisition teams understand Fullstack Engineering concepts, hiring requirements, cross-functional engineering workflows, frontend-backend integration, and modern end-to-end product development.
+
+**Use when you say:**
+
+- "Explain fullstack development in simple terms for recruiters."
+- "What does a Fullstack Developer actually do day to day?"
+- "What is the difference between frontend, backend, and fullstack development?"
+- "What fullstack skills are most important in modern software development?"
+- "Why do startups often hire fullstack engineers?"
+
+---
+
+## hr-mobile
+
+**What it covers:** Help HR managers, recruiters, and talent acquisition teams understand Mobile Development, iOS, Android, cross-platform engineering, mobile app architecture, and modern mobile ecosystems.
+
+**Use when you say:**
+
+- "Explain mobile development in simple terms for recruiters."
+- "What does a Mobile Developer actually do day to day?"
+- "What is the difference between iOS, Android, and cross-platform development?"
+- "Why are cross-platform frameworks so popular in 2026?"
+- "What mobile skills are most important in modern software development?"
+
+---
+
+## hr-qa
+
+**What it covers:** Help HR managers, recruiters, and talent acquisition teams understand Quality Assurance (QA), Software Testing, Test Automation, and modern Quality Engineering concepts.
+
+**Use when you say:**
+
+- "Explain QA and software testing in simple terms for recruiters."
+- "What does a QA Engineer actually do day to day?"
+- "What is the difference between QA, SDET, and Automation Engineer?"
+- "Why is software testing important in modern engineering teams?"
+- "What QA skills are most important in 2026?"
+
+---
+
+## hr-security
+
+**What it covers:** Help HR managers, recruiters, and talent acquisition teams understand Cybersecurity, Application Security, Cloud Security, Security Operations, Penetration Testing, and modern security engineering workflows.
+
+**Use when you say:**
+
+- "Explain cybersecurity in simple terms for recruiters."
+- "What does a Security Engineer actually do day to day?"
+- "What is the difference between AppSec, Cloud Security, SOC, and Penetration Testing?"
+- "Why are cybersecurity teams so important in modern companies?"
+- "What cybersecurity skills are most important in 2026?"
+
+---
+
+## hr-uiux
+
+**What it covers:** Help HR managers, recruiters, and talent acquisition teams understand UI/UX Design, Product Design, Design Systems, User Research, Interaction Design, and modern digital product design workflows.
+
+**Use when you say:**
+
+- "Explain UI/UX design in simple terms for recruiters."
+- "What does a Product Designer actually do day to day?"
+- "What is the difference between UI, UX, and Product Design?"
+- "Why are design systems important in modern software teams?"
+- "What UI/UX skills are most important in 2026?"
