@@ -10,13 +10,9 @@
 			"dependsOn": ["^dev"]
 		},
 
-		"typecheck": {
-			"dependsOn": ["^typecheck"]
-		},
+		"typecheck": {},
 
-		"test": {
-			"dependsOn": ["^test"]
-		},
+		"test": {},
 
 		"validate": {
 			"cache": false

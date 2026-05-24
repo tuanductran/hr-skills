@@ -26,20 +26,14 @@ import { join } from 'node:path';
 import process from 'node:process';
 import { consola } from 'consola';
 import { HR_SKILL_PREFIX, SKILLS_DIR } from './config.js';
-
-// -----------------------------------------------------------------------------
-// Regex patterns
-// -----------------------------------------------------------------------------
-
-const FRONTMATTER_REGEX = /^---\n([\s\S]*?)\n---/;
-
-const NAME_REGEX = /^name:[ \t]*(.+)$/m;
-
-const DESCRIPTION_REGEX = /^description:[ \t]*(.+)$/m;
-
-const AUTHOR_REGEX = /^[ \t]+author:[ \t]*(.+)$/m;
-
-const VERSION_REGEX = /^[ \t]+version:[ \t]*"?(.+?)"?$/m;
+import {
+	AUTHOR_REGEX,
+	DESCRIPTION_REGEX,
+	extractMatch,
+	FRONTMATTER_REGEX,
+	NAME_REGEX,
+	VERSION_REGEX,
+} from './utils.js';
 
 // -----------------------------------------------------------------------------
 // Constants
@@ -82,10 +76,6 @@ async function discoverSkills(): Promise<string[]> {
 		.filter((entry) => entry.isDirectory() && entry.name.startsWith(HR_SKILL_PREFIX))
 		.map((entry) => entry.name)
 		.sort();
-}
-
-function extractMatch(regex: RegExp, content: string): string | null {
-	return regex.exec(content)?.[1]?.trim() ?? null;
 }
 
 function parseFrontmatter(content: string): SkillFrontmatter {
