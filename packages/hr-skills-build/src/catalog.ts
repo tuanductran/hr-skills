@@ -12,15 +12,7 @@ import { join } from 'node:path';
 import { consola } from 'consola';
 
 import { getHrSkills, SKILLS_DIR } from './config.js';
-import {
-	AUTHOR_REGEX,
-	DESCRIPTION_REGEX,
-	extractMatch,
-	FRONTMATTER_REGEX,
-	NAME_REGEX,
-	TASKS_REGEX,
-	VERSION_REGEX,
-} from './utils.js';
+import { extractMatch, parseFrontmatter, TASKS_REGEX } from './utils.js';
 
 // -----------------------------------------------------------------------------
 // Regex patterns (catalog-specific)
@@ -88,15 +80,15 @@ async function parseSkill(skillName: string): Promise<SkillCatalogEntry | null> 
 	try {
 		const content = await Bun.file(skillPath).text();
 
-		const frontmatter = extractMatch(FRONTMATTER_REGEX, content) ?? '';
+		const frontmatter = parseFrontmatter(content);
 
-		const name = extractMatch(NAME_REGEX, frontmatter) ?? skillName;
+		const name = frontmatter.name ?? skillName;
 
-		const description = extractMatch(DESCRIPTION_REGEX, frontmatter) ?? '';
+		const description = frontmatter.description ?? '';
 
-		const author = extractMatch(AUTHOR_REGEX, frontmatter) ?? 'Tuan Duc Tran';
+		const author = frontmatter.metadata?.author ?? 'Tuan Duc Tran';
 
-		const version = extractMatch(VERSION_REGEX, frontmatter) ?? '1.0.0';
+		const version = frontmatter.metadata?.version ?? '1.0.0';
 
 		const supportedTasks = extractTasks(content);
 
