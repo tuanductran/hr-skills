@@ -10,22 +10,22 @@
 // -----------------------------------------------------------------------------
 
 /** Matches the full YAML frontmatter block including delimiters. */
-export const FRONTMATTER_REGEX = /^---\n([\s\S]*?)\n---/;
+export const FRONTMATTER_REGEX = /^---\r?\n([\s\S]*?)\r?\n---/;
 
 /** Matches `name: <value>` in frontmatter. */
-export const NAME_REGEX = /^name:[ \t]*(.+)$/m;
+export const NAME_REGEX = /^name:[ \t]*(.+)\r?$/m;
 
 /** Matches `description: <value>` in frontmatter. */
-export const DESCRIPTION_REGEX = /^description:[ \t]*(.+)$/m;
+export const DESCRIPTION_REGEX = /^description:[ \t]*(.+)\r?$/m;
 
 /** Matches `  author: <value>` (indented) in frontmatter. */
-export const AUTHOR_REGEX = /^[ \t]+author:[ \t]*(.+)$/m;
+export const AUTHOR_REGEX = /^[ \t]+author:[ \t]*(.+)\r?$/m;
 
 /** Matches `  version: <value>` (indented, optionally quoted) in frontmatter. */
-export const VERSION_REGEX = /^[ \t]+version:[ \t]*"?(.+?)"?$/m;
+export const VERSION_REGEX = /^[ \t]+version:[ \t]*"?(.+?)"?\r?$/m;
 
 /** Matches the `## Supported tasks` block content. */
-export const TASKS_REGEX = /## Supported tasks\n\n([\s\S]*?)(?=\n##|$)/;
+export const TASKS_REGEX = /## Supported tasks\r?\n\r?\n([\s\S]*?)(?=\r?\n##|$)/;
 
 // -----------------------------------------------------------------------------
 // Helpers
