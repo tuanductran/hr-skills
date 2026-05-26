@@ -24,6 +24,8 @@ metadata:
 - Doing another useful thing
 `;
 
+const SAMPLE_FRONTMATTER_CRLF = SAMPLE_FRONTMATTER.replaceAll('\n', '\r\n');
+
 describe('extractMatch', () => {
 	it('returns the first capture group when regex matches', () => {
 		const result = extractMatch(/^name:[ \t]*(.+)$/m, 'name: hr-test');
@@ -60,6 +62,13 @@ describe('FRONTMATTER_REGEX', () => {
 
 		expect(result).toBeNull();
 	});
+
+	it('matches valid frontmatter block with CRLF line endings', () => {
+		const match = extractMatch(FRONTMATTER_REGEX, SAMPLE_FRONTMATTER_CRLF);
+
+		expect(match).not.toBeNull();
+		expect(match).toContain('name: hr-test');
+	});
 });
 
 describe('NAME_REGEX', () => {
@@ -72,11 +81,27 @@ describe('NAME_REGEX', () => {
 	it('returns null when name field is absent', () => {
 		expect(extractMatch(NAME_REGEX, 'description: something')).toBeNull();
 	});
+
+	it('extracts skill name from CRLF frontmatter', () => {
+		const frontmatter =
+			extractMatch(FRONTMATTER_REGEX, SAMPLE_FRONTMATTER_CRLF) ?? '';
+
+		expect(extractMatch(NAME_REGEX, frontmatter)).toBe('hr-test');
+	});
 });
 
 describe('DESCRIPTION_REGEX', () => {
 	it('extracts description from frontmatter', () => {
 		const frontmatter = extractMatch(FRONTMATTER_REGEX, SAMPLE_FRONTMATTER) ?? '';
+
+		expect(extractMatch(DESCRIPTION_REGEX, frontmatter)).toBe(
+			'A test HR skill for validation purposes',
+		);
+	});
+
+	it('extracts description from CRLF frontmatter', () => {
+		const frontmatter =
+			extractMatch(FRONTMATTER_REGEX, SAMPLE_FRONTMATTER_CRLF) ?? '';
 
 		expect(extractMatch(DESCRIPTION_REGEX, frontmatter)).toBe(
 			'A test HR skill for validation purposes',
@@ -94,6 +119,13 @@ describe('AUTHOR_REGEX', () => {
 	it('returns null when author is not present', () => {
 		expect(extractMatch(AUTHOR_REGEX, 'name: hr-test\ndescription: desc')).toBeNull();
 	});
+
+	it('extracts indented author value from CRLF frontmatter', () => {
+		const frontmatter =
+			extractMatch(FRONTMATTER_REGEX, SAMPLE_FRONTMATTER_CRLF) ?? '';
+
+		expect(extractMatch(AUTHOR_REGEX, frontmatter)).toBe('Tuan Duc Tran');
+	});
 });
 
 describe('VERSION_REGEX', () => {
@@ -109,6 +141,13 @@ describe('VERSION_REGEX', () => {
 
 		expect(extractMatch(VERSION_REGEX, frontmatter)).toBe('2.0.0');
 	});
+
+	it('extracts version from CRLF frontmatter', () => {
+		const frontmatter =
+			extractMatch(FRONTMATTER_REGEX, SAMPLE_FRONTMATTER_CRLF) ?? '';
+
+		expect(extractMatch(VERSION_REGEX, frontmatter)).toBe('1.0.0');
+	});
 });
 
 describe('TASKS_REGEX', () => {
@@ -123,5 +162,12 @@ describe('TASKS_REGEX', () => {
 		const result = extractMatch(TASKS_REGEX, '## Key prompts\n\nSome content\n');
 
 		expect(result).toBeNull();
+	});
+
+	it('extracts supported tasks block with CRLF line endings', () => {
+		const result = extractMatch(TASKS_REGEX, SAMPLE_FRONTMATTER_CRLF);
+
+		expect(result).not.toBeNull();
+		expect(result).toContain('Doing something useful');
 	});
 });
