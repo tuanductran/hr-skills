@@ -3,20 +3,12 @@
 
   "workspaces": {
     "packages/hr-skills-build": {
-      "entry": [
-        "src/catalog.ts",
-        "src/sync.ts",
-        "src/validate.ts"
-      ],
       "project": [
         "src/**/*.ts"
       ]
     },
 
     "packages/skills-ref": {
-      "entry": [
-        "src/cli.ts"
-      ],
       "project": [
         "src/**/*.ts"
       ]
