@@ -167,10 +167,32 @@ async function syncMarketplace(metas: SkillMeta[]): Promise<boolean> {
 // AGENTS.md sync
 // -----------------------------------------------------------------------------
 
+function assertTemplateMarkerExists(
+	content: string,
+	regex: RegExp,
+	filePath: string,
+	markerName: string,
+): void {
+	if (regex.test(content)) {
+		return;
+	}
+
+	throw new Error(
+		`Template drift detected in ${filePath}: missing ${markerName} marker table. Restore the expected table header in ${filePath} before running bun run sync.`,
+	);
+}
+
 async function syncAgentsTable(metas: SkillMeta[]): Promise<boolean> {
 	const path = join(ROOT, 'AGENTS.md');
 
 	const original = await Bun.file(path).text();
+
+	assertTemplateMarkerExists(
+		original,
+		AGENTS_TABLE_REGEX,
+		'AGENTS.md',
+		'AGENTS_TABLE_REGEX',
+	);
 
 	const tableHeader = '| Skill | Scope |\n|-------|-------|';
 
@@ -199,6 +221,13 @@ async function syncInstallationTable(metas: SkillMeta[]): Promise<boolean> {
 	const path = join(ROOT, 'docs/installation.md');
 
 	const original = await Bun.file(path).text();
+
+	assertTemplateMarkerExists(
+		original,
+		INSTALLATION_TABLE_REGEX,
+		'docs/installation.md',
+		'INSTALLATION_TABLE_REGEX',
+	);
 
 	const tableHeader = '| Skill | What it covers |\n|----------------|--------|';
 
@@ -317,4 +346,8 @@ async function sync(): Promise<void> {
 	consola.success('Sync complete');
 }
 
-void sync();
+if (import.meta.main) {
+	void sync();
+}
+
+export { assertTemplateMarkerExists };
