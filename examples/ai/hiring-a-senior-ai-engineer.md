@@ -63,7 +63,7 @@ Nice to have:
 - Experience building agentic AI systems with tool use and multi-step workflows
 - Familiarity with orchestration frameworks (LangChain, LlamaIndex)
 - Background in customer support, e-commerce, or conversational AI products
-- Experience with Langfuse, Weights & Biases, or similar AI observability tools
+- Experience with Langfuse, Weights and Biases, or similar AI observability tools
 
 Compensation: Competitive + equity
 
@@ -158,17 +158,17 @@ SECTION 1: TECHNICAL SKILLS (40 points)
        4–6: Designs functional LLM pipelines with retrieval and prompt management
        7–10: Production-grade design with evaluation, observability, cost management
 
-[ /10] RAG & Retrieval Systems
+[ /10] RAG and Retrieval Systems
        1–3: Aware of the concept, no hands-on depth
        4–6: Has built a RAG pipeline, understands chunking and retrieval tuning
        7–10: Deep understanding of retrieval quality, re-ranking, evaluation, scale
 
-[ /10] AI Evaluation & Observability
+[ /10] AI Evaluation and Observability
        1–3: No structured approach to measuring AI quality
        4–6: Uses metrics or LLM-as-judge, tracks failure cases
        7–10: Owns evaluation framework, ties AI quality to product metrics
 
-[ /10] Agentic AI & Orchestration
+[ /10] Agentic AI and Orchestration
        1–3: No experience with tool use or multi-step reasoning
        4–6: Has built basic agentic flows with external tool calls
        7–10: Designs reliable, safe, production-grade agentic systems
@@ -179,13 +179,13 @@ SECTION 2: PRODUCTION AI EXPERIENCE (20 points)
 [ /5]  Handling AI failure modes and hallucination in production
 [ /5]  LLM cost and latency management at scale
 
-SECTION 3: SYSTEM & PRODUCT THINKING (20 points)
+SECTION 3: SYSTEM AND PRODUCT THINKING (20 points)
 ───────────────────────────────────────────────────
 [ /10] Ability to connect AI architecture to product outcomes
 [ /5]  Trade-off reasoning (fine-tune vs RAG, model tiers, latency vs quality)
 [ /5]  Responsible AI awareness (safety, bias, guardrails)
 
-SECTION 4: COLLABORATION & LEADERSHIP (20 points)
+SECTION 4: COLLABORATION AND LEADERSHIP (20 points)
 ───────────────────────────────────────────────────
 [ /10] Cross-functional communication with product and backend teams
 [ /5]  Mentoring or knowledge-sharing on AI practices
@@ -212,7 +212,7 @@ _________________________________________________
 
 **Skill explanation:**
 
-- **Multi-agent system** = instead of one AI doing everything, multiple specialized AI agents each handle a specific type of task (e.g., one for billing questions, one for shipping, one for returns) — more maintainable and easier to improve independently
+- **Multi-agent system** = instead of one AI doing everything, multiple specialized AI agents each handle a specific type of task (for example, one for billing questions, one for shipping, one for returns) — more maintainable and easier to improve independently
 - **Router agent** = an AI that reads the user's message first and decides which specialist agent should handle it — this is a sign of thoughtful system design, not just a single prompt doing all the work
 - **LangGraph** = a framework for building structured, controllable AI agent workflows — using a named tool rather than building everything from scratch shows awareness of the ecosystem
 - **Evaluation layer before showing output** = the candidate does not blindly show whatever the AI generates — they added a quality check step, which shows production maturity and responsibility
@@ -235,7 +235,7 @@ _________________________________________________
 | JD keywords | LangChain, RAG, vector databases, LLM APIs, agents | PyTorch, model training, MLflow, feature stores, inference |
 | When to hire | You are building AI-powered product features using existing models | You need custom models trained on your own data |
 
-> If your product uses OpenAI or Anthropic APIs and needs smart workflows built around them — hire an **AI Engineer**. If your product needs proprietary models trained on your own data — hire an **ML Engineer**. Most product companies in 2026 need the former, not the latter.
+> If your product uses OpenAI or Anthropic APIs and needs smart workflows built around them — hire an **AI Engineer**. If your product needs proprietary models trained on your own data — hire an **ML Engineer**. Most product companies building AI features with existing models need the former, not the latter.
 
 ## Full Hiring Workflow Summary
 
@@ -265,6 +265,6 @@ Offer / No Offer decision
 | Confusing Data Scientist with AI Engineer | Use the role comparison table — these are different tracks with different skill sets |
 | Listing "ChatGPT experience" as a hiring requirement | This is end-user knowledge, not engineering skill — it is not a meaningful signal |
 | Expecting one engineer to do ML research, AI engineering, data engineering, and DevOps | Each of these is a separate career track — scope the role to one primary focus |
-| Dismissing candidates without ML degrees | Most strong AI engineers in 2026 are self-taught or came from software engineering backgrounds |
+| Dismissing candidates without ML degrees | Many strong AI engineers are self-taught or came from software engineering backgrounds |
 | Not testing evaluation thinking | An AI engineer who cannot explain how they measure quality is a significant risk in production |
 | Over-indexing on trending framework names | LangChain, LlamaIndex, and similar tools change rapidly — prioritize system thinking over specific tooling |
