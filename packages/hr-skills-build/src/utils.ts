@@ -12,10 +12,10 @@ import { parse } from 'yaml';
 // -----------------------------------------------------------------------------
 
 /** Matches the full YAML frontmatter block including delimiters. */
-export const FRONTMATTER_REGEX = /^---\n([\s\S]*?)\n---/;
+export const FRONTMATTER_REGEX = /^---\r?\n([\s\S]*?)\r?\n---/;
 
 /** Matches the `## Supported tasks` block content. */
-export const TASKS_REGEX = /## Supported tasks\n\n([\s\S]*?)(?=\n##|$)/;
+export const TASKS_REGEX = /## Supported tasks\r?\n\r?\n([\s\S]*?)(?=\r?\n##|$)/;
 
 // -----------------------------------------------------------------------------
 // Types

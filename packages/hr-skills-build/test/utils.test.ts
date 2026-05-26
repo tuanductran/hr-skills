@@ -20,6 +20,8 @@ metadata:
 - Doing another useful thing
 `;
 
+const SAMPLE_FRONTMATTER_CRLF = SAMPLE_FRONTMATTER.replaceAll('\n', '\r\n');
+
 describe('extractMatch', () => {
 	it('returns the first capture group when regex matches', () => {
 		const result = extractMatch(/^name:[ \t]*(.+)$/m, 'name: hr-test');
@@ -94,6 +96,13 @@ metadata:
 			'Help HR teams standardize interview loops and improve scorecard quality.',
 		);
 	});
+
+	it('extracts indented author value from CRLF frontmatter', () => {
+		const frontmatter =
+			extractMatch(FRONTMATTER_REGEX, SAMPLE_FRONTMATTER_CRLF) ?? '';
+
+		expect(extractMatch(AUTHOR_REGEX, frontmatter)).toBe('Tuan Duc Tran');
+	});
 });
 
 describe('FRONTMATTER_REGEX', () => {
@@ -102,6 +111,13 @@ describe('FRONTMATTER_REGEX', () => {
 
 		expect(match).not.toBeNull();
 		expect(match).toContain('name: hr-test');
+	});
+
+	it('extracts version from CRLF frontmatter', () => {
+		const frontmatter =
+			extractMatch(FRONTMATTER_REGEX, SAMPLE_FRONTMATTER_CRLF) ?? '';
+
+		expect(extractMatch(VERSION_REGEX, frontmatter)).toBe('1.0.0');
 	});
 });
 
