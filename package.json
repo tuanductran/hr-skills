@@ -40,7 +40,7 @@
 		"format": "biome format . --write",
 		"lint:md": "markdownlint --ignore-path=.gitignore '**/*.md' && case-police '**/*.md'",
 		"lint:md:fix": "markdownlint --ignore-path=.gitignore '**/*.md' --fix && case-police '**/*.md' --fix",
-		"lint:links": "markdown-link-check -c config.json ./skills",
+		"lint:links": "markdown-link-check -c config.json ./content ./docs ./skills",
 		"knip": "knip",
 		"sync": "turbo run sync --filter=hr-skills-build",
 		"catalog": "turbo run catalog --filter=hr-skills-build",
