@@ -1,6 +1,6 @@
 {
 	"name": "hr-skills-build",
-	"version": "1.0.0",
+	"version": "0.0.0",
 	"private": true,
 	"description": "Build tooling for HR Skills — validates, catalogs, and packages HR skill definitions",
 	"type": "module",
@@ -30,6 +30,7 @@
 		"typecheck": "tsc --noEmit"
 	},
 	"dependencies": {
-		"consola": "^3.4.2"
+		"consola": "^3.4.2",
+		"yaml": "^2.9.0"
 	}
 }

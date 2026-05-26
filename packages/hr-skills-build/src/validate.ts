@@ -26,14 +26,7 @@ import { join } from 'node:path';
 import process from 'node:process';
 import { consola } from 'consola';
 import { HR_SKILL_PREFIX, SKILLS_DIR } from './config.js';
-import {
-	AUTHOR_REGEX,
-	DESCRIPTION_REGEX,
-	extractMatch,
-	FRONTMATTER_REGEX,
-	NAME_REGEX,
-	VERSION_REGEX,
-} from './utils.js';
+import { parseFrontmatter } from './utils.js';
 
 // -----------------------------------------------------------------------------
 // Constants
@@ -54,15 +47,6 @@ interface ValidationError {
 	message: string;
 }
 
-interface SkillFrontmatter {
-	name?: string;
-	description?: string;
-	metadata?: {
-		author?: string;
-		version?: string;
-	};
-}
-
 // -----------------------------------------------------------------------------
 // Helpers
 // -----------------------------------------------------------------------------
@@ -76,31 +60,6 @@ async function discoverSkills(): Promise<string[]> {
 		.filter((entry) => entry.isDirectory() && entry.name.startsWith(HR_SKILL_PREFIX))
 		.map((entry) => entry.name)
 		.sort();
-}
-
-function parseFrontmatter(content: string): SkillFrontmatter {
-	const frontmatter = extractMatch(FRONTMATTER_REGEX, content);
-
-	if (!frontmatter) {
-		return {};
-	}
-
-	const name = extractMatch(NAME_REGEX, frontmatter) ?? undefined;
-
-	const description = extractMatch(DESCRIPTION_REGEX, frontmatter) ?? undefined;
-
-	const author = extractMatch(AUTHOR_REGEX, frontmatter) ?? undefined;
-
-	const version = extractMatch(VERSION_REGEX, frontmatter) ?? undefined;
-
-	return {
-		name,
-		description,
-		metadata: {
-			author,
-			version,
-		},
-	};
 }
 
 // -----------------------------------------------------------------------------

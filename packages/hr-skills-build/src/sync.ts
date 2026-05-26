@@ -19,13 +19,7 @@ import { join } from 'node:path';
 import { consola } from 'consola';
 
 import { getHrSkills, SKILLS_DIR } from './config.js';
-import {
-	DESCRIPTION_REGEX,
-	extractMatch,
-	FRONTMATTER_REGEX,
-	NAME_REGEX,
-	TASKS_REGEX,
-} from './utils.js';
+import { extractMatch, parseFrontmatter, TASKS_REGEX } from './utils.js';
 
 // -----------------------------------------------------------------------------
 // Paths
@@ -56,7 +50,7 @@ const TASK_ITEM_REGEX = /^- /;
 // Types
 // -----------------------------------------------------------------------------
 
-interface SkillMeta {
+export interface SkillMeta {
 	name: string;
 	description: string;
 	coverage: string;
@@ -75,11 +69,11 @@ async function parseSkillMeta(skillName: string): Promise<SkillMeta> {
 
 	const content = await Bun.file(skillPath).text();
 
-	const frontmatter = extractMatch(FRONTMATTER_REGEX, content) ?? '';
+	const frontmatter = parseFrontmatter(content);
 
-	const name = extractMatch(NAME_REGEX, frontmatter) ?? skillName;
+	const name = frontmatter.name ?? skillName;
 
-	const description = extractMatch(DESCRIPTION_REGEX, frontmatter) ?? '';
+	const description = frontmatter.description ?? '';
 
 	// Remove "Use when..." section from description
 	const useWhenIndex = description.search(USE_WHEN_REGEX);
@@ -167,10 +161,32 @@ async function syncMarketplace(metas: SkillMeta[]): Promise<boolean> {
 // AGENTS.md sync
 // -----------------------------------------------------------------------------
 
+function assertTemplateMarkerExists(
+	content: string,
+	regex: RegExp,
+	filePath: string,
+	markerName: string,
+): void {
+	if (regex.test(content)) {
+		return;
+	}
+
+	throw new Error(
+		`Template drift detected in ${filePath}: missing ${markerName} marker table. Restore the expected table header in ${filePath} before running bun run sync.`,
+	);
+}
+
 async function syncAgentsTable(metas: SkillMeta[]): Promise<boolean> {
 	const path = join(ROOT, 'AGENTS.md');
 
 	const original = await Bun.file(path).text();
+
+	assertTemplateMarkerExists(
+		original,
+		AGENTS_TABLE_REGEX,
+		'AGENTS.md',
+		'AGENTS_TABLE_REGEX',
+	);
 
 	const tableHeader = '| Skill | Scope |\n|-------|-------|';
 
@@ -200,6 +216,13 @@ async function syncInstallationTable(metas: SkillMeta[]): Promise<boolean> {
 
 	const original = await Bun.file(path).text();
 
+	assertTemplateMarkerExists(
+		original,
+		INSTALLATION_TABLE_REGEX,
+		'docs/installation.md',
+		'INSTALLATION_TABLE_REGEX',
+	);
+
 	const tableHeader = '| Skill | What it covers |\n|----------------|--------|';
 
 	const rows = metas
@@ -223,7 +246,30 @@ async function syncInstallationTable(metas: SkillMeta[]): Promise<boolean> {
 // docs/skills.md sync
 // -----------------------------------------------------------------------------
 
-async function syncSkillsDocs(metas: SkillMeta[]): Promise<boolean> {
+export function buildSkillDocsSection(meta: SkillMeta): string | null {
+	if (meta.triggerPhrases.length === 0) {
+		return null;
+	}
+
+	const triggerList = meta.triggerPhrases.map((phrase) => `- "${phrase}"`).join('\n');
+
+	const heading = `## ${meta.name}`;
+
+	return [
+		'',
+		'---',
+		'',
+		heading,
+		'',
+		`**What it covers:** ${meta.coverage}.`,
+		'',
+		'**Use when you say:**',
+		'',
+		triggerList,
+	].join('\n');
+}
+
+export async function syncSkillsDocs(metas: SkillMeta[]): Promise<boolean> {
 	const path = join(ROOT, 'docs/skills.md');
 
 	let content = await Bun.file(path).text();
@@ -237,23 +283,14 @@ async function syncSkillsDocs(metas: SkillMeta[]): Promise<boolean> {
 			continue;
 		}
 
-		const triggerList =
-			meta.triggerPhrases.length > 0
-				? meta.triggerPhrases.map((phrase) => `- "${phrase}"`).join('\n')
-				: '- [Add trigger phrases here]';
+		const section = buildSkillDocsSection(meta);
 
-		const section = [
-			'',
-			'---',
-			'',
-			heading,
-			'',
-			`**What it covers:** ${meta.coverage}.`,
-			'',
-			'**Use when you say:**',
-			'',
-			triggerList,
-		].join('\n');
+		if (!section) {
+			consola.warn(
+				`Skipping docs/skills.md section for ${meta.name}: no trigger phrases found in SKILL.md`,
+			);
+			continue;
+		}
 
 		content = `${content.trimEnd()}${section}\n`;
 
@@ -273,7 +310,7 @@ async function syncSkillsDocs(metas: SkillMeta[]): Promise<boolean> {
 // Main
 // -----------------------------------------------------------------------------
 
-async function sync(): Promise<void> {
+export async function sync(): Promise<void> {
 	consola.start('Syncing HR skills project...');
 
 	const skillNames = await getHrSkills();
@@ -317,4 +354,8 @@ async function sync(): Promise<void> {
 	consola.success('Sync complete');
 }
 
-void sync();
+if (import.meta.main) {
+	void sync();
+}
+
+export { assertTemplateMarkerExists };
