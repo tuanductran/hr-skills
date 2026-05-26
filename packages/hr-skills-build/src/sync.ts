@@ -50,7 +50,7 @@ const TASK_ITEM_REGEX = /^- /;
 // Types
 // -----------------------------------------------------------------------------
 
-interface SkillMeta {
+export interface SkillMeta {
 	name: string;
 	description: string;
 	coverage: string;
@@ -217,7 +217,30 @@ async function syncInstallationTable(metas: SkillMeta[]): Promise<boolean> {
 // docs/skills.md sync
 // -----------------------------------------------------------------------------
 
-async function syncSkillsDocs(metas: SkillMeta[]): Promise<boolean> {
+export function buildSkillDocsSection(meta: SkillMeta): string | null {
+	if (meta.triggerPhrases.length === 0) {
+		return null;
+	}
+
+	const triggerList = meta.triggerPhrases.map((phrase) => `- "${phrase}"`).join('\n');
+
+	const heading = `## ${meta.name}`;
+
+	return [
+		'',
+		'---',
+		'',
+		heading,
+		'',
+		`**What it covers:** ${meta.coverage}.`,
+		'',
+		'**Use when you say:**',
+		'',
+		triggerList,
+	].join('\n');
+}
+
+export async function syncSkillsDocs(metas: SkillMeta[]): Promise<boolean> {
 	const path = join(ROOT, 'docs/skills.md');
 
 	let content = await Bun.file(path).text();
@@ -231,23 +254,14 @@ async function syncSkillsDocs(metas: SkillMeta[]): Promise<boolean> {
 			continue;
 		}
 
-		const triggerList =
-			meta.triggerPhrases.length > 0
-				? meta.triggerPhrases.map((phrase) => `- "${phrase}"`).join('\n')
-				: '- [Add trigger phrases here]';
+		const section = buildSkillDocsSection(meta);
 
-		const section = [
-			'',
-			'---',
-			'',
-			heading,
-			'',
-			`**What it covers:** ${meta.coverage}.`,
-			'',
-			'**Use when you say:**',
-			'',
-			triggerList,
-		].join('\n');
+		if (!section) {
+			consola.warn(
+				`Skipping docs/skills.md section for ${meta.name}: no trigger phrases found in SKILL.md`,
+			);
+			continue;
+		}
 
 		content = `${content.trimEnd()}${section}\n`;
 
@@ -267,7 +281,7 @@ async function syncSkillsDocs(metas: SkillMeta[]): Promise<boolean> {
 // Main
 // -----------------------------------------------------------------------------
 
-async function sync(): Promise<void> {
+export async function sync(): Promise<void> {
 	consola.start('Syncing HR skills project...');
 
 	const skillNames = await getHrSkills();
@@ -311,4 +325,6 @@ async function sync(): Promise<void> {
 	consola.success('Sync complete');
 }
 
-void sync();
+if (import.meta.main) {
+	void sync();
+}
