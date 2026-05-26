@@ -238,7 +238,7 @@ In regulated environments, procedural correctness is as important as outcome cor
 - unclear policy interpretation
 - weak communication during sensitive cases
 
-## Modern Employee Relations (2026 Context)
+## Modern Employee Relations
 
 Employee Relations is increasingly:
 

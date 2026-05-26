@@ -141,6 +141,7 @@ Data science focuses on:
 - Experimentation
 
 AI engineering focuses on:
+
 - Building production systems
 - Integrating models into products
 - Scaling AI services
@@ -155,7 +156,7 @@ Other important areas include:
 - Predictive analytics
 - Robotics and control systems
 
-## Modern Hiring Reality (2026 Context)
+## Modern Hiring Reality
 
 AI teams today are expected to:
 

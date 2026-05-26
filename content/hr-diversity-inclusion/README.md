@@ -192,7 +192,7 @@ Key focus areas:
 - inconsistent application across teams
 - bias in promotion and compensation decisions
 
-## DEI in Modern Organizations (2026 Context)
+## DEI in Modern Organizations
 
 DEI is increasingly connected to:
 
