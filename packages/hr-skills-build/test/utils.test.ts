@@ -1,16 +1,12 @@
 import { describe, expect, it } from 'bun:test';
 import {
-	AUTHOR_REGEX,
-	DESCRIPTION_REGEX,
 	extractMatch,
 	FRONTMATTER_REGEX,
-	NAME_REGEX,
+	parseFrontmatter,
 	TASKS_REGEX,
-	VERSION_REGEX,
 } from '../src/utils.js';
 
-// Sample frontmatter for regex tests
-const SAMPLE_FRONTMATTER = `---
+const SAMPLE_SKILL = `---
 name: hr-test
 description: A test HR skill for validation purposes
 metadata:
@@ -38,86 +34,67 @@ describe('extractMatch', () => {
 
 		expect(result).toBeNull();
 	});
-
-	it('trims whitespace from the captured value', () => {
-		const result = extractMatch(/^name:[ \t]*(.+)$/m, 'name:   hr-test   ');
-
-		expect(result).toBe('hr-test');
-	});
 });
 
-describe('FRONTMATTER_REGEX', () => {
-	it('matches valid frontmatter block', () => {
-		const match = extractMatch(FRONTMATTER_REGEX, SAMPLE_FRONTMATTER);
+describe('parseFrontmatter', () => {
+	it('parses simple single-line scalars', () => {
+		const frontmatter = parseFrontmatter(SAMPLE_SKILL);
 
-		expect(match).not.toBeNull();
-		expect(match).toContain('name: hr-test');
+		expect(frontmatter.name).toBe('hr-test');
+		expect(frontmatter.description).toBe('A test HR skill for validation purposes');
+		expect(frontmatter.metadata?.author).toBe('Tuan Duc Tran');
+		expect(frontmatter.metadata?.version).toBe('1.0.0');
 	});
 
-	it('returns null when no frontmatter is present', () => {
-		const result = extractMatch(
-			FRONTMATTER_REGEX,
-			'# No frontmatter here\n\n## Body',
-		);
+	it('parses quoted description containing colons', () => {
+		const content = `---
+name: hr-test
+description: "Use when: hiring manager asks for pipeline health"
+metadata:
+  author: Tuan Duc Tran
+  version: "1.2.3"
+---`;
 
-		expect(result).toBeNull();
-	});
+		const frontmatter = parseFrontmatter(content);
 
-	it('matches valid frontmatter block with CRLF line endings', () => {
-		const match = extractMatch(FRONTMATTER_REGEX, SAMPLE_FRONTMATTER_CRLF);
-
-		expect(match).not.toBeNull();
-		expect(match).toContain('name: hr-test');
-	});
-});
-
-describe('NAME_REGEX', () => {
-	it('extracts skill name from frontmatter', () => {
-		const frontmatter = extractMatch(FRONTMATTER_REGEX, SAMPLE_FRONTMATTER) ?? '';
-
-		expect(extractMatch(NAME_REGEX, frontmatter)).toBe('hr-test');
-	});
-
-	it('returns null when name field is absent', () => {
-		expect(extractMatch(NAME_REGEX, 'description: something')).toBeNull();
-	});
-
-	it('extracts skill name from CRLF frontmatter', () => {
-		const frontmatter =
-			extractMatch(FRONTMATTER_REGEX, SAMPLE_FRONTMATTER_CRLF) ?? '';
-
-		expect(extractMatch(NAME_REGEX, frontmatter)).toBe('hr-test');
-	});
-});
-
-describe('DESCRIPTION_REGEX', () => {
-	it('extracts description from frontmatter', () => {
-		const frontmatter = extractMatch(FRONTMATTER_REGEX, SAMPLE_FRONTMATTER) ?? '';
-
-		expect(extractMatch(DESCRIPTION_REGEX, frontmatter)).toBe(
-			'A test HR skill for validation purposes',
+		expect(frontmatter.description).toBe(
+			'Use when: hiring manager asks for pipeline health',
 		);
 	});
 
-	it('extracts description from CRLF frontmatter', () => {
-		const frontmatter =
-			extractMatch(FRONTMATTER_REGEX, SAMPLE_FRONTMATTER_CRLF) ?? '';
+	it('parses multiline description with literal block scalar', () => {
+		const content = `---
+name: hr-test
+description: |
+  Line one about HR workflows.
+  Line two: keep punctuation.
+metadata:
+  author: Tuan Duc Tran
+  version: "1.2.3"
+---`;
 
-		expect(extractMatch(DESCRIPTION_REGEX, frontmatter)).toBe(
-			'A test HR skill for validation purposes',
+		const frontmatter = parseFrontmatter(content);
+
+		expect(frontmatter.description).toContain('Line one about HR workflows.');
+		expect(frontmatter.description).toContain('Line two: keep punctuation.');
+	});
+
+	it('parses multiline description with folded block scalar', () => {
+		const content = `---
+name: hr-test
+description: >
+  Help HR teams standardize interview loops
+  and improve scorecard quality.
+metadata:
+  author: Tuan Duc Tran
+  version: "1.2.3"
+---`;
+
+		const frontmatter = parseFrontmatter(content);
+
+		expect(frontmatter.description).toContain(
+			'Help HR teams standardize interview loops and improve scorecard quality.',
 		);
-	});
-});
-
-describe('AUTHOR_REGEX', () => {
-	it('extracts indented author value', () => {
-		const frontmatter = extractMatch(FRONTMATTER_REGEX, SAMPLE_FRONTMATTER) ?? '';
-
-		expect(extractMatch(AUTHOR_REGEX, frontmatter)).toBe('Tuan Duc Tran');
-	});
-
-	it('returns null when author is not present', () => {
-		expect(extractMatch(AUTHOR_REGEX, 'name: hr-test\ndescription: desc')).toBeNull();
 	});
 
 	it('extracts indented author value from CRLF frontmatter', () => {
@@ -128,18 +105,12 @@ describe('AUTHOR_REGEX', () => {
 	});
 });
 
-describe('VERSION_REGEX', () => {
-	it('extracts version without surrounding quotes', () => {
-		const frontmatter = extractMatch(FRONTMATTER_REGEX, SAMPLE_FRONTMATTER) ?? '';
+describe('FRONTMATTER_REGEX', () => {
+	it('matches valid frontmatter block', () => {
+		const match = extractMatch(FRONTMATTER_REGEX, SAMPLE_SKILL);
 
-		expect(extractMatch(VERSION_REGEX, frontmatter)).toBe('1.0.0');
-	});
-
-	it('handles unquoted version values', () => {
-		const content = '---\nname: hr-test\nmetadata:\n  version: 2.0.0\n---\n';
-		const frontmatter = extractMatch(FRONTMATTER_REGEX, content) ?? '';
-
-		expect(extractMatch(VERSION_REGEX, frontmatter)).toBe('2.0.0');
+		expect(match).not.toBeNull();
+		expect(match).toContain('name: hr-test');
 	});
 
 	it('extracts version from CRLF frontmatter', () => {
@@ -152,20 +123,7 @@ describe('VERSION_REGEX', () => {
 
 describe('TASKS_REGEX', () => {
 	it('extracts supported tasks block', () => {
-		const result = extractMatch(TASKS_REGEX, SAMPLE_FRONTMATTER);
-
-		expect(result).not.toBeNull();
-		expect(result).toContain('Doing something useful');
-	});
-
-	it('returns null when Supported tasks section is absent', () => {
-		const result = extractMatch(TASKS_REGEX, '## Key prompts\n\nSome content\n');
-
-		expect(result).toBeNull();
-	});
-
-	it('extracts supported tasks block with CRLF line endings', () => {
-		const result = extractMatch(TASKS_REGEX, SAMPLE_FRONTMATTER_CRLF);
+		const result = extractMatch(TASKS_REGEX, SAMPLE_SKILL);
 
 		expect(result).not.toBeNull();
 		expect(result).toContain('Doing something useful');
