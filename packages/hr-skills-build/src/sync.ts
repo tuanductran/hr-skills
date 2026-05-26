@@ -19,13 +19,7 @@ import { join } from 'node:path';
 import { consola } from 'consola';
 
 import { getHrSkills, SKILLS_DIR } from './config.js';
-import {
-	DESCRIPTION_REGEX,
-	extractMatch,
-	FRONTMATTER_REGEX,
-	NAME_REGEX,
-	TASKS_REGEX,
-} from './utils.js';
+import { extractMatch, parseFrontmatter, TASKS_REGEX } from './utils.js';
 
 // -----------------------------------------------------------------------------
 // Paths
@@ -75,11 +69,11 @@ async function parseSkillMeta(skillName: string): Promise<SkillMeta> {
 
 	const content = await Bun.file(skillPath).text();
 
-	const frontmatter = extractMatch(FRONTMATTER_REGEX, content) ?? '';
+	const frontmatter = parseFrontmatter(content);
 
-	const name = extractMatch(NAME_REGEX, frontmatter) ?? skillName;
+	const name = frontmatter.name ?? skillName;
 
-	const description = extractMatch(DESCRIPTION_REGEX, frontmatter) ?? '';
+	const description = frontmatter.description ?? '';
 
 	// Remove "Use when..." section from description
 	const useWhenIndex = description.search(USE_WHEN_REGEX);

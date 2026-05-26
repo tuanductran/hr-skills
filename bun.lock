@@ -25,6 +25,7 @@
       "version": "1.0.0",
       "dependencies": {
         "consola": "^3.4.2",
+        "yaml": "^2.9.0",
       },
     },
     "packages/skills-ref": {
