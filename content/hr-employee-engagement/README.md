@@ -241,7 +241,7 @@ Examples:
 - inconsistent recognition practices
 - treating engagement as an HR-only responsibility
 
-## Modern Engagement Principles (2026 Context)
+## Modern Engagement Principles
 
 - Engagement is a system outcome, not an isolated program
 - Managers are the primary leverage point
