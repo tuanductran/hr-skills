@@ -203,11 +203,8 @@ Common expectations:
 
 ## Tips
 
-- Frontend is no longer "just UI" — modern frontend engineers often work with architecture, performance, accessibility, DevOps, and product experience.
-- TypeScript is now a standard expectation in many frontend teams.
-- React and Next.js remain dominant in startup ecosystems, while Angular is still common in enterprise environments.
-- Portfolio quality often matters more than algorithmic coding performance for frontend roles.
-- Strong frontend engineers usually demonstrate communication, UX thinking, and collaboration skills in addition to coding ability.
-- Avoid job descriptions that combine frontend, backend, DevOps, design, mobile, and AI responsibilities into a single unrealistic role.
-- Many frontend resumes contain tooling buzzwords — prioritize practical project experience over keyword matching.
-- Accessibility and performance awareness are strong indicators of frontend maturity.
+- Modern frontend engineering is not "just building UI"—it spans frontend architecture (SSR/CSR), performance optimization (Core Web Vitals), state management, and accessibility.
+- React and Next.js are the dominant startup choices in 2026, while Angular and Vue are common in large enterprise environments; TypeScript is now a standard, non-negotiable requirement.
+- Portfolios and interactive UI demos (e.g. showcasing component organization, responsive design, and CSS clean practices) are more reliable signals of frontend capability than abstract algorithmic tests.
+- Senior frontend engineers are characterized by design system ownership, deep web performance knowledge, and strong user-experience/accessibility (a11y) awareness.
+- Avoid writing unrealistic job descriptions that expect one frontend engineer to simultaneously own backend databases, complex cloud pipelines, graphic design, and mobile native apps.

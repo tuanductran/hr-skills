@@ -348,11 +348,8 @@ over visual complexity.
 
 ## Tips
 
-- Strong UI/UX designers usually care deeply about usability, accessibility, consistency, and real user problems.
-- Figma remains one of the most important tools in modern design hiring.
-- Design portfolios are strongest when they explain decision-making, problem-solving, and business impact instead of only showing final visuals.
-- Modern design teams increasingly collaborate closely with developers, product managers, QA, analytics, and leadership teams throughout the product lifecycle.
-- AI-assisted design workflows are growing rapidly, but user empathy and product thinking remain highly valuable human skills.
-- Many companies misuse UI/UX titles — recruiters should clarify whether roles are UI-focused, UX-focused, Product Design-focused, or Research-focused.
-- Senior designers are often evaluated based on product thinking, collaboration maturity, systems thinking, and business impact rather than only visual quality.
-- Avoid job descriptions that expect one designer to simultaneously perform UI design, UX research, frontend development, motion design, branding, 3D design, marketing design, and product management responsibilities at expert level.
+- Senior designers are evaluated on product thinking, systems thinking (e.g. design systems), and business impact rather than visual aesthetics alone.
+- Design portfolios are strongest when they outline case studies showing the problem-solving journey, user research, user testing, and decision-making depth, rather than only final screen screenshots.
+- Recruiters should clarify the exact type of design profile needed: visual-focused UI designer, research-focused UX researcher, or end-to-end Product Designer (business + UX + UI).
+- Modern design teams collaborate closely with developers and product managers; designers should understand basic frontend engineering constraints and design system tokens.
+- Avoid writing unrealistic job descriptions that expect one designer to simultaneously act as an expert UI designer, UX researcher, frontend coder, brand strategist, and 3D animator.

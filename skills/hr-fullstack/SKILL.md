@@ -310,11 +310,8 @@ Modern fullstack engineers are often expected to understand:
 
 ## Tips
 
-- Fullstack engineering is not "knowing a little bit of everything" — strong fullstack developers usually have one deeper specialization plus broad system understanding.
-- Modern fullstack roles heavily favor TypeScript ecosystems, especially in startups and SaaS companies.
-- Strong fullstack engineers often demonstrate product thinking, architecture awareness, and delivery speed rather than only framework knowledge.
-- Fullstack portfolios are strongest when they show complete applications with frontend, backend, database, authentication, and deployment workflows together.
-- Many companies misuse the term "fullstack" — recruiters should clarify whether roles are frontend-heavy, backend-heavy, or truly balanced.
-- AI-assisted development tools are increasing the value of engineers who understand systems end-to-end rather than only one narrow specialization.
-- Senior fullstack engineers are often evaluated based on ownership, scalability thinking, and product delivery capability rather than only coding speed.
-- Avoid job descriptions that expect one fullstack engineer to simultaneously perform frontend, backend, DevOps, security, data engineering, UI/UX, and AI engineering responsibilities at expert level.
+- Senior fullstack engineers are evaluated on end-to-end product delivery, architecture reasoning, and system ownership rather than simple coding speed.
+- Portfolios are most convincing when they showcase complete, production-grade applications that integrate frontend, backend, databases, authentication, and cloud deployment.
+- Recruiters must clarify if the "fullstack" role is frontend-heavy (e.g. React/Next.js focus) or backend-heavy (e.g. Node/Python/Java focus), as perfectly balanced "unicorns" are rare.
+- Startups and SaaS environments heavily prefer TypeScript-based modern stacks (such as React with Node.js) for fullstack positions, facilitating faster iteration and shared codebases.
+- Avoid writing unrealistic "unicorn" job descriptions that expect a single fullstack developer to simultaneously operate as an expert frontend dev, backend architect, DevOps engineer, security officer, and designer.

@@ -274,12 +274,9 @@ Focuses on:
 
 ## Tips
 
-- Backend is not "just APIs" — modern backend engineers often work with infrastructure, scalability, cloud systems, databases, reliability, and security.
-- TypeScript, Node.js, Python, Java, and Go remain dominant backend ecosystems in 2026.
-- Backend portfolios often demonstrate value through architecture quality, scalability thinking, APIs, infrastructure, and production systems rather than visual UI.
-- Strong backend engineers usually discuss scalability, reliability, system design, and maintainability instead of only frameworks.
-- Startups commonly prefer fast iteration stacks such as Node.js and Python, while enterprises often rely on Java and .NET ecosystems.
-- Many backend resumes contain infrastructure buzzwords — prioritize real project ownership and architecture experience over keyword matching.
-- Backend seniority is often measured by system complexity and architecture responsibility, not only years of experience.
-- Security, scalability, and reliability awareness are strong indicators of backend engineering maturity.
-- Avoid job descriptions that combine backend, DevOps, cloud architecture, cybersecurity, AI engineering, and data engineering into a single unrealistic role.
+- Modern backend engineering spans system architecture, database optimization, scalability, and infrastructure rather than just writing simple APIs or working with a single framework.
+- Backend engineering maturity is marked by deep systems thinking—such as security, high concurrency, scalability, and distributed systems—over generic framework knowledge.
+- Portfolios and resumes are best evaluated through code quality, architectural decisions, and production metrics (e.g. latency, throughput) rather than visual user interfaces.
+- Language choices often vary by organizational scale: startups favor rapid development environments (like Node.js or Python) while enterprises prioritize robust platforms (like Java or .NET).
+- Resume screening should prioritize deep project ownership and architectural contributions over a simple list of cloud and database buzzwords.
+- Avoid creating unrealistic job descriptions that conflate backend development, DevOps, data engineering, and security into a single unfeasible role.

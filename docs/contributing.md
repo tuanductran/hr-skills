@@ -93,7 +93,7 @@ Run the sync script to auto-update generated references and metadata:
 bun run sync
 ```
 
-This updates `config.ts`, `AGENTS.md`, `docs/installation.md`, `docs/skills.md`, `.claude-plugin/marketplace.json`, and all skill count references across the project. No manual edits are needed.
+This updates `AGENTS.md`, `docs/installation.md`, `docs/skills.md`, and `.claude-plugin/marketplace.json`. No manual edits are needed.
 
 ### 4. Validate and regenerate generated artifacts
 

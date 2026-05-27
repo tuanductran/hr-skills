@@ -46,7 +46,7 @@ bun run lint:md:fix  # markdownlint + case-police with auto-fix
 bun run lint:links   # Check Markdown links in skills/
 bun run knip         # Detect unused files and dependencies
 bun run zip          # Generate distributable skill zip packages
-bun run bump         # Interactive CLI to bump version, commit, tag, and push
+bun run release      # Bump version, generate changelog, commit, tag, and push
 ```
 
 ### Packages

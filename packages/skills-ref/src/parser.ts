@@ -116,12 +116,62 @@ function parseSimpleYaml(yaml: string): Record<string, unknown> {
 
 		const key = trimmedLine.slice(0, colonIndex).trim();
 
+		// Prevent Prototype Pollution
+		if (key === '__proto__' || key === 'constructor' || key === 'prototype') {
+			index++;
+			continue;
+		}
+
 		const value = trimmedLine.slice(colonIndex + 1).trim();
 
 		const indent = line.search(NON_WHITESPACE_REGEX);
 
+		// Block scalar multiline string (e.g. description: | or description: >)
+		if (value === '|' || value === '>') {
+			let scalarContent = '';
+			const isFolded = value === '>';
+			index++;
+
+			while (index < lines.length) {
+				const childLine = lines[index];
+				const childTrimmed = childLine.trimEnd();
+
+				if (childTrimmed.length === 0) {
+					scalarContent += '\n';
+					index++;
+					continue;
+				}
+
+				const childIndent = childLine.search(NON_WHITESPACE_REGEX);
+
+				if (childIndent <= indent) {
+					break;
+				}
+
+				// Extract content line (slice off the indentation)
+				const contentLine = childLine.slice(childIndent);
+
+				if (
+					scalarContent.length > 0 &&
+					!scalarContent.endsWith('\n') &&
+					isFolded
+				) {
+					scalarContent += ` ${contentLine.trim()}`;
+				} else {
+					scalarContent +=
+						(scalarContent.length > 0 && !scalarContent.endsWith('\n')
+							? '\n'
+							: '') + contentLine;
+				}
+				index++;
+			}
+
+			result[key] = scalarContent.trimEnd();
+			continue;
+		}
+
 		// Nested object
-		if (value === '' || value === '|' || value === '>') {
+		if (value === '') {
 			const nested: Record<string, string> = {};
 
 			index++;
@@ -147,9 +197,15 @@ function parseSimpleYaml(yaml: string): Record<string, unknown> {
 				if (childColonIndex !== -1) {
 					const childKey = childTrimmed.slice(0, childColonIndex).trim();
 
-					const childValue = childTrimmed.slice(childColonIndex + 1).trim();
-
-					nested[childKey] = unquote(childValue);
+					// Prevent Prototype Pollution
+					if (
+						childKey !== '__proto__' &&
+						childKey !== 'constructor' &&
+						childKey !== 'prototype'
+					) {
+						const childValue = childTrimmed.slice(childColonIndex + 1).trim();
+						nested[childKey] = unquote(childValue);
+					}
 				}
 
 				index++;

@@ -380,11 +380,8 @@ rather than only trending terminology.
 
 ## Tips
 
-- Strong data professionals usually care deeply about data quality, reliability, scalability, and business impact.
-- SQL, Python, cloud data ecosystems, and analytics engineering remain highly valuable skills in 2026.
-- Data portfolios are strongest when they demonstrate business impact, data reasoning, and production workflows rather than only dashboards or notebooks.
-- Modern data teams increasingly collaborate closely with engineering, product, AI, analytics, and leadership teams throughout the organization.
-- AI-assisted analytics workflows are becoming increasingly common, but critical thinking and data reasoning remain highly valuable human skills.
-- Many companies misuse data titles — recruiters should clarify whether roles are analytics-focused, engineering-focused, machine-learning-focused, or AI-focused.
-- Senior data professionals are often evaluated based on scalability thinking, data governance, business alignment, and system design maturity rather than only tool knowledge.
-- Avoid job descriptions that expect one data professional to simultaneously perform data engineering, machine learning, analytics, DevOps, AI engineering, dashboarding, and executive reporting responsibilities at expert level.
+- Senior data professionals should be evaluated on data governance, scalability thinking, and business alignment rather than a laundry list of database tools or visualization frameworks.
+- Data portfolios are strongest when they demonstrate end-to-end data reasoning, production pipeline workflows, and concrete business impact, rather than just simple dashboard mockups or isolated notebooks.
+- Many companies misuse data titles — recruiters must clarify if the vacancy is engineering-focused (infrastructure/pipelines), analytics-focused (BI/metrics), or science/AI-focused (modeling/algorithms).
+- Modern data engineering relies on high-quality SQL, Python, cloud platforms, and analytics engineering (e.g. dbt) as foundational skills, not just secondary tools.
+- Avoid unrealistic "unicorn" job descriptions that expect a single individual to master data engineering, advanced machine learning, DevOps, dashboard design, and executive analytics.

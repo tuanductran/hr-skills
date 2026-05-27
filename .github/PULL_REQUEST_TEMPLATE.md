@@ -12,6 +12,7 @@
 - [ ] `refactor` — code restructuring, no behaviour change
 - [ ] `style` — formatting or markdownlint fixes
 - [ ] `build` — build system changes
+- [ ] `ci` — CI/CD workflow changes
 
 ## Affected skill(s)
 
@@ -21,7 +22,7 @@
 
 - [ ] `bun run validate` — 0 errors
 - [ ] `bun run test` — 0 failures
-- [ ] `bun run lint` — 0 errors
+- [ ] `bun run check` — 0 errors
 - [ ] `bun run lint:md` — 0 errors
 - [ ] `bun run typecheck` — 0 errors
 - [ ] Target branch is `dev` (not `main`)
