@@ -14,8 +14,11 @@ bun run catalog
 # Sync generated references
 bun run sync
 
-# Run validate + catalog through the package build
-bun run build
+# Run tests for the package tooling
+bun run test
+
+# Type-check package source
+bun run typecheck
 
 # Watch mode — re-validates on file changes
 bun run dev
@@ -27,7 +30,8 @@ Or run from the monorepo root:
 bun run validate      # delegates to hr-skills-build
 bun run sync          # delegates to hr-skills-build
 bun run catalog       # delegates to hr-skills-build
-bun run build         # runs all package builds
+bun run test          # runs workspace tests
+bun run typecheck     # runs workspace type-checking
 ```
 
 ## What it does
