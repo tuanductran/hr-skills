@@ -399,11 +399,8 @@ rather than only tool lists.
 
 ## Tips
 
-- Strong mobile engineers usually care deeply about performance, UX quality, and platform behavior consistency.
-- React Native and Flutter remain dominant cross-platform ecosystems in 2026.
-- Mobile portfolios are strongest when they demonstrate real App Store or Google Play deployments, production workflows, and complete user experiences rather than only cloned UI projects.
-- Modern mobile teams increasingly collaborate closely with backend, QA, design, analytics, and DevOps teams throughout the product lifecycle.
-- AI-assisted development is changing mobile workflows, but platform-specific engineering knowledge remains highly valuable.
-- Many companies misuse mobile titles — recruiters should clarify whether roles are iOS-focused, Android-focused, React Native-focused, Flutter-focused, or broader cross-platform roles.
-- Senior mobile engineers are often evaluated based on architecture ownership, performance thinking, scalability, and product delivery capability rather than only UI implementation speed.
-- Avoid job descriptions that expect one mobile engineer to simultaneously perform iOS development, Android development, backend engineering, DevOps, UI/UX design, QA automation, and AI engineering responsibilities at expert level.
+- Senior mobile engineers are evaluated on platform-specific architecture (iOS/Android), performance tuning (e.g. startup times, memory leaks), and deployment pipeline automation.
+- Portfolios and resumes are most credible when they show real-world App Store or Google Play deployments, complete with production workflows and active users, rather than basic tutorial clones.
+- Recruiters must clarify platform strategy: whether the team needs Native specialists (Swift/Kotlin) or Cross-Platform engineers (React Native/Flutter), keeping in mind that cross-platform still requires native knowledge.
+- Mobile performance, battery utilization, offline-first data synchronization, and mobile security (e.g. keychains, obfuscation) are strong indicators of senior-level mobile engineering maturity.
+- Avoid writing unrealistic job descriptions that expect a single mobile developer to simultaneously act as an expert iOS dev, Android dev, backend architect, graphic designer, and DevOps engineer.

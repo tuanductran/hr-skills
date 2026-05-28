@@ -5,7 +5,7 @@ Build tooling for the HR Skills collection — validates SKILL.md files and gene
 ## Scripts
 
 ```bash
-# Validate all 25 HR skill definitions
+# Validate all HR skill definitions
 bun run validate
 
 # Generate skills/CATALOG.md
@@ -46,7 +46,7 @@ Validating HR Skills...
   ...
   ✓ hr-employee-engagement
 
-✓ All 25 HR skills are valid
+✓ All HR skills are valid
 ```
 
 ### `catalog`

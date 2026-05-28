@@ -246,6 +246,9 @@ async function syncInstallationTable(metas: SkillMeta[]): Promise<boolean> {
 // docs/skills.md sync
 // -----------------------------------------------------------------------------
 
+// Regex to detect the start of a skill section block
+const SKILL_SECTION_START_REGEX = /\n---\n\n## hr-/;
+
 export function buildSkillDocsSection(meta: SkillMeta): string | null {
 	if (meta.triggerPhrases.length === 0) {
 		return null;
@@ -272,17 +275,20 @@ export function buildSkillDocsSection(meta: SkillMeta): string | null {
 export async function syncSkillsDocs(metas: SkillMeta[]): Promise<boolean> {
 	const path = join(ROOT, 'docs/skills.md');
 
-	let content = await Bun.file(path).text();
+	const original = await Bun.file(path).text();
 
-	let changed = false;
+	// Extract the preamble: everything before the first skill section
+	const firstSectionIndex = original.search(SKILL_SECTION_START_REGEX);
+
+	const preamble =
+		firstSectionIndex !== -1
+			? original.slice(0, firstSectionIndex).trimEnd()
+			: original.trimEnd();
+
+	// Build all skill sections in sorted order (metas is already sorted by getHrSkills)
+	const sections: string[] = [];
 
 	for (const meta of metas) {
-		const heading = `## ${meta.name}`;
-
-		if (content.includes(`\n${heading}\n`) || content.startsWith(`${heading}\n`)) {
-			continue;
-		}
-
 		const section = buildSkillDocsSection(meta);
 
 		if (!section) {
@@ -292,16 +298,16 @@ export async function syncSkillsDocs(metas: SkillMeta[]): Promise<boolean> {
 			continue;
 		}
 
-		content = `${content.trimEnd()}${section}\n`;
-
-		changed = true;
+		sections.push(section);
 	}
 
-	if (!changed) {
+	const rebuilt = `${preamble}${sections.join('')}\n`;
+
+	if (rebuilt === original) {
 		return false;
 	}
 
-	await Bun.write(path, content);
+	await Bun.write(path, rebuilt);
 
 	return true;
 }

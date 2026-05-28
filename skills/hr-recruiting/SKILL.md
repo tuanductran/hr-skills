@@ -78,10 +78,8 @@ Comprehensive recruiting and talent acquisition support — from writing job des
 
 ## Tips
 
-- Tailor job descriptions to the specific needs and goals of your company, including culture, team dynamics, and long-term goals.
-- Use inclusive language throughout recruiting materials and consider adding information about diversity initiatives.
-- Standardize interview scoring rubrics to reduce bias and improve hiring quality.
-- Track recruiting metrics (time-to-fill, source of hire, offer acceptance rate) to continuously improve.
-- Automate repetitive tasks (screening, scheduling, communications) to let recruiters focus on candidate relationships.
-- In Vietnam, salary structures typically comprise base salary, allowances, and bonuses — candidates expect a transparent breakdown of each component during the offer stage
-- Reference checking in Vietnam is often limited to formal employer references — supplement with informal network checks and always verify through at least two direct managers
+- Tailor job descriptions to your company culture and use inclusive language to attract diverse talent.
+- Standardize interview scoring rubrics and track key recruiting metrics (like time-to-fill and offer acceptance rates) to reduce bias and continuously improve.
+- Automate repetitive administrative tasks (scheduling, screening, basic emails) so recruiters can focus on candidate relationships.
+- In Vietnam, salary structures typically comprise base salary, allowances, and bonuses — candidates expect a transparent breakdown of each component during the offer stage.
+- Reference checking in Vietnam is often limited to formal employer references — supplement with informal network checks and always verify through at least two direct managers.

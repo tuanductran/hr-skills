@@ -345,11 +345,8 @@ rather than only certifications.
 
 ## Tips
 
-- Strong DevOps engineers usually care deeply about automation, reliability, scalability, and reducing operational friction.
-- Kubernetes, Terraform, Docker, and CI/CD systems remain highly valuable DevOps skills in 2026.
-- DevOps portfolios are strongest when they demonstrate infrastructure automation, deployment systems, observability, and production workflows rather than only certificates.
-- Modern DevOps teams increasingly collaborate closely with developers, QA, security, and platform engineering teams throughout the software lifecycle.
-- AI-assisted infrastructure operations and observability tooling are becoming more common in modern DevOps environments.
-- Many companies misuse DevOps titles — recruiters should clarify whether roles are infrastructure-focused, SRE-focused, cloud-focused, or platform-focused.
-- Senior DevOps engineers are often evaluated based on reliability ownership, scalability thinking, operational maturity, and automation capability rather than only tooling knowledge.
-- Avoid job descriptions that expect one DevOps engineer to simultaneously perform cloud architecture, cybersecurity, backend engineering, database administration, networking, SRE, QA automation, and platform engineering responsibilities at expert level.
+- Senior DevOps and SRE professionals should be evaluated on their reliability ownership, scalability architecture, and developer enablement rather than just tool lists or certifications.
+- Portfolios and resumes are most credible when they show real-world infrastructure-as-code automation (e.g. Terraform), deployment system pipelines, and production incident response.
+- Recruiters should clarify the exact DevOps focus needed: SRE (production uptime and reliability), Platform Engineering (internal tooling/automation), or Cloud Infrastructure.
+- Foundation technologies such as Docker, Kubernetes, and CI/CD pipelines remain central skills in DevOps, but the core value lies in reducing developer friction and build times.
+- Avoid "unicorn" job descriptions that expect a single individual to simultaneously master cloud architecture, deep backend development, cybersecurity, database administration, and SRE.

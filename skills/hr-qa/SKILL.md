@@ -316,11 +316,8 @@ rather than only tool lists.
 
 ## Tips
 
-- Strong QA engineers often think like both users and engineers.
-- Playwright is becoming one of the most valuable automation skills in modern QA hiring.
-- QA portfolios are strongest when they demonstrate real automation frameworks, CI/CD integration, and quality workflows instead of only certificates.
-- Modern QA teams increasingly work closely with developers, DevOps, product managers, and designers throughout the software lifecycle.
-- AI is changing QA workflows, but human judgment and quality strategy remain critical.
-- Many companies misuse QA titles — recruiters should clarify whether roles are manual QA, automation QA, SDET, or broader quality engineering roles.
-- Senior QA engineers are often evaluated based on system thinking, release confidence, and quality ownership rather than only test execution speed.
-- Avoid job descriptions that expect one QA engineer to simultaneously perform manual testing, automation engineering, DevOps, performance engineering, cybersecurity testing, and AI engineering at expert level.
+- Senior QA engineers and SDETs should be evaluated on their testing mindset, quality strategy, and release confidence rather than just tool lists or scripting speed.
+- Portfolios and resumes are most credible when they show custom automation frameworks (e.g. Playwright, Cypress) built from scratch and integrated into CI/CD pipelines, rather than generic course certificates.
+- Recruiters should clarify the exact type of QA required: Manual/Exploratory QA (focus on user journey and edge cases), Automation QA, or SDET (Software Development Engineer in Test - strong coding capability).
+- Modern Quality Engineering is highly collaborative; engineers must work closely with developers and product managers to inject testing early in the software lifecycle.
+- Avoid writing unrealistic job descriptions that expect one QA engineer to simultaneously master manual testing, deep automation architecture, DevOps, security penetration testing, and performance testing.

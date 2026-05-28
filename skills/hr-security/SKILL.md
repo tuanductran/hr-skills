@@ -384,11 +384,8 @@ rather than only denying changes.
 
 ## Tips
 
-- Strong security professionals usually care deeply about resilience, risk reduction, operational maturity, and defense-in-depth thinking.
-- AI-driven threats, identity security, and AI governance are among the most important cybersecurity trends in 2026.
-- Security portfolios are strongest when they demonstrate practical problem-solving, labs, writeups, detection engineering, or real-world operational thinking rather than only certificates.
-- Modern security teams increasingly collaborate closely with infrastructure, DevOps, backend, AI, and compliance teams throughout the software lifecycle.
-- AI-assisted security operations are becoming increasingly common, but human judgment and incident response maturity remain highly valuable.
-- Many companies misuse security titles — recruiters should clarify whether roles are offensive-security-focused, defensive-security-focused, compliance-focused, cloud-focused, or AppSec-focused.
-- Senior security professionals are often evaluated based on risk reasoning, architecture thinking, operational maturity, and communication capability rather than only tooling knowledge.
-- Avoid job descriptions that expect one security professional to simultaneously perform SOC operations, penetration testing, cloud security, DevSecOps, governance, forensics, compliance, and incident response responsibilities at expert level.
+- Senior security professionals should be evaluated on their risk reasoning, security architecture, and operational incident response maturity rather than certification counts alone.
+- Portfolios and resumes are most credible when they showcase real-world threat modeling writeups, custom detection rules, or hands-on security labs, rather than generic course badges.
+- Recruiters should clarify the exact security domain required: Offensive (e.g. penetration testing/red teaming), Defensive (SOC/blue teaming), Application Security (AppSec), or Cloud Security.
+- Modern security engineering prioritizes collaborative risk reduction and "shifting left" (DevSecOps) over acting as a rigid block to engineering velocity.
+- Avoid writing unrealistic "unicorn" job descriptions that expect one security engineer to simultaneously own AppSec, Cloud Security, compliance governance, SOC operations, and digital forensics.

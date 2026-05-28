@@ -358,11 +358,8 @@ rather than only trending terminology.
 
 ## Tips
 
-- Strong AI engineers usually care deeply about scalability, evaluation quality, reliability, and real-world usability.
-- Agentic AI, multimodal systems, and AI orchestration are among the fastest-growing AI trends in 2026.
-- AI portfolios are strongest when they demonstrate production thinking, evaluation workflows, and problem-solving depth rather than only chatbot demos.
-- Modern AI teams increasingly collaborate closely with backend, data, product, security, infrastructure, and design teams throughout the product lifecycle.
-- AI-assisted coding and autonomous workflows are rapidly changing engineering workflows.
+- Senior AI engineers are often evaluated on scalability thinking, production maturity, evaluation practices, and system design capability rather than only model knowledge.
+- AI portfolios are strongest when they demonstrate production thinking, evaluation workflows, and problem-solving depth rather than only simple chatbot demos.
 - Many companies misuse AI titles — recruiters should clarify whether roles are ML-focused, LLM-focused, infrastructure-focused, research-focused, or product-focused.
-- Senior AI engineers are often evaluated based on scalability thinking, production maturity, evaluation practices, and system design capability rather than only model knowledge.
-- Avoid job descriptions that expect one AI engineer to simultaneously perform research science, ML engineering, backend engineering, DevOps, data engineering, product management, and infrastructure operations responsibilities at expert level.
+- Avoid unrealistic job descriptions that expect a single AI engineer to simultaneously possess expert-level skills in research, DevOps, infrastructure, and product management.
+- Modern AI teams operate in a highly cross-functional environment, collaborating closely with backend, data, security, product, and infrastructure teams.

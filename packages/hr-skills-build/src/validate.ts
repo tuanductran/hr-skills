@@ -3,7 +3,7 @@
  * Validate all HR skill SKILL.md files.
  *
  * Validation rules:
- *   - SKILL.md must exist
+ *   - Runs core validator from skills-ref
  *   - Frontmatter must contain:
  *       - name
  *       - description
@@ -16,6 +16,11 @@
  *       - ## Tips
  *   - Description must be meaningful
  *   - Content must meet minimum length
+ *   - SKILL.md body must be under 500 lines
+ *   - metadata.author must be exactly "Tuan Duc Tran"
+ *   - ## Supported tasks has 8–12 items
+ *   - ## Tips has 4–6 items
+ *   - Ensure proper blank lines before lists (MD032 compliance)
  *
  * Usage:
  *   bun run validate
@@ -25,8 +30,9 @@ import { readdir } from 'node:fs/promises';
 import { join } from 'node:path';
 import process from 'node:process';
 import { consola } from 'consola';
+import { validate as validateRef } from 'skills-ref';
 import { HR_SKILL_PREFIX, SKILLS_DIR } from './config.js';
-import { parseFrontmatter } from './utils.js';
+import { extractMatch, parseFrontmatter, TASKS_REGEX } from './utils.js';
 
 // -----------------------------------------------------------------------------
 // Constants
@@ -37,6 +43,8 @@ const REQUIRED_SECTIONS = ['## Supported tasks', '## Key prompts', '## Tips'];
 const MIN_DESCRIPTION_LENGTH = 50;
 
 const MIN_CONTENT_LENGTH = 1000;
+
+const TIPS_REGEX = /## Tips\r?\n\r?\n([\s\S]*?)(?=\r?\n##|$)/;
 
 // -----------------------------------------------------------------------------
 // Types
@@ -69,7 +77,8 @@ async function discoverSkills(): Promise<string[]> {
 async function validateSkill(skillName: string): Promise<ValidationError[]> {
 	const errors: ValidationError[] = [];
 
-	const skillPath = join(SKILLS_DIR, skillName, 'SKILL.md');
+	const skillDir = join(SKILLS_DIR, skillName);
+	const skillPath = join(skillDir, 'SKILL.md');
 
 	let content: string;
 
@@ -84,12 +93,18 @@ async function validateSkill(skillName: string): Promise<ValidationError[]> {
 		return errors;
 	}
 
+	// 1. Run core validator from skills-ref
+	const refErrors = validateRef(skillDir);
+	for (const err of refErrors) {
+		errors.push({
+			skill: skillName,
+			message: `Core Validation Error: ${err}`,
+		});
+	}
+
 	const frontmatter = parseFrontmatter(content);
 
-	// -------------------------------------------------------------------------
-	// name
-	// -------------------------------------------------------------------------
-
+	// 2. Validate Frontmatter specific properties
 	if (!frontmatter.name) {
 		errors.push({
 			skill: skillName,
@@ -101,10 +116,6 @@ async function validateSkill(skillName: string): Promise<ValidationError[]> {
 			message: `Frontmatter name mismatch: expected "${skillName}", received "${frontmatter.name}"`,
 		});
 	}
-
-	// -------------------------------------------------------------------------
-	// description
-	// -------------------------------------------------------------------------
 
 	if (!frontmatter.description) {
 		errors.push({
@@ -118,20 +129,17 @@ async function validateSkill(skillName: string): Promise<ValidationError[]> {
 		});
 	}
 
-	// -------------------------------------------------------------------------
-	// metadata.author
-	// -------------------------------------------------------------------------
-
 	if (!frontmatter.metadata?.author) {
 		errors.push({
 			skill: skillName,
 			message: 'Missing metadata.author',
 		});
+	} else if (frontmatter.metadata.author !== 'Tuan Duc Tran') {
+		errors.push({
+			skill: skillName,
+			message: `Incorrect metadata.author: expected "Tuan Duc Tran", received "${frontmatter.metadata.author}"`,
+		});
 	}
-
-	// -------------------------------------------------------------------------
-	// metadata.version
-	// -------------------------------------------------------------------------
 
 	if (!frontmatter.metadata?.version) {
 		errors.push({
@@ -140,10 +148,7 @@ async function validateSkill(skillName: string): Promise<ValidationError[]> {
 		});
 	}
 
-	// -------------------------------------------------------------------------
-	// required sections
-	// -------------------------------------------------------------------------
-
+	// 3. Required sections
 	for (const section of REQUIRED_SECTIONS) {
 		if (!content.includes(section)) {
 			errors.push({
@@ -153,15 +158,67 @@ async function validateSkill(skillName: string): Promise<ValidationError[]> {
 		}
 	}
 
-	// -------------------------------------------------------------------------
-	// minimum content length
-	// -------------------------------------------------------------------------
-
+	// 4. Minimum content length
 	if (content.length < MIN_CONTENT_LENGTH) {
 		errors.push({
 			skill: skillName,
 			message: `SKILL.md is too short (minimum ${MIN_CONTENT_LENGTH} characters)`,
 		});
+	}
+
+	// 5. Lines count constraint (AGENTS.md: under 500 lines)
+	const lines = content.split(/\r?\n/);
+	if (lines.length > 500) {
+		errors.push({
+			skill: skillName,
+			message: `SKILL.md body is too long (${lines.length} lines, maximum 500 lines allowed)`,
+		});
+	}
+
+	// 6. Supported tasks count constraint (AGENTS.md: 8–12 tasks)
+	const tasksBlock = extractMatch(TASKS_REGEX, content) ?? '';
+	const taskLines = tasksBlock
+		.split(/\r?\n/)
+		.filter((line) => line.trim().startsWith('- '));
+	if (taskLines.length < 8 || taskLines.length > 12) {
+		errors.push({
+			skill: skillName,
+			message: `Supported tasks section has ${taskLines.length} tasks (expected 8-12 tasks)`,
+		});
+	}
+
+	// 7. Tips count constraint (AGENTS.md: 4–6 tips)
+	const tipsBlock = extractMatch(TIPS_REGEX, content) ?? '';
+	const tipLines = tipsBlock
+		.split(/\r?\n/)
+		.filter((line) => line.trim().startsWith('- '));
+	if (tipLines.length < 4 || tipLines.length > 6) {
+		errors.push({
+			skill: skillName,
+			message: `Tips section has ${tipLines.length} tips (expected 4-6 tips)`,
+		});
+	}
+
+	// 8. Blank line before lists constraint (MD032 compliance)
+	for (let i = 0; i < lines.length - 1; i++) {
+		const currentLine = lines[i].trim();
+		const nextLine = lines[i + 1].trim();
+
+		const isHeading = currentLine.startsWith('#');
+		const isBoldLabel = currentLine.startsWith('**') && currentLine.endsWith(':**');
+
+		if (isHeading || isBoldLabel) {
+			if (
+				nextLine.startsWith('- ') ||
+				nextLine.startsWith('* ') ||
+				/^\d+\.\s/.test(nextLine)
+			) {
+				errors.push({
+					skill: skillName,
+					message: `Missing blank line after heading/label "${currentLine}" on line ${i + 1} before the list on line ${i + 2}`,
+				});
+			}
+		}
 	}
 
 	return errors;
@@ -192,6 +249,7 @@ async function validate(): Promise<void> {
 		if (errors.length > 0) {
 			allErrors.push(...errors);
 
+			consola.fail(skillName);
 			continue;
 		}
 
