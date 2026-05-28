@@ -50,7 +50,7 @@ Use this template:
 name: hr-your-skill-name
 description: One-sentence description. Include trigger phrases like "Write a ...", "Conduct a ...", or "Analyze ...".
 metadata:
-  author: Your Name
+  author: Tuan Duc Tran
   version: "1.0.0"
 ---
 
@@ -122,7 +122,7 @@ bun run lint:md
 
 The TypeScript workspace packages and build tooling live in `packages/`.
 
-Workspace build outputs are cached through Turborepo based on the task configuration in `turbo.json`.
+Workspace build outputs are cached through Turborepo based on the task configuration in `turbo.jsonc`.
 
 Changes there should:
 

@@ -16,7 +16,7 @@ This repository uses a Bun + Turborepo workspace structure. Skill content lives 
 │   └── skills-ref/
 ├── docs/
 ├── scripts/
-└── turbo.json
+└── turbo.jsonc
 ```
 
 The skill directory name must match the `name` field in the frontmatter exactly.

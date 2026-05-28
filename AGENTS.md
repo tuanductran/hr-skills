@@ -63,34 +63,50 @@ build(skills-ref): switch build target to bun
 ci: add Biome job to hr-skills-ci workflow
 ```
 
-After completing any task, validate skills and run the linter:
+Use these project commands from the repository root. After completing any task, validate the affected area and run the relevant lint checks:
 
 ```bash
 bun install          # Install all dependencies (run once, or after package changes)
-bun run sync         # Sync skill references across all docs (run after adding/removing a skill)
+bun run sync         # Sync generated skill references after adding/removing a skill
 bun run validate     # Validate all skill SKILL.md files
+bun run catalog      # Regenerate skills/CATALOG.md
+bun run zip          # Generate cross-platform distributable skill zip packages
+bun run test         # Run tests across workspace packages
+bun run typecheck    # Run type-checking across workspace packages
+bun run build        # Run all workspace build tasks through Turborepo
 bun run check        # Run Biome checks without writing changes
 bun run lint         # Run Biome checks with auto-fix
 bun run format       # Format files with Biome formatter
 bun run lint:md      # markdownlint + case-police on Markdown files
 bun run lint:md:fix  # Markdown lint with auto-fix
-bun run typecheck    # Run type-checking across workspace packages
-bun run build        # Run all workspace build tasks through Turborepo
-bun run catalog      # Regenerate the generated skills catalog
-bun run zip          # Generate cross-platform distributable skill zip packages
+bun run lint:links   # Check Markdown links in content, docs, and skills
+bun run knip         # Detect unused files and dependencies
+bun run release      # Release only: bump version, generate changelog, commit, tag, and push
 ```
 
-Build, test, and typecheck tasks are orchestrated through Turborepo.
+Build, test, typecheck, validate, catalog, and sync tasks are orchestrated through Turborepo.
 
-Tasks may run in parallel and use local caching based on `turbo.json`.
+Tasks may run in parallel and use local caching based on `turbo.jsonc`.
 
-When you add a new skill directory (for example `skills/hr-new-skill/SKILL.md`), run `bun run sync` first. It auto-updates `config.ts`, all documentation tables, `marketplace.json`, and skill counts across the project — no manual edits needed. Then run `bun run catalog` and `bun run zip` to regenerate the zip packages.
+When you add a new skill directory (for example `skills/hr-new-skill/SKILL.md`), run `bun run sync` first. It auto-discovers `hr-*` skill directories from `skills/`, then updates `AGENTS.md`, `docs/installation.md`, `docs/skills.md`, and `.claude-plugin/marketplace.json` — no manual table edits needed. Then run `bun run catalog` and `bun run zip` to regenerate `skills/CATALOG.md` and the distributable zip packages.
+
+## Project structure
+
+| Path | Purpose |
+|------|---------|
+| `skills/hr-*/SKILL.md` | Source skill definitions consumed by Claude Code and claude.ai |
+| `content/hr-*/README.md` | Human-readable companion guidance for each HR skill domain |
+| `docs/` | Installation, contributing, skill format, and generated skill reference documentation |
+| `.claude-plugin/marketplace.json` | Generated marketplace metadata synced from skill frontmatter |
+| `scripts/zip.ts` | Packaging script that creates distributable skill zip files under `skills/` |
+| `packages/hr-skills-build` | Build and maintenance tooling for validation, sync, catalog generation, and packaging support |
+| `packages/skills-ref` | TypeScript library and CLI for reading, validating, and generating prompts from skill files |
 
 ## Packages
 
 This repository uses Bun workspaces with Turborepo task orchestration. All packages are located in `packages/*`.
 
-Generated files and package build outputs are cached through Turborepo based on the task configuration in `turbo.json`.
+Generated files and package build outputs are cached through Turborepo based on the task configuration in `turbo.jsonc`.
 
 | Package | Description |
 |---------|-------------|
@@ -152,9 +168,9 @@ All documentation and skill content follows [Atlassian's content design guidelin
 
 ## Common pitfalls and best practices
 
-- **Blank line before lists:** Always leave a blank line between a heading or paragraph and the list that follows. Missing blank lines cause markdownlint (`MD032`) and rendering errors.
+- **Blank line before lists:** Always leave a blank line between a heading or paragraph and the list that follows. Missing blank lines can cause rendering issues and the skill validator enforces this rule for `SKILL.md` files.
 
-  **For AI tools specifically:** every time you write a heading (`##`, `###`) or a bold label (`**Label:**`) that is immediately followed by a list, you MUST insert a blank line in between. This applies to every file in the project — `AGENTS.md`, `README.md`, `SKILL.md`, `docs/*.md`, and generated files. Run `bun run lint:md` to catch violations before committing.
+  **For AI tools specifically:** every time you write a heading (`##`, `###`) or a bold label (`**Label:**`) that is immediately followed by a list, you MUST insert a blank line in between. This applies to every file in the project — `AGENTS.md`, `README.md`, `SKILL.md`, `docs/*.md`, and generated files. Run `bun run validate` and `bun run lint:md` before committing when Markdown or skills change.
 - **HR-domain only:** Prompts and guidance must cover HR-specific patterns and best practices, not generic management or business advice.
 - **No obvious content:** Avoid widely-known basics. Focus on nuanced guidance that HR professionals actually need AI assistance with.
 - **Required structure:** Each `SKILL.md` needs frontmatter (`name`, `description`, `metadata`), `## Supported tasks`, `## Key prompts` (grouped by subtopic), and `## Tips`.
