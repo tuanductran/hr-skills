@@ -22,14 +22,14 @@ jobs:
       - name: Install dependencies
         run: bun install
 
+      - name: Build packages
+        run: bun run build
+
       - name: Validate HR skills
         run: bun run validate
 
       - name: Generate catalog
         run: bun run catalog
-
-      - name: Build packages
-        run: bun run build
 
   test:
     name: Unit Tests
