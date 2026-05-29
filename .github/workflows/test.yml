@@ -4,6 +4,10 @@ on:
   pull_request:
     branches: [main, dev]
 
+permissions:
+  contents: read
+  actions: write
+
 jobs:
   test:
     name: Test (${{matrix.os}})
