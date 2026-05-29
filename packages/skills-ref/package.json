@@ -1,48 +1,50 @@
 {
-  "name": "skills-ref",
-  "version": "0.0.0",
-  "private": true,
-  "description": "Reference library for Agent Skills — validate, read, and generate prompts from SKILL.md files",
-  "type": "module",
-  "license": "Apache-2.0",
-  "author": "Tuan Duc Tran",
-  "homepage": "https://github.com/tuanductran/hr-skills/tree/main/packages/skills-ref#readme",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/tuanductran/hr-skills.git",
-    "directory": "packages/skills-ref"
-  },
-  "bugs": {
-    "url": "https://github.com/tuanductran/hr-skills/issues"
-  },
-  "keywords": [
-    "skills",
-    "ai-skills",
-    "agent-skills",
-    "claude",
-    "llm",
-    "agents",
-    "skill-md",
-    "hr"
-  ],
-  "main": "./dist/index.mjs",
-  "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "default": "./dist/index.mjs"
-    }
-  },
-  "files": ["dist"],
-  "scripts": {
-    "build": "obuild",
-    "dev": "bun --watch src/index.ts",
-    "test": "bun test",
-    "typecheck": "tsc --noEmit",
-    "clean": "rm -rf dist"
-  },
-  "devDependencies": {
-    "obuild": "^0.4.36"
-  }
+	"name": "skills-ref",
+	"version": "0.0.0",
+	"private": true,
+	"description": "Reference library for Agent Skills — validate, read, and generate prompts from SKILL.md files",
+	"type": "module",
+	"license": "Apache-2.0",
+	"author": "Tuan Duc Tran",
+	"homepage": "https://github.com/tuanductran/hr-skills/tree/main/packages/skills-ref#readme",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/tuanductran/hr-skills.git",
+		"directory": "packages/skills-ref"
+	},
+	"bugs": {
+		"url": "https://github.com/tuanductran/hr-skills/issues"
+	},
+	"keywords": [
+		"skills",
+		"ai-skills",
+		"agent-skills",
+		"claude",
+		"llm",
+		"agents",
+		"skill-md",
+		"hr"
+	],
+	"main": "./dist/index.mjs",
+	"module": "./dist/index.mjs",
+	"types": "./dist/index.d.ts",
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"default": "./dist/index.mjs"
+		}
+	},
+	"files": [
+		"dist"
+	],
+	"scripts": {
+		"build": "obuild",
+		"dev": "bun --watch src/index.ts",
+		"test": "bun test",
+		"typecheck": "tsc --noEmit",
+		"clean": "rm -rf dist"
+	},
+	"devDependencies": {
+		"obuild": "^0.4.36"
+	}
 }
