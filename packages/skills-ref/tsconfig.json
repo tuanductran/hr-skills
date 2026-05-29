@@ -12,6 +12,6 @@
 		"verbatimModuleSyntax": true,
 		"skipLibCheck": true
 	},
-	"include": ["src", "test"],
+	"include": ["src", "test", "build.config.ts"],
 	"exclude": ["node_modules", "dist"]
 }
