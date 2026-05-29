@@ -2,7 +2,7 @@
 
 Reference library for Agent Skills — validate, read, and generate prompts from `SKILL.md` files.
 
-TypeScript port of [agentskills/agentskills skills-ref](https://github.com/agentskills/agentskills/tree/main/skills-ref), compiled with `bun build`.
+TypeScript port of [agentskills/agentskills skills-ref](https://github.com/agentskills/agentskills/tree/main/skills-ref), bundled with `obuild`.
 
 ## Installation
 
@@ -11,31 +11,26 @@ bun install
 bun run build
 ```
 
-## CLI usage
+## Package outputs
 
-```bash
-# Validate a skill directory
-bun dist/cli.js validate path/to/skill
+The package builds a library entry point from `src/index.ts` to `dist/index.mjs` with TypeScript declarations at `dist/index.d.ts`.
 
-# Read skill properties as JSON
-bun dist/cli.js read-properties path/to/skill
+The published package contents are limited to `dist/`. The package doesn't expose a command-line interface.
 
-# Generate <available_skills> XML for agent prompts
-bun dist/cli.js to-prompt path/to/skill-a path/to/skill-b
-```
+## Scripts
 
-After `bun link` or installing globally, use `skills-ref` directly:
-
-```bash
-skills-ref validate skills/hr-recruiting
-skills-ref read-properties skills/hr-analytics
-skills-ref to-prompt skills/hr-recruiting skills/hr-analytics
-```
+| Command | Purpose |
+|---------|---------|
+| `bun run build` | Bundle the library with `obuild` using `build.config.ts` |
+| `bun run dev` | Watch `src/index.ts` during local development |
+| `bun run test` | Run Bun tests for the package |
+| `bun run typecheck` | Type-check the package without emitting files |
+| `bun run clean` | Remove the generated `dist/` directory |
 
 ## Programmatic API
 
 ```typescript
-import { validate, readProperties, toPrompt } from "skills-ref";
+import { readProperties, toPrompt, validate } from "skills-ref";
 
 // Validate a skill directory
 const errors = validate("skills/hr-recruiting");
@@ -50,9 +45,10 @@ const xml = toPrompt(["skills/hr-recruiting", "skills/hr-analytics"]);
 console.log(xml);
 ```
 
-## Output formats
+## API output examples
 
-### `read-properties` (JSON)
+### `readProperties`
+
 ```json
 {
   "name": "hr-recruiting",
@@ -64,7 +60,8 @@ console.log(xml);
 }
 ```
 
-### `to-prompt` (XML)
+### `toPrompt`
+
 ```xml
 <available_skills>
 <skill>
@@ -74,10 +71,3 @@ console.log(xml);
 </skill>
 </available_skills>
 ```
-
-## Exit codes
-
-| Code | Meaning |
-|------|---------|
-| 0 | Success |
-| 1 | Validation errors or parse error |

@@ -54,7 +54,7 @@ bun run release      # Bump version, generate changelog, commit, tag, and push
 | Package | Description |
 |---------|-------------|
 | `packages/hr-skills-build` | Build and maintenance tooling for validating skills, generating catalogs, syncing metadata, and packaging skills |
-| `packages/skills-ref` | TypeScript library + CLI for reading, validating, and prompting skill files |
+| `packages/skills-ref` | TypeScript library for reading, validating, and prompting skill files |
 
 ## License
 

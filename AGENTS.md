@@ -100,7 +100,7 @@ When you add a new skill directory (for example `skills/hr-new-skill/SKILL.md`),
 | `.claude-plugin/marketplace.json` | Generated marketplace metadata synced from skill frontmatter |
 | `scripts/zip.ts` | Packaging script that creates distributable skill zip files under `skills/` |
 | `packages/hr-skills-build` | Build and maintenance tooling for validation, sync, catalog generation, and packaging support |
-| `packages/skills-ref` | TypeScript library and CLI for reading, validating, and generating prompts from skill files |
+| `packages/skills-ref` | TypeScript library for reading, validating, and generating prompts from skill files |
 
 ## Packages
 
@@ -111,7 +111,7 @@ Generated files and package build outputs are cached through Turborepo based on 
 | Package | Description |
 |---------|-------------|
 | `packages/hr-skills-build` | Build and maintenance tooling for validating skills, generating catalogs, syncing metadata, and packaging skill distributions |
-| `packages/skills-ref` | TypeScript library + CLI (`skills-ref`) for reading, validating, and generating prompts from skill files |
+| `packages/skills-ref` | TypeScript library (`skills-ref`) for reading, validating, and generating prompts from skill files |
 
 ## Skill scopes
 

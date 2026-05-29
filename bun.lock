@@ -32,8 +32,8 @@
     "packages/skills-ref": {
       "name": "skills-ref",
       "version": "0.0.0",
-      "bin": {
-        "skills-ref": "./dist/cli.js",
+      "devDependencies": {
+        "obuild": "^0.4.36",
       },
     },
   },
