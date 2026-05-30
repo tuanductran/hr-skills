@@ -7,6 +7,8 @@ skill: hr-ai
 
 ## Overview
 
+> Related example: [Senior AI Engineer hiring workflow](../../examples/ai/hiring-a-senior-ai-engineer.md).
+
 Artificial Intelligence (AI) in hiring is no longer limited to automation tools or keyword-based screening systems. In modern organizations, AI spans across machine learning systems, generative AI applications, large language models (LLMs), and production-grade AI infrastructure.
 
 For HR professionals and recruiters, understanding AI is not about becoming engineers. It is about developing the ability to evaluate candidates, interpret technical claims, and make informed hiring decisions in a rapidly evolving technical landscape.

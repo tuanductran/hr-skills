@@ -7,6 +7,8 @@ skill: hr-qa
 
 ## Overview
 
+> Related example: [Senior QA Automation Engineer hiring workflow](../../examples/qa/hiring-a-senior-qa-automation-engineer.md).
+
 Quality Assurance (QA) focuses on ensuring software systems are reliable, stable, usable, and safe to release into production.
 
 Modern QA is no longer limited to:
