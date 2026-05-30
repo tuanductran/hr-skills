@@ -1,8 +1,8 @@
 # Examples
 
-Real-world HR hiring workflow examples powered by HR Skills.
+Real-world HR hiring and operations workflow examples powered by HR Skills.
 
-Each example shows an end-to-end hiring scenario with sample prompts, generated outputs, interview question sets, and evaluation scorecards — demonstrating what the corresponding skill can produce in practice.
+Each example shows an end-to-end HR scenario with sample prompts, generated outputs, and adaptation notes — demonstrating what the corresponding skill can produce in practice.
 
 ## Technical hiring examples
 
@@ -19,10 +19,30 @@ Each example shows an end-to-end hiring scenario with sample prompts, generated 
 | [Hiring a Senior Cloud Security Engineer](./security/hiring-senior-cloud-security-engineer.md) | `hr-security` | AppSec, cloud security, SecOps |
 | [Hiring a Senior Product Designer](./uiux/hiring-senior-product-designer.md) | `hr-uiux` | UI/UX, design systems, user research |
 
+## HR operations examples
+
+| Example | Skill | Scenario |
+|---------|-------|---------|
+| [Analyze turnover risk by department](./analytics/turnover-risk-by-department.md) | `hr-analytics` | Turnover analysis, retention actions, executive reporting |
+| [Benchmark compensation for a new role](./compensation-benefits/benchmark-compensation-for-a-new-role.md) | `hr-compensation-benefits` | Salary bands, market inputs, internal equity |
+| [Review a remote work policy](./compliance/review-remote-work-policy.md) | `hr-compliance` | Policy clarity, compliance review, employee FAQs |
+| [Mediate team conflict after a reorganization](./conflict-resolution/mediate-team-conflict-after-reorganization.md) | `hr-conflict-resolution` | Intake conversations, mediation, working agreements |
+| [Audit promotion fairness signals](./diversity-inclusion/audit-promotion-fairness-signals.md) | `hr-diversity-inclusion` | Promotion criteria, calibration, fairness checkpoints |
+| [Design a stay interview campaign](./employee-engagement/design-stay-interview-campaign.md) | `hr-employee-engagement` | Stay interviews, retention themes, engagement actions |
+| [Document an employee relations case](./employee-relations/document-employee-relations-case.md) | `hr-employee-relations` | Case timelines, neutral documentation, escalation guardrails |
+| [Build a first-time manager program](./leadership-development/build-first-time-manager-program.md) | `hr-leadership-development` | Manager capabilities, learning modules, behavior change |
+| [Create a 30-60-90 day onboarding plan](./onboarding/create-30-60-90-day-onboarding-plan.md) | `hr-onboarding` | Role milestones, stakeholder mapping, manager check-ins |
+| [Write a performance improvement plan](./performance-management/write-performance-improvement-plan.md) | `hr-performance-management` | Performance expectations, support plans, progress check-ins |
+| [Plan a structured recruiting process](./recruiting/plan-structured-recruiting-process.md) | `hr-recruiting` | Intake alignment, scorecards, interview stages |
+| [Select an HRIS replacement](./technology/select-hris-replacement.md) | `hr-technology` | Vendor evaluation, integrations, implementation risk |
+| [Create a skills gap training plan](./training-development/create-skills-gap-training-plan.md) | `hr-training-development` | Capability assessment, learning interventions, skill transfer |
+| [Prepare Vietnam employee onboarding checklist](./vietnam-context/prepare-vietnam-employee-onboarding-checklist.md) | `hr-vietnam-context` | Local onboarding, payroll steps, compliance review points |
+| [Model hiring needs for a growth plan](./workforce-planning/model-hiring-needs-for-growth-plan.md) | `hr-workforce-planning` | Headcount assumptions, role timing, workforce options |
+
 ## How to use these examples
 
 1. Install the corresponding skill into Claude.
 2. Replicate the sample prompts from each example in your own conversation.
-3. Adapt the generated job descriptions, interview questions, and scorecards to your company's context.
+3. Adapt the generated plans, templates, questions, and scorecards to your company's context.
 
 See [docs/skills.md](../docs/skills.md) for trigger phrases and coverage details for all 25 skills.
