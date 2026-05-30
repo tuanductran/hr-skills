@@ -333,6 +333,10 @@ Strong candidates show:
 - data modeling experience
 - cloud data ecosystem exposure
 
+## Example workflow
+
+See the [senior data engineer hiring workflow](../../examples/data/hiring-a-senior-data-engineer.md) for an example of applying this guide to an end-to-end hiring process.
+
 ## Conclusion
 
 Data roles are evolving into a central infrastructure layer for AI and modern software systems.

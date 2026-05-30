@@ -326,6 +326,10 @@ Strong candidates show:
 - ignoring production incident experience
 - mixing DevOps with unrelated roles in job descriptions
 
+## Example workflow
+
+See the [senior DevOps engineer hiring workflow](../../examples/devops/hiring-a-senior-devops-engineer.md) for an example of applying this guide to an end-to-end hiring process.
+
 ## Conclusion
 
 DevOps is fundamentally about building reliable and automated systems for software delivery and infrastructure management.

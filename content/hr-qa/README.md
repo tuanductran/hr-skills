@@ -368,6 +368,10 @@ Major trends include:
 - quality engineering maturity
 - production observability integration
 
+## Example workflow
+
+See the [senior QA automation engineer hiring workflow](../../examples/qa/hiring-a-senior-qa-automation-engineer.md) for an example of applying this guide to an end-to-end hiring process.
+
 ## Conclusion
 
 Modern QA is increasingly an engineering discipline focused on reliability, release confidence, and scalable software quality.

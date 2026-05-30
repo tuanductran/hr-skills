@@ -333,6 +333,10 @@ Strong portfolios demonstrate:
 - responsive design across devices
 - thoughtful UI/UX decisions
 
+## Example workflow
+
+See the [senior frontend engineer hiring workflow](../../examples/frontend/hiring-a-senior-frontend-engineer.md) for an example of applying this guide to an end-to-end hiring process.
+
 ## Conclusion
 
 Frontend engineering is a multidisciplinary discipline combining UI development, system design, performance engineering, and user experience optimization.

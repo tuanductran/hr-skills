@@ -334,6 +334,10 @@ Strong resumes typically show:
 - database and API design experience
 - cloud infrastructure exposure
 
+## Example workflow
+
+See the [senior backend engineer hiring workflow](../../examples/backend/hiring-a-senior-backend-engineer.md) for an example of applying this guide to an end-to-end hiring process.
+
 ## Conclusion
 
 Backend engineering is fundamentally about building reliable, scalable, and secure systems.

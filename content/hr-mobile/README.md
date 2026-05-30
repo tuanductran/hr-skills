@@ -434,6 +434,10 @@ Mobile engineering increasingly overlaps with:
 - analytics
 - platform engineering
 
+## Example workflow
+
+See the [senior mobile engineer hiring workflow](../../examples/mobile/hiring-a-senior-mobile-engineer.md) for an example of applying this guide to an end-to-end hiring process.
+
 ## Conclusion
 
 Mobile engineering is fundamentally about building performant, reliable, and user-centered applications across highly constrained device ecosystems.

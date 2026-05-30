@@ -171,6 +171,10 @@ Hiring AI talent now requires understanding both:
 - software engineering fundamentals
 - and AI system design principles
 
+## Example workflow
+
+See the [senior AI engineer hiring workflow](../../examples/ai/hiring-a-senior-ai-engineer.md) for an example of applying this guide to an end-to-end hiring process.
+
 ## Conclusion
 
 For HR and recruiters, the key shift is this:

@@ -360,6 +360,10 @@ Major trends include:
 - monorepo architectures
 - fullstack frameworks with integrated tooling
 
+## Example workflow
+
+See the [senior fullstack engineer hiring workflow](../../examples/fullstack/hiring-a-senior-fullstack-engineer.md) for an example of applying this guide to an end-to-end hiring process.
+
 ## Conclusion
 
 Fullstack engineering is fundamentally about building and delivering complete software systems.

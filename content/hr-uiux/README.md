@@ -482,6 +482,10 @@ Key trends include:
 - motion and interaction systems
 - cross-functional product collaboration
 
+## Example workflow
+
+See the [senior product designer hiring workflow](../../examples/uiux/hiring-senior-product-designer.md) for an example of applying this guide to an end-to-end hiring process.
+
 ## Conclusion
 
 Modern UI/UX and Product Design are strategic disciplines focused on usability, product outcomes, accessibility, and scalable user experiences.
