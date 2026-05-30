@@ -461,6 +461,10 @@ Key trends include:
 - identity-first security strategies
 - post-quantum security preparation
 
+## Example workflow
+
+See the [senior cloud security engineer hiring workflow](../../examples/security/hiring-senior-cloud-security-engineer.md) for an example of applying this guide to an end-to-end hiring process.
+
 ## Conclusion
 
 Modern cybersecurity is a strategic engineering and risk-management discipline focused on resilience, operational security, and secure system design.
