@@ -7,6 +7,8 @@ skill: hr-security
 
 ## Overview
 
+> Related example: [Senior Cloud Security Engineer hiring workflow](../../examples/security/hiring-senior-cloud-security-engineer.md).
+
 Cybersecurity focuses on protecting systems, applications, infrastructure, data, and organizations from threats, attacks, misuse, and operational risks.
 
 Modern cybersecurity is no longer simply:

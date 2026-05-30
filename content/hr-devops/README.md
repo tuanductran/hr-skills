@@ -7,6 +7,8 @@ skill: hr-devops
 
 ## Overview
 
+> Related example: [Senior DevOps Engineer hiring workflow](../../examples/devops/hiring-a-senior-devops-engineer.md).
+
 DevOps sits at the intersection of software engineering and IT operations. It focuses on building systems that enable:
 
 - fast software delivery

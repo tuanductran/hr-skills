@@ -7,6 +7,8 @@ skill: hr-data
 
 ## Overview
 
+> Related example: [Senior Data Engineer hiring workflow](../../examples/data/hiring-a-senior-data-engineer.md).
+
 Data roles sit at the core of modern digital organizations. They power:
 
 - decision-making

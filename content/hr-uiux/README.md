@@ -7,6 +7,8 @@ skill: hr-uiux
 
 ## Overview
 
+> Related example: [Senior Product Designer hiring workflow](../../examples/uiux/hiring-senior-product-designer.md).
+
 UI/UX and Product Design focus on creating digital experiences that are:
 
 - usable
