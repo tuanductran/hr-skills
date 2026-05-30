@@ -7,6 +7,8 @@ skill: hr-mobile
 
 ## Overview
 
+> Related example: [Senior Mobile Engineer hiring workflow](../../examples/mobile/hiring-a-senior-mobile-engineer.md).
+
 Mobile engineering focuses on building applications for mobile devices such as smartphones and tablets across iOS, Android, and cross-platform ecosystems.
 
 Modern mobile engineering is no longer limited to:
@@ -433,6 +435,10 @@ Mobile engineering increasingly overlaps with:
 - backend services
 - analytics
 - platform engineering
+
+## Example workflow
+
+See the [senior mobile engineer hiring workflow](../../examples/mobile/hiring-a-senior-mobile-engineer.md) for an example of applying this guide to an end-to-end hiring process.
 
 ## Conclusion
 

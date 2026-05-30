@@ -20,6 +20,10 @@ cp -r skills/hr-{skill-name} ~/.claude/skills/
 
 **claude.ai:** Add the skill's `SKILL.md` to your project knowledge, or paste the content into the conversation.
 
+## Examples
+
+Use the [example workflows](./examples/) to see how the technical hiring skills support end-to-end recruiting scenarios. The examples include sample prompts, generated job descriptions, interview question sets, and scorecards for AI, backend, data, DevOps, frontend, fullstack, mobile, QA, security, and UI/UX roles.
+
 ## Skill structure
 
 Each skill contains:
@@ -43,7 +47,7 @@ bun run lint         # Run Biome checks with auto-fix
 bun run format       # Format files with Biome
 bun run lint:md      # markdownlint + case-police on Markdown files
 bun run lint:md:fix  # markdownlint + case-police with auto-fix
-bun run lint:links   # Check Markdown links in skills/
+bun run lint:links   # Check Markdown links in content, docs, examples, and skills
 bun run knip         # Detect unused files and dependencies
 bun run zip          # Generate distributable skill zip packages
 bun run release      # Bump version, generate changelog, commit, tag, and push

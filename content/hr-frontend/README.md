@@ -7,6 +7,8 @@ skill: hr-frontend
 
 ## Overview
 
+> Related example: [Senior Frontend Engineer hiring workflow](../../examples/frontend/hiring-a-senior-frontend-engineer.md).
+
 Frontend engineering focuses on everything users directly interact with in a web application — interfaces, user experience, performance, and visual behavior.
 
 For HR and recruiters, frontend understanding is critical because frontend quality is highly visible in products and strongly impacts user experience, engagement, and business metrics such as conversion rate and retention.
@@ -332,6 +334,10 @@ Strong portfolios demonstrate:
 - performance optimization
 - responsive design across devices
 - thoughtful UI/UX decisions
+
+## Example workflow
+
+See the [senior frontend engineer hiring workflow](../../examples/frontend/hiring-a-senior-frontend-engineer.md) for an example of applying this guide to an end-to-end hiring process.
 
 ## Conclusion
 
