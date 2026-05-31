@@ -1,31 +1,26 @@
 {
-	"permissions": {
-		"allow": [
-			"Bash(command:bun install)",
-			"Bash(command:bun run validate)",
-			"Bash(command:bun run sync)",
-			"Bash(command:bun run catalog)",
-			"Bash(command:bun run zip)",
-			"Bash(command:bun run build)",
-			"Bash(command:bun run test)",
-			"Bash(command:bun run typecheck)",
-			"Bash(command:bun run lint)",
-			"Bash(command:bun run lint:md)",
-			"Bash(command:bun run lint:md:fix)",
-			"Bash(command:bun run check)",
-			"Bash(command:bun run format)",
-			"Read(path:/**)",
-			"Write(path:/skills/**)",
-			"Write(path:/docs/**)",
-			"Write(path:/content/**)",
-			"Write(path:/examples/**)",
-			"Write(path:/.claude-plugin/**)",
-			"Write(path:/packages/**)"
-		],
-		"deny": [
-			"Write(path:/node_modules/**)",
-			"Write(path:/dist/**)",
-			"Write(path:/.turbo/**)"
-		]
-	}
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "allow": [
+      "Bash(bun install)",
+      "Bash(bun run validate)",
+      "Bash(bun run sync)",
+      "Bash(bun run catalog)",
+      "Bash(bun run zip)",
+      "Bash(bun run build)",
+      "Bash(bun run test)",
+      "Bash(bun run typecheck)",
+      "Bash(bun run lint)",
+      "Bash(bun run lint:md)",
+      "Bash(bun run lint:md:fix)",
+      "Bash(bun run check)",
+      "Bash(bun run format)",
+      "Read(**)"
+    ],
+    "deny": [
+      "Write(node_modules/**)",
+      "Write(dist/**)",
+      "Write(.turbo/**)"
+    ]
+  }
 }
