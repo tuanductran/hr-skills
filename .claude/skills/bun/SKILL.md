@@ -1,6 +1,6 @@
 ---
 name: bun
-description: "Bun as a runtime, package manager, bundler, and test runner. Practical migration notes from Node, usage guidance, and deployment tips (for example Vercel)."
+description: "Bun as a runtime, package manager, bundler, and test runner. Practical migration notes from Node and usage guidance."
 metadata:
   author: "Tuan Duc Tran"
   version: "1.0.0"
@@ -12,10 +12,10 @@ Bun is an all-in-one JavaScript runtime and toolkit that provides a runtime, pac
 
 ## When to choose Bun
 
-- Prefer Bun for new JavaScript/TypeScript projects where install and startup speed matter, small tooling surface is desirable, or you plan to deploy on Bun-compatible platforms.
+- Prefer Bun for new JavaScript/TypeScript projects where install and startup speed matter, and a small tooling surface is desirable.
 - Prefer Node when you require the widest ecosystem compatibility, depend on native tooling that assumes Node, or have dependencies with known Bun incompatibilities.
 
-Use cases: adopting Bun for new packages, migrating from Node, writing or debugging Bun scripts and tests, or configuring Bun on deployment platforms such as Vercel.
+Use cases: adopting Bun for new packages, migrating from Node, writing or debugging Bun scripts and tests.
 
 ## What Bun provides
 
@@ -31,19 +31,9 @@ Use cases: adopting Bun for new packages, migrating from Node, writing or debugg
 - Most packages work, but verify compatibility; prefer `bun run` for npm-script equivalents.
 - Use `bunx` (or `bunx <cmd>`) for one-off executable runs similar to `npx`.
 
-## Deployment notes (Vercel example)
+## Notes on reproducible installs
 
-- On Vercel, set the project runtime to Bun and configure build/install commands accordingly.
-- Example build commands:
-
-```bash
-# build the project (example)
-bun run build
-# or use bun build for direct bundling
-bun build ./src/index.ts --outdir=dist
-```
-
-- For reproducible installs in CI/deploy, use:
+For reproducible installs in CI or deployment workflows, use:
 
 ```bash
 bun install --frozen-lockfile
@@ -127,5 +117,5 @@ test("add", () => {
 
 - `bun install` creates a `node_modules` layout that can differ due to extensive symlink usage; tooling that depends on exact layout may need validation.
 - Some older or niche dependencies may be incompatible with Bun; in those cases fallback to Node may be necessary.
-- When deploying to Vercel or similar platforms, ensure build/runtime settings and commands are configured for Bun.
+- When deploying to a runtime that supports Bun, ensure build/runtime settings and commands are configured appropriately.
 
