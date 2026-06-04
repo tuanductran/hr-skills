@@ -39,6 +39,7 @@ bun install          # Install all dependencies
 bun run validate     # Validate all skill SKILL.md files
 bun run catalog      # Regenerate skills/CATALOG.md
 bun run sync         # Sync skill references and generated project metadata
+bun run clean        # Remove dist outputs and Turborepo cache
 bun run build        # Build all workspace packages through Turborepo
 bun run test         # Run tests across all workspace packages
 bun run typecheck    # Type-check all workspace packages

@@ -73,6 +73,7 @@ bun run catalog      # Regenerate skills/CATALOG.md
 bun run zip          # Generate cross-platform distributable skill zip packages
 bun run test         # Run tests across workspace packages
 bun run typecheck    # Run type-checking across workspace packages
+bun run clean        # Remove dist outputs and Turborepo cache
 bun run build        # Run all workspace build tasks through Turborepo
 bun run check        # Run Biome checks without writing changes
 bun run lint         # Run Biome checks with auto-fix
