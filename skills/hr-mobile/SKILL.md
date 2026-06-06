@@ -203,12 +203,14 @@ Flutter continues to dominate many cross-platform discussions in 2026 due to str
 ### Kotlin Multiplatform (KMP)
 
 Strengths:
+
 - shared business logic
 - native UI
 - strong enterprise adoption
 - Kotlin ecosystem integration
 
 Best for:
+
 - enterprise apps
 - complex business logic
 - native-quality UX with shared logic

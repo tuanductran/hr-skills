@@ -1,26 +1,22 @@
 # Default state for all rules
 default: true
+
 # Disable max line length
 MD013: false
+
 # Allow duplicated heading for different sections
 MD024:
   siblings_only: true
-# Allow multiple top-level headings
+
+# Allow multiple H1 headings in the same document
 MD025: false
-# Allow inline HTML
-MD033: false
-# Allow non blank lines around list
+
+# Disable blanks-around-lists enforcement
 MD032: false
+
+# Enforce fenced code blocks
 MD046:
   style: fenced
-MD034: false
-MD031: false
-MD007: false
-# Allow setext-style headings (for YAML frontmatter with --- delimiters)
-MD003: false
-# Allow headings without surrounding blank lines
-MD022: false
-# Allow headings not at the start of the line
-MD023: false
-# Do not require aligned columns in tables
+
+# Disable table column style enforcement
 MD060: false
