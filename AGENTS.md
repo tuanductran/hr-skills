@@ -2,10 +2,12 @@
 
 ## Branch strategy
 
-> **IMPORTANT: Never develop on `main` branch!**
+> [!IMPORTANT]
+> **Never develop on the `main` branch.**
 >
-> - `main` is the **publishing branch** — it only contains released skills
-> - `dev` is the **development branch** — all work happens here
+> - `main` is the **publishing branch** and only contains released skills.
+> - `dev` is the **development branch** where all feature work, fixes, and content updates should occur.
+> - Always create pull requests against `dev`, not `main`.
 
 | Branch | Purpose | Direct commits |
 |--------|---------|----------------|

@@ -2,6 +2,7 @@
 
 A complete reference for all available HR skills, including coverage areas and example trigger phrases that activate each skill in Claude.
 
+> [!NOTE]
 > Skills are stored in `skills/<skill-name>/SKILL.md`.
 >
 > This repository is maintained as a Bun + Turborepo monorepo. Some documentation and references are generated automatically via `bun run sync`.
