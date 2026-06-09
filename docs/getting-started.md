@@ -74,4 +74,7 @@ turbo run typecheck --filter=hr-skills-build
 - [All skills](./skills.md) — full list with descriptions and trigger phrases
 - [Extended skill guides](../content/) — in-depth domain knowledge for each skill
 - [Examples](../examples/) — real-world hiring workflow examples with sample outputs
+- [Taxonomy](./taxonomy.md) — categories, metadata, lifecycle statuses, and recruiting workflows
+- [Knowledge base](./knowledge-base.md) — glossary, recruiting frameworks, scorecards, and competency matrices
+- [Community workflow](./community.md) — contributor onboarding, good first issues, and skill review workflow
 - [Contributing](./contributing.md) — add your own HR skill

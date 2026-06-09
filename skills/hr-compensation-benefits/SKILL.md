@@ -4,6 +4,14 @@ description: Help HR managers with compensation and benefits programs. Use when 
 metadata:
   author: Tuan Duc Tran
   version: "1.0.0"
+  category: core-hr
+  tags:
+    - compensation
+    - benefits
+    - pay-equity
+    - total-rewards
+  status: stable
+  recruitingWorkflow: not-applicable
 ---
 
 # HR compensation and benefits

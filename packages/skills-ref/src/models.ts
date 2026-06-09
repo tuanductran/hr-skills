@@ -6,7 +6,7 @@ export interface SkillProperties {
 	license?: string;
 	compatibility?: string;
 	allowedTools?: string;
-	metadata?: Record<string, string>;
+	metadata?: Record<string, string | string[]>;
 }
 
 const ALLOWED_TOOLS_KEY = 'allowed-tools' as const;

@@ -8,7 +8,9 @@
 
 Help HR managers, recruiters, and talent acquisition teams understand Artificial Intelligence (AI), Machine Learning (ML), Generative AI, LLM Engineering, AI Infrastructure, and modern AI product development workflows. Use when asked to "explain AI engineering", "screen AI engineers", "understand machine learning roles", "compare AI and data science", "evaluate AI skills", "create AI interview questions", "understand LLM systems", or any AI and machine learning hiring and recruiting task.
 
-Version: 1.0.0 · Author: Tuan Duc Tran
+Status: beta · Category: technical-recruiting · Version: 1.0.0 · Author: Tuan Duc Tran
+Recruiting workflow: role-calibration
+Tags: ai, machine-learning, technical-recruiting, interviewing
 
 **Supported tasks:**
 
@@ -27,7 +29,9 @@ Version: 1.0.0 · Author: Tuan Duc Tran
 
 Help HR managers with HR analytics and data management. Use when asked to "analyze employee data", "create HR metrics", "build an HR dashboard", "analyze turnover data", "develop HR reports", "build predictive analytics models", "create a data governance strategy", or any HR data and analytics task.
 
-Version: 1.0.0 · Author: Tuan Duc Tran
+Status: stable · Category: workforce-strategy · Version: 1.0.0 · Author: Tuan Duc Tran
+Recruiting workflow: not-applicable
+Tags: analytics, metrics, workforce-insights, reporting
 
 **Supported tasks:**
 
@@ -46,7 +50,9 @@ Version: 1.0.0 · Author: Tuan Duc Tran
 
 Help HR managers, recruiters, and talent acquisition teams understand Backend Engineering concepts, hiring requirements, backend ecosystems, candidate evaluation, APIs, databases, scalability, cloud infrastructure, and modern server-side workflows. Use when asked to "explain backend development", "screen backend candidates", "understand APIs and databases", "compare backend frameworks", "evaluate backend skills", "create backend interview questions", "understand microservices", "understand cloud backend systems", or any backend hiring and recruiting task.
 
-Version: 1.0.0 · Author: Tuan Duc Tran
+Status: beta · Category: technical-recruiting · Version: 1.0.0 · Author: Tuan Duc Tran
+Recruiting workflow: role-calibration
+Tags: backend, apis, databases, technical-recruiting
 
 **Supported tasks:**
 
@@ -65,7 +71,9 @@ Version: 1.0.0 · Author: Tuan Duc Tran
 
 Help HR managers with compensation and benefits programs. Use when asked to "analyze compensation data", "design a bonus plan", "create benefits programs", "conduct a job evaluation", "write a compensation philosophy", "calculate pay rates", "develop retention strategies", or any compensation and benefits task.
 
-Version: 1.0.0 · Author: Tuan Duc Tran
+Status: stable · Category: core-hr · Version: 1.0.0 · Author: Tuan Duc Tran
+Recruiting workflow: not-applicable
+Tags: compensation, benefits, pay-equity, total-rewards
 
 **Supported tasks:**
 
@@ -84,7 +92,9 @@ Version: 1.0.0 · Author: Tuan Duc Tran
 
 Help HR managers with HR compliance and workplace policies. Use when asked to "write an employee handbook", "develop OSHA compliance", "manage EEO compliance", "handle FMLA", "conduct a compliance audit", "create background check policies", "develop immigration compliance strategies", or any HR compliance task.
 
-Version: 1.0.0 · Author: Tuan Duc Tran
+Status: stable · Category: compliance · Version: 1.0.0 · Author: Tuan Duc Tran
+Recruiting workflow: not-applicable
+Tags: compliance, policies, risk, employee-rights
 
 **Supported tasks:**
 
@@ -103,7 +113,9 @@ Version: 1.0.0 · Author: Tuan Duc Tran
 
 Help HR managers with workplace conflict resolution. Use when asked to "resolve a workplace conflict", "mediate between employees", "facilitate a difficult conversation", "develop conflict resolution training", "address a team dispute", "create a conflict resolution policy", or any workplace conflict task.
 
-Version: 1.0.0 · Author: Tuan Duc Tran
+Status: stable · Category: people-operations · Version: 1.0.0 · Author: Tuan Duc Tran
+Recruiting workflow: not-applicable
+Tags: conflict-resolution, mediation, employee-relations, workplace-culture
 
 **Supported tasks:**
 
@@ -122,7 +134,9 @@ Version: 1.0.0 · Author: Tuan Duc Tran
 
 Help HR managers, recruiters, and talent acquisition teams understand Data Engineering, Data Analytics, Data Science, Business Intelligence, Machine Learning, and modern data ecosystems. Use when asked to "explain data roles", "screen data engineers or data scientists", "understand analytics workflows", "compare data engineering and data science", "evaluate data skills", "create data interview questions", "understand AI and machine learning teams", or any data and analytics hiring and recruiting task.
 
-Version: 1.0.0 · Author: Tuan Duc Tran
+Status: beta · Category: technical-recruiting · Version: 1.0.0 · Author: Tuan Duc Tran
+Recruiting workflow: role-calibration
+Tags: data-engineering, data-science, analytics, technical-recruiting
 
 **Supported tasks:**
 
@@ -141,7 +155,9 @@ Version: 1.0.0 · Author: Tuan Duc Tran
 
 Help HR managers, recruiters, and talent acquisition teams understand DevOps, Platform Engineering, Site Reliability Engineering (SRE), cloud infrastructure, CI/CD, and modern software delivery workflows. Use when asked to "explain DevOps", "screen DevOps candidates", "understand CI/CD", "compare DevOps and SRE", "evaluate infrastructure skills", "create DevOps interview questions", "understand cloud systems", or any DevOps hiring and recruiting task.
 
-Version: 1.0.0 · Author: Tuan Duc Tran
+Status: beta · Category: technical-recruiting · Version: 1.0.0 · Author: Tuan Duc Tran
+Recruiting workflow: role-calibration
+Tags: devops, sre, cloud, technical-recruiting
 
 **Supported tasks:**
 
@@ -160,7 +176,9 @@ Version: 1.0.0 · Author: Tuan Duc Tran
 
 Help HR managers with diversity, equity, and inclusion initiatives. Use when asked to "develop a diversity and inclusion strategy", "create inclusive job descriptions", "conduct unconscious bias training", "build employee resource groups", "measure diversity metrics", "develop a DEI scorecard", or any diversity and inclusion task.
 
-Version: 1.0.0 · Author: Tuan Duc Tran
+Status: stable · Category: people-operations · Version: 1.0.0 · Author: Tuan Duc Tran
+Recruiting workflow: not-applicable
+Tags: dei, inclusive-hiring, equity, culture
 
 **Supported tasks:**
 
@@ -179,7 +197,9 @@ Version: 1.0.0 · Author: Tuan Duc Tran
 
 Help HR managers with employee engagement strategies. Use when asked to "improve employee engagement", "design recognition programs", "conduct engagement surveys", "boost employee morale", "reduce burnout", "develop a culture strategy", "create team-building activities", or any employee engagement task.
 
-Version: 1.0.0 · Author: Tuan Duc Tran
+Status: stable · Category: people-operations · Version: 1.0.0 · Author: Tuan Duc Tran
+Recruiting workflow: not-applicable
+Tags: engagement, retention, surveys, stay-interviews
 
 **Supported tasks:**
 
@@ -198,7 +218,9 @@ Version: 1.0.0 · Author: Tuan Duc Tran
 
 Help HR managers with employee relations matters. Use when asked to "handle a grievance", "conduct an exit interview", "manage workplace investigations", "create a remote work policy", "write employee contracts", "manage accommodations", "conduct satisfaction surveys", or any employee relations task.
 
-Version: 1.0.0 · Author: Tuan Duc Tran
+Status: stable · Category: people-operations · Version: 1.0.0 · Author: Tuan Duc Tran
+Recruiting workflow: not-applicable
+Tags: employee-relations, case-management, documentation, workplace-issues
 
 **Supported tasks:**
 
@@ -217,7 +239,9 @@ Version: 1.0.0 · Author: Tuan Duc Tran
 
 Help HR managers, recruiters, and talent acquisition teams understand Frontend Engineering concepts, hiring requirements, frontend ecosystems, candidate evaluation, and modern frontend workflows. Use when asked to "explain frontend development", "screen frontend candidates", "understand React/Vue/Angular", "compare frontend frameworks", "evaluate frontend skills", "create frontend interview questions", "understand frontend architecture", or any frontend hiring and recruiting task.
 
-Version: 1.0.0 · Author: Tuan Duc Tran
+Status: beta · Category: technical-recruiting · Version: 1.0.0 · Author: Tuan Duc Tran
+Recruiting workflow: role-calibration
+Tags: frontend, web-development, technical-recruiting, interviewing
 
 **Supported tasks:**
 
@@ -236,7 +260,9 @@ Version: 1.0.0 · Author: Tuan Duc Tran
 
 Help HR managers, recruiters, and talent acquisition teams understand Fullstack Engineering concepts, hiring requirements, cross-functional engineering workflows, frontend-backend integration, and modern end-to-end product development. Use when asked to "explain fullstack development", "screen fullstack candidates", "understand frontend and backend together", "evaluate fullstack skills", "compare fullstack stacks", "create fullstack interview questions", "understand end-to-end product engineering", or any fullstack hiring and recruiting task.
 
-Version: 1.0.0 · Author: Tuan Duc Tran
+Status: beta · Category: technical-recruiting · Version: 1.0.0 · Author: Tuan Duc Tran
+Recruiting workflow: role-calibration
+Tags: fullstack, product-engineering, technical-recruiting, interviewing
 
 **Supported tasks:**
 
@@ -255,7 +281,9 @@ Version: 1.0.0 · Author: Tuan Duc Tran
 
 Help HR managers with leadership development programs. Use when asked to "create a leadership program", "develop leadership competencies", "conduct leadership assessments", "design executive coaching", "create a leadership succession plan", "develop cross-cultural leadership training", or any leadership development task.
 
-Version: 1.0.0 · Author: Tuan Duc Tran
+Status: stable · Category: people-operations · Version: 1.0.0 · Author: Tuan Duc Tran
+Recruiting workflow: not-applicable
+Tags: leadership, manager-development, coaching, succession
 
 **Supported tasks:**
 
@@ -274,7 +302,9 @@ Version: 1.0.0 · Author: Tuan Duc Tran
 
 Help HR managers, recruiters, and talent acquisition teams understand Mobile Development, iOS, Android, cross-platform engineering, mobile app architecture, and modern mobile ecosystems. Use when asked to "explain mobile development", "screen mobile developers", "understand React Native or Flutter", "compare native and cross-platform development", "evaluate mobile skills", "create mobile interview questions", "understand iOS and Android workflows", or any mobile engineering hiring and recruiting task.
 
-Version: 1.0.0 · Author: Tuan Duc Tran
+Status: beta · Category: technical-recruiting · Version: 1.0.0 · Author: Tuan Duc Tran
+Recruiting workflow: role-calibration
+Tags: mobile, ios, android, technical-recruiting
 
 **Supported tasks:**
 
@@ -293,7 +323,9 @@ Version: 1.0.0 · Author: Tuan Duc Tran
 
 Help HR managers with employee onboarding and offboarding. Use when asked to "create an onboarding plan", "design orientation programs", "build a buddy system", "write onboarding checklists", "conduct exit interviews", "manage knowledge transfer", "create offboarding processes", or any employee onboarding or offboarding task.
 
-Version: 1.0.0 · Author: Tuan Duc Tran
+Status: stable · Category: core-hr · Version: 1.0.0 · Author: Tuan Duc Tran
+Recruiting workflow: onboarding
+Tags: onboarding, offboarding, new-hires, employee-experience
 
 **Supported tasks:**
 
@@ -312,7 +344,9 @@ Version: 1.0.0 · Author: Tuan Duc Tran
 
 Help HR managers with performance management processes. Use when asked to "write a performance review", "create a PIP", "design performance appraisal forms", "set employee goals", "conduct 360-degree feedback", "develop performance metrics", or any other performance management task.
 
-Version: 1.0.0 · Author: Tuan Duc Tran
+Status: stable · Category: core-hr · Version: 1.0.0 · Author: Tuan Duc Tran
+Recruiting workflow: not-applicable
+Tags: performance, feedback, pips, goal-setting
 
 **Supported tasks:**
 
@@ -331,7 +365,9 @@ Version: 1.0.0 · Author: Tuan Duc Tran
 
 Help HR managers, recruiters, and talent acquisition teams understand Quality Assurance (QA), Software Testing, Test Automation, and modern Quality Engineering concepts. Use when asked to "explain QA testing", "screen QA candidates", "understand automation testing", "compare manual QA and SDET", "evaluate QA skills", "create QA interview questions", "understand software testing workflows", or any QA hiring and recruiting task.
 
-Version: 1.0.0 · Author: Tuan Duc Tran
+Status: beta · Category: technical-recruiting · Version: 1.0.0 · Author: Tuan Duc Tran
+Recruiting workflow: role-calibration
+Tags: qa, test-automation, quality-engineering, technical-recruiting
 
 **Supported tasks:**
 
@@ -350,7 +386,9 @@ Version: 1.0.0 · Author: Tuan Duc Tran
 
 Help HR managers with end-to-end recruiting and talent acquisition. Use when asked to "write a job description", "create interview questions", "screen resumes", "develop employer branding", "send offer letters", "conduct reference checks", or any other recruiting and hiring task.
 
-Version: 1.0.0 · Author: Tuan Duc Tran
+Status: stable · Category: talent-acquisition · Version: 1.0.0 · Author: Tuan Duc Tran
+Recruiting workflow: screening
+Tags: recruiting, sourcing, interviewing, candidate-experience
 
 **Supported tasks:**
 
@@ -369,7 +407,9 @@ Version: 1.0.0 · Author: Tuan Duc Tran
 
 Help HR managers, recruiters, and talent acquisition teams understand Cybersecurity, Application Security, Cloud Security, Security Operations, Penetration Testing, and modern security engineering workflows. Use when asked to "explain cybersecurity", "screen security engineers", "understand SOC or AppSec", "compare security roles", "evaluate cybersecurity skills", "create security interview questions", "understand modern security systems", or any cybersecurity hiring and recruiting task.
 
-Version: 1.0.0 · Author: Tuan Duc Tran
+Status: beta · Category: technical-recruiting · Version: 1.0.0 · Author: Tuan Duc Tran
+Recruiting workflow: role-calibration
+Tags: security, appsec, cloud-security, technical-recruiting
 
 **Supported tasks:**
 
@@ -388,7 +428,9 @@ Version: 1.0.0 · Author: Tuan Duc Tran
 
 Help HR managers with HR technology strategy and implementation. Use when asked to "evaluate HR systems", "implement an HRIS", "create an HR technology roadmap", "select an ATS", "develop HR chatbots", "manage HR automation", "write an HR technology RFP", or any HR technology task.
 
-Version: 1.0.0 · Author: Tuan Duc Tran
+Status: stable · Category: core-hr · Version: 1.0.0 · Author: Tuan Duc Tran
+Recruiting workflow: not-applicable
+Tags: hris, hr-technology, vendor-selection, implementation
 
 **Supported tasks:**
 
@@ -407,7 +449,9 @@ Version: 1.0.0 · Author: Tuan Duc Tran
 
 Help HR managers with learning and development programs. Use when asked to "design a training program", "create an e-learning course", "develop a coaching plan", "conduct a needs assessment", "write a competency model", "design a mentorship program", "create a learning plan", or any training and development task.
 
-Version: 1.0.0 · Author: Tuan Duc Tran
+Status: stable · Category: people-operations · Version: 1.0.0 · Author: Tuan Duc Tran
+Recruiting workflow: not-applicable
+Tags: learning, training, skills-gap, development
 
 **Supported tasks:**
 
@@ -426,7 +470,9 @@ Version: 1.0.0 · Author: Tuan Duc Tran
 
 Help HR managers, recruiters, and talent acquisition teams understand UI/UX Design, Product Design, Design Systems, User Research, Interaction Design, and modern digital product design workflows. Use when asked to "explain UI/UX", "screen product designers", "understand UX research", "compare UI and UX", "evaluate design portfolios", "create UI/UX interview questions", "understand product design workflows", or any design hiring and recruiting task.
 
-Version: 1.0.0 · Author: Tuan Duc Tran
+Status: beta · Category: technical-recruiting · Version: 1.0.0 · Author: Tuan Duc Tran
+Recruiting workflow: role-calibration
+Tags: ui-ux, product-design, research, technical-recruiting
 
 **Supported tasks:**
 
@@ -445,7 +491,9 @@ Version: 1.0.0 · Author: Tuan Duc Tran
 
 Vietnam-specific HR guidance covering the Labor Code, Social Insurance Law, personal income tax registration, work permits for foreign workers, trade union obligations, and cultural norms for managing teams in Vietnam. Use when you need to navigate Vietnam employment law, onboard foreign staff, handle disciplinary procedures under Vietnamese law, or adapt global HR practices for the Vietnam market.
 
-Version: 1.0.0 · Author: Tuan Duc Tran
+Status: beta · Category: compliance · Version: 1.0.0 · Author: Tuan Duc Tran
+Recruiting workflow: not-applicable
+Tags: vietnam, labor-law, payroll, local-context
 
 **Supported tasks:**
 
@@ -464,7 +512,9 @@ Version: 1.0.0 · Author: Tuan Duc Tran
 
 Help HR managers with workforce planning and strategy. Use when asked to "create a workforce plan", "conduct a skills gap analysis", "develop a succession plan", "build workforce models", "analyze headcount", "forecast hiring needs", "develop workforce diversity strategies", or any workforce planning task.
 
-Version: 1.0.0 · Author: Tuan Duc Tran
+Status: stable · Category: workforce-strategy · Version: 1.0.0 · Author: Tuan Duc Tran
+Recruiting workflow: workforce-planning
+Tags: workforce-planning, headcount, capacity, scenario-planning
 
 **Supported tasks:**
 

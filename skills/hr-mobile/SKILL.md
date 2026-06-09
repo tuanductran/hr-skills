@@ -4,6 +4,14 @@ description: Help HR managers, recruiters, and talent acquisition teams understa
 metadata:
   author: Tuan Duc Tran
   version: "1.0.0"
+  category: technical-recruiting
+  tags:
+    - mobile
+    - ios
+    - android
+    - technical-recruiting
+  status: beta
+  recruitingWorkflow: role-calibration
 ---
 
 # HR Mobile

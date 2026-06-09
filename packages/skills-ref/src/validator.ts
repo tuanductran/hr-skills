@@ -20,6 +20,29 @@ const MAX_COMPATIBILITY_LENGTH = 500;
 
 const SKILL_NAME_REGEX = /^[a-z0-9-]+$/;
 
+const ALLOWED_STATUSES = new Set(['stable', 'beta', 'experimental']);
+
+const ALLOWED_CATEGORIES = new Set([
+	'core-hr',
+	'talent-acquisition',
+	'technical-recruiting',
+	'people-operations',
+	'workforce-strategy',
+	'compliance',
+]);
+
+const ALLOWED_RECRUITING_WORKFLOWS = new Set([
+	'not-applicable',
+	'workforce-planning',
+	'role-calibration',
+	'sourcing',
+	'screening',
+	'interviewing',
+	'scorecards',
+	'offers',
+	'onboarding',
+]);
+
 const ALLOWED_FRONTMATTER_FIELDS = new Set([
 	'name',
 	'description',
@@ -105,6 +128,100 @@ function validateCompatibility(compatibility: unknown): string[] {
 	return [];
 }
 
+function isPlainObject(value: unknown): value is Record<string, unknown> {
+	return value != null && typeof value === 'object' && !Array.isArray(value);
+}
+
+function isNonEmptyString(value: unknown): value is string {
+	return typeof value === 'string' && value.trim().length > 0;
+}
+
+function validateMetadata(metadata: unknown): string[] {
+	const errors: string[] = [];
+
+	if (!isPlainObject(metadata)) {
+		return ["Field 'metadata' must be an object"];
+	}
+
+	const requiredFields = [
+		'author',
+		'version',
+		'category',
+		'tags',
+		'status',
+		'recruitingWorkflow',
+	];
+
+	for (const field of requiredFields) {
+		if (!(field in metadata)) {
+			errors.push(`Missing required metadata field: ${field}`);
+		}
+	}
+
+	if ('author' in metadata && !isNonEmptyString(metadata.author)) {
+		errors.push("Metadata field 'author' must be a non-empty string");
+	}
+
+	if ('version' in metadata && !isNonEmptyString(metadata.version)) {
+		errors.push("Metadata field 'version' must be a non-empty string");
+	}
+
+	if ('category' in metadata) {
+		if (!isNonEmptyString(metadata.category)) {
+			errors.push("Metadata field 'category' must be a non-empty string");
+		} else if (!ALLOWED_CATEGORIES.has(metadata.category)) {
+			errors.push(
+				`Metadata field 'category' must be one of: ${[...ALLOWED_CATEGORIES].join(', ')}`,
+			);
+		}
+	}
+
+	if ('status' in metadata) {
+		if (!isNonEmptyString(metadata.status)) {
+			errors.push("Metadata field 'status' must be a non-empty string");
+		} else if (!ALLOWED_STATUSES.has(metadata.status)) {
+			errors.push(
+				`Metadata field 'status' must be one of: ${[...ALLOWED_STATUSES].join(', ')}`,
+			);
+		}
+	}
+
+	if ('recruitingWorkflow' in metadata) {
+		if (!isNonEmptyString(metadata.recruitingWorkflow)) {
+			errors.push("Metadata field 'recruitingWorkflow' must be a non-empty string");
+		} else if (!ALLOWED_RECRUITING_WORKFLOWS.has(metadata.recruitingWorkflow)) {
+			errors.push(
+				`Metadata field 'recruitingWorkflow' must be one of: ${[...ALLOWED_RECRUITING_WORKFLOWS].join(', ')}`,
+			);
+		}
+	}
+
+	if ('tags' in metadata) {
+		if (!Array.isArray(metadata.tags)) {
+			errors.push("Metadata field 'tags' must be a list of strings");
+		} else {
+			const tags = metadata.tags;
+
+			if (tags.length < 2 || tags.length > 8) {
+				errors.push(
+					`Metadata field 'tags' must contain 2-8 tags (received ${tags.length})`,
+				);
+			}
+
+			for (const tag of tags) {
+				if (!isNonEmptyString(tag)) {
+					errors.push(
+						"Metadata field 'tags' must contain only non-empty strings",
+					);
+					break;
+				}
+			}
+		}
+	}
+
+	return errors;
+}
+
 function validateFrontmatterFields(metadata: Record<string, unknown>): string[] {
 	const invalidFields = Object.keys(metadata)
 		.filter((field) => !ALLOWED_FRONTMATTER_FIELDS.has(field))
@@ -180,6 +297,12 @@ export function validate(skillDir: string): string[] {
 		errors.push('Missing required field in frontmatter: description');
 	} else {
 		errors.push(...validateDescription(metadata.description));
+	}
+
+	if ('metadata' in metadata) {
+		errors.push(...validateMetadata(metadata.metadata));
+	} else {
+		errors.push('Missing required field in frontmatter: metadata');
 	}
 
 	if ('compatibility' in metadata) {

@@ -4,6 +4,14 @@ description: Help HR managers with employee engagement strategies. Use when aske
 metadata:
   author: Tuan Duc Tran
   version: "1.0.0"
+  category: people-operations
+  tags:
+    - engagement
+    - retention
+    - surveys
+    - stay-interviews
+  status: stable
+  recruitingWorkflow: not-applicable
 ---
 
 # HR employee engagement

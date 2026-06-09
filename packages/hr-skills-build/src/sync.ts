@@ -56,6 +56,10 @@ export interface SkillMeta {
 	coverage: string;
 	shortSummary: string;
 	scopeSentence: string;
+	category: string;
+	tags: string[];
+	status: string;
+	recruitingWorkflow: string;
 	triggerPhrases: string[];
 	supportedTasks: string[];
 }
@@ -74,6 +78,15 @@ async function parseSkillMeta(skillName: string): Promise<SkillMeta> {
 	const name = frontmatter.name ?? skillName;
 
 	const description = frontmatter.description ?? '';
+
+	const category = frontmatter.metadata?.category ?? 'core-hr';
+
+	const tags = frontmatter.metadata?.tags ?? [];
+
+	const status = frontmatter.metadata?.status ?? 'stable';
+
+	const recruitingWorkflow =
+		frontmatter.metadata?.recruitingWorkflow ?? 'not-applicable';
 
 	// Remove "Use when..." section from description
 	const useWhenIndex = description.search(USE_WHEN_REGEX);
@@ -119,6 +132,10 @@ async function parseSkillMeta(skillName: string): Promise<SkillMeta> {
 		coverage,
 		shortSummary,
 		scopeSentence,
+		category,
+		tags,
+		status,
+		recruitingWorkflow,
 		triggerPhrases,
 		supportedTasks,
 	};
@@ -143,6 +160,10 @@ async function syncMarketplace(metas: SkillMeta[]): Promise<boolean> {
 		name: meta.name,
 		source: './',
 		description: meta.description,
+		category: meta.category,
+		status: meta.status,
+		tags: meta.tags,
+		recruitingWorkflow: meta.recruitingWorkflow,
 		skills: [`./skills/${meta.name}`],
 	}));
 

@@ -30,8 +30,14 @@ A `SKILL.md` file has two parts: YAML frontmatter and a Markdown body.
 name: hr-your-skill
 description: ...
 metadata:
-  author: ...
+  author: Tuan Duc Tran
   version: "1.0.0"
+  category: talent-acquisition
+  tags:
+    - recruiting
+    - interviewing
+  status: stable
+  recruitingWorkflow: screening
 ---
 
 # Skill title
@@ -45,10 +51,14 @@ metadata:
 |-------|----------|-------------|
 | `name` | Yes | Skill name in `kebab-case`. Must match the directory name. |
 | `description` | Yes | One sentence describing what the skill does and when Claude should activate it. Include realistic HR trigger phrases. |
-| `metadata.author` | Yes | Skill author's name |
-| `metadata.version` | Yes | Semantic version string, for example `"1.0.0"` |
-| `license` | No | SPDX license identifier, for example `MIT` |
-| `compatibility` | No | Claude version compatibility note |
+| `metadata.author` | Yes | Skill author's name. Must be `Tuan Duc Tran` for repository-owned skills. |
+| `metadata.version` | Yes | Semantic version string, for example `"1.0.0"`. |
+| `metadata.category` | Yes | Primary HR domain. See [taxonomy](./taxonomy.md). |
+| `metadata.tags` | Yes | 2–8 topic tags for discovery and agent exports. |
+| `metadata.status` | Yes | Lifecycle status: `stable`, `beta`, or `experimental`. |
+| `metadata.recruitingWorkflow` | Yes | Recruiting workflow group, or `not-applicable`. |
+| `license` | No | SPDX license identifier, for example `MIT`. |
+| `compatibility` | No | Claude version compatibility note. |
 
 ### Writing a good `description`
 
@@ -115,7 +125,7 @@ Before committing a skill, verify:
 - [ ] `name` matches the directory name exactly
 - [ ] `description` contains realistic HR trigger phrases
 - [ ] `description` is concise and activation-focused
-- [ ] `metadata.author` and `metadata.version` are set
+- [ ] `metadata.author`, `metadata.version`, `metadata.category`, `metadata.tags`, `metadata.status`, and `metadata.recruitingWorkflow` are set
 - [ ] `## Supported tasks` has 8–12 items
 - [ ] `## Key prompts` is grouped into 3–6 named subtopics
 - [ ] Each subtopic has 4–7 prompts
@@ -133,7 +143,7 @@ Run validation from the project root:
 bun run validate
 ```
 
-This validates frontmatter fields, required sections, naming conventions, and minimum content structure.
+This validates frontmatter fields, required metadata schema values, lifecycle status, required sections, naming conventions, and minimum content structure.
 
 ## Development workflow
 

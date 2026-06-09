@@ -4,6 +4,14 @@ description: Help HR managers with HR compliance and workplace policies. Use whe
 metadata:
   author: Tuan Duc Tran
   version: "1.0.0"
+  category: compliance
+  tags:
+    - compliance
+    - policies
+    - risk
+    - employee-rights
+  status: stable
+  recruitingWorkflow: not-applicable
 ---
 
 # HR compliance and workplace policies

@@ -4,6 +4,14 @@ description: Help HR managers with employee onboarding and offboarding. Use when
 metadata:
   author: Tuan Duc Tran
   version: "1.0.0"
+  category: core-hr
+  tags:
+    - onboarding
+    - offboarding
+    - new-hires
+    - employee-experience
+  status: stable
+  recruitingWorkflow: onboarding
 ---
 
 # HR onboarding and offboarding

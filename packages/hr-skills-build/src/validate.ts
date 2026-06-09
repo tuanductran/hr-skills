@@ -148,6 +148,34 @@ async function validateSkill(skillName: string): Promise<ValidationError[]> {
 		});
 	}
 
+	if (!frontmatter.metadata?.category) {
+		errors.push({
+			skill: skillName,
+			message: 'Missing metadata.category',
+		});
+	}
+
+	if (!frontmatter.metadata?.tags || frontmatter.metadata.tags.length === 0) {
+		errors.push({
+			skill: skillName,
+			message: 'Missing metadata.tags',
+		});
+	}
+
+	if (!frontmatter.metadata?.status) {
+		errors.push({
+			skill: skillName,
+			message: 'Missing metadata.status',
+		});
+	}
+
+	if (!frontmatter.metadata?.recruitingWorkflow) {
+		errors.push({
+			skill: skillName,
+			message: 'Missing metadata.recruitingWorkflow',
+		});
+	}
+
 	// 3. Required sections
 	for (const section of REQUIRED_SECTIONS) {
 		if (!content.includes(section)) {

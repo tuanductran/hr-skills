@@ -4,6 +4,14 @@ description: Help HR managers with leadership development programs. Use when ask
 metadata:
   author: Tuan Duc Tran
   version: "1.0.0"
+  category: people-operations
+  tags:
+    - leadership
+    - manager-development
+    - coaching
+    - succession
+  status: stable
+  recruitingWorkflow: not-applicable
 ---
 
 # HR leadership development

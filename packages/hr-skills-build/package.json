@@ -25,6 +25,7 @@
 		"catalog": "bun src/catalog.ts",
 		"sync": "bun src/sync.ts",
 		"list": "bun src/catalog.ts --list",
+		"export:agents": "bun src/agent-exports.ts",
 		"test": "bun test",
 		"dev": "bun --watch src/validate.ts",
 		"typecheck": "tsc --noEmit"

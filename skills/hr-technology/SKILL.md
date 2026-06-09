@@ -4,6 +4,14 @@ description: Help HR managers with HR technology strategy and implementation. Us
 metadata:
   author: Tuan Duc Tran
   version: "1.0.0"
+  category: core-hr
+  tags:
+    - hris
+    - hr-technology
+    - vendor-selection
+    - implementation
+  status: stable
+  recruitingWorkflow: not-applicable
 ---
 
 # HR technology
