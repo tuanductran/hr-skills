@@ -4,6 +4,14 @@ description: Help HR managers with HR analytics and data management. Use when as
 metadata:
   author: Tuan Duc Tran
   version: "1.0.0"
+  category: workforce-strategy
+  tags:
+    - analytics
+    - metrics
+    - workforce-insights
+    - reporting
+  status: stable
+  recruitingWorkflow: not-applicable
 ---
 
 # HR analytics and data

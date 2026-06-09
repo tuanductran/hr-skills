@@ -4,6 +4,14 @@ description: Vietnam-specific HR guidance covering the Labor Code, Social Insura
 metadata:
   author: Tuan Duc Tran
   version: "1.0.0"
+  category: compliance
+  tags:
+    - vietnam
+    - labor-law
+    - payroll
+    - local-context
+  status: beta
+  recruitingWorkflow: not-applicable
 ---
 
 # HR Vietnam context

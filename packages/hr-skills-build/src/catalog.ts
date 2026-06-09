@@ -29,6 +29,10 @@ interface SkillCatalogEntry {
 	description: string;
 	author: string;
 	version: string;
+	category: string;
+	tags: string[];
+	status: string;
+	recruitingWorkflow: string;
 	supportedTasks: string[];
 }
 
@@ -56,8 +60,13 @@ function createSection(skill: SkillCatalogEntry): string {
 		'',
 		skill.description,
 		'',
-		`Version: ${skill.version} · Author: ${skill.author}`,
+		`Status: ${skill.status} · Category: ${skill.category} · Version: ${skill.version} · Author: ${skill.author}`,
+		`Recruiting workflow: ${skill.recruitingWorkflow}`,
 	];
+
+	if (skill.tags.length > 0) {
+		lines.push(`Tags: ${skill.tags.join(', ')}`);
+	}
 
 	if (skill.supportedTasks.length > 0) {
 		lines.push('', '**Supported tasks:**', '');
@@ -90,6 +99,15 @@ async function parseSkill(skillName: string): Promise<SkillCatalogEntry | null> 
 
 		const version = frontmatter.metadata?.version ?? '1.0.0';
 
+		const category = frontmatter.metadata?.category ?? 'core-hr';
+
+		const tags = frontmatter.metadata?.tags ?? [];
+
+		const status = frontmatter.metadata?.status ?? 'stable';
+
+		const recruitingWorkflow =
+			frontmatter.metadata?.recruitingWorkflow ?? 'not-applicable';
+
 		const supportedTasks = extractTasks(content);
 
 		return {
@@ -97,6 +115,10 @@ async function parseSkill(skillName: string): Promise<SkillCatalogEntry | null> 
 			description,
 			author,
 			version,
+			category,
+			tags,
+			status,
+			recruitingWorkflow,
 			supportedTasks,
 		};
 	} catch (error: unknown) {

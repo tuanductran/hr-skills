@@ -34,6 +34,16 @@ function toStringOrUndefined(value: unknown): string | undefined {
 	return value != null ? String(value).trim() || undefined : undefined;
 }
 
+function parseListItem(line: string): string | null {
+	const trimmed = line.trim();
+
+	if (!trimmed.startsWith('- ')) {
+		return null;
+	}
+
+	return unquote(trimmed.slice(2).trim());
+}
+
 // -----------------------------------------------------------------------------
 // File discovery
 // -----------------------------------------------------------------------------
@@ -172,7 +182,7 @@ function parseSimpleYaml(yaml: string): Record<string, unknown> {
 
 		// Nested object
 		if (value === '') {
-			const nested: Record<string, string> = {};
+			const nested: Record<string, string | string[]> = {};
 
 			index++;
 
@@ -204,6 +214,40 @@ function parseSimpleYaml(yaml: string): Record<string, unknown> {
 						childKey !== 'prototype'
 					) {
 						const childValue = childTrimmed.slice(childColonIndex + 1).trim();
+
+						if (childValue === '') {
+							const listItems: string[] = [];
+							index++;
+
+							while (index < lines.length) {
+								const listLine = lines[index];
+								const listTrimmed = listLine.trimEnd();
+
+								if (listTrimmed.length === 0) {
+									index++;
+									continue;
+								}
+
+								const listIndent = listLine.search(NON_WHITESPACE_REGEX);
+
+								if (listIndent <= childIndent) {
+									break;
+								}
+
+								const item = parseListItem(listTrimmed);
+
+								if (item != null && item.length > 0) {
+									listItems.push(item);
+								}
+
+								index++;
+							}
+
+							nested[childKey] = listItems;
+
+							continue;
+						}
+
 						nested[childKey] = unquote(childValue);
 					}
 				}
@@ -261,7 +305,7 @@ export function readProperties(skillDir: string): SkillProperties {
 		? Object.fromEntries(
 				Object.entries(metadata.metadata).map(([key, value]) => [
 					key,
-					String(value),
+					Array.isArray(value) ? value.map(String) : String(value),
 				]),
 			)
 		: undefined;

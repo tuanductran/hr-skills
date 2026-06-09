@@ -4,6 +4,14 @@ description: Help HR managers with performance management processes. Use when as
 metadata:
   author: Tuan Duc Tran
   version: "1.0.0"
+  category: core-hr
+  tags:
+    - performance
+    - feedback
+    - pips
+    - goal-setting
+  status: stable
+  recruitingWorkflow: not-applicable
 ---
 
 # HR performance management

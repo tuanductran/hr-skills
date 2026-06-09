@@ -4,6 +4,14 @@ description: Help HR managers with workplace conflict resolution. Use when asked
 metadata:
   author: Tuan Duc Tran
   version: "1.0.0"
+  category: people-operations
+  tags:
+    - conflict-resolution
+    - mediation
+    - employee-relations
+    - workplace-culture
+  status: stable
+  recruitingWorkflow: not-applicable
 ---
 
 # HR conflict resolution

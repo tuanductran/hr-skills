@@ -4,6 +4,14 @@ description: Help HR managers with end-to-end recruiting and talent acquisition.
 metadata:
   author: Tuan Duc Tran
   version: "1.0.0"
+  category: talent-acquisition
+  tags:
+    - recruiting
+    - sourcing
+    - interviewing
+    - candidate-experience
+  status: stable
+  recruitingWorkflow: screening
 ---
 
 # HR recruiting and talent acquisition

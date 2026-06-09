@@ -4,6 +4,14 @@ description: Help HR managers with diversity, equity, and inclusion initiatives.
 metadata:
   author: Tuan Duc Tran
   version: "1.0.0"
+  category: people-operations
+  tags:
+    - dei
+    - inclusive-hiring
+    - equity
+    - culture
+  status: stable
+  recruitingWorkflow: not-applicable
 ---
 
 # HR diversity, equity and inclusion

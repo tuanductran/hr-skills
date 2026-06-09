@@ -4,6 +4,14 @@ description: Help HR managers with workforce planning and strategy. Use when ask
 metadata:
   author: Tuan Duc Tran
   version: "1.0.0"
+  category: workforce-strategy
+  tags:
+    - workforce-planning
+    - headcount
+    - capacity
+    - scenario-planning
+  status: stable
+  recruitingWorkflow: workforce-planning
 ---
 
 # HR workforce planning

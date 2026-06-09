@@ -4,6 +4,14 @@ description: Help HR managers with employee relations matters. Use when asked to
 metadata:
   author: Tuan Duc Tran
   version: "1.0.0"
+  category: people-operations
+  tags:
+    - employee-relations
+    - case-management
+    - documentation
+    - workplace-issues
+  status: stable
+  recruitingWorkflow: not-applicable
 ---
 
 # HR employee relations

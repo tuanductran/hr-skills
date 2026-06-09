@@ -27,6 +27,10 @@ export interface SkillFrontmatter {
 	metadata?: {
 		author?: string;
 		version?: string;
+		category?: string;
+		tags?: string[];
+		status?: string;
+		recruitingWorkflow?: string;
 	};
 }
 
@@ -68,6 +72,10 @@ export function parseFrontmatter(content: string): SkillFrontmatter {
 			metadata?: {
 				author?: unknown;
 				version?: unknown;
+				category?: unknown;
+				tags?: unknown;
+				status?: unknown;
+				recruitingWorkflow?: unknown;
 			};
 		};
 
@@ -88,6 +96,23 @@ export function parseFrontmatter(content: string): SkillFrontmatter {
 				version:
 					typeof frontmatterObject.metadata?.version === 'string'
 						? frontmatterObject.metadata.version.trim()
+						: undefined,
+				category:
+					typeof frontmatterObject.metadata?.category === 'string'
+						? frontmatterObject.metadata.category.trim()
+						: undefined,
+				tags: Array.isArray(frontmatterObject.metadata?.tags)
+					? frontmatterObject.metadata.tags
+							.map((tag) => (typeof tag === 'string' ? tag.trim() : ''))
+							.filter(Boolean)
+					: undefined,
+				status:
+					typeof frontmatterObject.metadata?.status === 'string'
+						? frontmatterObject.metadata.status.trim()
+						: undefined,
+				recruitingWorkflow:
+					typeof frontmatterObject.metadata?.recruitingWorkflow === 'string'
+						? frontmatterObject.metadata.recruitingWorkflow.trim()
 						: undefined,
 			},
 		};

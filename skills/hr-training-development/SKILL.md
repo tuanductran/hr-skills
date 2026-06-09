@@ -4,6 +4,14 @@ description: Help HR managers with learning and development programs. Use when a
 metadata:
   author: Tuan Duc Tran
   version: "1.0.0"
+  category: people-operations
+  tags:
+    - learning
+    - training
+    - skills-gap
+    - development
+  status: stable
+  recruitingWorkflow: not-applicable
 ---
 
 # HR training and development

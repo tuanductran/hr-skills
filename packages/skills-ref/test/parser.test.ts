@@ -35,6 +35,17 @@ describe('parseFrontmatter', () => {
 		});
 	});
 
+	it('parses nested list metadata fields', () => {
+		const content =
+			'---\nname: hr-test\ndescription: desc\nmetadata:\n  tags:\n    - recruiting\n    - interviewing\n---\n';
+
+		const [meta] = parseFrontmatter(content);
+
+		expect(meta.metadata).toEqual({
+			tags: ['recruiting', 'interviewing'],
+		});
+	});
+
 	it('throws ParseError if content does not start with ---', () => {
 		expect(() => parseFrontmatter('no frontmatter')).toThrow(ParseError);
 	});
