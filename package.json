@@ -47,6 +47,7 @@
 		"catalog": "turbo run catalog --filter=hr-skills-build",
 		"validate": "turbo run validate --filter=hr-skills-build",
 		"zip": "bun scripts/zip.ts",
+		"verify:generated": "bun scripts/verify-generated.ts",
 		"release": "changelogen --release --patch --push",
 		"prepare": "lefthook install",
 		"preinstall": "bunx only-allow bun",

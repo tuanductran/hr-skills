@@ -27,6 +27,7 @@ bun run check       # 0 Biome check errors required
 bun run lint:md     # 0 markdownlint errors required
 bun run typecheck   # 0 TypeScript errors required
 bun run build       # All workspace builds must complete successfully
+bun run verify:generated # Generated artifacts must be up to date
 ```
 
 All checks must pass before opening a pull request.
@@ -101,6 +102,7 @@ This updates `AGENTS.md`, `docs/installation.md`, `docs/skills.md`, and `.claude
 bun run validate   # Must pass with 0 errors
 bun run catalog    # Regenerates skills/CATALOG.md
 bun run zip        # Regenerates distributable skill packages
+bun run verify:generated # Fails if generated artifacts are stale
 ```
 
 ### 5. Open a pull request
@@ -133,6 +135,21 @@ Changes there should:
 - Not break `bun run catalog`
 - Not break `bun run sync`
 - Not break generated package outputs
+
+## Generated artifacts
+
+The following files are generated from source and must not be edited as standalone content:
+
+| Artifact | Source | Generator |
+|----------|--------|-----------|
+| `AGENTS.md` skill table | `skills/hr-*/SKILL.md` frontmatter | `bun run sync` |
+| `.claude-plugin/marketplace.json` | `skills/hr-*/SKILL.md` frontmatter | `bun run sync` |
+| `docs/installation.md` available skills table | `skills/hr-*/SKILL.md` frontmatter | `bun run sync` |
+| `docs/skills.md` skill reference | `skills/hr-*/SKILL.md` frontmatter | `bun run sync` |
+| `skills/CATALOG.md` | `skills/hr-*/SKILL.md` frontmatter and supported tasks | `bun run catalog` |
+| `skills/hr-*.zip` | `skills/hr-*/SKILL.md` | `bun run zip` |
+
+Run `bun run verify:generated` before opening a pull request. It regenerates tracked artifacts and fails if Git detects stale output.
 
 ## Questions
 

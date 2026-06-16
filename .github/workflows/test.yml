@@ -36,10 +36,19 @@ jobs:
       - name: Install bun
         uses: oven-sh/setup-bun@v2
         with:
-          bun-version: latest
+          bun-version: 1.3.9
 
       - name: Install Dependencies
-        run: bun install
+        run: bun install --frozen-lockfile
+
+      - name: Validate skill metadata
+        run: bun run validate
+
+      - name: Verify generated artifacts
+        run: bun run verify:generated
+
+      - name: Verify agent exports
+        run: bun run export:agents
 
       - name: Build packages
         run: bun run build
