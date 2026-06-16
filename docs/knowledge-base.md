@@ -2,6 +2,19 @@
 
 Use this knowledge base as the shared reference layer for skills, examples, scorecards, and contributor reviews.
 
+## Role family references
+
+Use [role-family knowledge base](./role-family-knowledge-base.md) for responsibilities, success metrics, competencies, workflows, recommended repository skills, deliverables, interview questions, and career progression for:
+
+- Recruiter
+- Talent acquisition lead
+- HRBP
+- People operations
+- Compensation and benefits
+- Learning and development
+- Employer branding
+- HR analytics
+
 ## HR glossary
 
 | Term | Definition | Use in skills |

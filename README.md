@@ -23,7 +23,8 @@ cp -r skills/hr-{skill-name} ~/.claude/skills/
 ## Roadmap references
 
 - [HR skills taxonomy](./docs/taxonomy.md) documents categories, tags, lifecycle statuses, recruiting workflows, and metadata validation.
-- [HR knowledge base](./docs/knowledge-base.md) defines shared glossary terms, recruiting frameworks, interview frameworks, scorecards, competency matrices, and workflow examples.
+- [HR knowledge base](./docs/knowledge-base.md) defines shared glossary terms, recruiting frameworks, interview frameworks, scorecards, competency matrices, role-family references, and workflow examples.
+- [Role-family knowledge base](./docs/role-family-knowledge-base.md) maps HR role families to responsibilities, metrics, competencies, workflows, repository skills, deliverables, interview questions, and career progression.
 - [Community workflow](./docs/community.md) explains contributor onboarding, good first issues, skill reviews, and sustainability practices.
 
 ## Examples
