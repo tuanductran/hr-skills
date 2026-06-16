@@ -17,9 +17,6 @@ bun run sync
 # Generate Claude, Codex, Cursor, and Gemini exports
 bun run export:agents
 
-# Verify tracked generated artifacts
-bun run verify:generated
-
 # Run tests for the package tooling
 bun run test
 
@@ -37,7 +34,6 @@ bun run validate      # delegates to hr-skills-build
 bun run sync          # delegates to hr-skills-build
 bun run catalog       # delegates to hr-skills-build
 bun run export:agents # delegates to hr-skills-build
-bun run verify:generated
 bun run test          # runs workspace tests
 bun run typecheck     # runs workspace type-checking
 ```
@@ -81,10 +77,6 @@ Discovers all `skills/hr-*` directories and rebuilds generated references in `AG
 ### `export:agents`
 
 Generates ignored compatibility exports under `.agent-exports/` for Claude, OpenAI Codex, Cursor, and Gemini. The command clears the export directory before writing so removed skills can't leave stale files behind.
-
-### `verify:generated`
-
-Regenerates tracked generated artifacts from `skills/hr-*/SKILL.md` and fails when `AGENTS.md`, `docs/`, or `skills/` have uncommitted generated drift.
 
 ## Source
 

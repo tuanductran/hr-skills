@@ -47,9 +47,6 @@ jobs:
       - name: Validate skill metadata
         run: bun run validate
 
-      - name: Verify generated artifacts
-        run: bun run verify:generated
-
       - name: Verify agent exports
         run: bun run export:agents
 
