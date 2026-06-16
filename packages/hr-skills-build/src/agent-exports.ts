@@ -1,7 +1,7 @@
 #!/usr/bin/env bun
 /** Generate multi-agent exports for Claude, OpenAI Codex, Cursor, and Gemini. */
 
-import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { basename, join } from 'node:path';
 import { AGENT_EXPORT_TARGETS, type AgentExportTarget } from './agent-targets.js';
 import { getHrSkills, SKILLS_DIR } from './config.js';
@@ -148,6 +148,7 @@ export async function exportAgentSkills(): Promise<void> {
 	const skills = await getHrSkills();
 	const exportRoot = join(ROOT, '.agent-exports');
 
+	await rm(exportRoot, { force: true, recursive: true });
 	await mkdir(exportRoot, { recursive: true });
 
 	const manifestSkills = await Promise.all(skills.map(writeSkillExports));
