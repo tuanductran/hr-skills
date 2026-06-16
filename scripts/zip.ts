@@ -1,73 +1,141 @@
 import { readdir, rm, stat } from 'node:fs/promises';
-import { join } from 'node:path';
+import { basename, join } from 'node:path';
 
 const SKILLS_DIR = join(import.meta.dir, '../skills');
+const DOS_EPOCH_DATE = 0x0021;
+const DOS_EPOCH_TIME = 0;
 
-/**
- * Cross-platform junk files that should NEVER be included in zip archives.
- *
- * Covers:
- * - macOS metadata (.DS_Store, __MACOSX)
- * - Windows system artifacts (Thumbs.db, desktop.ini)
- * - Linux file manager metadata
- * - Git metadata
- * - General hidden/system files (dotfiles)
- * - Temporary editor/system files
- */
-const EXCLUDED_PATTERNS: readonly string[] = [
-	// macOS system files
-	'.DS_Store',
-	'__MACOSX',
+const CRC32_TABLE = new Uint32Array(256);
 
-	// Windows system files
-	'Thumbs.db',
-	'desktop.ini',
-	'$RECYCLE.BIN',
+for (let index = 0; index < CRC32_TABLE.length; index += 1) {
+	let crc = index;
 
-	// Linux / desktop environments
-	'.directory',
+	for (let bit = 0; bit < 8; bit += 1) {
+		crc = crc & 1 ? 0xedb88320 ^ (crc >>> 1) : crc >>> 1;
+	}
 
-	// Git metadata (should never be shipped inside archives)
-	'.git',
-	'.gitignore',
-	'.gitkeep',
+	CRC32_TABLE[index] = crc >>> 0;
+}
 
-	// General hidden files (dotfiles)
-	// This ensures files like .env, .config, .cache are excluded if they appear
-	'.*',
+interface ZipEntry {
+	path: string;
+	data: Uint8Array;
+	crc32: number;
+	localHeaderOffset: number;
+}
 
-	// Editor / IDE junk
-	'.vscode',
-	'.idea',
+function crc32(data: Uint8Array): number {
+	let crc = 0xffffffff;
 
-	// Python / Node / build artifacts (optional but common noise)
-	'__pycache__',
-	'node_modules',
-];
+	for (const byte of data) {
+		crc = CRC32_TABLE[(crc ^ byte) & 0xff] ^ (crc >>> 8);
+	}
 
-/**
- * Remove previously generated zip files inside the skills directory.
- */
+	return (crc ^ 0xffffffff) >>> 0;
+}
+
+function writeUint16(buffer: Uint8Array, offset: number, value: number): void {
+	buffer[offset] = value & 0xff;
+	buffer[offset + 1] = (value >>> 8) & 0xff;
+}
+
+function writeUint32(buffer: Uint8Array, offset: number, value: number): void {
+	buffer[offset] = value & 0xff;
+	buffer[offset + 1] = (value >>> 8) & 0xff;
+	buffer[offset + 2] = (value >>> 16) & 0xff;
+	buffer[offset + 3] = (value >>> 24) & 0xff;
+}
+
+function concat(chunks: Uint8Array[]): Uint8Array {
+	const size = chunks.reduce((total, chunk) => total + chunk.length, 0);
+	const output = new Uint8Array(size);
+	let offset = 0;
+
+	for (const chunk of chunks) {
+		output.set(chunk, offset);
+		offset += chunk.length;
+	}
+
+	return output;
+}
+
+function createLocalHeader(entry: ZipEntry): Uint8Array {
+	const pathBytes = new TextEncoder().encode(entry.path);
+	const header = new Uint8Array(30 + pathBytes.length);
+
+	writeUint32(header, 0, 0x04034b50);
+	writeUint16(header, 4, 20);
+	writeUint16(header, 6, 0x0800);
+	writeUint16(header, 8, 0);
+	writeUint16(header, 10, DOS_EPOCH_TIME);
+	writeUint16(header, 12, DOS_EPOCH_DATE);
+	writeUint32(header, 14, entry.crc32);
+	writeUint32(header, 18, entry.data.length);
+	writeUint32(header, 22, entry.data.length);
+	writeUint16(header, 26, pathBytes.length);
+	writeUint16(header, 28, 0);
+	header.set(pathBytes, 30);
+
+	return header;
+}
+
+function createCentralDirectoryHeader(entry: ZipEntry): Uint8Array {
+	const pathBytes = new TextEncoder().encode(entry.path);
+	const header = new Uint8Array(46 + pathBytes.length);
+
+	writeUint32(header, 0, 0x02014b50);
+	writeUint16(header, 4, 20);
+	writeUint16(header, 6, 20);
+	writeUint16(header, 8, 0x0800);
+	writeUint16(header, 10, 0);
+	writeUint16(header, 12, DOS_EPOCH_TIME);
+	writeUint16(header, 14, DOS_EPOCH_DATE);
+	writeUint32(header, 16, entry.crc32);
+	writeUint32(header, 20, entry.data.length);
+	writeUint32(header, 24, entry.data.length);
+	writeUint16(header, 28, pathBytes.length);
+	writeUint16(header, 30, 0);
+	writeUint16(header, 32, 0);
+	writeUint16(header, 34, 0);
+	writeUint16(header, 36, 0);
+	writeUint32(header, 38, 0);
+	writeUint32(header, 42, entry.localHeaderOffset);
+	header.set(pathBytes, 46);
+
+	return header;
+}
+
+function createEndOfCentralDirectory(
+	entryCount: number,
+	centralDirectorySize: number,
+	centralDirectoryOffset: number,
+): Uint8Array {
+	const header = new Uint8Array(22);
+
+	writeUint32(header, 0, 0x06054b50);
+	writeUint16(header, 4, 0);
+	writeUint16(header, 6, 0);
+	writeUint16(header, 8, entryCount);
+	writeUint16(header, 10, entryCount);
+	writeUint32(header, 12, centralDirectorySize);
+	writeUint32(header, 16, centralDirectoryOffset);
+	writeUint16(header, 20, 0);
+
+	return header;
+}
+
 async function removeExistingZipFiles(): Promise<void> {
 	const entries = await readdir(SKILLS_DIR);
 
 	await Promise.all(
 		entries
 			.filter((entry) => entry.endsWith('.zip'))
-			.map((entry) =>
-				rm(join(SKILLS_DIR, entry), {
-					force: true,
-				}),
-			),
+			.map((entry) => rm(join(SKILLS_DIR, entry), { force: true })),
 	);
 }
 
-/**
- * Get all skill directories inside SKILLS_DIR.
- */
 async function getSkillDirectories(): Promise<string[]> {
 	const entries = await readdir(SKILLS_DIR);
-
 	const directories: string[] = [];
 
 	for (const entry of entries) {
@@ -82,73 +150,60 @@ async function getSkillDirectories(): Promise<string[]> {
 	return directories.sort();
 }
 
-/**
- * Convert exclude patterns into zip CLI arguments.
- *
- * The zip -x option matches file paths inside the archive.
- */
-function createExcludeArgs(): string[] {
-	return EXCLUDED_PATTERNS.flatMap((pattern) => ['-x', `*/${pattern}`]);
+async function createZipArchive(skillName: string): Promise<Uint8Array> {
+	const skillPath = join(SKILLS_DIR, skillName, 'SKILL.md');
+	const content = await Bun.file(skillPath).bytes();
+	const entries: ZipEntry[] = [
+		{
+			path: `${skillName}/SKILL.md`,
+			data: content,
+			crc32: crc32(content),
+			localHeaderOffset: 0,
+		},
+	];
+	const localChunks: Uint8Array[] = [];
+	let offset = 0;
+
+	for (const entry of entries) {
+		entry.localHeaderOffset = offset;
+		const header = createLocalHeader(entry);
+		localChunks.push(header, entry.data);
+		offset += header.length + entry.data.length;
+	}
+
+	const centralDirectoryOffset = offset;
+	const centralChunks = entries.map(createCentralDirectoryHeader);
+	const centralDirectory = concat(centralChunks);
+	const endOfCentralDirectory = createEndOfCentralDirectory(
+		entries.length,
+		centralDirectory.length,
+		centralDirectoryOffset,
+	);
+
+	return concat([...localChunks, centralDirectory, endOfCentralDirectory]);
 }
 
-/**
- * Create a zip archive for a single skill directory.
- *
- * Uses system `zip` command with recursive + exclude rules.
- */
 async function zipSkillDirectory(skillName: string): Promise<void> {
 	const zipFileName = `${skillName}.zip`;
+	const archive = await createZipArchive(skillName);
 
-	const result = Bun.spawnSync({
-		cmd: ['zip', '-r', '-X', zipFileName, skillName, ...createExcludeArgs()],
-		cwd: SKILLS_DIR,
-		stdout: 'inherit',
-		stderr: 'inherit',
-	});
+	await Bun.write(join(SKILLS_DIR, zipFileName), archive);
 
-	if (result.exitCode !== 0) {
-		throw new Error(`Failed to create zip archive: ${zipFileName}`);
-	}
-
-	console.log(`✔ Created ${zipFileName}`);
+	console.log(`Created ${zipFileName}`);
 }
 
-/**
- * Ensure `zip` CLI is available in system PATH.
- */
-async function validateZipCommand(): Promise<void> {
-	const result = Bun.spawnSync({
-		cmd: ['zip', '--version'],
-		stdout: 'ignore',
-		stderr: 'ignore',
-	});
-
-	if (result.exitCode !== 0) {
-		throw new Error('The `zip` CLI is not installed or not available in PATH.');
-	}
-}
-
-/**
- * Main execution flow:
- * 1. Validate zip command exists
- * 2. Clean old zip files
- * 3. Collect all skill directories
- * 4. Generate zip archive per skill
- */
 async function main(): Promise<void> {
-	console.log('◐ Generating skill zip packages...');
-
-	await validateZipCommand();
+	console.log('Generating skill zip packages...');
 
 	await removeExistingZipFiles();
 
 	const skills = await getSkillDirectories();
 
 	for (const skill of skills) {
-		await zipSkillDirectory(skill);
+		await zipSkillDirectory(basename(skill));
 	}
 
-	console.log(`✔ Generated ${skills.length} zip packages`);
+	console.log(`Generated ${skills.length} zip packages`);
 }
 
 await main();
