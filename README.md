@@ -2,7 +2,7 @@
 
 A collection of HR skills for Claude.ai and Claude Code that help HR managers with their day-to-day work. Skills are packaged AI prompt libraries that extend Claude's capabilities across all major HR domains.
 
-Built by [Tuan Duc Tran](https://github.com/tuanductran) for members of the Zalo **HR/TA Job Onsite/Hybrid/Remote** group — a community for Human Resources and Talent Acquisition professionals sharing Onsite, Hybrid, and Remote job opportunities.
+Built by [Tuan Duc Tran](https://linkedin.com/in/tuanductran) for members of the Zalo **[HR/TA Job Onsite/Hybrid/Remote](https://zalo.me/g/mphdei134)** group — a community for Human Resources and Talent Acquisition professionals sharing Onsite, Hybrid, and Remote job opportunities.
 
 Skills follow the [Agent Skills](https://agentskills.io/) format.
 
