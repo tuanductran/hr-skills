@@ -1,3 +1,4 @@
+$schema: ./node_modules/knip/schema.json
 pre-commit:
   parallel: true
 

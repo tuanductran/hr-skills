@@ -1,6 +1,11 @@
 {
+  "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
   "name": "hr-skills",
   "description": "A collection of AI skills for HR managers covering recruiting, performance management, compensation, compliance, and all major HR domains. Built by Tuan Duc Tran for the Zalo HR/TA Job Onsite/Hybrid/Remote community.",
+  "owner": {
+    "name": "Tuan Duc Tran",
+    "email": "tuanductran.dev@gmail.com"
+  },
   "plugins": [
     {
       "name": "hr-ai",

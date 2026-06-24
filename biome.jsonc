@@ -5,7 +5,6 @@
 			"./**/*.js",
 			"./**/*.ts",
 			"./**/*.json",
-			"!skills",
 			"!!**/dist",
 			"!!**/node_modules",
 			"!!**/.turbo",

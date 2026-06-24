@@ -1,3 +1,4 @@
+$schema: https://raw.githubusercontent.com/DavidAnson/markdownlint/v0.40.0/schema/markdownlint-config-schema.json
 # Default state for all rules
 default: true
 
