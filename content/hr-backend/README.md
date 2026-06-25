@@ -7,7 +7,7 @@ skill: hr-backend
 
 ## Overview
 
-> Related example: [Senior Backend Engineer hiring workflow](../../examples/backend/hiring-a-senior-backend-engineer.md).
+> Related example: [Senior Backend Engineer hiring workflow](../../examples/hr-backend/hiring-a-senior-backend-engineer.md).
 
 Backend engineering is the foundation of modern software systems. It covers everything that happens behind the user interface — data processing, APIs, authentication, business logic, databases, and infrastructure.
 
@@ -338,7 +338,7 @@ Strong resumes typically show:
 
 ## Example workflow
 
-See the [senior backend engineer hiring workflow](../../examples/backend/hiring-a-senior-backend-engineer.md) for an example of applying this guide to an end-to-end hiring process.
+See the [senior backend engineer hiring workflow](../../examples/hr-backend/hiring-a-senior-backend-engineer.md) for an example of applying this guide to an end-to-end hiring process.
 
 ## Conclusion
 

@@ -7,7 +7,7 @@ skill: hr-data
 
 ## Overview
 
-> Related example: [Senior Data Engineer hiring workflow](../../examples/data/hiring-a-senior-data-engineer.md).
+> Related example: [Senior Data Engineer hiring workflow](../../examples/hr-data/hiring-a-senior-data-engineer.md).
 
 Data roles sit at the core of modern digital organizations. They power:
 
@@ -337,7 +337,7 @@ Strong candidates show:
 
 ## Example workflow
 
-See the [senior data engineer hiring workflow](../../examples/data/hiring-a-senior-data-engineer.md) for an example of applying this guide to an end-to-end hiring process.
+See the [senior data engineer hiring workflow](../../examples/hr-data/hiring-a-senior-data-engineer.md) for an example of applying this guide to an end-to-end hiring process.
 
 ## Conclusion
 

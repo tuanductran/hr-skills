@@ -7,7 +7,7 @@ skill: hr-fullstack
 
 ## Overview
 
-> Related example: [Senior Fullstack Engineer hiring workflow](../../examples/fullstack/hiring-a-senior-fullstack-engineer.md).
+> Related example: [Senior Fullstack Engineer hiring workflow](../../examples/hr-fullstack/hiring-a-senior-fullstack-engineer.md).
 
 Fullstack engineering focuses on building complete applications across both frontend and backend systems.
 
@@ -364,7 +364,7 @@ Major trends include:
 
 ## Example workflow
 
-See the [senior fullstack engineer hiring workflow](../../examples/fullstack/hiring-a-senior-fullstack-engineer.md) for an example of applying this guide to an end-to-end hiring process.
+See the [senior fullstack engineer hiring workflow](../../examples/hr-fullstack/hiring-a-senior-fullstack-engineer.md) for an example of applying this guide to an end-to-end hiring process.
 
 ## Conclusion
 
