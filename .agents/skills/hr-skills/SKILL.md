@@ -8,7 +8,7 @@ metadata:
 
 # HR Skills repository guide
 
-This SKILL provides repository-level facts and guidance so AI tools and agents behave consistently when reading, validating, editing, or publishing skills in this monorepo. Each skill is not a single file — it is a directory containing a `SKILL.md`, a `content/` reference document, and an `examples/` workflow file, and all three must stay structurally and referentially consistent.
+This SKILL provides repository-level facts and guidance so AI tools and agents behave consistently when reading, validating, editing, or publishing skills in this monorepo. Each skill is a directory containing a required `SKILL.md`. Skills may also include an optional `content/` reference document and an optional `examples/` workflow file. When present, these additional files should remain structurally and referentially consistent.
 
 ## Repository structure
 
@@ -16,25 +16,25 @@ Each skill lives under `skills/hr-<name>/` with the following layout:
 
 ```text
 skills/hr-<name>/
-├── SKILL.md                          # Frontmatter + supported tasks + key prompts + tips
-├── content/
-│   └── <name>.md                     # Long-form reference doc ("Understanding X for...")
-└── examples/
-    └── <scenario-slug>.md            # End-to-end worked example (Context → Steps → Workflow Summary → Mistakes table)
+├── SKILL.md                    # Required
+├── content/                    # Optional
+│   └── <name>.md
+└── examples/                   # Optional
+    └── <scenario-slug>.md
 ```
 
-- `SKILL.md` is the entry point: frontmatter (`name`, `description`, `metadata`), `## Supported tasks`, `## Key prompts`, and `## Tips`. It should stay prompt-and-trigger focused, not duplicate the full reference content.
-- `content/<name>.md` is the deep-dive reference document, named after the skill **without** the `hr-` prefix (e.g. `skills/hr-total-rewards/content/total-rewards.md`, not `content/hr-total-rewards.md`). It follows the fixed skeleton: Overview → What X Actually Means → Key Categories → Core Concepts → How Systems Are Built in Practice → Strong/Weak Signals → Common Misunderstandings → Modern Reality → Key Industry Benchmarks table → Example Workflow (linking to `examples/`) → Conclusion (with quote block).
-- `examples/<scenario-slug>.md` is the applied walkthrough. It follows the fixed skeleton: Context → Step 1–8 (Sample prompt → Skill response/walkthrough) → Full Workflow Summary (text diagram) → Common Mistakes table.
-- The `content/` file and `examples/` file must cross-link each other via relative paths (`../examples/<slug>.md` and `../content/<name>.md`), and both link targets must actually exist before either file is considered complete.
+- `SKILL.md` is required for every skill. It is the entry point and contains the frontmatter (`name`, `description`, `metadata`), `## Supported tasks`, `## Key prompts`, and `## Tips`. It should stay prompt-focused and avoid duplicating long-form reference content.
+- `content/<name>.md` is optional. When present, it provides a deep-dive reference document named after the skill without the `hr-` prefix (for example, `skills/hr-total-rewards/content/total-rewards.md`). It should follow the repository's standard content structure.
+- `examples/<scenario-slug>.md` is optional. When present, it provides an end-to-end applied workflow demonstrating how to use the skill in a realistic scenario.
+- If both `content/` and `examples/` exist, they should cross-link each other using relative paths (`../examples/<slug>.md` and `../content/<name>.md`). Links should always resolve successfully.
 
 ## Supported tasks
 
 - Explain repository conventions (branching, commit format, publishing workflow, directory layout)
 - Validate SKILL.md, content/, and examples/ files against project structure, naming, and frontmatter rules
-- Scaffold new `skills/hr-<name>/` directories with `SKILL.md`, `content/<name>.md`, and `examples/<slug>.md` following repo standards
+- Scaffold new `skills/hr-<name>/` directories with a required `SKILL.md` and optional `content/<name>.md` and `examples/<slug>.md` following repository standards
 - Suggest edits to SKILL.md, content, or example files to comply with lint, validator, and structural rules
-- Verify cross-links between `content/` and `examples/` files resolve correctly
+- Verify cross-links between `content/` and `examples/` files when both files are present
 - Provide CI/snippet recommendations for `bun run` and `turbo` commands
 - Produce release checklist and pre-publish checks for maintainers
 - Map skill names to directories and update `skills/CATALOG.md` guidance
@@ -63,12 +63,12 @@ skills/hr-<name>/
 - "Check whether this `content/<name>.md` file follows the required skeleton (Overview through Conclusion) and list missing sections."
 - "Check whether this `examples/<slug>.md` file follows the required 8-step skeleton and Common Mistakes table."
 - "Verify the cross-links between this content file and its paired example file are correct and the target files exist."
-- "Generate a missing `examples/<slug>.md` file to match an existing `content/<name>.md` file's 'Example Workflow' reference."
+- "Generate an optional `content/<name>.md` or `examples/<slug>.md` file that complements an existing skill when requested."
 
 ### Contributor assistance
 
 - "Generate a Conventional Commit message for this change diff following repo rules."
-- "Create a short PR checklist for reviewers that verifies `metadata.author` equals 'Tuan Duc Tran', frontmatter rules, content file naming (no `hr-` prefix), and that content/examples links resolve."
+- "Create a short PR checklist for reviewers that verifies `metadata.author` equals 'Tuan Duc Tran', frontmatter rules, optional content file naming (no `hr-` prefix), and validates content/examples links when those files are present."
 - "Produce an example GitHub Actions job that runs `bun install`, `bun run validate`, and `bun run lint:md`."
 - "Provide step-by-step instructions to run the local validator and add a new skill with its content and examples files."
 
@@ -79,6 +79,7 @@ skills/hr-<name>/
 - Every `skills/hr-<name>/` directory must contain all three pieces — `SKILL.md`, `content/<name>.md`, and `examples/<slug>.md` — a skill is incomplete with only one or two
 - The file inside `content/` drops the `hr-` prefix even though the parent skill directory keeps it (e.g. `skills/hr-kpi/content/kpi.md`)
 - Keep `SKILL.md` lean (tasks, prompts, tips); put the full conceptual deep-dive in `content/` and the applied walkthrough in `examples/`
-- Cross-links between `content/` and `examples/` use relative paths and must be verified before merge — broken links are a common review failure
-- Use `bun run sync` after adding/removing `skills/hr-*` directories, then `bun run validate`
-- Never commit directly to `main` — open PRs against `dev` and follow Conventional Commits
+- Every skill must include a `SKILL.md`; `content/` and `examples/` are optional but recommended for larger or more educational skills.
+- When a `content/` file exists, name it without the `hr-` prefix (for example, `skills/hr-kpi/content/kpi.md`).
+- Keep `SKILL.md` lean (tasks, prompts, tips). Move conceptual deep-dives into `content/` and practical walkthroughs into `examples/` when those optional documents are included.
+- If both `content/` and `examples/` exist, ensure their relative cross-links resolve correctly before merging.

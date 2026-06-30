@@ -76,6 +76,8 @@ For deep focus work (for example a full recruiting campaign), create a dedicated
 | `hr-ai` | Help HR managers, recruiters, and talent acquisition teams und… |
 | `hr-analytics` | Help HR managers with HR analytics and data management |
 | `hr-backend` | Help HR managers, recruiters, and talent acquisition teams und… |
+| `hr-business-partner` | Help HR Business Partners, People Partners, and HRBP leaders a… |
+| `hr-change-management` | Help HR leaders, change managers, and business partners design… |
 | `hr-compensation-benefits` | Help HR managers with compensation and benefits programs |
 | `hr-compliance` | Help HR managers with HR compliance and workplace policies |
 | `hr-conflict-resolution` | Help HR managers with workplace conflict resolution |
@@ -84,13 +86,20 @@ For deep focus work (for example a full recruiting campaign), create a dedicated
 | `hr-diversity-inclusion` | Help HR managers with diversity, equity, and inclusion initiat… |
 | `hr-employee-engagement` | Help HR managers with employee engagement strategies |
 | `hr-employee-relations` | Help HR managers with employee relations matters |
+| `hr-employer-branding` | Help HR leaders, talent acquisition teams, and employer brand … |
 | `hr-frontend` | Help HR managers, recruiters, and talent acquisition teams und… |
 | `hr-fullstack` | Help HR managers, recruiters, and talent acquisition teams und… |
+| `hr-interviewing` | Help HR managers, recruiters, hiring managers, and interview p… |
+| `hr-job-description` | Help HR professionals, recruiters, hiring managers, and talent… |
 | `hr-kpi` | Help HR managers, people analytics teams, and HR business part… |
 | `hr-leadership-development` | Help HR managers with leadership development programs |
 | `hr-mobile` | Help HR managers, recruiters, and talent acquisition teams und… |
 | `hr-onboarding` | Help HR managers with employee onboarding and offboarding |
+| `hr-organizational-development` | Help HR business partners, OD consultants, and people leaders … |
+| `hr-payroll` | Help HR operations specialists, payroll administrators, and co… |
+| `hr-people-operations` | Help HR managers, People Ops specialists, HRIS administrators,… |
 | `hr-performance-management` | Help HR managers with performance management processes |
+| `hr-performance-review` | Help managers, HR professionals, and team leaders write fair, … |
 | `hr-qa` | Help HR managers, recruiters, and talent acquisition teams und… |
 | `hr-recruiting` | Help HR managers with end-to-end recruiting and talent acquisi… |
 | `hr-security` | Help HR managers, recruiters, and talent acquisition teams und… |
@@ -100,6 +109,7 @@ For deep focus work (for example a full recruiting campaign), create a dedicated
 | `hr-training-development` | Help HR managers with learning and development programs |
 | `hr-uiux` | Help HR managers, recruiters, and talent acquisition teams und… |
 | `hr-vietnam-context` | Vietnam-specific HR guidance covering the Labor Code, Social I… |
+| `hr-wellbeing` | Help HR business partners, wellbeing program managers, and peo… |
 | `hr-workforce-planning` | Help HR managers with workforce planning and strategy |
 
 See [skills.md](./skills.md) for full descriptions and example trigger phrases.
