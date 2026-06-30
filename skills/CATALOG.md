@@ -1,6 +1,6 @@
 # HR Skills Catalog
 
-> 25 skills available for HR professionals
+> 28 skills available for HR professionals
 
 ---
 
@@ -251,6 +251,25 @@ Version: 1.0.0 · Author: Tuan Duc Tran
 
 ---
 
+## hr-kpi
+
+Help HR managers, people analytics teams, and HR business partners understand, select, calculate, and act on HR KPIs and workforce metrics. Use when asked to "build an HR dashboard", "choose strategic HR KPIs", "analyze turnover rate", "benchmark cost per hire", "explain HR metrics", "create an HR report for leadership", "measure training ROI", "track recruiting efficiency", "interpret HR data", or any HR performance measurement and workforce analytics task.
+
+Version: 1.0.0 · Author: Tuan Duc Tran
+
+**Supported tasks:**
+
+- Explaining HR KPIs and workforce metrics in plain language for HR teams and business stakeholders
+- Selecting 5–10 strategic KPIs aligned to organizational goals and priorities
+- Calculating and interpreting KPIs across recruiting, retention, compensation, training, and employee relations
+- Benchmarking HR metrics against industry standards (SHRM, Gallup, Mercer, ATD)
+- Building HR KPI dashboards using tools like Notion, Google Sheets, Power BI, or Tableau
+- Analyzing turnover trends, cost per hire, engagement levels, and workforce composition
+- Using AI (ChatGPT, Claude, Gemini, Perplexity) to analyze HR data and generate action plans
+- Writing executive HR reports and quarterly leadership summaries
+
+---
+
 ## hr-leadership-development
 
 Help HR managers with leadership development programs. Use when asked to "create a leadership program", "develop leadership competencies", "conduct leadership assessments", "design executive coaching", "create a leadership succession plan", "develop cross-cultural leadership training", or any leadership development task.
@@ -384,6 +403,25 @@ Version: 1.0.0 · Author: Tuan Duc Tran
 
 ---
 
+## hr-talent-management
+
+Help HR managers, HRBPs, L&D leads, and people operations teams understand, design, and execute talent management systems. Use when asked to "build a succession plan", "design a performance management framework", "identify high potential employees", "create a career path", "build a competency model", "improve internal mobility", "design a talent review process", "measure employee engagement", "develop a retention strategy", "run a 9-box assessment", or any talent development and workforce planning task.
+
+Version: 1.0.0 · Author: Tuan Duc Tran
+
+**Supported tasks:**
+
+- Explaining talent management concepts and frameworks for HR teams and business leaders
+- Designing performance management systems and appraisal cycles
+- Building succession planning processes for critical roles and leadership pipelines
+- Identifying and developing high-potential (HiPo) employees
+- Creating competency models and behavioral frameworks by role and level
+- Designing career ladders and internal mobility pathways
+- Running talent review and calibration sessions (9-box, talent grid)
+- Measuring and improving employee engagement and retention
+
+---
+
 ## hr-technology
 
 Help HR managers with HR technology strategy and implementation. Use when asked to "evaluate HR systems", "implement an HRIS", "create an HR technology roadmap", "select an ATS", "develop HR chatbots", "manage HR automation", "write an HR technology RFP", or any HR technology task.
@@ -400,6 +438,25 @@ Version: 1.0.0 · Author: Tuan Duc Tran
 - Creating HR self-service portals and data governance frameworks
 - Managing HR automation and data integration projects
 - Writing HR technology RFPs and business cases
+
+---
+
+## hr-total-rewards
+
+Help HR managers, compensation analysts, benefits specialists, and total rewards leaders understand, design, and communicate total rewards programs. Use when asked to "design a compensation structure", "build a salary band", "run a pay equity analysis", "design a benefits package", "create a total rewards statement", "benchmark compensation against market", "design an incentive plan", "build a job leveling framework", "calculate compa-ratio", or any compensation, benefits, and total rewards task.
+
+Version: 1.0.0 · Author: Tuan Duc Tran
+
+**Supported tasks:**
+
+- Explaining total rewards concepts and philosophy for HR teams and business leaders
+- Designing salary structures, pay bands, and job leveling frameworks
+- Benchmarking compensation against market data by role, level, and location
+- Running pay equity analyses across gender, ethnicity, and level
+- Designing incentive plans, bonus structures, and sales commission models
+- Building equity compensation programs (stock options, RSUs, ESPPs)
+- Designing benefits packages and evaluating benefits ROI
+- Creating total rewards statements that communicate full compensation value
 
 ---
 
