@@ -4,20 +4,11 @@
  * Auto-discovers all skills that start with the `hr-` prefix.
  */
 
-import { readdir } from 'node:fs/promises';
-import { dirname, join } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { access, readdir } from 'node:fs/promises';
+import { join } from 'node:path';
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-
-export const SKILLS_DIR = join(__dirname, '../../..', 'skills');
-
-export const HR_SKILL_PREFIX = 'hr-';
-
-interface SkillDirectoryOptions {
-	readonly prefix?: string;
-	readonly sort?: boolean;
-}
+import { HR_SKILL_PREFIX, SKILLS_DIR } from './constants.js';
+import type { SkillDirectoryOptions } from './types.js';
 
 /**
  * Discover all HR skill directories automatically.
@@ -47,9 +38,11 @@ export async function getHrSkills(
 			continue;
 		}
 
-		const skillFile = Bun.file(join(SKILLS_DIR, entry.name, 'SKILL.md'));
+		const skillPath = join(SKILLS_DIR, entry.name, 'SKILL.md');
 
-		if (!(await skillFile.exists())) {
+		try {
+			await access(skillPath);
+		} catch {
 			continue;
 		}
 

@@ -1,27 +1,10 @@
 import { describe, expect, it } from 'bun:test';
-import { mkdtempSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
+import { mkdtempSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
+import { SKILLS_DIR } from '../src/constants.js';
+import { discoverSkillNames, makeTempSkill } from '../src/helpers.js';
 import { validate } from '../src/validator.js';
-
-const SKILLS_DIR = join(import.meta.dir, '../../../skills');
-
-/**
- * Dynamically discover all HR skill directories so this test automatically
- * covers every skill that exists — no manual list to keep in sync.
- */
-function discoverSkillNames(): string[] {
-	return readdirSync(SKILLS_DIR, { withFileTypes: true })
-		.filter((entry) => entry.isDirectory() && entry.name.startsWith('hr-'))
-		.map((entry) => entry.name)
-		.sort();
-}
-
-function makeTempSkill(content: string): string {
-	const tmp = mkdtempSync(join(tmpdir(), 'skill-test-'));
-	writeFileSync(join(tmp, 'SKILL.md'), content);
-	return tmp;
-}
 
 describe('validate', () => {
 	it('returns no errors for a real HR skill', () => {

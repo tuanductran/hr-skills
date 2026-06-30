@@ -72,6 +72,4 @@ turbo run typecheck --filter=hr-skills-build
 
 - [Installation guide](./installation.md) — all install methods in detail
 - [All skills](./skills.md) — full list with descriptions and trigger phrases
-- [Extended skill guides](../content/) — in-depth domain knowledge for each skill
-- [Examples](../examples/) — real-world hiring workflow examples with sample outputs
 - [Contributing](./contributing.md) — add your own HR skill

@@ -1,6 +1,6 @@
 # Project overview
 
-This repository is a Bun + Turborepo monorepo hosting 25 HR AI skills for Claude Code and claude.ai. Each skill lives in `skills/hr-*/SKILL.md`. The project uses Bun as the runtime and Turborepo for orchestration.
+This repository is a Bun + Turborepo monorepo hosting HR AI skills for Claude Code and claude.ai. Each skill lives in `skills/hr-*/SKILL.md`. The project uses Bun as the runtime and Turborepo for orchestration.
 
 Essential commands
 

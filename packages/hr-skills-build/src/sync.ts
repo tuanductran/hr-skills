@@ -18,118 +18,22 @@
 import { join } from 'node:path';
 import { consola } from 'consola';
 
-import { getHrSkills, SKILLS_DIR } from './config.js';
-import { extractMatch, parseFrontmatter, TASKS_REGEX } from './utils.js';
-
-// -----------------------------------------------------------------------------
-// Paths
-// -----------------------------------------------------------------------------
-
-const ROOT = join(import.meta.dir, '../../..');
-
-// -----------------------------------------------------------------------------
-// Regex patterns (sync-specific)
-// -----------------------------------------------------------------------------
-
-const KEY_PROMPTS_REGEX = /## Key prompts\n\n([\s\S]*?)(?=\n## Tips|\n---\n|$)/;
-
-const QUOTED_PROMPT_REGEX = /^(?:\d+\. |[-*] )"([^"]+)"/gm;
-
-const AGENTS_TABLE_REGEX = /\| Skill \| Scope \|\n\|[-|]+\|\n[\s\S]*?(?=\n## )/;
-
-const INSTALLATION_TABLE_REGEX =
-	/\| Skill \| What it covers \|\n\|[-|]+\|\n[\s\S]*?(?=\nSee \[skills\.md\])/;
-
-const USE_WHEN_REGEX = /Use when/i;
-
-const PERIOD_REGEX = /\.$/;
-
-const TASK_ITEM_REGEX = /^- /;
-
-// -----------------------------------------------------------------------------
-// Types
-// -----------------------------------------------------------------------------
-
-export interface SkillMeta {
-	name: string;
-	description: string;
-	coverage: string;
-	shortSummary: string;
-	scopeSentence: string;
-	triggerPhrases: string[];
-	supportedTasks: string[];
-}
-
-// -----------------------------------------------------------------------------
-// Skill parser
-// -----------------------------------------------------------------------------
-
-async function parseSkillMeta(skillName: string): Promise<SkillMeta> {
-	const skillPath = join(SKILLS_DIR, skillName, 'SKILL.md');
-
-	const content = await Bun.file(skillPath).text();
-
-	const frontmatter = parseFrontmatter(content);
-
-	const name = frontmatter.name ?? skillName;
-
-	const description = frontmatter.description ?? '';
-
-	// Remove "Use when..." section from description
-	const useWhenIndex = description.search(USE_WHEN_REGEX);
-
-	const coverage =
-		useWhenIndex !== -1
-			? description.slice(0, useWhenIndex).trim().replace(PERIOD_REGEX, '')
-			: description.trim().replace(PERIOD_REGEX, '');
-
-	// Supported tasks
-	const tasksBlock = extractMatch(TASKS_REGEX, content) ?? '';
-
-	const supportedTasks = tasksBlock
-		.split('\n')
-		.filter((line) => TASK_ITEM_REGEX.test(line))
-		.map((line) => line.replace(TASK_ITEM_REGEX, '').trim())
-		.filter(Boolean);
-
-	// Trigger phrases
-	const keyPromptsBlock = extractMatch(KEY_PROMPTS_REGEX, content) ?? '';
-
-	const triggerPhrases: string[] = [];
-
-	for (const match of keyPromptsBlock.matchAll(QUOTED_PROMPT_REGEX)) {
-		if (triggerPhrases.length >= 5) {
-			break;
-		}
-
-		triggerPhrases.push(match[1]);
-	}
-
-	// Installation summary
-	const firstClause = coverage.split('—')[1]?.trim() ?? coverage;
-
-	const shortSummary =
-		firstClause.length > 65 ? `${firstClause.slice(0, 62)}…` : firstClause;
-
-	const scopeSentence = `${coverage.charAt(0).toUpperCase()}${coverage.slice(1)}.`;
-
-	return {
-		name,
-		description,
-		coverage,
-		shortSummary,
-		scopeSentence,
-		triggerPhrases,
-		supportedTasks,
-	};
-}
+import { getHrSkills } from './config.js';
+import {
+	AGENTS_TABLE_REGEX,
+	INSTALLATION_TABLE_REGEX,
+	ROOT_DIR,
+	SKILL_SECTION_START_REGEX,
+} from './constants.js';
+import type { SkillMeta } from './types.js';
+import { parseSkillMeta } from './utils.js';
 
 // -----------------------------------------------------------------------------
 // Marketplace sync
 // -----------------------------------------------------------------------------
 
 async function syncMarketplace(metas: SkillMeta[]): Promise<boolean> {
-	const path = join(ROOT, '.claude-plugin/marketplace.json');
+	const path = join(ROOT_DIR, '.claude-plugin/marketplace.json');
 
 	const raw = await Bun.file(path).text();
 
@@ -161,7 +65,7 @@ async function syncMarketplace(metas: SkillMeta[]): Promise<boolean> {
 // AGENTS.md sync
 // -----------------------------------------------------------------------------
 
-function assertTemplateMarkerExists(
+export function assertTemplateMarkerExists(
 	content: string,
 	regex: RegExp,
 	filePath: string,
@@ -177,7 +81,7 @@ function assertTemplateMarkerExists(
 }
 
 async function syncAgentsTable(metas: SkillMeta[]): Promise<boolean> {
-	const path = join(ROOT, 'AGENTS.md');
+	const path = join(ROOT_DIR, 'AGENTS.md');
 
 	const original = await Bun.file(path).text();
 
@@ -212,7 +116,7 @@ async function syncAgentsTable(metas: SkillMeta[]): Promise<boolean> {
 // -----------------------------------------------------------------------------
 
 async function syncInstallationTable(metas: SkillMeta[]): Promise<boolean> {
-	const path = join(ROOT, 'docs/installation.md');
+	const path = join(ROOT_DIR, 'docs/installation.md');
 
 	const original = await Bun.file(path).text();
 
@@ -246,23 +150,17 @@ async function syncInstallationTable(metas: SkillMeta[]): Promise<boolean> {
 // docs/skills.md sync
 // -----------------------------------------------------------------------------
 
-// Regex to detect the start of a skill section block
-const SKILL_SECTION_START_REGEX = /\n---\n\n## hr-/;
-
-export function buildSkillDocsSection(meta: SkillMeta): string | null {
+function buildSkillDocsSection(meta: SkillMeta): string | null {
 	if (meta.triggerPhrases.length === 0) {
 		return null;
 	}
 
 	const triggerList = meta.triggerPhrases.map((phrase) => `- "${phrase}"`).join('\n');
 
-	const heading = `## ${meta.name}`;
-
 	return [
-		'',
 		'---',
 		'',
-		heading,
+		`## ${meta.name}`,
 		'',
 		`**What it covers:** ${meta.coverage}.`,
 		'',
@@ -272,8 +170,8 @@ export function buildSkillDocsSection(meta: SkillMeta): string | null {
 	].join('\n');
 }
 
-export async function syncSkillsDocs(metas: SkillMeta[]): Promise<boolean> {
-	const path = join(ROOT, 'docs/skills.md');
+async function syncSkillsDocs(metas: SkillMeta[]): Promise<boolean> {
+	const path = join(ROOT_DIR, 'docs/skills.md');
 
 	const original = await Bun.file(path).text();
 
@@ -301,7 +199,10 @@ export async function syncSkillsDocs(metas: SkillMeta[]): Promise<boolean> {
 		sections.push(section);
 	}
 
-	const rebuilt = `${preamble}${sections.join('')}\n`;
+	const rebuilt =
+		sections.length > 0
+			? `${preamble}\n\n${sections.join('\n\n')}\n`
+			: `${preamble}\n`;
 
 	if (rebuilt === original) {
 		return false;
@@ -361,7 +262,5 @@ export async function sync(): Promise<void> {
 }
 
 if (import.meta.main) {
-	void sync();
+	await sync();
 }
-
-export { assertTemplateMarkerExists };

@@ -2,37 +2,14 @@
 
 import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
+import {
+	FRONTMATTER_DELIMITER,
+	NON_WHITESPACE_REGEX,
+	SKILL_MD_FILENAMES,
+} from './constants.js';
 import { ParseError, ValidationError } from './errors.js';
-import type { SkillProperties } from './models.js';
-
-const NON_WHITESPACE_REGEX = /\S/;
-
-const FRONTMATTER_DELIMITER = '---';
-
-const SKILL_MD_FILENAMES = ['SKILL.md', 'skill.md'] as const;
-
-// -----------------------------------------------------------------------------
-// Helpers
-// -----------------------------------------------------------------------------
-
-function isPlainObject(value: unknown): value is Record<string, unknown> {
-	return value != null && typeof value === 'object' && !Array.isArray(value);
-}
-
-function unquote(value: string): string {
-	if (
-		(value.startsWith('"') && value.endsWith('"')) ||
-		(value.startsWith("'") && value.endsWith("'"))
-	) {
-		return value.slice(1, -1);
-	}
-
-	return value;
-}
-
-function toStringOrUndefined(value: unknown): string | undefined {
-	return value != null ? String(value).trim() || undefined : undefined;
-}
+import { isPlainObject, toStringOrUndefined, unquote } from './helpers.js';
+import type { SkillProperties } from './types.js';
 
 // -----------------------------------------------------------------------------
 // File discovery

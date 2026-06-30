@@ -38,13 +38,12 @@
 		"dist"
 	],
 	"scripts": {
-		"build": "obuild",
-		"dev": "bun --watch src/index.ts",
+		"build": "tsdown",
+		"dev": "tsdown --watch",
 		"test": "bun test",
-		"typecheck": "tsc --noEmit",
-		"clean": "rm -rf dist"
+		"typecheck": "tsc --noEmit"
 	},
 	"devDependencies": {
-		"obuild": "^0.4.36"
+		"tsdown": "^0.22.3"
 	}
 }

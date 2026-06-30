@@ -41,7 +41,7 @@
 		"format": "biome format . --write",
 		"lint:md": "markdownlint . && case-police .",
 		"lint:md:fix": "markdownlint . --fix && case-police . --fix",
-		"lint:links": "markdown-link-check -c config.json ./content ./docs ./examples ./skills",
+		"lint:links": "markdown-link-check -c config.json ./docs ./skills",
 		"knip": "knip",
 		"sync": "turbo run sync --filter=hr-skills-build",
 		"catalog": "turbo run catalog --filter=hr-skills-build",

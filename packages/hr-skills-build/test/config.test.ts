@@ -1,7 +1,8 @@
 import { describe, expect, it } from 'bun:test';
 import { existsSync } from 'node:fs';
 import { join } from 'node:path';
-import { getHrSkills, HR_SKILL_PREFIX, SKILLS_DIR } from '../src/config.js';
+import { getHrSkills } from '../src/config.js';
+import { HR_SKILL_PREFIX, SKILLS_DIR } from '../src/constants.js';
 
 describe('getHrSkills()', () => {
 	it('returns at least one skill', async () => {

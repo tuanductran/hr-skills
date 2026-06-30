@@ -2,15 +2,9 @@ import { describe, expect, it } from 'bun:test';
 import { mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-
+import { SKILLS_DIR } from '../src/constants.js';
 import { ParseError, ValidationError } from '../src/errors.js';
 import { findSkillMd, parseFrontmatter, readProperties } from '../src/parser.js';
-
-const SKILLS_DIR = join(import.meta.dir, '../../../skills');
-
-// -----------------------------------------------------------------------------
-// parseFrontmatter
-// -----------------------------------------------------------------------------
 
 describe('parseFrontmatter', () => {
 	it('parses valid frontmatter', () => {
@@ -53,10 +47,6 @@ describe('parseFrontmatter', () => {
 	});
 });
 
-// -----------------------------------------------------------------------------
-// findSkillMd
-// -----------------------------------------------------------------------------
-
 describe('findSkillMd', () => {
 	it('returns path for existing SKILL.md', () => {
 		const result = findSkillMd(join(SKILLS_DIR, 'hr-recruiting'));
@@ -75,10 +65,6 @@ describe('findSkillMd', () => {
 		}
 	});
 });
-
-// -----------------------------------------------------------------------------
-// readProperties
-// -----------------------------------------------------------------------------
 
 describe('readProperties', () => {
 	it('reads properties from a real skill directory', () => {
