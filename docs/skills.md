@@ -11,6 +11,10 @@ A complete reference for all available HR skills, including coverage areas and e
 
 ---
 
+---
+
+---
+
 ## hr-ai
 
 **What it covers:** Help HR managers, recruiters, and talent acquisition teams understand Artificial Intelligence (AI), Machine Learning (ML), Generative AI, LLM Engineering, AI Infrastructure, and modern AI product development workflows.
@@ -50,6 +54,34 @@ A complete reference for all available HR skills, including coverage areas and e
 - "What is the difference between [frontend, backend, and DevOps] roles?"
 - "What backend skills are most important for [Junior vs Senior server-side roles]?"
 - "How does backend engineering impact [application scalability, data security, and business performance]?"
+
+---
+
+## hr-business-partner
+
+**What it covers:** Help HR Business Partners, People Partners, and HRBP leaders advise managers and leadership on people strategy, performance management, organizational health, employee relations, and workforce planning within their business unit.
+
+**Use when you say:**
+
+- "Help me build a [performance improvement plan] for [an underperforming individual contributor] who [has missed three consecutive quarterly targets]."
+- "What is the right [coaching approach] for [a manager who avoids giving direct feedback] to [their underperforming reports]?"
+- "Design a [difficult conversation framework] clarifying how [a manager] should [deliver a low performance rating] to [a long-tenured employee]."
+- "How do I evaluate whether [a performance issue] is [a skill gap, a will gap, or a structural/workload issue] before recommending [a PIP]?"
+- "Help me model [three coaching approaches] for [a manager struggling with a high-performing but disruptive team member] and compare the trade-offs of each."
+
+---
+
+## hr-change-management
+
+**What it covers:** Help HR leaders, change managers, and business partners design, lead, and sustain organizational change initiatives.
+
+**Use when you say:**
+
+- "Help me design a [change management plan] for [a 500-person company] implementing [a new HRIS system]."
+- "What is the right [change framework] for [a leadership restructuring] in [a global organization]?"
+- "Design a [stakeholder engagement strategy] clarifying how [leaders, managers, employees] should be communicated with during [a major reorg]."
+- "How do I evaluate whether [our change readiness] is sufficient before [launching a new process]?"
+- "Help me model [three change management approaches] for [rolling out a new performance management system] and compare the trade-offs."
 
 ---
 
@@ -165,6 +197,20 @@ A complete reference for all available HR skills, including coverage areas and e
 
 ---
 
+## hr-employer-branding
+
+**What it covers:** Help HR leaders, talent acquisition teams, and employer brand managers understand, design, and run employer branding strategy, EVP (Employee Value Proposition) development, careers page and social content, and candidate experience initiatives.
+
+**Use when you say:**
+
+- "Help me design an [employer brand strategy] for [a 300-person company competing for engineering talent] while staying within [a defined annual budget]."
+- "What is the right [EVP framework] for [a company struggling to differentiate from larger competitors] in [our hiring market]?"
+- "Design an [EVP development process] clarifying how [HR and leadership] should gather [employee input] before [finalizing brand messaging]."
+- "How do I evaluate whether [a values-led EVP] or [a growth-and-impact-led EVP] better fits [our current talent positioning]?"
+- "Help me model [three employer brand strategy options] for [improving offer-acceptance rates in a competitive tech hiring market] and compare the trade-offs of each."
+
+---
+
 ## hr-frontend
 
 **What it covers:** Help HR managers, recruiters, and talent acquisition teams understand Frontend Engineering concepts, hiring requirements, frontend ecosystems, candidate evaluation, and modern frontend workflows.
@@ -190,6 +236,34 @@ A complete reference for all available HR skills, including coverage areas and e
 - "What is the difference between [frontend, backend, and fullstack] development?"
 - "What fullstack skills are most important in hiring for [our new product-led growth team]?"
 - "Why do startups often hire fullstack engineers to build [MVP prototypes]?"
+
+---
+
+## hr-interviewing
+
+**What it covers:** Help HR managers, recruiters, hiring managers, and interview panels design structured, competency-based interview questions, interview guides, and evaluation scorecards for any role.
+
+**Use when you say:**
+
+- "Create a structured interview guide for a [Senior Backend Engineer]."
+- "Generate competency-based interview questions for a [Product Manager]."
+- "Design a complete interview plan for hiring a [Head of HR]."
+- "Create a structured interview for a [Customer Success Manager] with scoring guidance."
+- "Build a panel interview guide for a [Staff AI Engineer]."
+
+---
+
+## hr-job-description
+
+**What it covers:** Help HR professionals, recruiters, hiring managers, and talent acquisition teams write clear, inclusive, and compelling job descriptions that attract qualified candidates.
+
+**Use when you say:**
+
+- "Write a complete job description for a [Senior Product Manager]."
+- "Create an inclusive job description for a [Backend Engineer]."
+- "Write a modern job posting for a [HR Business Partner]."
+- "Generate a job description for a [Customer Success Manager] with 30/60/90-day success expectations."
+- "Write a compelling job description for a startup hiring its first [Marketing Manager]."
 
 ---
 
@@ -249,6 +323,48 @@ A complete reference for all available HR skills, including coverage areas and e
 
 ---
 
+## hr-organizational-development
+
+**What it covers:** Help HR business partners, OD consultants, and people leaders understand, design, and lead organizational design, change management, and culture transformation initiatives.
+
+**Use when you say:**
+
+- "Help me redesign the org structure for [a 200-person company moving from functional to cross-functional teams] while minimizing [disruption to delivery timelines]."
+- "What is the right [span of control] for [a Director-level manager overseeing 6 team leads], and how do I evaluate whether our current structure is too flat or too layered?"
+- "Design a [decision rights framework] clarifying who owns [budget, hiring, and prioritization decisions] across [a newly formed cross-functional team]."
+- "How do I evaluate whether [a centralized] or [decentralized] structure better fits [our current growth stage and strategy]?"
+- "Help me model [three structural options] for [consolidating two overlapping departments] and compare the trade-offs of each."
+
+---
+
+## hr-payroll
+
+**What it covers:** Help HR operations specialists, payroll administrators, and compensation teams understand, design, and run payroll processing, compliance, and payroll-related HR operations.
+
+**Use when you say:**
+
+- "Help me design a [payroll processing calendar] for [a 200-person company paying semi-monthly] that accounts for [bank holidays and cutoff deadlines]."
+- "What is the right [cutoff and approval workflow] for [overtime and bonus payments] to avoid [late or inaccurate pay runs]?"
+- "Design a [payroll change approval process] clarifying who owns [salary changes, deductions, and one-time payments] across [HR, finance, and managers]."
+- "How do I evaluate whether [an in-house payroll team] or [an outsourced EOR provider] better fits [our current headcount and growth stage]?"
+- "Help me model [the payroll impact] of [moving from monthly to semi-monthly pay cycles] for [a 150-person company]."
+
+---
+
+## hr-people-operations
+
+**What it covers:** Help HR managers, People Ops specialists, HRIS administrators, and HR generalists understand, design, and run core people operations processes.
+
+**Use when you say:**
+
+- "Design a [pre-boarding to 90-day onboarding workflow] for [a 150-person company hiring 10 people per month] that minimizes [manual coordination between HR, IT, and the hiring manager]."
+- "Build an [offboarding checklist] covering [access deprovisioning, asset return, final pay, and exit interview] for [voluntary departures] versus [involuntary terminations]."
+- "What is the difference between [pre-boarding] and [onboarding], and what should happen in each phase for [a remote-first company]?"
+- "Design a [30-60-90 day onboarding plan template] that managers can customize for [different role types]."
+- "How do I handle [offboarding for a sensitive involuntary termination] while maintaining [dignity for the departing employee and security for the company]?"
+
+---
+
 ## hr-performance-management
 
 **What it covers:** Help HR managers with performance management processes.
@@ -260,6 +376,20 @@ A complete reference for all available HR skills, including coverage areas and e
 - "How should I structure a performance review conversation to be constructive and forward-looking?"
 - "What language should I use in performance reviews to provide clear, actionable feedback?"
 - "How can I write a performance review summary that accurately captures [employee's] contributions and development needs?"
+
+---
+
+## hr-performance-review
+
+**What it covers:** Help managers, HR professionals, and team leaders write fair, balanced, evidence-based performance reviews, self-assessments, and development plans.
+
+**Use when you say:**
+
+- "Write a balanced annual performance review for a [Senior Software Engineer]."
+- "Draft constructive manager feedback for an employee who exceeded expectations."
+- "Write a performance review for an employee who partially met their goals."
+- "Create a performance review that recognizes strong collaboration and leadership."
+- "Write a probation review with actionable development recommendations."
 
 ---
 
@@ -386,6 +516,20 @@ A complete reference for all available HR skills, including coverage areas and e
 - "Draft a Vietnam-compliant employment contract for a [full-time / part-time] [role title] with a salary of [amount] VND."
 - "Summarize an employee's rights when terminated without cause under Vietnam Labor Code, including severance pay calculation."
 - "What notice periods are legally required for resignation and employer-initiated termination in Vietnam?"
+
+---
+
+## hr-wellbeing
+
+**What it covers:** Help HR business partners, wellbeing program managers, and people leaders understand, design, and run employee wellbeing, mental health, and work-life balance initiatives.
+
+**Use when you say:**
+
+- "Help me design a [wellbeing program] for [a 200-person company with high reported burnout in engineering] while staying within [a defined annual budget]."
+- "What is the right [mix of EAP, flexible work, and manager training] for [a company experiencing rising disengagement after a period of rapid growth]?"
+- "Design a [psychological safety framework] clarifying how [managers and HR] should respond when [an employee discloses a mental health concern]."
+- "How do I evaluate whether [an outcome-based flexible work policy] or [a structured hybrid schedule] better fits [our current team collaboration needs]?"
+- "Help me model [three wellbeing program options] for [addressing burnout risk in a high-pressure sales team] and compare the trade-offs of each."
 
 ---
 

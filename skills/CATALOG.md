@@ -1,6 +1,6 @@
 # HR Skills Catalog
 
-> 28 skills available for HR professionals
+> 38 skills available for HR professionals
 
 ---
 
@@ -58,6 +58,44 @@ Version: 1.0.0 · Author: Tuan Duc Tran
 - Comparing backend languages and frameworks
 - Understanding APIs, databases, and cloud systems
 - Identifying backend seniority levels and skill expectations
+
+---
+
+## hr-business-partner
+
+Help HR Business Partners, People Partners, and HRBP leaders advise managers and leadership on people strategy, performance management, organizational health, employee relations, and workforce planning within their business unit. Use when asked to "act as an HR business partner", "advise this manager on a people issue", "build a performance improvement plan", "design a workforce plan", "handle an employee relations case", "coach a manager through a difficult conversation", "diagnose team dysfunction", "prepare talent review or succession planning input", or any task where HR needs to operate as a strategic partner embedded with a business leader or team rather than as a centralized HR function.
+
+Version: 1.0.0 · Author: Tuan Duc Tran
+
+**Supported tasks:**
+
+- Explaining HR business partnering concepts and terminology for managers and business leaders
+- Advising managers on performance management, coaching, and difficult conversations
+- Building and managing performance improvement plans (PIPs)
+- Handling employee relations cases (conflict, misconduct allegations, policy violations)
+- Diagnosing team dysfunction and organizational health within a business unit
+- Designing workforce and headcount plans aligned to business priorities
+- Preparing talent review, calibration, and succession planning input
+- Coaching managers through layoffs, terminations, and sensitive people decisions
+
+---
+
+## hr-change-management
+
+Help HR leaders, change managers, and business partners design, lead, and sustain organizational change initiatives. Use when asked to "design a change management plan", "advise leadership on change communication", "build a stakeholder engagement strategy", "create a change readiness assessment", "design training and enablement for change adoption", "measure change success", or any task where HR needs to guide leaders and employees through organizational change.
+
+Version: 1.0.0 · Author: Tuan Duc Tran
+
+**Supported tasks:**
+
+- Explaining change management concepts and frameworks (Kotter, ADKAR, Bridges Transition Model)
+- Designing organizational change strategies aligned to business priorities
+- Building stakeholder engagement and communication plans
+- Running change readiness assessments and risk diagnostics
+- Designing training, enablement, and coaching programs for managers and employees
+- Measuring change adoption and success through qualitative and quantitative signals
+- Using AI tools to draft change communication and analyze sentiment
+- Writing change management proposals, leadership talking points, and employee FAQs
 
 ---
 
@@ -213,6 +251,25 @@ Version: 1.0.0 · Author: Tuan Duc Tran
 
 ---
 
+## hr-employer-branding
+
+Help HR leaders, talent acquisition teams, and employer brand managers understand, design, and run employer branding strategy, EVP (Employee Value Proposition) development, careers page and social content, and candidate experience initiatives. Use when asked to "design an employer brand strategy", "build an EVP", "write a careers page", "design a candidate experience journey", "run an employer brand audit", "respond to a Glassdoor/employer reputation crisis", "measure employer brand health", "build an employee advocacy / referral content program", or any employer branding, talent attraction, or recruitment marketing task.
+
+Version: 1.0.0 · Author: Tuan Duc Tran
+
+**Supported tasks:**
+
+- Explaining employer branding concepts and terminology for HR teams and business leaders
+- Designing employer brand strategy aligned to talent market needs and business goals
+- Developing or refreshing an Employee Value Proposition (EVP)
+- Running employer brand audits and reputation diagnostics (Glassdoor, LinkedIn, social listening)
+- Building candidate experience journeys across sourcing, interviewing, and offer stages
+- Designing careers page content, structure, and messaging
+- Measuring employer brand health through quantitative and qualitative signals
+- Building employee advocacy, referral, and "share your story" content programs
+
+---
+
 ## hr-frontend
 
 Help HR managers, recruiters, and talent acquisition teams understand Frontend Engineering concepts, hiring requirements, frontend ecosystems, candidate evaluation, and modern frontend workflows. Use when asked to "explain frontend development", "screen frontend candidates", "understand React/Vue/Angular", "compare frontend frameworks", "evaluate frontend skills", "create frontend interview questions", "understand frontend architecture", or any frontend hiring and recruiting task.
@@ -248,6 +305,44 @@ Version: 1.0.0 · Author: Tuan Duc Tran
 - Comparing fullstack stacks and architectures
 - Understanding fullstack workflows and deployment pipelines
 - Identifying fullstack seniority levels and skill expectations
+
+---
+
+## hr-interviewing
+
+Help HR managers, recruiters, hiring managers, and interview panels design structured, competency-based interview questions, interview guides, and evaluation scorecards for any role. Use when asked to "create interview questions", "design a structured interview", "generate behavioral questions", "build an interview scorecard", "evaluate candidates consistently", "reduce interview bias", or any interview planning and assessment task.
+
+Version: 1.0.0 · Author: Tuan Duc Tran
+
+**Supported tasks:**
+
+- Generating structured interview questions for any role and seniority
+- Designing competency-based interview guides
+- Creating behavioral (STAR) interview questions
+- Creating situational and hypothetical interview questions
+- Designing technical, leadership, and collaboration interview questions
+- Writing standardized follow-up probing questions
+- Building interview scorecards and scoring rubrics
+- Defining strong answer indicators and hiring signals
+
+---
+
+## hr-job-description
+
+Help HR professionals, recruiters, hiring managers, and talent acquisition teams write clear, inclusive, and compelling job descriptions that attract qualified candidates. Use when asked to "write a job description", "rewrite a JD", "create a job posting", "improve hiring requirements", "define responsibilities", "write hiring criteria", or any job description and recruitment marketing task.
+
+Version: 1.0.0 · Author: Tuan Duc Tran
+
+**Supported tasks:**
+
+- Writing complete job descriptions
+- Rewriting existing job descriptions
+- Creating inclusive job postings
+- Defining role responsibilities
+- Writing opportunity summaries
+- Defining 30/60/90-day success expectations
+- Separating must-have and nice-to-have qualifications
+- Writing team and culture descriptions
 
 ---
 
@@ -327,6 +422,63 @@ Version: 1.0.0 · Author: Tuan Duc Tran
 
 ---
 
+## hr-organizational-development
+
+Help HR business partners, OD consultants, and people leaders understand, design, and lead organizational design, change management, and culture transformation initiatives. Use when asked to "redesign our org structure", "lead a change management plan", "run a culture assessment", "design a reorganization", "build a change communication plan", "assess organizational health", "facilitate a team effectiveness session", "design a merger integration plan", or any organizational design, change, and culture task.
+
+Version: 1.0.0 · Author: Tuan Duc Tran
+
+**Supported tasks:**
+
+- Explaining organizational development concepts for HR teams and business leaders
+- Designing organizational structures aligned to strategy and growth stage
+- Leading change management plans for reorganizations, mergers, and transformations
+- Running culture assessments and organizational health diagnostics
+- Facilitating team effectiveness sessions and post-reorg stabilization
+- Designing change communication plans for leadership and employees
+- Building merger and acquisition integration plans for people and culture
+- Diagnosing organizational friction points (silos, span of control, decision rights)
+
+---
+
+## hr-payroll
+
+Help HR operations specialists, payroll administrators, and compensation teams understand, design, and run payroll processing, compliance, and payroll-related HR operations. Use when asked to "set up a payroll process", "run a payroll compliance audit", "design a payroll calendar", "handle a payroll discrepancy", "build a payroll onboarding checklist", "calculate overtime and statutory deductions", "design a multi-country payroll process", or any payroll administration, compliance, and operations task.
+
+Version: 1.0.0 · Author: Tuan Duc Tran
+
+**Supported tasks:**
+
+- Explaining payroll concepts and terminology for HR teams and people leaders
+- Designing payroll processing calendars and cycle workflows
+- Running payroll compliance audits against local labor and tax regulations
+- Calculating statutory deductions, overtime, and benefits contributions
+- Handling payroll discrepancies, corrections, and retroactive adjustments
+- Designing multi-country and multi-entity payroll processes
+- Building payroll onboarding and offboarding checklists
+- Using AI tools to draft payroll policy documentation and audit reports
+
+---
+
+## hr-people-operations
+
+Help HR managers, People Ops specialists, HRIS administrators, and HR generalists understand, design, and run core people operations processes. Use when asked to "design an onboarding workflow", "set up an HRIS", "build an offboarding checklist", "create an employee handbook", "audit HR data quality", "design a people ops process", "automate HR workflows", "manage employee lifecycle transitions", "build an HR service delivery model", or any operational, administrative, and systems-focused HR task.
+
+Version: 1.0.0 · Author: Tuan Duc Tran
+
+**Supported tasks:**
+
+- Explaining people operations concepts and the employee lifecycle for HR teams and managers
+- Designing onboarding and pre-boarding workflows from offer acceptance to 90 days
+- Building offboarding and transition processes for resignations, terminations, and role changes
+- Selecting, implementing, and administering HRIS and core people systems
+- Auditing HR data quality, integrity, and single-source-of-truth governance
+- Automating repetitive HR workflows using forms, integrations, and AI tools
+- Designing HR service delivery models (tiered support, self-service, shared services)
+- Writing and maintaining employee handbooks, policies, and process documentation
+
+---
+
 ## hr-performance-management
 
 Help HR managers with performance management processes. Use when asked to "write a performance review", "create a PIP", "design performance appraisal forms", "set employee goals", "conduct 360-degree feedback", "develop performance metrics", or any other performance management task.
@@ -343,6 +495,25 @@ Version: 1.0.0 · Author: Tuan Duc Tran
 - Developing performance metrics and KPIs
 - Running performance calibration sessions
 - Designing employee recognition and awards programs
+
+---
+
+## hr-performance-review
+
+Help managers, HR professionals, and team leaders write fair, balanced, evidence-based performance reviews, self-assessments, and development plans. Use when asked to "write a performance review", "draft manager feedback", "evaluate employee performance", "write appraisal comments", "create a development plan", "review employee goals", or any employee performance evaluation task.
+
+Version: 1.0.0 · Author: Tuan Duc Tran
+
+**Supported tasks:**
+
+- Writing balanced performance reviews
+- Drafting manager performance feedback
+- Writing employee self-assessments
+- Reviewing goal achievement
+- Identifying employee strengths
+- Writing constructive development feedback
+- Creating development plans
+- Setting SMART goals for future performance
 
 ---
 
@@ -514,6 +685,25 @@ Version: 1.0.0 · Author: Tuan Duc Tran
 - Disciplinary procedures and termination under Vietnam Labor Code
 - Trade union obligations and worker representative engagement
 - Managing Vietnam-specific leave entitlements (annual, maternity, sick, Tet)
+
+---
+
+## hr-wellbeing
+
+Help HR business partners, wellbeing program managers, and people leaders understand, design, and run employee wellbeing, mental health, and work-life balance initiatives. Use when asked to "design a wellbeing program", "run a burnout risk assessment", "build a mental health support plan", "design a flexible work policy", "respond to a wellbeing crisis", "measure employee wellbeing", "design a return-to-work plan after burnout leave", or any employee wellbeing, mental health, and work-life balance task.
+
+Version: 1.0.0 · Author: Tuan Duc Tran
+
+**Supported tasks:**
+
+- Explaining employee wellbeing concepts and terminology for HR teams and business leaders
+- Designing wellbeing programs aligned to workforce needs and organizational risk
+- Running burnout risk assessments and early warning diagnostics
+- Building mental health support plans and crisis response protocols
+- Designing flexible work, leave, and work-life balance policies
+- Measuring employee wellbeing through behavioral and survey-based signals
+- Designing return-to-work plans following burnout or mental health leave
+- Using AI tools to analyze wellbeing data and draft support communications
 
 ---
 

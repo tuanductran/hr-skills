@@ -32,6 +32,22 @@
       ]
     },
     {
+      "name": "hr-business-partner",
+      "source": "./",
+      "description": "Help HR Business Partners, People Partners, and HRBP leaders advise managers and leadership on people strategy, performance management, organizational health, employee relations, and workforce planning within their business unit. Use when asked to \"act as an HR business partner\", \"advise this manager on a people issue\", \"build a performance improvement plan\", \"design a workforce plan\", \"handle an employee relations case\", \"coach a manager through a difficult conversation\", \"diagnose team dysfunction\", \"prepare talent review or succession planning input\", or any task where HR needs to operate as a strategic partner embedded with a business leader or team rather than as a centralized HR function.",
+      "skills": [
+        "./skills/hr-business-partner"
+      ]
+    },
+    {
+      "name": "hr-change-management",
+      "source": "./",
+      "description": "Help HR leaders, change managers, and business partners design, lead, and sustain organizational change initiatives. Use when asked to \"design a change management plan\", \"advise leadership on change communication\", \"build a stakeholder engagement strategy\", \"create a change readiness assessment\", \"design training and enablement for change adoption\", \"measure change success\", or any task where HR needs to guide leaders and employees through organizational change.",
+      "skills": [
+        "./skills/hr-change-management"
+      ]
+    },
+    {
       "name": "hr-compensation-benefits",
       "source": "./",
       "description": "Help HR managers with compensation and benefits programs. Use when asked to \"analyze compensation data\", \"design a bonus plan\", \"create benefits programs\", \"conduct a job evaluation\", \"write a compensation philosophy\", \"calculate pay rates\", \"develop retention strategies\", or any compensation and benefits task.",
@@ -96,6 +112,14 @@
       ]
     },
     {
+      "name": "hr-employer-branding",
+      "source": "./",
+      "description": "Help HR leaders, talent acquisition teams, and employer brand managers understand, design, and run employer branding strategy, EVP (Employee Value Proposition) development, careers page and social content, and candidate experience initiatives. Use when asked to \"design an employer brand strategy\", \"build an EVP\", \"write a careers page\", \"design a candidate experience journey\", \"run an employer brand audit\", \"respond to a Glassdoor/employer reputation crisis\", \"measure employer brand health\", \"build an employee advocacy / referral content program\", or any employer branding, talent attraction, or recruitment marketing task.",
+      "skills": [
+        "./skills/hr-employer-branding"
+      ]
+    },
+    {
       "name": "hr-frontend",
       "source": "./",
       "description": "Help HR managers, recruiters, and talent acquisition teams understand Frontend Engineering concepts, hiring requirements, frontend ecosystems, candidate evaluation, and modern frontend workflows. Use when asked to \"explain frontend development\", \"screen frontend candidates\", \"understand React/Vue/Angular\", \"compare frontend frameworks\", \"evaluate frontend skills\", \"create frontend interview questions\", \"understand frontend architecture\", or any frontend hiring and recruiting task.",
@@ -109,6 +133,22 @@
       "description": "Help HR managers, recruiters, and talent acquisition teams understand Fullstack Engineering concepts, hiring requirements, cross-functional engineering workflows, frontend-backend integration, and modern end-to-end product development. Use when asked to \"explain fullstack development\", \"screen fullstack candidates\", \"understand frontend and backend together\", \"evaluate fullstack skills\", \"compare fullstack stacks\", \"create fullstack interview questions\", \"understand end-to-end product engineering\", or any fullstack hiring and recruiting task.",
       "skills": [
         "./skills/hr-fullstack"
+      ]
+    },
+    {
+      "name": "hr-interviewing",
+      "source": "./",
+      "description": "Help HR managers, recruiters, hiring managers, and interview panels design structured, competency-based interview questions, interview guides, and evaluation scorecards for any role. Use when asked to \"create interview questions\", \"design a structured interview\", \"generate behavioral questions\", \"build an interview scorecard\", \"evaluate candidates consistently\", \"reduce interview bias\", or any interview planning and assessment task.",
+      "skills": [
+        "./skills/hr-interviewing"
+      ]
+    },
+    {
+      "name": "hr-job-description",
+      "source": "./",
+      "description": "Help HR professionals, recruiters, hiring managers, and talent acquisition teams write clear, inclusive, and compelling job descriptions that attract qualified candidates. Use when asked to \"write a job description\", \"rewrite a JD\", \"create a job posting\", \"improve hiring requirements\", \"define responsibilities\", \"write hiring criteria\", or any job description and recruitment marketing task.",
+      "skills": [
+        "./skills/hr-job-description"
       ]
     },
     {
@@ -144,11 +184,43 @@
       ]
     },
     {
+      "name": "hr-organizational-development",
+      "source": "./",
+      "description": "Help HR business partners, OD consultants, and people leaders understand, design, and lead organizational design, change management, and culture transformation initiatives. Use when asked to \"redesign our org structure\", \"lead a change management plan\", \"run a culture assessment\", \"design a reorganization\", \"build a change communication plan\", \"assess organizational health\", \"facilitate a team effectiveness session\", \"design a merger integration plan\", or any organizational design, change, and culture task.",
+      "skills": [
+        "./skills/hr-organizational-development"
+      ]
+    },
+    {
+      "name": "hr-payroll",
+      "source": "./",
+      "description": "Help HR operations specialists, payroll administrators, and compensation teams understand, design, and run payroll processing, compliance, and payroll-related HR operations. Use when asked to \"set up a payroll process\", \"run a payroll compliance audit\", \"design a payroll calendar\", \"handle a payroll discrepancy\", \"build a payroll onboarding checklist\", \"calculate overtime and statutory deductions\", \"design a multi-country payroll process\", or any payroll administration, compliance, and operations task.",
+      "skills": [
+        "./skills/hr-payroll"
+      ]
+    },
+    {
+      "name": "hr-people-operations",
+      "source": "./",
+      "description": "Help HR managers, People Ops specialists, HRIS administrators, and HR generalists understand, design, and run core people operations processes. Use when asked to \"design an onboarding workflow\", \"set up an HRIS\", \"build an offboarding checklist\", \"create an employee handbook\", \"audit HR data quality\", \"design a people ops process\", \"automate HR workflows\", \"manage employee lifecycle transitions\", \"build an HR service delivery model\", or any operational, administrative, and systems-focused HR task.",
+      "skills": [
+        "./skills/hr-people-operations"
+      ]
+    },
+    {
       "name": "hr-performance-management",
       "source": "./",
       "description": "Help HR managers with performance management processes. Use when asked to \"write a performance review\", \"create a PIP\", \"design performance appraisal forms\", \"set employee goals\", \"conduct 360-degree feedback\", \"develop performance metrics\", or any other performance management task.",
       "skills": [
         "./skills/hr-performance-management"
+      ]
+    },
+    {
+      "name": "hr-performance-review",
+      "source": "./",
+      "description": "Help managers, HR professionals, and team leaders write fair, balanced, evidence-based performance reviews, self-assessments, and development plans. Use when asked to \"write a performance review\", \"draft manager feedback\", \"evaluate employee performance\", \"write appraisal comments\", \"create a development plan\", \"review employee goals\", or any employee performance evaluation task.",
+      "skills": [
+        "./skills/hr-performance-review"
       ]
     },
     {
@@ -221,6 +293,14 @@
       "description": "Vietnam-specific HR guidance covering the Labor Code, Social Insurance Law, personal income tax registration, work permits for foreign workers, trade union obligations, and cultural norms for managing teams in Vietnam. Use when you need to navigate Vietnam employment law, onboard foreign staff, handle disciplinary procedures under Vietnamese law, or adapt global HR practices for the Vietnam market.",
       "skills": [
         "./skills/hr-vietnam-context"
+      ]
+    },
+    {
+      "name": "hr-wellbeing",
+      "source": "./",
+      "description": "Help HR business partners, wellbeing program managers, and people leaders understand, design, and run employee wellbeing, mental health, and work-life balance initiatives. Use when asked to \"design a wellbeing program\", \"run a burnout risk assessment\", \"build a mental health support plan\", \"design a flexible work policy\", \"respond to a wellbeing crisis\", \"measure employee wellbeing\", \"design a return-to-work plan after burnout leave\", or any employee wellbeing, mental health, and work-life balance task.",
+      "skills": [
+        "./skills/hr-wellbeing"
       ]
     },
     {
