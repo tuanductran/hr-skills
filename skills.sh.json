@@ -1,0 +1,72 @@
+{
+	"$schema": "https://skills.sh/schemas/skills.sh.schema.json",
+	"notGrouped": "bottom",
+	"groupings": [
+		{
+			"title": "Core HR",
+			"description": "Core HR operations, employee lifecycle, compliance, payroll, compensation, wellbeing, and day-to-day HR management.",
+			"skills": [
+				"hr-people-operations",
+				"hr-technology",
+				"hr-compliance",
+				"hr-payroll",
+				"hr-onboarding",
+				"hr-employee-relations",
+				"hr-conflict-resolution",
+				"hr-performance-management",
+				"hr-performance-review",
+				"hr-compensation-benefits",
+				"hr-total-rewards",
+				"hr-training-development",
+				"hr-employee-engagement",
+				"hr-wellbeing",
+				"hr-diversity-inclusion"
+			]
+		},
+		{
+			"title": "People Strategy",
+			"description": "Strategic HR, HR business partnering, workforce planning, talent, leadership, organization development, and people analytics.",
+			"skills": [
+				"hr-business-partner",
+				"hr-organizational-development",
+				"hr-change-management",
+				"hr-workforce-planning",
+				"hr-talent-management",
+				"hr-leadership-development",
+				"hr-kpi",
+				"hr-analytics"
+			]
+		},
+		{
+			"title": "Recruiting",
+			"description": "Talent acquisition, interviewing, employer branding, and job description creation.",
+			"skills": [
+				"hr-recruiting",
+				"hr-job-description",
+				"hr-interviewing",
+				"hr-employer-branding"
+			]
+		},
+		{
+			"title": "Technical Recruiting",
+			"description": "Hiring guides for software engineering, AI, data, design, infrastructure, security, and QA roles.",
+			"skills": [
+				"hr-ai",
+				"hr-data",
+				"hr-frontend",
+				"hr-backend",
+				"hr-fullstack",
+				"hr-mobile",
+				"hr-devops",
+				"hr-security",
+				"hr-qa",
+				"hr-uiux"
+			]
+		},
+		{
+			"title": "Regional",
+			"description": "Country-specific HR regulations, labor law, and employment practices.",
+			"skills": ["hr-vietnam-context"]
+		}
+	]
+}
