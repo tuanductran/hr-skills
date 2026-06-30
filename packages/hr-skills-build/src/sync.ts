@@ -158,8 +158,6 @@ function buildSkillDocsSection(meta: SkillMeta): string | null {
 	const triggerList = meta.triggerPhrases.map((phrase) => `- "${phrase}"`).join('\n');
 
 	return [
-		'---',
-		'',
 		`## ${meta.name}`,
 		'',
 		`**What it covers:** ${meta.coverage}.`,
@@ -199,10 +197,9 @@ async function syncSkillsDocs(metas: SkillMeta[]): Promise<boolean> {
 		sections.push(section);
 	}
 
-	const rebuilt =
-		sections.length > 0
-			? `${preamble}\n\n${sections.join('\n\n')}\n`
-			: `${preamble}\n`;
+	const body = sections.join('\n\n---\n\n');
+
+	const rebuilt = [preamble, '', '---', '', body, ''].join('\n');
 
 	if (rebuilt === original) {
 		return false;

@@ -11,10 +11,6 @@ A complete reference for all available HR skills, including coverage areas and e
 
 ---
 
----
-
----
-
 ## hr-ai
 
 **What it covers:** Help HR managers, recruiters, and talent acquisition teams understand Artificial Intelligence (AI), Machine Learning (ML), Generative AI, LLM Engineering, AI Infrastructure, and modern AI product development workflows.
