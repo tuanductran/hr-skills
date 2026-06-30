@@ -1,23 +1,22 @@
-/** Skill-related error hierarchy. */
-
+/** Base error for all skill-related failures. */
 export class SkillError extends Error {
-	constructor(message: string) {
-		super(message);
+	constructor(message: string, options?: ErrorOptions) {
+		super(message, options);
 
 		this.name = new.target.name;
-
-		Object.setPrototypeOf(this, new.target.prototype);
 	}
 }
 
 export class ParseError extends SkillError {}
 
 export class ValidationError extends SkillError {
-	public readonly errors: readonly string[];
+	constructor(
+		message: string,
+		public readonly errors: readonly string[] = [message],
+		options?: ErrorOptions,
+	) {
+		super(message, options);
 
-	constructor(message: string, errors?: string[]) {
-		super(message);
-
-		this.errors = Object.freeze(errors ?? [message]);
+		Object.freeze(this.errors);
 	}
 }

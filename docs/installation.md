@@ -86,6 +86,7 @@ For deep focus work (for example a full recruiting campaign), create a dedicated
 | `hr-employee-relations` | Help HR managers with employee relations matters |
 | `hr-frontend` | Help HR managers, recruiters, and talent acquisition teams und… |
 | `hr-fullstack` | Help HR managers, recruiters, and talent acquisition teams und… |
+| `hr-kpi` | Help HR managers, people analytics teams, and HR business part… |
 | `hr-leadership-development` | Help HR managers with leadership development programs |
 | `hr-mobile` | Help HR managers, recruiters, and talent acquisition teams und… |
 | `hr-onboarding` | Help HR managers with employee onboarding and offboarding |
@@ -93,7 +94,9 @@ For deep focus work (for example a full recruiting campaign), create a dedicated
 | `hr-qa` | Help HR managers, recruiters, and talent acquisition teams und… |
 | `hr-recruiting` | Help HR managers with end-to-end recruiting and talent acquisi… |
 | `hr-security` | Help HR managers, recruiters, and talent acquisition teams und… |
+| `hr-talent-management` | Help HR managers, HRBPs, L&D leads, and people operations team… |
 | `hr-technology` | Help HR managers with HR technology strategy and implementation |
+| `hr-total-rewards` | Help HR managers, compensation analysts, benefits specialists,… |
 | `hr-training-development` | Help HR managers with learning and development programs |
 | `hr-uiux` | Help HR managers, recruiters, and talent acquisition teams und… |
 | `hr-vietnam-context` | Vietnam-specific HR guidance covering the Labor Code, Social I… |

@@ -1,33 +1,16 @@
 /** Skill validation logic. */
 
 import { existsSync, readFileSync, statSync } from 'node:fs';
-
 import { basename } from 'node:path';
-
+import {
+	ALLOWED_FRONTMATTER_FIELDS,
+	MAX_COMPATIBILITY_LENGTH,
+	MAX_DESCRIPTION_LENGTH,
+	MAX_SKILL_NAME_LENGTH,
+	SKILL_NAME_REGEX,
+} from './constants.js';
 import { ParseError } from './errors.js';
-
 import { findSkillMd, parseFrontmatter } from './parser.js';
-
-// -----------------------------------------------------------------------------
-// Constants
-// -----------------------------------------------------------------------------
-
-const MAX_SKILL_NAME_LENGTH = 64;
-
-const MAX_DESCRIPTION_LENGTH = 1024;
-
-const MAX_COMPATIBILITY_LENGTH = 500;
-
-const SKILL_NAME_REGEX = /^[a-z0-9-]+$/;
-
-const ALLOWED_FRONTMATTER_FIELDS = new Set([
-	'name',
-	'description',
-	'license',
-	'allowed-tools',
-	'metadata',
-	'compatibility',
-]);
 
 // -----------------------------------------------------------------------------
 // Validators

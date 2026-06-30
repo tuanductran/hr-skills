@@ -11,104 +11,11 @@ import { join } from 'node:path';
 
 import { consola } from 'consola';
 
-import { getHrSkills, SKILLS_DIR } from './config.js';
-import { extractMatch, parseFrontmatter, TASKS_REGEX } from './utils.js';
-
-// -----------------------------------------------------------------------------
-// Regex patterns (catalog-specific)
-// -----------------------------------------------------------------------------
-
-const TASK_ITEM_REGEX = /^- /;
-
-// -----------------------------------------------------------------------------
-// Types
-// -----------------------------------------------------------------------------
-
-interface SkillCatalogEntry {
-	name: string;
-	description: string;
-	author: string;
-	version: string;
-	supportedTasks: string[];
-}
-
-// -----------------------------------------------------------------------------
-// Helpers
-// -----------------------------------------------------------------------------
-
-function extractTasks(content: string): string[] {
-	const tasksBlock = extractMatch(TASKS_REGEX, content);
-
-	if (!tasksBlock) {
-		return [];
-	}
-
-	return tasksBlock
-		.split('\n')
-		.filter((line) => TASK_ITEM_REGEX.test(line))
-		.map((line) => line.replace(TASK_ITEM_REGEX, '').trim())
-		.filter(Boolean);
-}
-
-function createSection(skill: SkillCatalogEntry): string {
-	const lines: string[] = [
-		`## ${skill.name}`,
-		'',
-		skill.description,
-		'',
-		`Version: ${skill.version} · Author: ${skill.author}`,
-	];
-
-	if (skill.supportedTasks.length > 0) {
-		lines.push('', '**Supported tasks:**', '');
-
-		for (const task of skill.supportedTasks.slice(0, 8)) {
-			lines.push(`- ${task}`);
-		}
-	}
-
-	return lines.join('\n');
-}
-
-// -----------------------------------------------------------------------------
-// Skill parser
-// -----------------------------------------------------------------------------
-
-async function parseSkill(skillName: string): Promise<SkillCatalogEntry | null> {
-	const skillPath = join(SKILLS_DIR, skillName, 'SKILL.md');
-
-	try {
-		const content = await Bun.file(skillPath).text();
-
-		const frontmatter = parseFrontmatter(content);
-
-		const name = frontmatter.name ?? skillName;
-
-		const description = frontmatter.description ?? '';
-
-		const author = frontmatter.metadata?.author ?? 'Tuan Duc Tran';
-
-		const version = frontmatter.metadata?.version ?? '1.0.0';
-
-		const supportedTasks = extractTasks(content);
-
-		return {
-			name,
-			description,
-			author,
-			version,
-			supportedTasks,
-		};
-	} catch (error: unknown) {
-		const message = error instanceof Error ? error.message : 'Unknown error';
-
-		consola.error(`Could not read ${skillName}/SKILL.md`);
-
-		consola.error(message);
-
-		return null;
-	}
-}
+import { getHrSkills } from './config.js';
+import { SKILLS_DIR } from './constants.js';
+import { createSection } from './helpers.js';
+import type { SkillCatalogEntry } from './types.js';
+import { parseSkill } from './utils.js';
 
 // -----------------------------------------------------------------------------
 // Markdown generator
@@ -173,7 +80,9 @@ async function catalog(): Promise<void> {
 
 	await Bun.write(outputPath, markdown);
 
-	consola.success(`Catalog written to skills/CATALOG.md (${skills.length} skills)`);
+	consola.success(`Generated catalog with ${skills.length} HR skills.`);
 }
 
-void catalog();
+if (import.meta.main) {
+	await catalog();
+}

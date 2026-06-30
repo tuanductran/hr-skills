@@ -1,15 +1,7 @@
 /** Data models for Agent Skills. */
 
-export interface SkillProperties {
-	name: string;
-	description: string;
-	license?: string;
-	compatibility?: string;
-	allowedTools?: string;
-	metadata?: Record<string, string>;
-}
-
-const ALLOWED_TOOLS_KEY = 'allowed-tools' as const;
+import { ALLOWED_TOOLS_KEY } from './constants.js';
+import type { SkillProperties } from './types.js';
 
 export function toDict(props: SkillProperties): Record<string, unknown> {
 	const result: Record<string, unknown> = {

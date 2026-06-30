@@ -2,8 +2,6 @@
 
 Reference library for Agent Skills — validate, read, and generate prompts from `SKILL.md` files.
 
-TypeScript port of [agentskills/agentskills skills-ref](https://github.com/agentskills/agentskills/tree/main/skills-ref), bundled with `obuild`.
-
 ## Installation
 
 ```bash
@@ -21,11 +19,10 @@ The published package contents are limited to `dist/`. The package doesn't expos
 
 | Command | Purpose |
 |---------|---------|
-| `bun run build` | Bundle the library with `obuild` using `build.config.ts` |
+| `bun run build` | Bundle the library with `tsdown` using `tsdown.config.ts` |
 | `bun run dev` | Watch `src/index.ts` during local development |
 | `bun run test` | Run Bun tests for the package |
 | `bun run typecheck` | Type-check the package without emitting files |
-| `bun run clean` | Remove the generated `dist/` directory |
 
 ## Programmatic API
 

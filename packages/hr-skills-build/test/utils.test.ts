@@ -1,10 +1,7 @@
 import { describe, expect, it } from 'bun:test';
-import {
-	extractMatch,
-	FRONTMATTER_REGEX,
-	parseFrontmatter,
-	TASKS_REGEX,
-} from '../src/utils.js';
+import { FRONTMATTER_REGEX, TASKS_REGEX } from '../src/constants.js';
+import { extractMatch } from '../src/helpers.js';
+import { parseFrontmatter } from '../src/utils.js';
 
 const SAMPLE_SKILL = `---
 name: hr-test

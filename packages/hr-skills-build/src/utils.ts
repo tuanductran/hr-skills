@@ -5,43 +5,19 @@
  * to avoid duplicating constants and helpers.
  */
 
+import consola from 'consola';
 import { parse } from 'yaml';
-
-// -----------------------------------------------------------------------------
-// Regex patterns
-// -----------------------------------------------------------------------------
-
-/** Matches the full YAML frontmatter block including delimiters. */
-export const FRONTMATTER_REGEX = /^---\r?\n([\s\S]*?)\r?\n---/;
-
-/** Matches the `## Supported tasks` block content. */
-export const TASKS_REGEX = /## Supported tasks\r?\n\r?\n([\s\S]*?)(?=\r?\n##|$)/;
-
-// -----------------------------------------------------------------------------
-// Types
-// -----------------------------------------------------------------------------
-
-export interface SkillFrontmatter {
-	name?: string;
-	description?: string;
-	metadata?: {
-		author?: string;
-		version?: string;
-	};
-}
-
-// -----------------------------------------------------------------------------
-// Helpers
-// -----------------------------------------------------------------------------
-
-/**
- * Extract the first capture group from a regex match.
- *
- * Returns `null` when the regex does not match.
- */
-export function extractMatch(regex: RegExp, content: string): string | null {
-	return regex.exec(content)?.[1]?.trim() ?? null;
-}
+import {
+	FRONTMATTER_REGEX,
+	KEY_PROMPTS_REGEX,
+	PERIOD_REGEX,
+	QUOTED_PROMPT_REGEX,
+	TASK_ITEM_REGEX,
+	TASKS_REGEX,
+	USE_WHEN_REGEX,
+} from './constants.js';
+import { extractMatch, extractTasks, readSkill } from './helpers.js';
+import type { SkillCatalogEntry, SkillFrontmatter, SkillMeta } from './types.js';
 
 /**
  * Parse YAML frontmatter from a markdown document.
@@ -93,5 +69,97 @@ export function parseFrontmatter(content: string): SkillFrontmatter {
 		};
 	} catch {
 		return {};
+	}
+}
+
+// -----------------------------------------------------------------------------
+// Skill parser
+// -----------------------------------------------------------------------------
+
+export async function parseSkillMeta(skillName: string): Promise<SkillMeta> {
+	const { content, frontmatter } = await readSkill(skillName);
+
+	const name = frontmatter.name ?? skillName;
+
+	const description = frontmatter.description ?? '';
+
+	// Remove "Use when..." section from description
+	const useWhenIndex = description.search(USE_WHEN_REGEX);
+
+	const coverage =
+		useWhenIndex !== -1
+			? description.slice(0, useWhenIndex).trim().replace(PERIOD_REGEX, '')
+			: description.trim().replace(PERIOD_REGEX, '');
+
+	// Supported tasks
+	const tasksBlock = extractMatch(TASKS_REGEX, content) ?? '';
+
+	const supportedTasks = tasksBlock
+		.split('\n')
+		.filter((line) => TASK_ITEM_REGEX.test(line))
+		.map((line) => line.replace(TASK_ITEM_REGEX, '').trim())
+		.filter(Boolean);
+
+	// Trigger phrases
+	const keyPromptsBlock = extractMatch(KEY_PROMPTS_REGEX, content) ?? '';
+
+	const triggerPhrases: string[] = [];
+
+	for (const match of keyPromptsBlock.matchAll(QUOTED_PROMPT_REGEX)) {
+		if (triggerPhrases.length >= 5) {
+			break;
+		}
+
+		triggerPhrases.push(match[1]);
+	}
+
+	// Installation summary
+	const firstClause = coverage.split('—')[1]?.trim() ?? coverage;
+
+	const shortSummary =
+		firstClause.length > 65 ? `${firstClause.slice(0, 62)}…` : firstClause;
+
+	const scopeSentence = `${coverage.charAt(0).toUpperCase()}${coverage.slice(1)}.`;
+
+	return {
+		name,
+		description,
+		coverage,
+		shortSummary,
+		scopeSentence,
+		triggerPhrases,
+		supportedTasks,
+	};
+}
+
+export async function parseSkill(skillName: string): Promise<SkillCatalogEntry | null> {
+	try {
+		const { content, frontmatter } = await readSkill(skillName);
+
+		const name = frontmatter.name ?? skillName;
+
+		const description = frontmatter.description ?? '';
+
+		const author = frontmatter.metadata?.author ?? 'Tuan Duc Tran';
+
+		const version = frontmatter.metadata?.version ?? '1.0.0';
+
+		const supportedTasks = extractTasks(content);
+
+		return {
+			name,
+			description,
+			author,
+			version,
+			supportedTasks,
+		};
+	} catch (error: unknown) {
+		const message = error instanceof Error ? error.message : 'Unknown error';
+
+		consola.error(`Could not read ${skillName}/SKILL.md`);
+
+		consola.error(message);
+
+		return null;
 	}
 }

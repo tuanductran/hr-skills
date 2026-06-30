@@ -133,6 +133,7 @@ Generated files and package build outputs are cached through Turborepo based on 
 | **hr-employee-relations** | Help HR managers with employee relations matters. |
 | **hr-frontend** | Help HR managers, recruiters, and talent acquisition teams understand Frontend Engineering concepts, hiring requirements, frontend ecosystems, candidate evaluation, and modern frontend workflows. |
 | **hr-fullstack** | Help HR managers, recruiters, and talent acquisition teams understand Fullstack Engineering concepts, hiring requirements, cross-functional engineering workflows, frontend-backend integration, and modern end-to-end product development. |
+| **hr-kpi** | Help HR managers, people analytics teams, and HR business partners understand, select, calculate, and act on HR KPIs and workforce metrics. |
 | **hr-leadership-development** | Help HR managers with leadership development programs. |
 | **hr-mobile** | Help HR managers, recruiters, and talent acquisition teams understand Mobile Development, iOS, Android, cross-platform engineering, mobile app architecture, and modern mobile ecosystems. |
 | **hr-onboarding** | Help HR managers with employee onboarding and offboarding. |
@@ -140,7 +141,9 @@ Generated files and package build outputs are cached through Turborepo based on 
 | **hr-qa** | Help HR managers, recruiters, and talent acquisition teams understand Quality Assurance (QA), Software Testing, Test Automation, and modern Quality Engineering concepts. |
 | **hr-recruiting** | Help HR managers with end-to-end recruiting and talent acquisition. |
 | **hr-security** | Help HR managers, recruiters, and talent acquisition teams understand Cybersecurity, Application Security, Cloud Security, Security Operations, Penetration Testing, and modern security engineering workflows. |
+| **hr-talent-management** | Help HR managers, HRBPs, L&D leads, and people operations teams understand, design, and execute talent management systems. |
 | **hr-technology** | Help HR managers with HR technology strategy and implementation. |
+| **hr-total-rewards** | Help HR managers, compensation analysts, benefits specialists, and total rewards leaders understand, design, and communicate total rewards programs. |
 | **hr-training-development** | Help HR managers with learning and development programs. |
 | **hr-uiux** | Help HR managers, recruiters, and talent acquisition teams understand UI/UX Design, Product Design, Design Systems, User Research, Interaction Design, and modern digital product design workflows. |
 | **hr-vietnam-context** | Vietnam-specific HR guidance covering the Labor Code, Social Insurance Law, personal income tax registration, work permits for foreign workers, trade union obligations, and cultural norms for managing teams in Vietnam. |

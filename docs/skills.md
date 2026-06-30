@@ -7,7 +7,8 @@ A complete reference for all available HR skills, including coverage areas and e
 >
 > This repository is maintained as a Bun + Turborepo monorepo. Some documentation and references are generated automatically via `bun run sync`.
 >
-> Extended domain guides for each skill are in [`content/<skill-name>/README.md`](../content/).
+> Extended domain guides and supporting content for each skill are located alongside `SKILL.md` in the corresponding `skills/<skill-name>/` directory.
+
 ---
 
 ## hr-ai
@@ -21,6 +22,7 @@ A complete reference for all available HR skills, including coverage areas and e
 - "Compare the roles of [AI Engineer, ML Engineer, Data Scientist, and Research Engineer] to help me plan hiring for [our new AI team]."
 - "Why are companies investing heavily in [generative AI and LLM integration]?"
 - "What AI skills are most important for [Applied AI Engineer vs ML Infrastructure Engineer] in 2026?"
+
 ---
 
 ## hr-analytics
@@ -34,6 +36,7 @@ A complete reference for all available HR skills, including coverage areas and e
 - "What KPIs should I include in a monthly HR dashboard for senior leadership?"
 - "How should I define and calculate [specific metric, for example, time-to-fill, turnover rate, cost-per-hire]?"
 - "What are the industry benchmarks for [HR metric] in [industry/company size]?"
+
 ---
 
 ## hr-backend
@@ -47,6 +50,7 @@ A complete reference for all available HR skills, including coverage areas and e
 - "What is the difference between [frontend, backend, and DevOps] roles?"
 - "What backend skills are most important for [Junior vs Senior server-side roles]?"
 - "How does backend engineering impact [application scalability, data security, and business performance]?"
+
 ---
 
 ## hr-compensation-benefits
@@ -60,6 +64,7 @@ A complete reference for all available HR skills, including coverage areas and e
 - "How should I calculate competitive pay rates for [role] using survey data from [sources]?"
 - "Help me create a salary survey report that benchmarks our compensation against [industry/competitors]."
 - "What methodology should I use to conduct a job evaluation for [position] to determine its appropriate pay grade?"
+
 ---
 
 ## hr-compliance
@@ -73,6 +78,7 @@ A complete reference for all available HR skills, including coverage areas and e
 - "How can I develop an affirmative action or positive discrimination strategy that meets local legal requirements?"
 - "What data should I collect and analyze to identify potential equal opportunity compliance risks in our hiring process?"
 - "How should I respond to a discrimination complaint or equal opportunity charge filed with a regulatory authority?"
+
 ---
 
 ## hr-conflict-resolution
@@ -86,6 +92,7 @@ A complete reference for all available HR skills, including coverage areas and e
 - "How can I use active listening techniques to understand and empathize with both conflicting parties?"
 - "What are effective strategies for de-escalating tense situations and diffusing workplace conflicts?"
 - "How should I conduct private and confidential conflict resolution discussions with each party?"
+
 ---
 
 ## hr-data
@@ -99,6 +106,7 @@ A complete reference for all available HR skills, including coverage areas and e
 - "What is the difference between [Data Analyst, Data Engineer, Data Scientist, and AI Engineer]?"
 - "Why are modern companies investing heavily in [scalable cloud data lakehouses]?"
 - "What data and analytics skills are most important in hiring for [our new business intelligence team]?"
+
 ---
 
 ## hr-devops
@@ -112,6 +120,7 @@ A complete reference for all available HR skills, including coverage areas and e
 - "What is the difference between [DevOps, SRE, Platform Engineer, and Cloud Engineer] roles?"
 - "Why is DevOps and automation important in modern software organizations aiming for [continuous delivery]?"
 - "What infrastructure and automation skills are most important for [Applied AI vs Cloud Infrastructure] roles in 2026?"
+
 ---
 
 ## hr-diversity-inclusion
@@ -125,6 +134,7 @@ A complete reference for all available HR skills, including coverage areas and e
 - "What measures can ensure that diversity and inclusion are embedded in our organization's core values?"
 - "How should I develop a diversity and inclusion roadmap with measurable milestones for [1 year/3 years]?"
 - "How can HR managers address resistance from senior leadership when introducing diversity and inclusion initiatives?"
+
 ---
 
 ## hr-employee-engagement
@@ -138,6 +148,7 @@ A complete reference for all available HR skills, including coverage areas and e
 - "What questions in an engagement survey most effectively identify the root causes of disengagement?"
 - "How should I analyze engagement survey results to prioritize actions with the greatest impact?"
 - "What engagement metrics should I track consistently to identify trends over time?"
+
 ---
 
 ## hr-employee-relations
@@ -151,6 +162,7 @@ A complete reference for all available HR skills, including coverage areas and e
 - "How should I analyze exit interview data to identify turnover trends and take corrective action?"
 - "Write stay interview questions that identify what keeps our best employees engaged and what risks their departure."
 - "How can I use stay interview insights to develop targeted retention initiatives?"
+
 ---
 
 ## hr-frontend
@@ -164,6 +176,7 @@ A complete reference for all available HR skills, including coverage areas and e
 - "What is the difference between [frontend, backend, and fullstack] developers?"
 - "What frontend skills are most important for [Junior vs Senior UI roles] in modern web development?"
 - "How does frontend engineering impact [user experience, conversion rates, and business metrics]?"
+
 ---
 
 ## hr-fullstack
@@ -177,6 +190,21 @@ A complete reference for all available HR skills, including coverage areas and e
 - "What is the difference between [frontend, backend, and fullstack] development?"
 - "What fullstack skills are most important in hiring for [our new product-led growth team]?"
 - "Why do startups often hire fullstack engineers to build [MVP prototypes]?"
+
+---
+
+## hr-kpi
+
+**What it covers:** Help HR managers, people analytics teams, and HR business partners understand, select, calculate, and act on HR KPIs and workforce metrics.
+
+**Use when you say:**
+
+- "Which 5–10 HR KPIs should [a 200-person SaaS company / a retail chain / a manufacturing plant] prioritize right now based on [our growth stage / retention challenges / cost pressure]?"
+- "Help me build a quarterly HR KPI scorecard for [our HR business partner team] to present to [the CEO and CFO]."
+- "What are the most important leading indicators versus lagging indicators in [HR KPI measurement]?"
+- "How do I choose between tracking [voluntary turnover rate] and [first-year turnover rate] for our retention strategy?"
+- "What HR KPIs matter most to [a CFO / CEO / Board] compared to what HR teams typically track internally?"
+
 ---
 
 ## hr-leadership-development
@@ -190,6 +218,7 @@ A complete reference for all available HR skills, including coverage areas and e
 - "How can I create a leadership development program that builds both technical and interpersonal skills?"
 - "Design a team leadership program that equips team leads with the skills to manage high-performing teams."
 - "What are the key components of an authentic leadership development program?"
+
 ---
 
 ## hr-mobile
@@ -203,6 +232,7 @@ A complete reference for all available HR skills, including coverage areas and e
 - "What is the difference between [iOS, Android, and cross-platform] mobile engineering workflows?"
 - "Why are cross-platform frameworks (for example, React Native, Flutter) highly popular for [early-stage startups]?"
 - "What mobile development skills are most important for [Junior vs Senior mobile developers]?"
+
 ---
 
 ## hr-onboarding
@@ -216,6 +246,7 @@ A complete reference for all available HR skills, including coverage areas and e
 - "What should an onboarding checklist for new hires in [role/department] include?"
 - "How can I design a personalized onboarding experience that addresses each new hire's specific role and needs?"
 - "What are the best practices for creating a structured new employee orientation for [in-person/remote/hybrid]?"
+
 ---
 
 ## hr-performance-management
@@ -229,6 +260,7 @@ A complete reference for all available HR skills, including coverage areas and e
 - "How should I structure a performance review conversation to be constructive and forward-looking?"
 - "What language should I use in performance reviews to provide clear, actionable feedback?"
 - "How can I write a performance review summary that accurately captures [employee's] contributions and development needs?"
+
 ---
 
 ## hr-qa
@@ -242,6 +274,7 @@ A complete reference for all available HR skills, including coverage areas and e
 - "What is the difference between [Manual QA, Automation QA, and SDET] roles?"
 - "Why is early software testing and quality strategy important for [accelerating shipping speed]?"
 - "What QA skills are most important for [e-commerce vs heavy cloud-native applications] in 2026?"
+
 ---
 
 ## hr-recruiting
@@ -255,6 +288,7 @@ A complete reference for all available HR skills, including coverage areas and e
 - "What are effective ways to phrase job requirements for a [job title] that appeal to qualified candidates while remaining inclusive?"
 - "How can we make our job descriptions more inclusive and welcoming to candidates from diverse backgrounds?"
 - "Describe the importance of creating compelling and accurate job descriptions to attract the right candidates."
+
 ---
 
 ## hr-security
@@ -268,6 +302,21 @@ A complete reference for all available HR skills, including coverage areas and e
 - "What is the difference between [AppSec, Cloud Security, SOC Analyst, and Penetration Tester] roles?"
 - "Why are cybersecurity teams critical for companies operating in [regulated industries like finance or healthcare]?"
 - "What security skills are most important for [Cloud Security vs Application Security] roles in 2026?"
+
+---
+
+## hr-talent-management
+
+**What it covers:** Help HR managers, HRBPs, L&D leads, and people operations teams understand, design, and execute talent management systems.
+
+**Use when you say:**
+
+- "Design a [quarterly / annual] performance review framework for [a 200-person SaaS company / a manufacturing plant] that balances [simplicity with rigor]."
+- "What is the difference between [performance rating scales] and [performance calibration], and which should we use for [our current team size]?"
+- "How do I run a manager calibration session to reduce [bias in performance ratings] across [departments with different standards]?"
+- "What are the most effective [continuous feedback] practices for [remote and hybrid teams] in 2026?"
+- "Help me design a [Performance Improvement Plan (PIP)] template for [a mid-level individual contributor] that is [fair, documented, and legally defensible]."
+
 ---
 
 ## hr-technology
@@ -281,6 +330,21 @@ A complete reference for all available HR skills, including coverage areas and e
 - "How should I develop HR technology selection criteria for evaluating [HRIS/ATS/LMS/payroll] vendors?"
 - "What are the key trends in HR technology that [company size/industry] should prioritize in [current year]?"
 - "How can I create an HR technology business case for investing in [specific system/capability]?"
+
+---
+
+## hr-total-rewards
+
+**What it covers:** Help HR managers, compensation analysts, benefits specialists, and total rewards leaders understand, design, and communicate total rewards programs.
+
+**Use when you say:**
+
+- "Help me write a [compensation philosophy] document for [a 150-person Series B startup] that defines our [market positioning strategy]."
+- "Design a [salary band structure] for [Engineering roles from Junior to Staff level] using [a 10-grade leveling framework]."
+- "What is the difference between [market lead, market match, and market lag] positioning, and which fits [our current funding stage and retention needs]?"
+- "How do I decide on [pay band width and overlap] when designing [salary structures for a fast-growing company]?"
+- "Help me design a [job leveling framework] that maps consistently across [Engineering, Sales, and G&A functions]."
+
 ---
 
 ## hr-training-development
@@ -294,6 +358,7 @@ A complete reference for all available HR skills, including coverage areas and e
 - "How can I use performance data and manager input to prioritize training investments?"
 - "What are the key steps to conducting a thorough organizational training needs assessment?"
 - "Create a training outline for [topic] for [audience, for example, new managers, customer service reps, sales team]."
+
 ---
 
 ## hr-uiux
@@ -307,6 +372,7 @@ A complete reference for all available HR skills, including coverage areas and e
 - "What is the difference between [UI Design, UX Design, and Product Design] roles?"
 - "Why are design systems important in [modern software teams with multiple product squads]?"
 - "What UI/UX skills are most important for [Product Designer vs UX Researcher] roles in 2026?"
+
 ---
 
 ## hr-vietnam-context
@@ -320,6 +386,7 @@ A complete reference for all available HR skills, including coverage areas and e
 - "Draft a Vietnam-compliant employment contract for a [full-time / part-time] [role title] with a salary of [amount] VND."
 - "Summarize an employee's rights when terminated without cause under Vietnam Labor Code, including severance pay calculation."
 - "What notice periods are legally required for resignation and employer-initiated termination in Vietnam?"
+
 ---
 
 ## hr-workforce-planning

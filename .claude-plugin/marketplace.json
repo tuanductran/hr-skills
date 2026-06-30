@@ -112,6 +112,14 @@
       ]
     },
     {
+      "name": "hr-kpi",
+      "source": "./",
+      "description": "Help HR managers, people analytics teams, and HR business partners understand, select, calculate, and act on HR KPIs and workforce metrics. Use when asked to \"build an HR dashboard\", \"choose strategic HR KPIs\", \"analyze turnover rate\", \"benchmark cost per hire\", \"explain HR metrics\", \"create an HR report for leadership\", \"measure training ROI\", \"track recruiting efficiency\", \"interpret HR data\", or any HR performance measurement and workforce analytics task.",
+      "skills": [
+        "./skills/hr-kpi"
+      ]
+    },
+    {
       "name": "hr-leadership-development",
       "source": "./",
       "description": "Help HR managers with leadership development programs. Use when asked to \"create a leadership program\", \"develop leadership competencies\", \"conduct leadership assessments\", \"design executive coaching\", \"create a leadership succession plan\", \"develop cross-cultural leadership training\", or any leadership development task.",
@@ -168,11 +176,27 @@
       ]
     },
     {
+      "name": "hr-talent-management",
+      "source": "./",
+      "description": "Help HR managers, HRBPs, L&D leads, and people operations teams understand, design, and execute talent management systems. Use when asked to \"build a succession plan\", \"design a performance management framework\", \"identify high potential employees\", \"create a career path\", \"build a competency model\", \"improve internal mobility\", \"design a talent review process\", \"measure employee engagement\", \"develop a retention strategy\", \"run a 9-box assessment\", or any talent development and workforce planning task.",
+      "skills": [
+        "./skills/hr-talent-management"
+      ]
+    },
+    {
       "name": "hr-technology",
       "source": "./",
       "description": "Help HR managers with HR technology strategy and implementation. Use when asked to \"evaluate HR systems\", \"implement an HRIS\", \"create an HR technology roadmap\", \"select an ATS\", \"develop HR chatbots\", \"manage HR automation\", \"write an HR technology RFP\", or any HR technology task.",
       "skills": [
         "./skills/hr-technology"
+      ]
+    },
+    {
+      "name": "hr-total-rewards",
+      "source": "./",
+      "description": "Help HR managers, compensation analysts, benefits specialists, and total rewards leaders understand, design, and communicate total rewards programs. Use when asked to \"design a compensation structure\", \"build a salary band\", \"run a pay equity analysis\", \"design a benefits package\", \"create a total rewards statement\", \"benchmark compensation against market\", \"design an incentive plan\", \"build a job leveling framework\", \"calculate compa-ratio\", or any compensation, benefits, and total rewards task.",
+      "skills": [
+        "./skills/hr-total-rewards"
       ]
     },
     {

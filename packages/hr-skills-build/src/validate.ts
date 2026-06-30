@@ -26,49 +26,22 @@
  *   bun run validate
  */
 
-import { readdir } from 'node:fs/promises';
 import { join } from 'node:path';
 import process from 'node:process';
 import { consola } from 'consola';
 import { validate as validateRef } from 'skills-ref';
-import { HR_SKILL_PREFIX, SKILLS_DIR } from './config.js';
-import { extractMatch, parseFrontmatter, TASKS_REGEX } from './utils.js';
-
-// -----------------------------------------------------------------------------
-// Constants
-// -----------------------------------------------------------------------------
-
-const REQUIRED_SECTIONS = ['## Supported tasks', '## Key prompts', '## Tips'];
-
-const MIN_DESCRIPTION_LENGTH = 50;
-
-const MIN_CONTENT_LENGTH = 1000;
-
-const TIPS_REGEX = /## Tips\r?\n\r?\n([\s\S]*?)(?=\r?\n##|$)/;
-
-// -----------------------------------------------------------------------------
-// Types
-// -----------------------------------------------------------------------------
-
-interface ValidationError {
-	skill: string;
-	message: string;
-}
-
-// -----------------------------------------------------------------------------
-// Helpers
-// -----------------------------------------------------------------------------
-
-async function discoverSkills(): Promise<string[]> {
-	const entries = await readdir(SKILLS_DIR, {
-		withFileTypes: true,
-	});
-
-	return entries
-		.filter((entry) => entry.isDirectory() && entry.name.startsWith(HR_SKILL_PREFIX))
-		.map((entry) => entry.name)
-		.sort();
-}
+import {
+	HR_SKILL_PREFIX,
+	MIN_CONTENT_LENGTH,
+	MIN_DESCRIPTION_LENGTH,
+	REQUIRED_SECTIONS,
+	SKILLS_DIR,
+	TASKS_REGEX,
+	TIPS_REGEX,
+} from './constants.js';
+import { discoverSkills, extractMatch } from './helpers.js';
+import type { ValidationError } from './types.js';
+import { parseFrontmatter } from './utils.js';
 
 // -----------------------------------------------------------------------------
 // Validators
@@ -273,4 +246,6 @@ async function validate(): Promise<void> {
 	consola.success(`All ${skillNames.length} HR skills are valid`);
 }
 
-void validate();
+if (import.meta.main) {
+	await validate();
+}
