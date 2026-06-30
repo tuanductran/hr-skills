@@ -2,6 +2,8 @@
 
 A collection of HR skills for Claude.ai and Claude Code that help HR managers with their day-to-day work. Skills are packaged AI prompt libraries that extend Claude's capabilities across all major HR domains.
 
+[![skills.sh](https://skills.sh/b/tuanductran/hr-skills)](https://skills.sh/tuanductran/hr-skills)
+
 Built by [Tuan Duc Tran](https://linkedin.com/in/tuanductran) for members of the Zalo **[HR/TA Job Onsite/Hybrid/Remote](https://zalo.me/g/mphdei134)** group — a community for Human Resources and Talent Acquisition professionals sharing Onsite, Hybrid, and Remote job opportunities.
 
 Skills follow the [Agent Skills](https://agentskills.io/) format.
@@ -19,10 +21,6 @@ cp -r skills/hr-{skill-name} ~/.claude/skills/
 ```
 
 **claude.ai:** Add the skill's `SKILL.md` to your project knowledge, or paste the content into the conversation.
-
-## Examples
-
-Use the [example workflows](./examples/) to see how the technical hiring skills support end-to-end recruiting scenarios. The examples include sample prompts, generated job descriptions, interview question sets, and scorecards for AI, backend, data, DevOps, frontend, fullstack, mobile, QA, security, and UI/UX roles.
 
 ## Skill structure
 
