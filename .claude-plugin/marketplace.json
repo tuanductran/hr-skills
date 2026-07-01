@@ -312,6 +312,14 @@
       ]
     },
     {
+      "name": "hr-social-recruiting",
+      "source": "./",
+      "description": "Help HR managers, recruiters, talent acquisition teams, employer branding specialists, and founders recruit effectively through social media platforms including LinkedIn, Facebook, Zalo, GitHub, Reddit, Discord, Slack communities, TikTok, Instagram, and X (Twitter). Use when asked to \"recruit on LinkedIn\", \"hire through Facebook groups\", \"avoid LinkedIn spam\", \"write recruiter outreach messages\", \"source passive candidates\", \"build employer branding on social media\", \"increase recruiter response rates\", or any social recruiting, online sourcing, or community recruiting task.",
+      "skills": [
+        "./skills/hr-social-recruiting"
+      ]
+    },
+    {
       "name": "hr-succession-planning",
       "source": "./",
       "description": "Help HR business partners, talent management specialists, and people leaders understand, design, and run succession planning, leadership pipeline development, and critical role continuity programs. Use when asked to \"build a succession plan\", \"identify high-potential talent\", \"assess leadership readiness\", \"map critical roles\", \"design a talent review process\", \"run a 9-box calibration\", \"build a leadership pipeline\", \"create a development plan for a successor\", or any succession planning, leadership continuity, and pipeline development task.",

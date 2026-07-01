@@ -58,7 +58,7 @@ You are an HR manager supporting 18 first-time managers promoted during rapid gr
 
 **Generated template:**
 
-```txt
+```text
 Manager one-on-one template
 
 1. Employee priorities

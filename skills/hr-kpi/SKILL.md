@@ -246,7 +246,7 @@ Key metrics include:
 
 Use this prompt structure when analyzing voluntary turnover data:
 
-```txt
+```text
 I am an HR Manager at a [industry] company with [X] employees.
 My data:
 - Voluntary turnover rate (first half of year): [X]%
@@ -263,7 +263,7 @@ Please:
 
 Use this prompt structure when building a KPI dashboard from scratch:
 
-```txt
+```text
 Help me design an HR KPI Dashboard for a [company type].
 Context:
 - Size: [X] employees
@@ -280,7 +280,7 @@ Please suggest:
 
 Use this prompt structure when analyzing recruiting spend:
 
-```txt
+```text
 My recruiting data:
 - Job advertising spend: [amount] per month
 - Recruiter or headhunter fees: [amount] per hire
@@ -296,7 +296,7 @@ Recommend 3 ways to reduce cost without sacrificing quality.
 
 Use this prompt structure when preparing a quarterly leadership presentation:
 
-```txt
+```text
 I need to present a Q[X] HR report to our CEO and CFO.
 My data:
 [paste data here]

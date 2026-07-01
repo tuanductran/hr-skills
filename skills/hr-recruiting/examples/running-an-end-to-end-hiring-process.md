@@ -43,7 +43,7 @@ You are a recruiter opening a Customer Success Manager role for a fast-growing B
 
 **Generated role brief excerpt:**
 
-```txt
+```text
 Role outcomes for first six months
 
 1. Own a portfolio of mid-market customers and maintain accurate account health plans.

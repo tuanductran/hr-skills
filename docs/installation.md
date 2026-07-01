@@ -111,6 +111,7 @@ For deep focus work (for example a full recruiting campaign), create a dedicated
 | `hr-recruiting` | Help HR managers with end-to-end recruiting and talent acquisi… |
 | `hr-security` | Help HR managers, recruiters, and talent acquisition teams und… |
 | `hr-skills-taxonomy` | Help HR business partners, talent management specialists, L&D … |
+| `hr-social-recruiting` | Help HR managers, recruiters, talent acquisition teams, employ… |
 | `hr-succession-planning` | Help HR business partners, talent management specialists, and … |
 | `hr-talent-management` | Help HR managers, HRBPs, L&D leads, and people operations team… |
 | `hr-technology` | Help HR managers with HR technology strategy and implementation |

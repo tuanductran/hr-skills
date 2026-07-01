@@ -40,7 +40,7 @@ The VP of Engineering question is not really about one person — it is a proxy 
 
 **Readiness tiers to apply to each critical role:**
 
-```txt
+```text
 Ready Now      → Could step into the role within 0–3 months with minimal support
 Ready 1–2 Yrs  → Has the trajectory but needs targeted development first
 Ready 3+ Yrs   → Long-term potential identified, early-stage development
@@ -49,7 +49,7 @@ No Successor   → No internal candidate identified — critical gap
 
 **Applying this to the VP of Engineering role:**
 
-```txt
+```text
 Candidate: Senior Engineering Manager (3 years tenure, owns largest platform team)
 Performance: Consistently exceeds expectations, last 2 cycles
 Gaps: No experience managing managers across multiple teams,
@@ -59,7 +59,7 @@ Classification: Ready in 1–2 years, with a structured stretch assignment
 
 **Coverage ratio across the 10 critical roles:**
 
-```txt
+```text
 3 roles — Ready Now
 4 roles — Ready in 1–2 Years
 2 roles — Ready in 3+ Years
@@ -141,7 +141,7 @@ Design the session around two axes — performance (horizontal) and potential (v
 
 **Resulting grid for this cohort (30 people):**
 
-```txt
+```text
 High Potential / High Performance   →  4 people  (core succession pool)
 High Potential / Moderate Performance → 5 people (development priority)
 Moderate Potential / High Performance → 9 people (strong specialists, retain)
@@ -189,7 +189,7 @@ Export to CSV or paste directly into the chat. Include columns for: employee ID 
 
 **Step 2 — Use this prompt structure:**
 
-```txt
+```text
 I am an HR Manager at a 220-person fintech company.
 Here is my current workforce data:
 [paste your data here]
@@ -211,7 +211,7 @@ Please:
 
 **Step 3 — Follow up with action planning:**
 
-```txt
+```text
 Based on this analysis, draft a 90-day retention and development plan
 for the highest-risk high performers identified. Focus on interventions
 that do not require a compensation cycle to implement.

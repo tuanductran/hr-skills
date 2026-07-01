@@ -38,7 +38,7 @@ Given your situation — a significant, multi-dimensional engagement decline wit
 
 **Option A — Company-level culture and experience relaunch (CEO-sponsored, visible, high-investment):**
 
-```txt
+```text
 Approach: CEO-sponsored culture refresh with a named initiative,
           company-wide communications, a culture task force, and
           a set of new or redesigned experience programs (onboarding,
@@ -54,7 +54,7 @@ Trade-off: High visibility and CEO sponsorship signal organizational
 
 **Option B — Manager-led team experience recovery (team-level, manager-enabled, HR-supported):**
 
-```txt
+```text
 Approach: Build manager capability for team-level experience design
           first; give managers a defined toolkit (team rituals,
           recognition practices, belonging conversation guides) and
@@ -70,7 +70,7 @@ Trade-off: Addresses the highest-impact lever (manager effectiveness)
 
 **Option C — Phased response (immediate listening and retention actions first, structural redesign second):**
 
-```txt
+```text
 Approach: Stay conversations and retention risk triage within
           2 weeks; root cause diagnosis and manager enablement
           kit in parallel; company-level experience redesign
@@ -193,7 +193,7 @@ Summarize the specific score declines, the root cause hypotheses from the diagno
 
 **Step 2 — Use this prompt structure:**
 
-```txt
+```text
 I am the Employee Experience Manager designing an engagement recovery
 plan for a 280-person fintech company. Our annual engagement score
 dropped from 71 to 58, with the largest declines in belonging (-18),
@@ -222,7 +222,7 @@ Please:
 
 **Step 3 — Follow up with experience design and measurement:**
 
-```txt
+```text
 Based on this recovery plan, draft a 90-day employee experience
 recovery measurement framework with specific behavioral and survey
 signals to track at the 30, 60, and 90-day marks to confirm the

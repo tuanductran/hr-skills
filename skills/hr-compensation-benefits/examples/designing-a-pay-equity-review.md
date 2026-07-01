@@ -65,7 +65,7 @@ You are an HR manager preparing the first structured pay equity review for a 450
 
 **Generated talking points:**
 
-```txt
+```text
 We are conducting a structured pay equity review to make sure employees doing comparable work are paid fairly and consistently.
 
 The review will compare employees within similar job families, levels, and locations. It will consider relevant business factors such as tenure, performance, role scope, and market differences.

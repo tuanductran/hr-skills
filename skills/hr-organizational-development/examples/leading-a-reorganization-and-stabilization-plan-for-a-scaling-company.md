@@ -40,7 +40,7 @@ The team leads' anxiety is not really about pods as a concept — it is about th
 
 **Option A — Full pod restructuring (all ICs move into pods):**
 
-```txt
+```text
 Structure: 6 cross-functional pods, each with embedded Engineering,
            Design, and Product members reporting to a Pod Lead
 Span of control: Pod Leads manage 6-8 people each (within healthy range)
@@ -50,7 +50,7 @@ Trade-off: Maximum cross-functional alignment, but removes functional
 
 **Option B — Dual reporting (functional managers retained, pod leads coordinate delivery):**
 
-```txt
+```text
 Structure: ICs remain under functional managers (Eng, Design, Product)
            for career development; Pod Leads coordinate day-to-day
            delivery work without formal reporting authority
@@ -62,7 +62,7 @@ Trade-off: Preserves career paths and existing manager trust, but
 
 **Option C — Phased transition (pilot with 2 pods before full rollout):**
 
-```txt
+```text
 Structure: 2 pilot pods formed from volunteers and lower-risk teams;
            remaining org stays functional for 1 quarter
 Span of control: Limited to pilot scope; full structure deferred
@@ -176,7 +176,7 @@ Summarize the structural decision, the specific concerns raised so far (anonymiz
 
 **Step 2 — Use this prompt structure:**
 
-```txt
+```text
 I am an HR Business Partner leading the change communication for a
 reorganization from functional departments to cross-functional pods
 at a 230-person product company.
@@ -198,7 +198,7 @@ Please:
 
 **Step 3 — Follow up with stabilization planning:**
 
-```txt
+```text
 Based on this plan, draft a 90-day stabilization check-in framework
 with specific questions to ask Pod Leads and team members at the
 30, 60, and 90-day marks to confirm the new structure is holding.

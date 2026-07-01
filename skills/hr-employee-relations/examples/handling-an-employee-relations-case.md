@@ -56,7 +56,7 @@ You are an HR manager receiving a complaint that an employee's manager yelled du
 
 **Generated case note:**
 
-```txt
+```text
 Employee relations case note
 
 Date opened: [date]

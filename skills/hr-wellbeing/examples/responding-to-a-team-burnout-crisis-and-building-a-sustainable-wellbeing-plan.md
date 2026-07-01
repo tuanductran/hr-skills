@@ -40,7 +40,7 @@ The leave cases and the engagement drop are not separate problems — they are l
 
 **Option A — Immediate workload reduction (pause non-critical work, redistribute load):**
 
-```txt
+```text
 Approach: Pause lower-priority initiatives for 4-6 weeks, redistribute
           critical work across a wider pool of contributors, bring in
           temporary contractor support for the most overloaded roles
@@ -54,7 +54,7 @@ Trade-off: Most directly addresses root cause, but requires leadership
 
 **Option B — Support layer addition (EAP promotion, manager training, no workload change):**
 
-```txt
+```text
 Approach: Increase visibility and access to existing EAP resources,
           train managers on recognizing burnout signals, encourage
           use of existing flexible work options
@@ -67,7 +67,7 @@ Trade-off: Easier and faster to implement, but risks looking like a
 
 **Option C — Phased combined response (immediate workload relief for the most affected team, paired with org-wide wellbeing program design):**
 
-```txt
+```text
 Approach: Immediate workload reduction and contractor support for the
           engineering and customer success teams showing acute signals,
           paired with a parallel effort to design a broader wellbeing
@@ -186,7 +186,7 @@ Summarize the situation, the support already offered to affected individuals, an
 
 **Step 2 — Use this prompt structure:**
 
-```txt
+```text
 I am an HR Business Partner responding to a burnout pattern in a
 140-person engineering and customer success organization following
 two quarters of sustained pressure from a product launch and
@@ -212,7 +212,7 @@ Please:
 
 **Step 3 — Follow up with stabilization planning:**
 
-```txt
+```text
 Based on this plan, draft a 90-day wellbeing monitoring framework
 with specific workload and engagement questions to check at the
 30, 60, and 90-day marks to confirm the risk has actually decreased.

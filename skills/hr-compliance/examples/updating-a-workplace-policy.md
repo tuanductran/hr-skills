@@ -61,7 +61,7 @@ You are an HR manager updating the company's remote work policy after inconsiste
 
 **Generated policy excerpt:**
 
-```txt
+```text
 Remote work eligibility depends on the role, business needs, performance expectations, team coverage, data security requirements, and the employee's approved work location.
 
 Employees must submit remote work requests through the standard HR process before changing their regular work arrangement or work location. Managers may not approve work from a new state or country without HR and payroll review.

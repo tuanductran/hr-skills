@@ -40,7 +40,7 @@ The underpayment and the cutoff concern are not separate issues — they are bot
 
 **Option A — Full simultaneous cutover (all three countries move at once):**
 
-```txt
+```text
 Approach: Vietnam, Singapore, and Philippines all move to the new
           platform in the same pay cycle
 Risk profile: Highest — any configuration error affects all three
@@ -52,7 +52,7 @@ Trade-off: Fastest path to a single unified system, but the Philippines
 
 **Option B — Phased country-by-country cutover (one country per cycle):**
 
-```txt
+```text
 Approach: Vietnam moves first (largest headcount, most mature data),
           Philippines second after the contribution mapping is fixed
           and validated, Singapore third aligned to quarter-end close
@@ -64,7 +64,7 @@ Trade-off: Slower full transition, but each cutover benefits from
 
 **Option C — Parallel run with validation period (old and new systems run together for one full cycle per country before cutover):**
 
-```txt
+```text
 Approach: Each country runs payroll on both the old vendor and the
           new platform for one cycle, reconciling outputs before
           fully retiring the old vendor
@@ -181,7 +181,7 @@ Summarize the specific error, the correction already made, the revised cutover p
 
 **Step 2 — Use this prompt structure:**
 
-```txt
+```text
 I am a Payroll Manager leading a phased migration from three local
 payroll vendors to a single global payroll platform across Vietnam,
 Singapore, and the Philippines.
@@ -207,7 +207,7 @@ Please:
 
 **Step 3 — Follow up with stabilization planning:**
 
-```txt
+```text
 Based on this plan, draft a 90-day post-cutover stabilization
 framework with specific error-rate and validation questions to
 check at the 30, 60, and 90-day marks for each country after its

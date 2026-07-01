@@ -26,7 +26,7 @@ You are an HR Manager at a SaaS company building a B2B project management platfo
 
 **Sample JD generated:**
 
-```txt
+```text
 Senior DevOps Engineer — B2B SaaS Platform
 
 About us:
@@ -139,7 +139,7 @@ Not a fit if:
 
 **Generated scorecard:**
 
-```txt
+```text
 SENIOR DEVOPS ENGINEER — INTERVIEW SCORECARD
 Candidate: _____________________ | Date: _____________
 Interviewer: ___________________|
@@ -231,7 +231,7 @@ _________________________________________________
 
 ## Full Hiring Workflow Summary
 
-```txt
+```text
 Define which DevOps role type is actually needed
                     ↓
 Write a focused JD scoped to one infrastructure track

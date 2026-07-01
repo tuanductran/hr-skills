@@ -543,6 +543,20 @@ A complete reference for all available HR skills, including coverage areas and e
 
 ---
 
+## hr-social-recruiting
+
+**What it covers:** Help HR managers, recruiters, talent acquisition teams, employer branding specialists, and founders recruit effectively through social media platforms including LinkedIn, Facebook, Zalo, GitHub, Reddit, Discord, Slack communities, TikTok, Instagram, and X (Twitter).
+
+**Use when you say:**
+
+- "Help me choose between [LinkedIn], [GitHub], and [Discord] for recruiting [role type] in [geography]."
+- "Design a 90-day social recruiting strategy for [startup/scale-up/enterprise] focused on [domain] hiring."
+- "Compare effectiveness and cost for recruiting [role] through [Platform A] vs [Platform B]."
+- "Create a recruiting funnel using [Platform 1], [Platform 2], and [Platform 3] for [target talent]."
+- "How should we adjust our social recruiting strategy for [remote vs location-specific] roles?"
+
+---
+
 ## hr-succession-planning
 
 **What it covers:** Help HR business partners, talent management specialists, and people leaders understand, design, and run succession planning, leadership pipeline development, and critical role continuity programs.

@@ -26,7 +26,7 @@ You are an HR Manager at a 150-person company running its first structured mid-y
 
 **Sample rating scale definitions generated:**
 
-```txt
+```text
 Our performance rating scale:
 
 4 — Exceptional
@@ -49,7 +49,7 @@ formal performance improvement plan.
 
 **Sample manager communication generated:**
 
-```txt
+```text
 Subject: Before you start writing reviews — please read
 
 Before drafting reviews this cycle, please review the rating
@@ -98,7 +98,7 @@ definitions above. A few things worth keeping in mind:
 
 **Sample review generated:**
 
-```txt
+```text
 Overall Performance Summary
 [Name] delivered strong results on core campaign goals this period,
 including [specific measurable outcome], while facing consistent
@@ -169,7 +169,7 @@ Next Period Goals
 
 **Generated calibration meeting plan:**
 
-```txt
+```text
 CALIBRATION MEETING AGENDA
 Attendees: 12 managers + HR facilitator
 Duration: 2.5 hours for ~100 employees (roughly 90 seconds per person,
@@ -222,7 +222,7 @@ After the meeting:
 
 ## Full Review Cycle Workflow Summary
 
-```txt
+```text
 Define and share rating scale definitions before reviews are written
                     ↓
 Send manager bias-awareness guide and a model example review

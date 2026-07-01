@@ -26,7 +26,7 @@ You are an HR Manager at a 400-person company still running core HR processes th
 
 **Sample JD generated:**
 
-```txt
+```text
 HRIS Manager — HR Systems Migration & Platform Ownership
 
 About us:
@@ -144,7 +144,7 @@ Not a fit if:
 
 **Generated scorecard:**
 
-```txt
+```text
 HRIS MANAGER — INTERVIEW SCORECARD
 Candidate: _____________________ | Date: _____________
 Interviewer: ___________________|
@@ -237,7 +237,7 @@ _________________________________________________
 
 ## Full Hiring Workflow Summary
 
-```txt
+```text
 Define HRIS role type clearly (Analyst vs Manager vs Systems Engineer)
                     ↓
 Write a focused JD with realistic implementation scope

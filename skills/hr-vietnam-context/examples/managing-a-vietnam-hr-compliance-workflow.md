@@ -59,7 +59,7 @@ You are an HR manager setting up a compliance workflow for a Vietnam-based team 
 
 **Generated message:**
 
-```txt
+```text
 Welcome to [Company]. To complete your onboarding and payroll setup in Vietnam, please provide the required documents listed in your onboarding checklist by [date].
 
 These documents help us prepare your employment contract, payroll profile, personal income tax registration, and applicable social insurance records.
