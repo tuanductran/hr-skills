@@ -81,6 +81,7 @@ For deep focus work (for example a full recruiting campaign), create a dedicated
 | `hr-compensation-benefits` | Help HR managers with compensation and benefits programs |
 | `hr-compliance` | Help HR managers with HR compliance and workplace policies |
 | `hr-conflict-resolution` | Help HR managers with workplace conflict resolution |
+| `hr-culture` | Help HR managers, recruiters, and people leaders understand, a… |
 | `hr-data` | Help HR managers, recruiters, and talent acquisition teams und… |
 | `hr-devops` | Help HR managers, recruiters, and talent acquisition teams und… |
 | `hr-diversity-inclusion` | Help HR managers with diversity, equity, and inclusion initiat… |
@@ -89,8 +90,10 @@ For deep focus work (for example a full recruiting campaign), create a dedicated
 | `hr-employer-branding` | Help HR leaders, talent acquisition teams, and employer brand … |
 | `hr-frontend` | Help HR managers, recruiters, and talent acquisition teams und… |
 | `hr-fullstack` | Help HR managers, recruiters, and talent acquisition teams und… |
+| `hr-hris` | Help HR managers, HR operations teams, and recruiters understa… |
 | `hr-interviewing` | Help HR managers, recruiters, hiring managers, and interview p… |
 | `hr-job-description` | Help HR professionals, recruiters, hiring managers, and talent… |
+| `hr-knowledge-management` | Help HR managers, People Ops teams, and recruiters understand … |
 | `hr-kpi` | Help HR managers, people analytics teams, and HR business part… |
 | `hr-leadership-development` | Help HR managers with leadership development programs |
 | `hr-mobile` | Help HR managers, recruiters, and talent acquisition teams und… |

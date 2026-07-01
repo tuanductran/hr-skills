@@ -3,29 +3,23 @@
 	"notGrouped": "bottom",
 	"groupings": [
 		{
-			"title": "Core HR",
-			"description": "Core HR operations, employee lifecycle, compliance, payroll, compensation, wellbeing, and day-to-day HR management.",
+			"title": "HR Operations",
+			"description": "Core HR operations, HR systems, compliance, payroll, documentation, and employee lifecycle management.",
 			"skills": [
 				"hr-people-operations",
+				"hr-hris",
 				"hr-technology",
-				"hr-compliance",
-				"hr-payroll",
+				"hr-knowledge-management",
 				"hr-onboarding",
+				"hr-payroll",
+				"hr-compliance",
 				"hr-employee-relations",
-				"hr-conflict-resolution",
-				"hr-performance-management",
-				"hr-performance-review",
-				"hr-compensation-benefits",
-				"hr-total-rewards",
-				"hr-training-development",
-				"hr-employee-engagement",
-				"hr-wellbeing",
-				"hr-diversity-inclusion"
+				"hr-conflict-resolution"
 			]
 		},
 		{
 			"title": "People Strategy",
-			"description": "Strategic HR, HR business partnering, workforce planning, talent, leadership, organization development, and people analytics.",
+			"description": "Strategic HR, HR business partnering, organizational effectiveness, workforce planning, and culture.",
 			"skills": [
 				"hr-business-partner",
 				"hr-organizational-development",
@@ -33,13 +27,17 @@
 				"hr-workforce-planning",
 				"hr-talent-management",
 				"hr-leadership-development",
-				"hr-kpi",
-				"hr-analytics"
+				"hr-culture"
 			]
 		},
 		{
-			"title": "Recruiting",
-			"description": "Talent acquisition, interviewing, employer branding, and job description creation.",
+			"title": "People Analytics",
+			"description": "HR analytics, workforce metrics, dashboards, and strategic decision making.",
+			"skills": ["hr-analytics", "hr-kpi"]
+		},
+		{
+			"title": "Talent Acquisition",
+			"description": "Hiring, interviewing, employer branding, and candidate experience.",
 			"skills": [
 				"hr-recruiting",
 				"hr-job-description",
@@ -48,8 +46,22 @@
 			]
 		},
 		{
+			"title": "Employee Experience",
+			"description": "Performance, learning, engagement, wellbeing, rewards, and inclusive workplaces.",
+			"skills": [
+				"hr-performance-management",
+				"hr-performance-review",
+				"hr-training-development",
+				"hr-employee-engagement",
+				"hr-wellbeing",
+				"hr-diversity-inclusion",
+				"hr-compensation-benefits",
+				"hr-total-rewards"
+			]
+		},
+		{
 			"title": "Technical Recruiting",
-			"description": "Hiring guides for software engineering, AI, data, design, infrastructure, security, and QA roles.",
+			"description": "Hiring guides for software engineering, AI, data, infrastructure, security, QA, and product design roles.",
 			"skills": [
 				"hr-ai",
 				"hr-data",
@@ -65,7 +77,7 @@
 		},
 		{
 			"title": "Regional",
-			"description": "Country-specific HR regulations, labor law, and employment practices.",
+			"description": "Country-specific employment law and HR practices.",
 			"skills": ["hr-vietnam-context"]
 		}
 	]

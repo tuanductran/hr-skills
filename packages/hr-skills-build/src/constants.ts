@@ -21,8 +21,6 @@ export const USE_WHEN_REGEX = /Use when/i;
 
 export const PERIOD_REGEX = /\.$/;
 
-export const SKILL_SECTION_START_REGEX = /\n## hr-/;
-
 export const FRONTMATTER_REGEX = /^---\r?\n([\s\S]*?)\r?\n---/;
 
 export const TASKS_REGEX = /## Supported tasks\r?\n\r?\n([\s\S]*?)(?=\r?\n##|$)/;

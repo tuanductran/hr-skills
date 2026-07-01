@@ -123,6 +123,20 @@ A complete reference for all available HR skills, including coverage areas and e
 
 ---
 
+## hr-culture
+
+**What it covers:** Help HR managers, recruiters, and people leaders understand, assess, build, and communicate organizational culture.
+
+**Use when you say:**
+
+- "Explain organizational culture in simple terms for [new managers/founders]."
+- "What is the difference between [company values], [culture], and [employer brand]?"
+- "Why does [a strong founding culture] often break down as a company scales from [50 to 500 people]?"
+- "What are the most common culture models (for example, Competing Values Framework, Schein's levels) and how do they apply to [our company stage]?"
+- "How do unwritten norms end up mattering more than official values in [most organizations]?"
+
+---
+
 ## hr-data
 
 **What it covers:** Help HR managers, recruiters, and talent acquisition teams understand Data Engineering, Data Analytics, Data Science, Business Intelligence, Machine Learning, and modern data ecosystems.
@@ -235,6 +249,20 @@ A complete reference for all available HR skills, including coverage areas and e
 
 ---
 
+## hr-hris
+
+**What it covers:** Help HR managers, HR operations teams, and recruiters understand HRIS (Human Resource Information Systems), including HRIS platforms, implementation and migration, system integrations, employee data management, HR automation, and HRIS-related hiring.
+
+**Use when you say:**
+
+- "Explain what an HRIS actually does, in simple terms, for [a founder who has never used one]."
+- "What is the difference between an [HRIS], an [HCM], and an [ATS]?"
+- "Why do companies eventually outgrow spreadsheet-based HR processes?"
+- "What are the core modules a typical HRIS includes (for example, core HR, payroll, benefits, time tracking)?"
+- "What should [a 50-person company] look for differently than [a 2,000-person company] when choosing an HRIS?"
+
+---
+
 ## hr-interviewing
 
 **What it covers:** Help HR managers, recruiters, hiring managers, and interview panels design structured, competency-based interview questions, interview guides, and evaluation scorecards for any role.
@@ -260,6 +288,20 @@ A complete reference for all available HR skills, including coverage areas and e
 - "Write a modern job posting for a [HR Business Partner]."
 - "Generate a job description for a [Customer Success Manager] with 30/60/90-day success expectations."
 - "Write a compelling job description for a startup hiring its first [Marketing Manager]."
+
+---
+
+## hr-knowledge-management
+
+**What it covers:** Help HR managers, People Ops teams, and recruiters understand HR knowledge management, including HR knowledge bases, policy and SOP documentation, employee self-service content, tribal knowledge capture, and knowledge management tooling.
+
+**Use when you say:**
+
+- "Explain what an HR knowledge base actually is and why it matters, for [a founder who has never had one]."
+- "What is the difference between [a knowledge base], [an employee handbook], and [an SOP library]?"
+- "Why do companies lose critical process knowledge when experienced employees leave?"
+- "What are the core content types a mature HR knowledge base usually includes?"
+- "What should [a 30-person company] prioritize differently than [a 1,000-person company] when building HR documentation?"
 
 ---
 

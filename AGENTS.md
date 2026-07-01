@@ -128,6 +128,7 @@ Generated files and package build outputs are cached through Turborepo based on 
 | **hr-compensation-benefits** | Help HR managers with compensation and benefits programs. |
 | **hr-compliance** | Help HR managers with HR compliance and workplace policies. |
 | **hr-conflict-resolution** | Help HR managers with workplace conflict resolution. |
+| **hr-culture** | Help HR managers, recruiters, and people leaders understand, assess, build, and communicate organizational culture. |
 | **hr-data** | Help HR managers, recruiters, and talent acquisition teams understand Data Engineering, Data Analytics, Data Science, Business Intelligence, Machine Learning, and modern data ecosystems. |
 | **hr-devops** | Help HR managers, recruiters, and talent acquisition teams understand DevOps, Platform Engineering, Site Reliability Engineering (SRE), cloud infrastructure, CI/CD, and modern software delivery workflows. |
 | **hr-diversity-inclusion** | Help HR managers with diversity, equity, and inclusion initiatives. |
@@ -136,8 +137,10 @@ Generated files and package build outputs are cached through Turborepo based on 
 | **hr-employer-branding** | Help HR leaders, talent acquisition teams, and employer brand managers understand, design, and run employer branding strategy, EVP (Employee Value Proposition) development, careers page and social content, and candidate experience initiatives. |
 | **hr-frontend** | Help HR managers, recruiters, and talent acquisition teams understand Frontend Engineering concepts, hiring requirements, frontend ecosystems, candidate evaluation, and modern frontend workflows. |
 | **hr-fullstack** | Help HR managers, recruiters, and talent acquisition teams understand Fullstack Engineering concepts, hiring requirements, cross-functional engineering workflows, frontend-backend integration, and modern end-to-end product development. |
+| **hr-hris** | Help HR managers, HR operations teams, and recruiters understand HRIS (Human Resource Information Systems), including HRIS platforms, implementation and migration, system integrations, employee data management, HR automation, and HRIS-related hiring. |
 | **hr-interviewing** | Help HR managers, recruiters, hiring managers, and interview panels design structured, competency-based interview questions, interview guides, and evaluation scorecards for any role. |
 | **hr-job-description** | Help HR professionals, recruiters, hiring managers, and talent acquisition teams write clear, inclusive, and compelling job descriptions that attract qualified candidates. |
+| **hr-knowledge-management** | Help HR managers, People Ops teams, and recruiters understand HR knowledge management, including HR knowledge bases, policy and SOP documentation, employee self-service content, tribal knowledge capture, and knowledge management tooling. |
 | **hr-kpi** | Help HR managers, people analytics teams, and HR business partners understand, select, calculate, and act on HR KPIs and workforce metrics. |
 | **hr-leadership-development** | Help HR managers with leadership development programs. |
 | **hr-mobile** | Help HR managers, recruiters, and talent acquisition teams understand Mobile Development, iOS, Android, cross-platform engineering, mobile app architecture, and modern mobile ecosystems. |

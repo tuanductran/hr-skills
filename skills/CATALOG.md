@@ -1,6 +1,6 @@
 # HR Skills Catalog
 
-> 38 skills available for HR professionals
+> 41 skills available for HR professionals
 
 ---
 
@@ -156,6 +156,25 @@ Version: 1.0.0 · Author: Tuan Duc Tran
 
 ---
 
+## hr-culture
+
+Help HR managers, recruiters, and people leaders understand, assess, build, and communicate organizational culture. Use when asked to "explain company culture", "assess culture fit", "build a strong workplace culture", "write culture-related job description content", "evaluate culture add vs culture fit", "diagnose culture problems", "design culture interview questions", "improve employee engagement through culture", or any organizational culture, values, and workplace environment task.
+
+Version: 1.0.0 · Author: Tuan Duc Tran
+
+**Supported tasks:**
+
+- Explaining organizational culture concepts and how culture forms, evolves, and influences organizational behavior
+- Distinguishing culture fit vs culture add in hiring
+- Creating culture-based interview questions and evaluation rubrics
+- Diagnosing culture problems (toxicity, misalignment, silos, disengagement)
+- Writing culture sections for job descriptions, career pages, and employer branding
+- Designing onboarding experiences that reinforce organizational culture
+- Building and articulating core values and expected workplace behaviors
+- Measuring culture health using surveys, eNPS, exit interviews, and people analytics
+
+---
+
 ## hr-data
 
 Help HR managers, recruiters, and talent acquisition teams understand Data Engineering, Data Analytics, Data Science, Business Intelligence, Machine Learning, and modern data ecosystems. Use when asked to "explain data roles", "screen data engineers or data scientists", "understand analytics workflows", "compare data engineering and data science", "evaluate data skills", "create data interview questions", "understand AI and machine learning teams", or any data and analytics hiring and recruiting task.
@@ -308,6 +327,25 @@ Version: 1.0.0 · Author: Tuan Duc Tran
 
 ---
 
+## hr-hris
+
+Help HR managers, HR operations teams, and recruiters understand HRIS (Human Resource Information Systems), including HRIS platforms, implementation and migration, system integrations, employee data management, HR automation, and HRIS-related hiring. Use when asked to "explain HRIS", "choose an HRIS platform", "implement or migrate an HRIS", "screen HRIS analysts or managers", "understand HR system integrations", "automate HR workflows", "evaluate HRIS vendors", or any HR technology and systems task.
+
+Version: 1.0.0 · Author: Tuan Duc Tran
+
+**Supported tasks:**
+
+- Explaining HRIS concepts for non-technical HR stakeholders and leadership
+- Understanding the modern HRIS and broader HR tech stack landscape
+- Selecting and evaluating HRIS vendors and platforms
+- Planning and running an HRIS implementation or migration
+- Understanding HR system integrations (payroll, benefits, ATS, SSO)
+- Designing HR workflow automation (onboarding, approvals, offboarding)
+- Managing employee data quality, governance, and access controls
+- Screening HRIS Analysts, HRIS Managers, and People Systems roles
+
+---
+
 ## hr-interviewing
 
 Help HR managers, recruiters, hiring managers, and interview panels design structured, competency-based interview questions, interview guides, and evaluation scorecards for any role. Use when asked to "create interview questions", "design a structured interview", "generate behavioral questions", "build an interview scorecard", "evaluate candidates consistently", "reduce interview bias", or any interview planning and assessment task.
@@ -343,6 +381,25 @@ Version: 1.0.0 · Author: Tuan Duc Tran
 - Defining 30/60/90-day success expectations
 - Separating must-have and nice-to-have qualifications
 - Writing team and culture descriptions
+
+---
+
+## hr-knowledge-management
+
+Help HR managers, People Ops teams, and recruiters understand HR knowledge management, including HR knowledge bases, policy and SOP documentation, employee self-service content, tribal knowledge capture, and knowledge management tooling. Use when asked to "build an HR knowledge base", "organize HR documentation", "reduce HR ticket volume", "write HR policies and SOPs", "capture tribal knowledge", "screen a Knowledge Manager or HR documentation specialist", "set up an employee self-service FAQ or chatbot", or any HR content, documentation, or institutional knowledge task.
+
+Version: 1.0.0 · Author: Tuan Duc Tran
+
+**Supported tasks:**
+
+- Explaining HR knowledge management concepts for non-technical HR stakeholders
+- Understanding the modern HR knowledge management landscape and tooling
+- Structuring and organizing an HR knowledge base or internal wiki
+- Writing and maintaining policies, SOPs, and process documentation
+- Capturing tribal knowledge before it walks out the door with departing employees
+- Designing employee self-service content to reduce repetitive HR tickets
+- Auditing existing HR documentation for gaps, duplication, and outdated content
+- Screening Knowledge Managers, HR Documentation Specialists, and related roles
 
 ---
 

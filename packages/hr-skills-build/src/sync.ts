@@ -19,12 +19,7 @@ import { join } from 'node:path';
 import { consola } from 'consola';
 
 import { getHrSkills } from './config.js';
-import {
-	AGENTS_TABLE_REGEX,
-	INSTALLATION_TABLE_REGEX,
-	ROOT_DIR,
-	SKILL_SECTION_START_REGEX,
-} from './constants.js';
+import { AGENTS_TABLE_REGEX, INSTALLATION_TABLE_REGEX, ROOT_DIR } from './constants.js';
 import type { SkillMeta } from './types.js';
 import { parseSkillMeta } from './utils.js';
 
@@ -168,20 +163,7 @@ function buildSkillDocsSection(meta: SkillMeta): string | null {
 	].join('\n');
 }
 
-async function syncSkillsDocs(metas: SkillMeta[]): Promise<boolean> {
-	const path = join(ROOT_DIR, 'docs/skills.md');
-
-	const original = await Bun.file(path).text();
-
-	// Extract the preamble: everything before the first skill section
-	const firstSectionIndex = original.search(SKILL_SECTION_START_REGEX);
-
-	const preamble =
-		firstSectionIndex !== -1
-			? original.slice(0, firstSectionIndex).trimEnd()
-			: original.trimEnd();
-
-	// Build all skill sections in sorted order (metas is already sorted by getHrSkills)
+function generateSkillsDocs(metas: SkillMeta[]): string {
 	const sections: string[] = [];
 
 	for (const meta of metas) {
@@ -197,15 +179,37 @@ async function syncSkillsDocs(metas: SkillMeta[]): Promise<boolean> {
 		sections.push(section);
 	}
 
-	const body = sections.join('\n\n---\n\n');
+	return [
+		'# HR skills reference',
+		'',
+		'A complete reference for all available HR skills, including coverage areas and example trigger phrases that activate each skill in Claude.',
+		'',
+		'> [!NOTE]',
+		'> Skills are stored in `skills/<skill-name>/SKILL.md`.',
+		'>',
+		'> This repository is maintained as a Bun + Turborepo monorepo. Some documentation and references are generated automatically via `bun run sync`.',
+		'>',
+		'> Extended domain guides and supporting content for each skill are located alongside `SKILL.md` in the corresponding `skills/<skill-name>/` directory.',
+		'',
+		'---',
+		'',
+		sections.join('\n\n---\n\n'),
+		'',
+	].join('\n');
+}
 
-	const rebuilt = [preamble, '', '---', '', body, ''].join('\n');
+async function syncSkillsDocs(metas: SkillMeta[]): Promise<boolean> {
+	const path = join(ROOT_DIR, 'docs/skills.md');
 
-	if (rebuilt === original) {
+	const original = await Bun.file(path).text();
+
+	const generated = generateSkillsDocs(metas);
+
+	if (generated === original) {
 		return false;
 	}
 
-	await Bun.write(path, rebuilt);
+	await Bun.write(path, generated);
 
 	return true;
 }

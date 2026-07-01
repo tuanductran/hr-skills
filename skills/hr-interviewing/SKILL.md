@@ -38,7 +38,7 @@ Rather than relying on intuition or conversational interviews, structured interv
 - evidence-based evaluation
 - comparable candidate assessments
 
-Structured interviews generally provide more reliable and fair hiring decisions than unstructured interviews while improving consistency across interview panels. :contentReference[oaicite:0]{index=0}
+Structured interviews generally provide more reliable and fair hiring decisions than unstructured interviews while improving consistency across interview panels.
 
 ## Interview design principles
 
@@ -192,7 +192,7 @@ Design interviews that minimize unconscious bias by:
 - documenting ratings before panel discussion
 - focusing on job-related competencies
 
-Avoid evaluating candidates based on "gut feeling" or cultural similarity. Structured interviews improve consistency and fairness by standardizing both questions and evaluation criteria. :contentReference[oaicite:1]{index=1}
+Avoid evaluating candidates based on "gut feeling" or cultural similarity. Structured interviews improve consistency and fairness by standardizing both questions and evaluation criteria.
 
 ## Questions to avoid
 
