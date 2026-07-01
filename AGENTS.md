@@ -133,16 +133,20 @@ Generated files and package build outputs are cached through Turborepo based on 
 | **hr-devops** | Help HR managers, recruiters, and talent acquisition teams understand DevOps, Platform Engineering, Site Reliability Engineering (SRE), cloud infrastructure, CI/CD, and modern software delivery workflows. |
 | **hr-diversity-inclusion** | Help HR managers with diversity, equity, and inclusion initiatives. |
 | **hr-employee-engagement** | Help HR managers with employee engagement strategies. |
+| **hr-employee-experience** | Help HR business partners, employee experience managers, and people leaders understand, design, and run employee experience strategies, journey mapping, engagement programs, culture diagnostics, onboarding and offboarding experience design, workplace environment initiatives, and recognition and belonging programs. |
 | **hr-employee-relations** | Help HR managers with employee relations matters. |
 | **hr-employer-branding** | Help HR leaders, talent acquisition teams, and employer brand managers understand, design, and run employer branding strategy, EVP (Employee Value Proposition) development, careers page and social content, and candidate experience initiatives. |
 | **hr-frontend** | Help HR managers, recruiters, and talent acquisition teams understand Frontend Engineering concepts, hiring requirements, frontend ecosystems, candidate evaluation, and modern frontend workflows. |
 | **hr-fullstack** | Help HR managers, recruiters, and talent acquisition teams understand Fullstack Engineering concepts, hiring requirements, cross-functional engineering workflows, frontend-backend integration, and modern end-to-end product development. |
 | **hr-hris** | Help HR managers, HR operations teams, and recruiters understand HRIS (Human Resource Information Systems), including HRIS platforms, implementation and migration, system integrations, employee data management, HR automation, and HRIS-related hiring. |
 | **hr-interviewing** | Help HR managers, recruiters, hiring managers, and interview panels design structured, competency-based interview questions, interview guides, and evaluation scorecards for any role. |
+| **hr-job-architecture** | Help HR business partners, compensation specialists, and total rewards leaders understand, design, and implement job architecture frameworks including job families, career levels, leveling criteria, and career pathing structures. |
 | **hr-job-description** | Help HR professionals, recruiters, hiring managers, and talent acquisition teams write clear, inclusive, and compelling job descriptions that attract qualified candidates. |
 | **hr-knowledge-management** | Help HR managers, People Ops teams, and recruiters understand HR knowledge management, including HR knowledge bases, policy and SOP documentation, employee self-service content, tribal knowledge capture, and knowledge management tooling. |
 | **hr-kpi** | Help HR managers, people analytics teams, and HR business partners understand, select, calculate, and act on HR KPIs and workforce metrics. |
+| **hr-labor-relations** | Help HR business partners, employee relations specialists, and people leaders understand, design, and manage labor relations, collective bargaining, union avoidance and engagement strategies, grievance and dispute resolution processes, employment law compliance, and workforce policy design. |
 | **hr-leadership-development** | Help HR managers with leadership development programs. |
+| **hr-learning-development** | Help HR business partners, L&D managers, and people development leaders understand, design, and run learning and development programs, skills gap analyses, career development frameworks, leadership development tracks, onboarding programs, and learning culture initiatives. |
 | **hr-mobile** | Help HR managers, recruiters, and talent acquisition teams understand Mobile Development, iOS, Android, cross-platform engineering, mobile app architecture, and modern mobile ecosystems. |
 | **hr-onboarding** | Help HR managers with employee onboarding and offboarding. |
 | **hr-organizational-development** | Help HR business partners, OD consultants, and people leaders understand, design, and lead organizational design, change management, and culture transformation initiatives. |
@@ -153,6 +157,8 @@ Generated files and package build outputs are cached through Turborepo based on 
 | **hr-qa** | Help HR managers, recruiters, and talent acquisition teams understand Quality Assurance (QA), Software Testing, Test Automation, and modern Quality Engineering concepts. |
 | **hr-recruiting** | Help HR managers with end-to-end recruiting and talent acquisition. |
 | **hr-security** | Help HR managers, recruiters, and talent acquisition teams understand Cybersecurity, Application Security, Cloud Security, Security Operations, Penetration Testing, and modern security engineering workflows. |
+| **hr-skills-taxonomy** | Help HR business partners, talent management specialists, L&D leaders, and workforce planning teams understand, design, and implement skills taxonomies and skills ontologies. |
+| **hr-succession-planning** | Help HR business partners, talent management specialists, and people leaders understand, design, and run succession planning, leadership pipeline development, and critical role continuity programs. |
 | **hr-talent-management** | Help HR managers, HRBPs, L&D leads, and people operations teams understand, design, and execute talent management systems. |
 | **hr-technology** | Help HR managers with HR technology strategy and implementation. |
 | **hr-total-rewards** | Help HR managers, compensation analysts, benefits specialists, and total rewards leaders understand, design, and communicate total rewards programs. |

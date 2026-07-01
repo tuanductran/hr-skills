@@ -86,16 +86,20 @@ For deep focus work (for example a full recruiting campaign), create a dedicated
 | `hr-devops` | Help HR managers, recruiters, and talent acquisition teams und… |
 | `hr-diversity-inclusion` | Help HR managers with diversity, equity, and inclusion initiat… |
 | `hr-employee-engagement` | Help HR managers with employee engagement strategies |
+| `hr-employee-experience` | Help HR business partners, employee experience managers, and p… |
 | `hr-employee-relations` | Help HR managers with employee relations matters |
 | `hr-employer-branding` | Help HR leaders, talent acquisition teams, and employer brand … |
 | `hr-frontend` | Help HR managers, recruiters, and talent acquisition teams und… |
 | `hr-fullstack` | Help HR managers, recruiters, and talent acquisition teams und… |
 | `hr-hris` | Help HR managers, HR operations teams, and recruiters understa… |
 | `hr-interviewing` | Help HR managers, recruiters, hiring managers, and interview p… |
+| `hr-job-architecture` | Help HR business partners, compensation specialists, and total… |
 | `hr-job-description` | Help HR professionals, recruiters, hiring managers, and talent… |
 | `hr-knowledge-management` | Help HR managers, People Ops teams, and recruiters understand … |
 | `hr-kpi` | Help HR managers, people analytics teams, and HR business part… |
+| `hr-labor-relations` | Help HR business partners, employee relations specialists, and… |
 | `hr-leadership-development` | Help HR managers with leadership development programs |
+| `hr-learning-development` | Help HR business partners, L&D managers, and people developmen… |
 | `hr-mobile` | Help HR managers, recruiters, and talent acquisition teams und… |
 | `hr-onboarding` | Help HR managers with employee onboarding and offboarding |
 | `hr-organizational-development` | Help HR business partners, OD consultants, and people leaders … |
@@ -106,6 +110,8 @@ For deep focus work (for example a full recruiting campaign), create a dedicated
 | `hr-qa` | Help HR managers, recruiters, and talent acquisition teams und… |
 | `hr-recruiting` | Help HR managers with end-to-end recruiting and talent acquisi… |
 | `hr-security` | Help HR managers, recruiters, and talent acquisition teams und… |
+| `hr-skills-taxonomy` | Help HR business partners, talent management specialists, L&D … |
+| `hr-succession-planning` | Help HR business partners, talent management specialists, and … |
 | `hr-talent-management` | Help HR managers, HRBPs, L&D leads, and people operations team… |
 | `hr-technology` | Help HR managers with HR technology strategy and implementation |
 | `hr-total-rewards` | Help HR managers, compensation analysts, benefits specialists,… |
