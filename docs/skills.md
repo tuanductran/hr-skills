@@ -123,6 +123,20 @@ A complete reference for all available HR skills, including coverage areas and e
 
 ---
 
+## hr-culture
+
+**What it covers:** Help HR managers, recruiters, and people leaders understand, assess, build, and communicate organizational culture.
+
+**Use when you say:**
+
+- "Explain organizational culture in simple terms for [new managers/founders]."
+- "What is the difference between [company values], [culture], and [employer brand]?"
+- "Why does [a strong founding culture] often break down as a company scales from [50 to 500 people]?"
+- "What are the most common culture models (for example, Competing Values Framework, Schein's levels) and how do they apply to [our company stage]?"
+- "How do unwritten norms end up mattering more than official values in [most organizations]?"
+
+---
+
 ## hr-data
 
 **What it covers:** Help HR managers, recruiters, and talent acquisition teams understand Data Engineering, Data Analytics, Data Science, Business Intelligence, Machine Learning, and modern data ecosystems.
@@ -176,6 +190,20 @@ A complete reference for all available HR skills, including coverage areas and e
 - "What questions in an engagement survey most effectively identify the root causes of disengagement?"
 - "How should I analyze engagement survey results to prioritize actions with the greatest impact?"
 - "What engagement metrics should I track consistently to identify trends over time?"
+
+---
+
+## hr-employee-experience
+
+**What it covers:** Help HR business partners, employee experience managers, and people leaders understand, design, and run employee experience strategies, journey mapping, engagement programs, culture diagnostics, onboarding and offboarding experience design, workplace environment initiatives, and recognition and belonging programs.
+
+**Use when you say:**
+
+- "Help me design an [employee experience strategy] for [a 300-person company experiencing high attrition at the 12-18 month tenure mark] while staying within [a defined annual budget]."
+- "Map the [employee journey] for [a new hire joining a hybrid team] and identify [the three highest-risk moments of truth where experience typically breaks down]."
+- "Design an [experience improvement roadmap] clarifying how [HR, managers, and team leads] should own [different stages of the employee journey]."
+- "How do I evaluate whether [a continuous listening architecture] or [a redesigned annual engagement survey] better fits [our current organizational maturity and HR capacity]?"
+- "Help me model [three employee experience strategy options] for [improving retention among mid-tenure employees in a high-growth environment] and compare the trade-offs of each."
 
 ---
 
@@ -235,6 +263,20 @@ A complete reference for all available HR skills, including coverage areas and e
 
 ---
 
+## hr-hris
+
+**What it covers:** Help HR managers, HR operations teams, and recruiters understand HRIS (Human Resource Information Systems), including HRIS platforms, implementation and migration, system integrations, employee data management, HR automation, and HRIS-related hiring.
+
+**Use when you say:**
+
+- "Explain what an HRIS actually does, in simple terms, for [a founder who has never used one]."
+- "What is the difference between an [HRIS], an [HCM], and an [ATS]?"
+- "Why do companies eventually outgrow spreadsheet-based HR processes?"
+- "What are the core modules a typical HRIS includes (for example, core HR, payroll, benefits, time tracking)?"
+- "What should [a 50-person company] look for differently than [a 2,000-person company] when choosing an HRIS?"
+
+---
+
 ## hr-interviewing
 
 **What it covers:** Help HR managers, recruiters, hiring managers, and interview panels design structured, competency-based interview questions, interview guides, and evaluation scorecards for any role.
@@ -246,6 +288,20 @@ A complete reference for all available HR skills, including coverage areas and e
 - "Design a complete interview plan for hiring a [Head of HR]."
 - "Create a structured interview for a [Customer Success Manager] with scoring guidance."
 - "Build a panel interview guide for a [Staff AI Engineer]."
+
+---
+
+## hr-job-architecture
+
+**What it covers:** Help HR business partners, compensation specialists, and total rewards leaders understand, design, and implement job architecture frameworks including job families, career levels, leveling criteria, and career pathing structures.
+
+**Use when you say:**
+
+- "Help me design [a job family structure] for [a 250-person technology company] covering [Engineering, Product, Design, Data, and Go-to-Market functions] with [clear career tracks and level definitions]."
+- "What is the right [number of levels] for [a Software Engineering job family], and how do I define [the boundaries between L3, L4, and L5] in a way that is [defensible and consistent]?"
+- "Design a [career track framework] that supports both [individual contributor and management paths] for [an Engineering function] without [creating a glass ceiling for technical specialists]."
+- "How do I evaluate whether [our current job titles] reflect [actual leveling differences] or [title inflation that has accumulated during rapid hiring]?"
+- "Help me model [two or three job family structures] for [a company consolidating three acquired entities with different title conventions] and compare the trade-offs of each."
 
 ---
 
@@ -263,6 +319,20 @@ A complete reference for all available HR skills, including coverage areas and e
 
 ---
 
+## hr-knowledge-management
+
+**What it covers:** Help HR managers, People Ops teams, and recruiters understand HR knowledge management, including HR knowledge bases, policy and SOP documentation, employee self-service content, tribal knowledge capture, and knowledge management tooling.
+
+**Use when you say:**
+
+- "Explain what an HR knowledge base actually is and why it matters, for [a founder who has never had one]."
+- "What is the difference between [a knowledge base], [an employee handbook], and [an SOP library]?"
+- "Why do companies lose critical process knowledge when experienced employees leave?"
+- "What are the core content types a mature HR knowledge base usually includes?"
+- "What should [a 30-person company] prioritize differently than [a 1,000-person company] when building HR documentation?"
+
+---
+
 ## hr-kpi
 
 **What it covers:** Help HR managers, people analytics teams, and HR business partners understand, select, calculate, and act on HR KPIs and workforce metrics.
@@ -277,6 +347,20 @@ A complete reference for all available HR skills, including coverage areas and e
 
 ---
 
+## hr-labor-relations
+
+**What it covers:** Help HR business partners, employee relations specialists, and people leaders understand, design, and manage labor relations, collective bargaining, union avoidance and engagement strategies, grievance and dispute resolution processes, employment law compliance, and workforce policy design.
+
+**Use when you say:**
+
+- "Help me prepare a [collective bargaining strategy] for [a company entering first-contract negotiations] with [a newly certified union in the warehouse operation]."
+- "What is the right [approach to information requests] during [union contract negotiations] when [the union is requesting financial data we consider proprietary]?"
+- "Design a [contract administration process] clarifying how [managers and HR] should handle [grievances arising under a new collective bargaining agreement]."
+- "How do I evaluate whether [an interest-based bargaining approach] or [a traditional positional bargaining approach] better fits [our current labor relations climate]?"
+- "Help me model [three approaches to a union organizing response] and compare the trade-offs of each from both [a legal and employee trust perspective]."
+
+---
+
 ## hr-leadership-development
 
 **What it covers:** Help HR managers with leadership development programs.
@@ -288,6 +372,20 @@ A complete reference for all available HR skills, including coverage areas and e
 - "How can I create a leadership development program that builds both technical and interpersonal skills?"
 - "Design a team leadership program that equips team leads with the skills to manage high-performing teams."
 - "What are the key components of an authentic leadership development program?"
+
+---
+
+## hr-learning-development
+
+**What it covers:** Help HR business partners, L&D managers, and people development leaders understand, design, and run learning and development programs, skills gap analyses, career development frameworks, leadership development tracks, onboarding programs, and learning culture initiatives.
+
+**Use when you say:**
+
+- "Help me design a [learning program] for [a 200-person company needing to upskill its engineering team on AI tools] while staying within [a defined annual budget]."
+- "What is the right [mix of formal learning, coaching, and on-the-job development] for [a company building its first structured leadership development track]?"
+- "Design a [career development framework] clarifying how [managers and employees] should co-own [individual development plans] across [a 12-month cycle]."
+- "How do I evaluate whether [a cohort-based leadership program] or [an individual coaching-led approach] better fits [our current leadership pipeline needs]?"
+- "Help me model [three L&D program options] for [addressing a capability gap in a high-growth sales team] and compare the trade-offs of each."
 
 ---
 
@@ -428,6 +526,34 @@ A complete reference for all available HR skills, including coverage areas and e
 - "What is the difference between [AppSec, Cloud Security, SOC Analyst, and Penetration Tester] roles?"
 - "Why are cybersecurity teams critical for companies operating in [regulated industries like finance or healthcare]?"
 - "What security skills are most important for [Cloud Security vs Application Security] roles in 2026?"
+
+---
+
+## hr-skills-taxonomy
+
+**What it covers:** Help HR business partners, talent management specialists, L&D leaders, and workforce planning teams understand, design, and implement skills taxonomies and skills ontologies.
+
+**Use when you say:**
+
+- "Help me design [a skills taxonomy] for [a 300-person technology company] covering [Engineering, Product, Data, Design, and GTM functions] with [a three-tier hierarchy: skill domains, skill clusters, and individual skills]."
+- "What is the right [level of granularity] for [a skills taxonomy in a fast-scaling company], and how do I avoid [creating a taxonomy so detailed it becomes impossible to maintain or use]?"
+- "Design a [skills ontology] that connects [individual skills] to [roles, career levels, and L&D programs] so that [employees can use it to navigate their own development independently]."
+- "How do I evaluate whether [our current competency framework] should be [migrated into a skills taxonomy] or [replaced entirely with a skills-based approach]?"
+- "Help me model [two or three taxonomy structures] for [a company consolidating skills data from five different tools] and compare the [trade-offs of each approach]."
+
+---
+
+## hr-succession-planning
+
+**What it covers:** Help HR business partners, talent management specialists, and people leaders understand, design, and run succession planning, leadership pipeline development, and critical role continuity programs.
+
+**Use when you say:**
+
+- "Help me identify [the 10 most critical roles] in [a 300-person company] and assess [the succession coverage and readiness gap] for each."
+- "What is the right [bench strength coverage ratio] for [Director-level and above roles], and how do I evaluate whether our current pipeline is too thin or well-developed?"
+- "Design a [critical role mapping framework] clarifying which roles carry [the highest business continuity risk] if they became vacant in [the next 6–12 months]."
+- "How do I evaluate whether [our current succession candidates] are [actually ready within 12 months] versus [ready in 3+ years] for their target roles?"
+- "Help me model [the succession risk exposure] for [a department where three senior leaders are within 3 years of retirement]."
 
 ---
 

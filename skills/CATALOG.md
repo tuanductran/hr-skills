@@ -1,6 +1,6 @@
 # HR Skills Catalog
 
-> 38 skills available for HR professionals
+> 47 skills available for HR professionals
 
 ---
 
@@ -156,6 +156,25 @@ Version: 1.0.0 · Author: Tuan Duc Tran
 
 ---
 
+## hr-culture
+
+Help HR managers, recruiters, and people leaders understand, assess, build, and communicate organizational culture. Use when asked to "explain company culture", "assess culture fit", "build a strong workplace culture", "write culture-related job description content", "evaluate culture add vs culture fit", "diagnose culture problems", "design culture interview questions", "improve employee engagement through culture", or any organizational culture, values, and workplace environment task.
+
+Version: 1.0.0 · Author: Tuan Duc Tran
+
+**Supported tasks:**
+
+- Explaining organizational culture concepts and how culture forms, evolves, and influences organizational behavior
+- Distinguishing culture fit vs culture add in hiring
+- Creating culture-based interview questions and evaluation rubrics
+- Diagnosing culture problems (toxicity, misalignment, silos, disengagement)
+- Writing culture sections for job descriptions, career pages, and employer branding
+- Designing onboarding experiences that reinforce organizational culture
+- Building and articulating core values and expected workplace behaviors
+- Measuring culture health using surveys, eNPS, exit interviews, and people analytics
+
+---
+
 ## hr-data
 
 Help HR managers, recruiters, and talent acquisition teams understand Data Engineering, Data Analytics, Data Science, Business Intelligence, Machine Learning, and modern data ecosystems. Use when asked to "explain data roles", "screen data engineers or data scientists", "understand analytics workflows", "compare data engineering and data science", "evaluate data skills", "create data interview questions", "understand AI and machine learning teams", or any data and analytics hiring and recruiting task.
@@ -229,6 +248,25 @@ Version: 1.0.0 · Author: Tuan Duc Tran
 - Reducing burnout and improving employee well-being
 - Developing communication strategies that foster transparency
 - Improving engagement in remote and hybrid work environments
+
+---
+
+## hr-employee-experience
+
+Help HR business partners, employee experience managers, and people leaders understand, design, and run employee experience strategies, journey mapping, engagement programs, culture diagnostics, onboarding and offboarding experience design, workplace environment initiatives, and recognition and belonging programs. Use when asked to "design an employee experience strategy", "map the employee journey", "run an engagement diagnostic", "design a culture program", "improve the onboarding experience", "build a recognition program", "design a belonging and inclusion experience", "respond to an engagement crisis", "measure employee experience health", or any employee experience, engagement, or culture design task.
+
+Version: 1.0.0 · Author: Tuan Duc Tran
+
+**Supported tasks:**
+
+- Explaining employee experience concepts and terminology for HR teams and business leaders
+- Designing employee experience strategies aligned to talent attraction, retention, and business outcomes
+- Mapping the employee journey across lifecycle stages (attract, hire, onboard, develop, retain, exit)
+- Running engagement diagnostics and culture health assessments
+- Building onboarding and offboarding experiences that reflect the brand promise and support transitions
+- Designing recognition, belonging, and inclusion programs embedded in the day-to-day work experience
+- Measuring employee experience health through quantitative signals and qualitative listening
+- Designing workplace and remote environment experiences that support productivity and connection
 
 ---
 
@@ -308,6 +346,25 @@ Version: 1.0.0 · Author: Tuan Duc Tran
 
 ---
 
+## hr-hris
+
+Help HR managers, HR operations teams, and recruiters understand HRIS (Human Resource Information Systems), including HRIS platforms, implementation and migration, system integrations, employee data management, HR automation, and HRIS-related hiring. Use when asked to "explain HRIS", "choose an HRIS platform", "implement or migrate an HRIS", "screen HRIS analysts or managers", "understand HR system integrations", "automate HR workflows", "evaluate HRIS vendors", or any HR technology and systems task.
+
+Version: 1.0.0 · Author: Tuan Duc Tran
+
+**Supported tasks:**
+
+- Explaining HRIS concepts for non-technical HR stakeholders and leadership
+- Understanding the modern HRIS and broader HR tech stack landscape
+- Selecting and evaluating HRIS vendors and platforms
+- Planning and running an HRIS implementation or migration
+- Understanding HR system integrations (payroll, benefits, ATS, SSO)
+- Designing HR workflow automation (onboarding, approvals, offboarding)
+- Managing employee data quality, governance, and access controls
+- Screening HRIS Analysts, HRIS Managers, and People Systems roles
+
+---
+
 ## hr-interviewing
 
 Help HR managers, recruiters, hiring managers, and interview panels design structured, competency-based interview questions, interview guides, and evaluation scorecards for any role. Use when asked to "create interview questions", "design a structured interview", "generate behavioral questions", "build an interview scorecard", "evaluate candidates consistently", "reduce interview bias", or any interview planning and assessment task.
@@ -324,6 +381,25 @@ Version: 1.0.0 · Author: Tuan Duc Tran
 - Writing standardized follow-up probing questions
 - Building interview scorecards and scoring rubrics
 - Defining strong answer indicators and hiring signals
+
+---
+
+## hr-job-architecture
+
+Help HR business partners, compensation specialists, and total rewards leaders understand, design, and implement job architecture frameworks including job families, career levels, leveling criteria, and career pathing structures. Use when asked to "build a job leveling framework", "design a career ladder", "create job families", "define leveling criteria", "audit our job titles", "build a career path", "standardize roles across teams", "design a grade structure", "benchmark roles against the market", or any job architecture, career leveling, and role standardization task.
+
+Version: 1.0.0 · Author: Tuan Duc Tran
+
+**Supported tasks:**
+
+- Explaining job architecture concepts and terminology for HR teams and business leaders
+- Designing job families and career tracks aligned to organizational structure and strategy
+- Building leveling criteria that distinguish roles by scope, complexity, and impact
+- Auditing and rationalizing inconsistent job titles across teams and functions
+- Creating career path documentation for employees and managers
+- Designing grade and band structures aligned to compensation philosophy
+- Benchmarking roles against external market data using job leveling methodology
+- Facilitating job architecture alignment sessions with leaders and total rewards teams
 
 ---
 
@@ -346,6 +422,25 @@ Version: 1.0.0 · Author: Tuan Duc Tran
 
 ---
 
+## hr-knowledge-management
+
+Help HR managers, People Ops teams, and recruiters understand HR knowledge management, including HR knowledge bases, policy and SOP documentation, employee self-service content, tribal knowledge capture, and knowledge management tooling. Use when asked to "build an HR knowledge base", "organize HR documentation", "reduce HR ticket volume", "write HR policies and SOPs", "capture tribal knowledge", "screen a Knowledge Manager or HR documentation specialist", "set up an employee self-service FAQ or chatbot", or any HR content, documentation, or institutional knowledge task.
+
+Version: 1.0.0 · Author: Tuan Duc Tran
+
+**Supported tasks:**
+
+- Explaining HR knowledge management concepts for non-technical HR stakeholders
+- Understanding the modern HR knowledge management landscape and tooling
+- Structuring and organizing an HR knowledge base or internal wiki
+- Writing and maintaining policies, SOPs, and process documentation
+- Capturing tribal knowledge before it walks out the door with departing employees
+- Designing employee self-service content to reduce repetitive HR tickets
+- Auditing existing HR documentation for gaps, duplication, and outdated content
+- Screening Knowledge Managers, HR Documentation Specialists, and related roles
+
+---
+
 ## hr-kpi
 
 Help HR managers, people analytics teams, and HR business partners understand, select, calculate, and act on HR KPIs and workforce metrics. Use when asked to "build an HR dashboard", "choose strategic HR KPIs", "analyze turnover rate", "benchmark cost per hire", "explain HR metrics", "create an HR report for leadership", "measure training ROI", "track recruiting efficiency", "interpret HR data", or any HR performance measurement and workforce analytics task.
@@ -365,6 +460,25 @@ Version: 1.0.0 · Author: Tuan Duc Tran
 
 ---
 
+## hr-labor-relations
+
+Help HR business partners, employee relations specialists, and people leaders understand, design, and manage labor relations, collective bargaining, union avoidance and engagement strategies, grievance and dispute resolution processes, employment law compliance, and workforce policy design. Use when asked to "manage a union organizing campaign", "prepare for collective bargaining", "design a grievance process", "respond to a labor dispute", "build an employment law compliance framework", "design a disciplinary and termination process", "respond to a workplace investigation", "draft a workforce policy", or any labor relations, employee relations, or employment compliance task.
+
+Version: 1.0.0 · Author: Tuan Duc Tran
+
+**Supported tasks:**
+
+- Explaining labor relations concepts and employment law terminology for HR teams and business leaders
+- Preparing for collective bargaining and contract negotiation processes
+- Designing union avoidance and positive employee relations strategies
+- Building grievance and dispute resolution processes aligned to legal and operational requirements
+- Managing workplace investigations for harassment, misconduct, and policy violations
+- Designing disciplinary and performance improvement processes that are legally defensible
+- Drafting workforce policies covering conduct, leave, flexible work, and employee rights
+- Measuring employee relations health through climate surveys and grievance signal analysis
+
+---
+
 ## hr-leadership-development
 
 Help HR managers with leadership development programs. Use when asked to "create a leadership program", "develop leadership competencies", "conduct leadership assessments", "design executive coaching", "create a leadership succession plan", "develop cross-cultural leadership training", or any leadership development task.
@@ -381,6 +495,25 @@ Version: 1.0.0 · Author: Tuan Duc Tran
 - Developing succession plans for key leadership roles
 - Designing cross-cultural and digital leadership training
 - Conducting executive onboarding programs
+
+---
+
+## hr-learning-development
+
+Help HR business partners, L&D managers, and people development leaders understand, design, and run learning and development programs, skills gap analyses, career development frameworks, leadership development tracks, onboarding programs, and learning culture initiatives. Use when asked to "design a learning program", "run a skills gap analysis", "build a career development framework", "design a leadership development track", "build an onboarding program", "respond to a capability gap crisis", "measure L&D effectiveness", "design a learning culture strategy", or any employee learning, skills development, or talent capability task.
+
+Version: 1.0.0 · Author: Tuan Duc Tran
+
+**Supported tasks:**
+
+- Explaining L&D concepts and terminology for HR teams and business leaders
+- Designing learning programs aligned to business strategy and workforce capability needs
+- Running skills gap analyses and capability diagnostics across teams and functions
+- Building career development frameworks and individual development plans (IDPs)
+- Designing leadership development tracks for emerging and senior leaders
+- Building onboarding programs that accelerate time-to-productivity for new hires
+- Measuring L&D effectiveness through behavioral and business-impact signals
+- Designing learning culture strategies that sustain development beyond formal programs
 
 ---
 
@@ -571,6 +704,44 @@ Version: 1.0.0 · Author: Tuan Duc Tran
 - Comparing AppSec, Cloud Security, SOC, Red Team, Blue Team, and GRC roles
 - Understanding modern attack surfaces and security workflows
 - Identifying cybersecurity seniority levels and skill expectations
+
+---
+
+## hr-skills-taxonomy
+
+Help HR business partners, talent management specialists, L&D leaders, and workforce planning teams understand, design, and implement skills taxonomies and skills ontologies. Use when asked to "build a skills taxonomy", "map skills to roles", "design a skills ontology", "run a skills gap analysis", "create a skills inventory", "build a skills-based hiring framework", "design skills clusters", "connect skills to career paths", "benchmark workforce skills against market data", or any skills classification, skills-based workforce planning, and organizational skills intelligence task.
+
+Version: 1.0.0 · Author: Tuan Duc Tran
+
+**Supported tasks:**
+
+- Explaining skills taxonomy concepts and terminology for HR teams and business leaders
+- Designing skills classification hierarchies aligned to organizational functions and roles
+- Building skills inventories from job descriptions, performance data, and employee profiles
+- Running skills gap analyses at individual, team, and organizational levels
+- Designing skills clusters that enable career pathing and internal mobility
+- Connecting skills taxonomies to L&D programs, job architecture, and succession planning
+- Enabling skills-based hiring by linking taxonomy skills to job requisitions and assessments
+- Benchmarking organizational skills against external labor market data
+
+---
+
+## hr-succession-planning
+
+Help HR business partners, talent management specialists, and people leaders understand, design, and run succession planning, leadership pipeline development, and critical role continuity programs. Use when asked to "build a succession plan", "identify high-potential talent", "assess leadership readiness", "map critical roles", "design a talent review process", "run a 9-box calibration", "build a leadership pipeline", "create a development plan for a successor", or any succession planning, leadership continuity, and pipeline development task.
+
+Version: 1.0.0 · Author: Tuan Duc Tran
+
+**Supported tasks:**
+
+- Explaining succession planning concepts and terminology for HR teams and business leaders
+- Mapping critical roles and identifying coverage gaps across the organization
+- Running talent review and 9-box calibration sessions with leadership teams
+- Identifying and assessing high-potential employees for succession pipelines
+- Designing individual development plans for successor candidates
+- Building leadership pipeline programs aligned to business strategy
+- Facilitating succession conversations with senior leaders and boards
+- Measuring succession plan health, bench strength, and readiness ratios
 
 ---
 
