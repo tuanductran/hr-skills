@@ -38,7 +38,7 @@ Given your situation — a clear performance issue and a workforce planning need
 
 **Option A — Immediate PIP and defer workforce plan:**
 
-```txt
+```text
 Approach: Launch a formal PIP for the underperformer now,
           defer workforce plan until performance issue stabilizes
 Timeline: 6-8 weeks for PIP cycle
@@ -48,7 +48,7 @@ Trade-off: Clear accountability, but delays workforce plan
 
 **Option B — Parallel approach (PIP + workforce plan simultaneously):**
 
-```txt
+```text
 Approach: Launch PIP while modeling workforce plan in parallel,
           ensuring manager has coaching support
 Timeline: 6-8 weeks for PIP, workforce plan ready in 2-3 weeks
@@ -58,7 +58,7 @@ Trade-off: Addresses both issues, but requires strong HRBP
 
 **Option C — Coaching-first, defer formal PIP:**
 
-```txt
+```text
 Approach: Provide coaching framework for manager to deliver
           direct feedback, monitor improvement before formal PIP,
           prioritize workforce plan immediately

@@ -59,7 +59,7 @@ You are an HR manager preparing onboarding for a cohort of 12 new hires across S
 
 **Generated template:**
 
-```txt
+```text
 Day-30 onboarding check-in
 
 Role clarity:

@@ -77,7 +77,7 @@ You are an HR leader at a 250-person company outgrowing spreadsheets and disconn
 
 **Generated summary:**
 
-```txt
+```text
 HRIS recommendation summary
 
 Recommendation: Select Vendor B.

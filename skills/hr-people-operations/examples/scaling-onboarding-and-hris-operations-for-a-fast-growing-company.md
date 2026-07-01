@@ -40,7 +40,7 @@ Two failed day-ones in one month at your hiring volume is a process gap, not a c
 
 **Current state process map (as reported):**
 
-```txt
+```text
 1. Recruiter sends offer letter (manual, generic template)
 2. Candidate accepts via email reply
 3. Recruiter manually emails HR with start date
@@ -53,7 +53,7 @@ Two failed day-ones in one month at your hiring volume is a process gap, not a c
 
 **Failure point identification:**
 
-```txt
+```text
 Step 5 → Step 6 is the most likely cause of the laptop incident:
 - No defined lead time given to IT before the request is sent
 - No automated trigger when HR creates the HRIS record
@@ -173,7 +173,7 @@ Export both systems' employee records to CSV, including employee ID, name, emplo
 
 **Step 2 — Use this prompt structure:**
 
-```txt
+```text
 I am a People Operations Manager comparing HRIS and payroll records
 for a 180-person company.
 Here is my HRIS export and payroll export (matched by employee ID):
@@ -191,7 +191,7 @@ Please:
 
 **Step 3 — Follow up with documentation:**
 
-```txt
+```text
 Based on this audit, draft a data governance policy defining which
 system is the source of truth for each field (name, status, compensation,
 department, manager), and the process for propagating changes between

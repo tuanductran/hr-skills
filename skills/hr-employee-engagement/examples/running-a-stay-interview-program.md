@@ -58,7 +58,7 @@ You are an HR manager at a 300-person company with rising regrettable attrition 
 
 **Generated output:**
 
-```txt
+```text
 Stay interview theme summary: Customer Success
 
 Primary retention risks:

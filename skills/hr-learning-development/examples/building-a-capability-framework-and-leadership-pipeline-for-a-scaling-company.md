@@ -38,7 +38,7 @@ Given your situation — three simultaneous problems with no existing L&D infras
 
 **Option A — Unified leadership development program (managers and high-potentials in one cohort):**
 
-```txt
+```text
 Approach: 6-month cohort-based program combining management fundamentals,
           leadership skills, and career development for all 12 team leads
           and identified high-potentials simultaneously
@@ -52,7 +52,7 @@ Trade-off: Builds community and visible signal quickly, but mixing
 
 **Option B — Parallel tracks (manager capability program separate from career development framework):**
 
-```txt
+```text
 Approach: Manager fundamentals program for the 12 team leads;
           separate career pathway map and IDP process for
           high-potentials and individual contributors
@@ -64,7 +64,7 @@ Trade-off: Addresses both problems with appropriate separation, but
 
 **Option C — Sequenced approach (career visibility fix first, manager program second):**
 
-```txt
+```text
 Approach: Career pathway map and visible development conversations
           launched in 4-6 weeks to address retention risk; manager
           fundamentals program sequenced in the following quarter
@@ -180,7 +180,7 @@ Summarize the specific roles, levels, capability gaps identified in the diagnost
 
 **Step 2 — Use this prompt structure:**
 
-```txt
+```text
 I am the L&D Manager building a capability framework for a 220-person
 B2B SaaS company that has grown rapidly and has no existing L&D
 infrastructure.
@@ -205,7 +205,7 @@ Please:
 
 **Step 3 — Follow up with measurement planning:**
 
-```txt
+```text
 Based on this plan, draft a 90-day L&D program measurement framework
 with specific behavior change indicators and business impact metrics
 to track at the 30, 60, and 90-day marks to confirm the programs are

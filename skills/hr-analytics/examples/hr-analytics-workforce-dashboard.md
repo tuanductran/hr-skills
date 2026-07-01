@@ -58,7 +58,7 @@ You are an HR manager at a 700-person software company. The executive team wants
 
 **Generated summary:**
 
-```txt
+```text
 Monthly workforce dashboard summary
 
 Overall headcount remains within 2% of the approved plan, but three workforce risks need leadership attention this month.

@@ -79,7 +79,7 @@ by design work rather than data and insight.
 
 **Option A — Flat skills list (no hierarchy):**
 
-```txt
+```text
 Structure: A single-level list of skills tagged to roles, with no
            domain or cluster grouping
 Trade-off: Fast to build initially, but produces a list that is
@@ -90,7 +90,7 @@ Trade-off: Fast to build initially, but produces a list that is
 
 **Option B — Three-tier hierarchy (Domain → Cluster → Skill):**
 
-```txt
+```text
 Structure:
   Domain: AI and Machine Learning
     Cluster: Model Development
@@ -111,7 +111,7 @@ Trade-off: Requires more upfront design effort, but produces a
 
 **Option C — Skills ontology with relationship mapping (full graph):**
 
-```txt
+```text
 Structure: Three-tier hierarchy plus defined relationships between
            skills — prerequisite skills, adjacent skills, and
            skills that commonly co-occur in target roles
@@ -237,7 +237,7 @@ Before assuming the taxonomy is the root cause, gather signals across four dimen
 
 Translate the 18-month AI product roadmap into a required skills profile:
 
-```txt
+```text
 Critical skills required for roadmap execution:
   AI/ML Domain:
     — Large language model fine-tuning (Working proficiency: 8 engineers needed;
@@ -260,7 +260,7 @@ For each critical skill cluster, document:
 
 Not all gaps are equal. Prioritize by two dimensions:
 
-```txt
+```text
 High Impact + High Gap → Build AND Buy immediately (LLM fine-tuning)
 High Impact + Moderate Gap → Build internally with accelerated development
 Moderate Impact + High Gap → Buy externally or partner/contract
@@ -269,7 +269,7 @@ Low Impact + Any Gap → Defer; monitor but do not invest now
 
 **Step 4 — Model build/buy/borrow options for each priority gap:**
 
-```txt
+```text
 Gap: LLM fine-tuning — 6 engineers needed, 2 exist
   Build: 12-month upskilling program, Degreed + external specialist trainer
          Cost: $180K; timeline: 12 months to Working proficiency
@@ -341,7 +341,7 @@ evolves."
 
 **For skills proficiency definition drafting:**
 
-```txt
+```text
 I am building a skills taxonomy for a 320-person AI infrastructure
 technology company. I need proficiency level definitions for skills
 in the MLOps cluster.
@@ -363,7 +363,7 @@ to assess an engineer without asking HR for interpretation.
 
 **For L&D course tagging:**
 
-```txt
+```text
 I am tagging a 200-course L&D library to a three-tier skills
 taxonomy for an AI infrastructure software company. Here are the
 first 10 courses with their descriptions. For each course, identify:
@@ -378,7 +378,7 @@ first 10 courses with their descriptions. For each course, identify:
 
 **For board report narrative:**
 
-```txt
+```text
 I need to write the executive summary of a board workforce
 capability report for an AI software company. Here are the data
 inputs: [paste gap analysis table]. Please draft a 3-paragraph

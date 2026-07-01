@@ -57,7 +57,7 @@ You are an HR manager supporting a product team where two senior employees are i
 
 **Generated agreement:**
 
-```txt
+```text
 Working agreement for Product Launch Team
 
 Shared goal:

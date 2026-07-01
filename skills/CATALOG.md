@@ -1,6 +1,6 @@
 # HR Skills Catalog
 
-> 47 skills available for HR professionals
+> 48 skills available for HR professionals
 
 ---
 
@@ -723,6 +723,25 @@ Version: 1.0.0 · Author: Tuan Duc Tran
 - Connecting skills taxonomies to L&D programs, job architecture, and succession planning
 - Enabling skills-based hiring by linking taxonomy skills to job requisitions and assessments
 - Benchmarking organizational skills against external labor market data
+
+---
+
+## hr-social-recruiting
+
+Help HR managers, recruiters, talent acquisition teams, employer branding specialists, and founders recruit effectively through social media platforms including LinkedIn, Facebook, Zalo, GitHub, Reddit, Discord, Slack communities, TikTok, Instagram, and X (Twitter). Use when asked to "recruit on LinkedIn", "hire through Facebook groups", "avoid LinkedIn spam", "write recruiter outreach messages", "source passive candidates", "build employer branding on social media", "increase recruiter response rates", or any social recruiting, online sourcing, or community recruiting task.
+
+Version: 1.0.0 · Author: Tuan Duc Tran
+
+**Supported tasks:**
+
+- Understanding modern social recruiting strategy and platform selection
+- Sourcing passive candidates on LinkedIn, GitHub, Reddit, and Discord
+- Building personal recruiter brand and credibility across platforms
+- Designing employer branding campaigns and recruiting content calendars
+- Writing effective recruiter outreach messages and connection requests
+- Creating Boolean search strategies and X-Ray search queries
+- Recruiting through niche communities and industry-specific platforms
+- Building recruiting funnels and candidate pipelines
 
 ---
 

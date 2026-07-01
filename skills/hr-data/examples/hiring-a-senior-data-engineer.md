@@ -26,7 +26,7 @@ You are an HR Manager at a growing e-commerce company. The Head of Data needs to
 
 **Sample JD generated:**
 
-```txt
+```text
 Senior Data Engineer — E-commerce Data Platform
 
 About us:
@@ -138,7 +138,7 @@ Not a fit if:
 
 **Generated scorecard:**
 
-```txt
+```text
 SENIOR DATA ENGINEER — INTERVIEW SCORECARD
 Candidate: _____________________ | Date: _____________
 Interviewer: ___________________|
@@ -230,7 +230,7 @@ _________________________________________________
 
 ## Full Hiring Workflow Summary
 
-```txt
+```text
 Identify which data role type is actually needed
                     ↓
 Write a focused JD scoped to one specialization

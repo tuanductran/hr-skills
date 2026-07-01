@@ -42,7 +42,7 @@ You are an HR manager reviewing the hiring process for a growing operations team
 
 **Generated criteria:**
 
-```txt
+```text
 Replace:
 "Must be a fast-paced culture fit with strong presence."
 
@@ -80,7 +80,7 @@ Use:
 
 **Generated summary:**
 
-```txt
+```text
 Inclusive hiring review summary
 
 The largest fairness risk appears after recruiter screen, where pass-through differences are wider than at later stages. Scorecard notes often reference "culture fit" without evidence tied to job outcomes.

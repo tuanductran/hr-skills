@@ -25,7 +25,7 @@ You are an HR manager supporting annual planning for a 500-person company. Finan
 
 **Generated template:**
 
-```txt
+```text
 Headcount request template
 
 Role title:
@@ -69,7 +69,7 @@ Budget owner:
 
 **Generated summary:**
 
-```txt
+```text
 Annual headcount plan summary
 
 Managers requested 42 roles for the planning year. Based on budget, business priority, and recruiting capacity, the recommended plan approves 30 roles and defers 12 roles to midyear review.

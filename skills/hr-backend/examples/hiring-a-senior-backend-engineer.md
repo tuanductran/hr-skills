@@ -26,7 +26,7 @@ You are an HR Manager at a B2B SaaS startup building a workforce management plat
 
 **Sample JD generated:**
 
-```txt
+```text
 Senior Backend Engineer — B2B SaaS Startup
 
 About us:
@@ -136,7 +136,7 @@ Not a fit if:
 
 **Generated scorecard:**
 
-```txt
+```text
 SENIOR BACKEND ENGINEER — INTERVIEW SCORECARD
 Candidate: _____________________ | Date: _____________
 Interviewer: ___________________|
@@ -227,7 +227,7 @@ _________________________________________________
 
 ## Full Hiring Workflow Summary
 
-```txt
+```text
 Write a focused JD scoped to one backend specialization
                     ↓
 CV screening: look for production ownership, not just tool lists

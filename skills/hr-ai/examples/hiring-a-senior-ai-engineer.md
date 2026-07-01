@@ -26,7 +26,7 @@ You are an HR Manager at a product company building an AI-powered customer suppo
 
 **Sample JD generated:**
 
-```txt
+```text
 Senior AI Engineer — AI Customer Support Platform
 
 About us:
@@ -141,7 +141,7 @@ Not a fit if:
 
 **Generated scorecard:**
 
-```txt
+```text
 SENIOR AI ENGINEER — INTERVIEW SCORECARD
 Candidate: _____________________ | Date: _____________
 Interviewer: ___________________|
@@ -234,7 +234,7 @@ _________________________________________________
 
 ## Full Hiring Workflow Summary
 
-```txt
+```text
 Define AI role type clearly (AI Eng vs ML Eng vs Applied AI)
                     ↓
 Write a focused JD with realistic scope

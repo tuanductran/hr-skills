@@ -38,7 +38,7 @@ Given your situation — a reputation drop with specific, credible negative revi
 
 **Option A — Full EVP relaunch (new messaging, new careers site, new content campaign):**
 
-```txt
+```text
 Approach: Commission new EVP research, rebuild careers site, launch
           employee-story content campaign across LinkedIn and social
 Timeline: 10-12 weeks to credible launch
@@ -49,7 +49,7 @@ Trade-off: Strong long-term positioning, but launching new messaging
 
 **Option B — Reputation repair first, EVP relaunch deferred (respond directly to review themes before any new messaging):**
 
-```txt
+```text
 Approach: Public, specific response to recurring review themes;
           internal fixes to the communication and process issues named;
           EVP relaunch paused until repair work shows measurable signal
@@ -60,7 +60,7 @@ Trade-off: Slower visible "refresh," but addresses the credibility
 
 **Option C — Phased approach (targeted candidate experience fixes immediately, EVP research in parallel, full relaunch sequenced after):**
 
-```txt
+```text
 Approach: Fix the highest-impact candidate experience gaps (offer-stage
           communication, hiring manager training) immediately; run EVP
           research in parallel using current and exited employees;
@@ -177,7 +177,7 @@ Summarize the specific themes in the negative reviews (anonymized where needed),
 
 **Step 2 — Use this prompt structure:**
 
-```txt
+```text
 I am the Employer Brand Manager responding to a reputation drop
 following a layoff at a 180-person fintech scaleup. Our Glassdoor
 rating dropped from 4.2 to 3.1, and reviews specifically describe
@@ -201,7 +201,7 @@ Please:
 
 **Step 3 — Follow up with stabilization planning:**
 
-```txt
+```text
 Based on this plan, draft a 90-day reputation and candidate experience
 stabilization framework with specific metrics and check-in questions
 to track at the 30, 60, and 90-day marks to confirm the repair work

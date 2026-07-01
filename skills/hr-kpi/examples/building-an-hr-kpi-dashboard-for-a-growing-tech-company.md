@@ -50,27 +50,27 @@ At 150 people and growing, your recruiting pipeline is under constant pressure. 
 
 **Average headcount for the period:**
 
-```txt
+```text
 (138 + 150) / 2 = 144
 ```
 
 **Voluntary Turnover Rate:**
 
-```txt
+```text
 7 voluntary departures / 144 average headcount × 100 = 4.9% for the quarter
 Annualized: 4.9% × 4 = ~19.4% annually
 ```
 
 **Total Turnover Rate (voluntary + involuntary):**
 
-```txt
+```text
 (7 + 2) / 144 × 100 = 6.25% for the quarter
 Annualized: ~25%
 ```
 
 **Net headcount growth:**
 
-```txt
+```text
 21 new hires − 9 total departures = +12 net headcount
 ```
 
@@ -201,7 +201,7 @@ Export your data to CSV or paste it directly into the chat. Include columns for:
 
 **Step 2 — Use this prompt structure:**
 
-```txt
+```text
 I am an HR Manager at a 150-person SaaS company.
 Here is my Q2 workforce data:
 [paste your data here]
@@ -222,7 +222,7 @@ Please:
 
 **Step 3 — Follow up with action planning:**
 
-```txt
+```text
 Based on this analysis, draft a 90-day retention action plan
 for the engineering department. Focus on interventions that
 are low-cost and can be implemented without a policy change.

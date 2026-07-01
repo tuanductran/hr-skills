@@ -26,7 +26,7 @@ You are an HR Manager at an early-stage SaaS startup building a team collaborati
 
 **Sample JD generated:**
 
-```txt
+```text
 Senior Fullstack Engineer — SaaS Startup
 
 About us:
@@ -138,7 +138,7 @@ Not a fit if:
 
 **Generated scorecard:**
 
-```txt
+```text
 SENIOR FULLSTACK ENGINEER — INTERVIEW SCORECARD
 Candidate: _____________________ | Date: _____________
 Interviewer: ___________________|
@@ -231,7 +231,7 @@ _________________________________________________
 
 ## Full Hiring Workflow Summary
 
-```txt
+```text
 Confirm whether fullstack or specialists fit the team stage
                     ↓
 Write a focused JD with the primary stack clearly defined

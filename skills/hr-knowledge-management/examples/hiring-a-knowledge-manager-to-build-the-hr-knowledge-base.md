@@ -26,7 +26,7 @@ You are an HR Manager at a 250-person company that has grown fast without ever i
 
 **Sample JD generated:**
 
-```txt
+```text
 Knowledge Manager — HR Knowledge Base & Self-Service
 
 About us:
@@ -146,7 +146,7 @@ Not a fit if:
 
 **Generated scorecard:**
 
-```txt
+```text
 KNOWLEDGE MANAGER — INTERVIEW SCORECARD
 Candidate: _____________________ | Date: _____________
 Interviewer: ___________________|
@@ -237,7 +237,7 @@ _________________________________________________
 
 ## Full Hiring Workflow Summary
 
-```txt
+```text
 Define knowledge management role type clearly (Specialist vs Manager)
                     ↓
 Write a focused JD with realistic scope and ticket-reduction goals

@@ -41,7 +41,7 @@ You are an HR manager helping a department leader write a performance improvemen
 
 **Generated plan excerpt:**
 
-```txt
+```text
 Performance improvement plan
 
 Employee: [name]
@@ -77,7 +77,7 @@ Failure to meet the required improvement may result in further corrective action
 
 **Generated script:**
 
-```txt
+```text
 I want to discuss a formal performance improvement plan. The goal is to make expectations clear, provide support, and give you a defined opportunity to improve.
 
 The concerns are about deadlines, completeness of project updates, and timely escalation of blockers. We will focus on specific work outcomes during the next 45 days.

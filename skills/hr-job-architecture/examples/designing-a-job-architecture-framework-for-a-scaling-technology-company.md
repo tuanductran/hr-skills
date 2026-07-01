@@ -76,7 +76,7 @@ design will be overtaken by the urgency.
 
 **Option A — Function-based architecture (one framework per department):**
 
-```txt
+```text
 Structure: Separate leveling guides and title conventions per function
            (Engineering, Product, Design, Data, GTM), each maintained
            by the function head with HR oversight
@@ -88,7 +88,7 @@ Trade-off: Easier to get function-specific buy-in, but creates
 
 **Option B — Unified job family architecture (common level spine across all functions):**
 
-```txt
+```text
 Structure: A single level spine (L1–L6 or equivalent) applied across
            all job families, with function-specific titles mapped to
            the common level at each grade
@@ -102,7 +102,7 @@ Trade-off: Stronger for pay equity, internal mobility, and finance
 
 **Option C — Phased hybrid (unified spine for Engineering and Product first, extend to other functions in phase two):**
 
-```txt
+```text
 Structure: Unified level spine implemented for Engineering and Product
            in the first phase given the active pay equity concern and
            the acqui-hire title conflict, with Design, Data, and GTM
@@ -198,7 +198,7 @@ across four dimensions:
 
 **Recommended level spine for Engineering (example):**
 
-```txt
+```text
 L1 — Junior Software Engineer
      Scope: Assigned tasks within a defined area; close guidance expected
      Autonomy: Requires daily check-ins; decisions reviewed before implementation
@@ -304,7 +304,7 @@ in the calibration session before drafting anything.
 
 **Step 2 — Use this prompt structure:**
 
-```txt
+```text
 I am a Total Rewards HR Business Partner building a job architecture
 for a 220-person Series B technology company.
 
@@ -332,7 +332,7 @@ Please:
 
 **Step 3 — Follow up with governance documentation:**
 
-```txt
+```text
 Based on this job architecture, draft a governance guide for
 managers explaining how to request a new role, how to assess
 whether an existing employee should be regraded, and what the

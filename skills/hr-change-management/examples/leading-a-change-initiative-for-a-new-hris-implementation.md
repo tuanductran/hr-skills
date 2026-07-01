@@ -38,7 +38,7 @@ Given your situation — a major system change with visible employee concern —
 
 **Option A — Training-first approach:**
 
-```txt
+```text
 Approach: Launch training sessions immediately,
           defer readiness assessment and communication
 Timeline: 4-6 weeks
@@ -48,7 +48,7 @@ Trade-off: Fast delivery, but risks low adoption
 
 **Option B — Readiness-first approach:**
 
-```txt
+```text
 Approach: Run readiness assessment and communication plan first,
           launch training after concerns are addressed
 Timeline: 6-8 weeks
@@ -58,7 +58,7 @@ Trade-off: Strong credibility, but risks delay
 
 **Option C — Parallel approach (readiness + communication + training):**
 
-```txt
+```text
 Approach: Run readiness assessment and communication in parallel,
           design training modules simultaneously
 Timeline: 8-10 weeks

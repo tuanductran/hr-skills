@@ -67,7 +67,7 @@ a concrete sequencing answer before either deadline compounds the other.
 
 **Option A — Seniority-based scope (C-suite only):**
 
-```txt
+```text
 Scope: CEO, CPO, CTO, CFO, CMO — 5 roles
 Coverage today: Likely 0 named successors with documented readiness
 Trade-off: Meets the minimum governance requirement quickly, but
@@ -77,7 +77,7 @@ Trade-off: Meets the minimum governance requirement quickly, but
 
 **Option B — Business continuity risk-based scope (C-suite plus critical operational roles):**
 
-```txt
+```text
 Scope: C-suite (5) + critical operational roles by impact
        (Head of Engineering, VP Sales, Head of Data — 3 additional)
 Coverage today: Likely mixed — some organic internal candidates exist
@@ -89,7 +89,7 @@ Trade-off: More representative of actual organizational risk, stronger
 
 **Option C — Full company calibration (all roles above manager level):**
 
-```txt
+```text
 Scope: All director-level and above roles, estimated 35–40 roles
 Coverage today: Unknown — no calibration data exists yet
 Trade-off: Comprehensive in theory, but produces low-quality data
@@ -251,7 +251,7 @@ exposures most likely to accelerate readiness before drafting anything.
 
 **Step 2 — Use this prompt structure:**
 
-```txt
+```text
 I am an HR Business Partner building succession documentation for
 a 280-person Series C technology company.
 
@@ -279,7 +279,7 @@ Please:
 
 **Step 3 — Follow up with board documentation:**
 
-```txt
+```text
 Based on this succession plan, draft a one-page board succession
 summary for the Head of Engineering role, covering: current
 coverage ratio, named successors with time-to-readiness, active

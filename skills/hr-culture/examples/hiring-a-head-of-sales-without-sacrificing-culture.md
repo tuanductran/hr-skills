@@ -26,7 +26,7 @@ You are an HR Manager at a 60-person startup that has grown quickly and is now h
 
 **Sample JD section generated:**
 
-```txt
+```text
 How we work
 
 We're a 60-person team that still operates with startup instincts: fast
@@ -122,7 +122,7 @@ Not a fit if:
 
 **Generated scorecard:**
 
-```txt
+```text
 HEAD OF SALES — CULTURE ALIGNMENT SCORECARD
 Candidate: _____________________ | Date: _____________
 Interviewer: ___________________|
@@ -204,7 +204,7 @@ _________________________________________________
 
 ## Full Culture-Aligned Hiring Workflow Summary
 
-```txt
+```text
 Reframe "culture fit" concern into named, specific values
                     ↓
 Write JD with observable behaviors, not vague culture language

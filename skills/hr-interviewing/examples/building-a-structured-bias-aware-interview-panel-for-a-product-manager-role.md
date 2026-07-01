@@ -25,7 +25,7 @@ You are an HR Manager supporting the hiring of a **Senior Product Manager**. The
 
 **Generated competency-to-panel mapping:**
 
-```txt
+```text
 SENIOR PRODUCT MANAGER — INTERVIEW PANEL PLAN
 
 Interviewer 1 (Hiring Manager):
@@ -104,7 +104,7 @@ Common warning signs include:
 
 **Generated scorecard section:**
 
-```txt
+```text
 COMPETENCY: Prioritization and Trade-off Decisions
 Interviewer: _____________________ | Candidate: _____________________
 
@@ -180,7 +180,7 @@ BEFORE discussing the candidate with any other interviewer.
 
 **Generated debrief structure:**
 
-```txt
+```text
 INTERVIEW PANEL DEBRIEF — STRUCTURE
 
 1. Confirm all scorecards were completed independently, BEFORE this
@@ -212,7 +212,7 @@ INTERVIEW PANEL DEBRIEF — STRUCTURE
 
 ## Full Structured Interviewing Workflow Summary
 
-```txt
+```text
 Translate vague hiring manager language into 4-6 concrete competencies
                     ↓
 Map competencies to specific interviewers on the panel

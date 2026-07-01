@@ -38,7 +38,7 @@ Given your situation — a filed NLRB petition, potential supervisor NLRA violat
 
 **Option A — Legal defense only (contest the election, focus on procedural response):**
 
-```txt
+```text
 Approach: Retain labor counsel to contest the bargaining unit definition,
           challenge the election timeline, and prepare a legal campaign
           focused on the election process and employee communication
@@ -54,7 +54,7 @@ Trade-off: Legally aggressive posture may win or delay the election,
 
 **Option B — Positive employee relations campaign (address underlying conditions while running legal process):**
 
-```txt
+```text
 Approach: Run the legal process with counsel while simultaneously
           launching a visible, credible effort to address the
           substantive employee concerns driving organizing interest
@@ -70,7 +70,7 @@ Trade-off: More expensive and operationally complex, but addresses
 
 **Option C — Neutrality and card check agreement (recognize without an election):**
 
-```txt
+```text
 Approach: Negotiate a neutrality agreement with the union allowing
           card-check recognition rather than contesting the election,
           in exchange for specific organizing conduct commitments
@@ -190,7 +190,7 @@ AI tools can draft labor relations content efficiently, but any employee-facing 
 
 **Step 2 — Use this prompt structure for supervisor training:**
 
-```txt
+```text
 I am an HR Business Partner preparing supervisor training for an
 NLRB election period at a 260-person logistics company.
 
@@ -211,7 +211,7 @@ Please:
 
 **Step 3 — Use this prompt structure for employee communications:**
 
-```txt
+```text
 Based on this situation, draft a factual, lawful employee communication
 that: explains the NLRB election process in neutral terms; states the
 company's position that employees have the right to vote; avoids

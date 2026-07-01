@@ -158,6 +158,7 @@ Generated files and package build outputs are cached through Turborepo based on 
 | **hr-recruiting** | Help HR managers with end-to-end recruiting and talent acquisition. |
 | **hr-security** | Help HR managers, recruiters, and talent acquisition teams understand Cybersecurity, Application Security, Cloud Security, Security Operations, Penetration Testing, and modern security engineering workflows. |
 | **hr-skills-taxonomy** | Help HR business partners, talent management specialists, L&D leaders, and workforce planning teams understand, design, and implement skills taxonomies and skills ontologies. |
+| **hr-social-recruiting** | Help HR managers, recruiters, talent acquisition teams, employer branding specialists, and founders recruit effectively through social media platforms including LinkedIn, Facebook, Zalo, GitHub, Reddit, Discord, Slack communities, TikTok, Instagram, and X (Twitter). |
 | **hr-succession-planning** | Help HR business partners, talent management specialists, and people leaders understand, design, and run succession planning, leadership pipeline development, and critical role continuity programs. |
 | **hr-talent-management** | Help HR managers, HRBPs, L&D leads, and people operations teams understand, design, and execute talent management systems. |
 | **hr-technology** | Help HR managers with HR technology strategy and implementation. |

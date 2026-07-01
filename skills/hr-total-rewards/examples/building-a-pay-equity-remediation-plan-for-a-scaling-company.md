@@ -46,7 +46,7 @@ At 280 people, some role groups will be statistically thin. You need to decide u
 
 **Required data fields for a defensible model:**
 
-```txt
+```text
 Dependent variable:     Base salary (or total cash compensation, run separately)
 Independent variables:  Job level, role family, location, tenure, performance rating
 Protected class fields: Gender, ethnicity (used to TEST for gaps, not as model inputs)
@@ -54,7 +54,7 @@ Protected class fields: Gender, ethnicity (used to TEST for gaps, not as model i
 
 **Data cleaning checks before running the model:**
 
-```txt
+```text
 1. Confirm every employee has a valid job level and role family mapping
    (mismatched leveling is the single most common cause of false-positive gaps)
 2. Standardize location into consistent pay zones, not raw city names
@@ -65,7 +65,7 @@ Protected class fields: Gender, ethnicity (used to TEST for gaps, not as model i
 
 **Running the baseline model:**
 
-```txt
+```text
 Model: Base Salary ~ Level + Role Family + Location + Tenure + Performance Rating
 
 Output: A predicted salary for each employee based on legitimate factors,
@@ -137,7 +137,7 @@ Design the remediation plan around three components: who gets adjusted, how much
 
 **Adjustment sizing:**
 
-```txt
+```text
 For each included employee:
   Target adjustment = bring residual gap to within an agreed tolerance
   (commonly within 2–3% of the model-predicted salary, not necessarily to zero,
@@ -151,7 +151,7 @@ Example:
 
 **Budget summary for this cohort:**
 
-```txt
+```text
 14 employees flagged for adjustment
 Total remediation cost: approximately $145,000 (one-time base salary impact)
 Represents approximately 0.6% of total company payroll
@@ -205,7 +205,7 @@ Aggregate and anonymize before pasting into any AI tool. Use role-group-level su
 
 **Step 2 — Use this prompt structure:**
 
-```txt
+```text
 I am a Total Rewards Manager at a 280-person fintech company.
 Here is our aggregated pay equity audit summary (no individual identifiers):
 [paste anonymized summary data here]
@@ -222,7 +222,7 @@ Please:
 
 **Step 3 — Follow up with governance design:**
 
-```txt
+```text
 Based on this summary, draft a standing pay equity governance process
 that includes: when analysis is re-run, who reviews flagged offers
 before approval, and how remediation budget is planned annually.
