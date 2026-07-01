@@ -4,6 +4,56 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## v1.0.3
+
+[compare changes](https://github.com/tuanductran/hr-skills/compare/v1.0.2...v1.0.3)
+
+### 🚀 Features
+
+- Add new HR skills and improve repository workflow ([65eb73a](https://github.com/tuanductran/hr-skills/commit/65eb73a))
+- **repo:** Add curated skills.sh repository groupings ([22c00f0](https://github.com/tuanductran/hr-skills/commit/22c00f0))
+- **skills:** Add culture, HRIS, and knowledge management skills ([cb1f780](https://github.com/tuanductran/hr-skills/commit/cb1f780))
+- Add 6 strategic HR skills and update catalogs ([5e821d0](https://github.com/tuanductran/hr-skills/commit/5e821d0))
+
+### 🐛 Bug Fixes
+
+- **.claude:** Remove Vercel references from bun skill ([e71b828](https://github.com/tuanductran/hr-skills/commit/e71b828))
+- **claude:** Allow bun run clean command ([43e1c9f](https://github.com/tuanductran/hr-skills/commit/43e1c9f))
+- Correct symlink path for .claude/skills ([4aa2697](https://github.com/tuanductran/hr-skills/commit/4aa2697))
+
+### ♻️ Refactors
+
+- **repo:** Make .agents the single source of truth for skills ([a65be97](https://github.com/tuanductran/hr-skills/commit/a65be97))
+- Restructure HR skills content and examples ([f16d653](https://github.com/tuanductran/hr-skills/commit/f16d653))
+- **skills:** Restructure content/examples, add 3 skills ([f77b3b1](https://github.com/tuanductran/hr-skills/commit/f77b3b1))
+- **sync:** Simplify skills markdown generation ([49bf2a1](https://github.com/tuanductran/hr-skills/commit/49bf2a1))
+
+### 📖 Documentation
+
+- **github:** Add pull request template ([8b48e62](https://github.com/tuanductran/hr-skills/commit/8b48e62))
+- Update README links ([6e73d9f](https://github.com/tuanductran/hr-skills/commit/6e73d9f))
+- **catalog:** Regenerate skills/CATALOG.md via bun run catalog ([c83b5f7](https://github.com/tuanductran/hr-skills/commit/c83b5f7))
+- **readme:** Add skills.sh badge and remove examples ([7629678](https://github.com/tuanductran/hr-skills/commit/7629678))
+
+### 📦 Build System
+
+- Update schemas and migrate to Bun native types ([d6e2103](https://github.com/tuanductran/hr-skills/commit/d6e2103))
+
+### 🧹 Chores
+
+- **clean:** Add cleanup script and update knip ([12c73bd](https://github.com/tuanductran/hr-skills/commit/12c73bd))
+- Add CLAUDE.md alias for AGENTS.md ([bf0b763](https://github.com/tuanductran/hr-skills/commit/bf0b763))
+- **funding:** Add GitHub Sponsors configuration ([54eabab](https://github.com/tuanductran/hr-skills/commit/54eabab))
+- **funding:** Remove Buy Me a Coffee support ([3824bb5](https://github.com/tuanductran/hr-skills/commit/3824bb5))
+- **repo:** Add CODEOWNERS file ([7538e68](https://github.com/tuanductran/hr-skills/commit/7538e68))
+- Simplify FUNDING.yml configuration ([fd927ba](https://github.com/tuanductran/hr-skills/commit/fd927ba))
+- Switch funding configuration to Ko-fi only ([538d408](https://github.com/tuanductran/hr-skills/commit/538d408))
+- Upgrade packages ([15cc3fd](https://github.com/tuanductran/hr-skills/commit/15cc3fd))
+
+### ❤️ Contributors
+
+- Tuan Duc Tran ([@tuanductran](https://github.com/tuanductran))
+
 ## v1.0.2
 
 
