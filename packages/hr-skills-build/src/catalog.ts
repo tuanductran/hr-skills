@@ -21,7 +21,7 @@ import { parseSkill } from './utils.js';
 // Markdown generator
 // -----------------------------------------------------------------------------
 
-function generateCatalog(skills: SkillCatalogEntry[]): string {
+export function generateCatalog(skills: SkillCatalogEntry[]): string {
 	const sections = skills.map(createSection).join('\n\n---\n\n');
 
 	return [

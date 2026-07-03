@@ -39,7 +39,12 @@ import {
 	TASKS_REGEX,
 	TIPS_REGEX,
 } from './constants.js';
-import { discoverSkills, extractMatch } from './helpers.js';
+import {
+	discoverSkills,
+	extractMatch,
+	normalizeAuthorName,
+	readSkillContent,
+} from './helpers.js';
 import type { ValidationError } from './types.js';
 import { parseFrontmatter } from './utils.js';
 
@@ -47,37 +52,28 @@ import { parseFrontmatter } from './utils.js';
 // Validators
 // -----------------------------------------------------------------------------
 
-async function validateSkill(skillName: string): Promise<ValidationError[]> {
-	const errors: ValidationError[] = [];
-
-	const skillDir = join(SKILLS_DIR, skillName);
-	const skillPath = join(skillDir, 'SKILL.md');
-
-	let content: string;
-
-	try {
-		content = await Bun.file(skillPath).text();
-	} catch {
-		errors.push({
-			skill: skillName,
-			message: 'SKILL.md file not found',
-		});
-
-		return errors;
-	}
-
-	// 1. Run core validator from skills-ref
+function validateCore(
+	skillName: string,
+	skillDir: string,
+	errors: ValidationError[],
+): void {
 	const refErrors = validateRef(skillDir);
-	for (const err of refErrors) {
+
+	for (const error of refErrors) {
 		errors.push({
 			skill: skillName,
-			message: `Core Validation Error: ${err}`,
+			message: `Core validation error: ${error}`,
 		});
 	}
+}
 
+export function validateFrontmatter(
+	skillName: string,
+	content: string,
+	errors: ValidationError[],
+): void {
 	const frontmatter = parseFrontmatter(content);
 
-	// 2. Validate Frontmatter specific properties
 	if (!frontmatter.name) {
 		errors.push({
 			skill: skillName,
@@ -102,17 +98,7 @@ async function validateSkill(skillName: string): Promise<ValidationError[]> {
 		});
 	}
 
-	if (!frontmatter.metadata?.author) {
-		errors.push({
-			skill: skillName,
-			message: 'Missing metadata.author',
-		});
-	} else if (frontmatter.metadata.author !== 'Tuan Duc Tran') {
-		errors.push({
-			skill: skillName,
-			message: `Incorrect metadata.author: expected "Tuan Duc Tran", received "${frontmatter.metadata.author}"`,
-		});
-	}
+	validateAuthor(skillName, frontmatter.metadata?.author, errors);
 
 	if (!frontmatter.metadata?.version) {
 		errors.push({
@@ -120,8 +106,13 @@ async function validateSkill(skillName: string): Promise<ValidationError[]> {
 			message: 'Missing metadata.version',
 		});
 	}
+}
 
-	// 3. Required sections
+export function validateRequiredSections(
+	skillName: string,
+	content: string,
+	errors: ValidationError[],
+): void {
 	for (const section of REQUIRED_SECTIONS) {
 		if (!content.includes(section)) {
 			errors.push({
@@ -130,49 +121,79 @@ async function validateSkill(skillName: string): Promise<ValidationError[]> {
 			});
 		}
 	}
+}
 
-	// 4. Minimum content length
+export function validateContentLength(
+	skillName: string,
+	content: string,
+	errors: ValidationError[],
+): void {
 	if (content.length < MIN_CONTENT_LENGTH) {
 		errors.push({
 			skill: skillName,
 			message: `SKILL.md is too short (minimum ${MIN_CONTENT_LENGTH} characters)`,
 		});
 	}
+}
 
-	// 5. Lines count constraint (AGENTS.md: under 500 lines)
+export function validateLineCount(
+	skillName: string,
+	content: string,
+	errors: ValidationError[],
+): void {
 	const lines = content.split(/\r?\n/);
+
 	if (lines.length > 500) {
 		errors.push({
 			skill: skillName,
 			message: `SKILL.md body is too long (${lines.length} lines, maximum 500 lines allowed)`,
 		});
 	}
+}
 
-	// 6. Supported tasks count constraint (AGENTS.md: 8–12 tasks)
+export function validateSupportedTasks(
+	skillName: string,
+	content: string,
+	errors: ValidationError[],
+): void {
 	const tasksBlock = extractMatch(TASKS_REGEX, content) ?? '';
-	const taskLines = tasksBlock
+
+	const tasks = tasksBlock
 		.split(/\r?\n/)
 		.filter((line) => line.trim().startsWith('- '));
-	if (taskLines.length < 8 || taskLines.length > 12) {
+
+	if (tasks.length < 8 || tasks.length > 12) {
 		errors.push({
 			skill: skillName,
-			message: `Supported tasks section has ${taskLines.length} tasks (expected 8-12 tasks)`,
+			message: `Supported tasks section has ${tasks.length} tasks (expected 8-12 tasks)`,
 		});
 	}
+}
 
-	// 7. Tips count constraint (AGENTS.md: 4–6 tips)
+export function validateTips(
+	skillName: string,
+	content: string,
+	errors: ValidationError[],
+): void {
 	const tipsBlock = extractMatch(TIPS_REGEX, content) ?? '';
-	const tipLines = tipsBlock
-		.split(/\r?\n/)
-		.filter((line) => line.trim().startsWith('- '));
-	if (tipLines.length < 4 || tipLines.length > 6) {
+
+	const tips = tipsBlock.split(/\r?\n/).filter((line) => line.trim().startsWith('- '));
+
+	if (tips.length < 4 || tips.length > 6) {
 		errors.push({
 			skill: skillName,
-			message: `Tips section has ${tipLines.length} tips (expected 4-6 tips)`,
+			message: `Tips section has ${tips.length} tips (expected 4-6 tips)`,
 		});
 	}
+}
 
-	// 8. Blank line before lists constraint (MD032 compliance)
+export function validateBlankLines(
+	skillName: string,
+	content: string,
+	errors: ValidationError[],
+): void {
+	const lines = content.split(/\r?\n/);
+
 	for (let i = 0; i < lines.length - 1; i++) {
 		const currentLine = lines[i].trim();
 		const nextLine = lines[i + 1].trim();
@@ -193,6 +214,54 @@ async function validateSkill(skillName: string): Promise<ValidationError[]> {
 			}
 		}
 	}
+}
+
+export function validateAuthor(
+	skillName: string,
+	author: string | undefined,
+	errors: {
+		skill: string;
+		message: string;
+	}[],
+): void {
+	if (!author?.trim()) {
+		errors.push({
+			skill: skillName,
+			message: 'Missing metadata.author',
+		});
+
+		return;
+	}
+
+	const normalized = normalizeAuthorName(author);
+
+	if (author !== normalized) {
+		errors.push({
+			skill: skillName,
+			message: `metadata.author must use Title Case (expected "${normalized}", received "${author}")`,
+		});
+	}
+}
+
+async function validateSkill(skillName: string): Promise<ValidationError[]> {
+	const errors: ValidationError[] = [];
+
+	const skillDir = join(SKILLS_DIR, skillName);
+
+	const content = await readSkillContent(skillName, errors);
+
+	if (!content) {
+		return errors;
+	}
+
+	validateCore(skillName, skillDir, errors);
+	validateFrontmatter(skillName, content, errors);
+	validateRequiredSections(skillName, content, errors);
+	validateContentLength(skillName, content, errors);
+	validateLineCount(skillName, content, errors);
+	validateSupportedTasks(skillName, content, errors);
+	validateTips(skillName, content, errors);
+	validateBlankLines(skillName, content, errors);
 
 	return errors;
 }

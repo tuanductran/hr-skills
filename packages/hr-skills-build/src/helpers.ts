@@ -6,7 +6,7 @@ import {
 	TASK_ITEM_REGEX,
 	TASKS_REGEX,
 } from './constants.js';
-import type { SkillCatalogEntry, SkillFrontmatter } from './types.js';
+import type { SkillCatalogEntry, SkillFrontmatter, ValidationError } from './types.js';
 import { parseFrontmatter } from './utils.js';
 
 export function extractTasks(content: string): string[] {
@@ -69,4 +69,30 @@ export async function readSkill(skillName: string): Promise<{
 		content,
 		frontmatter: parseFrontmatter(content),
 	};
+}
+
+export async function readSkillContent(
+	skillName: string,
+	errors: ValidationError[],
+): Promise<string | null> {
+	const skillPath = join(SKILLS_DIR, skillName, 'SKILL.md');
+
+	try {
+		return await Bun.file(skillPath).text();
+	} catch {
+		errors.push({
+			skill: skillName,
+			message: 'SKILL.md file not found',
+		});
+
+		return null;
+	}
+}
+
+export function normalizeAuthorName(name: string): string {
+	return name
+		.trim()
+		.split(/\s+/)
+		.map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+		.join(' ');
 }
