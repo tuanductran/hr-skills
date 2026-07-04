@@ -29,7 +29,7 @@ describe('assertTemplateMarkerExists', () => {
 		const content = [
 			'# AGENTS',
 			'',
-			'| Skill name | Scope |', // header bị lệch
+			'| Skill name | Scope |',
 			'|------------|-------|',
 			'| **hr-ai** | Scope. |',
 			'',
