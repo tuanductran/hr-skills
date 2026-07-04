@@ -15,7 +15,6 @@ export interface SkillMeta {
 	name: string;
 	description: string;
 	coverage: string;
-	shortSummary: string;
 	scopeSentence: string;
 	triggerPhrases: string[];
 	supportedTasks: string[];

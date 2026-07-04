@@ -83,7 +83,7 @@ Brief paragraph describing what this skill covers.
 (4–6 tips)
 ```
 
-See [skill-format.md](./skill-format.md) for the full specification.
+See [format.md](./docs/format.md) for the full specification.
 
 ### 3. Sync skill references
 
@@ -93,7 +93,7 @@ Run the sync script to auto-update generated references and metadata:
 bun run sync
 ```
 
-This updates `AGENTS.md`, `docs/installation.md`, `docs/skills.md`, and `.claude-plugin/marketplace.json`. No manual edits are needed.
+This updates `AGENTS.md`, `docs/skills.md`, and `.claude-plugin/marketplace.json`. No manual edits are needed.
 
 ### 4. Validate and regenerate generated artifacts
 

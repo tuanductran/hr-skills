@@ -14,9 +14,6 @@ export const QUOTED_PROMPT_REGEX = /^(?:\d+\. |[-*] )"([^"]+)"/gm;
 
 export const AGENTS_TABLE_REGEX = /\| Skill \| Scope \|\n\|[-|]+\|\n[\s\S]*?(?=\n## )/;
 
-export const INSTALLATION_TABLE_REGEX =
-	/\| Skill \| What it covers \|\n\|[-|]+\|\n[\s\S]*?(?=\nSee \[skills\.md\])/;
-
 export const USE_WHEN_REGEX = /Use when/i;
 
 export const PERIOD_REGEX = /\.$/;

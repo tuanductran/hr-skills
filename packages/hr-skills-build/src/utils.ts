@@ -113,19 +113,12 @@ export async function parseSkillMeta(skillName: string): Promise<SkillMeta> {
 		triggerPhrases.push(match[1]);
 	}
 
-	// Installation summary
-	const firstClause = coverage.split('—')[1]?.trim() ?? coverage;
-
-	const shortSummary =
-		firstClause.length > 65 ? `${firstClause.slice(0, 62)}…` : firstClause;
-
 	const scopeSentence = `${coverage.charAt(0).toUpperCase()}${coverage.slice(1)}.`;
 
 	return {
 		name,
 		description,
 		coverage,
-		shortSummary,
 		scopeSentence,
 		triggerPhrases,
 		supportedTasks,
