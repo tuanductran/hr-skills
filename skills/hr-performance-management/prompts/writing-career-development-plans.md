@@ -1,0 +1,9 @@
+# Writing career development plans
+
+If you're looking for a tool to help you with writing career development plans, this AI assistant can be a great resource. By providing clear and specific prompts, it can help you create a personalized and effective career development plan.
+
+- "As a [current job title] with [number of years] of experience in [specific industry/field], I want to advance my career to [target job role] within [time frame]. Can you help me create a comprehensive career development plan that incorporates both technical and soft skills development, and includes [number] specific goals and action steps?"
+- "I want to create a career development plan that takes into account the changing landscape of [specific industry/field], including emerging technologies and new trends. Can you help me identify the skills and knowledge I need to stay competitive, and suggest learning opportunities and resources to include in my plan?"
+- "I'm a [current job title] with [number of years] of experience, and I want to transition into a [target job role] in a different industry. Can you help me identify transferable skills and experiences, and suggest how I can leverage my current network and experiences to achieve my career transition goals?"
+- "As a [current job title], I want to improve my leadership and management skills to prepare for a senior leadership role. Can you help me identify specific areas for improvement and suggest training and development opportunities, and ways to measure progress?"
+- "I want to create a holistic career development plan that takes into account both my personal and professional goals. Can you help me identify how my personal values and priorities align with my career aspirations, and suggest ways to incorporate self-care and work-life balance into my plan?"

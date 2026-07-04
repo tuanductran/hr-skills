@@ -1,0 +1,9 @@
+# Creating HR reports and dashboards
+
+This AI assistant can be a useful tool for creating HR reports and dashboards. By inputting data and specific parameters, it can generate customized reports and visualizations. It can also assist with analyzing the data and making recommendations based on patterns and trends. With the assistant, you can save time and resources by automating the reporting process and improving data accuracy.
+
+- "How can I use the assistant to analyze [metric] by [criteria] for [time period], taking into account factors such as [factor 1], [factor 2], and [factor 3]? Can you generate a report that includes [additional information/visualizations] to help me understand the data better?"
+- "I need to generate a report that shows the [metric] of [employee group] who have [completed/undertaken] [training program/course], broken down by [department/manager/division] and compared to those who have not. Can you assist with that?"
+- "Can you create a dashboard that displays [metric] by [criteria] for [time period], with a separate section that shows the [metric] of [employee group] who have been with the company for [time period] and have not received a promotion? I would like to use this to identify areas where we can improve employee retention."
+- "I want to track the [metric] of [employee group] who work remotely, compared to those who work in-office, broken down by [criteria]. Can you help me generate a report that includes [additional information/visualizations] to help me understand the data?"
+- "Can you create a report that shows the [metric] of [employee group] who have [completed/undertaken] [specific project/initiative], compared to those who have not, broken down by [department/manager/division]? I would like to use this to evaluate the impact of the project/initiative on employee performance."

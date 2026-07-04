@@ -1,0 +1,9 @@
+# Creating global mobility policies
+
+This AI assistant can be a useful tool in creating global mobility policies by generating relevant and comprehensive information on various aspects of mobility policies such as visa regulations, tax implications, and cultural differences. By providing prompts and responses to specific questions, it can help to identify and address potential issues that may arise when creating global mobility policies.
+
+- "What [cultural nuances / language barriers / social customs] should [company/organization] consider when [creating / implementing] global mobility policies for [employees / expatriates] on [short-term / long-term] assignments in [geographic region / country] to ensure [intercultural competence / effective communication]?"
+- "How can [company/organization] develop [sustainable / ethical] global mobility policies that [align with the UN Sustainable Development Goals / prioritize environmental conservation] while [ensuring employee safety / meeting business objectives]?"
+- "What are the [legal / financial / ethical] implications of [providing / not providing] [cross-cultural training / emergency support / relocation assistance] to [employees / expatriates] on [global mobility assignments / relocation packages], and how can [company/organization] [address / mitigate] these implications?"
+- "Can you [recommend / analyze] the [feasibility / effectiveness] of [different compensation models / relocation packages / visa sponsorship strategies] for [employees / expatriates] on [global mobility assignments / international transfers], taking into account [market rates / industry standards / tax laws]?"
+- "How can [company/organization] [customize / adapt] its global mobility policies for [employees / expatriates] based on [job roles / career goals / personal preferences], while also [ensuring fairness / promoting diversity and inclusion]?"

@@ -1,0 +1,9 @@
+# Managing applicant tracking system (ATS)
+
+This AI assistant can assist with managing an applicant tracking system (ATS) by providing helpful prompts and suggestions for optimizing the hiring process. It can help streamline the recruitment process, provide valuable insights into candidate profiles, and aid in identifying top talent for the company. It can also provide helpful tips for ATS management, such as how to automate repetitive tasks and how to use data analytics to improve recruitment strategies.
+
+- "Can you provide me with some tips on how to [optimize candidate profiles] using an ATS? Specifically, how can I use [machine learning algorithms] to analyze [unstructured data] and [predict candidate fit] for specific job requirements?"
+- "How can I use an ATS to [automate repetitive tasks] in the hiring process? Can you give me some examples of [custom workflows] that I can create to [notify hiring managers] about candidate progress and [schedule interviews]?"
+- "What are some strategies for [identifying top talent] using an ATS? Can you provide some guidance on how to [set up candidate scoring criteria] based on [specific job requirements] and [qualifications], and how to [leverage data analytics] to [predict future candidate success]?"
+- "Can you suggest some ways to [improve recruitment strategies] using an ATS? Specifically, how can I use [candidate sourcing data] to [analyze the effectiveness] of different recruitment channels, and how can I use [interview data] to [improve hiring decisions] and [reduce bias]?"
+- "How can an ATS help with [data analytics] to improve the recruitment process? Can you provide some examples of [data visualization tools] and [metrics] that can be used to [identify recruitment trends], and how to [use these insights] to [refine recruitment strategies] and [improve the candidate experience]?"

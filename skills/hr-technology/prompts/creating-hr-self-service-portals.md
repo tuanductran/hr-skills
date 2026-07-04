@@ -1,0 +1,9 @@
+# Creating HR self-service portals
+
+This AI assistant can be a useful tool in creating HR self-service portals. With its advanced language processing capabilities, it can help you generate content for your portal, answer frequently asked questions, and provide personalized responses to employee inquiries. By using the assistant, you can save time and effort in creating a comprehensive and user-friendly HR portal.
+
+- "Can you help me generate content for my HR self-service portal? I need information on [employee benefits, such as [specific health insurance plans], [retirement plans], [paid time off policies], [employee assistance programs], and [tuition reimbursement programs]]."
+- "How can I make my HR portal more user-friendly? Do you have any tips for designing [employee profiles, such as [specific fields], [profile pictures], and [employee status updates]], [feedback forms, such as [specific questions], [response options], and [comments sections]], and [FAQs, such as [specific topics], [questions], and [answers]]?"
+- "Can you provide me with a template for an employee handbook that I can use on my HR portal? I want to include information on [company policies, such as [specific policies], [procedures], [code of conduct], and [ethical standards]]."
+- "How can I integrate the assistant into my HR portal to provide personalized responses to employee inquiries about [vacation time, such as [specific policies], [procedures], and [rules]], [sick leave, such as [specific policies], [procedures], and [eligibility requirements]], and [HR policies, such as [specific policies], [procedures], and [disciplinary actions]]?"
+- "Can you suggest some ideas for promoting my HR portal to employees? I want to increase engagement and usage, such as [hosting webinars or workshops], [creating a referral program], [creating incentives or rewards for portal usage], and [customizing portal features based on employee feedback or preferences]]."

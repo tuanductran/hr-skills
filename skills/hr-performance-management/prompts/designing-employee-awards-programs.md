@@ -1,0 +1,9 @@
+# Designing employee awards programs
+
+This AI assistant can be a valuable tool in designing employee awards programs. With its vast knowledge base and ability to generate text, it can provide a wealth of ideas and suggestions for different types of awards, criteria for selection, and methods for implementation. By asking targeted questions, it can help to identify the specific needs and goals of the organization and provide tailored solutions that meet those needs.
+
+- "What are some [adjective] and [adjective] employee recognition and rewards [plural noun] that [company name] can implement to increase [specific desired outcome] among employees in [specific department or team]? How can [company name] ensure that the [specific criteria] for awarding these [plural noun] is [adjective] and [adjective]?"
+- "What are some [adjective] and [adjective] approaches to designing an employee awards program that takes into account the unique [noun] of [company name]? How can [company name] involve employees in the [specific aspect] of the program to make it more [adjective] and [adjective]?"
+- "What are some potential [adjective] and [adjective] challenges that [company name] may face in implementing an employee awards program? How can [company name] address these challenges to ensure that the program is [adjective] and [adjective] for all employees, including those from [specific demographic]?"
+- "How can [company name] tailor its employee recognition and rewards program to [specific event or occasion], such as [specific holiday or milestone]? What are some [adjective] and [adjective] ways to make the recognition and rewards [adjective] and [adjective] for employees?"
+- "What are some [adjective] and [adjective] strategies that [company name] can use to measure the effectiveness of its employee awards program over the [specific time period]? How can [company name] use this data to make [specific action] that improve the program's [specific metric]?"

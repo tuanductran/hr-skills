@@ -1,0 +1,9 @@
+# Creating background check policies
+
+This AI assistant can be used to help you create effective background check policies. By providing relevant information and insights on legal and ethical considerations, best practices, and common pitfalls to avoid, it can assist in crafting comprehensive and compliant policies. Whether you need to establish policies from scratch or update existing ones, it can provide valuable guidance and save you time and effort.
+
+- "Can you provide an overview of legal requirements that should be considered when creating a background check policy for [specific industry] in [specific country/state/province/region], particularly regarding [specific type of information or screening] and [specific legal compliance considerations]?"
+- "What are some best practices for obtaining and using [specific type of information] in [specific country/state/province/region], especially in light of [specific industry or regulatory] requirements and [specific ethical considerations or data privacy concerns]?"
+- "What are some potential risks or pitfalls to avoid when conducting background checks on [specific group of individuals, such as job candidates, employees, volunteers, or contractors], taking into account [specific type of screening], [specific legal requirements], and [specific ethical or diversity and inclusion concerns]?"
+- "How can a background check policy be tailored to align with [specific company culture/values/diversity and inclusion initiatives], while also meeting [specific legal requirements], [specific industry standards], and [specific stakeholder expectations]?"
+- "What are some recommended resources or tools to help with background check policy development, such as [specific industry associations, government websites, background check service providers, legal or HR experts], and how can they be applied to [specific company/industry/context]?"

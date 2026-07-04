@@ -1,0 +1,9 @@
+# Creating HR technology roadmaps
+
+This AI assistant can be a useful tool in creating HR technology roadmaps. With its vast knowledge and natural language processing capabilities, it can assist in generating actionable plans and roadmaps that align with an organization's HR goals and objectives.
+
+- "We are considering [implementing/adopting] [a new/an emerging] HR technology solution to address [employee engagement/performance management/learning and development] challenges. Could you suggest [some specific examples/industry trends/research insights] on how we can [leverage/utilize] this technology effectively?"
+- "As we [prepare/develop/implement] our HR technology roadmap, we want to ensure that it aligns with [our business goals/our workforce needs/the latest industry trends]. Can you provide some [expert insights/best practices/real-world examples] on how we can [achieve/measure/sustain] this alignment?"
+- "We have [identified/recognized] several [key/strategic] HR technology needs, but we are not sure which solution will [best fit/fully meet/adequately address] those needs. Can you help us [evaluate/compare/analyze] different [vendors/products/features] and provide [pros and cons/cost-benefit analysis/recommendations] for each?"
+- "We want to ensure that our HR technology roadmap [effectively addresses/meets] [our regulatory compliance needs/our data privacy concerns/our diversity, equity and inclusion goals]. Can you suggest [some policies/guidelines/checklists] that we can [implement/incorporate/follow] to [ensure/validate/verify] compliance with these requirements?"
+- "We want to [streamline/optimize/improve] our HR technology stack, but we are not sure [which areas to prioritize/what to look for/how to measure effectiveness]. Could you help us [identify/analyze/interpret] [relevant metrics/data points/trends] that will [inform/guide/support] our decision-making process?"

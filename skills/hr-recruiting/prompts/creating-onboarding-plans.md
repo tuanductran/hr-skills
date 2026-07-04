@@ -1,0 +1,9 @@
+# Creating onboarding plans
+
+This AI assistant can be a valuable tool for creating onboarding plans for new employees. By providing relevant information and personalized guidance, it can help streamline the onboarding process and ensure that new employees are set up for success. Some useful tips for using the assistant to create onboarding plans include focusing on key information and tailoring the plan to the individual employee's needs and role within the company.
+
+- "Can you help me create a comprehensive onboarding plan for [new employee name] who will be working as a [job title] in the [department] department, starting on [start date], and who will be responsible for [specific task/duty/responsibility]?"
+- "What are the [specific skillset/training/education] requirements for [job title]s in the [department] department, and how can I ensure that the onboarding plan includes these, as well as additional opportunities for growth and development in these areas?"
+- "How can I ensure that the onboarding plan takes into account the unique [work culture/communication style/management approach] of our organization and how this can be navigated effectively by [new employee name], given their [prior experience/communication style/work history]?"
+- "What are the key components of a successful onboarding plan for [remote/hybrid/in-person] employees, and how can I make sure to include [specific training/tools/technology] that will be required for success in this mode of work?"
+- "Can you provide examples of successful onboarding plans for [industry/company type] that have included [specific cultural/mentorship/feedback] components, and how can I adapt these to the needs of our organization, taking into account [specific challenges/opportunities/cultural considerations] that are unique to our company?"
