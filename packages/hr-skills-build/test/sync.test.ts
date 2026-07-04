@@ -1,19 +1,20 @@
 import { describe, expect, it } from 'bun:test';
+
 import { AGENTS_TABLE_REGEX } from '../src/constants.js';
 import { assertTemplateMarkerExists } from '../src/sync.js';
 
-const content = [
-	'# AGENTS',
-	'',
-	'| Skill | Scope |',
-	'|-------|-------|',
-	'| **hr-ai** | Scope. |',
-	'',
-	'## Next section',
-].join('\n');
-
 describe('assertTemplateMarkerExists', () => {
 	it('does not throw when AGENTS table marker matches', () => {
+		const content = [
+			'# AGENTS',
+			'',
+			'| Skill | Scope |',
+			'|-------|-------|',
+			'| **hr-ai** | Scope. |',
+			'',
+			'## Next section',
+		].join('\n');
+
 		expect(() =>
 			assertTemplateMarkerExists(
 				content,
@@ -25,6 +26,16 @@ describe('assertTemplateMarkerExists', () => {
 	});
 
 	it('throws actionable error when AGENTS marker drifts', () => {
+		const content = [
+			'# AGENTS',
+			'',
+			'| Skill name | Scope |', // header bị lệch
+			'|------------|-------|',
+			'| **hr-ai** | Scope. |',
+			'',
+			'## Next section',
+		].join('\n');
+
 		expect(() =>
 			assertTemplateMarkerExists(
 				content,
