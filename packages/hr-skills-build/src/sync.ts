@@ -7,9 +7,8 @@
  * What this script does:
  *   1. Discover all HR skills from the filesystem
  *   2. Rebuild the skill scopes table in AGENTS.md
- *   3. Rebuild the skills table in docs/installation.md
- *   4. Add missing sections to docs/skills.md
- *   5. Rebuild .claude-plugin/marketplace.json
+ *   3. Add missing sections to docs/skills.md
+ *   4. Rebuild .claude-plugin/marketplace.json
  *
  * Usage:
  *   bun run sync
@@ -19,7 +18,7 @@ import { join } from 'node:path';
 import { consola } from 'consola';
 
 import { getHrSkills } from './config.js';
-import { AGENTS_TABLE_REGEX, INSTALLATION_TABLE_REGEX, ROOT_DIR } from './constants.js';
+import { AGENTS_TABLE_REGEX, ROOT_DIR } from './constants.js';
 import type { SkillMeta } from './types.js';
 import { parseSkillMeta } from './utils.js';
 
@@ -96,41 +95,6 @@ async function syncAgentsTable(metas: SkillMeta[]): Promise<boolean> {
 	const table = `${tableHeader}\n${rows}`;
 
 	const updated = original.replace(AGENTS_TABLE_REGEX, `${table}\n`);
-
-	if (updated === original) {
-		return false;
-	}
-
-	await Bun.write(path, updated);
-
-	return true;
-}
-
-// -----------------------------------------------------------------------------
-// docs/installation.md sync
-// -----------------------------------------------------------------------------
-
-async function syncInstallationTable(metas: SkillMeta[]): Promise<boolean> {
-	const path = join(ROOT_DIR, 'docs/installation.md');
-
-	const original = await Bun.file(path).text();
-
-	assertTemplateMarkerExists(
-		original,
-		INSTALLATION_TABLE_REGEX,
-		'docs/installation.md',
-		'INSTALLATION_TABLE_REGEX',
-	);
-
-	const tableHeader = '| Skill | What it covers |\n|----------------|--------|';
-
-	const rows = metas
-		.map((meta) => `| \`${meta.name}\` | ${meta.shortSummary} |`)
-		.join('\n');
-
-	const table = `${tableHeader}\n${rows}`;
-
-	const updated = original.replace(INSTALLATION_TABLE_REGEX, `${table}\n`);
 
 	if (updated === original) {
 		return false;
@@ -243,14 +207,6 @@ export async function sync(): Promise<void> {
 
 	consola[agentsChanged ? 'success' : 'info'](
 		agentsChanged ? 'Updated AGENTS.md' : 'AGENTS.md already in sync',
-	);
-
-	const installationChanged = await syncInstallationTable(metas);
-
-	consola[installationChanged ? 'success' : 'info'](
-		installationChanged
-			? 'Updated docs/installation.md'
-			: 'docs/installation.md already in sync',
 	);
 
 	const skillsDocsChanged = await syncSkillsDocs(metas);
