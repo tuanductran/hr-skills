@@ -1,0 +1,9 @@
+# Creating diversity and inclusion scorecards
+
+This AI assistant can be a useful tool to assist with the task of creating diversity and inclusion scorecards. By providing relevant and up-to-date information, it can help you generate diverse and inclusive metrics that reflect your organization's values and goals. Whether you need assistance with collecting data or analyzing it, it can help streamline the process, saving you valuable time and resources.
+
+- "What [specific strategies/tactics/techniques] can I use to create a diversity and inclusion scorecard for [my company/organization] using the assistant, given our [company culture/goals/mission statement] and [geographic/demographic] diversity?"
+- "Can you provide me with a comprehensive list of diversity and inclusion metrics that I can use for my scorecard using the assistant, based on our [industry/type of organization], [company size], [geographic location], and [specific employee demographic]?"
+- "How can the assistant help me with the [data collection/data cleaning/data analysis] process for my diversity and inclusion scorecard, considering our [company size/available resources/time constraints], and our [specific organizational structure/industry regulations/employee privacy policies]?"
+- "What [common mistakes/common pitfalls] should I be aware of when creating a diversity and inclusion scorecard using the assistant, especially in the context of [my industry/type of organization], [specific geographic location], and [employee demographics]?"
+- "How can I use the assistant to [identify/analyze] [potential diversity and inclusion gaps/areas of improvement] in our organization and [generate/recommend] [actionable/meaningful] insights for our scorecard, while also taking into account [specific employee feedback/external factors such as industry trends/organizational benchmarks]?"

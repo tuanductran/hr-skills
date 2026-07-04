@@ -1,0 +1,9 @@
+# Managing EEO compliance
+
+This AI assistant can be a valuable tool in managing EEO compliance by providing guidance on EEO laws and regulations, analyzing data for potential disparities, and offering suggestions for addressing any issues that may arise. It can also help generate reports and provide recommendations for improving diversity and inclusion within an organization.
+
+- "What are some best practices for EEO compliance in [specific industry/organization type]? How can we implement [specific EEO practice] to ensure [specific goal]? Additionally, how can we measure the success of our efforts using [specific metrics]?"
+- "How can we identify and address potential disparities in our [specific hiring/promotion process] at our [specific location/department]? What data should we collect to [specific action]? Furthermore, how can we communicate our findings and action plan to [specific stakeholder group] to ensure [specific outcome]?"
+- "Can you provide guidance on creating a [specific type of] diversity and inclusion program for [specific employee group/department] in our [specific industry/organization type]? How can we measure the success of our program using [specific metrics]? Also, how can we adapt our program to [specific challenge] that is unique to our organization?"
+- "What are the legal requirements for conducting an EEO audit in [specific state/country] for [specific organization size/type]? How should we [specific action] if we identify potential disparities in our data? In addition, how can we leverage the assistant to [specific task] during the audit process?"
+- "What are some effective strategies for promoting diversity and inclusion in the [specific industry/organization type]? How can we leverage [specific technology/platform] to enhance our diversity and inclusion efforts? Can you provide examples of [specific successful initiative] in the industry and how they achieved their goals?"

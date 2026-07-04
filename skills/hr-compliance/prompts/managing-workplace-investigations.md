@@ -1,0 +1,9 @@
+# Managing workplace investigations
+
+This AI assistant can assist in managing workplace investigations by providing guidance on various aspects of the task, such as understanding legal requirements and best practices, drafting investigation plans and interview questions, analyzing evidence, and documenting findings. It can also help with conducting objective and thorough investigations while avoiding common biases and pitfalls.
+
+- "Can you provide me with some guidelines on how to conduct a fair and unbiased workplace investigation [in a specific industry or context], considering the [relevant laws, regulations, and policies] and potential [conflicts of interest, power dynamics, or cultural factors]?"
+- "What are the key elements to include in an investigation plan for [a particular type of misconduct], taking into account the [nature and scope of the allegation], the [identity and location of the parties involved], and the [available resources and timeline]?"
+- "How can I effectively interview [a diverse range of witnesses, including those who are reluctant or emotional] during a workplace investigation, [using open-ended questions, active listening, and empathy], and [avoiding leading or suggestive language, or any behavior that could be perceived as retaliation or harassment]?"
+- "What are some [common misconceptions or biases] to watch out for when reviewing evidence during an investigation [related to a certain type of claim], and how can I [validate the authenticity and reliability of the evidence], [assess the credibility and consistency of the sources], and [contextualize the evidence within the larger picture]?"
+- "Can you give me some tips on how to draft a comprehensive investigation report [that meets legal requirements and helps prevent future incidents], [organizing the report in a clear and logical manner], [using objective and concise language], and [providing specific and actionable recommendations]?"

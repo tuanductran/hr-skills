@@ -1,0 +1,9 @@
+# Developing drug testing policies
+
+This AI assistant can be a valuable resource for developing drug testing policies. It can use this knowledge to provide information on various aspects of drug testing policies, including ethical considerations, legal requirements, and best practices. By generating prompts and responding to questions, it can help users develop comprehensive drug testing policies that are effective and compliant with relevant regulations.
+
+- "Can you provide an overview of [drug testing policies], including [the most common types of drug tests], [the consequences of a positive test result], [the role of supervisors and managers in the testing process], and [the rights of employees in the testing process]?"
+- "What are the [ethical considerations] that need to be taken into account when developing [comprehensive drug testing policies] for [large organizations], including [ways to protect employee privacy], [methods to ensure test accuracy and reliability], and [strategies to avoid discrimination and maintain a safe and productive work environment]?"
+- "What are the [legal requirements] for [drug testing policies] in [specific country/region], including [written consent requirements], [confidentiality guidelines], and [industry-specific regulations]?"
+- "Can you suggest some [best practices] for [implementing comprehensive drug testing policies] in [high-risk industries], including [pre-employment drug testing procedures], [random drug testing guidelines], and [employee education and support programs]?"
+- "How can [drug testing policies] be effectively [communicated to employees], including [the use of clear and concise language], [the provision of education and training], and [the establishment of a designated point of contact for questions and concerns]?"

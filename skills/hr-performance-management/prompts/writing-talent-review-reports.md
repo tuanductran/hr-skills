@@ -1,0 +1,9 @@
+# Writing talent review reports
+
+This AI assistant can be an excellent tool to assist you with the task of writing talent review reports. By using natural language processing and machine learning algorithms, it can quickly analyze and synthesize large amounts of data related to employee performance, identify strengths and areas for improvement, and generate comprehensive reports in a matter of minutes. With the assistant, you can streamline the talent review process, save time and effort, and produce high-quality reports that accurately reflect employee performance.
+
+- "Please generate a comprehensive talent review report for [employee name] that includes their [key strengths], [top accomplishments] over the past [timeframe], [areas for improvement] and [specific recommendations] for their professional development."
+- "Can you analyze the performance data for the [specific team/project] and create a detailed summary report of their [strengths and weaknesses], [challenges faced], [key deliverables], and [impact on business outcomes]?"
+- "Provide an in-depth evaluation of [employee name]'s performance over the past [timeframe], including their [skills], [behaviors], [performance metrics], [key contributions to team/project success], and [feedback from colleagues and managers]."
+- "Generate a report on the overall talent performance of [company/division] and identify [areas for improvement] in [specific skill sets/competencies], [talent gaps] and [recommendations] for talent development and retention strategies."
+- "Please provide a detailed review of [employee name]'s [leadership] and [collaboration] skills, [innovative ideas], [project management abilities], and [overall impact] on the team's performance and [business outcomes]. Include [specific examples] of their achievements and [areas for improvement] with [recommended actions] for their future development."
