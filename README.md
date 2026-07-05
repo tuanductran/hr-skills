@@ -8,6 +8,8 @@ Built by [Tuan Duc Tran](https://linkedin.com/in/tuanductran) for members of the
 
 Skills follow the [Agent Skills](https://agentskills.io/) format.
 
+> ⚠️ **HR Skills is actively maintained and evolves continuously.** The repository is fully usable, but not every skill has the same level of coverage or supporting resources. Some skills intentionally consist of only a `SKILL.md`, while others also include examples, prompts, reference content, or additional tooling. This variation is intentional and reflects the needs of each skill. Repository conventions, validation rules, and supporting resources may evolve between releases. [Issues](https://github.com/tuanductran/hr-skills/issues), pull requests, and community feedback are always welcome.
+
 ## Coverage
 
 HR Skills covers the full employee lifecycle and modern HR practice, including:
