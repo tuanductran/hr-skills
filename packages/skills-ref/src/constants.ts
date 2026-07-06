@@ -26,3 +26,11 @@ export const ALLOWED_FRONTMATTER_FIELDS = new Set<string>([
 	'metadata',
 	'compatibility',
 ]);
+
+export const XML_ESCAPES = new Map<string, string>([
+	['&', '&amp;'],
+	['<', '&lt;'],
+	['>', '&gt;'],
+	['"', '&quot;'],
+	["'", '&apos;'],
+]);
