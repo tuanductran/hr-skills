@@ -1,7 +1,7 @@
 import { mkdtempSync, readdirSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
-import { SKILLS_DIR } from './constants.js';
+import { SKILLS_DIR, XML_ESCAPES } from './constants.js';
 import { findSkillMd, readProperties } from './parser.js';
 
 export function isPlainObject(value: unknown): value is Record<string, unknown> {
@@ -28,12 +28,7 @@ export function toStringOrUndefined(value: unknown): string | undefined {
 }
 
 function escapeXml(value: string): string {
-	return value
-		.replaceAll('&', '&amp;')
-		.replaceAll('<', '&lt;')
-		.replaceAll('>', '&gt;')
-		.replaceAll('"', '&quot;')
-		.replaceAll("'", '&apos;');
+	return value.replace(/[&<>"']/g, (char) => XML_ESCAPES.get(char) ?? char);
 }
 
 export function createSkillBlock(skillDir: string): string {
