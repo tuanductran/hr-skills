@@ -1,11 +1,3 @@
-export interface SkillCatalogEntry {
-	name: string;
-	description: string;
-	author: string;
-	version: string;
-	supportedTasks: string[];
-}
-
 export interface SkillDirectoryOptions {
 	readonly prefix?: string;
 	readonly sort?: boolean;
@@ -18,6 +10,17 @@ export interface SkillMeta {
 	scopeSentence: string;
 	triggerPhrases: string[];
 	supportedTasks: string[];
+}
+
+export interface MarketplaceJson {
+	name: string;
+	description: string;
+	plugins: Array<{
+		name: string;
+		source: string;
+		description: string;
+		skills: string[];
+	}>;
 }
 
 export interface SkillFrontmatter {

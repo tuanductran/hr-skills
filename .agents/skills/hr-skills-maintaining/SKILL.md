@@ -54,7 +54,7 @@ Supporting files should complement each other instead of repeating the same info
 - Produce release and pre-publish checklists
 - Generate Conventional Commit messages
 - Recommend CI commands using Bun and Turbo
-- Update catalog or repository documentation when required
+- Keep repository documentation synchronized with repository changes
 
 ## Key prompts
 

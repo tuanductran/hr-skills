@@ -1,3 +1,6 @@
+/**
+ * Skill properties.
+ */
 export interface SkillProperties {
 	name: string;
 	description: string;

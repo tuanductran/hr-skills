@@ -1,54 +1,173 @@
 name: New Skill Request
-description: Propose a new HR skill to add to the collection
-labels: [enhancement, new-skill]
+description: Propose a new HR skill for the repository
+title: "[Skill]: "
+labels:
+  - enhancement
+  - new-skill
+
 body:
   - type: markdown
     attributes:
       value: |
-        Use this template to propose a new HR skill. A good skill covers a distinct HR domain
-        that isn't already handled by the [existing skills](../../docs/skills.md).
+        Thank you for helping improve the HR Skills repository.
+
+        Before submitting your proposal:
+
+        - Review the existing skills listed in the root `SKILL.md`.
+        - Confirm your proposal is not already covered by an existing skill.
+        - Propose a distinct HR capability rather than a small feature, prompt collection, or minor variation of another skill.
 
   - type: input
-    id: name
+    id: skill_name
     attributes:
-      label: Proposed skill name
-      description: Must be kebab-case and start with `hr-`
-      placeholder: e.g. hr-compensation-strategy
+      label: Proposed skill ID
+      description: |
+        Use kebab-case and start with `hr-`.
+
+        Examples:
+        - hr-compensation-strategy
+        - hr-employee-advocacy
+      placeholder: hr-your-skill
     validations:
       required: true
 
   - type: textarea
     id: description
     attributes:
-      label: What HR domain does this skill cover?
-      description: Explain the scope. What tasks would it handle that existing skills don't?
-    validations:
-      required: true
+      label: Description
+      description: |
+        Write the description exactly as it would appear in the SKILL.md frontmatter.
 
-  - type: textarea
-    id: triggers
-    attributes:
-      label: Example trigger phrases
-      description: What would an HR manager say to activate this skill?
+        Explain what the skill does, who it is for, and include realistic activation phrases.
       placeholder: |
-        - "Write a compensation philosophy"
-        - "Design a pay band structure"
-        - "Benchmark our salaries against the market"
+        Help HR professionals with...
+
+        Use when asked to "..." , "..." , "..." or similar requests.
     validations:
       required: true
 
   - type: textarea
-    id: tasks
+    id: scope
     attributes:
-      label: Supported tasks (8–12)
-      description: List the specific tasks this skill would handle
+      label: Scope
+      description: |
+        Describe the responsibilities and boundaries of this skill.
+
+        Include:
+
+        - primary responsibilities
+        - expected outputs
+        - problems it solves
+        - what is intentionally out of scope
+      placeholder: |
+        This skill should...
+    validations:
+      required: true
+
+  - type: textarea
+    id: separation
+    attributes:
+      label: Why should this be a separate skill?
+      description: Explain why this should be a standalone skill instead of extending an existing one.
+    validations:
+      required: true
+
+  - type: textarea
+    id: overlaps
+    attributes:
+      label: Related existing skills
+      description: |
+        List similar skills and explain how this proposal differs.
+
+        Example:
+
+        - hr-recruiting
+        - hr-talent-acquisition
+        - hr-workforce-planning
+      placeholder: |
+        hr-example
+
+        Difference:
+        ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: use_cases
+    attributes:
+      label: Example use cases
+      description: Describe realistic business scenarios where this skill would be useful.
+      placeholder: |
+        - Build...
+        - Design...
+        - Analyze...
+        - Review...
+    validations:
+      required: true
+
+  - type: textarea
+    id: supported_tasks
+    attributes:
+      label: Supported tasks
+      description: List approximately 8-12 HR tasks this skill should support.
+      placeholder: |
+        - Task 1
+        - Task 2
+        - Task 3
+    validations:
+      required: true
+
+  - type: textarea
+    id: references
+    attributes:
+      label: References (optional)
+      description: |
+        Include any supporting references such as industry standards, books, research papers, or documentation.
+      placeholder: |
+        - SHRM
+        - CIPD
+        - ISO
+        - Research paper
     validations:
       required: false
 
-  - type: checkboxes
-    id: overlap
+  - type: markdown
     attributes:
-      label: Overlap check
+      value: |
+        Every accepted skill must include:
+
+        ```text
+        skills/
+        └── hr-your-skill/
+            └── SKILL.md
+        ```
+
+        Larger skills may also include:
+
+        ```text
+        content/
+        prompts/
+        examples/
+        ```
+
+        See `format.md` for the complete repository format and writing guidelines.
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
       options:
-        - label: I have reviewed the existing skills and confirmed this is not already covered
+        - label: I reviewed the existing skills listed in the root `SKILL.md`.
+          required: true
+
+        - label: The proposed directory name matches the `name` field.
+          required: true
+
+        - label: The description includes realistic activation phrases.
+          required: true
+
+        - label: I explained how this skill differs from existing skills.
+          required: true
+
+        - label: I understand maintainers may request additional `content/`, `prompts/`, or `examples` before accepting the skill.
           required: true

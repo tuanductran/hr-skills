@@ -1,35 +1,8 @@
-#!/usr/bin/env bun
-/**
- * Validate all HR skill SKILL.md files.
- *
- * Validation rules:
- *   - Runs core validator from skills-ref
- *   - Frontmatter must contain:
- *       - name
- *       - description
- *       - metadata.author
- *       - metadata.version
- *   - Frontmatter name must match directory name
- *   - Required sections must exist:
- *       - ## Supported tasks
- *       - ## Key prompts
- *       - ## Tips
- *   - Description must be meaningful
- *   - Content must meet minimum length
- *   - SKILL.md body must be under 500 lines
- *   - metadata.author must be exactly "Tuan Duc Tran"
- *   - ## Supported tasks has 8–12 items
- *   - ## Tips has 4–6 items
- *   - Ensure proper blank lines before lists (MD032 compliance)
- *
- * Usage:
- *   bun run validate
- */
-
 import { join } from 'node:path';
 import process from 'node:process';
-import { consola } from 'consola';
+import * as p from '@clack/prompts';
 import { validate as validateRef } from 'skills-ref';
+
 import {
 	HR_SKILL_PREFIX,
 	MIN_CONTENT_LENGTH,
@@ -45,13 +18,12 @@ import {
 	normalizeAuthorName,
 	readSkillContent,
 } from './helpers.js';
+import { parseSkillFrontmatter } from './parser.js';
 import type { ValidationError } from './types.js';
-import { parseFrontmatter } from './utils.js';
 
-// -----------------------------------------------------------------------------
-// Validators
-// -----------------------------------------------------------------------------
-
+/**
+ * Validate the core of a skill.
+ */
 function validateCore(
 	skillName: string,
 	skillDir: string,
@@ -67,12 +39,15 @@ function validateCore(
 	}
 }
 
+/**
+ * Validate the frontmatter of a skill.
+ */
 export function validateFrontmatter(
 	skillName: string,
 	content: string,
 	errors: ValidationError[],
 ): void {
-	const frontmatter = parseFrontmatter(content);
+	const frontmatter = parseSkillFrontmatter(content);
 
 	if (!frontmatter.name) {
 		errors.push({
@@ -108,6 +83,9 @@ export function validateFrontmatter(
 	}
 }
 
+/**
+ * Validate the required sections of a skill.
+ */
 export function validateRequiredSections(
 	skillName: string,
 	content: string,
@@ -123,6 +101,9 @@ export function validateRequiredSections(
 	}
 }
 
+/**
+ * Validate the content length of a skill.
+ */
 export function validateContentLength(
 	skillName: string,
 	content: string,
@@ -136,6 +117,9 @@ export function validateContentLength(
 	}
 }
 
+/**
+ * Validate the line count of a skill.
+ */
 export function validateLineCount(
 	skillName: string,
 	content: string,
@@ -151,6 +135,9 @@ export function validateLineCount(
 	}
 }
 
+/**
+ * Validate the supported tasks of a skill.
+ */
 export function validateSupportedTasks(
 	skillName: string,
 	content: string,
@@ -170,6 +157,9 @@ export function validateSupportedTasks(
 	}
 }
 
+/**
+ * Validate the tips of a skill.
+ */
 export function validateTips(
 	skillName: string,
 	content: string,
@@ -187,6 +177,9 @@ export function validateTips(
 	}
 }
 
+/**
+ * Validate the blank lines of a skill.
+ */
 export function validateBlankLines(
 	skillName: string,
 	content: string,
@@ -195,41 +188,46 @@ export function validateBlankLines(
 	const lines = content.split(/\r?\n/);
 
 	for (let i = 0; i < lines.length - 1; i++) {
-		const currentLine = lines[i].trim();
-		const nextLine = lines[i + 1].trim();
+		const currentLine = lines[i];
+		const nextLine = lines[i + 1];
 
-		const isHeading = currentLine.startsWith('#');
-		const isBoldLabel = currentLine.startsWith('**') && currentLine.endsWith(':**');
+		if (currentLine === undefined || nextLine === undefined) continue;
+
+		const trimmedCurrentLine = currentLine.trim();
+		const trimmedNextLine = nextLine.trim();
+
+		const isHeading = trimmedCurrentLine.startsWith('#');
+		const isBoldLabel =
+			trimmedCurrentLine.startsWith('**') && trimmedCurrentLine.endsWith(':**');
 
 		if (isHeading || isBoldLabel) {
 			if (
-				nextLine.startsWith('- ') ||
-				nextLine.startsWith('* ') ||
-				/^\d+\.\s/.test(nextLine)
+				trimmedNextLine.startsWith('- ') ||
+				trimmedNextLine.startsWith('* ') ||
+				/^\d+\.\s/.test(trimmedNextLine)
 			) {
 				errors.push({
 					skill: skillName,
-					message: `Missing blank line after heading/label "${currentLine}" on line ${i + 1} before the list on line ${i + 2}`,
+					message: `Missing blank line after heading/label "${trimmedCurrentLine}" on line ${i + 1} before the list on line ${i + 2}`,
 				});
 			}
 		}
 	}
 }
 
+/**
+ * Validate the author of a skill.
+ */
 export function validateAuthor(
 	skillName: string,
 	author: string | undefined,
-	errors: {
-		skill: string;
-		message: string;
-	}[],
+	errors: ValidationError[],
 ): void {
 	if (!author?.trim()) {
 		errors.push({
 			skill: skillName,
 			message: 'Missing metadata.author',
 		});
-
 		return;
 	}
 
@@ -243,16 +241,16 @@ export function validateAuthor(
 	}
 }
 
+/**
+ * Validate a single skill.
+ */
 async function validateSkill(skillName: string): Promise<ValidationError[]> {
 	const errors: ValidationError[] = [];
 
 	const skillDir = join(SKILLS_DIR, skillName);
-
 	const content = await readSkillContent(skillName, errors);
 
-	if (!content) {
-		return errors;
-	}
+	if (!content) return errors;
 
 	validateCore(skillName, skillDir, errors);
 	validateFrontmatter(skillName, content, errors);
@@ -266,22 +264,20 @@ async function validateSkill(skillName: string): Promise<ValidationError[]> {
 	return errors;
 }
 
-// -----------------------------------------------------------------------------
-// Main
-// -----------------------------------------------------------------------------
-
+/**
+ * Validate all HR skills.
+ */
 async function validate(): Promise<void> {
-	consola.start('Validating HR skills...');
+	p.intro('Validating HR skills...');
 
 	const skillNames = await discoverSkills();
 
 	if (skillNames.length === 0) {
-		consola.warn(`No skills found with prefix "${HR_SKILL_PREFIX}"`);
-
+		p.log.warn(`No skills found with prefix "${HR_SKILL_PREFIX}"`);
 		process.exit(1);
 	}
 
-	consola.info(`Found ${skillNames.length} skill directories`);
+	p.log.info(`Found ${skillNames.length} skill directories`);
 
 	const allErrors: ValidationError[] = [];
 
@@ -290,31 +286,21 @@ async function validate(): Promise<void> {
 
 		if (errors.length > 0) {
 			allErrors.push(...errors);
-
-			consola.fail(skillName);
-			continue;
+			p.log.error(skillName);
 		}
-
-		consola.success(skillName);
 	}
 
-	// -------------------------------------------------------------------------
 	// Report
-	// -------------------------------------------------------------------------
-
 	if (allErrors.length > 0) {
-		consola.error('Validation failed');
+		p.log.error('Validation failed');
 
-		for (const error of allErrors) {
-			consola.error(`${error.skill}: ${error.message}`);
-		}
+		for (const error of allErrors) p.log.error(`${error.skill}: ${error.message}`);
 
 		process.exit(1);
 	}
 
-	consola.success(`All ${skillNames.length} HR skills are valid`);
+	p.log.success(`All ${skillNames.length} HR skills are valid`);
+	p.outro('Done');
 }
 
-if (import.meta.main) {
-	await validate();
-}
+if (import.meta.main) await validate();

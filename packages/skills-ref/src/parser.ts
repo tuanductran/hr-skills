@@ -1,59 +1,23 @@
-/** YAML frontmatter parsing for SKILL.md files. */
-
-import { existsSync, readFileSync } from 'node:fs';
-import { join } from 'node:path';
-import {
-	FRONTMATTER_DELIMITER,
-	NON_WHITESPACE_REGEX,
-	SKILL_MD_FILENAMES,
-} from './constants.js';
-import { ParseError, ValidationError } from './errors.js';
-import { isPlainObject, toStringOrUndefined, unquote } from './helpers.js';
-import type { SkillProperties } from './types.js';
-
-// -----------------------------------------------------------------------------
-// File discovery
-// -----------------------------------------------------------------------------
-
-/**
- * Find SKILL.md in a skill directory.
- *
- * Prefers uppercase filename but also supports lowercase.
- */
-export function findSkillMd(skillDir: string): string | null {
-	for (const filename of SKILL_MD_FILENAMES) {
-		const filepath = join(skillDir, filename);
-
-		if (existsSync(filepath)) {
-			return filepath;
-		}
-	}
-
-	return null;
-}
-
-// -----------------------------------------------------------------------------
-// Frontmatter parsing
-// -----------------------------------------------------------------------------
+import { FRONTMATTER_DELIMITER, NON_WHITESPACE_REGEX } from './constants.js';
+import { ParseError } from './errors.js';
+import { unquote } from './helpers.js';
 
 /**
  * Parse YAML frontmatter from SKILL.md content.
- *
- * Returns:
- * [metadata, body]
  */
 export function parseFrontmatter(content: string): [Record<string, unknown>, string] {
-	if (!content.startsWith(FRONTMATTER_DELIMITER)) {
+	if (!content.startsWith(FRONTMATTER_DELIMITER))
 		throw new ParseError('SKILL.md must start with YAML frontmatter (---)');
-	}
 
 	const parts = content.split(FRONTMATTER_DELIMITER);
 
-	if (parts.length < 3) {
+	if (parts.length < 3)
 		throw new ParseError('SKILL.md frontmatter not properly closed with ---');
-	}
 
 	const frontmatter = parts[1];
+
+	if (frontmatter === undefined)
+		throw new ParseError('SKILL.md frontmatter not properly closed with ---');
 
 	const body = parts.slice(2).join(FRONTMATTER_DELIMITER).trim();
 
@@ -61,21 +25,17 @@ export function parseFrontmatter(content: string): [Record<string, unknown>, str
 }
 
 /**
- * Minimal YAML parser for SKILL.md frontmatter.
- *
- * Supports:
- * - key: value
- * - nested objects via indentation
+ * Parse a simple YAML string.
  */
 function parseSimpleYaml(yaml: string): Record<string, unknown> {
 	const result: Record<string, unknown> = {};
-
 	const lines = yaml.split('\n');
-
 	let index = 0;
 
 	while (index < lines.length) {
 		const line = lines[index];
+
+		if (line === undefined) break;
 
 		const trimmedLine = line.trimEnd();
 
@@ -100,10 +60,9 @@ function parseSimpleYaml(yaml: string): Record<string, unknown> {
 		}
 
 		const value = trimmedLine.slice(colonIndex + 1).trim();
-
 		const indent = line.search(NON_WHITESPACE_REGEX);
 
-		// Block scalar multiline string (e.g. description: | or description: >)
+		// Block scalar multiline string
 		if (value === '|' || value === '>') {
 			let scalarContent = '';
 			const isFolded = value === '>';
@@ -111,6 +70,9 @@ function parseSimpleYaml(yaml: string): Record<string, unknown> {
 
 			while (index < lines.length) {
 				const childLine = lines[index];
+
+				if (childLine === undefined) break;
+
 				const childTrimmed = childLine.trimEnd();
 
 				if (childTrimmed.length === 0) {
@@ -121,25 +83,18 @@ function parseSimpleYaml(yaml: string): Record<string, unknown> {
 
 				const childIndent = childLine.search(NON_WHITESPACE_REGEX);
 
-				if (childIndent <= indent) {
-					break;
-				}
+				if (childIndent <= indent) break;
 
-				// Extract content line (slice off the indentation)
 				const contentLine = childLine.slice(childIndent);
 
-				if (
-					scalarContent.length > 0 &&
-					!scalarContent.endsWith('\n') &&
-					isFolded
-				) {
+				if (scalarContent.length > 0 && !scalarContent.endsWith('\n') && isFolded)
 					scalarContent += ` ${contentLine.trim()}`;
-				} else {
+				else
 					scalarContent +=
 						(scalarContent.length > 0 && !scalarContent.endsWith('\n')
 							? '\n'
 							: '') + contentLine;
-				}
+
 				index++;
 			}
 
@@ -150,11 +105,12 @@ function parseSimpleYaml(yaml: string): Record<string, unknown> {
 		// Nested object
 		if (value === '') {
 			const nested: Record<string, string> = {};
-
 			index++;
 
 			while (index < lines.length) {
 				const childLine = lines[index];
+
+				if (childLine === undefined) break;
 
 				const childTrimmed = childLine.trimEnd();
 
@@ -165,9 +121,7 @@ function parseSimpleYaml(yaml: string): Record<string, unknown> {
 
 				const childIndent = childLine.search(NON_WHITESPACE_REGEX);
 
-				if (childIndent <= indent) {
-					break;
-				}
+				if (childIndent <= indent) break;
 
 				const childColonIndex = childTrimmed.indexOf(':');
 
@@ -189,70 +143,12 @@ function parseSimpleYaml(yaml: string): Record<string, unknown> {
 			}
 
 			result[key] = nested;
-
 			continue;
 		}
 
 		result[key] = unquote(value);
-
 		index++;
 	}
 
 	return result;
-}
-
-// -----------------------------------------------------------------------------
-// Property reader
-// -----------------------------------------------------------------------------
-
-/**
- * Read skill properties from SKILL.md frontmatter.
- *
- * This does NOT perform full validation.
- * Use validate() for strict validation rules.
- */
-export function readProperties(skillDir: string): SkillProperties {
-	const skillMd = findSkillMd(skillDir);
-
-	if (skillMd == null) {
-		throw new ParseError(`SKILL.md not found in ${skillDir}`);
-	}
-
-	const content = readFileSync(skillMd, 'utf8');
-
-	const [metadata] = parseFrontmatter(content);
-
-	const rawName = metadata.name;
-
-	const rawDescription = metadata.description;
-
-	if (typeof rawName !== 'string' || rawName.trim().length === 0) {
-		throw new ValidationError("Field 'name' must be a non-empty string");
-	}
-
-	if (typeof rawDescription !== 'string' || rawDescription.trim().length === 0) {
-		throw new ValidationError("Field 'description' must be a non-empty string");
-	}
-
-	const metadataObject = isPlainObject(metadata.metadata)
-		? Object.fromEntries(
-				Object.entries(metadata.metadata).map(([key, value]) => [
-					key,
-					String(value),
-				]),
-			)
-		: undefined;
-
-	return {
-		name: rawName.trim(),
-		description: rawDescription.trim(),
-
-		license: toStringOrUndefined(metadata.license),
-
-		compatibility: toStringOrUndefined(metadata.compatibility),
-
-		allowedTools: toStringOrUndefined(metadata['allowed-tools']),
-
-		metadata: metadataObject,
-	};
 }

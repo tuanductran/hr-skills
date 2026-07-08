@@ -27,10 +27,10 @@ describe('toDict', () => {
 			},
 		});
 
-		expect(result.license).toBe('MIT');
-		expect(result.compatibility).toBe('claude-3');
+		expect(result['license']).toBe('MIT');
+		expect(result['compatibility']).toBe('claude-3');
 		expect(result['allowed-tools']).toBe('bash');
-		expect(result.metadata).toEqual({
+		expect(result['metadata']).toEqual({
 			author: 'Alice',
 			version: '1.0',
 		});
@@ -42,10 +42,10 @@ describe('toDict', () => {
 			description: 'desc',
 		});
 
-		expect(result.license).toBeUndefined();
-		expect(result.compatibility).toBeUndefined();
+		expect(result['license']).toBeUndefined();
+		expect(result['compatibility']).toBeUndefined();
 		expect(result['allowed-tools']).toBeUndefined();
-		expect(result.metadata).toBeUndefined();
+		expect(result['metadata']).toBeUndefined();
 	});
 
 	it('omits metadata when empty object', () => {
@@ -55,6 +55,6 @@ describe('toDict', () => {
 			metadata: {},
 		});
 
-		expect(result.metadata).toBeUndefined();
+		expect(result['metadata']).toBeUndefined();
 	});
 });

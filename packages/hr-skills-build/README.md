@@ -1,15 +1,12 @@
 # hr-skills-build
 
-Build tooling for the HR Skills collection — validates `SKILL.md` files, syncs generated references, and generates the skills catalog.
+Build tooling for the HR Skills collection — validates `SKILL.md` files and syncs generated references.
 
 ## Scripts
 
 ```bash
 # Validate all HR skill definitions
 bun run validate
-
-# Generate skills/CATALOG.md
-bun run catalog
 
 # Sync generated references
 bun run sync
@@ -29,7 +26,6 @@ Or run from the monorepo root:
 ```bash
 bun run validate      # delegates to hr-skills-build
 bun run sync          # delegates to hr-skills-build
-bun run catalog       # delegates to hr-skills-build
 bun run test          # runs workspace tests
 bun run typecheck     # runs workspace type-checking
 ```
@@ -62,13 +58,9 @@ Validating HR Skills...
 ✓ All HR skills are valid
 ```
 
-### `catalog`
-
-Reads all `SKILL.md` files and writes `skills/CATALOG.md` — a single reference document listing every skill with its name, description, supported tasks, and a link to its source file.
-
 ### `sync`
 
-Discovers all `skills/hr-*` directories and rebuilds generated references in `AGENTS.md`, `docs/installation.md`, `docs/skills.md`, and `.claude-plugin/marketplace.json`.
+Discovers all `skills/hr-*` directories and rebuilds generated references in `.claude-plugin/marketplace.json`.
 
 ## Source
 
@@ -76,7 +68,6 @@ Discovers all `skills/hr-*` directories and rebuilds generated references in `AG
 |------|---------|
 | `src/config.ts` | `SKILLS_DIR` path, `hr-` prefix, and skill discovery helper |
 | `src/validate.ts` | Validates frontmatter and required sections |
-| `src/catalog.ts` | Generates `skills/CATALOG.md` |
 
 ## Requirements
 

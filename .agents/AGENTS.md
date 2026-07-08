@@ -9,8 +9,6 @@ Essential commands
 | `bun install` | install dependencies |
 | `bun run validate` | validate all SKILL.md files |
 | `bun run sync` | sync metadata after adding/removing a skill |
-| `bun run catalog` | regenerate skills/CATALOG.md |
-| `bun run zip` | generate distributable zip packages |
 | `bun run build` | build all workspace packages |
 | `bun run test` | run tests |
 | `bun run typecheck` | type-check all packages |
@@ -23,8 +21,6 @@ Workflow when adding a new skill
 1. Create `skills/hr-<name>/SKILL.md`
 2. Run `bun run sync`
 3. Run `bun run validate`
-4. Run `bun run catalog`
-5. Run `bun run zip`
 
 SKILL.md required structure
 
@@ -57,7 +53,7 @@ Branch and commit rules
 
 Workspace packages
 
-- `packages/hr-skills-build` — validation, catalog, sync, zip tooling
+- `packages/hr-skills-build` — validation, sync, and zip tooling
 - `packages/skills-ref` — TypeScript library for reading and validating skill files
 
 Notes

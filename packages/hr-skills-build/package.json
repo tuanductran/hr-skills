@@ -2,7 +2,7 @@
 	"name": "hr-skills-build",
 	"version": "0.0.0",
 	"private": true,
-	"description": "Build tooling for HR Skills — validates, catalogs, and packages HR skill definitions",
+	"description": "Build tooling for HR Skills — validates, syncs, and packages HR skill definitions",
 	"type": "module",
 	"license": "MIT",
 	"author": "Tuan Duc Tran",
@@ -22,15 +22,13 @@
 	],
 	"scripts": {
 		"validate": "bun src/validate.ts",
-		"catalog": "bun src/catalog.ts",
 		"sync": "bun src/sync.ts",
-		"list": "bun src/catalog.ts --list",
 		"test": "bun test",
 		"dev": "bun --watch src/validate.ts",
 		"typecheck": "tsc --noEmit"
 	},
 	"dependencies": {
-		"consola": "^3.4.2",
+		"@clack/prompts": "^1.7.0",
 		"skills-ref": "workspace:*",
 		"yaml": "^2.9.0"
 	}

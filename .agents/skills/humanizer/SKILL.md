@@ -6,6 +6,8 @@ metadata:
   version: "1.0.0"
 ---
 
+# Humanizer
+
 ## Supported tasks
 
 - Rewrite SKILL.md sections to sound natural and human-authored

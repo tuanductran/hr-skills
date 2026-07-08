@@ -1,6 +1,9 @@
-import { join } from 'node:path';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-export const ROOT_DIR = join(import.meta.dir, '../../..');
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
+export const ROOT_DIR = join(__dirname, '../../..');
 
 export const SKILLS_DIR = join(ROOT_DIR, 'skills');
 
@@ -11,8 +14,6 @@ export const HR_SKILL_PREFIX = 'hr-';
 export const KEY_PROMPTS_REGEX = /## Key prompts\n\n([\s\S]*?)(?=\n## Tips|\n---\n|$)/;
 
 export const QUOTED_PROMPT_REGEX = /^(?:\d+\. |[-*] )"([^"]+)"/gm;
-
-export const AGENTS_TABLE_REGEX = /\| Skill \| Scope \|\n\|[-|]+\|\n[\s\S]*?(?=\n## )/;
 
 export const USE_WHEN_REGEX = /Use when/i;
 

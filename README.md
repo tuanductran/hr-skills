@@ -148,8 +148,6 @@ The repository currently includes more than 40 HR skills covering topics such as
 - Vietnam HR
 - and many more.
 
-See **[`skills/CATALOG.md`](skills/CATALOG.md)** for the complete generated catalog of available skills.
-
 ## Repository structure
 
 ```text
@@ -178,9 +176,7 @@ Run all commands from the project root.
 ```bash
 bun install          # Install all dependencies
 bun run validate     # Validate all SKILL.md files
-bun run catalog      # Regenerate skills/CATALOG.md
 bun run sync         # Sync generated metadata and references
-bun run clean        # Remove build artifacts and Turborepo cache
 
 bun run build        # Build all workspace packages
 bun run test         # Run tests
@@ -195,7 +191,6 @@ bun run lint:md:fix  # Auto-fix Markdown issues
 bun run lint:links   # Validate Markdown links
 
 bun run knip         # Detect unused files and dependencies
-bun run zip          # Generate distributable skill packages
 bun run release      # Version, changelog, tag, and release
 ```
 
@@ -203,7 +198,7 @@ bun run release      # Version, changelog, tag, and release
 
 | Package | Description |
 |---------|-------------|
-| `packages/hr-skills-build` | Build tooling for validating skills, generating catalogs, syncing metadata, and packaging releases |
+| `packages/hr-skills-build` | Build tooling for validating skills, syncing metadata, and packaging releases |
 | `packages/skills-ref` | TypeScript library for reading, validating, and prompting skill files |
 
 ## Contributing
@@ -216,10 +211,9 @@ Before opening a pull request, please ensure the repository passes all validatio
 bun install
 bun run validate
 bun run test
-bun run catalog
 bun run sync
 ```
 
 ## License
 
-MIT
+[MIT](./LICENSE) License &copy; 2026-PRESENT [Tuan Duc Tran](https://github.com/tuanductran)

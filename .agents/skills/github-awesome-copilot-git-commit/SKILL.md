@@ -6,6 +6,8 @@ metadata:
   version: "2.0.0"
 ---
 
+# GitHub Awesome Copilot Git Commit
+
 ## Supported tasks
 
 ### Commit generation

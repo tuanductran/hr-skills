@@ -1,121 +1,223 @@
 ---
 name: bun
-description: "Bun as a runtime, package manager, bundler, and test runner. Practical migration notes from Node and usage guidance."
+description: "Repository guidance for using Bun as the runtime, package manager, and workspace toolchain within the hr-skills monorepo."
 metadata:
   author: "Tuan Duc Tran"
-  version: "1.0.0"
+  version: "1.1.0"
 ---
 
-# Bun runtime overview
+# Bun
 
-Bun is an all-in-one JavaScript runtime and toolkit that provides a runtime, package manager, bundler, and test runner with a focus on speed.
+This skill explains how Bun is used throughout the **hr-skills** monorepo. It covers workspace management, development workflows, validation commands, testing, and repository conventions.
 
-## When to choose Bun
+The repository standardizes on Bun for all package management and script execution. Turborepo orchestrates tasks across workspace packages.
 
-- Prefer Bun for new JavaScript/TypeScript projects where install and startup speed matter, and a small tooling surface is desirable.
-- Prefer Node when you require the widest ecosystem compatibility, depend on native tooling that assumes Node, or have dependencies with known Bun incompatibilities.
+## Supported tasks
 
-Use cases: adopting Bun for new packages, migrating from Node, writing or debugging Bun scripts and tests.
+- Explain how Bun is used within this repository
+- Install and manage workspace dependencies
+- Run repository scripts using Bun
+- Validate HR skills and repository metadata
+- Synchronize generated repository artifacts
+- Build workspace packages
+- Run tests and TypeScript type checking
+- Troubleshoot Bun workspace issues
+- Recommend Bun workflows for local development and CI
 
-## What Bun provides
+## Repository usage
 
-- Runtime: a fast drop-in runtime implemented on JavaScriptCore (written in Zig) with many Node-compatible APIs.
-- Package manager: `bun install` is significantly faster than many alternatives; lockfile is `bun.lock` (text). Older versions used `bun.lockb` (binary).
-- Bundler: built-in bundler and transpiler for applications and libraries.
-- Test runner: `bun test` with a Jest-like API.
+This repository uses Bun for:
 
-## Migrating from Node
+- package management
+- workspace dependency resolution
+- script execution
+- TypeScript execution
+- test execution
 
-- Replace `node script.js` with `bun run script.js` or `bun script.js`.
-- Use `bun install` instead of `npm install` (this repository uses `bun` as the package manager; see `package.json` preinstall hook `bunx only-allow bun`).
-- Most packages work, but verify compatibility; prefer `bun run` for npm-script equivalents.
-- Use `bunx` (or `bunx <cmd>`) for one-off executable runs similar to `npx`.
+Package managers such as npm, pnpm, and Yarn are not supported.
 
-## Notes on reproducible installs
+## Workspace packages
 
-For reproducible installs in CI or deployment workflows, use:
+The repository currently contains multiple Bun workspace packages.
+
+### hr-skills-build
+
+Repository tooling responsible for:
+
+- validating HR skills
+- synchronizing repository metadata
+- maintaining repository conventions
+
+### skills-ref
+
+Reusable library responsible for:
+
+- parsing `SKILL.md`
+- loading skills
+- validating metadata
+- generating prompts
+- exposing reusable APIs for other packages
+
+## Common commands
+
+Install dependencies.
+
+```bash
+bun install
+```
+
+Run validation.
+
+```bash
+bun run validate
+```
+
+Synchronize generated repository artifacts.
+
+```bash
+bun run sync
+```
+
+Build every workspace package.
+
+```bash
+bun run build
+```
+
+Run all test suites.
+
+```bash
+bun run test
+```
+
+Run TypeScript type checking.
+
+```bash
+bun run typecheck
+```
+
+Run repository linting and formatting.
+
+```bash
+bun run check
+bun run lint
+bun run format
+bun run lint:md
+bun run lint:md:fix
+bun run lint:links
+```
+
+Analyze unused files and dependencies.
+
+```bash
+bun run knip
+```
+
+Create a release.
+
+```bash
+bun run release
+```
+
+## Key prompts
+
+### Repository workflows
+
+- "Explain how Bun is used in this repository."
+- "List the common Bun commands used during development."
+- "Describe the repository workspace structure."
+- "Explain how Turborepo and Bun work together."
+
+### Validation
+
+- "Run the repository validation workflow."
+- "Explain what `bun run validate` does."
+- "Explain what `bun run sync` does."
+- "Recommend the correct validation order before opening a pull request."
+
+### Development
+
+- "Build every workspace package."
+- "Run all tests using Bun."
+- "Run TypeScript type checking."
+- "Explain how to troubleshoot Bun workspace issues."
+
+### CI
+
+- "Generate a Bun-based CI workflow."
+- "Recommend the fastest validation pipeline."
+- "Explain how to use Turborepo caching."
+- "Generate GitHub Actions steps for Bun."
+
+## CI recommendations
+
+A typical validation workflow is:
 
 ```bash
 bun install --frozen-lockfile
-```
-
-## Integration with this repository
-
-- This monorepo uses Turborepo for orchestration. Common workspace scripts (defined in the repository `package.json`) include:
-
-```bash
-# validate all skills: runs hr-skills-build validate task
-bun run validate
-
-# sync metadata after adding/removing a skill
-bun run sync
-
-# regenerate skills catalog
-bun run catalog
-
-# package distributable skill zips
-bun run zip
-
-# build all workspace packages
-bun run build
-
-# run tests and typecheck
-bun run test
 bun run typecheck
-
-# linting and formatting
-bun run lint
-bun run lint:md
-bun run lint:md:fix
+bun run validate
+bun run test
+bun run build
 ```
 
-- The repo installs Lefthook for Git hooks (`prepare` script runs `lefthook install`). Respect the preinstall hook which enforces Bun usage (`bunx only-allow bun`).
-
-## CI recommendations for this project
-
-- In CI, run `bun install --frozen-lockfile` then `bun run typecheck` and `bun run validate` early to fail fast on type or skill-format issues.
-- Use `turbo` caching for repeated builds in CI to speed workloads.
+This order detects type, validation, and test failures before building distributable artifacts.
 
 ## Examples
 
-Install and run
+Install dependencies.
 
 ```bash
-# install dependencies (creates or updates bun.lock)
 bun install
-
-# run scripts or files
-bun run dev
-bun run src/index.ts
-bun src/index.ts
 ```
 
-Scripts and env
+Validate the repository.
 
 ```bash
-bun run --env-file=.env dev
-FOO=bar bun run script.ts
+bun run validate
 ```
 
-Tests
+Synchronize repository metadata.
 
 ```bash
-bun test
-bun test --watch
+bun run sync
 ```
 
-```typescript
-// test/example.test.ts
-import { expect, test } from "bun:test";
+Build every package.
 
-test("add", () => {
-  expect(1 + 2).toBe(3);
-});
+```bash
+bun run build
 ```
 
-## Common issues and guidance
+Run all tests.
 
-- `bun install` creates a `node_modules` layout that can differ due to extensive symlink usage; tooling that depends on exact layout may need validation.
-- Some older or niche dependencies may be incompatible with Bun; in those cases fallback to Node may be necessary.
-- When deploying to a runtime that supports Bun, ensure build/runtime settings and commands are configured appropriately.
+```bash
+bun run test
+```
 
+## Tips
+
+- Always use Bun for package management and script execution.
+- Prefer workspace commands from the repository root.
+- Run validation before committing repository changes.
+- Keep workspace dependencies synchronized.
+- Use `workspace:*` for internal package dependencies.
+- Use Turborepo to execute workspace tasks instead of running packages individually when possible.
+
+## Common issues
+
+- Using npm, pnpm, or Yarn instead of Bun.
+- Skipping repository validation before committing.
+- Forgetting to synchronize generated repository artifacts.
+- Running package scripts from the wrong workspace.
+- Missing `bun install` after dependency changes.
+- Ignoring workspace dependency relationships.
+
+## Best practices
+
+- Keep Bun updated across development environments.
+- Run commands from the repository root unless package-specific behavior is required.
+- Validate changes before opening a pull request.
+- Use Turborepo to orchestrate workspace tasks.
+- Keep internal packages versioned through the workspace.
+- Prefer reproducible installations with `bun install --frozen-lockfile` in CI.
