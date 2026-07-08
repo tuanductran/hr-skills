@@ -3,4 +3,3 @@ node_modules/
 dist/
 *.local
 .turbo/
-*.sha256

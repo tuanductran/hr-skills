@@ -93,14 +93,12 @@ Run the sync script to auto-update generated references and metadata:
 bun run sync
 ```
 
-This updates `AGENTS.md`, `docs/skills.md`, and `.claude-plugin/marketplace.json`. No manual edits are needed.
+This updates `.claude-plugin/marketplace.json`. No manual edits are needed.
 
-### 4. Validate and regenerate generated artifacts
+### 4. Validate and package
 
 ```bash
-bun run validate   # Must pass with 0 errors
-bun run catalog    # Regenerates skills/CATALOG.md
-bun run zip        # Regenerates distributable skill packages
+bun run validate     # Must pass with 0 errors
 ```
 
 ### 5. Open a pull request
@@ -130,7 +128,6 @@ Changes there should:
 - Keep `bun run typecheck` at 0 errors
 - Not break `bun run build`
 - Not break `bun run validate`
-- Not break `bun run catalog`
 - Not break `bun run sync`
 - Not break generated package outputs
 

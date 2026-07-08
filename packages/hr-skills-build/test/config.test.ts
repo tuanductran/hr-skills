@@ -13,9 +13,10 @@ describe('getHrSkills()', () => {
 
 	it('all names are lowercase kebab-case', async () => {
 		const skills = await getHrSkills();
+		const kebabCaseRegex = /^[a-z][a-z0-9-]*[a-z0-9]$/;
 
 		for (const name of skills) {
-			expect(name).toMatch(/^[a-z][a-z0-9-]*[a-z0-9]$/);
+			expect(name).toMatch(kebabCaseRegex);
 		}
 	});
 

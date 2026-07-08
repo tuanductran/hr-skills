@@ -6,6 +6,8 @@ metadata:
   version: "1.0.0"
 ---
 
+# Skill Vetter
+
 ## Supported tasks
 
 - Validate SKILL.md frontmatter and required sections

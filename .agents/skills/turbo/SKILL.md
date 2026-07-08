@@ -1,72 +1,224 @@
 ---
 name: turbo
-description: "Turborepo (turbo) orchestration for monorepos: pipeline caching, task orchestration, and workspace scripts. Guidance for CI, caching, and integrating with Bun and workspace scripts."
+description: "Repository guidance for using Turborepo to orchestrate workspace tasks, builds, validation, testing, and development workflows within the hr-skills monorepo."
 metadata:
   author: "Tuan Duc Tran"
-  version: "1.0.0"
+  version: "1.1.0"
 ---
 
-# Turborepo (turbo) overview
+# Turborepo
 
-Turborepo (`turbo`) is a high-performance build system and task orchestrator for monorepos. It provides task pipelines, remote/local caching, and parallel execution to speed builds and tests across workspaces.
+This skill explains how Turborepo is used throughout the **hr-skills** monorepo. It covers workspace orchestration, task execution, caching, package filtering, and development workflows.
 
-## When to use Turborepo
+Turborepo coordinates tasks across every workspace package while Bun provides the runtime and package management.
 
-- Use `turbo` in monorepos to coordinate tasks across packages (build, test, lint, sync).
-- Use it to speed CI by leveraging cache layers and selective task execution.
-- Use `turbo` when you need consistent task orchestration across packages and reproducible pipelines.
+## Supported tasks
 
-## What turbo provides
+- Explain how Turborepo is used within this repository
+- Run workspace tasks from the repository root
+- Build workspace packages
+- Validate HR skills and repository metadata
+- Synchronize generated repository artifacts
+- Run tests and TypeScript type checking
+- Execute filtered workspace tasks
+- Recommend efficient development workflows
+- Explain Turborepo caching behavior
+- Generate CI workflows using Turborepo
 
-- Task orchestration via `turbo run <task>` with fine-grained filters
-- Local and remote caching for build and test artifacts
-- Parallel execution and pipeline graph visualization
+## Repository usage
 
-## Integration with this repository
+This repository uses Turborepo to orchestrate workspace tasks.
 
-- This repository uses Turborepo to run package-level scripts from the root `package.json`. Common commands include:
+Current pipeline tasks include:
+
+- build
+- dev
+- test
+- typecheck
+- validate
+- sync
+
+Repository scripts invoke Turborepo from the workspace root while package-level scripts provide the implementation.
+
+## Workspace orchestration
+
+Workspace packages define their own scripts.
+
+Examples include:
+
+- `packages/hr-skills-build`
+- `packages/skills-ref`
+
+Turborepo automatically coordinates task execution, dependency ordering, and caching across these packages.
+
+## Common commands
+
+Run all workspace builds.
 
 ```bash
-# run build across packages
 bun run build
-
-# validate all skills (hr-skills-build validates SKILL.md files)
-bun run validate
-
-# sync metadata after adding/removing a skill
-bun run sync
-
-# regenerate skills catalog
-bun run catalog
-
-# package distributable skill zips
-bun run zip
 ```
 
-- Package-level scripts in `packages/hr-skills-build/package.json` map to `bun` commands that turbo orchestrates (for example `validate`, `sync`, `catalog`).
+Run development tasks.
 
-## CI recommendations
+```bash
+bun run dev
+```
 
-- Cache `~/.bun` and `node_modules` where appropriate, plus `turbo` cache directories to speed repeated runs.
-- Run `bun install --frozen-lockfile` then `bun run typecheck` and `bun run validate` early in CI to fail fast on critical errors.
-- Upload and restore `turbo` cache between CI runs when using remote caching.
+Run repository validation.
+
+```bash
+bun run validate
+```
+
+Synchronize repository metadata.
+
+```bash
+bun run sync
+```
+
+Run every test suite.
+
+```bash
+bun run test
+```
+
+Run TypeScript type checking.
+
+```bash
+bun run typecheck
+```
+
+Execute a task directly with Turborepo.
+
+```bash
+turbo run build
+```
+
+Run a task for a single package.
+
+```bash
+turbo run build --filter=skills-ref
+```
+
+Run validation for the build package only.
+
+```bash
+turbo run validate --filter=hr-skills-build
+```
+
+## Key prompts
+
+### Repository workflows
+
+- "Explain how Turborepo is used in this repository."
+- "Describe the workspace task pipeline."
+- "Explain how Bun and Turborepo work together."
+- "List the repository tasks managed by Turborepo."
+
+### Development
+
+- "Run every workspace build."
+- "Run validation for the repository."
+- "Synchronize generated repository artifacts."
+- "Run tests across every workspace package."
+
+### Filtering
+
+- "Run a task for a single workspace package."
+- "Explain how `--filter` works."
+- "Recommend the correct package filter."
+- "Generate filtered Turborepo commands."
+
+### CI
+
+- "Generate a Turborepo CI workflow."
+- "Recommend a validation pipeline."
+- "Explain Turborepo caching."
+- "Optimize workspace builds for CI."
+
+## Pipeline overview
+
+Current repository tasks include:
+
+| Task | Purpose |
+|------|---------|
+| `build` | Build workspace packages |
+| `dev` | Run development tasks |
+| `test` | Execute package test suites |
+| `typecheck` | Run TypeScript type checking |
+| `validate` | Validate HR skills and repository metadata |
+| `sync` | Synchronize generated repository artifacts |
 
 ## Examples
 
-Run a filtered task for the build package only:
+Build every workspace package.
 
 ```bash
-turbo run build --filter=packages/hr-skills-build
+bun run build
 ```
 
-Run validate across the workspace (root `package.json` delegates to turbo):
+Validate the repository.
 
 ```bash
 bun run validate
 ```
 
+Synchronize generated files.
+
+```bash
+bun run sync
+```
+
+Build only one package.
+
+```bash
+turbo run build --filter=skills-ref
+```
+
+Run validation only for the build package.
+
+```bash
+turbo run validate --filter=hr-skills-build
+```
+
+## CI recommendations
+
+A typical validation workflow is:
+
+```bash
+bun install --frozen-lockfile
+bun run typecheck
+bun run validate
+bun run test
+bun run build
+```
+
+Use Turborepo caching to avoid rebuilding unchanged packages.
+
+Tasks such as `validate` and `sync` intentionally disable caching because they always operate on the latest repository state.
+
 ## Tips
 
-- Keep task definitions small and composable so `turbo` can optimize execution.
-- Ensure tasks that produce cacheable outputs declare explicit outputs so caching is effective.
-- Use `--filter` to constrain runs during development to specific packages.
+- Execute workspace tasks from the repository root.
+- Prefer repository scripts (`bun run ...`) over invoking package scripts directly.
+- Use `--filter` during development to reduce execution time.
+- Let Turborepo determine task execution order.
+- Keep task outputs deterministic to maximize cache effectiveness.
+
+## Common issues
+
+- Running package scripts directly instead of using repository commands.
+- Forgetting to use `--filter` for package-specific development.
+- Expecting cached results from tasks that explicitly disable caching.
+- Running Turborepo outside the repository root.
+- Defining inconsistent task names across workspace packages.
+
+## Best practices
+
+- Use repository scripts for everyday development.
+- Reserve direct `turbo run` commands for advanced workflows.
+- Keep task names consistent across every workspace package.
+- Enable caching only for deterministic tasks.
+- Use package filters to shorten development feedback loops.
+- Allow Turborepo to manage workspace execution and dependency ordering.

@@ -4,7 +4,8 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { SKILLS_DIR } from '../src/constants.js';
 import { ParseError, ValidationError } from '../src/errors.js';
-import { findSkillMd, parseFrontmatter, readProperties } from '../src/parser.js';
+import { findSkillMd, readProperties } from '../src/loader.js';
+import { parseFrontmatter } from '../src/parser.js';
 
 describe('parseFrontmatter', () => {
 	it('parses valid frontmatter', () => {
@@ -12,8 +13,8 @@ describe('parseFrontmatter', () => {
 
 		const [meta, body] = parseFrontmatter(content);
 
-		expect(meta.name).toBe('hr-test');
-		expect(meta.description).toBe('A test skill');
+		expect(meta['name']).toBe('hr-test');
+		expect(meta['description']).toBe('A test skill');
 		expect(body).toContain('## Body');
 	});
 
@@ -23,7 +24,7 @@ describe('parseFrontmatter', () => {
 
 		const [meta] = parseFrontmatter(content);
 
-		expect(meta.metadata).toEqual({
+		expect(meta['metadata']).toEqual({
 			author: 'Alice',
 			version: '1.0',
 		});
@@ -42,8 +43,8 @@ describe('parseFrontmatter', () => {
 
 		const [meta] = parseFrontmatter(content);
 
-		expect(meta.name).toBe('hr-test');
-		expect(meta.description).toBe('A quoted skill');
+		expect(meta['name']).toBe('hr-test');
+		expect(meta['description']).toBe('A quoted skill');
 	});
 });
 

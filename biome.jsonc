@@ -2,13 +2,12 @@
 	"$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
 	"files": {
 		"includes": [
-			"./**/*.js",
 			"./**/*.ts",
-			"./**/*.json",
-			"!!**/dist",
-			"!!**/node_modules",
-			"!!**/.turbo",
-			"!!**/.claude-plugin"
+			"./**/*.{json,jsonc,yml}",
+			"!**/dist",
+			"!**/node_modules",
+			"!**/.turbo",
+			"!**/.claude-plugin"
 		]
 	},
 	"assist": {
@@ -20,7 +19,6 @@
 	},
 	"formatter": {
 		"enabled": true,
-
 		"attributePosition": "multiline",
 		"indentStyle": "tab",
 		"indentWidth": 4,
@@ -30,7 +28,6 @@
 	"javascript": {
 		"formatter": {
 			"enabled": true,
-
 			"arrowParentheses": "always",
 			"attributePosition": "multiline",
 			"bracketSameLine": true,
@@ -39,32 +36,15 @@
 			"quoteStyle": "single",
 			"semicolons": "always",
 			"trailingCommas": "all"
-		}
+		},
+		"globals": ["Bun"]
 	},
 	"linter": {
 		"enabled": true,
 		"rules": {
 			"preset": "recommended",
 			"complexity": {
-				"preset": "recommended"
-			},
-			"correctness": {
-				"preset": "recommended"
-			},
-			"nursery": {
-				"preset": "recommended"
-			},
-			"performance": {
-				"preset": "recommended"
-			},
-			"security": {
-				"preset": "recommended"
-			},
-			"suspicious": {
-				"preset": "recommended"
-			},
-			"style": {
-				"preset": "recommended"
+				"useLiteralKeys": "off"
 			}
 		}
 	},

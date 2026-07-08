@@ -1,5 +1,3 @@
-/** Public API for skills-ref library. */
-
-export { readProperties } from './parser.js';
+export { readProperties } from './loader.js';
 export { toPrompt } from './prompt.js';
 export { validate } from './validator.js';

@@ -1,9 +1,3 @@
-/**
- * Configuration for HR Skills build tooling
- *
- * Auto-discovers all skills that start with the `hr-` prefix.
- */
-
 import { access, readdir } from 'node:fs/promises';
 import { join } from 'node:path';
 
@@ -11,12 +5,7 @@ import { HR_SKILL_PREFIX, SKILLS_DIR } from './constants.js';
 import type { SkillDirectoryOptions } from './types.js';
 
 /**
- * Discover all HR skill directories automatically.
- *
- * Rules:
- * - Must be a directory
- * - Must start with `hr-`
- * - Must contain `SKILL.md`
+ * Get a list of HR skills.
  */
 export async function getHrSkills(
 	options: SkillDirectoryOptions = {},
@@ -30,13 +19,9 @@ export async function getHrSkills(
 	const skills: string[] = [];
 
 	for (const entry of entries) {
-		if (!entry.isDirectory()) {
-			continue;
-		}
+		if (!entry.isDirectory()) continue;
 
-		if (!entry.name.startsWith(prefix)) {
-			continue;
-		}
+		if (!entry.name.startsWith(prefix)) continue;
 
 		const skillPath = join(SKILLS_DIR, entry.name, 'SKILL.md');
 

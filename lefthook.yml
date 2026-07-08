@@ -1,14 +1,13 @@
-$schema: ./node_modules/knip/schema.json
+$schema: ./node_modules/lefthook/schema.json
 pre-commit:
   parallel: true
 
   jobs:
     - name: biome
-      glob: "*.{js,jsx,ts,tsx,mjs,cjs,json,jsonc}"
+      glob: "*.{ts,json,jsonc}"
       exclude:
         - "**/dist/**"
         - "**/node_modules/**"
-        - "skills/**"
       run: bunx biome check --write --no-errors-on-unmatched {staged_files}
       stage_fixed: true
 

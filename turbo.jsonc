@@ -5,23 +5,14 @@
 			"dependsOn": ["^build"],
 			"outputs": ["dist/**"]
 		},
-
 		"dev": {
 			"dependsOn": ["^dev"]
 		},
-
 		"typecheck": {},
-
 		"test": {},
-
 		"validate": {
 			"cache": false
 		},
-
-		"catalog": {
-			"cache": false
-		},
-
 		"sync": {
 			"cache": false
 		}

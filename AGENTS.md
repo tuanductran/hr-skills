@@ -71,11 +71,8 @@ Use these project commands from the repository root. After completing any task, 
 bun install          # Install all dependencies (run once, or after package changes)
 bun run sync         # Sync generated skill references after adding/removing a skill
 bun run validate     # Validate all skill SKILL.md files
-bun run catalog      # Regenerate skills/CATALOG.md
-bun run zip          # Generate cross-platform distributable skill zip packages
 bun run test         # Run tests across workspace packages
 bun run typecheck    # Run type-checking across workspace packages
-bun run clean        # Remove dist outputs and Turborepo cache
 bun run build        # Run all workspace build tasks through Turborepo
 bun run check        # Run Biome checks without writing changes
 bun run lint         # Run Biome checks with auto-fix
@@ -87,22 +84,23 @@ bun run knip         # Detect unused files and dependencies
 bun run release      # Release only: bump version, generate changelog, commit, tag, and push
 ```
 
-Build, test, typecheck, validate, catalog, and sync tasks are orchestrated through Turborepo.
+Build, test, typecheck, validate, and sync tasks are orchestrated through Turborepo.
 
 Tasks may run in parallel and use local caching based on `turbo.jsonc`.
 
-When you add a new skill directory (for example `skills/hr-new-skill/SKILL.md`), run `bun run sync` first. It auto-discovers `hr-*` skill directories from `skills/`, then updates `AGENTS.md`, `docs/installation.md`, `docs/skills.md`, and `.claude-plugin/marketplace.json` — no manual table edits needed. Then run `bun run catalog` and `bun run zip` to regenerate `skills/CATALOG.md` and the distributable zip packages.
+When you add a new skill directory (for example `skills/hr-new-skill/SKILL.md`), run `bun run sync` first. It auto-discovers `hr-*` skill directories from `skills/`, then updates `.claude-plugin/marketplace.json` — no manual edits needed.
 
 ## Project structure
 
 | Path | Purpose |
 |------|---------|
 | `skills/hr-*/SKILL.md` | Source skill definitions consumed by Claude Code and claude.ai |
-| `content/hr-*/README.md` | Human-readable companion guidance for each HR skill domain |
-| `docs/` | Installation, contributing, skill format, and generated skill reference documentation |
+| `skills/hr-*/content/` | Optional human-readable companion guidance for each HR skill domain |
+| `skills/hr-*/prompts/` | Optional reusable prompt libraries grouped by HR topic |
+| `skills/hr-*/examples/` | Optional practical end-to-end HR workflows and business scenarios |
+| `docs/` | Skill format specification |
 | `.claude-plugin/marketplace.json` | Generated marketplace metadata synced from skill frontmatter |
-| `scripts/zip.ts` | Packaging script that creates distributable skill zip files under `skills/` |
-| `packages/hr-skills-build` | Build and maintenance tooling for validation, sync, catalog generation, and packaging support |
+| `packages/hr-skills-build` | Build and maintenance tooling for validation, sync, and packaging support |
 | `packages/skills-ref` | TypeScript library for reading, validating, and generating prompts from skill files |
 
 ## Packages
@@ -113,61 +111,8 @@ Generated files and package build outputs are cached through Turborepo based on 
 
 | Package | Description |
 |---------|-------------|
-| `packages/hr-skills-build` | Build and maintenance tooling for validating skills, generating catalogs, syncing metadata, and packaging skill distributions |
+| `packages/hr-skills-build` | Build and maintenance tooling for validating skills, syncing metadata, and packaging skill distributions |
 | `packages/skills-ref` | TypeScript library (`skills-ref`) for reading, validating, and generating prompts from skill files |
-
-## Skill scopes
-
-| Skill | Scope |
-|-------|-------|
-| **hr-ai** | Help HR managers, recruiters, and talent acquisition teams understand Artificial Intelligence (AI), Machine Learning (ML), Generative AI, LLM Engineering, AI Infrastructure, and modern AI product development workflows. |
-| **hr-analytics** | Help HR managers with HR analytics and data management. |
-| **hr-backend** | Help HR managers, recruiters, and talent acquisition teams understand Backend Engineering concepts, hiring requirements, backend ecosystems, candidate evaluation, APIs, databases, scalability, cloud infrastructure, and modern server-side workflows. |
-| **hr-business-partner** | Help HR Business Partners, People Partners, and HRBP leaders advise managers and leadership on people strategy, performance management, organizational health, employee relations, and workforce planning within their business unit. |
-| **hr-change-management** | Help HR leaders, change managers, and business partners design, lead, and sustain organizational change initiatives. |
-| **hr-compensation-benefits** | Help HR managers with compensation and benefits programs. |
-| **hr-compliance** | Help HR managers with HR compliance and workplace policies. |
-| **hr-conflict-resolution** | Help HR managers with workplace conflict resolution. |
-| **hr-culture** | Help HR managers, recruiters, and people leaders understand, assess, build, and communicate organizational culture. |
-| **hr-data** | Help HR managers, recruiters, and talent acquisition teams understand Data Engineering, Data Analytics, Data Science, Business Intelligence, Machine Learning, and modern data ecosystems. |
-| **hr-devops** | Help HR managers, recruiters, and talent acquisition teams understand DevOps, Platform Engineering, Site Reliability Engineering (SRE), cloud infrastructure, CI/CD, and modern software delivery workflows. |
-| **hr-diversity-inclusion** | Help HR managers with diversity, equity, and inclusion initiatives. |
-| **hr-employee-engagement** | Help HR managers with employee engagement strategies. |
-| **hr-employee-experience** | Help HR business partners, employee experience managers, and people leaders understand, design, and run employee experience strategies, journey mapping, engagement programs, culture diagnostics, onboarding and offboarding experience design, workplace environment initiatives, and recognition and belonging programs. |
-| **hr-employee-relations** | Help HR managers with employee relations matters. |
-| **hr-employer-branding** | Help HR leaders, talent acquisition teams, and employer brand managers understand, design, and run employer branding strategy, EVP (Employee Value Proposition) development, careers page and social content, and candidate experience initiatives. |
-| **hr-frontend** | Help HR managers, recruiters, and talent acquisition teams understand Frontend Engineering concepts, hiring requirements, frontend ecosystems, candidate evaluation, and modern frontend workflows. |
-| **hr-fullstack** | Help HR managers, recruiters, and talent acquisition teams understand Fullstack Engineering concepts, hiring requirements, cross-functional engineering workflows, frontend-backend integration, and modern end-to-end product development. |
-| **hr-hris** | Help HR managers, HR operations teams, and recruiters understand HRIS (Human Resource Information Systems), including HRIS platforms, implementation and migration, system integrations, employee data management, HR automation, and HRIS-related hiring. |
-| **hr-interviewing** | Help HR managers, recruiters, hiring managers, and interview panels design structured, competency-based interview questions, interview guides, and evaluation scorecards for any role. |
-| **hr-job-architecture** | Help HR business partners, compensation specialists, and total rewards leaders understand, design, and implement job architecture frameworks including job families, career levels, leveling criteria, and career pathing structures. |
-| **hr-job-description** | Help HR professionals, recruiters, hiring managers, and talent acquisition teams write clear, inclusive, and compelling job descriptions that attract qualified candidates. |
-| **hr-knowledge-management** | Help HR managers, People Ops teams, and recruiters understand HR knowledge management, including HR knowledge bases, policy and SOP documentation, employee self-service content, tribal knowledge capture, and knowledge management tooling. |
-| **hr-kpi** | Help HR managers, people analytics teams, and HR business partners understand, select, calculate, and act on HR KPIs and workforce metrics. |
-| **hr-labor-relations** | Help HR business partners, employee relations specialists, and people leaders understand, design, and manage labor relations, collective bargaining, union avoidance and engagement strategies, grievance and dispute resolution processes, employment law compliance, and workforce policy design. |
-| **hr-leadership-development** | Help HR managers with leadership development programs. |
-| **hr-learning-development** | Help HR business partners, L&D managers, and people development leaders understand, design, and run learning and development programs, skills gap analyses, career development frameworks, leadership development tracks, onboarding programs, and learning culture initiatives. |
-| **hr-mobile** | Help HR managers, recruiters, and talent acquisition teams understand Mobile Development, iOS, Android, cross-platform engineering, mobile app architecture, and modern mobile ecosystems. |
-| **hr-onboarding** | Help HR managers with employee onboarding and offboarding. |
-| **hr-organizational-development** | Help HR business partners, OD consultants, and people leaders understand, design, and lead organizational design, change management, and culture transformation initiatives. |
-| **hr-payroll** | Help HR operations specialists, payroll administrators, and compensation teams understand, design, and run payroll processing, compliance, and payroll-related HR operations. |
-| **hr-people-operations** | Help HR managers, People Ops specialists, HRIS administrators, and HR generalists understand, design, and run core people operations processes. |
-| **hr-performance-management** | Help HR managers with performance management processes. |
-| **hr-performance-review** | Help managers, HR professionals, and team leaders write fair, balanced, evidence-based performance reviews, self-assessments, and development plans. |
-| **hr-qa** | Help HR managers, recruiters, and talent acquisition teams understand Quality Assurance (QA), Software Testing, Test Automation, and modern Quality Engineering concepts. |
-| **hr-recruiting** | Help HR managers with end-to-end recruiting and talent acquisition. |
-| **hr-security** | Help HR managers, recruiters, and talent acquisition teams understand Cybersecurity, Application Security, Cloud Security, Security Operations, Penetration Testing, and modern security engineering workflows. |
-| **hr-skills-taxonomy** | Help HR business partners, talent management specialists, L&D leaders, and workforce planning teams understand, design, and implement skills taxonomies and skills ontologies. |
-| **hr-social-recruiting** | Help HR managers, recruiters, talent acquisition teams, employer branding specialists, and founders recruit effectively through social media platforms including LinkedIn, Facebook, Zalo, GitHub, Reddit, Discord, Slack communities, TikTok, Instagram, and X (Twitter). |
-| **hr-succession-planning** | Help HR business partners, talent management specialists, and people leaders understand, design, and run succession planning, leadership pipeline development, and critical role continuity programs. |
-| **hr-talent-management** | Help HR managers, HRBPs, L&D leads, and people operations teams understand, design, and execute talent management systems. |
-| **hr-technology** | Help HR managers with HR technology strategy and implementation. |
-| **hr-total-rewards** | Help HR managers, compensation analysts, benefits specialists, and total rewards leaders understand, design, and communicate total rewards programs. |
-| **hr-training-development** | Help HR managers with learning and development programs. |
-| **hr-uiux** | Help HR managers, recruiters, and talent acquisition teams understand UI/UX Design, Product Design, Design Systems, User Research, Interaction Design, and modern digital product design workflows. |
-| **hr-vietnam-context** | Vietnam-specific HR guidance covering the Labor Code, Social Insurance Law, personal income tax registration, work permits for foreign workers, trade union obligations, and cultural norms for managing teams in Vietnam. |
-| **hr-wellbeing** | Help HR business partners, wellbeing program managers, and people leaders understand, design, and run employee wellbeing, mental health, and work-life balance initiatives. |
-| **hr-workforce-planning** | Help HR managers with workforce planning and strategy. |
 
 ## Content standards
 

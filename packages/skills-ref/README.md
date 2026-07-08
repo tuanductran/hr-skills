@@ -11,7 +11,7 @@ bun run build
 
 ## Package outputs
 
-The package builds a library entry point from `src/index.ts` to `dist/index.mjs` with TypeScript declarations at `dist/index.d.ts`.
+The package builds an ESM library from `src/index.ts` and emits the corresponding TypeScript declaration files alongside the compiled output.
 
 The published package contents are limited to `dist/`. The package doesn't expose a command-line interface.
 

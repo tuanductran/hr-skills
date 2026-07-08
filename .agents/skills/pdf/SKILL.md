@@ -1,48 +1,51 @@
 ---
 name: pdf
-description: "PDF and document utilities: generate, merge, and validate PDF exports from skills, catalogs, and examples. Useful for producing distributable documentation and packaging."
+description: "PDF and document utilities for generating, merging, validating, and exporting repository documentation from Markdown sources. Useful for creating printable guides, skill documentation, and release-ready artifacts."
 metadata:
   author: "Tuan Duc Tran"
-  version: "1.0.0"
+  version: "1.1.0"
 ---
+
+# PDF
 
 ## Supported tasks
 
-- Convert Markdown files or SKILL.md content to PDF with a clean template
-- Merge multiple PDF files into a single distributable package
-- Validate PDF text extraction and accessibility basics
-- Produce PDF change summaries from SKILL.md diffs
-- Generate printable catalogs from `skills/CATALOG.md` or `docs/`
-- Embed metadata and versioning into generated PDFs
-- Provide CI-friendly checks to ensure PDFs build without errors
-- Offer commands/snippets for local PDF generation workflows
+- Convert Markdown documents into clean, printable PDF files
+- Export individual `SKILL.md` files or complete skill packages to PDF
+- Generate PDFs from repository documentation and supporting guides
+- Merge multiple PDF files into a single distributable document
+- Validate PDF rendering, text extraction, and basic accessibility
+- Embed document metadata such as title, author, and version
+- Generate release-ready PDF artifacts for distribution
+- Recommend PDF generation workflows for local development and CI
 
 ## Key prompts
 
-### Generation
+### PDF generation
 
-- "Convert `skills/hr-recruiting/SKILL.md` to a single-column PDF with header/footer."
-- "Produce a merged PDF of docs/README.md and skills/CATALOG.md for release."
-- "Generate a one-page PDF summary for `skill`: [skill name] with metadata."
-- "Export examples/ai/hiring-a-senior-ai-engineer.md to PDF with code blocks rendered."
+- "Convert `skills/hr-recruiting/SKILL.md` into a single-column PDF with headers and footers."
+- "Generate a PDF for the entire `skills/hr-ai/` package, including `SKILL.md`, `content/`, `prompts/`, and `examples/`."
+- "Create a one-page PDF summary for `hr-recruiting` with repository metadata."
+- "Export `skills/hr-ai/examples/hiring-a-senior-ai-engineer.md` to PDF with syntax-highlighted code blocks."
 
-### Validation and CI
+### Validation
 
-- "Check that generated PDF contains specified headings and no broken images."
-- "Run PDF accessibility basic checks and report issues."
-- "Create a CI step that fails if PDF generation errors occur."
-- "Extract text from a PDF and diff against source Markdown for verification."
+- "Verify that the generated PDF contains all expected headings and no missing images."
+- "Run basic accessibility checks on the generated PDF."
+- "Compare extracted PDF text against the source Markdown."
+- "Validate that all internal links and references render correctly."
 
 ### Templates and styling
 
-- "Provide a minimal PDF template with header, footer, and repo branding guidelines."
-- "Suggest CSS or print styles for rendering code blocks clearly in PDFs."
-- "Generate a one-page changelog template to include in release PDFs."
-- "Recommend font and margin settings suitable for both screen and print."
+- "Generate a minimal PDF template with headers, footers, and page numbers."
+- "Recommend print styles for Markdown tables, callouts, and code blocks."
+- "Suggest typography and page layout suitable for both screen viewing and printing."
+- "Create a reusable PDF template for repository documentation."
 
 ## Tips
 
-- Use lightweight tools (pandoc, wkhtmltopdf, or headless Chromium) compatible with Bun CI images
-- Keep templates minimal to avoid rendering differences across environments
-- Generate PDFs in CI artifacts for release bundles
-- Include `skills/CATALOG.md` and a short changelog page for each release PDF
+- Prefer reproducible PDF generation across local development and CI.
+- Keep templates simple to minimize rendering differences between engines.
+- Preserve Markdown structure, heading hierarchy, tables, and fenced code blocks.
+- Generate PDFs directly from repository sources rather than maintaining separate printable copies.
+- Embed document metadata to improve indexing and document management.

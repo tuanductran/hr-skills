@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'bun:test';
+import { first } from '../src/helpers.js';
 import type { ValidationError } from '../src/types.js';
 import {
 	validateAuthor,
@@ -217,7 +218,7 @@ describe('validateSupportedTasks()', () => {
 		validateSupportedTasks('hr-test', tooFewTasks, errors);
 
 		expect(errors).toHaveLength(1);
-		expect(errors[0].message).toContain('expected 8-12 tasks');
+		expect(first(errors).message).toContain('expected 8-12 tasks');
 	});
 });
 
@@ -236,7 +237,7 @@ describe('validateTips()', () => {
 		validateTips('hr-test', tooFewTips, errors);
 
 		expect(errors).toHaveLength(1);
-		expect(errors[0].message).toContain('expected 4-6 tips');
+		expect(first(errors).message).toContain('expected 4-6 tips');
 	});
 });
 
@@ -259,7 +260,7 @@ describe('validateLineCount()', () => {
 		validateLineCount('hr-test', longContent, errors);
 
 		expect(errors).toHaveLength(1);
-		expect(errors[0].message).toContain('maximum 500 lines');
+		expect(first(errors).message).toContain('maximum 500 lines');
 	});
 });
 
@@ -293,6 +294,6 @@ describe('validateBlankLines()', () => {
 		);
 
 		expect(errors).toHaveLength(1);
-		expect(errors[0].message).toContain('Missing blank line');
+		expect(first(errors).message).toContain('Missing blank line');
 	});
 });
