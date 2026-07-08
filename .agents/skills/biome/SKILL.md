@@ -77,7 +77,7 @@ Compiler errors remain the responsibility of TypeScript.
 
 Biome automatically organizes imports.
 
-The repository relies on automatic import ordering rather than manual sorting. Safe import organization is part of the Biome toolchain. :contentReference[oaicite:1]{index=1}
+The repository relies on automatic import ordering rather than manual sorting. Safe import organization is part of the Biome toolchain.
 
 ## Common commands
 
@@ -129,7 +129,7 @@ Run CI validation.
 biome ci .
 ```
 
-The `ci` command runs formatter, linter, and import organization in read-only mode, making it suitable for continuous integration. :contentReference[oaicite:2]{index=2}
+The `ci` command runs formatter, linter, and import organization in read-only mode, making it suitable for continuous integration.
 
 ## Key prompts
 
