@@ -1,6 +1,6 @@
 ---
 name: hr-operating-model
-description: Help HR leaders design, restructure, and optimize the HR operating model, including HRBP, Centers of Excellence, and Shared Services configurations. Use when asked to "redesign our HR function", "define HRBP accountabilities", "build a CoE", "set up shared services", "clarify HR roles", "assess our HR operating model", or "move to a three-pillar HR model".
+description: Help HR leaders design, restructure the HR operating model, and optimize the HR operating model, including HRBP, Centers of Excellence, and Shared Services configurations. Use when asked to "redesign our HR function", "define HRBP accountabilities", "build a CoE", "set up shared services", "clarify HR roles", "assess our HR operating model", or "move to a three-pillar HR model".
 metadata:
   author: Tuan Duc Tran
   version: "1.0.0"

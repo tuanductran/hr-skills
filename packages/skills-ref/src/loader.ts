@@ -1,11 +1,13 @@
 import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
+import * as v from 'valibot';
 
 import { SKILL_MD_FILENAMES } from './constants.js';
 import { ParseError, ValidationError } from './errors.js';
 import { isPlainObject, toStringOrUndefined } from './helpers.js';
 import { parseFrontmatter } from './parser.js';
-import type { SkillProperties } from './types.js';
+import type { SkillProperties } from './schema.js';
+import { SkillPropertiesSchema } from './schema.js';
 
 /**
  * Find SKILL.md in a skill directory.
@@ -35,36 +37,25 @@ function toStringRecord(value: unknown): Record<string, string> | undefined {
 export function readProperties(skillDir: string): SkillProperties {
 	const skillMd = findSkillMd(skillDir);
 
-	if (skillMd == null) throw new ParseError(`SKILL.md not found in ${skillDir}`);
+	if (skillMd == null) {
+		throw new ParseError(`SKILL.md not found in ${skillDir}`);
+	}
 
 	const content = readFileSync(skillMd, 'utf8');
-	const [metadata] = parseFrontmatter(content);
+	const [frontmatter] = parseFrontmatter(content);
 
-	const rawName = metadata['name'];
-	const rawDescription = metadata['description'];
+	const result = v.safeParse(SkillPropertiesSchema, {
+		name: frontmatter['name'],
+		description: frontmatter['description'],
+		license: toStringOrUndefined(frontmatter['license']),
+		compatibility: toStringOrUndefined(frontmatter['compatibility']),
+		allowedTools: toStringOrUndefined(frontmatter['allowed-tools']),
+		metadata: toStringRecord(frontmatter['metadata']),
+	});
 
-	if (typeof rawName !== 'string' || rawName.trim().length === 0)
-		throw new ValidationError("Field 'name' must be a non-empty string");
+	if (!result.success) {
+		throw new ValidationError(v.summarize(result.issues));
+	}
 
-	if (typeof rawDescription !== 'string' || rawDescription.trim().length === 0)
-		throw new ValidationError("Field 'description' must be a non-empty string");
-
-	const properties: SkillProperties = {
-		name: rawName.trim(),
-		description: rawDescription.trim(),
-	};
-
-	const license = toStringOrUndefined(metadata['license']);
-	if (license !== undefined) properties.license = license;
-
-	const compatibility = toStringOrUndefined(metadata['compatibility']);
-	if (compatibility !== undefined) properties.compatibility = compatibility;
-
-	const allowedTools = toStringOrUndefined(metadata['allowed-tools']);
-	if (allowedTools !== undefined) properties.allowedTools = allowedTools;
-
-	const metadataObject = toStringRecord(metadata['metadata']);
-	if (metadataObject !== undefined) properties.metadata = metadataObject;
-
-	return properties;
+	return result.output;
 }

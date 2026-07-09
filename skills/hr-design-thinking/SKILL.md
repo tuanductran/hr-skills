@@ -47,7 +47,7 @@ Apply human-centered design principles to HR challenges — from empathy researc
 
 1. "Map the employee journey for [HR process or life event] from the employee's perspective including touchpoints, emotions, and pain points."
 2. "Design a candidate journey map for [hiring process] that surfaces the moments that most shape candidate perception."
-3. "How do we use journey mapping to identify the highest-leverage improvements to [employee experience]?"
+3. "How do we use journey mapping to identify the highest-usee improvements to [employee experience]?"
 4. "Build a manager journey map for [performance review cycle] showing where managers struggle most."
 5. "How do we workshop a journey map with employees and managers rather than building it in isolation?"
 

@@ -78,7 +78,7 @@ Comprehensive compensation and benefits support — from pay analysis, salary su
 
 1. "Write an employee engagement survey focused on compensation satisfaction and benefits effectiveness."
 2. "What questions in an employee satisfaction survey best reveal concerns about pay equity and fairness?"
-3. "How should I analyze survey results to identify the most impactful changes to our total rewards program?"
+3. "How should I analyze survey results to identify the most effective changes to our total rewards program?"
 
 ## Tips
 

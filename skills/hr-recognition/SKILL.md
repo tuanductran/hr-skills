@@ -59,7 +59,7 @@ Design and operate employee recognition programs that reinforce desired behavior
 
 ## Tips
 
-- Recognition is most impactful when it is timely, specific, and tied to observable behaviors or outcomes.
+- Recognition is most effective when it is timely, specific, and tied to observable behaviors or outcomes.
 - Peer recognition programs often have higher engagement than top-down programs—design for horizontal appreciation.
 - Train managers to recognize in the style the employee prefers—some value public acknowledgment, others prefer private appreciation.
 - Audit recognition distribution data to identify underthanked teams or underrepresented employee groups.

@@ -336,7 +336,7 @@ A benefits package with excessive choice can create decision fatigue and lower p
 
 - Senior total rewards professionals are often evaluated on their ability to defend pay decisions with data, model financial impact accurately, and navigate the tension between cost control and competitiveness — not only on technical salary-band design skill.
 - Pay equity analysis should be run before a compensation cycle, not only after — identifying and budgeting for gaps proactively is significantly cheaper and less reputationally risky than remediating after employees discover a disparity.
-- Total rewards statements are one of the highest-leverage, lowest-cost retention tools available — many employees significantly underestimate the value of their benefits and equity until it is shown to them explicitly.
+- Total rewards statements are one of the highest-usee, lowest-cost retention tools available — many employees significantly underestimate the value of their benefits and equity until it is shown to them explicitly.
 - When designing incentive plans, model the plan against multiple performance scenarios before launch — a commission structure that looks reasonable on paper can create unintended behavior or budget overruns under real performance distributions.
 - Pay transparency regulation is expanding rapidly across jurisdictions; total rewards teams that build defensible, well-documented pay structures proactively are far better positioned than those reacting after a law takes effect.
 - Avoid designing compensation philosophy in isolation from Finance and Legal — total rewards decisions carry budget and regulatory implications that require their input from the earliest stages, not just final sign-off.

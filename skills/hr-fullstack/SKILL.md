@@ -1,6 +1,6 @@
 ---
 name: hr-fullstack
-description: Help HR managers, recruiters, and talent acquisition teams understand Fullstack Engineering concepts, hiring requirements, cross-functional engineering workflows, frontend-backend integration, and modern end-to-end product development. Use when asked to "explain fullstack development", "screen fullstack candidates", "understand frontend and backend together", "evaluate fullstack skills", "compare fullstack stacks", "create fullstack interview questions", "understand end-to-end product engineering", or any fullstack hiring and recruiting task.
+description: Help HR managers, recruiters, and talent acquisition teams understand Fullstack Engineering concepts, fullstack-specific hiring requirements, cross-functional engineering workflows, frontend-backend integration, and modern end-to-end product development. Use when asked to "explain fullstack development", "screen fullstack candidates", "understand frontend and backend together", "evaluate fullstack skills", "compare fullstack stacks", "create fullstack interview questions", "understand end-to-end product engineering", or any fullstack hiring and recruiting task.
 metadata:
   author: Tuan Duc Tran
   version: "1.0.0"

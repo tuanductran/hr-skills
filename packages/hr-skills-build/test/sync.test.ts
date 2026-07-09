@@ -14,21 +14,23 @@ describe('syncMarketplace()', () => {
 	beforeEach(() => {
 		tempDir = join(tmpdir(), `sync-test-${Date.now()}`);
 		mkdirSync(tempDir, { recursive: true });
+
 		tempMarketplacePath = join(tempDir, 'marketplace.json');
 
-		// Write initial valid marketplace json
 		const initialJson = {
 			name: 'Test Plugin',
 			description: 'A test plugin.',
 			plugins: [],
 		};
+
 		writeFileSync(tempMarketplacePath, JSON.stringify(initialJson, null, 2), 'utf8');
 	});
 
 	afterEach(() => {
-		try {
-			rmSync(tempDir, { recursive: true, force: true });
-		} catch {}
+		rmSync(tempDir, {
+			recursive: true,
+			force: true,
+		});
 	});
 
 	it('returns true and updates plugins if they changed', async () => {
@@ -44,15 +46,21 @@ describe('syncMarketplace()', () => {
 		];
 
 		const changed = await syncMarketplace(metas, tempMarketplacePath);
+
 		expect(changed).toBe(true);
 
 		const updatedContent = await readFile(tempMarketplacePath, 'utf8');
+
 		const updatedJson = JSON.parse(updatedContent);
 
 		expect(updatedJson.plugins).toHaveLength(1);
-		expect(updatedJson.plugins[0].name).toBe('hr-test-one');
-		expect(updatedJson.plugins[0].description).toBe('First test description');
-		expect(updatedJson.plugins[0].skills).toEqual(['./skills/hr-test-one']);
+
+		expect(updatedJson.plugins[0]).toEqual({
+			name: 'hr-test-one',
+			source: './',
+			description: 'First test description',
+			skills: ['./skills/hr-test-one'],
+		});
 	});
 
 	it('returns false if plugins are already in sync', async () => {
@@ -67,11 +75,32 @@ describe('syncMarketplace()', () => {
 			},
 		];
 
-		// First sync to set up state
 		await syncMarketplace(metas, tempMarketplacePath);
 
-		// Second sync should return false
 		const changed = await syncMarketplace(metas, tempMarketplacePath);
+
 		expect(changed).toBe(false);
+	});
+
+	it('throws if marketplace.json does not match schema', async () => {
+		const invalidJson = {
+			name: 'Test Plugin',
+			description: 'A test plugin.',
+			plugins: 'invalid',
+		};
+
+		writeFileSync(tempMarketplacePath, JSON.stringify(invalidJson, null, 2), 'utf8');
+
+		const metas: SkillMeta[] = [];
+
+		expect(syncMarketplace(metas, tempMarketplacePath)).rejects.toThrow();
+	});
+
+	it('throws if marketplace.json is invalid JSON', async () => {
+		writeFileSync(tempMarketplacePath, '{ invalid json', 'utf8');
+
+		const metas: SkillMeta[] = [];
+
+		expect(syncMarketplace(metas, tempMarketplacePath)).rejects.toThrow();
 	});
 });

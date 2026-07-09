@@ -70,6 +70,6 @@ Assess and improve organizational effectiveness at team, function, and enterpris
 
 - Organizational effectiveness problems are almost always systemic — resist the temptation to diagnose team performance issues as people problems before ruling out structural, process, and leadership root causes.
 - The best org effectiveness diagnostics combine quantitative data (engagement, attrition, performance) with qualitative insight (interviews, focus groups) — neither alone tells the full story.
-- Speed and quality of decision-making are often the most impactful and least measured dimensions of organizational effectiveness — include them in every assessment.
+- Speed and quality of decision-making are often the most effective and least measured dimensions of organizational effectiveness — include them in every assessment.
 - Org effectiveness insights are only valuable if they lead to decisions — design your diagnostic and reporting process with action and accountability built in from the start.
 - Sustained org effectiveness requires regular measurement cadences, not one-off diagnostics — build annual or bi-annual OE reviews into the governance calendar.

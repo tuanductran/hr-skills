@@ -1,11 +1,6 @@
 {
-  "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
   "name": "hr-skills",
   "description": "A collection of AI skills for HR managers covering recruiting, performance management, compensation, compliance, and all major HR domains. Built by Tuan Duc Tran for the Zalo HR/TA Job Onsite/Hybrid/Remote community.",
-  "owner": {
-    "name": "Tuan Duc Tran",
-    "email": "tuanductran.dev@gmail.com"
-  },
   "plugins": [
     {
       "name": "hr-agentic-ai",
@@ -90,7 +85,7 @@
     {
       "name": "hr-backend",
       "source": "./",
-      "description": "Help HR managers, recruiters, and talent acquisition teams understand Backend Engineering concepts, hiring requirements, backend ecosystems, candidate evaluation, APIs, databases, scalability, cloud infrastructure, and modern server-side workflows. Use when asked to \"explain backend development\", \"screen backend candidates\", \"understand APIs and databases\", \"compare backend frameworks\", \"evaluate backend skills\", \"create backend interview questions\", \"understand microservices\", \"understand cloud backend systems\", or any backend hiring and recruiting task.",
+      "description": "Help HR managers, recruiters, and talent acquisition teams understand Backend Engineering concepts, hiring requirements, backend ecosystems, candidate evaluation, APIs, databases, scalability, cloud-adjacent backend infrastructure, and modern server-side workflows. Use when asked to \"explain backend development\", \"screen backend candidates\", \"understand APIs and databases\", \"compare backend frameworks\", \"evaluate backend skills\", \"create backend interview questions\", \"understand microservices\", \"understand cloud backend systems\", or any backend hiring and recruiting task.",
       "skills": [
         "./skills/hr-backend"
       ]
@@ -138,7 +133,7 @@
     {
       "name": "hr-change-communication",
       "source": "./",
-      "description": "Help HR leaders, change managers, and HRBPs design and execute change communication strategies for HR-driven transformations. Use when asked to \"communicate an org change\", \"write a change announcement\", \"build a change communication strategy or plan\", \"design stakeholder messaging\", \"prepare employees for a restructuring\", or \"communicate a new HR policy or program\".",
+      "description": "Help HR leaders, change communication for managers, and HRBPs design and execute change communication strategies for HR-driven transformations. Use when asked to \"communicate an org change\", \"write a change announcement\", \"build a change communication strategy or plan\", \"design stakeholder messaging\", \"prepare employees for a restructuring\", or \"communicate a new HR policy or program\".",
       "skills": [
         "./skills/hr-change-communication"
       ]
@@ -178,7 +173,7 @@
     {
       "name": "hr-competency-management",
       "source": "./",
-      "description": "Help HR teams design, maintain, and apply competency frameworks across talent processes including hiring, performance management, learning, and succession. Use when asked to \"build a competency framework\", \"define behavioral indicators\", \"create a competency library\", \"apply competencies to hiring\", \"assess competencies\", \"update our competency model\", or \"integrate competencies into performance reviews\".",
+      "description": "Help HR teams design, maintain, and apply competency frameworks across talent processes including hiring, competency-based performance management, learning, and succession. Use when asked to \"build a competency framework\", \"define behavioral indicators\", \"create a competency library\", \"apply competencies to hiring\", \"assess competencies\", \"update our competency model\", or \"integrate competencies into performance reviews\".",
       "skills": [
         "./skills/hr-competency-management"
       ]
@@ -346,7 +341,7 @@
     {
       "name": "hr-frontend",
       "source": "./",
-      "description": "Help HR managers, recruiters, and talent acquisition teams understand Frontend Engineering concepts, hiring requirements, frontend ecosystems, candidate evaluation, and modern frontend workflows. Use when asked to \"explain frontend development\", \"screen frontend candidates\", \"understand React/Vue/Angular\", \"compare frontend frameworks\", \"evaluate frontend skills\", \"create frontend interview questions\", \"understand frontend architecture\", or any frontend hiring and recruiting task.",
+      "description": "Help HR managers, recruiters, and talent acquisition teams understand Frontend Engineering concepts, hiring requirements, frontend ecosystems, frontend candidate evaluation, and modern frontend workflows. Use when asked to \"explain frontend development\", \"screen frontend candidates\", \"understand React/Vue/Angular\", \"compare frontend frameworks\", \"evaluate frontend skills\", \"create frontend interview questions\", \"understand frontend architecture\", or any frontend hiring and recruiting task.",
       "skills": [
         "./skills/hr-frontend"
       ]
@@ -354,7 +349,7 @@
     {
       "name": "hr-fullstack",
       "source": "./",
-      "description": "Help HR managers, recruiters, and talent acquisition teams understand Fullstack Engineering concepts, hiring requirements, cross-functional engineering workflows, frontend-backend integration, and modern end-to-end product development. Use when asked to \"explain fullstack development\", \"screen fullstack candidates\", \"understand frontend and backend together\", \"evaluate fullstack skills\", \"compare fullstack stacks\", \"create fullstack interview questions\", \"understand end-to-end product engineering\", or any fullstack hiring and recruiting task.",
+      "description": "Help HR managers, recruiters, and talent acquisition teams understand Fullstack Engineering concepts, fullstack-specific hiring requirements, cross-functional engineering workflows, frontend-backend integration, and modern end-to-end product development. Use when asked to \"explain fullstack development\", \"screen fullstack candidates\", \"understand frontend and backend together\", \"evaluate fullstack skills\", \"compare fullstack stacks\", \"create fullstack interview questions\", \"understand end-to-end product engineering\", or any fullstack hiring and recruiting task.",
       "skills": [
         "./skills/hr-fullstack"
       ]
@@ -450,7 +445,7 @@
     {
       "name": "hr-job-analysis",
       "source": "./",
-      "description": "Help HR teams, compensation analysts, and job design specialists conduct job analysis, define job requirements, and document job content for job evaluation, classification, and workforce planning purposes. Use when asked to \"conduct a job analysis\", \"define job requirements\", \"write job content\", \"classify a role\", \"evaluate job complexity\", \"run a task analysis\", or \"audit our job structures\".",
+      "description": "Help HR teams, job analysis for compensation analysts, and job design specialists conduct job analysis, define job requirements, and document job content for job evaluation, classification, and workforce planning purposes. Use when asked to \"conduct a job analysis\", \"define job requirements\", \"write job content\", \"classify a role\", \"evaluate job complexity\", \"run a task analysis\", or \"audit our job structures\".",
       "skills": [
         "./skills/hr-job-analysis"
       ]
@@ -554,7 +549,7 @@
     {
       "name": "hr-operating-model",
       "source": "./",
-      "description": "Help HR leaders design, restructure, and optimize the HR operating model, including HRBP, Centers of Excellence, and Shared Services configurations. Use when asked to \"redesign our HR function\", \"define HRBP accountabilities\", \"build a CoE\", \"set up shared services\", \"clarify HR roles\", \"assess our HR operating model\", or \"move to a three-pillar HR model\".",
+      "description": "Help HR leaders design, restructure the HR operating model, and optimize the HR operating model, including HRBP, Centers of Excellence, and Shared Services configurations. Use when asked to \"redesign our HR function\", \"define HRBP accountabilities\", \"build a CoE\", \"set up shared services\", \"clarify HR roles\", \"assess our HR operating model\", or \"move to a three-pillar HR model\".",
       "skills": [
         "./skills/hr-operating-model"
       ]
@@ -722,7 +717,7 @@
     {
       "name": "hr-skills-taxonomy",
       "source": "./",
-      "description": "Help HR business partners, talent management specialists, L&D leaders, and workforce planning teams understand, design, and implement skills taxonomies and skills ontologies. Use when asked to \"build a skills taxonomy\", \"map skills to roles\", \"design a skills ontology\", \"run a skills gap analysis against a skills taxonomy\", \"create a skills inventory\", \"build a skills-based hiring framework\", \"design skills clusters\", \"connect skills to career paths\", \"benchmark workforce skills against market data\", or any skills classification, skills-based workforce planning, and organizational skills intelligence task.",
+      "description": "Help HR business partners, skills taxonomy for talent management specialists, L&D leaders, and workforce planning teams understand, design, and implement skills taxonomies and skills ontologies. Use when asked to \"build a skills taxonomy\", \"map skills to roles\", \"design a skills ontology\", \"run a skills gap analysis against a skills taxonomy\", \"create a skills inventory\", \"build a skills-based hiring framework\", \"design skills clusters\", \"connect skills to career paths\", \"benchmark workforce skills against market data\", or any skills classification, skills-based workforce planning, and organizational skills intelligence task.",
       "skills": [
         "./skills/hr-skills-taxonomy"
       ]
@@ -738,7 +733,7 @@
     {
       "name": "hr-software-architecture",
       "source": "./",
-      "description": "Help HR and technical recruiting teams hire and evaluate software architect and staff/principal engineer candidates. Use when asked to write a software architect job description, assess architecture leadership skills, design a principal engineer interview loop, build an architecture role leveling framework, or similar tasks.",
+      "description": "Help HR and technical recruiting teams hire and evaluate software architect and staff/principal engineer candidates. Use when asked to write a software architect job description, assess architecture leadership skills, design a principal engineer interview loop, build an architecture role leveling framework.",
       "skills": [
         "./skills/hr-software-architecture"
       ]
@@ -762,7 +757,7 @@
     {
       "name": "hr-system-design",
       "source": "./",
-      "description": "Help HR and technical recruiting teams hire and assess candidates for system design skills across engineering roles, including interview design and evaluation rubrics. Use when asked to create a system design interview, evaluate a candidates system design skills, write a system design interview rubric, prepare interviewers for system design rounds, or similar tasks.",
+      "description": "Help HR and technical recruiting teams hire and assess candidates for system design skills across engineering roles, including interview design and evaluation rubrics. Use when asked to create a system design interview, evaluate a candidates system design skills, write a system design interview rubric, prepare interviewers for system design rounds.",
       "skills": [
         "./skills/hr-system-design"
       ]

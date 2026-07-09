@@ -249,6 +249,7 @@ Use this prompt structure when analyzing voluntary turnover data:
 ```text
 I am an HR Manager at a [industry] company with [X] employees.
 My data:
+
 - Voluntary turnover rate (first half of year): [X]%
 - First-year turnover rate: [X]%
 - Department with highest turnover: [department name]
@@ -266,6 +267,7 @@ Use this prompt structure when building a KPI dashboard from scratch:
 ```text
 Help me design an HR KPI Dashboard for a [company type].
 Context:
+
 - Size: [X] employees
 - Priority areas: [recruiting / retention / training / cost control]
 - Available tools: [Excel / Google Sheets / Notion / Power BI]
@@ -282,6 +284,7 @@ Use this prompt structure when analyzing recruiting spend:
 
 ```text
 My recruiting data:
+
 - Job advertising spend: [amount] per month
 - Recruiter or headhunter fees: [amount] per hire
 - Internal HR time on recruiting: [X] hours per week

@@ -1,6 +1,6 @@
 ---
 name: hr-backend
-description: Help HR managers, recruiters, and talent acquisition teams understand Backend Engineering concepts, hiring requirements, backend ecosystems, candidate evaluation, APIs, databases, scalability, cloud infrastructure, and modern server-side workflows. Use when asked to "explain backend development", "screen backend candidates", "understand APIs and databases", "compare backend frameworks", "evaluate backend skills", "create backend interview questions", "understand microservices", "understand cloud backend systems", or any backend hiring and recruiting task.
+description: Help HR managers, recruiters, and talent acquisition teams understand Backend Engineering concepts, hiring requirements, backend ecosystems, candidate evaluation, APIs, databases, scalability, cloud-adjacent backend infrastructure, and modern server-side workflows. Use when asked to "explain backend development", "screen backend candidates", "understand APIs and databases", "compare backend frameworks", "evaluate backend skills", "create backend interview questions", "understand microservices", "understand cloud backend systems", or any backend hiring and recruiting task.
 metadata:
   author: Tuan Duc Tran
   version: "1.0.0"
@@ -277,6 +277,6 @@ Focuses on:
 - Modern backend engineering spans system architecture, database optimization, scalability, and infrastructure rather than just writing simple APIs or working with a single framework.
 - Backend engineering maturity is marked by deep systems thinking—such as security, high concurrency, scalability, and distributed systems—over generic framework knowledge.
 - Portfolios and resumes are best evaluated through code quality, architectural decisions, and production metrics (e.g. latency, throughput) rather than visual user interfaces.
-- Language choices often vary by organizational scale: startups favor rapid development environments (like Node.js or Python) while enterprises prioritize robust platforms (like Java or .NET).
+- Language choices often vary by organizational scale: startups favor rapid development environments (like Node.js or Python) while enterprises prioritize strong platforms (like Java or .NET).
 - Resume screening should prioritize deep project ownership and architectural contributions over a simple list of cloud and database buzzwords.
 - Avoid creating unrealistic job descriptions that conflate backend development, DevOps, data engineering, and security into a single unfeasible role.

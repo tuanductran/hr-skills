@@ -59,8 +59,8 @@ Develop, align, and execute HR strategies that drive business outcomes — from 
 ## Tips
 
 - Anchor every HR priority to a measurable business outcome — HR strategies that cannot be linked to revenue, cost, risk, or growth are difficult to fund and easy to cut when business conditions change.
-- Use data and benchmarks to build credibility with executive stakeholders.
+- Use data and external benchmarks to build credibility with executive stakeholders — HR plans without numbers are easy to dismiss, while those grounded in turnover cost, time-to-fill, or engagement benchmarks are much harder to deprioritize.
 - Review and refresh the HR strategic plan quarterly, not just annually.
-- Involve people managers in workforce planning to surface ground-level insights.
+- Involve people managers in workforce planning — they see skill gaps, attrition risk, and team capacity constraints months before the data surfaces in an HRIS, and their buy-in also makes the plan easier to execute.
 - Keep the strategic plan concise—focus on 3–5 priorities rather than trying to cover everything.
 - Distinguish between strategic initiatives (multi-year transformation, capability building) and operational improvements (quarterly process fixes) — conflating the two leads to HR plans that are too tactical to inspire investment or too vague to execute.

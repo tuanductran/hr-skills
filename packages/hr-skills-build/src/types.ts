@@ -12,26 +12,6 @@ export interface SkillMeta {
 	supportedTasks: string[];
 }
 
-export interface MarketplaceJson {
-	name: string;
-	description: string;
-	plugins: Array<{
-		name: string;
-		source: string;
-		description: string;
-		skills: string[];
-	}>;
-}
-
-export interface SkillFrontmatter {
-	name?: string;
-	description?: string;
-	metadata?: {
-		author?: string;
-		version?: string;
-	};
-}
-
 export interface ValidationError {
 	skill: string;
 	message: string;

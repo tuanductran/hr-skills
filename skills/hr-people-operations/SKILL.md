@@ -50,7 +50,7 @@ Modern people operations teams are increasingly expected to support:
 - consistent, compliant employee data across every connected system
 - fast, low-friction employee self-service for routine requests
 - measurable service quality through SLAs and operational dashboards
-- seamless cross-functional handoffs between HR, IT, Finance, and Legal
+- smooth cross-functional handoffs between HR, IT, Finance, and Legal
 - a people experience that reflects the organization's culture, not just its compliance needs
 
 HR service delivery modernization and AI-assisted process automation are becoming major industry trends in 2026.
