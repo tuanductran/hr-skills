@@ -1,8 +1,8 @@
 ---
 name: hr-iot
-description: "Help HR and recruiting teams hire and assess Internet of Things (IoT) engineering candidates, spanning device firmware, connectivity, and cloud/edge integration. Use when asked to 'write an IoT engineer job description', 'create IoT interview questions', 'assess an IoT candidate's skills across the stack', 'build an IoT engineering leveling framework', or similar IoT-hiring tasks."
+description: "Help HR and recruiting teams hire and assess Internet of Things (IoT) engineering candidates, spanning device firmware, connectivity, and cloud/edge integration. Use when asked to write an IoT engineer job description, create IoT interview questions, assess an IoT candidates skills across the stack, build an IoT engineering leveling framework, or similar IoT-hiring tasks."
 metadata:
-  author: "Tuan Duc Tran"
+  author: Tuan Duc Tran
   version: "1.0.0"
 ---
 
@@ -56,7 +56,7 @@ Helps HR and technical recruiters hire IoT engineers who work across device firm
 - Map candidates against the specific layers (device, connectivity, cloud/edge) the role actually requires rather than expecting mastery of all three.
 - Weight fleet-scale operational experience (OTA updates, device provisioning at scale) heavily for production IoT roles.
 - Be specific about the connectivity protocols and use case (industrial vs. consumer) in job postings.
-- Verify claimed experience against shipped connected-device products where possible.
+- Verify claimed IoT experience against shipped, real-world connected-device products where possible — IoT is a broad label and interview depth on hardware constraints, protocol choices, and production deployment reveals genuine expertise.
 
 ## Common mistakes
 

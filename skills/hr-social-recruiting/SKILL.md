@@ -6,7 +6,7 @@ metadata:
   version: "1.0.0"
 ---
 
-# HR Social Recruiting
+# HR social media recruiting
 
 Strategic and tactical guidance for recruiting through social media platforms and online communities—from sourcing passive candidates and mastering platform mechanics to building recruiter brand, creating employer branding campaigns, and designing multi-touch outreach sequences.
 

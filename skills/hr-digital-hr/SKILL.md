@@ -1,6 +1,6 @@
 ---
 name: hr-digital-hr
-description: Help HR leaders and People Ops teams design and execute HR digital transformation, including HR tech stack strategy, digital employee experience, process automation, and data-driven HR. Use when asked to "digitize HR processes", "build our HR tech stack", "improve digital employee experience", "automate HR workflows", "implement an HRIS", or "create a digital HR roadmap".
+description: Help HR leaders and People Ops teams design and execute HR digital transformation, including HR tech stack strategy, digital employee experience, process automation, and data-driven HR. Use when asked to "digitize HR processes", "build our HR tech stack", "improve digital employee experience", "automate HR workflows as part of digital transformation", "implement an HRIS as part of digital HR transformation", or "create a digital HR roadmap".
 metadata:
   author: Tuan Duc Tran
   version: "1.0.0"

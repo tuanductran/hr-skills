@@ -2,7 +2,7 @@
 name: bun
 description: "Repository guidance for using Bun as the runtime, package manager, and workspace toolchain within the hr-skills monorepo."
 metadata:
-  author: "Tuan Duc Tran"
+  author: Tuan Duc Tran
   version: "1.1.0"
 ---
 

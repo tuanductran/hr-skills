@@ -6,7 +6,7 @@ metadata:
   version: "1.0.0"
 ---
 
-# HR Frontend
+# HR frontend engineering hiring
 
 Comprehensive Frontend Engineering knowledge for HR and recruiters — from understanding frontend fundamentals and modern frameworks to evaluating frontend candidates, interpreting frontend portfolios, and improving technical hiring decisions.
 

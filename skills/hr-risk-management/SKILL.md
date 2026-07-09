@@ -1,12 +1,14 @@
 ---
 name: hr-risk-management
-description: "Help HR teams identify, assess, and mitigate people-related risks across compliance, workforce continuity, conduct, and organizational health. Use when asked to 'identify HR risks', 'build an HR risk register', 'manage compliance risk', 'develop HR risk mitigation plans', 'handle employee relations risks', or similar HR risk management tasks."
+description: "Help HR teams identify, assess, and mitigate people-related risks across compliance, workforce continuity, conduct, and organizational health. Use when asked to identify HR risks, build an HR risk register, manage compliance risk, develop HR risk mitigation plans, handle employee relations risks, or similar HR risk management tasks."
 metadata:
-  author: "Tuan Duc Tran"
+  author: Tuan Duc Tran
   version: "1.0.0"
 ---
 
-# HR Risk Management
+# HR risk management
+
+Identify, assess, and mitigate people-related risks across the organization — from compliance and conduct risks to workforce continuity, data privacy, and organizational health — with structured risk registers and mitigation frameworks.
 
 ## Supported tasks
 

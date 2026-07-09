@@ -1,12 +1,14 @@
 ---
 name: hr-offboarding
-description: "Help HR teams design and execute effective offboarding processes for voluntary and involuntary departures. Use when asked to 'create an offboarding checklist', 'conduct exit interviews', 'manage employee separations', 'handle involuntary terminations', 'build an alumni program', or similar departure management tasks."
+description: "Help HR teams design and execute effective offboarding processes for voluntary and involuntary departures. Use when asked to create an offboarding checklist, conduct exit interviews, manage employee separations, handle involuntary terminations, build an alumni program, or similar departure management tasks."
 metadata:
-  author: "Tuan Duc Tran"
+  author: Tuan Duc Tran
   version: "1.0.0"
 ---
 
-# HR Offboarding
+# HR offboarding
+
+Design and execute offboarding programs that protect the organization, support departing employees, and capture institutional knowledge — covering voluntary and involuntary separations, exit insights, and alumni engagement.
 
 ## Supported tasks
 

@@ -1,8 +1,8 @@
 ---
 name: hr-contingent-workforce
-description: "Help HR and procurement teams manage contractors, freelancers, and temporary staff, including classification, vendor management, and program design. Use when asked to 'set up a contingent workforce program', 'classify a worker as contractor or employee', 'manage a VMS/MSP program', 'draft a statement of work', or similar contingent workforce tasks."
+description: "Help HR and procurement teams manage contractors, freelancers, and temporary staff, including classification, vendor management, and program design. Use when asked to set up a contingent workforce program, classify a worker as contractor or employee, manage a VMS/MSP program, draft a statement of work, or similar contingent workforce tasks."
 metadata:
-  author: "Tuan Duc Tran"
+  author: Tuan Duc Tran
   version: "1.0.0"
 ---
 
@@ -54,7 +54,7 @@ Helps HR, procurement, and legal teams manage the non-employee workforce — con
 ## Tips
 
 - Review contractor classification against local legal tests, not just the label used in the contract.
-- Track contractor tenure; long-running "temporary" engagements raise reclassification risk.
+- Track contractor tenure carefully; long-running "temporary" engagements of 12+ months in the same role raise worker reclassification risk under many labor regulations and should be reviewed proactively.
 - Keep contingent worker onboarding and system access separate from full-time employee processes to manage co-employment risk.
 - Centralize contingent workforce spend visibility, which is often scattered across department budgets.
 

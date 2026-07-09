@@ -1,4 +1,4 @@
-# Scenario: Hiring a Gameplay Engineer for a Live-Service Title
+# Hiring a Gameplay Engineer for a Live-Service Title
 
 ## Context
 

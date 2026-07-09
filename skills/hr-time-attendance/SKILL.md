@@ -1,8 +1,8 @@
 ---
 name: hr-time-attendance
-description: "Help HR and payroll teams design, audit, and communicate time and attendance policies, including clock-in rules, overtime, leave tracking, and time-tracking system configuration. Use when asked to 'set up a time tracking policy', 'calculate overtime', 'design a shift attendance policy', 'write a lateness policy', or similar time and attendance tasks."
+description: "Help HR and payroll teams design, audit, and communicate time and attendance policies, including clock-in rules, overtime, leave tracking, and time-tracking system configuration. Use when asked to set up a time tracking policy, calculate overtime, design a shift attendance policy, write a lateness policy, or similar time and attendance tasks."
 metadata:
-  author: "Tuan Duc Tran"
+  author: Tuan Duc Tran
   version: "1.0.0"
 ---
 

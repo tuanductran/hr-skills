@@ -1,6 +1,6 @@
 ---
 name: hr-design-thinking
-description: Help HR teams and people leaders apply design thinking to HR challenges, including employee experience design, HR service redesign, journey mapping, and human-centered HR solution development. Use when asked to "apply design thinking to HR", "run an HR design sprint", "map the employee journey", "co-design an HR solution", "prototype an HR process", or "use human-centered design for HR".
+description: Help HR teams and people leaders apply design thinking to HR challenges, including employee experience design, HR service redesign, journey mapping, and human-centered HR solution development. Use when asked to "apply design thinking to HR", "run an HR design sprint", "apply design thinking to map the employee journey", "co-design an HR solution", "prototype an HR process", or "use human-centered design for HR".
 metadata:
   author: Tuan Duc Tran
   version: "1.0.0"

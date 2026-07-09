@@ -1,12 +1,12 @@
 ---
 name: hr-interviewing
-description: Help HR managers, recruiters, hiring managers, and interview panels design structured, competency-based interview questions, interview guides, and evaluation scorecards for any role. Use when asked to "create interview questions", "design a structured interview", "generate behavioral questions", "build an interview scorecard", "evaluate candidates consistently", "reduce interview bias", or any interview planning and assessment task.
+description: Help HR managers, recruiters, hiring managers, and interview panels design structured, competency-based interview questions, interview guides, and evaluation scorecards for any role. Use when asked to "design structured interview questions or scoring rubrics", "design a structured interview", "generate behavioral questions", "build an interview scorecard", "evaluate candidates consistently", "reduce interview bias", or any interview planning and assessment task.
 metadata:
   author: Tuan Duc Tran
   version: "1.0.0"
 ---
 
-# HR Interviewing
+# HR interviewing
 
 Comprehensive guidance for designing structured, competency-based interviews that improve hiring quality, reduce interviewer bias, and produce consistent candidate evaluations across technical and non-technical roles.
 
@@ -253,8 +253,8 @@ Also avoid:
 
 ## Tips
 
-- Start by defining competencies before writing interview questions.
+- Start by defining the competencies the role requires before writing any interview questions — question design follows competency definition, not the other way around, and skipping this step produces inconsistent, subjective interviews.
 - Ask every candidate the same core questions for the same role.
-- Use follow-up questions to explore depth, ownership, and decision-making.
-- Evaluate evidence rather than confidence or presentation style.
+- Use follow-up questions to explore depth, ownership, and decision-making — a well-placed 'what was your specific role in that?' or 'what would you do differently?' reveals far more than the initial answer.
+- Evaluate the quality and specificity of evidence candidates provide, not their confidence or presentation style — articulate candidates can mask thin experience, and quieter candidates may have stronger track records.
 - Focus on behaviors, reasoning, and observable evidence, and score responses independently before interviewer calibration meetings.

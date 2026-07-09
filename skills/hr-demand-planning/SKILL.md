@@ -1,6 +1,6 @@
 ---
 name: hr-demand-planning
-description: Help HR leaders, workforce planners, and TA teams translate business strategy into headcount demand plans. Use when asked to "build a headcount plan", "forecast hiring needs", "model workforce demand", "align HR capacity with business growth", "create a staffing demand forecast", or "plan headcount for [department or product launch]".
+description: Help HR leaders, workforce planners, and TA teams translate business strategy into headcount demand plans. Use when asked to "build a headcount plan", "forecast short-term hiring demand", "model workforce demand", "align HR capacity with business growth", "create a staffing demand forecast", or "plan headcount for [department or product launch]".
 metadata:
   author: Tuan Duc Tran
   version: "1.0.0"

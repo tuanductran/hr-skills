@@ -2,7 +2,7 @@
 name: hr-skills
 description: "Master router for the HR Skills library — 100+ specialized skill packages covering the full employee lifecycle: recruiting and talent acquisition, onboarding/offboarding, performance and talent management, compensation and total rewards, learning and development, organizational design and change, workforce planning and analytics, HR technology and AI, compliance and labor relations, culture and wellbeing, employer branding, and technical/software-engineering hiring. Includes Vietnam-specific labor law and cultural guidance. Use this skill FIRST for any HR, People Ops, Talent Acquisition, or hiring-related request — including hiring for engineering, design, product, or data roles — so the right specialized skill(s) get loaded instead of answering from general knowledge. Trigger on any task touching the employee lifecycle, workforce strategy, HR policy, or recruiting for any function."
 metadata:
-  author: "Tuan Duc Tran"
+  author: Tuan Duc Tran
   version: "1.0.0"
 ---
 

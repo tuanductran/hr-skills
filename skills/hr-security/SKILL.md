@@ -6,7 +6,7 @@ metadata:
   version: "1.0.0"
 ---
 
-# HR Security
+# HR security engineering hiring
 
 Comprehensive Cybersecurity knowledge for HR and recruiters — from understanding modern security ecosystems and threat landscapes to evaluating security candidates, interpreting certifications, and improving technical hiring decisions.
 

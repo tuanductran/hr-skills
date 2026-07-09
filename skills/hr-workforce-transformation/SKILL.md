@@ -1,8 +1,8 @@
 ---
 name: hr-workforce-transformation
-description: "Help HR and business leaders plan and execute large-scale workforce transformation, including restructuring, reskilling, automation impact, and change management. Use when asked to 'plan a workforce transformation', 'design a reskilling program', 'assess automation impact on jobs', 'build a restructuring plan', or similar workforce transformation tasks."
+description: "Help HR and business leaders plan and execute large-scale workforce transformation, including restructuring, reskilling, automation impact, and change management. Use when asked to plan a workforce transformation, design a reskilling program, assess automation impact on jobs, build a restructuring plan, or similar workforce transformation tasks."
 metadata:
-  author: "Tuan Duc Tran"
+  author: Tuan Duc Tran
   version: "1.0.0"
 ---
 

@@ -6,7 +6,7 @@ metadata:
   version: "1.0.0"
 ---
 
-# HR Culture
+# HR culture
 
 Comprehensive organizational culture knowledge for HR and recruiters — from understanding what culture actually is and how it forms, to assessing candidates for culture fit/add, diagnosing culture problems, and building intentional, healthy workplace cultures.
 

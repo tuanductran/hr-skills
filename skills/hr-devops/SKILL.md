@@ -6,7 +6,7 @@ metadata:
   version: "1.0.0"
 ---
 
-# HR DevOps
+# HR DevOps hiring
 
 Comprehensive DevOps and Infrastructure Engineering knowledge for HR and recruiters — from understanding CI/CD pipelines and cloud systems to evaluating DevOps candidates, interpreting infrastructure workflows, and improving technical hiring decisions.
 

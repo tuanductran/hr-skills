@@ -1,6 +1,6 @@
 ---
 name: hr-employee-engagement
-description: Help HR managers with employee engagement strategies. Use when asked to "improve employee engagement", "design recognition programs", "conduct engagement surveys", "boost employee morale", "reduce burnout", "develop a culture strategy", "create team-building activities", or any employee engagement task.
+description: "Help HR managers with employee engagement strategies. Use when asked to improve employee engagement, design recognition programs, conduct engagement surveys, boost employee morale, reduce burnout, develop a culture strategy, create team-building activities, or any employee engagement task., or run an employee engagement survey or improve scores"
 metadata:
   author: Tuan Duc Tran
   version: "1.0.0"

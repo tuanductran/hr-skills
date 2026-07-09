@@ -1,6 +1,6 @@
 ---
 name: hr-workforce-planning
-description: Help HR managers with workforce planning and strategy. Use when asked to "create a workforce plan", "conduct a skills gap analysis", "develop a succession plan", "build workforce models", "analyze headcount", "forecast hiring needs", "develop workforce diversity strategies", or any workforce planning task.
+description: Help HR managers with workforce planning and strategy. Use when asked to "create a workforce plan", "conduct a skills gap analysis", "develop a succession plan", "build workforce models", "analyze headcount", "forecast long-term workforce needs", "develop workforce diversity strategies", or any workforce planning task.
 metadata:
   author: Tuan Duc Tran
   version: "1.0.0"

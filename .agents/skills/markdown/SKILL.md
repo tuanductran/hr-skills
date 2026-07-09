@@ -2,7 +2,7 @@
 name: markdown
 description: "Repository guidance for writing, formatting, and validating Markdown documentation using markdownlint-cli, case-police, and markdown-link-check within the hr-skills monorepo."
 metadata:
-  author: "Tuan Duc Tran"
+  author: Tuan Duc Tran
   version: "1.0.0"
 ---
 

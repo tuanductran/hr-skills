@@ -1,12 +1,12 @@
 ---
 name: hr-employee-experience
-description: Help HR business partners, employee experience managers, and people leaders understand, design, and run employee experience strategies, journey mapping, engagement programs, culture diagnostics, onboarding and offboarding experience design, workplace environment initiatives, and recognition and belonging programs. Use when asked to "design an employee experience strategy", "map the employee journey", "run an engagement diagnostic", "design a culture program", "improve the onboarding experience", "build a recognition program", "design a belonging and inclusion experience", "respond to an engagement crisis", "measure employee experience health", or any employee experience, engagement, or culture design task.
+description: "Help HR business partners, employee experience managers, and people leaders understand, design, and run employee experience strategies, journey mapping, engagement programs, culture diagnostics, onboarding and offboarding experience design, workplace environment initiatives, and recognition and belonging programs. Use when asked to design an employee experience strategy, map the employee journey, run an engagement diagnostic, design a culture program, improve the onboarding experience, build a recognition program, design a belonging and inclusion experience, respond to an engagement crisis, measure employee experience health, or any employee experience, engagement, or culture design task., or design the end-to-end employee experience"
 metadata:
   author: Tuan Duc Tran
   version: "1.0.0"
 ---
 
-# HR Employee Experience
+# HR employee experience
 
 Comprehensive employee experience knowledge for HR business partners, EX managers, and people leaders — from understanding modern employee experience strategy and journey design to running engagement diagnostics, building culture programs, designing onboarding experiences, leading belonging and recognition initiatives, and responding to engagement crises.
 

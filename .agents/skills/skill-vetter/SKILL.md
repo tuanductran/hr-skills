@@ -2,7 +2,7 @@
 name: skill-vetter
 description: "Security-first vetter for SKILL.md files — checks permissions, suspicious patterns, and metadata before installing or publishing skills. Useful for validating third-party skills for this repo."
 metadata:
-  author: "Tuan Duc Tran"
+  author: Tuan Duc Tran
   version: "1.0.0"
 ---
 

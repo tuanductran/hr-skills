@@ -6,7 +6,7 @@ metadata:
   version: "1.0.0"
 ---
 
-# HR Backend
+# HR backend engineering hiring
 
 Comprehensive Backend Engineering knowledge for HR and recruiters — from understanding server-side systems and APIs to evaluating backend candidates, interpreting backend architectures, and improving technical hiring decisions.
 

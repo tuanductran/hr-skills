@@ -6,7 +6,7 @@ metadata:
   version: "1.0.0"
 ---
 
-# HR Data
+# HR data engineering hiring
 
 Comprehensive Data and Analytics knowledge for HR and recruiters — from understanding modern data ecosystems and AI workflows to evaluating data candidates, interpreting portfolios, and improving technical hiring decisions.
 

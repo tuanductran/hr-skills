@@ -1,12 +1,12 @@
 ---
 name: hr-total-rewards
-description: Help HR managers, compensation analysts, benefits specialists, and total rewards leaders understand, design, and communicate total rewards programs. Use when asked to "design a compensation structure", "build a salary band", "run a pay equity analysis", "design a benefits package", "create a total rewards statement", "benchmark compensation against market", "design an incentive plan", "build a job leveling framework", "calculate compa-ratio", or any compensation, benefits, and total rewards task.
+description: Help HR managers, compensation analysts, benefits specialists, and total rewards leaders understand, design, and communicate total rewards programs. Use when asked to "design a compensation structure", "build a salary band", "run a pay equity analysis", "design a benefits package", "create a total rewards statement", "benchmark compensation against market", "design an incentive plan", "build a job leveling framework for total rewards and pay equity", "calculate compa-ratio", or any compensation, benefits, and total rewards task.
 metadata:
   author: Tuan Duc Tran
   version: "1.0.0"
 ---
 
-# HR Total Rewards
+# HR total rewards
 
 Comprehensive total rewards knowledge for HR managers, compensation analysts, benefits specialists, and total rewards leaders — from understanding modern compensation philosophy and market benchmarking to designing salary structures, benefits packages, and pay equity programs.
 

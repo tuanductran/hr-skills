@@ -6,7 +6,7 @@ metadata:
   version: "1.0.0"
 ---
 
-# HR Job Architecture
+# HR job architecture
 
 Comprehensive job architecture knowledge for HR business partners, compensation specialists, and total rewards leaders — from understanding modern job family design and leveling principles to building career ladders, defining grade structures, and aligning role standardization with compensation and career development.
 

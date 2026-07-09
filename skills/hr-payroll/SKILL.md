@@ -6,7 +6,7 @@ metadata:
   version: "1.0.0"
 ---
 
-# HR Payroll
+# HR payroll
 
 Comprehensive payroll knowledge for HR operations specialists, payroll administrators, and compensation teams — from understanding modern payroll processing principles and compliance requirements to running payroll cycles, handling discrepancies, and managing multi-country payroll operations.
 

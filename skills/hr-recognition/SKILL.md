@@ -1,12 +1,14 @@
 ---
 name: hr-recognition
-description: "Help HR teams design and manage employee recognition programs, reward frameworks, and appreciation cultures. Use when asked to 'create a recognition program', 'build a rewards strategy', 'design peer recognition', 'improve appreciation culture', 'develop service awards', or similar recognition and reward tasks."
+description: "Help HR teams design and manage employee recognition programs, reward frameworks, and appreciation cultures. Use when asked to create a recognition program, build a rewards strategy, design peer recognition, improve appreciation culture, develop service awards, or similar recognition and reward tasks."
 metadata:
-  author: "Tuan Duc Tran"
+  author: Tuan Duc Tran
   version: "1.0.0"
 ---
 
-# HR Recognition
+# HR recognition and rewards
+
+Design and operate employee recognition programs that reinforce desired behaviors, strengthen culture, and make appreciation a consistent management practice — from peer recognition platforms to formal award programs and service milestones.
 
 ## Supported tasks
 

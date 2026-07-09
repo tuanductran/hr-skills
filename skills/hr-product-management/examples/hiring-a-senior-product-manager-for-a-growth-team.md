@@ -1,4 +1,4 @@
-# Scenario: Hiring a Senior Product Manager for a Growth Team
+# Hiring a Senior Product Manager for a Growth Team
 
 ## Context
 

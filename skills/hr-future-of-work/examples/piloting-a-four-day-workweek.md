@@ -1,4 +1,4 @@
-# Scenario: Piloting a Four-Day Workweek
+# Piloting a Four-Day Workweek
 
 ## Context
 

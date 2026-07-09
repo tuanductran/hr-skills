@@ -1,8 +1,8 @@
 ---
 name: hr-workforce-scheduling
-description: "Help operations and HR teams build employee schedules, forecast staffing needs, and manage shift swaps and coverage. Use when asked to 'build a shift schedule', 'forecast staffing needs', 'create a rotation pattern', 'handle a shift swap request', or similar workforce scheduling tasks."
+description: "Help operations and HR teams build employee schedules, forecast staffing needs, and manage shift swaps and coverage. Use when asked to build a shift schedule, forecast staffing needs, create a rotation pattern, handle a shift swap request, or similar workforce scheduling tasks."
 metadata:
-  author: "Tuan Duc Tran"
+  author: Tuan Duc Tran
   version: "1.0.0"
 ---
 

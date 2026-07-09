@@ -1,4 +1,4 @@
-# Scenario: Managing an HRIS Implementation Project
+# Managing an HRIS Implementation Project
 
 ## Context
 

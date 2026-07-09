@@ -1,8 +1,8 @@
 ---
 name: hr-shared-services
-description: "Help HR leaders design and operate HR shared services centers, including scope of services, governance, cost allocation, and multi-country service models. Use when asked to 'design an HR shared services model', 'consolidate HR functions', 'build a shared services governance model', 'allocate shared services costs', or similar HR shared services tasks."
+description: "Help HR leaders design and operate HR shared services centers, including scope of services, governance, cost allocation, and multi-country service models. Use when asked to design an HR shared services model, consolidate HR functions, build a shared services governance model, allocate shared services costs, or similar HR shared services tasks."
 metadata:
-  author: "Tuan Duc Tran"
+  author: Tuan Duc Tran
   version: "1.0.0"
 ---
 

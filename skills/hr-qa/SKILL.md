@@ -6,7 +6,7 @@ metadata:
   version: "1.0.0"
 ---
 
-# HR QA
+# HR QA engineering hiring
 
 Comprehensive Quality Assurance and Software Testing knowledge for HR and recruiters — from understanding modern QA workflows and automation testing to evaluating QA candidates, interpreting QA portfolios, and improving technical hiring decisions.
 

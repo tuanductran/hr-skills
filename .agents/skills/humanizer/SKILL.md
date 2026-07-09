@@ -2,7 +2,7 @@
 name: humanizer
 description: "Edit and rewrite SKILL.md prose to reduce signs of AI-generation and improve clarity, tone, and inclusivity. Useful for polishing skill descriptions and prompts."
 metadata:
-  author: "Tuan Duc Tran"
+  author: Tuan Duc Tran
   version: "1.0.0"
 ---
 

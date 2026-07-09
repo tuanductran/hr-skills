@@ -1,12 +1,12 @@
 ---
 name: hr-organizational-development
-description: Help HR business partners, OD consultants, and people leaders understand, design, and lead organizational design, change management, and culture transformation initiatives. Use when asked to "redesign our org structure", "lead a change management plan", "run a culture assessment", "design a reorganization", "build a change communication plan", "assess organizational health", "facilitate a team effectiveness session", "design a merger integration plan", or any organizational design, change, and culture task.
+description: "Help HR business partners, OD consultants, and people leaders understand, design, and lead organizational design, change management, and culture transformation initiatives. Use when asked to redesign our org structure, lead a change management plan, run a culture assessment, design a reorganization, develop OD communication and engagement plans, assess organizational health, facilitate a team effectiveness session, design a merger integration plan, or any organizational design, change, and culture task., or build organizational capability and change readiness"
 metadata:
   author: Tuan Duc Tran
   version: "1.0.0"
 ---
 
-# HR Organizational Development
+# HR organizational development
 
 Comprehensive organizational development knowledge for HR business partners, OD consultants, and people leaders — from understanding modern org design principles and change management methodology to leading reorganizations, culture transformation, and merger integration.
 

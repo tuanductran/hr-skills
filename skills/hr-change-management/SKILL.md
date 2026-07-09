@@ -6,7 +6,7 @@ metadata:
   version: "1.0.0"
 ---
 
-# HR Change Management
+# HR change management
 
 Comprehensive change management knowledge for HR leaders, business partners, and change managers — from understanding modern change frameworks and stakeholder engagement to designing communication strategies, training programs, and adoption measurement.
 

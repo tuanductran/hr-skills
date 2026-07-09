@@ -1,4 +1,4 @@
-# Scenario: Hiring a Senior Site Reliability Engineer
+# Hiring a Senior Site Reliability Engineer
 
 ## Context
 

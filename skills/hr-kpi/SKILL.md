@@ -1,12 +1,12 @@
 ---
 name: hr-kpi
-description: Help HR managers, people analytics teams, and HR business partners understand, select, calculate, and act on HR KPIs and workforce metrics. Use when asked to "build an HR dashboard", "choose strategic HR KPIs", "analyze turnover rate", "benchmark cost per hire", "explain HR metrics", "create an HR report for leadership", "measure training ROI", "track recruiting efficiency", "interpret HR data", or any HR performance measurement and workforce analytics task.
+description: "Help HR managers, people analytics teams, and HR business partners understand, select, calculate, and act on HR KPIs and workforce metrics. Use when asked to build an HR KPI dashboard, choose strategic HR KPIs, analyze turnover rate, benchmark cost per hire, explain HR metrics, create an HR report for leadership, measure training ROI, track recruiting efficiency, interpret HR data, or any HR performance measurement and workforce analytics task., or define what HR metrics to track"
 metadata:
   author: Tuan Duc Tran
   version: "1.0.0"
 ---
 
-# HR KPI
+# HR KPIs and metrics
 
 Comprehensive HR KPI knowledge for HR managers, people analytics practitioners, and HR business partners — from understanding 150+ workforce metrics and industry benchmarks to building dashboards, analyzing data with AI, and presenting insights to leadership.
 

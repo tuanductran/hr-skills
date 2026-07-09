@@ -1,12 +1,14 @@
 ---
 name: hr-policy-management
-description: "Help HR teams create, update, communicate, and govern HR policies and employee handbooks. Use when asked to 'write an HR policy', 'update the employee handbook', 'create a disciplinary policy', 'review HR policies', 'develop workplace guidelines', or similar policy management tasks."
+description: "Help HR teams create, update, communicate, and govern HR policies and employee handbooks. Use when asked to write an HR policy, update the employee handbook, create a disciplinary policy, review HR policies, develop workplace guidelines, or similar policy management tasks."
 metadata:
-  author: "Tuan Duc Tran"
+  author: Tuan Duc Tran
   version: "1.0.0"
 ---
 
-# HR Policy Management
+# HR policy management
+
+Create, maintain, communicate, and govern HR policies and employee handbooks — ensuring policies are legally sound, clearly written, consistently applied, and regularly updated as business and regulatory requirements evolve.
 
 ## Supported tasks
 

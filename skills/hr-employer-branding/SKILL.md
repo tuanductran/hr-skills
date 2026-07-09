@@ -6,7 +6,7 @@ metadata:
   version: "1.0.0"
 ---
 
-# HR Employer Branding
+# HR employer branding
 
 Comprehensive employer branding knowledge for HR leaders, talent acquisition teams, and employer brand managers — from understanding modern employer brand strategy and EVP design to running brand audits, building candidate experience journeys, and leading reputation crisis response.
 

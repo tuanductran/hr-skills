@@ -2,7 +2,7 @@
 name: pdf
 description: "PDF and document utilities for generating, merging, validating, and exporting repository documentation from Markdown sources. Useful for creating printable guides, skill documentation, and release-ready artifacts."
 metadata:
-  author: "Tuan Duc Tran"
+  author: Tuan Duc Tran
   version: "1.1.0"
 ---
 

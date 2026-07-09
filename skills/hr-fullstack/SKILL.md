@@ -6,7 +6,7 @@ metadata:
   version: "1.0.0"
 ---
 
-# HR Fullstack
+# HR fullstack engineering hiring
 
 Comprehensive Fullstack Engineering knowledge for HR and recruiters — from understanding cross-functional engineering and modern web stacks to evaluating fullstack candidates, interpreting fullstack portfolios, and improving technical hiring decisions.
 

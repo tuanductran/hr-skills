@@ -1,12 +1,12 @@
 ---
 name: hr-succession-planning
-description: Help HR business partners, talent management specialists, and people leaders understand, design, and run succession planning, leadership pipeline development, and critical role continuity programs. Use when asked to "build a succession plan", "identify high-potential talent", "assess leadership readiness", "map critical roles", "design a talent review process", "run a 9-box calibration", "build a leadership pipeline", "create a development plan for a successor", or any succession planning, leadership continuity, and pipeline development task.
+description: Help HR business partners, talent management specialists, and people leaders understand, design, and run succession planning, leadership pipeline development, and critical role continuity programs. Use when asked to "build a succession plan or bench strength framework", "identify high-potential talent", "assess leadership readiness", "map critical roles", "design a talent review or succession review process", "run a 9-box calibration", "build a leadership pipeline", "create a development plan for a successor", or any succession planning, leadership continuity, and pipeline development task.
 metadata:
   author: Tuan Duc Tran
   version: "1.0.0"
 ---
 
-# HR Succession Planning
+# HR succession planning
 
 Comprehensive succession planning knowledge for HR business partners, talent management specialists, and people leaders — from understanding modern pipeline development principles and leadership readiness assessment to running talent reviews, calibrating 9-box grids, and sustaining critical role continuity.
 

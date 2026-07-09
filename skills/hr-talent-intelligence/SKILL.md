@@ -1,12 +1,14 @@
 ---
 name: hr-talent-intelligence
-description: "Help HR teams collect, analyze, and apply talent market data and workforce analytics to drive strategic people decisions. Use when asked to 'analyze talent market trends', 'benchmark compensation to the market', 'build workforce analytics', 'develop people analytics dashboards', 'conduct competitive talent intelligence', or similar talent data and analytics tasks."
+description: "Help HR teams collect, analyze, and apply talent market data and workforce analytics to drive strategic people decisions. Use when asked to analyze talent market trends, benchmark compensation to the market, build workforce analytics, develop people analytics dashboards, conduct competitive talent intelligence, or similar talent data and analytics tasks."
 metadata:
-  author: "Tuan Duc Tran"
+  author: Tuan Duc Tran
   version: "1.0.0"
 ---
 
-# HR Talent Intelligence
+# HR talent intelligence
+
+Collect, analyze, and apply talent market data and workforce analytics to inform strategic people decisions — from competitive talent mapping and compensation benchmarking to predictive workforce models and people analytics dashboards.
 
 ## Supported tasks
 

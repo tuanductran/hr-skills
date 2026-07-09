@@ -6,7 +6,7 @@ metadata:
   version: "1.0.0"
 ---
 
-# HR Labor Relations
+# HR labor relations
 
 Comprehensive labor relations knowledge for HR business partners, employee relations specialists, and people leaders — from understanding modern labor law and collective bargaining to managing union organizing campaigns, designing grievance processes, building disciplinary frameworks, and leading workplace investigations and dispute resolution.
 

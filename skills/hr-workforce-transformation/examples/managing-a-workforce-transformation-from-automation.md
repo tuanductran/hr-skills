@@ -1,4 +1,4 @@
-# Scenario: Managing a Workforce Transformation from Automation
+# Managing a Workforce Transformation from Automation
 
 ## Context
 

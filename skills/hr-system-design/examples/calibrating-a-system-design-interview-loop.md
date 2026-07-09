@@ -1,4 +1,4 @@
-# Scenario: Calibrating a System Design Interview Loop
+# Calibrating a System Design Interview Loop
 
 ## Context
 
