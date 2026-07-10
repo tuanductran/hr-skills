@@ -1,53 +1,79 @@
 {
-  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:recommended"],
-  "schedule": ["every weekend"],
-  "packageRules": [
-    {
-      "groupName": "biome",
-      "matchPackageNames": ["@biomejs/biome"]
-    },
-    {
-      "groupName": "typescript",
-      "matchPackageNames": ["typescript", "@types/bun"]
-    },
-    {
-      "groupName": "turbo",
-      "matchPackageNames": ["turbo"]
-    },
-    {
-      "groupName": "commitlint",
-      "matchPackageNames": [
-        "@commitlint/cli",
-        "@commitlint/config-conventional",
-        "@commitlint/types"
-      ]
-    },
-    {
-      "groupName": "markdown",
-      "matchPackageNames": [
-        "markdownlint-cli",
-        "markdown-link-check",
-        "case-police"
-      ]
-    },
-    {
-      "groupName": "release-tools",
-      "matchPackageNames": ["changelogen", "lefthook", "knip"]
-    },
-    {
-      "groupName": "valibot",
-      "matchPackageNames": ["valibot"]
-    },
-    {
-      "groupName": "hr-skills-build-deps",
-      "matchPackageNames": ["@clack/prompts", "yaml"]
-    },
-    {
-      "groupName": "skills-ref-devdeps",
-      "matchPackageNames": ["tsdown"]
-    }
+  $schema: 'https://docs.renovatebot.com/renovate-schema.json',
+  extends: [
+    'config:recommended',
   ],
-  "enabledManagers": ["bun"],
-  "baseBranches": ["main"]
+  schedule: [
+    'every weekend',
+  ],
+  packageRules: [
+    {
+      groupName: 'biome',
+      matchPackageNames: [
+        '@biomejs/biome',
+      ],
+    },
+    {
+      groupName: 'typescript',
+      matchPackageNames: [
+        'typescript',
+        '@types/bun',
+      ],
+    },
+    {
+      groupName: 'turbo',
+      matchPackageNames: [
+        'turbo',
+      ],
+    },
+    {
+      groupName: 'commitlint',
+      matchPackageNames: [
+        '@commitlint/cli',
+        '@commitlint/config-conventional',
+        '@commitlint/types',
+      ],
+    },
+    {
+      groupName: 'markdown',
+      matchPackageNames: [
+        'markdownlint-cli',
+        'markdown-link-check',
+        'case-police',
+      ],
+    },
+    {
+      groupName: 'release-tools',
+      matchPackageNames: [
+        'changelogen',
+        'lefthook',
+        'knip',
+      ],
+    },
+    {
+      groupName: 'valibot',
+      matchPackageNames: [
+        'valibot',
+      ],
+    },
+    {
+      groupName: 'hr-skills-build-deps',
+      matchPackageNames: [
+        '@clack/prompts',
+        'yaml',
+      ],
+    },
+    {
+      groupName: 'skills-ref-devdeps',
+      matchPackageNames: [
+        'tsdown',
+      ],
+    },
+  ],
+  enabledManagers: [
+    'bun',
+  ],
+  baseBranchPatterns: [
+    'main',
+  ],
 }
