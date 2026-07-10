@@ -1,4 +1,4 @@
-name: Test
+name: Type Check
 
 on:
   pull_request:
@@ -9,8 +9,8 @@ permissions:
   actions: write
 
 jobs:
-  test:
-    name: Test (${{matrix.os}})
+  typecheck:
+    name: Type Check (${{ matrix.os }})
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -36,8 +36,8 @@ jobs:
       - name: Install bun
         uses: oven-sh/setup-bun@v2
 
-      - name: Install Dependencies
+      - name: Install dependencies
         run: bun ci
 
-      - name: Run tests
-        run: bun run test
+      - name: Run type check
+        run: bun run typecheck

@@ -23,6 +23,9 @@ The repository standardizes on Bun for all package management and script executi
 - Run tests and TypeScript type checking
 - Troubleshoot Bun workspace issues
 - Recommend Bun workflows for local development and CI
+- Explain Bun compatibility with Node.js
+- Recommend Bun-native APIs when appropriate
+- Explain when to use Bun-specific features versus Node.js APIs
 
 ## Repository usage
 
@@ -35,6 +38,15 @@ This repository uses Bun for:
 - test execution
 
 Package managers such as npm, pnpm, and Yarn are not supported.
+
+### Node.js compatibility
+
+When working in this repository:
+
+- Assume Node.js APIs are supported unless Bun documentation states otherwise.
+- If a package works in Node.js but fails in Bun, treat it as a Bun compatibility issue rather than a repository issue.
+- Prefer standard `node:` imports for built-in Node.js modules.
+- Prefer Bun-native APIs only when they provide a clear repository benefit.
 
 ## Workspace packages
 
@@ -121,6 +133,13 @@ bun run release
 
 ## Key prompts
 
+### Compatibility
+
+- "Explain Bun compatibility with Node.js."
+- "Does this Node.js package work with Bun?"
+- "Explain whether this Node.js API is supported."
+- "Recommend the Bun-native alternative."
+
 ### Repository workflows
 
 - "Explain how Bun is used in this repository."
@@ -154,7 +173,7 @@ bun run release
 A typical validation workflow is:
 
 ```bash
-bun install --frozen-lockfile
+bun ci
 bun run typecheck
 bun run validate
 bun run test
@@ -198,6 +217,10 @@ bun run test
 ## Tips
 
 - Always use Bun for package management and script execution.
+- Prefer standard `node:` imports for built-in modules.
+- Use `bun:test` instead of `node:test`.
+- Prefer Bun-native runtime features only when repository portability is not required.
+- Check Bun compatibility documentation before assuming a Node.js feature is unsupported.
 - Prefer workspace commands from the repository root.
 - Run validation before committing repository changes.
 - Keep workspace dependencies synchronized.
@@ -207,15 +230,22 @@ bun run test
 ## Common issues
 
 - Using npm, pnpm, or Yarn instead of Bun.
+- Ignoring workspace dependency relationships.
+- Assuming unsupported behavior without checking Bun compatibility.
+- Using `node:test` instead of `bun:test`.
+- Depending on Node.js APIs that Bun documents as partially implemented.
 - Skipping repository validation before committing.
 - Forgetting to synchronize generated repository artifacts.
 - Running package scripts from the wrong workspace.
 - Missing `bun install` after dependency changes.
-- Ignoring workspace dependency relationships.
 
 ## Best practices
 
 - Keep Bun updated across development environments.
+- Prefer standard `node:` module specifiers for built-in modules.
+- Use `bun:test` for repository tests.
+- Prefer documented Bun APIs over undocumented compatibility workarounds.
+- Mention Bun compatibility limitations only when they are relevant to the task.
 - Run commands from the repository root unless package-specific behavior is required.
 - Validate changes before opening a pull request.
 - Use Turborepo to orchestrate workspace tasks.

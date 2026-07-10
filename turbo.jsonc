@@ -1,17 +1,23 @@
 {
 	"$schema": "./node_modules/turbo/schema.json",
+	"globalDependencies": ["bun.lock"],
 	"tasks": {
 		"build": {
 			"dependsOn": ["^build"],
 			"outputs": ["dist/**"]
 		},
 		"dev": {
-			"dependsOn": ["^dev"]
-		},
-		"typecheck": {},
-		"test": {},
-		"validate": {
+			"persistent": true,
 			"cache": false
+		},
+		"typecheck": {
+			"dependsOn": ["^build"]
+		},
+		"test": {
+			"dependsOn": ["^build"]
+		},
+		"validate": {
+			"dependsOn": ["^build"]
 		},
 		"sync": {
 			"cache": false
