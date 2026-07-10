@@ -1,5 +1,5 @@
 import { ALLOWED_TOOLS_KEY } from './constants.js';
-import type { SkillProperties } from './types.js';
+import type { SkillProperties } from './schema.js';
 
 /**
  * Converts a skill's properties to a dictionary.

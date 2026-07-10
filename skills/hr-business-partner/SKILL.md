@@ -6,7 +6,7 @@ metadata:
   version: "1.0.0"
 ---
 
-# HR Business Partner
+# HR business partner
 
 Comprehensive HR business partnering knowledge for HRBPs, People Partners, and HR leaders — from understanding the modern strategic HRBP role and performance management principles to running employee relations cases, building workforce plans, and coaching managers through difficult people decisions.
 

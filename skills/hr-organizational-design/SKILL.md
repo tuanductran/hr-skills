@@ -1,12 +1,14 @@
 ---
 name: hr-organizational-design
-description: "Help HR leaders and business partners design, restructure, and optimize organizational structures and operating models. Use when asked to 'redesign the org structure', 'build an operating model', 'plan a restructuring', 'define spans and layers', 'create RACI charts', or similar organizational design tasks."
+description: "Help HR leaders and business partners design, restructure, and optimize organizational structures and operating models. Use when asked to redesign the org structure, build an operating model, plan a restructuring, define spans and layers, create RACI charts, or similar organizational design tasks., or redesign org structure, spans, or reporting lines"
 metadata:
-  author: "Tuan Duc Tran"
+  author: Tuan Duc Tran
   version: "1.0.0"
 ---
 
-# HR Organizational Design
+# HR organizational design
+
+Design, restructure, and optimize organizational structures and operating models — from spans and layers analysis and RACI charting to restructuring plans and job architecture frameworks that align the organization to its strategy.
 
 ## Supported tasks
 

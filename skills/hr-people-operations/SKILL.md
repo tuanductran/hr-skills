@@ -1,12 +1,12 @@
 ---
 name: hr-people-operations
-description: Help HR managers, People Ops specialists, HRIS administrators, and HR generalists understand, design, and run core people operations processes. Use when asked to "design an onboarding workflow", "set up an HRIS", "build an offboarding checklist", "create an employee handbook", "audit HR data quality", "design a people ops process", "automate HR workflows", "manage employee lifecycle transitions", "build an HR service delivery model", or any operational, administrative, and systems-focused HR task.
+description: Help HR managers, People Ops specialists, HRIS administrators, and HR generalists understand, design, and run core people operations processes. Use when asked to "design an onboarding workflow", "set up an HRIS", "build an offboarding checklist", "create an employee handbook", "audit HR data quality", "design a people ops process", "automate HR ops workflows and processes", "manage employee lifecycle transitions", "build an HR service delivery model", or any operational, administrative, and systems-focused HR task.
 metadata:
   author: Tuan Duc Tran
   version: "1.0.0"
 ---
 
-# HR People Operations
+# HR people operations
 
 Comprehensive people operations knowledge for HR managers, People Ops specialists, HRIS administrators, and HR generalists — from understanding modern employee lifecycle systems and HR service delivery to designing onboarding, offboarding, data governance, and workflow automation.
 
@@ -50,7 +50,7 @@ Modern people operations teams are increasingly expected to support:
 - consistent, compliant employee data across every connected system
 - fast, low-friction employee self-service for routine requests
 - measurable service quality through SLAs and operational dashboards
-- seamless cross-functional handoffs between HR, IT, Finance, and Legal
+- smooth cross-functional handoffs between HR, IT, Finance, and Legal
 - a people experience that reflects the organization's culture, not just its compliance needs
 
 HR service delivery modernization and AI-assisted process automation are becoming major industry trends in 2026.

@@ -2,7 +2,7 @@
 name: typescript
 description: "Repository guidance for writing, reviewing, and maintaining TypeScript code within the hr-skills monorepo. Covers project conventions, compiler settings, module structure, and development workflows."
 metadata:
-  author: "Tuan Duc Tran"
+  author: Tuan Duc Tran
   version: "1.1.0"
 ---
 

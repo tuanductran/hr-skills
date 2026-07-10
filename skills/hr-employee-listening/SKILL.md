@@ -1,12 +1,14 @@
 ---
 name: hr-employee-listening
-description: "Help HR teams design and manage employee listening strategies including engagement surveys, pulse checks, focus groups, and feedback programs. Use when asked to 'run an employee survey', 'design an engagement program', 'analyze survey results', 'build a listening strategy', 'conduct focus groups', or similar employee feedback tasks."
+description: "Help HR teams design and manage employee listening strategies including engagement surveys, pulse checks, focus groups, and feedback programs. Use when asked to run an employee survey, design an engagement program, analyze survey results, build a listening strategy, conduct focus groups, or similar employee feedback tasks."
 metadata:
-  author: "Tuan Duc Tran"
+  author: Tuan Duc Tran
   version: "1.0.0"
 ---
 
-# HR Employee Listening
+# HR employee listening
+
+Build a comprehensive employee listening strategy — from designing engagement surveys and pulse checks to running focus groups, analyzing results, and translating feedback into action plans that improve the employee experience.
 
 ## Supported tasks
 

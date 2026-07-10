@@ -1,12 +1,12 @@
 ---
 name: hr-skills-taxonomy
-description: Help HR business partners, talent management specialists, L&D leaders, and workforce planning teams understand, design, and implement skills taxonomies and skills ontologies. Use when asked to "build a skills taxonomy", "map skills to roles", "design a skills ontology", "run a skills gap analysis", "create a skills inventory", "build a skills-based hiring framework", "design skills clusters", "connect skills to career paths", "benchmark workforce skills against market data", or any skills classification, skills-based workforce planning, and organizational skills intelligence task.
+description: Help HR business partners, skills taxonomy for talent management specialists, L&D leaders, and workforce planning teams understand, design, and implement skills taxonomies and skills ontologies. Use when asked to "build a skills taxonomy", "map skills to roles", "design a skills ontology", "run a skills gap analysis against a skills taxonomy", "create a skills inventory", "build a skills-based hiring framework", "design skills clusters", "connect skills to career paths", "benchmark workforce skills against market data", or any skills classification, skills-based workforce planning, and organizational skills intelligence task.
 metadata:
   author: Tuan Duc Tran
   version: "1.0.0"
 ---
 
-# HR Skills Taxonomy
+# HR skills taxonomy
 
 Comprehensive skills taxonomy knowledge for HR business partners, talent management specialists, L&D leaders, and workforce planning teams — from understanding modern skills classification principles and skills ontology design to building skills inventories, running skills gap analyses, enabling skills-based hiring, and connecting workforce skills intelligence to business strategy.
 

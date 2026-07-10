@@ -1,12 +1,14 @@
 ---
 name: hr-automation
-description: "Help HR teams identify, design, and implement automation opportunities across HR processes including workflows, HRIS configuration, AI tools, and no-code solutions. Use when asked to 'automate HR processes', 'build HR workflows', 'reduce HR admin work', 'implement HRIS automation', 'use AI in HR', or similar HR automation tasks."
+description: "Help HR teams identify, design, and implement automation opportunities across HR processes including workflows, HRIS configuration, AI tools, and no-code solutions. Use when asked to automate HR processes, build HR workflows, reduce HR admin work, implement HRIS automation, use AI in HR, or similar HR automation tasks."
 metadata:
-  author: "Tuan Duc Tran"
+  author: Tuan Duc Tran
   version: "1.0.0"
 ---
 
-# HR Automation
+# HR automation
+
+Identify, design, and implement automation across the HR function — from no-code workflow tools and HRIS configuration to AI-assisted content generation and chatbot use cases — freeing HR teams from administrative burden to focus on higher-value people work.
 
 ## Supported tasks
 

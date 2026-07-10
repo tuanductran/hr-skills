@@ -1,8 +1,8 @@
 ---
 name: hr-ai-governance
-description: "Help HR and compliance teams govern the responsible use of AI in HR processes, including hiring algorithms, monitoring tools, and policy design. Use when asked to 'design an AI governance policy for HR', 'assess bias risk in a hiring algorithm', 'write an AI use policy for HR', 'audit an HR AI tool', or similar HR AI governance tasks."
+description: "Help HR and compliance teams govern the responsible use of AI in HR processes, including hiring algorithms, monitoring tools, and policy design. Use when asked to design an AI governance policy for HR, assess bias risk in a hiring algorithm, write an AI use policy for HR, audit an HR AI tool, or similar HR AI governance tasks."
 metadata:
-  author: "Tuan Duc Tran"
+  author: Tuan Duc Tran
   version: "1.0.0"
 ---
 

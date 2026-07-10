@@ -1,4 +1,4 @@
-# Scenario: Conducting an Annual Personnel File Audit
+# Conducting an Annual Personnel File Audit
 
 ## Context
 

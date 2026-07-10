@@ -1,4 +1,4 @@
-# Scenario: Standing Up a New HR Service Center
+# Standing Up a New HR Service Center
 
 ## Context
 

@@ -1,4 +1,4 @@
-# Scenario: Rolling Out an Attendance Point System
+# Rolling Out an Attendance Point System
 
 ## Context
 

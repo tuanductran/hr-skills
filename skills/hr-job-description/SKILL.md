@@ -6,7 +6,7 @@ metadata:
   version: "1.0.0"
 ---
 
-# HR Job Description
+# HR job description writing
 
 Comprehensive guidance for writing modern, inclusive, and candidate-focused job descriptions that clearly communicate the opportunity, set realistic expectations, and attract qualified talent.
 
@@ -234,6 +234,6 @@ Focus on attracting qualified candidates rather than filtering out as many appli
 
 - Lead with the opportunity and business impact before listing qualifications.
 - Describe what success looks like during the first 30, 60, and 90 days whenever practical.
-- Separate essential qualifications from preferred qualifications to improve inclusivity.
+- Separate essential qualifications from preferred qualifications to improve inclusivity — research shows that underrepresented candidates are less likely to apply if they don't meet every listed requirement, even optional ones.
 - Use clear, inclusive language and avoid unnecessary credential or experience requirements.
 - Include compensation, benefits, and working arrangements whenever organizational policy allows.

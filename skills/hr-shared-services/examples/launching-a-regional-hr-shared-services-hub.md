@@ -1,4 +1,4 @@
-# Scenario: Launching a Regional HR Shared Services Hub
+# Launching a Regional HR Shared Services Hub
 
 ## Context
 

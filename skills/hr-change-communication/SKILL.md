@@ -1,6 +1,6 @@
 ---
 name: hr-change-communication
-description: Help HR leaders, change managers, and HRBPs design and execute change communication strategies for HR-driven transformations. Use when asked to "communicate an org change", "write a change announcement", "build a change communication plan", "design stakeholder messaging", "prepare employees for a restructuring", or "communicate a new HR policy or program".
+description: Help HR leaders, change communication for managers, and HRBPs design and execute change communication strategies for HR-driven transformations. Use when asked to "communicate an org change", "write a change announcement", "build a change communication strategy or plan", "design stakeholder messaging", "prepare employees for a restructuring", or "communicate a new HR policy or program".
 metadata:
   author: Tuan Duc Tran
   version: "1.0.0"

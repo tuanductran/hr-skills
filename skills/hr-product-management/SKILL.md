@@ -1,8 +1,8 @@
 ---
 name: hr-product-management
-description: "Help HR and recruiting teams hire and assess product management candidates, including job descriptions, case-study interviews, and leveling frameworks. Use when asked to 'write a product manager job description', 'create a PM case study interview', 'assess product sense', 'build a PM leveling framework', or similar product management hiring tasks."
+description: "Help HR and recruiting teams hire and assess product management candidates, including job descriptions, case-study interviews, and leveling frameworks. Use when asked to write a product manager job description, create a PM case study interview, assess product sense, build a PM leveling framework, or similar product management hiring tasks."
 metadata:
-  author: "Tuan Duc Tran"
+  author: Tuan Duc Tran
   version: "1.0.0"
 ---
 

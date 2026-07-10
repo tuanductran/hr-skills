@@ -1,8 +1,8 @@
 ---
 name: hr-game-development
-description: "Help HR and recruiting teams hire and assess game development candidates across engineering, design, and art disciplines. Use when asked to 'write a game developer job description', 'create a gameplay engineer interview', 'assess a game designer's portfolio', 'build a game studio leveling framework', or similar game-development hiring tasks."
+description: "Help HR and recruiting teams hire and assess game development candidates across engineering, design, and art disciplines. Use when asked to write a game developer job description, create a gameplay engineer interview, assess a game designers portfolio, build a game studio leveling framework, or similar game-development hiring tasks."
 metadata:
-  author: "Tuan Duc Tran"
+  author: Tuan Duc Tran
   version: "1.0.0"
 ---
 

@@ -2,7 +2,7 @@
 name: hr-skills-maintaining
 description: "Repository-level skill describing metadata, directory structure, workflows, and conventions for the hr-skills monorepo. Use this skill when validating, creating, editing, or maintaining HR skill packages, including SKILL.md, content/, prompts/, and examples/."
 metadata:
-  author: "Tuan Duc Tran"
+  author: Tuan Duc Tran
   version: "1.2.0"
 ---
 

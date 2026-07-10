@@ -1,4 +1,4 @@
-# Scenario: Building a Visa Expiration Tracking Process
+# Building a Visa Expiration Tracking Process
 
 ## Context
 

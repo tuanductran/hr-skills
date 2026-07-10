@@ -6,7 +6,7 @@ metadata:
   version: "1.0.0"
 ---
 
-# HR Mobile
+# HR mobile engineering hiring
 
 Comprehensive Mobile Engineering knowledge for HR and recruiters — from understanding iOS and Android ecosystems to evaluating mobile developers, interpreting mobile portfolios, and improving technical hiring decisions.
 

@@ -1,8 +1,8 @@
 ---
 name: hr-executive-search
-description: "Help HR and search professionals run executive search processes, including search strategy, candidate assessment, board/CEO succession, and confidential outreach. Use when asked to 'run an executive search', 'write an executive search brief', 'assess a C-suite candidate', 'plan CEO succession', or similar executive search tasks."
+description: "Help HR and search professionals run executive search processes, including search strategy, candidate assessment, board/CEO succession, and confidential outreach. Use when asked to run an executive search, write an executive search brief, assess a C-suite candidate, plan CEO succession, or similar executive search tasks."
 metadata:
-  author: "Tuan Duc Tran"
+  author: Tuan Duc Tran
   version: "1.0.0"
 ---
 

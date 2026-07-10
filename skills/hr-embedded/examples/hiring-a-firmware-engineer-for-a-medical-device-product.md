@@ -1,4 +1,4 @@
-# Scenario: Hiring a Firmware Engineer for a Medical Device Product
+# Hiring a Firmware Engineer for a Medical Device Product
 
 ## Context
 

@@ -1,4 +1,4 @@
-# Scenario: Hiring a Spatial UX Designer for a VR Training Product
+# Hiring a Spatial UX Designer for a VR Training Product
 
 ## Context
 

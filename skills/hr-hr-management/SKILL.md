@@ -32,7 +32,7 @@ Practical guidance for leading and managing the HR function — covering HR team
 1. "Define strategic priorities for the HR function at [company] aligned to [business strategy]."
 2. "Write OKRs for the HR team for [quarter / year] that connect to [company's] growth goals."
 3. "How should the HR function evolve as [company] scales from [current stage] to [next stage]?"
-4. "What are the highest-leverage activities the HR function should focus on to create business value?"
+4. "What are the highest-usee activities the HR function should focus on to create business value?"
 5. "Design an HR function scorecard that measures effectiveness across all HR domains."
 
 ### HR team management

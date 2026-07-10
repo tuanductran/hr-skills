@@ -3,7 +3,8 @@ import { join } from 'node:path';
 
 import { HR_SKILL_PREFIX, SKILLS_DIR } from './constants.js';
 import { parseSkillFrontmatter } from './parser.js';
-import type { SkillFrontmatter, ValidationError } from './types.js';
+import type { SkillFrontmatter } from './schema.js';
+import type { ValidationError } from './types.js';
 
 /**
  * Extract a match from a markdown skill file.

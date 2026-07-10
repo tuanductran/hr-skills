@@ -1,4 +1,4 @@
-# Scenario: Building a 24/7 Support Team Rotation
+# Building a 24/7 Support Team Rotation
 
 ## Context
 

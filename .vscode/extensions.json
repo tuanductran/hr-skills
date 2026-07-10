@@ -1,0 +1,10 @@
+{
+	"recommendations": [
+		"biomejs.biome",
+		"yzhang.markdown-all-in-one",
+		"davidanson.vscode-markdownlint",
+		"oven.bun-vscode",
+		"vercel.turbo-vsc",
+		"ms-vscode.vscode-typescript-next"
+	]
+}

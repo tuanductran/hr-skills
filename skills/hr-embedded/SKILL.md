@@ -1,8 +1,8 @@
 ---
 name: hr-embedded
-description: "Help HR and recruiting teams hire and assess embedded systems engineering candidates (firmware, RTOS, hardware-software integration). Use when asked to 'write an embedded engineer job description', 'create firmware interview questions', 'assess an embedded candidate', 'build an embedded engineering leveling framework', or similar embedded-hiring tasks."
+description: "Help HR and recruiting teams hire and assess embedded systems engineering candidates (firmware, RTOS, hardware-software integration). Use when asked to write an embedded engineer job description, create firmware interview questions, assess an embedded candidate, build an embedded engineering leveling framework, or similar embedded-hiring tasks."
 metadata:
-  author: "Tuan Duc Tran"
+  author: Tuan Duc Tran
   version: "1.0.0"
 ---
 

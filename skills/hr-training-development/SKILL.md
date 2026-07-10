@@ -1,6 +1,6 @@
 ---
 name: hr-training-development
-description: Help HR managers with learning and development programs. Use when asked to "design a training program", "create an e-learning course", "develop a coaching plan", "conduct a needs assessment", "write a competency model", "design a mentorship program", "create a learning plan", or any training and development task.
+description: "Help HR managers with learning and development programs. Use when asked to design a training program, create an e-learning course, develop a coaching plan, conduct a needs assessment, write a competency model, design a mentorship program, create a learning plan, or any training and development task., or create a specific training module or course"
 metadata:
   author: Tuan Duc Tran
   version: "1.0.0"
@@ -85,6 +85,6 @@ Comprehensive learning and development support — from needs assessments and tr
 
 - Always start with a needs assessment before designing training — avoid training for the wrong problem.
 - Use the 70-20-10 model: 70% on-the-job learning, 20% coaching/mentoring, 10% formal training.
-- Write specific, measurable learning objectives before designing any content.
+- Write specific, measurable learning objectives before designing any training content — objectives drive the right assessment design, content depth, and method choice, and prevent building a program that is engaging but ineffective.
 - Measure training impact at all four Kirkpatrick levels — especially behavior change and business results.
 - Make learning continuous, not a one-time event — follow up with coaching, job aids, and practice opportunities.

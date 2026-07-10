@@ -2,7 +2,7 @@
 name: github-awesome-copilot-git-commit
 description: Generate high-quality, atomic Conventional Commits by analyzing Git changes, recommending logical commit boundaries, validating commit messages, and assisting with PRs, changelogs, and releases.
 metadata:
-  author: "Tuan Duc Tran"
+  author: Tuan Duc Tran
   version: "2.0.0"
 ---
 

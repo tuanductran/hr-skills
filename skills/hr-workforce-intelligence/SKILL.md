@@ -1,8 +1,8 @@
 ---
 name: hr-workforce-intelligence
-description: "Help HR and people analytics teams turn workforce data into actionable insight, including headcount analysis, attrition prediction, skills inventories, and workforce dashboards. Use when asked to 'analyze headcount trends', 'predict attrition risk', 'build a workforce dashboard', 'run a skills inventory analysis', or similar workforce intelligence tasks."
+description: "Help HR and people analytics teams turn workforce data into actionable insight, including headcount analysis, attrition prediction, skills inventories, and workforce dashboards. Use when asked to analyze headcount trends, predict attrition risk, build a workforce dashboard, run a skills inventory analysis, or similar workforce intelligence tasks."
 metadata:
-  author: "Tuan Duc Tran"
+  author: Tuan Duc Tran
   version: "1.0.0"
 ---
 

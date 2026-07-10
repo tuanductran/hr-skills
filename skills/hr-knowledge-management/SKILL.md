@@ -6,7 +6,7 @@ metadata:
   version: "1.0.0"
 ---
 
-# HR Knowledge Management
+# HR knowledge management
 
 Comprehensive HR knowledge management expertise for HR and recruiters — from understanding what a modern HR knowledge base actually does, to organizing policies and SOPs, capturing tribal knowledge, and evaluating knowledge management talent.
 

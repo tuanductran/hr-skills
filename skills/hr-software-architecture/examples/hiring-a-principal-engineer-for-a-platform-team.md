@@ -1,4 +1,4 @@
-# Scenario: Hiring a Principal Engineer for a Platform Team
+# Hiring a Principal Engineer for a Platform Team
 
 ## Context
 

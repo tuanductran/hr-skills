@@ -1,12 +1,12 @@
 ---
 name: hr-frontend
-description: Help HR managers, recruiters, and talent acquisition teams understand Frontend Engineering concepts, hiring requirements, frontend ecosystems, candidate evaluation, and modern frontend workflows. Use when asked to "explain frontend development", "screen frontend candidates", "understand React/Vue/Angular", "compare frontend frameworks", "evaluate frontend skills", "create frontend interview questions", "understand frontend architecture", or any frontend hiring and recruiting task.
+description: Help HR managers, recruiters, and talent acquisition teams understand Frontend Engineering concepts, hiring requirements, frontend ecosystems, frontend candidate evaluation, and modern frontend workflows. Use when asked to "explain frontend development", "screen frontend candidates", "understand React/Vue/Angular", "compare frontend frameworks", "evaluate frontend skills", "create frontend interview questions", "understand frontend architecture", or any frontend hiring and recruiting task.
 metadata:
   author: Tuan Duc Tran
   version: "1.0.0"
 ---
 
-# HR Frontend
+# HR frontend engineering hiring
 
 Comprehensive Frontend Engineering knowledge for HR and recruiters — from understanding frontend fundamentals and modern frameworks to evaluating frontend candidates, interpreting frontend portfolios, and improving technical hiring decisions.
 

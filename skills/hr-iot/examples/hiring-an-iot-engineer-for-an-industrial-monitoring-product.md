@@ -1,4 +1,4 @@
-# Scenario: Hiring an IoT Engineer for an Industrial Monitoring Product
+# Hiring an IoT Engineer for an Industrial Monitoring Product
 
 ## Context
 

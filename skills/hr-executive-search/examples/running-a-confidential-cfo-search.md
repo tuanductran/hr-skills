@@ -1,4 +1,4 @@
-# Scenario: Running a Confidential CFO Search
+# Running a Confidential CFO Search
 
 ## Context
 

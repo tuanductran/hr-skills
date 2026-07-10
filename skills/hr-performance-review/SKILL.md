@@ -1,12 +1,12 @@
 ---
 name: hr-performance-review
-description: Help managers, HR professionals, and team leaders write fair, balanced, evidence-based performance reviews, self-assessments, and development plans. Use when asked to "write a performance review", "draft manager feedback", "evaluate employee performance", "write appraisal comments", "create a development plan", "review employee goals", or any employee performance evaluation task.
+description: "Help managers, HR professionals, and team leaders write fair, balanced, evidence-based performance reviews, self-assessments, and development plans. Use when asked to write or calibrate an individual performance review, draft manager feedback, evaluate employee performance, write appraisal comments, create a development plan, review employee goals, or any employee performance evaluation task., or write or calibrate individual performance reviews"
 metadata:
   author: Tuan Duc Tran
   version: "1.0.0"
 ---
 
-# HR Performance Review
+# HR performance review
 
 Comprehensive guidance for writing constructive, evidence-based performance reviews that recognize achievements, identify development opportunities, and support employee growth through actionable feedback.
 
@@ -209,5 +209,5 @@ Avoid:
 - Support every major point with a specific example or measurable outcome.
 - Evaluate performance across the full review period to reduce recency bias.
 - Frame development areas as opportunities for growth with actionable next steps.
-- Separate performance, behaviors, and business impact from personality.
+- Separate observable performance and business impact from personality traits — reviews grounded in specific evidence ('delivered X by Y date') are more defensible, more useful, and less likely to introduce bias than trait-based assessments.
 - Align future goals with both organizational priorities and employee development.

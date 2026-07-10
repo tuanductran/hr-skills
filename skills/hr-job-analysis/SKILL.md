@@ -1,6 +1,6 @@
 ---
 name: hr-job-analysis
-description: Help HR teams, compensation analysts, and job design specialists conduct job analysis, define job requirements, and document job content for job evaluation, classification, and workforce planning purposes. Use when asked to "conduct a job analysis", "define job requirements", "write job content", "classify a role", "evaluate job complexity", "run a task analysis", or "audit our job structures".
+description: Help HR teams, job analysis for compensation analysts, and job design specialists conduct job analysis, define job requirements, and document job content for job evaluation, classification, and workforce planning purposes. Use when asked to "conduct a job analysis", "define job requirements", "write job content", "classify a role", "evaluate job complexity", "run a task analysis", or "audit our job structures".
 metadata:
   author: Tuan Duc Tran
   version: "1.0.0"

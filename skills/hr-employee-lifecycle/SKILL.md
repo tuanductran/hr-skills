@@ -1,12 +1,14 @@
 ---
 name: hr-employee-lifecycle
-description: "Help HR teams design and manage the full employee lifecycle from attraction to alumni. Use when asked to 'map the employee journey', 'improve the employee experience', 'design touchpoints across the lifecycle', 'create lifecycle frameworks', or similar end-to-end people management tasks."
+description: "Help HR teams design and manage the full employee lifecycle from attraction to alumni. Use when asked to map the employee journey, improve the employee experience, design touchpoints across the lifecycle, create lifecycle frameworks, or similar end-to-end people management tasks."
 metadata:
-  author: "Tuan Duc Tran"
+  author: Tuan Duc Tran
   version: "1.0.0"
 ---
 
-# HR Employee Lifecycle
+# HR employee lifecycle
+
+Design and manage the full employee journey from attraction to alumni — mapping experience touchpoints, identifying gaps, and creating a coherent, intentional lifecycle that drives engagement, retention, and organizational performance.
 
 ## Supported tasks
 

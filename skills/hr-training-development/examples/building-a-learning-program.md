@@ -59,7 +59,7 @@ By the end of the program, team leads will be able to:
 **Generated scenario:**
 
 ```text
-Scenario: Coaching after an incomplete escalation
+Coaching after an incomplete escalation
 
 A support representative closed a customer ticket after sending a generic troubleshooting article. The customer replied twice, became frustrated, and asked to speak to a manager. The ticket notes did not include product version, attempted fixes, or the customer's business impact.
 

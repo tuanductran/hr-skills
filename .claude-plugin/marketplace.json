@@ -1,11 +1,6 @@
 {
-  "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
   "name": "hr-skills",
   "description": "A collection of AI skills for HR managers covering recruiting, performance management, compensation, compliance, and all major HR domains. Built by Tuan Duc Tran for the Zalo HR/TA Job Onsite/Hybrid/Remote community.",
-  "owner": {
-    "name": "Tuan Duc Tran",
-    "email": "tuanductran.dev@gmail.com"
-  },
   "plugins": [
     {
       "name": "hr-agentic-ai",
@@ -42,7 +37,7 @@
     {
       "name": "hr-ai-governance",
       "source": "./",
-      "description": "Help HR and compliance teams govern the responsible use of AI in HR processes, including hiring algorithms, monitoring tools, and policy design. Use when asked to 'design an AI governance policy for HR', 'assess bias risk in a hiring algorithm', 'write an AI use policy for HR', 'audit an HR AI tool', or similar HR AI governance tasks.",
+      "description": "Help HR and compliance teams govern the responsible use of AI in HR processes, including hiring algorithms, monitoring tools, and policy design. Use when asked to design an AI governance policy for HR, assess bias risk in a hiring algorithm, write an AI use policy for HR, audit an HR AI tool, or similar HR AI governance tasks.",
       "skills": [
         "./skills/hr-ai-governance"
       ]
@@ -58,7 +53,7 @@
     {
       "name": "hr-analytics",
       "source": "./",
-      "description": "Help HR managers with HR analytics and data management. Use when asked to \"analyze employee data\", \"create HR metrics\", \"build an HR dashboard\", \"analyze turnover data\", \"develop HR reports\", \"build predictive analytics models\", \"create a data governance strategy\", or any HR data and analytics task.",
+      "description": "Help HR managers with HR analytics and data management. Use when asked to analyze employee data, create HR metrics, build an HR dashboard, analyze turnover data, develop HR reports, build predictive analytics models, create a data governance strategy, or any HR data and analytics task., or analyze HR data at depth",
       "skills": [
         "./skills/hr-analytics"
       ]
@@ -66,7 +61,7 @@
     {
       "name": "hr-ar-vr",
       "source": "./",
-      "description": "Help HR and recruiting teams hire and assess AR/VR (augmented and virtual reality) engineering and design candidates. Use when asked to 'write an AR/VR engineer job description', 'create a spatial computing interview', 'assess an AR/VR candidate's portfolio', 'build an AR/VR role leveling framework', or similar AR/VR hiring tasks.",
+      "description": "Help HR and recruiting teams hire and assess AR/VR (augmented and virtual reality) engineering and design candidates. Use when asked to write an AR/VR engineer job description, create a spatial computing interview, assess an AR/VR candidates portfolio, build an AR/VR role leveling framework, or similar AR/VR hiring tasks.",
       "skills": [
         "./skills/hr-ar-vr"
       ]
@@ -74,7 +69,7 @@
     {
       "name": "hr-audit",
       "source": "./",
-      "description": "Help HR and compliance teams plan and conduct HR audits, including policy compliance reviews, I-9/documentation audits, pay equity checks, and process audits. Use when asked to 'conduct an HR audit', 'audit HR compliance', 'review personnel files for compliance', 'build an HR audit checklist', or similar HR audit tasks.",
+      "description": "Help HR and compliance teams plan and conduct HR audits, including policy compliance reviews, I-9/documentation audits, pay equity checks, and process audits. Use when asked to conduct an HR audit, audit HR compliance, review personnel files for compliance, build an HR audit checklist, or similar HR audit tasks.",
       "skills": [
         "./skills/hr-audit"
       ]
@@ -82,7 +77,7 @@
     {
       "name": "hr-automation",
       "source": "./",
-      "description": "Help HR teams identify, design, and implement automation opportunities across HR processes including workflows, HRIS configuration, AI tools, and no-code solutions. Use when asked to 'automate HR processes', 'build HR workflows', 'reduce HR admin work', 'implement HRIS automation', 'use AI in HR', or similar HR automation tasks.",
+      "description": "Help HR teams identify, design, and implement automation opportunities across HR processes including workflows, HRIS configuration, AI tools, and no-code solutions. Use when asked to automate HR processes, build HR workflows, reduce HR admin work, implement HRIS automation, use AI in HR, or similar HR automation tasks.",
       "skills": [
         "./skills/hr-automation"
       ]
@@ -90,7 +85,7 @@
     {
       "name": "hr-backend",
       "source": "./",
-      "description": "Help HR managers, recruiters, and talent acquisition teams understand Backend Engineering concepts, hiring requirements, backend ecosystems, candidate evaluation, APIs, databases, scalability, cloud infrastructure, and modern server-side workflows. Use when asked to \"explain backend development\", \"screen backend candidates\", \"understand APIs and databases\", \"compare backend frameworks\", \"evaluate backend skills\", \"create backend interview questions\", \"understand microservices\", \"understand cloud backend systems\", or any backend hiring and recruiting task.",
+      "description": "Help HR managers, recruiters, and talent acquisition teams understand Backend Engineering concepts, hiring requirements, backend ecosystems, candidate evaluation, APIs, databases, scalability, cloud-adjacent backend infrastructure, and modern server-side workflows. Use when asked to \"explain backend development\", \"screen backend candidates\", \"understand APIs and databases\", \"compare backend frameworks\", \"evaluate backend skills\", \"create backend interview questions\", \"understand microservices\", \"understand cloud backend systems\", or any backend hiring and recruiting task.",
       "skills": [
         "./skills/hr-backend"
       ]
@@ -98,7 +93,7 @@
     {
       "name": "hr-blockchain",
       "source": "./",
-      "description": "Help HR and recruiting teams hire and screen blockchain and Web3 engineering candidates (smart contracts, protocol engineering, cryptography). Use when asked to 'write a blockchain engineer job description', 'create smart contract interview questions', 'assess a Web3 candidate', 'build a blockchain role leveling framework', or similar blockchain-hiring tasks.",
+      "description": "Help HR and recruiting teams hire and screen blockchain and Web3 engineering candidates (smart contracts, protocol engineering, cryptography). Use when asked to write a blockchain engineer job description, create smart contract interview questions, assess a Web3 candidate, build a blockchain role leveling framework, or similar blockchain-hiring tasks.",
       "skills": [
         "./skills/hr-blockchain"
       ]
@@ -122,7 +117,7 @@
     {
       "name": "hr-candidate-sourcing",
       "source": "./",
-      "description": "Help talent acquisition and recruiting teams find, engage, and build pipelines of qualified candidates. Use when asked to 'source candidates', 'build a talent pipeline', 'write a Boolean search string', 'find passive candidates', 'draft an outreach message', or similar sourcing tasks.",
+      "description": "Help talent acquisition and recruiting teams find, engage, and build pipelines of qualified candidates. Use when asked to source candidates, build a talent pipeline, write a Boolean search string, find passive candidates, draft an outreach message, or similar sourcing tasks.",
       "skills": [
         "./skills/hr-candidate-sourcing"
       ]
@@ -130,7 +125,7 @@
     {
       "name": "hr-career-development",
       "source": "./",
-      "description": "Help HR teams and managers design career development programs, frameworks, and conversations. Use when asked to 'create career paths', 'build individual development plans', 'design career ladders', 'run career development conversations', 'develop career frameworks', or similar career growth tasks.",
+      "description": "Help HR teams and managers design career development programs, frameworks, and conversations. Use when asked to create career paths, build individual development plans, design career ladders, run career development conversations, develop career frameworks, or similar career growth tasks.",
       "skills": [
         "./skills/hr-career-development"
       ]
@@ -138,7 +133,7 @@
     {
       "name": "hr-change-communication",
       "source": "./",
-      "description": "Help HR leaders, change managers, and HRBPs design and execute change communication strategies for HR-driven transformations. Use when asked to \"communicate an org change\", \"write a change announcement\", \"build a change communication plan\", \"design stakeholder messaging\", \"prepare employees for a restructuring\", or \"communicate a new HR policy or program\".",
+      "description": "Help HR leaders, change communication for managers, and HRBPs design and execute change communication strategies for HR-driven transformations. Use when asked to \"communicate an org change\", \"write a change announcement\", \"build a change communication strategy or plan\", \"design stakeholder messaging\", \"prepare employees for a restructuring\", or \"communicate a new HR policy or program\".",
       "skills": [
         "./skills/hr-change-communication"
       ]
@@ -154,7 +149,7 @@
     {
       "name": "hr-cloud",
       "source": "./",
-      "description": "Help HR and technical recruiting teams hire, screen, and interview cloud engineering candidates (AWS/Azure/GCP, DevOps, cloud architecture). Use when asked to 'write a cloud engineer job description', 'create cloud interview questions', 'assess a cloud candidate's skills', 'build a cloud role leveling framework', or similar cloud-hiring tasks.",
+      "description": "Help HR and technical recruiting teams hire, screen, and interview cloud engineering candidates (AWS/Azure/GCP, DevOps, cloud architecture). Use when asked to write a cloud engineer job description, create cloud interview questions, assess a cloud candidates skills, build a cloud role leveling framework, or similar cloud-hiring tasks.",
       "skills": [
         "./skills/hr-cloud"
       ]
@@ -162,7 +157,7 @@
     {
       "name": "hr-coaching-mentoring",
       "source": "./",
-      "description": "Help HR teams design coaching and mentoring programs, train managers in coaching skills, and support individual coaching conversations. Use when asked to 'build a coaching culture', 'create a mentoring program', 'develop manager coaching skills', 'design coaching frameworks', 'run coaching sessions', or similar coaching and mentoring tasks.",
+      "description": "Help HR teams design coaching and mentoring programs, train managers in coaching skills, and support individual coaching conversations. Use when asked to build a coaching culture, create a mentoring program, develop manager coaching skills, design coaching frameworks, run coaching sessions, or similar coaching and mentoring tasks.",
       "skills": [
         "./skills/hr-coaching-mentoring"
       ]
@@ -178,7 +173,7 @@
     {
       "name": "hr-competency-management",
       "source": "./",
-      "description": "Help HR teams design, maintain, and apply competency frameworks across talent processes including hiring, performance management, learning, and succession. Use when asked to \"build a competency framework\", \"define behavioral indicators\", \"create a competency library\", \"apply competencies to hiring\", \"assess competencies\", \"update our competency model\", or \"integrate competencies into performance reviews\".",
+      "description": "Help HR teams design, maintain, and apply competency frameworks across talent processes including hiring, competency-based performance management, learning, and succession. Use when asked to \"build a competency framework\", \"define behavioral indicators\", \"create a competency library\", \"apply competencies to hiring\", \"assess competencies\", \"update our competency model\", or \"integrate competencies into performance reviews\".",
       "skills": [
         "./skills/hr-competency-management"
       ]
@@ -210,7 +205,7 @@
     {
       "name": "hr-contingent-workforce",
       "source": "./",
-      "description": "Help HR and procurement teams manage contractors, freelancers, and temporary staff, including classification, vendor management, and program design. Use when asked to 'set up a contingent workforce program', 'classify a worker as contractor or employee', 'manage a VMS/MSP program', 'draft a statement of work', or similar contingent workforce tasks.",
+      "description": "Help HR and procurement teams manage contractors, freelancers, and temporary staff, including classification, vendor management, and program design. Use when asked to set up a contingent workforce program, classify a worker as contractor or employee, manage a VMS/MSP program, draft a statement of work, or similar contingent workforce tasks.",
       "skills": [
         "./skills/hr-contingent-workforce"
       ]
@@ -234,7 +229,7 @@
     {
       "name": "hr-demand-planning",
       "source": "./",
-      "description": "Help HR leaders, workforce planners, and TA teams translate business strategy into headcount demand plans. Use when asked to \"build a headcount plan\", \"forecast hiring needs\", \"model workforce demand\", \"align HR capacity with business growth\", \"create a staffing demand forecast\", or \"plan headcount for [department or product launch]\".",
+      "description": "Help HR leaders, workforce planners, and TA teams translate business strategy into headcount demand plans. Use when asked to \"build a headcount plan\", \"forecast short-term hiring demand\", \"model workforce demand\", \"align HR capacity with business growth\", \"create a staffing demand forecast\", or \"plan headcount for [department or product launch]\".",
       "skills": [
         "./skills/hr-demand-planning"
       ]
@@ -242,7 +237,7 @@
     {
       "name": "hr-design-thinking",
       "source": "./",
-      "description": "Help HR teams and people leaders apply design thinking to HR challenges, including employee experience design, HR service redesign, journey mapping, and human-centered HR solution development. Use when asked to \"apply design thinking to HR\", \"run an HR design sprint\", \"map the employee journey\", \"co-design an HR solution\", \"prototype an HR process\", or \"use human-centered design for HR\".",
+      "description": "Help HR teams and people leaders apply design thinking to HR challenges, including employee experience design, HR service redesign, journey mapping, and human-centered HR solution development. Use when asked to \"apply design thinking to HR\", \"run an HR design sprint\", \"apply design thinking to map the employee journey\", \"co-design an HR solution\", \"prototype an HR process\", or \"use human-centered design for HR\".",
       "skills": [
         "./skills/hr-design-thinking"
       ]
@@ -258,7 +253,7 @@
     {
       "name": "hr-digital-hr",
       "source": "./",
-      "description": "Help HR leaders and People Ops teams design and execute HR digital transformation, including HR tech stack strategy, digital employee experience, process automation, and data-driven HR. Use when asked to \"digitize HR processes\", \"build our HR tech stack\", \"improve digital employee experience\", \"automate HR workflows\", \"implement an HRIS\", or \"create a digital HR roadmap\".",
+      "description": "Help HR leaders and People Ops teams design and execute HR digital transformation, including HR tech stack strategy, digital employee experience, process automation, and data-driven HR. Use when asked to \"digitize HR processes\", \"build our HR tech stack\", \"improve digital employee experience\", \"automate HR workflows as part of digital transformation\", \"implement an HRIS as part of digital HR transformation\", or \"create a digital HR roadmap\".",
       "skills": [
         "./skills/hr-digital-hr"
       ]
@@ -274,7 +269,7 @@
     {
       "name": "hr-embedded",
       "source": "./",
-      "description": "Help HR and recruiting teams hire and assess embedded systems engineering candidates (firmware, RTOS, hardware-software integration). Use when asked to 'write an embedded engineer job description', 'create firmware interview questions', 'assess an embedded candidate', 'build an embedded engineering leveling framework', or similar embedded-hiring tasks.",
+      "description": "Help HR and recruiting teams hire and assess embedded systems engineering candidates (firmware, RTOS, hardware-software integration). Use when asked to write an embedded engineer job description, create firmware interview questions, assess an embedded candidate, build an embedded engineering leveling framework, or similar embedded-hiring tasks.",
       "skills": [
         "./skills/hr-embedded"
       ]
@@ -282,7 +277,7 @@
     {
       "name": "hr-employee-engagement",
       "source": "./",
-      "description": "Help HR managers with employee engagement strategies. Use when asked to \"improve employee engagement\", \"design recognition programs\", \"conduct engagement surveys\", \"boost employee morale\", \"reduce burnout\", \"develop a culture strategy\", \"create team-building activities\", or any employee engagement task.",
+      "description": "Help HR managers with employee engagement strategies. Use when asked to improve employee engagement, design recognition programs, conduct engagement surveys, boost employee morale, reduce burnout, develop a culture strategy, create team-building activities, or any employee engagement task., or run an employee engagement survey or improve scores",
       "skills": [
         "./skills/hr-employee-engagement"
       ]
@@ -290,7 +285,7 @@
     {
       "name": "hr-employee-experience",
       "source": "./",
-      "description": "Help HR business partners, employee experience managers, and people leaders understand, design, and run employee experience strategies, journey mapping, engagement programs, culture diagnostics, onboarding and offboarding experience design, workplace environment initiatives, and recognition and belonging programs. Use when asked to \"design an employee experience strategy\", \"map the employee journey\", \"run an engagement diagnostic\", \"design a culture program\", \"improve the onboarding experience\", \"build a recognition program\", \"design a belonging and inclusion experience\", \"respond to an engagement crisis\", \"measure employee experience health\", or any employee experience, engagement, or culture design task.",
+      "description": "Help HR business partners, employee experience managers, and people leaders understand, design, and run employee experience strategies, journey mapping, engagement programs, culture diagnostics, onboarding and offboarding experience design, workplace environment initiatives, and recognition and belonging programs. Use when asked to design an employee experience strategy, map the employee journey, run an engagement diagnostic, design a culture program, improve the onboarding experience, build a recognition program, design a belonging and inclusion experience, respond to an engagement crisis, measure employee experience health, or any employee experience, engagement, or culture design task., or design the end-to-end employee experience",
       "skills": [
         "./skills/hr-employee-experience"
       ]
@@ -298,7 +293,7 @@
     {
       "name": "hr-employee-lifecycle",
       "source": "./",
-      "description": "Help HR teams design and manage the full employee lifecycle from attraction to alumni. Use when asked to 'map the employee journey', 'improve the employee experience', 'design touchpoints across the lifecycle', 'create lifecycle frameworks', or similar end-to-end people management tasks.",
+      "description": "Help HR teams design and manage the full employee lifecycle from attraction to alumni. Use when asked to map the employee journey, improve the employee experience, design touchpoints across the lifecycle, create lifecycle frameworks, or similar end-to-end people management tasks.",
       "skills": [
         "./skills/hr-employee-lifecycle"
       ]
@@ -306,7 +301,7 @@
     {
       "name": "hr-employee-listening",
       "source": "./",
-      "description": "Help HR teams design and manage employee listening strategies including engagement surveys, pulse checks, focus groups, and feedback programs. Use when asked to 'run an employee survey', 'design an engagement program', 'analyze survey results', 'build a listening strategy', 'conduct focus groups', or similar employee feedback tasks.",
+      "description": "Help HR teams design and manage employee listening strategies including engagement surveys, pulse checks, focus groups, and feedback programs. Use when asked to run an employee survey, design an engagement program, analyze survey results, build a listening strategy, conduct focus groups, or similar employee feedback tasks.",
       "skills": [
         "./skills/hr-employee-listening"
       ]
@@ -338,7 +333,7 @@
     {
       "name": "hr-executive-search",
       "source": "./",
-      "description": "Help HR and search professionals run executive search processes, including search strategy, candidate assessment, board/CEO succession, and confidential outreach. Use when asked to 'run an executive search', 'write an executive search brief', 'assess a C-suite candidate', 'plan CEO succession', or similar executive search tasks.",
+      "description": "Help HR and search professionals run executive search processes, including search strategy, candidate assessment, board/CEO succession, and confidential outreach. Use when asked to run an executive search, write an executive search brief, assess a C-suite candidate, plan CEO succession, or similar executive search tasks.",
       "skills": [
         "./skills/hr-executive-search"
       ]
@@ -346,7 +341,7 @@
     {
       "name": "hr-frontend",
       "source": "./",
-      "description": "Help HR managers, recruiters, and talent acquisition teams understand Frontend Engineering concepts, hiring requirements, frontend ecosystems, candidate evaluation, and modern frontend workflows. Use when asked to \"explain frontend development\", \"screen frontend candidates\", \"understand React/Vue/Angular\", \"compare frontend frameworks\", \"evaluate frontend skills\", \"create frontend interview questions\", \"understand frontend architecture\", or any frontend hiring and recruiting task.",
+      "description": "Help HR managers, recruiters, and talent acquisition teams understand Frontend Engineering concepts, hiring requirements, frontend ecosystems, frontend candidate evaluation, and modern frontend workflows. Use when asked to \"explain frontend development\", \"screen frontend candidates\", \"understand React/Vue/Angular\", \"compare frontend frameworks\", \"evaluate frontend skills\", \"create frontend interview questions\", \"understand frontend architecture\", or any frontend hiring and recruiting task.",
       "skills": [
         "./skills/hr-frontend"
       ]
@@ -354,7 +349,7 @@
     {
       "name": "hr-fullstack",
       "source": "./",
-      "description": "Help HR managers, recruiters, and talent acquisition teams understand Fullstack Engineering concepts, hiring requirements, cross-functional engineering workflows, frontend-backend integration, and modern end-to-end product development. Use when asked to \"explain fullstack development\", \"screen fullstack candidates\", \"understand frontend and backend together\", \"evaluate fullstack skills\", \"compare fullstack stacks\", \"create fullstack interview questions\", \"understand end-to-end product engineering\", or any fullstack hiring and recruiting task.",
+      "description": "Help HR managers, recruiters, and talent acquisition teams understand Fullstack Engineering concepts, fullstack-specific hiring requirements, cross-functional engineering workflows, frontend-backend integration, and modern end-to-end product development. Use when asked to \"explain fullstack development\", \"screen fullstack candidates\", \"understand frontend and backend together\", \"evaluate fullstack skills\", \"compare fullstack stacks\", \"create fullstack interview questions\", \"understand end-to-end product engineering\", or any fullstack hiring and recruiting task.",
       "skills": [
         "./skills/hr-fullstack"
       ]
@@ -362,7 +357,7 @@
     {
       "name": "hr-future-of-work",
       "source": "./",
-      "description": "Help HR and business leaders think through future-of-work trends, including hybrid work models, AI's impact on jobs, evolving employee expectations, and flexible work policy design. Use when asked to 'design a hybrid work policy', 'analyze future of work trends', 'assess AI's impact on jobs', 'design a flexible work model', or similar future-of-work tasks.",
+      "description": "Help HR and business leaders think through future-of-work trends, including hybrid work models, AIs impact on jobs, evolving employee expectations, and flexible work policy design. Use when asked to design a hybrid work policy, analyze future of work trends, assess AIs impact on jobs, design a flexible work model, or similar future-of-work tasks.",
       "skills": [
         "./skills/hr-future-of-work"
       ]
@@ -370,7 +365,7 @@
     {
       "name": "hr-game-development",
       "source": "./",
-      "description": "Help HR and recruiting teams hire and assess game development candidates across engineering, design, and art disciplines. Use when asked to 'write a game developer job description', 'create a gameplay engineer interview', 'assess a game designer's portfolio', 'build a game studio leveling framework', or similar game-development hiring tasks.",
+      "description": "Help HR and recruiting teams hire and assess game development candidates across engineering, design, and art disciplines. Use when asked to write a game developer job description, create a gameplay engineer interview, assess a game designers portfolio, build a game studio leveling framework, or similar game-development hiring tasks.",
       "skills": [
         "./skills/hr-game-development"
       ]
@@ -386,7 +381,7 @@
     {
       "name": "hr-global-hr",
       "source": "./",
-      "description": "Help HR teams manage international HR operations including multi-country compliance, global mobility, cross-cultural practices, and international workforce strategy. Use when asked to 'hire internationally', 'manage global HR compliance', 'build a global people strategy', 'handle expat management', 'expand HR to new countries', or similar global HR tasks.",
+      "description": "Help HR teams manage international HR operations including multi-country compliance, global mobility, cross-cultural practices, and international workforce strategy. Use when asked to hire internationally, manage global HR compliance, build a global people strategy, handle expat management, expand HR to new countries, or similar global HR tasks.",
       "skills": [
         "./skills/hr-global-hr"
       ]
@@ -410,7 +405,7 @@
     {
       "name": "hr-hris",
       "source": "./",
-      "description": "Help HR managers, HR operations teams, and recruiters understand HRIS (Human Resource Information Systems), including HRIS platforms, implementation and migration, system integrations, employee data management, HR automation, and HRIS-related hiring. Use when asked to \"explain HRIS\", \"choose an HRIS platform\", \"implement or migrate an HRIS\", \"screen HRIS analysts or managers\", \"understand HR system integrations\", \"automate HR workflows\", \"evaluate HRIS vendors\", or any HR technology and systems task.",
+      "description": "Help HR managers, HR operations teams, and recruiters understand HRIS (Human Resource Information Systems), including HRIS platforms, implementation and migration, system integrations, employee data management, HR automation, and HRIS-related hiring. Use when asked to \"explain HRIS\", \"choose an HRIS platform\", \"implement or migrate an HRIS\", \"screen HRIS analysts or managers\", \"understand HR system integrations\", \"configure HRIS to automate HR workflows\", \"evaluate HRIS vendors\", or any HR technology and systems task.",
       "skills": [
         "./skills/hr-hris"
       ]
@@ -418,7 +413,7 @@
     {
       "name": "hr-immigration",
       "source": "./",
-      "description": "Help HR and mobility teams manage employee immigration and work authorization processes, including visa sponsorship, global mobility, and compliance tracking. Use when asked to 'sponsor a work visa', 'plan a global mobility relocation', 'track visa expiration compliance', 'draft an immigration policy', or similar HR immigration tasks.",
+      "description": "Help HR and mobility teams manage employee immigration and work authorization processes, including visa sponsorship, global mobility, and compliance tracking. Use when asked to sponsor a work visa, plan a global mobility relocation, track visa expiration compliance, draft an immigration policy, or similar HR immigration tasks.",
       "skills": [
         "./skills/hr-immigration"
       ]
@@ -426,7 +421,7 @@
     {
       "name": "hr-internal-mobility",
       "source": "./",
-      "description": "Help HR teams design and manage internal mobility programs including lateral moves, promotions, project rotations, and internal hiring. Use when asked to 'build an internal mobility program', 'create internal job posting processes', 'manage internal transfers', 'design talent marketplace', or similar internal talent movement tasks.",
+      "description": "Help HR teams design and manage internal mobility programs including lateral moves, promotions, project rotations, and internal hiring. Use when asked to build an internal mobility program, create internal job posting processes, manage internal transfers, design talent marketplace, or similar internal talent movement tasks.",
       "skills": [
         "./skills/hr-internal-mobility"
       ]
@@ -434,7 +429,7 @@
     {
       "name": "hr-interviewing",
       "source": "./",
-      "description": "Help HR managers, recruiters, hiring managers, and interview panels design structured, competency-based interview questions, interview guides, and evaluation scorecards for any role. Use when asked to \"create interview questions\", \"design a structured interview\", \"generate behavioral questions\", \"build an interview scorecard\", \"evaluate candidates consistently\", \"reduce interview bias\", or any interview planning and assessment task.",
+      "description": "Help HR managers, recruiters, hiring managers, and interview panels design structured, competency-based interview questions, interview guides, and evaluation scorecards for any role. Use when asked to \"design structured interview questions or scoring rubrics\", \"design a structured interview\", \"generate behavioral questions\", \"build an interview scorecard\", \"evaluate candidates consistently\", \"reduce interview bias\", or any interview planning and assessment task.",
       "skills": [
         "./skills/hr-interviewing"
       ]
@@ -442,7 +437,7 @@
     {
       "name": "hr-iot",
       "source": "./",
-      "description": "Help HR and recruiting teams hire and assess Internet of Things (IoT) engineering candidates, spanning device firmware, connectivity, and cloud/edge integration. Use when asked to 'write an IoT engineer job description', 'create IoT interview questions', 'assess an IoT candidate's skills across the stack', 'build an IoT engineering leveling framework', or similar IoT-hiring tasks.",
+      "description": "Help HR and recruiting teams hire and assess Internet of Things (IoT) engineering candidates, spanning device firmware, connectivity, and cloud/edge integration. Use when asked to write an IoT engineer job description, create IoT interview questions, assess an IoT candidates skills across the stack, build an IoT engineering leveling framework, or similar IoT-hiring tasks.",
       "skills": [
         "./skills/hr-iot"
       ]
@@ -450,7 +445,7 @@
     {
       "name": "hr-job-analysis",
       "source": "./",
-      "description": "Help HR teams, compensation analysts, and job design specialists conduct job analysis, define job requirements, and document job content for job evaluation, classification, and workforce planning purposes. Use when asked to \"conduct a job analysis\", \"define job requirements\", \"write job content\", \"classify a role\", \"evaluate job complexity\", \"run a task analysis\", or \"audit our job structures\".",
+      "description": "Help HR teams, job analysis for compensation analysts, and job design specialists conduct job analysis, define job requirements, and document job content for job evaluation, classification, and workforce planning purposes. Use when asked to \"conduct a job analysis\", \"define job requirements\", \"write job content\", \"classify a role\", \"evaluate job complexity\", \"run a task analysis\", or \"audit our job structures\".",
       "skills": [
         "./skills/hr-job-analysis"
       ]
@@ -482,7 +477,7 @@
     {
       "name": "hr-kpi",
       "source": "./",
-      "description": "Help HR managers, people analytics teams, and HR business partners understand, select, calculate, and act on HR KPIs and workforce metrics. Use when asked to \"build an HR dashboard\", \"choose strategic HR KPIs\", \"analyze turnover rate\", \"benchmark cost per hire\", \"explain HR metrics\", \"create an HR report for leadership\", \"measure training ROI\", \"track recruiting efficiency\", \"interpret HR data\", or any HR performance measurement and workforce analytics task.",
+      "description": "Help HR managers, people analytics teams, and HR business partners understand, select, calculate, and act on HR KPIs and workforce metrics. Use when asked to build an HR KPI dashboard, choose strategic HR KPIs, analyze turnover rate, benchmark cost per hire, explain HR metrics, create an HR report for leadership, measure training ROI, track recruiting efficiency, interpret HR data, or any HR performance measurement and workforce analytics task., or define what HR metrics to track",
       "skills": [
         "./skills/hr-kpi"
       ]
@@ -498,7 +493,7 @@
     {
       "name": "hr-leadership-development",
       "source": "./",
-      "description": "Help HR managers with leadership development programs. Use when asked to \"create a leadership program\", \"develop leadership competencies\", \"conduct leadership assessments\", \"design executive coaching\", \"create a leadership succession plan\", \"develop cross-cultural leadership training\", or any leadership development task.",
+      "description": "Help HR managers with leadership development programs. Use when asked to create a leadership program, develop leadership competencies, conduct leadership assessments, design executive coaching, create a leadership succession plan, develop cross-cultural leadership training, or any leadership development task., or design a leadership development program at scale",
       "skills": [
         "./skills/hr-leadership-development"
       ]
@@ -506,7 +501,7 @@
     {
       "name": "hr-learning-development",
       "source": "./",
-      "description": "Help HR business partners, L&D managers, and people development leaders understand, design, and run learning and development programs, skills gap analyses, career development frameworks, leadership development tracks, onboarding programs, and learning culture initiatives. Use when asked to \"design a learning program\", \"run a skills gap analysis\", \"build a career development framework\", \"design a leadership development track\", \"build an onboarding program\", \"respond to a capability gap crisis\", \"measure L&D effectiveness\", \"design a learning culture strategy\", or any employee learning, skills development, or talent capability task.",
+      "description": "Help HR business partners, L&D managers, and people development leaders understand, design, and run learning and development programs, skills gap analyses, career development frameworks, leadership development tracks, onboarding programs, and learning culture initiatives. Use when asked to design a learning program, run a skills gap analysis for learning program design, build a career development framework, design a leadership development track, build an onboarding program, respond to a capability gap crisis, measure L&D effectiveness, design a learning culture strategy, or any employee learning, skills development, or talent capability task., or design an L&D strategy or program",
       "skills": [
         "./skills/hr-learning-development"
       ]
@@ -538,7 +533,7 @@
     {
       "name": "hr-offboarding",
       "source": "./",
-      "description": "Help HR teams design and execute effective offboarding processes for voluntary and involuntary departures. Use when asked to 'create an offboarding checklist', 'conduct exit interviews', 'manage employee separations', 'handle involuntary terminations', 'build an alumni program', or similar departure management tasks.",
+      "description": "Help HR teams design and execute effective offboarding processes for voluntary and involuntary departures. Use when asked to create an offboarding checklist, conduct exit interviews, manage employee separations, handle involuntary terminations, build an alumni program, or similar departure management tasks.",
       "skills": [
         "./skills/hr-offboarding"
       ]
@@ -554,7 +549,7 @@
     {
       "name": "hr-operating-model",
       "source": "./",
-      "description": "Help HR leaders design, restructure, and optimize the HR operating model, including HRBP, Centers of Excellence, and Shared Services configurations. Use when asked to \"redesign our HR function\", \"define HRBP accountabilities\", \"build a CoE\", \"set up shared services\", \"clarify HR roles\", \"assess our HR operating model\", or \"move to a three-pillar HR model\".",
+      "description": "Help HR leaders design, restructure the HR operating model, and optimize the HR operating model, including HRBP, Centers of Excellence, and Shared Services configurations. Use when asked to \"redesign our HR function\", \"define HRBP accountabilities\", \"build a CoE\", \"set up shared services\", \"clarify HR roles\", \"assess our HR operating model\", or \"move to a three-pillar HR model\".",
       "skills": [
         "./skills/hr-operating-model"
       ]
@@ -570,7 +565,7 @@
     {
       "name": "hr-organizational-design",
       "source": "./",
-      "description": "Help HR leaders and business partners design, restructure, and optimize organizational structures and operating models. Use when asked to 'redesign the org structure', 'build an operating model', 'plan a restructuring', 'define spans and layers', 'create RACI charts', or similar organizational design tasks.",
+      "description": "Help HR leaders and business partners design, restructure, and optimize organizational structures and operating models. Use when asked to redesign the org structure, build an operating model, plan a restructuring, define spans and layers, create RACI charts, or similar organizational design tasks., or redesign org structure, spans, or reporting lines",
       "skills": [
         "./skills/hr-organizational-design"
       ]
@@ -578,7 +573,7 @@
     {
       "name": "hr-organizational-development",
       "source": "./",
-      "description": "Help HR business partners, OD consultants, and people leaders understand, design, and lead organizational design, change management, and culture transformation initiatives. Use when asked to \"redesign our org structure\", \"lead a change management plan\", \"run a culture assessment\", \"design a reorganization\", \"build a change communication plan\", \"assess organizational health\", \"facilitate a team effectiveness session\", \"design a merger integration plan\", or any organizational design, change, and culture task.",
+      "description": "Help HR business partners, OD consultants, and people leaders understand, design, and lead organizational design, change management, and culture transformation initiatives. Use when asked to redesign our org structure, lead a change management plan, run a culture assessment, design a reorganization, develop OD communication and engagement plans, assess organizational health, facilitate a team effectiveness session, design a merger integration plan, or any organizational design, change, and culture task., or build organizational capability and change readiness",
       "skills": [
         "./skills/hr-organizational-development"
       ]
@@ -594,7 +589,7 @@
     {
       "name": "hr-people-leadership",
       "source": "./",
-      "description": "Help HR teams, managers, and people leaders build strong people leadership capabilities including team leadership, coaching, feedback, accountability, psychological safety, and inclusive leadership. Use when asked to \"develop people leadership skills\", \"coach a manager\", \"improve team leadership\", \"build a leadership culture\", \"give feedback to a manager\", or \"assess people leadership effectiveness\".",
+      "description": "Help HR teams, managers, and people leaders build strong people leadership capabilities including team leadership, coaching, feedback, accountability, psychological safety, and inclusive leadership. Use when asked to develop people leadership skills, coach a manager, improve team leadership, build a leadership culture, give feedback to a manager, or assess people leadership effectiveness., or coach or develop an individual people leader",
       "skills": [
         "./skills/hr-people-leadership"
       ]
@@ -602,7 +597,7 @@
     {
       "name": "hr-people-operations",
       "source": "./",
-      "description": "Help HR managers, People Ops specialists, HRIS administrators, and HR generalists understand, design, and run core people operations processes. Use when asked to \"design an onboarding workflow\", \"set up an HRIS\", \"build an offboarding checklist\", \"create an employee handbook\", \"audit HR data quality\", \"design a people ops process\", \"automate HR workflows\", \"manage employee lifecycle transitions\", \"build an HR service delivery model\", or any operational, administrative, and systems-focused HR task.",
+      "description": "Help HR managers, People Ops specialists, HRIS administrators, and HR generalists understand, design, and run core people operations processes. Use when asked to \"design an onboarding workflow\", \"set up an HRIS\", \"build an offboarding checklist\", \"create an employee handbook\", \"audit HR data quality\", \"design a people ops process\", \"automate HR ops workflows and processes\", \"manage employee lifecycle transitions\", \"build an HR service delivery model\", or any operational, administrative, and systems-focused HR task.",
       "skills": [
         "./skills/hr-people-operations"
       ]
@@ -610,7 +605,7 @@
     {
       "name": "hr-performance-management",
       "source": "./",
-      "description": "Help HR managers with performance management processes. Use when asked to \"write a performance review\", \"create a PIP\", \"design performance appraisal forms\", \"set employee goals\", \"conduct 360-degree feedback\", \"develop performance metrics\", or any other performance management task.",
+      "description": "Help HR managers with performance management processes. Use when asked to design a performance management process or write review frameworks, create a PIP, design performance appraisal forms, set employee goals, conduct 360-degree feedback, develop performance metrics, or any other performance management task., or design or improve the performance management system",
       "skills": [
         "./skills/hr-performance-management"
       ]
@@ -618,7 +613,7 @@
     {
       "name": "hr-performance-review",
       "source": "./",
-      "description": "Help managers, HR professionals, and team leaders write fair, balanced, evidence-based performance reviews, self-assessments, and development plans. Use when asked to \"write a performance review\", \"draft manager feedback\", \"evaluate employee performance\", \"write appraisal comments\", \"create a development plan\", \"review employee goals\", or any employee performance evaluation task.",
+      "description": "Help managers, HR professionals, and team leaders write fair, balanced, evidence-based performance reviews, self-assessments, and development plans. Use when asked to write or calibrate an individual performance review, draft manager feedback, evaluate employee performance, write appraisal comments, create a development plan, review employee goals, or any employee performance evaluation task., or write or calibrate individual performance reviews",
       "skills": [
         "./skills/hr-performance-review"
       ]
@@ -626,7 +621,7 @@
     {
       "name": "hr-policy-management",
       "source": "./",
-      "description": "Help HR teams create, update, communicate, and govern HR policies and employee handbooks. Use when asked to 'write an HR policy', 'update the employee handbook', 'create a disciplinary policy', 'review HR policies', 'develop workplace guidelines', or similar policy management tasks.",
+      "description": "Help HR teams create, update, communicate, and govern HR policies and employee handbooks. Use when asked to write an HR policy, update the employee handbook, create a disciplinary policy, review HR policies, develop workplace guidelines, or similar policy management tasks.",
       "skills": [
         "./skills/hr-policy-management"
       ]
@@ -634,7 +629,7 @@
     {
       "name": "hr-product-management",
       "source": "./",
-      "description": "Help HR and recruiting teams hire and assess product management candidates, including job descriptions, case-study interviews, and leveling frameworks. Use when asked to 'write a product manager job description', 'create a PM case study interview', 'assess product sense', 'build a PM leveling framework', or similar product management hiring tasks.",
+      "description": "Help HR and recruiting teams hire and assess product management candidates, including job descriptions, case-study interviews, and leveling frameworks. Use when asked to write a product manager job description, create a PM case study interview, assess product sense, build a PM leveling framework, or similar product management hiring tasks.",
       "skills": [
         "./skills/hr-product-management"
       ]
@@ -642,7 +637,7 @@
     {
       "name": "hr-project-management",
       "source": "./",
-      "description": "Help HR teams plan and run HR initiatives using project management practices, including project charters, timelines, stakeholder plans, and risk tracking for HR programs. Use when asked to 'build a project plan for an HR initiative', 'create a project charter', 'track HR project risks', 'build a stakeholder communication plan', or similar HR project management tasks.",
+      "description": "Help HR teams plan and run HR initiatives using project management practices, including project charters, timelines, stakeholder plans, and risk tracking for HR programs. Use when asked to build a project plan for an HR initiative, create a project charter, track HR project risks, build a stakeholder communication plan, or similar HR project management tasks.",
       "skills": [
         "./skills/hr-project-management"
       ]
@@ -666,7 +661,7 @@
     {
       "name": "hr-recognition",
       "source": "./",
-      "description": "Help HR teams design and manage employee recognition programs, reward frameworks, and appreciation cultures. Use when asked to 'create a recognition program', 'build a rewards strategy', 'design peer recognition', 'improve appreciation culture', 'develop service awards', or similar recognition and reward tasks.",
+      "description": "Help HR teams design and manage employee recognition programs, reward frameworks, and appreciation cultures. Use when asked to create a recognition program, build a rewards strategy, design peer recognition, improve appreciation culture, develop service awards, or similar recognition and reward tasks.",
       "skills": [
         "./skills/hr-recognition"
       ]
@@ -674,7 +669,7 @@
     {
       "name": "hr-recruiting",
       "source": "./",
-      "description": "Help HR managers with end-to-end recruiting and talent acquisition. Use when asked to \"write a job description\", \"create interview questions\", \"screen resumes\", \"develop employer branding\", \"send offer letters\", \"conduct reference checks\", or any other recruiting and hiring task.",
+      "description": "Help HR managers with end-to-end recruiting and talent acquisition. Use when asked to write or improve a job description for a role, create interview questions, screen resumes, develop employer branding, send offer letters, conduct reference checks, or any other recruiting and hiring task., or handle day-to-day recruiting tasks for a role",
       "skills": [
         "./skills/hr-recruiting"
       ]
@@ -682,7 +677,7 @@
     {
       "name": "hr-risk-management",
       "source": "./",
-      "description": "Help HR teams identify, assess, and mitigate people-related risks across compliance, workforce continuity, conduct, and organizational health. Use when asked to 'identify HR risks', 'build an HR risk register', 'manage compliance risk', 'develop HR risk mitigation plans', 'handle employee relations risks', or similar HR risk management tasks.",
+      "description": "Help HR teams identify, assess, and mitigate people-related risks across compliance, workforce continuity, conduct, and organizational health. Use when asked to identify HR risks, build an HR risk register, manage compliance risk, develop HR risk mitigation plans, handle employee relations risks, or similar HR risk management tasks.",
       "skills": [
         "./skills/hr-risk-management"
       ]
@@ -698,7 +693,7 @@
     {
       "name": "hr-service-delivery",
       "source": "./",
-      "description": "Help HR operations teams design HR service delivery models, tiered support structures, SLAs, and case management workflows. Use when asked to 'design an HR service delivery model', 'set up HR tier 1/2/3 support', 'write an HR SLA', 'design an HR case management workflow', or similar HR service delivery tasks.",
+      "description": "Help HR operations teams design HR service delivery models, tiered support structures, SLAs, and case management workflows. Use when asked to design an HR service delivery model, set up HR tier 1/2/3 support, write an HR SLA, design an HR case management workflow, or similar HR service delivery tasks.",
       "skills": [
         "./skills/hr-service-delivery"
       ]
@@ -706,7 +701,7 @@
     {
       "name": "hr-shared-services",
       "source": "./",
-      "description": "Help HR leaders design and operate HR shared services centers, including scope of services, governance, cost allocation, and multi-country service models. Use when asked to 'design an HR shared services model', 'consolidate HR functions', 'build a shared services governance model', 'allocate shared services costs', or similar HR shared services tasks.",
+      "description": "Help HR leaders design and operate HR shared services centers, including scope of services, governance, cost allocation, and multi-country service models. Use when asked to design an HR shared services model, consolidate HR functions, build a shared services governance model, allocate shared services costs, or similar HR shared services tasks.",
       "skills": [
         "./skills/hr-shared-services"
       ]
@@ -714,7 +709,7 @@
     {
       "name": "hr-skills-management",
       "source": "./",
-      "description": "Help HR teams build skills taxonomies, conduct skills gap analyses, and design skills-based talent strategies. Use when asked to 'create a skills framework', 'build a skills taxonomy', 'identify skills gaps', 'design skills-based hiring', 'develop a skills inventory', or similar skills management tasks.",
+      "description": "Help HR teams build skills taxonomies, conduct skills gap analyses, and design skills-based talent strategies. Use when asked to create a skills framework, build a skills taxonomy, identify skills gaps, design skills-based hiring, develop a skills inventory, or similar skills management tasks.",
       "skills": [
         "./skills/hr-skills-management"
       ]
@@ -722,7 +717,7 @@
     {
       "name": "hr-skills-taxonomy",
       "source": "./",
-      "description": "Help HR business partners, talent management specialists, L&D leaders, and workforce planning teams understand, design, and implement skills taxonomies and skills ontologies. Use when asked to \"build a skills taxonomy\", \"map skills to roles\", \"design a skills ontology\", \"run a skills gap analysis\", \"create a skills inventory\", \"build a skills-based hiring framework\", \"design skills clusters\", \"connect skills to career paths\", \"benchmark workforce skills against market data\", or any skills classification, skills-based workforce planning, and organizational skills intelligence task.",
+      "description": "Help HR business partners, skills taxonomy for talent management specialists, L&D leaders, and workforce planning teams understand, design, and implement skills taxonomies and skills ontologies. Use when asked to \"build a skills taxonomy\", \"map skills to roles\", \"design a skills ontology\", \"run a skills gap analysis against a skills taxonomy\", \"create a skills inventory\", \"build a skills-based hiring framework\", \"design skills clusters\", \"connect skills to career paths\", \"benchmark workforce skills against market data\", or any skills classification, skills-based workforce planning, and organizational skills intelligence task.",
       "skills": [
         "./skills/hr-skills-taxonomy"
       ]
@@ -738,7 +733,7 @@
     {
       "name": "hr-software-architecture",
       "source": "./",
-      "description": "Help HR and technical recruiting teams hire and evaluate software architect and staff/principal engineer candidates. Use when asked to 'write a software architect job description', 'assess architecture leadership skills', 'design a principal engineer interview loop', 'build an architecture role leveling framework', or similar tasks.",
+      "description": "Help HR and technical recruiting teams hire and evaluate software architect and staff/principal engineer candidates. Use when asked to write a software architect job description, assess architecture leadership skills, design a principal engineer interview loop, build an architecture role leveling framework.",
       "skills": [
         "./skills/hr-software-architecture"
       ]
@@ -746,7 +741,7 @@
     {
       "name": "hr-strategic-planning",
       "source": "./",
-      "description": "Help HR leaders and business partners develop, align, and execute HR strategic plans. Use when asked to 'create an HR strategy', 'align HR with business goals', 'build an HR roadmap', 'develop workforce planning', 'write an HR annual plan', or similar strategic HR planning tasks.",
+      "description": "Help HR leaders and business partners develop, align, and execute HR strategic plans. Use when asked to create an HR strategy, align HR with business goals, build an HR roadmap, develop workforce planning, write an HR annual plan, or similar strategic HR planning tasks.",
       "skills": [
         "./skills/hr-strategic-planning"
       ]
@@ -754,7 +749,7 @@
     {
       "name": "hr-succession-planning",
       "source": "./",
-      "description": "Help HR business partners, talent management specialists, and people leaders understand, design, and run succession planning, leadership pipeline development, and critical role continuity programs. Use when asked to \"build a succession plan\", \"identify high-potential talent\", \"assess leadership readiness\", \"map critical roles\", \"design a talent review process\", \"run a 9-box calibration\", \"build a leadership pipeline\", \"create a development plan for a successor\", or any succession planning, leadership continuity, and pipeline development task.",
+      "description": "Help HR business partners, talent management specialists, and people leaders understand, design, and run succession planning, leadership pipeline development, and critical role continuity programs. Use when asked to \"build a succession plan or bench strength framework\", \"identify high-potential talent\", \"assess leadership readiness\", \"map critical roles\", \"design a talent review or succession review process\", \"run a 9-box calibration\", \"build a leadership pipeline\", \"create a development plan for a successor\", or any succession planning, leadership continuity, and pipeline development task.",
       "skills": [
         "./skills/hr-succession-planning"
       ]
@@ -762,7 +757,7 @@
     {
       "name": "hr-system-design",
       "source": "./",
-      "description": "Help HR and technical recruiting teams hire and assess candidates for system design skills across engineering roles, including interview design and evaluation rubrics. Use when asked to 'create a system design interview', 'evaluate a candidate's system design skills', 'write a system design interview rubric', 'prepare interviewers for system design rounds', or similar tasks.",
+      "description": "Help HR and technical recruiting teams hire and assess candidates for system design skills across engineering roles, including interview design and evaluation rubrics. Use when asked to create a system design interview, evaluate a candidates system design skills, write a system design interview rubric, prepare interviewers for system design rounds.",
       "skills": [
         "./skills/hr-system-design"
       ]
@@ -770,7 +765,7 @@
     {
       "name": "hr-talent-acquisition",
       "source": "./",
-      "description": "Help talent acquisition leaders, TA managers, and recruiting teams build and run a strategic talent acquisition function. Use when asked to \"build a TA strategy\", \"design a talent pipeline\", \"improve time-to-hire\", \"set up ATS workflows\", \"measure recruiting effectiveness\", \"build sourcing channels\", or \"align hiring with business demand\".",
+      "description": "Help talent acquisition leaders, TA managers, and recruiting teams build and run a strategic talent acquisition function. Use when asked to build a TA strategy, design a talent pipeline, improve time-to-hire, set up ATS workflows, measure recruiting effectiveness, build sourcing channels, or align hiring with business demand., or build or improve the TA function itself",
       "skills": [
         "./skills/hr-talent-acquisition"
       ]
@@ -778,7 +773,7 @@
     {
       "name": "hr-talent-intelligence",
       "source": "./",
-      "description": "Help HR teams collect, analyze, and apply talent market data and workforce analytics to drive strategic people decisions. Use when asked to 'analyze talent market trends', 'benchmark compensation to the market', 'build workforce analytics', 'develop people analytics dashboards', 'conduct competitive talent intelligence', or similar talent data and analytics tasks.",
+      "description": "Help HR teams collect, analyze, and apply talent market data and workforce analytics to drive strategic people decisions. Use when asked to analyze talent market trends, benchmark compensation to the market, build workforce analytics, develop people analytics dashboards, conduct competitive talent intelligence, or similar talent data and analytics tasks.",
       "skills": [
         "./skills/hr-talent-intelligence"
       ]
@@ -786,7 +781,7 @@
     {
       "name": "hr-talent-management",
       "source": "./",
-      "description": "Help HR managers, HRBPs, L&D leads, and people operations teams understand, design, and execute talent management systems. Use when asked to \"build a succession plan\", \"design a performance management framework\", \"identify high potential employees\", \"create a career path\", \"build a competency model\", \"improve internal mobility\", \"design a talent review process\", \"measure employee engagement\", \"develop a retention strategy\", \"run a 9-box assessment\", or any talent development and workforce planning task.",
+      "description": "Help HR managers, HRBPs, L&D leads, and people operations teams understand, design, and execute talent management systems. Use when asked to \"build a succession planning component within talent management\", \"design a performance management framework\", \"identify high potential employees\", \"create a career path\", \"build a competency model\", \"improve internal mobility\", \"design a talent management review and calibration process\", \"measure employee engagement\", \"develop a retention strategy\", \"run a 9-box assessment\", or any talent development and workforce planning task.",
       "skills": [
         "./skills/hr-talent-management"
       ]
@@ -810,7 +805,7 @@
     {
       "name": "hr-time-attendance",
       "source": "./",
-      "description": "Help HR and payroll teams design, audit, and communicate time and attendance policies, including clock-in rules, overtime, leave tracking, and time-tracking system configuration. Use when asked to 'set up a time tracking policy', 'calculate overtime', 'design a shift attendance policy', 'write a lateness policy', or similar time and attendance tasks.",
+      "description": "Help HR and payroll teams design, audit, and communicate time and attendance policies, including clock-in rules, overtime, leave tracking, and time-tracking system configuration. Use when asked to set up a time tracking policy, calculate overtime, design a shift attendance policy, write a lateness policy, or similar time and attendance tasks.",
       "skills": [
         "./skills/hr-time-attendance"
       ]
@@ -818,7 +813,7 @@
     {
       "name": "hr-total-rewards",
       "source": "./",
-      "description": "Help HR managers, compensation analysts, benefits specialists, and total rewards leaders understand, design, and communicate total rewards programs. Use when asked to \"design a compensation structure\", \"build a salary band\", \"run a pay equity analysis\", \"design a benefits package\", \"create a total rewards statement\", \"benchmark compensation against market\", \"design an incentive plan\", \"build a job leveling framework\", \"calculate compa-ratio\", or any compensation, benefits, and total rewards task.",
+      "description": "Help HR managers, compensation analysts, benefits specialists, and total rewards leaders understand, design, and communicate total rewards programs. Use when asked to \"design a compensation structure\", \"build a salary band\", \"run a pay equity analysis\", \"design a benefits package\", \"create a total rewards statement\", \"benchmark compensation against market\", \"design an incentive plan\", \"build a job leveling framework for total rewards and pay equity\", \"calculate compa-ratio\", or any compensation, benefits, and total rewards task.",
       "skills": [
         "./skills/hr-total-rewards"
       ]
@@ -826,7 +821,7 @@
     {
       "name": "hr-training-development",
       "source": "./",
-      "description": "Help HR managers with learning and development programs. Use when asked to \"design a training program\", \"create an e-learning course\", \"develop a coaching plan\", \"conduct a needs assessment\", \"write a competency model\", \"design a mentorship program\", \"create a learning plan\", or any training and development task.",
+      "description": "Help HR managers with learning and development programs. Use when asked to design a training program, create an e-learning course, develop a coaching plan, conduct a needs assessment, write a competency model, design a mentorship program, create a learning plan, or any training and development task., or create a specific training module or course",
       "skills": [
         "./skills/hr-training-development"
       ]
@@ -866,7 +861,7 @@
     {
       "name": "hr-workforce-intelligence",
       "source": "./",
-      "description": "Help HR and people analytics teams turn workforce data into actionable insight, including headcount analysis, attrition prediction, skills inventories, and workforce dashboards. Use when asked to 'analyze headcount trends', 'predict attrition risk', 'build a workforce dashboard', 'run a skills inventory analysis', or similar workforce intelligence tasks.",
+      "description": "Help HR and people analytics teams turn workforce data into actionable insight, including headcount analysis, attrition prediction, skills inventories, and workforce dashboards. Use when asked to analyze headcount trends, predict attrition risk, build a workforce dashboard, run a skills inventory analysis, or similar workforce intelligence tasks.",
       "skills": [
         "./skills/hr-workforce-intelligence"
       ]
@@ -874,7 +869,7 @@
     {
       "name": "hr-workforce-planning",
       "source": "./",
-      "description": "Help HR managers with workforce planning and strategy. Use when asked to \"create a workforce plan\", \"conduct a skills gap analysis\", \"develop a succession plan\", \"build workforce models\", \"analyze headcount\", \"forecast hiring needs\", \"develop workforce diversity strategies\", or any workforce planning task.",
+      "description": "Help HR managers with workforce planning and strategy. Use when asked to \"create a workforce plan\", \"conduct a skills gap analysis\", \"develop a succession plan\", \"build workforce models\", \"analyze headcount\", \"forecast long-term workforce needs\", \"develop workforce diversity strategies\", or any workforce planning task.",
       "skills": [
         "./skills/hr-workforce-planning"
       ]
@@ -882,7 +877,7 @@
     {
       "name": "hr-workforce-scheduling",
       "source": "./",
-      "description": "Help operations and HR teams build employee schedules, forecast staffing needs, and manage shift swaps and coverage. Use when asked to 'build a shift schedule', 'forecast staffing needs', 'create a rotation pattern', 'handle a shift swap request', or similar workforce scheduling tasks.",
+      "description": "Help operations and HR teams build employee schedules, forecast staffing needs, and manage shift swaps and coverage. Use when asked to build a shift schedule, forecast staffing needs, create a rotation pattern, handle a shift swap request, or similar workforce scheduling tasks.",
       "skills": [
         "./skills/hr-workforce-scheduling"
       ]
@@ -890,7 +885,7 @@
     {
       "name": "hr-workforce-transformation",
       "source": "./",
-      "description": "Help HR and business leaders plan and execute large-scale workforce transformation, including restructuring, reskilling, automation impact, and change management. Use when asked to 'plan a workforce transformation', 'design a reskilling program', 'assess automation impact on jobs', 'build a restructuring plan', or similar workforce transformation tasks.",
+      "description": "Help HR and business leaders plan and execute large-scale workforce transformation, including restructuring, reskilling, automation impact, and change management. Use when asked to plan a workforce transformation, design a reskilling program, assess automation impact on jobs, build a restructuring plan, or similar workforce transformation tasks.",
       "skills": [
         "./skills/hr-workforce-transformation"
       ]

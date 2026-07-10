@@ -8,7 +8,7 @@ metadata:
 
 # Generative AI for HR professionals
 
-Leverage Generative AI tools to improve HR productivity, content quality, and decision support across recruiting, performance, learning, communications, and people analytics — with practical guidance for effective and responsible use.
+Use Generative AI tools to improve HR productivity, content quality, and decision support across recruiting, performance, learning, communications, and people analytics — with practical guidance for effective and responsible use.
 
 ## Supported tasks
 

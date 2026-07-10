@@ -2,7 +2,7 @@
 name: turbo
 description: "Repository guidance for using Turborepo to orchestrate workspace tasks, builds, validation, testing, and development workflows within the hr-skills monorepo."
 metadata:
-  author: "Tuan Duc Tran"
+  author: Tuan Duc Tran
   version: "1.1.0"
 ---
 

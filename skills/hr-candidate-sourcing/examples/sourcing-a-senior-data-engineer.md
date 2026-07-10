@@ -1,4 +1,4 @@
-# Scenario: Sourcing a Senior Data Engineer
+# Sourcing a Senior Data Engineer
 
 ## Context
 

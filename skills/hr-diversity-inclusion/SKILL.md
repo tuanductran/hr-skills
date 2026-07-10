@@ -56,7 +56,7 @@ Comprehensive DEI support — from building diversity and inclusion strategies a
 1. "Describe the role of employee resource groups (ERGs) in promoting diversity and inclusion."
 2. "What is best practice for launching and supporting an ERG for [specific community/identity group]?"
 3. "How can I create an inclusive ERG structure that is open to allies, not just members of the group?"
-4. "How should ERGs be resourced and governed to ensure they are sustainable and impactful?"
+4. "How should ERGs be resourced and governed to ensure they are sustainable and effective?"
 
 ### Measuring inclusion
 
@@ -85,7 +85,7 @@ Comprehensive DEI support — from building diversity and inclusion strategies a
 ### Communication and culture
 
 1. "How can HR managers address conflicts related to diversity-related tensions or misunderstandings?"
-2. "Describe the importance of fostering an inclusive feedback culture that values diverse perspectives."
+2. "Describe the importance of building an inclusive feedback culture that values diverse perspectives."
 3. "How can I promote a culture of allyship and advocacy for underrepresented groups?"
 4. "What measures help ensure diversity, equity, and inclusion efforts are communicated effectively to all employees?"
 5. "How can I address cultural misunderstandings and promote cultural intelligence in the workplace?"

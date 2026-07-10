@@ -1,6 +1,6 @@
 ---
 name: hr-employee-engagement
-description: Help HR managers with employee engagement strategies. Use when asked to "improve employee engagement", "design recognition programs", "conduct engagement surveys", "boost employee morale", "reduce burnout", "develop a culture strategy", "create team-building activities", or any employee engagement task.
+description: "Help HR managers with employee engagement strategies. Use when asked to improve employee engagement, design recognition programs, conduct engagement surveys, boost employee morale, reduce burnout, develop a culture strategy, create team-building activities, or any employee engagement task., or run an employee engagement survey or improve scores"
 metadata:
   author: Tuan Duc Tran
   version: "1.0.0"
@@ -18,7 +18,7 @@ Comprehensive employee engagement support — from designing engagement surveys 
 - Promoting work-life balance and wellness programs
 - Creating career development pathways that drive engagement
 - Reducing burnout and improving employee well-being
-- Developing communication strategies that foster transparency
+- Developing communication strategies that build transparency
 - Improving engagement in remote and hybrid work environments
 - Promoting employee autonomy and innovation
 - Building a sense of purpose and belonging at work
@@ -48,7 +48,7 @@ Comprehensive employee engagement support — from designing engagement surveys 
 1. "What strategies can I employ to create a positive and inclusive work culture that drives engagement?"
 2. "Provide guidance on conducting team-building activities for [in-person/remote/hybrid] teams."
 3. "What team-building exercises best improve psychological safety and open communication?"
-4. "How can I foster a culture of continuous feedback that helps employees grow and feel valued?"
+4. "How can I build a culture of continuous feedback that helps employees grow and feel valued?"
 5. "What strategies encourage cross-departmental collaboration and relationship-building?"
 6. "How can I address a toxic team dynamic and rebuild trust and collaboration?"
 
@@ -73,7 +73,7 @@ Comprehensive employee engagement support — from designing engagement surveys 
 1. "How can HR encourage open and transparent communication between leadership and employees?"
 2. "What communication channels and formats most effectively keep employees informed and engaged?"
 3. "How should I conduct town halls, employee forums, or skip-level meetings to gather honest input?"
-4. "Describe the role of leadership communication and transparency in fostering employee engagement."
+4. "Describe the role of leadership communication and transparency in building employee engagement."
 5. "How can I support managers in improving their engagement practices with their teams?"
 
 ### Remote and hybrid engagement
@@ -94,6 +94,6 @@ Comprehensive employee engagement support — from designing engagement surveys 
 
 - Act visibly on survey results — employees disengage faster if they feel feedback leads to no action.
 - Focus on manager effectiveness — the single greatest driver of engagement is the relationship with the direct manager.
-- Recognize frequently and specifically — general praise is less impactful than timely, behavior-specific recognition.
+- Recognize frequently and specifically — general praise is less effective than timely, behavior-specific recognition.
 - Personalize engagement approaches — different employees are motivated by different things; one size does not fit all.
 - Measure engagement as a business metric alongside productivity and retention — it's a leading indicator of performance.

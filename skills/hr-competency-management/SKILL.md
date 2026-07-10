@@ -1,6 +1,6 @@
 ---
 name: hr-competency-management
-description: Help HR teams design, maintain, and apply competency frameworks across talent processes including hiring, performance management, learning, and succession. Use when asked to "build a competency framework", "define behavioral indicators", "create a competency library", "apply competencies to hiring", "assess competencies", "update our competency model", or "integrate competencies into performance reviews".
+description: Help HR teams design, maintain, and apply competency frameworks across talent processes including hiring, competency-based performance management, learning, and succession. Use when asked to "build a competency framework", "define behavioral indicators", "create a competency library", "apply competencies to hiring", "assess competencies", "update our competency model", or "integrate competencies into performance reviews".
 metadata:
   author: Tuan Duc Tran
   version: "1.0.0"

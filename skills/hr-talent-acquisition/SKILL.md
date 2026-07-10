@@ -1,6 +1,6 @@
 ---
 name: hr-talent-acquisition
-description: Help talent acquisition leaders, TA managers, and recruiting teams build and run a strategic talent acquisition function. Use when asked to "build a TA strategy", "design a talent pipeline", "improve time-to-hire", "set up ATS workflows", "measure recruiting effectiveness", "build sourcing channels", or "align hiring with business demand".
+description: "Help talent acquisition leaders, TA managers, and recruiting teams build and run a strategic talent acquisition function. Use when asked to build a TA strategy, design a talent pipeline, improve time-to-hire, set up ATS workflows, measure recruiting effectiveness, build sourcing channels, or align hiring with business demand., or build or improve the TA function itself"
 metadata:
   author: Tuan Duc Tran
   version: "1.0.0"

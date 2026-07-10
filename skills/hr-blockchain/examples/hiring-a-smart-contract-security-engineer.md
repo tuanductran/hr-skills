@@ -1,4 +1,4 @@
-# Scenario: Hiring a Smart Contract Security Engineer
+# Hiring a Smart Contract Security Engineer
 
 ## Context
 

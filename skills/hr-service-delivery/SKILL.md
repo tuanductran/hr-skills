@@ -1,8 +1,8 @@
 ---
 name: hr-service-delivery
-description: "Help HR operations teams design HR service delivery models, tiered support structures, SLAs, and case management workflows. Use when asked to 'design an HR service delivery model', 'set up HR tier 1/2/3 support', 'write an HR SLA', 'design an HR case management workflow', or similar HR service delivery tasks."
+description: "Help HR operations teams design HR service delivery models, tiered support structures, SLAs, and case management workflows. Use when asked to design an HR service delivery model, set up HR tier 1/2/3 support, write an HR SLA, design an HR case management workflow, or similar HR service delivery tasks."
 metadata:
-  author: "Tuan Duc Tran"
+  author: Tuan Duc Tran
   version: "1.0.0"
 ---
 

@@ -1,4 +1,4 @@
-# Scenario: Auditing Contractor Classification Risk
+# Auditing Contractor Classification Risk
 
 ## Context
 

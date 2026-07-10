@@ -6,7 +6,7 @@ metadata:
   version: "1.0.0"
 ---
 
-# HR UI/UX
+# HR UI/UX design hiring
 
 Comprehensive UI/UX and Product Design knowledge for HR and recruiters — from understanding modern design workflows and design systems to evaluating portfolios, screening designers, and improving technical hiring decisions.
 

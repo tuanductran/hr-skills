@@ -2,7 +2,7 @@
 name: biome
 description: "Repository guidance for using Biome as the formatter, linter, and code quality tool within the hr-skills monorepo."
 metadata:
-  author: "Tuan Duc Tran"
+  author: Tuan Duc Tran
   version: "1.0.0"
 ---
 

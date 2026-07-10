@@ -1,12 +1,14 @@
 ---
 name: hr-global-hr
-description: "Help HR teams manage international HR operations including multi-country compliance, global mobility, cross-cultural practices, and international workforce strategy. Use when asked to 'hire internationally', 'manage global HR compliance', 'build a global people strategy', 'handle expat management', 'expand HR to new countries', or similar global HR tasks."
+description: "Help HR teams manage international HR operations including multi-country compliance, global mobility, cross-cultural practices, and international workforce strategy. Use when asked to hire internationally, manage global HR compliance, build a global people strategy, handle expat management, expand HR to new countries, or similar global HR tasks."
 metadata:
-  author: "Tuan Duc Tran"
+  author: Tuan Duc Tran
   version: "1.0.0"
 ---
 
-# HR Global HR
+# HR global operations
+
+Design and operate HR programs that work across borders — from multi-country compliance and global mobility management to cross-cultural workforce practices and international people strategy aligned with business expansion.
 
 ## Supported tasks
 

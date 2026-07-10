@@ -6,7 +6,7 @@ metadata:
   version: "1.0.0"
 ---
 
-# HR Wellbeing
+# HR employee wellbeing
 
 Comprehensive employee wellbeing knowledge for HR business partners, wellbeing program managers, and people leaders — from understanding modern wellbeing program design and mental health support principles to running burnout risk assessments, building flexible work policies, and leading post-crisis stabilization.
 

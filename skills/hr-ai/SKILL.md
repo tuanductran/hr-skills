@@ -6,7 +6,7 @@ metadata:
   version: "1.0.0"
 ---
 
-# HR AI
+# HR AI hiring
 
 Comprehensive AI and Machine Learning knowledge for HR and recruiters — from understanding modern AI ecosystems and LLM workflows to evaluating AI candidates, interpreting portfolios, and improving technical hiring decisions.
 

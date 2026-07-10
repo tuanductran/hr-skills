@@ -1,4 +1,4 @@
-# Scenario: Building an Attrition Risk Early-Warning Model
+# Building an Attrition Risk Early-Warning Model
 
 ## Context
 

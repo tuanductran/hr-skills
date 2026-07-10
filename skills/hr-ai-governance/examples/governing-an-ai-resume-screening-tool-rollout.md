@@ -1,4 +1,4 @@
-# Scenario: Governing an AI Resume-Screening Tool Rollout
+# Governing an AI Resume-Screening Tool Rollout
 
 ## Context
 

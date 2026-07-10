@@ -1,6 +1,6 @@
 ---
 name: hr-people-leadership
-description: Help HR teams, managers, and people leaders build strong people leadership capabilities including team leadership, coaching, feedback, accountability, psychological safety, and inclusive leadership. Use when asked to "develop people leadership skills", "coach a manager", "improve team leadership", "build a leadership culture", "give feedback to a manager", or "assess people leadership effectiveness".
+description: "Help HR teams, managers, and people leaders build strong people leadership capabilities including team leadership, coaching, feedback, accountability, psychological safety, and inclusive leadership. Use when asked to develop people leadership skills, coach a manager, improve team leadership, build a leadership culture, give feedback to a manager, or assess people leadership effectiveness., or coach or develop an individual people leader"
 metadata:
   author: Tuan Duc Tran
   version: "1.0.0"

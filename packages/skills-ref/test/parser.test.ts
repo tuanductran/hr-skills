@@ -2,6 +2,7 @@ import { describe, expect, it } from 'bun:test';
 import { mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
+
 import { SKILLS_DIR } from '../src/constants.js';
 import { ParseError, ValidationError } from '../src/errors.js';
 import { findSkillMd, readProperties } from '../src/loader.js';
@@ -62,7 +63,10 @@ describe('findSkillMd', () => {
 		try {
 			expect(findSkillMd(tmp)).toBeNull();
 		} finally {
-			rmSync(tmp, { recursive: true, force: true });
+			rmSync(tmp, {
+				recursive: true,
+				force: true,
+			});
 		}
 	});
 });
@@ -76,13 +80,50 @@ describe('readProperties', () => {
 		expect(props.description.length).toBeGreaterThan(0);
 	});
 
+	it('trims string values through Valibot schema', () => {
+		const tmp = mkdtempSync(join(tmpdir(), 'skill-test-'));
+
+		writeFileSync(
+			join(tmp, 'SKILL.md'),
+			`---
+name: "  hr-test  "
+description: "  Test description  "
+license: " MIT "
+compatibility: " Node "
+metadata:
+  author: " Alice "
+---
+`,
+		);
+
+		try {
+			const props = readProperties(tmp);
+
+			expect(props.name).toBe('hr-test');
+			expect(props.description).toBe('Test description');
+			expect(props.license).toBe('MIT');
+			expect(props.compatibility).toBe('Node');
+			expect(props.metadata).toEqual({
+				author: 'Alice',
+			});
+		} finally {
+			rmSync(tmp, {
+				recursive: true,
+				force: true,
+			});
+		}
+	});
+
 	it('throws ParseError if no SKILL.md found', () => {
 		const tmp = mkdtempSync(join(tmpdir(), 'skill-test-'));
 
 		try {
 			expect(() => readProperties(tmp)).toThrow(ParseError);
 		} finally {
-			rmSync(tmp, { recursive: true, force: true });
+			rmSync(tmp, {
+				recursive: true,
+				force: true,
+			});
 		}
 	});
 
@@ -94,11 +135,14 @@ describe('readProperties', () => {
 		try {
 			expect(() => readProperties(tmp)).toThrow(ValidationError);
 		} finally {
-			rmSync(tmp, { recursive: true, force: true });
+			rmSync(tmp, {
+				recursive: true,
+				force: true,
+			});
 		}
 	});
 
-	it('throws ValidationError if description is missing', () => {
+	it('throws ValidationError if description field is missing', () => {
 		const tmp = mkdtempSync(join(tmpdir(), 'skill-test-'));
 
 		writeFileSync(join(tmp, 'SKILL.md'), '---\nname: hr-test\n---\n');
@@ -106,7 +150,34 @@ describe('readProperties', () => {
 		try {
 			expect(() => readProperties(tmp)).toThrow(ValidationError);
 		} finally {
-			rmSync(tmp, { recursive: true, force: true });
+			rmSync(tmp, {
+				recursive: true,
+				force: true,
+			});
+		}
+	});
+
+	it('throws ValidationError for invalid field types', () => {
+		const tmp = mkdtempSync(join(tmpdir(), 'skill-test-'));
+
+		writeFileSync(
+			join(tmp, 'SKILL.md'),
+			`---
+name:
+  invalid: object
+description:
+  - invalid
+---
+`,
+		);
+
+		try {
+			expect(() => readProperties(tmp)).toThrow(ValidationError);
+		} finally {
+			rmSync(tmp, {
+				recursive: true,
+				force: true,
+			});
 		}
 	});
 });
