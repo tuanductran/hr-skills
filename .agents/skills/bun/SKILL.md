@@ -3,7 +3,7 @@ name: bun
 description: "Repository guidance for using Bun as the runtime, package manager, and workspace toolchain within the hr-skills monorepo."
 metadata:
   author: Tuan Duc Tran
-  version: "1.1.0"
+  version: "1.1.1"
 ---
 
 # Bun
@@ -38,6 +38,47 @@ This repository uses Bun for:
 - test execution
 
 Package managers such as npm, pnpm, and Yarn are not supported.
+
+## Dependency catalogs
+
+This repository centralizes shared dependency versions using Bun catalogs.
+
+Catalogs ensure that common dependencies are defined once in the root
+`package.json` and reused consistently across every workspace package.
+
+Workspace packages should reference shared dependencies using the
+`catalog:` protocol instead of repeating version numbers.
+
+Use the default catalog.
+
+```json
+{
+  "dependencies": {
+    "typescript": "catalog:"
+  }
+}
+```
+
+Use a named catalog.
+
+```json
+{
+  "devDependencies": {
+    "@biomejs/biome": "catalog:biome",
+    "@commitlint/cli": "catalog:commit"
+  }
+}
+```
+
+Benefits:
+
+- keeps dependency versions consistent across the repository
+- updates shared dependency versions in one place
+- reduces duplicated version declarations
+- simplifies workspace maintenance
+
+Internal workspace packages should continue using the `workspace:*`
+protocol.
 
 ### Node.js compatibility
 
@@ -238,6 +279,10 @@ bun run test
 - Forgetting to synchronize generated repository artifacts.
 - Running package scripts from the wrong workspace.
 - Missing `bun install` after dependency changes.
+- Hardcoding dependency versions that should come from a shared catalog.
+- Using explicit semver instead of `catalog:` for repository-standard dependencies.
+- Updating versions in workspace packages instead of the root catalog.
+- Using `catalog:` for internal workspace packages instead of `workspace:*`.
 
 ## Best practices
 
@@ -251,3 +296,7 @@ bun run test
 - Use Turborepo to orchestrate workspace tasks.
 - Keep internal packages versioned through the workspace.
 - Prefer reproducible installations with `bun install --frozen-lockfile` in CI.
+- Use `catalog:` for shared external dependencies.
+- Use named catalogs to group related tooling (for example: `biome`, `commit`, `markdown`).
+- Update dependency versions in the root catalog instead of individual workspace packages.
+- Use `workspace:*` only for internal packages.

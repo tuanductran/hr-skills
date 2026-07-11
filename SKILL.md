@@ -52,6 +52,18 @@ the task and tell you which `skills/<name>/SKILL.md` to load next.
 | [hr-demand-planning](skills/hr-demand-planning) | Translating business strategy into headcount demand |
 | [hr-talent-supply-chain](skills/hr-talent-supply-chain) | Build/buy/borrow/bot strategy, talent pools, market availability |
 | [hr-talent-intelligence](skills/hr-talent-intelligence) | Talent market data, comp benchmarking, competitive intel |
+| [hr-market-mapping](skills/hr-market-mapping) | Talent market maps, target companies, market sizing |
+| [hr-talent-mapping](skills/hr-talent-mapping) | Named-candidate benches, internal/external succession maps |
+| [hr-passive-candidate-engagement](skills/hr-passive-candidate-engagement) | Outreach to non-active candidates, nurture sequences |
+| [hr-search-strategy](skills/hr-search-strategy) | Upfront search planning, channel mix, search briefs |
+| [hr-retained-search](skills/hr-retained-search) | Retained search engagements, slates, milestone delivery |
+| [hr-candidate-assessment](skills/hr-candidate-assessment) | Skills tests, work samples, assessment centers, rubrics |
+| [hr-reference-checking](skills/hr-reference-checking) | Reference check design, calls, interpreting results |
+| [hr-offer-management](skills/hr-offer-management) | Offer construction, approvals, negotiation, counteroffers |
+| [hr-recruitment-operations](skills/hr-recruitment-operations) | Requisition workflows, ATS config, recruiting SLAs |
+| [hr-recruitment-marketing](skills/hr-recruitment-marketing) | Job ad copy, hiring campaigns, careers content, funnel metrics |
+| [hr-talent-crm](skills/hr-talent-crm) | Talent CRM segmentation, nurture campaigns, silver medalists |
+| [hr-executive-assessment](skills/hr-executive-assessment) | C-suite/board-level candidate evaluation, derailment risk |
 
 ### Onboarding, offboarding & people operations
 
@@ -67,6 +79,7 @@ the task and tell you which `skills/<name>/SKILL.md` to load next.
 | [hr-operating-model](skills/hr-operating-model) | HRBP/CoE/Shared Services structure, three-pillar model |
 | [hr-hr-management](skills/hr-hr-management) | Running the HR function itself: team goals, budget, governance |
 | [hr-employee-lifecycle](skills/hr-employee-lifecycle) | End-to-end journey mapping from attraction to alumni |
+| [hr-vendor-management](skills/hr-vendor-management) | HR vendor selection, contracting, performance, consolidation |
 
 ### Performance, talent & career management
 
@@ -91,6 +104,7 @@ the task and tell you which `skills/<name>/SKILL.md` to load next.
 | [hr-total-rewards](skills/hr-total-rewards) | Salary bands, pay equity, incentive plans, compa-ratio, total rewards statements |
 | [hr-job-architecture](skills/hr-job-architecture) | Job families, career levels, leveling criteria, grade structures |
 | [hr-recognition](skills/hr-recognition) | Recognition programs, peer recognition, service awards |
+| [hr-salary-benchmarking](skills/hr-salary-benchmarking) | Market pay data, salary ranges, competitiveness assessment |
 
 ### Learning & development
 
@@ -117,6 +131,9 @@ the task and tell you which `skills/<name>/SKILL.md` to load next.
 | [hr-consulting](skills/hr-consulting) | Internal HR consulting, business cases, diagnostics |
 | [hr-strategic-planning](skills/hr-strategic-planning) | HR strategy, annual plans, HR roadmap, business alignment |
 | [hr-workforce-transformation](skills/hr-workforce-transformation) | Large-scale restructuring, automation impact, reskilling at scale |
+| [hr-crisis-management](skills/hr-crisis-management) | HR crisis playbooks, incident response, business continuity |
+| [hr-mergers-acquisitions](skills/hr-mergers-acquisitions) | HR due diligence, culture fit assessment, pre-close deal risk |
+| [hr-post-merger-integration](skills/hr-post-merger-integration) | Post-close org/culture/systems harmonization, retention |
 
 ### Workforce planning & analytics
 
@@ -128,6 +145,13 @@ the task and tell you which `skills/<name>/SKILL.md` to load next.
 | [hr-workforce-intelligence](skills/hr-workforce-intelligence) | Attrition prediction, headcount trends, skills inventories |
 | [hr-workforce-scheduling](skills/hr-workforce-scheduling) | Shift schedules, staffing forecasts, shift swaps |
 | [hr-time-attendance](skills/hr-time-attendance) | Time tracking policy, overtime, lateness, attendance systems |
+| [hr-skills-intelligence](skills/hr-skills-intelligence) | Skills inventories, emerging-skill trends, skills-gap forecasting |
+| [hr-workforce-scenario-planning](skills/hr-workforce-scenario-planning) | Multi-scenario headcount modeling, stress-testing plans |
+| [hr-strategic-workforce-planning](skills/hr-strategic-workforce-planning) | Long-range business strategy to workforce roadmap |
+| [hr-workforce-economics](skills/hr-workforce-economics) | Fully loaded labor cost, headcount business cases, ROI |
+| [hr-organization-network-analysis](skills/hr-organization-network-analysis) | Informal collaboration networks, hidden influencers, silos |
+| [hr-workforce-forecasting](skills/hr-workforce-forecasting) | Quantitative headcount/attrition/hiring demand forecasts |
+| [hr-predictive-analytics](skills/hr-predictive-analytics) | Attrition/performance/hiring-success predictive models |
 
 ### HR technology, data & AI
 
@@ -145,6 +169,9 @@ the task and tell you which `skills/<name>/SKILL.md` to load next.
 | [hr-ai-privacy](skills/hr-ai-privacy) | Employee data privacy in AI systems, GDPR, consent design |
 | [hr-ai-change-management](skills/hr-ai-change-management) | Managing the human side of AI adoption, resistance, readiness |
 | [hr-agentic-ai](skills/hr-agentic-ai) | Autonomous HR agents, multi-agent workflows, governance of agentic AI |
+| [hr-ai-evaluation](skills/hr-ai-evaluation) | AI vendor evaluation, bias/accuracy assessment, pilots |
+| [hr-ai-adoption](skills/hr-ai-adoption) | Driving sustained AI tool adoption, enablement, resistance |
+| [hr-system-integration](skills/hr-system-integration) | HRIS/ATS/payroll integration architecture, data sync issues |
 
 ### Compliance, labor relations & risk
 
@@ -172,6 +199,8 @@ the task and tell you which `skills/<name>/SKILL.md` to load next.
 | [hr-wellbeing](skills/hr-wellbeing) | Wellbeing programs, burnout risk, mental health support, flexible work |
 | [hr-future-of-work](skills/hr-future-of-work) | Hybrid work models, AI's impact on jobs, evolving expectations |
 | [hr-internal-mobility](skills/hr-internal-mobility) | Lateral moves, internal job posting, talent marketplace |
+| [hr-employee-journey-mapping](skills/hr-employee-journey-mapping) | End-to-end journey maps, moments that matter, friction points |
+| [hr-employee-communications](skills/hr-employee-communications) | Internal HR announcements, comms calendars, sensitive messages |
 
 ### Project management & global/local context
 
@@ -179,6 +208,7 @@ the task and tell you which `skills/<name>/SKILL.md` to load next.
 |---|---|
 | [hr-project-management](skills/hr-project-management) | Project charters, timelines, stakeholder plans for HR initiatives |
 | [hr-global-hr](skills/hr-global-hr) | Multi-country compliance, global mobility, cross-cultural HR |
+| [hr-global-expansion](skills/hr-global-expansion) | Entering a new country: entity vs. EOR, local HR readiness |
 | [hr-vietnam-context](skills/hr-vietnam-context) | **Vietnam Labor Code, Social Insurance Law, PIT, work permits, trade unions, disciplinary process under VN law.** Load alongside any functional skill when the org or employees are in Vietnam. |
 
 ### Software-engineering & technical hiring specialists

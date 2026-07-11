@@ -44,9 +44,9 @@
 		"typecheck": "tsc --noEmit"
 	},
 	"dependencies": {
-		"valibot": "^1.4.2"
+		"valibot": "catalog:"
 	},
 	"devDependencies": {
-		"tsdown": "^0.22.3"
+		"tsdown": "catalog:"
 	}
 }
