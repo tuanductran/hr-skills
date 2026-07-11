@@ -5,6 +5,7 @@
 		"davidanson.vscode-markdownlint",
 		"oven.bun-vscode",
 		"vercel.turbo-vsc",
-		"ms-vscode.vscode-typescript-next"
+		"ms-vscode.vscode-typescript-next",
+		"yoavbls.pretty-ts-errors"
 	]
 }
