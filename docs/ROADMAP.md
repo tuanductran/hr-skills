@@ -595,10 +595,10 @@ None beyond the "validates all HR skills without errors" integration-style asser
 | `lint.yml` | PR to `main`/`dev` | Biome check, Markdown lint | ✅ Solid |
 | `test.yml` | PR to `main`/`dev` | `bun run test`, matrix `[ubuntu-latest, windows-latest]`, Turbo cache | ✅ Cross-platform coverage is a genuine strength |
 | `typecheck.yml` | PR to `main`/`dev` | `bun run typecheck`, same OS matrix, Turbo cache | ✅ Solid |
+| `validate.yml` | PR to `main`/`dev` | `bun run validate`, matrix `[ubuntu-latest, windows-latest]`, Turbo cache | ✅ Skill validation gate (P0) |
 
 ### Recommended improvements
 
-- ⚠ **`bun run validate` (SKILL.md structural validation) is not run in any CI workflow.** This is the single most important missing CI gate for a repo whose entire value proposition is 141 schema-conformant content files — a PR that adds a broken `SKILL.md` would currently pass lint/test/typecheck and merge cleanly. **This should be P0.**
 - ⚠ `bun run knip` (unused-file/dependency detection) is wired into the local `pre-push` Lefthook hook but **not** into CI — a contributor who skips or bypasses hooks (`--no-verify`) gets no CI backstop.
 - ⚠ `bun run lint:links` (Markdown link validation) is a defined script but not run in `lint.yml` or anywhere else in CI.
 - ❌ **No release workflow.** Releases are 100% local (`bun run release`). A `release.yml` triggered on `main` push (or manually via `workflow_dispatch`) running `changelogen` and creating a GitHub Release would remove the single point of failure of one maintainer's local machine.
