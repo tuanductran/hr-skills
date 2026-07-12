@@ -529,7 +529,11 @@ None exist today beyond what's implicit in `AGENTS.md`'s "Project structure" and
 
 ### Dependabot
 
-🟨 Also configured (`.github/dependabot.yml`, weekly, npm ecosystem) — **redundant with Renovate**, and `.whitesource`/Mend is a **third** dependency-scanning tool. Running three overlapping dependency bots is unusual and likely to produce duplicate/conflicting PRs; consolidating to one (Renovate, given its richer grouping config) is a clear, low-risk DX win.
+✅ Configured (`.github/dependabot.yml`, weekly, npm ecosystem) for **GitHub Security Alerts and Security Updates only**, not for general version update PRs. This separation of concerns avoids duplicate PRs with Renovate while leveraging Dependabot's native GitHub integration for security-critical patches.
+
+### Mend (WhiteSource)
+
+🟨 Also configured (`.whitesource`) — reserved for **Software Composition Analysis (SCA), license compliance, and enterprise-scale policy enforcement** if needed in the future. Not actively driving PRs today, as the project's current scale doesn't require license-compliance scanning or policy-driven remediation workflows. Should remain in place but not actively managed unless organizational compliance needs arise.
 
 ### CI
 
@@ -545,7 +549,6 @@ See [Testing Roadmap](#testing-roadmap).
 
 ### Suggestions
 
-- Consolidate to a single dependency bot (Renovate).
 - Add a `.node-version`/Bun-version pin consumed by both local dev and `oven-sh/setup-bun@v2` in CI to remove version-drift risk.
 - Add a `bun run doctor`/`bun run ci` composite script mirroring `.claude/commands/release-check.md`'s 7-step checklist, so humans and CI use the identical command a Claude Code slash command already encodes.
 
@@ -597,12 +600,13 @@ None beyond the "validates all HR skills without errors" integration-style asser
 | `lint.yml` | PR to `main`/`dev` | Biome check, Markdown lint | ✅ Solid |
 | `test.yml` | PR to `main`/`dev` | `bun run test`, matrix `[ubuntu-latest, windows-latest]`, Turbo cache | ✅ Cross-platform coverage is a genuine strength |
 | `typecheck.yml` | PR to `main`/`dev` | `bun run typecheck`, same OS matrix, Turbo cache | ✅ Solid |
+| `validate.yml` | PR to `main`/`dev` | `bun run validate`, matrix `[ubuntu-latest, windows-latest]`, Turbo cache | ✅ Skill validation gate (P0) |
+| `knip.yml` | PR to `main`/`dev` | `bun run knip` | ✅ Unused-file detection (CI) |
 
 ### Recommended improvements
 
-- ⚠ **`bun run validate` (SKILL.md structural validation) is not run in any CI workflow.** This is the single most important missing CI gate for a repo whose entire value proposition is 146 schema-conformant content files — a PR that adds a broken `SKILL.md` would currently pass lint/test/typecheck and merge cleanly. **This should be P0.**
-- ⚠ `bun run knip` (unused-file/dependency detection) is wired into the local `pre-push` Lefthook hook but **not** into CI — a contributor who skips or bypasses hooks (`--no-verify`) gets no CI backstop.
-- ⚠ `bun run lint:links` (Markdown link validation) is a defined script but not run in `lint.yml` or anywhere else in CI.
+- ✅ `bun run knip` is now run in CI via `.github/workflows/knip.yml` — unused-file/dependency detection has a CI backstop.
+- ✅ `bun run lint:links` has been added to `lint.yml` to validate Markdown links in CI.
 - ❌ **No release workflow.** Releases are 100% local (`bun run release`). A `release.yml` triggered on `main` push (or manually via `workflow_dispatch`) running `changelogen` and creating a GitHub Release would remove the single point of failure of one maintainer's local machine.
 - ❌ No CodeQL / dependency-review GitHub Action despite three separate dependency-scanning tools (Renovate, Dependabot, Mend/Whitesource) being configured — none of them are GitHub's own native security scanning.
 - 🟨 No `workflow_dispatch` manual-trigger option on any existing workflow for re-running checks without a new commit.

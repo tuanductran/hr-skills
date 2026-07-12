@@ -101,6 +101,10 @@ This updates `.claude-plugin/marketplace.json`. No manual edits are needed.
 bun run validate     # Must pass with 0 errors
 ```
 
+After validation, update the root router so your skill is discoverable:
+
+Update the root router at `.agents/skills/hr-root-router-maintaining` so your skill appears in the routing table. See `.agents/skills/hr-root-router-maintaining/SKILL.md` for guidance on the exact router update step.
+
 ### 5. Open a pull request
 
 - Target the `dev` branch (never `main` directly)
