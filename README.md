@@ -126,27 +126,22 @@ Claude automatically uses the recruiting skill to generate structured, competenc
 
 ## Available skills
 
-The repository currently includes more than 40 HR skills covering topics such as:
+The repository includes 100+ HR skills, organized into the following functional clusters (see the root [`SKILL.md`](SKILL.md) router for the full, up-to-date list of skills in each):
 
-- Recruiting
-- Talent Acquisition
-- Interviewing
-- Job Descriptions
-- HR Analytics
-- HR Technology
-- People Operations
-- Performance Management
-- Learning and Development
-- Compensation and Benefits
-- Leadership Development
-- Employer Branding
-- Workforce Planning
-- Compliance
-- Employee Experience
-- Organizational Development
-- Software Engineering recruiting
-- Vietnam HR
-- and many more.
+- Talent acquisition & recruiting
+- Onboarding, offboarding & people operations
+- Performance, talent & career management
+- Compensation, benefits & rewards
+- Learning & development
+- Organizational development, design & change
+- Workforce planning & analytics
+- HR technology, data & AI
+- Compliance, labor relations & risk
+- Culture, engagement, experience & wellbeing
+- Project management & global/local context
+- Software-engineering & technical hiring specialists
+
+New skills are added continuously, so the exact count and per-cluster breakdown always live in [`SKILL.md`](SKILL.md) rather than here.
 
 ## Repository structure
 
