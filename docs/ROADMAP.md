@@ -601,11 +601,12 @@ None beyond the "validates all HR skills without errors" integration-style asser
 | `test.yml` | PR to `main`/`dev` | `bun run test`, matrix `[ubuntu-latest, windows-latest]`, Turbo cache | ✅ Cross-platform coverage is a genuine strength |
 | `typecheck.yml` | PR to `main`/`dev` | `bun run typecheck`, same OS matrix, Turbo cache | ✅ Solid |
 | `validate.yml` | PR to `main`/`dev` | `bun run validate`, matrix `[ubuntu-latest, windows-latest]`, Turbo cache | ✅ Skill validation gate (P0) |
+| `knip.yml` | PR to `main`/`dev` | `bun run knip` | ✅ Unused-file detection (CI) |
 
 ### Recommended improvements
 
-- ⚠ `bun run knip` (unused-file/dependency detection) is wired into the local `pre-push` Lefthook hook but **not** into CI — a contributor who skips or bypasses hooks (`--no-verify`) gets no CI backstop.
-- ⚠ `bun run lint:links` (Markdown link validation) is a defined script but not run in `lint.yml` or anywhere else in CI.
+- ✅ `bun run knip` is now run in CI via `.github/workflows/knip.yml` — unused-file/dependency detection has a CI backstop.
+- ✅ `bun run lint:links` has been added to `lint.yml` to validate Markdown links in CI.
 - ❌ **No release workflow.** Releases are 100% local (`bun run release`). A `release.yml` triggered on `main` push (or manually via `workflow_dispatch`) running `changelogen` and creating a GitHub Release would remove the single point of failure of one maintainer's local machine.
 - ❌ No CodeQL / dependency-review GitHub Action despite three separate dependency-scanning tools (Renovate, Dependabot, Mend/Whitesource) being configured — none of them are GitHub's own native security scanning.
 - 🟨 No `workflow_dispatch` manual-trigger option on any existing workflow for re-running checks without a new commit.
