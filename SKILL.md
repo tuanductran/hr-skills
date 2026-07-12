@@ -105,6 +105,7 @@ the task and tell you which `skills/<name>/SKILL.md` to load next.
 | [hr-job-architecture](skills/hr-job-architecture) | Job families, career levels, leveling criteria, grade structures |
 | [hr-recognition](skills/hr-recognition) | Recognition programs, peer recognition, service awards |
 | [hr-salary-benchmarking](skills/hr-salary-benchmarking) | Market pay data, salary ranges, competitiveness assessment |
+| [hr-retirement-benefits](skills/hr-retirement-benefits) | Retirement/pension plan design, provider comparison, employee education |
 
 ### Learning & development
 
@@ -134,6 +135,7 @@ the task and tell you which `skills/<name>/SKILL.md` to load next.
 | [hr-crisis-management](skills/hr-crisis-management) | HR crisis playbooks, incident response, business continuity |
 | [hr-mergers-acquisitions](skills/hr-mergers-acquisitions) | HR due diligence, culture fit assessment, pre-close deal risk |
 | [hr-post-merger-integration](skills/hr-post-merger-integration) | Post-close org/culture/systems harmonization, retention |
+| [hr-ma-integration-by-country](skills/hr-ma-integration-by-country) | Country-specific labor law, works councils, consultation rules for cross-border M&A |
 
 ### Workforce planning & analytics
 
@@ -149,6 +151,7 @@ the task and tell you which `skills/<name>/SKILL.md` to load next.
 | [hr-workforce-scenario-planning](skills/hr-workforce-scenario-planning) | Multi-scenario headcount modeling, stress-testing plans |
 | [hr-strategic-workforce-planning](skills/hr-strategic-workforce-planning) | Long-range business strategy to workforce roadmap |
 | [hr-workforce-economics](skills/hr-workforce-economics) | Fully loaded labor cost, headcount business cases, ROI |
+| [hr-people-budgeting](skills/hr-people-budgeting) | People budget by cost center, budget cycles, variance tracking |
 | [hr-organization-network-analysis](skills/hr-organization-network-analysis) | Informal collaboration networks, hidden influencers, silos |
 | [hr-workforce-forecasting](skills/hr-workforce-forecasting) | Quantitative headcount/attrition/hiring demand forecasts |
 | [hr-predictive-analytics](skills/hr-predictive-analytics) | Attrition/performance/hiring-success predictive models |
@@ -172,6 +175,7 @@ the task and tell you which `skills/<name>/SKILL.md` to load next.
 | [hr-ai-evaluation](skills/hr-ai-evaluation) | AI vendor evaluation, bias/accuracy assessment, pilots |
 | [hr-ai-adoption](skills/hr-ai-adoption) | Driving sustained AI tool adoption, enablement, resistance |
 | [hr-system-integration](skills/hr-system-integration) | HRIS/ATS/payroll integration architecture, data sync issues |
+| [hr-chatbot-design](skills/hr-chatbot-design) | HR chatbot conversation flows, Slack/Teams bot scripts, escalation design |
 
 ### Compliance, labor relations & risk
 
@@ -186,6 +190,7 @@ the task and tell you which `skills/<name>/SKILL.md` to load next.
 | [hr-policy-management](skills/hr-policy-management) | Writing/updating HR policies and the employee handbook |
 | [hr-immigration](skills/hr-immigration) | Visa sponsorship, global mobility, work-authorization compliance |
 | [hr-payroll](skills/hr-payroll) | Payroll processing, compliance, calendars, discrepancies, multi-country payroll |
+| [hr-accessibility-accommodation](skills/hr-accessibility-accommodation) | Accommodation request process, accessible hiring, disability inclusion |
 
 ### Culture, engagement, experience & wellbeing
 
