@@ -38,7 +38,7 @@ This document is a living, maintainer-level roadmap reverse-engineered directly 
 
 ### What this project is
 
-**HR Skills** is a Bun/Turborepo monorepo that packages **141 domain-specific [Agent Skills](https://agentskills.io/)** for Human Resources and Talent Acquisition professionals, distributed as `SKILL.md` files consumable by **Claude Code** and **claude.ai**. Alongside the content library, the repository ships two internal TypeScript packages (`hr-skills-build`, `skills-ref`) that validate, sync, and programmatically consume those skills, plus a `.claude-plugin/marketplace.json` manifest that turns the whole collection into an installable Claude plugin marketplace.
+**HR Skills** is a Bun/Turborepo monorepo that packages **146 domain-specific [Agent Skills](https://agentskills.io/)** for Human Resources and Talent Acquisition professionals, distributed as `SKILL.md` files consumable by **Claude Code** and **claude.ai**. Alongside the content library, the repository ships two internal TypeScript packages (`hr-skills-build`, `skills-ref`) that validate, sync, and programmatically consume those skills, plus a `.claude-plugin/marketplace.json` manifest that turns the whole collection into an installable Claude plugin marketplace.
 
 Unlike a typical "prompt collection" repo, this project treats skill content as **structured, versioned, schema-validated software artifacts** — every `SKILL.md` has required frontmatter, required sections, line-count ceilings, and an automated validator that runs in CI. That is the defining architectural decision of the whole repository: **content is code**.
 
@@ -65,9 +65,9 @@ The repository sits at the intersection of three ecosystems:
 ### Design philosophy
 
 - **Content is code.** Skills are validated with the same rigor as TypeScript source: schema-checked frontmatter, required sections, length ceilings, blank-line-before-list Markdown rules enforced by a custom validator — not just markdownlint.
-- **Router, don't repeat.** The root `SKILL.md` is explicitly documented as carrying "no HR opinions" — it is a pure dispatcher to the 141 specialized skills, keeping domain knowledge in exactly one place per topic.
+- **Router, don't repeat.** The root `SKILL.md` is explicitly documented as carrying "no HR opinions" — it is a pure dispatcher to the 146 specialized skills, keeping domain knowledge in exactly one place per topic.
 - **Progressive disclosure.** `SKILL.md` is described in `AGENTS.md` as "an overview, not an exhaustive manual" — deeper material is pushed into optional `content/`, `prompts/`, and `examples/` directories so the base skill stays inside a shared context budget (hard 500-line ceiling, enforced by `validateLineCount`).
-- **Intentional heterogeneity.** The README explicitly states that varying levels of skill completeness (`SKILL.md`-only vs. fully-fleshed skills with `content/`, `prompts/`, `examples/`) is a deliberate design choice, not an oversight — though this roadmap will show the current split (72 bare / 34 partial / 36 full) is skewed further toward "bare" than is ideal for a mature library.
+- **Intentional heterogeneity.** The README explicitly states that varying levels of skill completeness (`SKILL.md`-only vs. fully-fleshed skills with `content/`, `prompts/`, `examples/`) is a deliberate design choice, not an oversight — though this roadmap will show the current split (76 bare / 34 partial / 36 full) is skewed further toward "bare" than is ideal for a mature library.
 
 ### Architectural philosophy
 
@@ -97,15 +97,15 @@ MIT-licensed content, Apache-2.0-licensed `skills-ref` library (a deliberate spl
 
 | Metric | Count | Notes |
 |---|---:|---|
-| HR skill packages (`skills/hr-*`) | **141** | Discovered via `getHrSkills()` at runtime; matches `.claude-plugin/marketplace.json` plugin count exactly (141) |
+| HR skill packages (`skills/hr-*`) | **146** | Discovered via `getHrSkills()` at runtime; matches `.claude-plugin/marketplace.json` plugin count exactly (146) |
 | Maintainer/meta skills (`.agents/skills/*`) | **12** | `biome`, `bun`, `turbo`, `typescript`, `valibot`, `markdown`, `pdf`, `humanizer`, `skill-vetter`, `hr-skills-maintaining`, `hr-root-router-maintaining`, `github-awesome-copilot-git-commit` |
-| Total `SKILL.md` files | **154** | 141 HR + 12 `.agents` + 1 root router |
+| Total `SKILL.md` files | **159** | 146 HR + 12 `.agents` + 1 root router |
 | Skills with `content/` | **~70** | Human-readable companion guidance per domain |
 | Skills with `examples/` | **~70** | Practical end-to-end workflow files |
 | Skills with `prompts/` | **~36** | Reusable, topic-grouped prompt libraries |
-| **Bare skills (`SKILL.md` only)** | **72 (≈51%)** | No `content/`, `prompts/`, or `examples/` at all |
+| **Bare skills (`SKILL.md` only)** | **76 (≈52%)** | No `content/`, `prompts/`, or `examples/` at all — includes all recently-added skills, which shipped `SKILL.md`-only per the "bare is an acceptable starting tier" convention |
 | **Fully-fleshed skills (all three dirs)** | **36 (≈25%)** | The "gold standard" tier |
-| **Partial skills (`content/` + `examples/`, no `prompts/`)** | **34 (≈24%)** | The largest structured-but-incomplete tier |
+| **Partial skills (`content/` + `examples/`, no `prompts/`)** | **34 (≈23%)** | The largest structured-but-incomplete tier |
 | Internal TypeScript packages | **2** | `packages/hr-skills-build`, `packages/skills-ref` |
 | Unit test files | **9** | 5 in `skills-ref`, 4 in `hr-skills-build` |
 | GitHub Actions workflows | **3** | `lint.yml`, `test.yml`, `typecheck.yml` — **no release/publish workflow** |
@@ -137,21 +137,21 @@ hr-skills/ (root workspace, private, version 1.0.3)
 ├── packages/*                     ← Bun workspace glob
 │   ├── hr-skills-build/           ← app-like tooling package (validate, sync)
 │   └── skills-ref/                ← publishable-shaped library package
-├── skills/hr-*/                   ← 141 content packages (not a Bun workspace member)
+├── skills/hr-*/                   ← 146 content packages (not a Bun workspace member)
 ├── .agents/skills/*                ← 12 meta/maintainer skills (not a Bun workspace member)
 ├── .claude/                        ← Claude Code project config (commands, settings)
 ├── .claude-plugin/                 ← generated marketplace manifest
 └── docs/format.md                  ← the Agent-Skills-for-this-repo specification
 ```
 
-**Important architectural note:** `skills/` and `.agents/` are **not** part of the Bun `workspaces.packages` glob (`packages/*` only). They are plain content directories, discovered at runtime by `hr-skills-build` via `readdir`, not by Bun's workspace resolver. This is correct — they aren't npm packages — but it means the "workspace" mental model only really applies to the two TypeScript packages; the 141+12 skills are a parallel, filesystem-convention-driven system layered on top.
+**Important architectural note:** `skills/` and `.agents/` are **not** part of the Bun `workspaces.packages` glob (`packages/*` only). They are plain content directories, discovered at runtime by `hr-skills-build` via `readdir`, not by Bun's workspace resolver. This is correct — they aren't npm packages — but it means the "workspace" mental model only really applies to the two TypeScript packages; the 146+12 skills are a parallel, filesystem-convention-driven system layered on top.
 
 ### Package relationships
 
 ```mermaid
 graph LR
     A["skills-ref<br/>(Apache-2.0, generic Agent-Skills library)"] -->|workspace:*| B["hr-skills-build<br/>(MIT, HR-repo-specific tooling)"]
-    B -->|reads/writes| C["skills/hr-*/SKILL.md<br/>(141 content packages)"]
+    B -->|reads/writes| C["skills/hr-*/SKILL.md<br/>(146 content packages)"]
     B -->|reads/writes| D[".claude-plugin/marketplace.json"]
     E["root SKILL.md<br/>(router, no HR content)"] -->|links to| C
     F[".agents/skills/*<br/>(12 meta skills)"] -.->|documents how to maintain| B
@@ -177,7 +177,7 @@ graph LR
 
 ### Current architecture
 
-A two-layer system: (1) a **content layer** of 141 independently-versioned `SKILL.md` packages with optional supporting directories, and (2) a **tooling layer** of two TypeScript packages that discover, validate, and sync that content into a distributable manifest. Turborepo orchestrates the tooling layer's tasks (`build`, `test`, `typecheck`, `validate`, `sync`); the content layer has no build step of its own — a `SKILL.md` file *is* the shipped artifact.
+A two-layer system: (1) a **content layer** of 146 independently-versioned `SKILL.md` packages with optional supporting directories, and (2) a **tooling layer** of two TypeScript packages that discover, validate, and sync that content into a distributable manifest. Turborepo orchestrates the tooling layer's tasks (`build`, `test`, `typecheck`, `validate`, `sync`); the content layer has no build step of its own — a `SKILL.md` file *is* the shipped artifact.
 
 ### Desired architecture (near-term)
 
@@ -315,17 +315,19 @@ graph TD
 
 ### Coverage
 
-The 141 HR skills are organized (per the root router) into **9 functional clusters**: Talent Acquisition & Recruiting (25 skills), Onboarding/Offboarding/People Ops (11), Performance/Talent/Career Management (10), Compensation/Benefits/Rewards (5), Learning & Development (7), Org Development/Design/Change (12), Workforce Planning & Analytics (13), HR Technology/Data/AI (14), Compliance/Labor Relations/Risk (9), Culture/Engagement/Experience/Wellbeing (10), Project Management & Global/Local Context (4), and Software-Engineering/Technical Hiring Specialists (18). This is genuinely comprehensive coverage of the modern HR function — the README's claim of "40 HR skills" **understates the current library by roughly 3.5×** (see [Technical Debt](#technical-debt)).
+The 146 HR skills are organized (per the root router) into **12 functional clusters**: Talent Acquisition & Recruiting (26 skills), Onboarding/Offboarding/People Ops (11), Performance/Talent/Career Management (10), Compensation/Benefits/Rewards (6), Learning & Development (7), Org Development/Design/Change (13), Workforce Planning & Analytics (14), HR Technology/Data/AI (16), Compliance/Labor Relations/Risk (10), Culture/Engagement/Experience/Wellbeing (10), Project Management & Global/Local Context (4), and Software-Engineering/Technical Hiring Specialists (19). This is genuinely comprehensive coverage of the modern HR function. ✅ The README's former "40 HR skills" understatement has been fixed — it now states "100+" and points to the root `SKILL.md` router as the single source of truth for the live count and per-cluster breakdown, so it no longer needs manual re-syncing every time the skill count changes (see [Technical Debt](#technical-debt)).
 
 ### Missing domains
 
-Despite broad coverage, a few plausible domains have no dedicated skill yet:
+The five domain gaps identified in the previous edition of this roadmap have all been closed:
 
-- **HR budgeting & financial planning** (People budget ownership, cost-center modeling) — adjacent to `hr-workforce-economics` but not the same scope.
-- **Internal communications tooling specifics** (Slack/Teams HR bot design) beyond `hr-employee-communications`.
-- **Retirement/pension specialist guidance** beyond the general `hr-compensation-benefits` bucket.
-- **HR M&A integration playbooks by country** — `hr-mergers-acquisitions` and `hr-post-merger-integration` exist, but only `hr-vietnam-context` gets country-specific depth; no equivalent for other major markets (US, EU, India).
-- **Accessibility/disability accommodation** as a first-class skill (currently folded into `hr-compliance`'s ADA prompts only).
+- ✅ **HR budgeting & financial planning** — added as `hr-people-budgeting` (people budget by cost center, budget cycles, variance tracking), distinct in scope from `hr-workforce-economics`.
+- ✅ **Internal communications tooling specifics** — added as `hr-chatbot-design` (Slack/Teams HR bot conversation flows, escalation design), distinct from the content-focused `hr-employee-communications`.
+- ✅ **Retirement/pension specialist guidance** — added as `hr-retirement-benefits`, split out from the general `hr-compensation-benefits` bucket.
+- ✅ **HR M&A integration playbooks by country** — added as `hr-ma-integration-by-country`, covering works-council/consultation requirements across major markets (US, EU, India) alongside the existing `hr-mergers-acquisitions` and `hr-post-merger-integration`.
+- ✅ **Accessibility/disability accommodation** — added as `hr-accessibility-accommodation`, promoted out of `hr-compliance`'s ADA prompts into a first-class skill.
+
+No further plausible domain gaps have been identified as of this edit; this section should be re-derived the next time the library is audited for coverage.
 
 ### Overlap
 
@@ -340,13 +342,13 @@ This isn't necessarily wrong (HR genuinely has fine-grained sub-disciplines) but
 
 ### Consistency
 
-- ✅ 141/141 skills present in the router's routing tables, and 141/141 present in `marketplace.json` — **perfect sync today**, verified directly against the filesystem.
+- ✅ 146/146 skills present in the router's routing tables, and 146/146 present in `marketplace.json` — **perfect sync today**, verified directly against the filesystem (this is currently maintained by discipline/manual regeneration, not yet an automated CI rule — see [Missing Features](#missing-features)).
 - ⚠ `metadata.author` inconsistency: `.agents/skills/valibot/SKILL.md` uses `author: open-circle` (a third-party-sourced skill) while every other skill in the repo uses `Tuan Duc Tran` — the validator's `validateAuthor()` would reject this if `.agents/skills/` were ever brought under the same validation umbrella as `skills/hr-*/` (currently it is not, since `discoverSkills()` filters by the `hr-` prefix under `skills/` only).
 - ⚠ `metadata.version: "1.0"` in the same `valibot` skill breaks the semantic-version convention (`"1.0.0"`) used everywhere else.
 
 ### Versioning
 
-All 141 HR skills are pinned in `AGENTS.md`'s root-`SKILL.md` "Notes" section as **"v1.0.0 unless otherwise noted"** — in practice this means the library has **no per-skill version history**; every skill was likely bulk-stamped at `1.0.0` on creation, and there is no tooling today to bump an individual skill's version when its content changes (only the monorepo-level `package.json` version is bumped by `changelogen`). The `.agents/skills/*` meta-skills, by contrast, *do* show real version drift (`bun` at `1.1.1`, `turbo`/`typescript` at `1.1.0`, `github-awesome-copilot-git-commit` at `2.0.0`) — proving the versioning mechanism works when actually used.
+All 146 HR skills are pinned in `AGENTS.md`'s root-`SKILL.md` "Notes" section as **"v1.0.0 unless otherwise noted"** — in practice this means the library has **no per-skill version history**; every skill was likely bulk-stamped at `1.0.0` on creation, and there is no tooling today to bump an individual skill's version when its content changes (only the monorepo-level `package.json` version is bumped by `changelogen`). The `.agents/skills/*` meta-skills, by contrast, *do* show real version drift (`bun` at `1.1.1`, `turbo`/`typescript` at `1.1.0`, `github-awesome-copilot-git-commit` at `2.0.0`) — proving the versioning mechanism works when actually used.
 
 ### Templates
 
@@ -363,7 +365,7 @@ Covered exhaustively in [Validation Roadmap](#validation-roadmap).
 ### Future expansion
 
 - A **skill maturity model** (Bare → Content → Content+Examples → Full) formalized as a `metadata.maturity` frontmatter field, surfaced in `marketplace.json` and the README, so users can filter for "battle-tested" vs. "stub" skills.
-- **Skill deprecation/aliasing support** — as the library grows past 141 skills, some will inevitably need renaming or merging; there is currently no documented deprecation path (only `hr-root-router-maintaining` mentions "renaming a skill directory" as a supported maintenance task, with no corresponding redirect mechanism for users with the old name installed locally).
+- **Skill deprecation/aliasing support** — as the library grows past 146 skills, some will inevitably need renaming or merging; there is currently no documented deprecation path (only `hr-root-router-maintaining` mentions "renaming a skill directory" as a supported maintenance task, with no corresponding redirect mechanism for users with the old name installed locally).
 
 ### Skill quality matrix (representative sample by cluster)
 
@@ -379,7 +381,7 @@ Covered exhaustively in [Validation Roadmap](#validation-roadmap).
 | `hr-compliance` | ✅ Full | ✅ | ✅ | ✅ (23 prompt files) | Validated in CI | Highest prompt-file count in the repo — good template to replicate |
 | `hr-workforce-planning` | ✅ Full | ✅ | ✅ (2) | ✅ (2) | Validated in CI | — |
 
-*(Full 141-row matrix should be generated programmatically — see [Missing Features](#missing-features): "Metadata explorer.")*
+*(Full 146-row matrix should be generated programmatically — see [Missing Features](#missing-features): "Metadata explorer.")*
 
 ---
 
@@ -471,7 +473,7 @@ Currently covers `name`, `description`, `author`, `version`. **Not currently val
 
 ### README
 
-Functional and welcoming but **materially stale**: states "more than 40 HR skills" against an actual count of 141 — a **~3.5× undercount** that undersells the project to newcomers and should be treated as the top documentation-debt item.
+✅ **Resolved.** Previously stated "more than 40 HR skills" against an actual count of 146 (a ~3.5× undercount). Now states "100+ HR skills" and points readers to the root `SKILL.md` router's 12 functional clusters instead of an ad hoc topic list — a self-stabilizing form of the count that doesn't need manual re-syncing every time a skill is added, at the cost of no longer showing the exact number in the README itself.
 
 ### Docs (`docs/format.md`)
 
@@ -556,7 +558,7 @@ See [Testing Roadmap](#testing-roadmap).
 
 ### Current tests
 
-9 unit test files across both packages, all using `bun test`, well-organized by source file (`errors.test.ts`, `models.test.ts`, `parser.test.ts` ×2, `prompt.test.ts`, `validator.test.ts`, `config.test.ts`, `validate.test.ts`, `sync.test.ts`). Coverage style is thorough at the unit level: `validator.test.ts` even includes an integration-style assertion ("validates all HR skills without errors") that doubles as a regression guard against the entire 141-skill corpus.
+9 unit test files across both packages, all using `bun test`, well-organized by source file (`errors.test.ts`, `models.test.ts`, `parser.test.ts` ×2, `prompt.test.ts`, `validator.test.ts`, `config.test.ts`, `validate.test.ts`, `sync.test.ts`). Coverage style is thorough at the unit level: `validator.test.ts` even includes an integration-style assertion ("validates all HR skills without errors") that doubles as a regression guard against the entire 146-skill corpus.
 
 ### Coverage
 
@@ -581,7 +583,7 @@ Existing tests already cover several good edge cases (non-existent path, missing
 
 ### Performance tests
 
-None exist. Not urgent at current scale (141 skills, single-digit-KB files) but worth a baseline benchmark before the library reaches ~500 skills (see [Performance Roadmap](#performance-roadmap)).
+None exist. Not urgent at current scale (146 skills, single-digit-KB files) but worth a baseline benchmark before the library reaches ~500 skills (see [Performance Roadmap](#performance-roadmap)).
 
 ### Snapshot / regression tests
 
@@ -661,11 +663,11 @@ Both internal packages are `private: true`, minimizing supply-chain blast radius
 
 ### Parser performance
 
-At 141 skills averaging a few KB each, `skills-ref`'s regex-based frontmatter parsing and `hr-skills-build`'s `readdir`+`readFile` discovery are trivially fast (sub-second for the whole corpus) — not a current bottleneck.
+At 146 skills averaging a few KB each, `skills-ref`'s regex-based frontmatter parsing and `hr-skills-build`'s `readdir`+`readFile` discovery are trivially fast (sub-second for the whole corpus) — not a current bottleneck.
 
 ### Validation performance
 
-`validateSkill()` runs sequentially per skill inside a `for` loop in `validate()` rather than `Promise.all`-parallelized (contrast with `sync()`, which correctly uses `Promise.all(skillNames.map(parseSkillMeta))`). At 141 skills this is still fast in absolute terms, but it's an easy, low-risk parallelization win as the library grows.
+`validateSkill()` runs sequentially per skill inside a `for` loop in `validate()` rather than `Promise.all`-parallelized (contrast with `sync()`, which correctly uses `Promise.all(skillNames.map(parseSkillMeta))`). At 146 skills this is still fast in absolute terms, but it's an easy, low-risk parallelization win as the library grows.
 
 ### Build performance
 
@@ -747,7 +749,7 @@ Checklist of plausible future capabilities, grouped by theme. None of these exis
 ### Discovery & indexing
 
 - [ ] ⬜ Generated `skills/CATALOG.md` (previously existed per CHANGELOG history, currently absent)
-- [ ] ⬜ Searchable/filterable web index of all 141 skills (static site generated from `marketplace.json`)
+- [ ] ⬜ Searchable/filterable web index of all 146 skills (static site generated from `marketplace.json`)
 - [ ] ⬜ Tag/category metadata beyond the router's manual clustering
 - [ ] ⬜ Dependency/relationship graph between skills that are "commonly loaded together" (e.g., `hr-job-description` + `hr-backend`)
 
@@ -779,10 +781,10 @@ Checklist of plausible future capabilities, grouped by theme. None of these exis
 
 | Version | Goals | Deliverables | Breaking changes | Migration | Priority |
 |---|---|---|---|---|---|
-| **v1.1.0** | Close the CI/validation gap; fix documentation drift | `bun run validate` added to CI (new `validate.yml` or folded into `lint.yml`); README skill-count corrected to 141+; consolidate to one dependency bot | None | None | **P0** |
+| **v1.1.0** | Close the CI/validation gap; fix documentation drift | `bun run validate` added to CI (new `validate.yml` or folded into `lint.yml`); ✅ README skill-count drift fixed (now "100+", sourced from the router); consolidate to one dependency bot | None | None | **P0** |
 | **v1.2.0** | Template/doc de-duplication | Single-source `SKILL.md` template; declare canonical `AGENTS.md`; add `docs/versioning.md` and `docs/deprecation.md` | None | None | P1 |
-| **v1.3.0** | Prompt-structure enforcement | Code the 3–6 subtopic / 4–7 prompts-per-subtopic validator rule; run against all 141 skills, fix any that fail | Possible — some existing skills may need prompt restructuring to pass | Contributors update non-conformant skills before merge | P1 |
-| **v1.4.0** | Bare-skill remediation wave | Bring the 72 bare skills to at least "content-only" tier, prioritized by cluster importance (AI/GenAI cluster first, given fast-moving domain) | None | None | P1 |
+| **v1.3.0** | Prompt-structure enforcement | Code the 3–6 subtopic / 4–7 prompts-per-subtopic validator rule; run against all 146 skills, fix any that fail | Possible — some existing skills may need prompt restructuring to pass | Contributors update non-conformant skills before merge | P1 |
+| **v1.4.0** | Bare-skill remediation wave | Bring the 76 bare skills to at least "content-only" tier, prioritized by cluster importance (AI/GenAI cluster first, given fast-moving domain) | None | None | P1 |
 | **v1.5.0** | Release automation | `release.yml` CI workflow; GitHub Release artifacts; `skill-vetter` wired into CI | None | None | P2 |
 | **v2.0.0** | `skills-ref` becomes a real public library | Publish `skills-ref` to npm (`1.0.0`, `private: false`); add plugin system for custom validation rules; add remote skill-source support | **Yes** — `skills-ref`'s public API surface becomes a formal semver contract | Downstream consumers pin to `^1.0.0`; internal `hr-skills-build` updates its dependency from `workspace:*` to a real version range if ever extracted | P2 |
 | **v3.0.0** | Skills-as-a-platform | Skill maturity metadata, searchable index site, localization framework, skill-relationship graph | Possible — `marketplace.json` schema likely grows new required fields | Sync script auto-migrates existing entries | P3 |
@@ -796,7 +798,7 @@ Checklist of plausible future capabilities, grouped by theme. None of these exis
 | Task | Description | Reason | Complexity | Dependencies | Expected impact |
 |---|---|---|---|---|---|
 | Add `bun run validate` to CI | Wire the existing script into a workflow (new file or extend `lint.yml`) | Currently a broken `SKILL.md` can merge without any CI gate catching it — the single largest correctness gap in the repo | Low | None | Prevents silent content regressions in the repo's core product |
-| Fix README skill count | Update "40+" to the real 141 figure (and periodically re-sync) | Directly undersells the project by ~3.5×; first thing any visitor reads | Trivial | None | Improves adoption/credibility immediately |
+| ✅ ~~Fix README skill count~~ *(done)* | Updated "40+" to "100+", sourced from the router's 12 clusters instead of a hardcoded figure so it won't drift again | Directly undersells the project by ~3.5×; first thing any visitor reads | Trivial | None | Improves adoption/credibility immediately |
 
 ### P1 — High
 
@@ -814,7 +816,7 @@ Checklist of plausible future capabilities, grouped by theme. None of these exis
 |---|---|---|---|---|---|
 | CI-driven release workflow | `release.yml` running `changelogen` on `main` | Removes single-point-of-failure local release process | Medium | GitHub token/permissions setup | More resilient, repeatable releases |
 | Wire `skill-vetter` into CI | Turn the documented meta-skill into real automated checks | Closes stated-but-unimplemented security tooling gap | Medium | New `hr-skills-build` rules | Concrete supply-chain risk reduction |
-| Bare-skill remediation (AI cluster first) | Add `content/` to `hr-agentic-ai`, `hr-ai-ethics`, `hr-genai`, etc. | 72/141 skills currently ship with zero supporting material; fast-moving domains benefit most | High (content work, not code) | None | Materially improves the library's depth where it matters most today |
+| Bare-skill remediation (AI cluster first) | Add `content/` to `hr-agentic-ai`, `hr-ai-ethics`, `hr-genai`, etc. | 76/146 skills currently ship with zero supporting material; fast-moving domains benefit most | High (content work, not code) | None | Materially improves the library's depth where it matters most today |
 | Publish `skills-ref` to npm | Flip `private: false`, bump to `1.0.0`, `npm publish --provenance` | Packaging is already publish-ready; currently wasted potential | Medium | Decide on public API stability commitment | Positions the repo as an ecosystem contributor, not just an HR content pack |
 
 ### P3 — Nice to have
@@ -832,13 +834,13 @@ Checklist of plausible future capabilities, grouped by theme. None of these exis
 
 | # | Problem | Impact | Priority | Suggested solution |
 |---|---|---|---|---|
-| 1 | README claims "40+" skills; actual count is 141 | Undersells project; misleads new visitors and potential contributors about scope | P0 | Update README, consider auto-generating the count from `marketplace.json` at release time |
+| 1 | ✅ ~~README claimed "40+" skills; actual count was 146~~ *(resolved)* | Previously undersold project; misled new visitors and potential contributors about scope | ~~P0~~ Done | README now states "100+" and links to the router's live cluster breakdown instead of a hardcoded figure |
 | 2 | `bun run validate` absent from all CI workflows | Broken `SKILL.md` content can merge undetected | P0 | Add to `lint.yml` or a new `validate.yml` |
 | 3 | Three overlapping dependency-scanning tools (Renovate, Dependabot, Mend/Whitesource) | Duplicate/conflicting PRs, dashboard fragmentation, maintainer overhead | P1 | Consolidate to Renovate only |
 | 4 | `SKILL.md` template duplicated in `CONTRIBUTING.md` and `.claude/commands/new-skill.md` | Template drift risk over time | P1 | Single-source into one referenced file |
 | 5 | Prompt-subtopic structure rule (3–6 subtopics, 4–7 prompts each) documented in `docs/format.md` but not implemented in `validate.ts` | Spec/implementation mismatch; unenforced quality bar | P1 | Implement as a new validator rule |
 | 6 | `ValidationError` name collision between `skills-ref` (class) and `hr-skills-build` (interface) | Confusing cross-package symbol, IDE auto-import risk | P1 | Rename one; consider re-export/`instanceof` unification |
-| 7 | 72/141 skills (≈51%) have no `content/`, `prompts/`, or `examples/` at all | Library depth is shallower than the skill count suggests; several fast-moving AI/HR-tech skills are among the bare ones | P1–P2 | Prioritized content remediation, AI cluster first |
+| 7 | 76/146 skills (≈52%) have no `content/`, `prompts/`, or `examples/` at all | Library depth is shallower than the skill count suggests; several fast-moving AI/HR-tech skills are among the bare ones | P1–P2 | Prioritized content remediation, AI cluster first |
 | 8 | `.agents/skills/valibot/SKILL.md` has `metadata.author: open-circle` and `metadata.version: "1.0"` (not `"1.0.0"`), inconsistent with every other skill | Would fail repo validation rules if `.agents/` were ever brought into scope; currently silently exempt | P2 | Either normalize metadata or explicitly document `.agents/` as exempt from HR-skill policy |
 | 9 | `hr-skills-build` has no `build` script but participates in Turborepo's `build` dependency graph | Conceptually inconsistent, though functionally harmless | P2 | Add explicit no-op/comment, or restructure task dependencies |
 | 10 | `bun run knip` and `bun run lint:links` run locally (hooks) but not in CI | Contributors bypassing hooks get no backstop for unused files/deps or broken links | P2 | Add both to CI |
@@ -855,9 +857,9 @@ Checklist of plausible future capabilities, grouped by theme. None of these exis
 | Category | Metric | Current baseline | Target |
 |---|---|---|---|
 | **Repository health** | CI workflows covering all `package.json` quality scripts | 5/9 scripts covered in CI (`lint`, `lint:md`, `test`, `typecheck`, — missing `validate`, `knip`, `lint:links`) | 8/9+ (all except `sync`, which is inherently a write operation) |
-| **Documentation accuracy** | README skill count vs. actual count | 40+ claimed / 141 actual (65% understatement) | Auto-generated, always accurate |
-| **Skill depth** | % of skills with at least `content/` | ~49% (69/141) | 80%+ |
-| **Skill depth** | % of skills with all three optional dirs (full tier) | ~26% (36/141) | 50%+ |
+| **Documentation accuracy** | README skill count vs. actual count | ✅ Fixed — README now states "100+" and sources the cluster breakdown from `SKILL.md` instead of a hardcoded figure | Self-stabilizing (done); revisit only if a future redesign wants an exact auto-generated number back |
+| **Skill depth** | % of skills with at least `content/` | ~48% (70/146) | 80%+ |
+| **Skill depth** | % of skills with all three optional dirs (full tier) | ~25% (36/146) | 50%+ |
 | **Validation coverage** | Documented rules vs. implemented rules in `docs/format.md` | ~91% (10/11 major documented behaviors implemented; prompt-subtopic structure unenforced) | 100% |
 | **Testing** | Unit test files | 9 | 12+ (add router-consistency, integration sync→validate, and skill-vetter tests) |
 | **Testing** | Code coverage measurement | Not tracked | Tracked with a defined threshold (e.g., 80%) |
@@ -872,14 +874,14 @@ Checklist of plausible future capabilities, grouped by theme. None of these exis
 
 ### 1 year
 
-- All P0/P1 backlog items shipped: `validate` in CI, README accuracy, consolidated dependency bots, de-duplicated templates, enforced prompt-structure rule, and the majority of the 72 bare skills brought to at least `content/`-tier, prioritized by the fast-moving AI/HR-tech cluster.
+- All P0/P1 backlog items shipped: `validate` in CI, README accuracy, consolidated dependency bots, de-duplicated templates, enforced prompt-structure rule, and the majority of the 76 bare skills brought to at least `content/`-tier, prioritized by the fast-moving AI/HR-tech cluster.
 - `release.yml` exists; releases are CI-driven and reproducible.
 - Router ↔ filesystem ↔ marketplace consistency is enforced automatically, not maintained by discipline alone.
 
 ### 2 years
 
 - `skills-ref` is a genuinely independent, published npm package with its own external user base beyond `hr-skills-build`, validated by real adoption (issues, PRs, stars on the package itself distinct from the HR content repo).
-- The library has grown meaningfully beyond 141 skills (plausibly 200+) while *maintaining or improving* the full-tier percentage — proving the "intentional heterogeneity" philosophy scales without degrading into permanent stub-sprawl.
+- The library has grown meaningfully beyond 146 skills (plausibly 200+) while *maintaining or improving* the full-tier percentage — proving the "intentional heterogeneity" philosophy scales without degrading into permanent stub-sprawl.
 - A localization precedent beyond Vietnam exists (at least one additional country/region-context skill cluster), validating the `hr-vietnam-context` model as a repeatable pattern rather than a one-off.
 - `skill-vetter` has moved from documentation to enforced, automated CI tooling — meaningful given the broader Agent Skills ecosystem's exposure to prompt-injection-via-content risk.
 
@@ -904,7 +906,7 @@ Checklist of plausible future capabilities, grouped by theme. None of these exis
 graph TB
     subgraph "Content layer"
         R["root SKILL.md<br/>(router)"]
-        SK["skills/hr-*/<br/>141 packages"]
+        SK["skills/hr-*/<br/>146 packages"]
         AG[".agents/skills/*<br/>12 meta skills"]
     end
 
@@ -948,18 +950,18 @@ graph LR
 ```mermaid
 graph TD
     Router["root SKILL.md router"]
-    Router --> TA["Talent Acquisition &<br/>Recruiting (25)"]
+    Router --> TA["Talent Acquisition &<br/>Recruiting (26)"]
     Router --> ON["Onboarding, Offboarding &<br/>People Ops (11)"]
     Router --> PF["Performance, Talent &<br/>Career Mgmt (10)"]
-    Router --> CB["Compensation, Benefits &<br/>Rewards (5)"]
+    Router --> CB["Compensation, Benefits &<br/>Rewards (6)"]
     Router --> LD["Learning &<br/>Development (7)"]
-    Router --> OD["Org Development,<br/>Design & Change (12)"]
-    Router --> WP["Workforce Planning &<br/>Analytics (13)"]
-    Router --> TE["HR Technology,<br/>Data & AI (14)"]
-    Router --> CO["Compliance, Labor<br/>Relations & Risk (9)"]
+    Router --> OD["Org Development,<br/>Design & Change (13)"]
+    Router --> WP["Workforce Planning &<br/>Analytics (14)"]
+    Router --> TE["HR Technology,<br/>Data & AI (16)"]
+    Router --> CO["Compliance, Labor<br/>Relations & Risk (10)"]
     Router --> CE["Culture, Engagement,<br/>Experience & Wellbeing (10)"]
     Router --> PM["Project Mgmt &<br/>Global/Local Context (4)"]
-    Router --> SE["Software-Engineering &<br/>Technical Hiring (18)"]
+    Router --> SE["Software-Engineering &<br/>Technical Hiring (19)"]
     TA -.always pairs with.-> VN["hr-vietnam-context<br/>(if VN-based org)"]
     ON -.-> VN
     CO -.-> VN

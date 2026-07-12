@@ -1,4 +1,4 @@
-name: Lint
+name: Knip
 
 on:
   pull_request:
@@ -6,9 +6,11 @@ on:
 
 permissions:
   contents: read
+  actions: write
 
 jobs:
-  lint:
+  knip:
+    name: Knip
     runs-on: ubuntu-latest
 
     steps:
@@ -23,14 +25,8 @@ jobs:
       - name: Install bun
         uses: oven-sh/setup-bun@v2
 
-      - name: Install Dependencies
+      - name: Install dependencies
         run: bun ci
 
-      - name: Lint
-        run: bun run lint
-
-      - name: Lint Markdown
-        run: bun run lint:md
-
-      - name: Lint Markdown links
-        run: bun run lint:links
+      - name: Run knip (unused detection)
+        run: bun run knip
