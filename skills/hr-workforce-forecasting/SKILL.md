@@ -39,16 +39,21 @@ Build and maintain quantitative forecasts of headcount, attrition, and hiring de
 1. "What forecasting method — trend-based, driver-based, or statistical — best fits our data maturity for [function]?"
 2. "Reconcile a top-down headcount target from finance with a bottom-up hiring forecast from the business — where do they diverge and why?"
 3. "Backtest our last [timeframe] forecast against actual outcomes and identify where accuracy broke down."
+4. "What is the minimum amount of historical data needed before a driver-based forecast becomes more reliable than a simple trend line?"
 
 ### Communication and use
 
 1. "How should we present forecast uncertainty (confidence ranges, scenario bands) rather than a single misleadingly precise number?"
 2. "Design a forecast dashboard for TA and finance leadership showing forecasted vs. actual headcount and hiring."
 3. "How should this workforce forecast translate into recruiting capacity planning for the next quarter?"
+4. "How often should forecasts be refreshed for a fast-changing business versus a stable, mature one?"
 
 ### Event-driven forecasting
 
 1. "Forecast the workforce impact of [a known future product launch / market expansion / restructuring]."
+2. "How should we adjust our standing forecast when an unplanned event, like a competitor's exit, changes hiring demand mid-quarter?"
+3. "What lead time is realistic for standing up a forecast-driven hiring plan ahead of a known future event?"
+4. "Design a rapid-response forecasting process for events, like an acquisition, that require a workforce plan within days rather than weeks."
 
 ## Tips
 

@@ -43,14 +43,15 @@ Comprehensive employee engagement support — from designing engagement surveys 
 5. "What are best practices for conducting employee appreciation events that feel genuine, not performative?"
 6. "How can I ensure our recognition program is inclusive and reaches all employees equally?"
 
-### Culture and team building
+### Culture, team building, and remote engagement
 
 1. "What strategies can I employ to create a positive and inclusive work culture that drives engagement?"
 2. "Provide guidance on conducting team-building activities for [in-person/remote/hybrid] teams."
 3. "What team-building exercises best improve psychological safety and open communication?"
-4. "How can I build a culture of continuous feedback that helps employees grow and feel valued?"
-5. "What strategies encourage cross-departmental collaboration and relationship-building?"
-6. "How can I address a toxic team dynamic and rebuild trust and collaboration?"
+4. "How can I address a toxic team dynamic and rebuild trust and collaboration?"
+5. "How can I address disengagement among remote employees who feel isolated from the team?"
+6. "What virtual team-building activities create genuine connection across distributed teams?"
+7. "How can I ensure that remote employees have equal access to recognition, development, and growth opportunities?"
 
 ### Work-Life balance and well-being
 
@@ -60,13 +61,15 @@ Comprehensive employee engagement support — from designing engagement surveys 
 4. "How should I support employees experiencing work-related stress without overstepping boundaries?"
 5. "What flexible work arrangements best support engagement for different employee demographics?"
 
-### Career development and purpose
+### Career development, purpose, and innovation
 
 1. "Describe the role of career development and growth opportunities in improving employee engagement."
 2. "How can I create career pathing frameworks that show employees a clear path for growth?"
 3. "What strategies promote a sense of purpose and meaningful work among employees?"
 4. "How can I help managers have effective career development conversations with their team members?"
-5. "What development opportunities resonate most with early-career, mid-career, and senior employees?"
+5. "How can I encourage employee autonomy and decision-making that increases ownership and engagement?"
+6. "What are examples of successful innovation programs or passion project initiatives that boosted engagement?"
+7. "How can I create opportunities for employees to work on cross-functional projects that stretch their skills?"
 
 ### Communication and leadership
 
@@ -75,20 +78,6 @@ Comprehensive employee engagement support — from designing engagement surveys 
 3. "How should I conduct town halls, employee forums, or skip-level meetings to gather honest input?"
 4. "Describe the role of leadership communication and transparency in building employee engagement."
 5. "How can I support managers in improving their engagement practices with their teams?"
-
-### Remote and hybrid engagement
-
-1. "Share examples of successful employee engagement initiatives in remote or virtual work environments."
-2. "How can I address disengagement among remote employees who feel isolated from the team?"
-3. "What virtual team-building activities create genuine connection across distributed teams?"
-4. "How can I ensure that remote employees have equal access to recognition, development, and growth opportunities?"
-
-### Innovation and autonomy
-
-1. "What strategies can I employ to promote employee innovation and creativity?"
-2. "How can I encourage employee autonomy and decision-making that increases ownership and engagement?"
-3. "What are examples of successful innovation programs or passion project initiatives that boosted engagement?"
-4. "How can I create opportunities for employees to work on cross-functional projects that stretch their skills?"
 
 ## Tips
 

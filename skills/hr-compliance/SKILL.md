@@ -27,13 +27,15 @@ Comprehensive HR compliance support — from OSHA, EEO, FMLA, and HIPAA complian
 
 ## Key prompts
 
-### Equal opportunity and anti-discrimination
+### Equal opportunity, anti-discrimination, and disability inclusion
 
 1. "How should I manage equal opportunity compliance to ensure our hiring, promotion, and compensation practices are non-discriminatory?"
 2. "What are the key requirements for equal opportunity compliance in [country/jurisdiction] and how should I prepare for a regulatory audit?"
-3. "How can I develop an affirmative action or positive discrimination strategy that meets local legal requirements?"
-4. "What data should I collect and analyze to identify potential equal opportunity compliance risks in our hiring process?"
-5. "How should I respond to a discrimination complaint or equal opportunity charge filed with a regulatory authority?"
+3. "What data should I collect and analyze to identify potential equal opportunity compliance risks in our hiring process?"
+4. "How should I respond to a discrimination complaint or equal opportunity charge filed with a regulatory authority?"
+5. "What is the reasonable accommodation interactive process and how should I conduct it when an employee requests an accommodation?"
+6. "Write a workplace accommodation policy that covers both physical and mental health accommodation requests."
+7. "What documentation should HR maintain for accommodation requests to ensure compliance?"
 
 ### Workplace health and safety
 
@@ -51,13 +53,6 @@ Comprehensive HR compliance support — from OSHA, EEO, FMLA, and HIPAA complian
 4. "How should we handle intermittent leave requests in a way that is compliant and minimizes disruption?"
 5. "What are the interactions between statutory leave entitlements, disability accommodations, and local labor laws, and how should we manage them?"
 
-### Disability inclusion and accommodations
-
-1. "What is the reasonable accommodation interactive process and how should I conduct it when an employee requests an accommodation?"
-2. "How can I develop a disability inclusion strategy that proactively addresses accessibility and accommodation needs?"
-3. "Write a workplace accommodation policy that covers both physical and mental health accommodation requests."
-4. "What documentation should HR maintain for accommodation requests to ensure compliance?"
-
 ### Harassment prevention
 
 1. "Write a comprehensive harassment prevention policy that covers sexual harassment, discrimination, and retaliation."
@@ -74,19 +69,15 @@ Comprehensive HR compliance support — from OSHA, EEO, FMLA, and HIPAA complian
 4. "Write a drug and alcohol testing policy that balances safety requirements with employee rights."
 5. "What should a background check policy include to be both legally compliant and effective?"
 
-### Work permits, visas, and immigration
-
-1. "Walk me through the work authorization verification process for [country] and common compliance mistakes to avoid."
-2. "How should I implement work eligibility verification checks as part of our hiring process?"
-3. "What are the key elements of an immigration compliance strategy for an employer hiring foreign nationals?"
-4. "How should I handle a work authorization audit and remediate errors discovered during self-audit?"
-
-### Audit and ethics
+### Audit, ethics, and immigration compliance
 
 1. "How should I conduct a global HR compliance audit to identify risks across multiple jurisdictions?"
 2. "What are the key components of an ethical business conduct policy for our workforce?"
 3. "How can I develop a wage and hour compliance policy that prevents FLSA violations?"
 4. "Write a workplace bullying policy that defines prohibited conduct and outlines reporting procedures."
+5. "Walk me through the work authorization verification process for [country] and common compliance mistakes to avoid."
+6. "What are the key elements of an immigration compliance strategy for an employer hiring foreign nationals?"
+7. "How should I handle a work authorization audit and remediate errors discovered during self-audit?"
 
 ## Tips
 

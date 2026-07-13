@@ -32,23 +32,28 @@ Manage the people dimensions of M&A transactions from due diligence through deal
 1. "Build an HR due diligence checklist for evaluating [target company]'s workforce, contracts, and compliance exposure."
 2. "What compensation, benefits, and employment term differences should we compare between [acquirer] and [target] before close?"
 3. "Assess key people risks in this acquisition of [target company] that the deal team should be aware of before signing."
+4. "What employment liabilities or undisclosed claims should HR due diligence specifically look for in [target company]'s records?"
 
 ### Culture and talent risk
 
 1. "Assess culture fit and likely integration friction points between [acquirer] and [target] based on available information."
 2. "Identify [target company]'s critical talent who carry the highest flight risk around deal announcement, and why."
 3. "Design a confidential retention strategy for key target-company talent ahead of the public announcement."
+4. "How do we assess leadership team fit between [acquirer] and [target] before deciding who leads the combined function?"
 
 ### Cost and planning
 
 1. "Estimate likely workforce-related deal costs, including retention bonuses, severance, and benefits harmonization, for this acquisition."
 2. "Build a pre-close workforce plan and Day 1 readiness checklist for this transaction."
 3. "What labor law or works council requirements apply given [target jurisdiction(s)], and how do they affect deal timeline?"
+4. "Model the total cost of harmonizing [target company]'s benefits plan with ours across [target headcount] employees."
 
 ### Deal team support
 
 1. "Summarize HR due diligence findings into input for the broader business case being presented to the deal committee."
 2. "How should HR workstreams be coordinated with legal, finance, and integration planning in the pre-close phase?"
+3. "Draft an HR readout template for weekly deal committee updates during the diligence and pre-close period."
+4. "What information can HR share with the target company's employees before close without violating deal confidentiality?"
 
 ## Tips
 

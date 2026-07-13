@@ -32,23 +32,28 @@ Model the financial dimensions of workforce decisions — fully loaded labor cos
 1. "Calculate fully loaded labor cost for a [role] in [location], including base, benefits, taxes, and overhead."
 2. "Compare the total cost of hiring a full-time [role] vs. contracting the same work over a [timeframe]."
 3. "Model the cost-benefit of relocating [function] work to [location] considering labor cost, productivity, and risk."
+4. "How should we account for hidden costs like ramp time and management overhead when comparing offshore versus onshore staffing?"
 
 ### Business cases
 
 1. "Build a financial business case for adding [number] headcount to [team], including cost, expected output, and payback period."
 2. "Model the ROI of investing in [L&D program / new tool / restructuring initiative] over [timeframe]."
 3. "What financial framing will resonate most with our CFO when requesting headcount for [team]?"
+4. "Model the payback period for automating [process] versus continuing to staff it manually."
 
 ### Analysis and benchmarking
 
 1. "Analyze our labor cost as a percentage of revenue and benchmark it against [industry] norms."
 2. "Model the financial impact of our current turnover rate on [team/function], including replacement and productivity-loss costs."
 3. "Analyze revenue or output per FTE trends for [function] over the past [timeframe] and flag anything notable."
+4. "Benchmark our workforce cost structure against [industry] peers using publicly available financial disclosures."
 
 ### Optimization
 
 1. "Identify workforce cost optimization opportunities for [function] that don't materially reduce capability or capacity."
 2. "Model the cost implications of each scenario in our workforce scenario plan for [function]."
+3. "What is the realistic savings timeline for a workforce cost optimization initiative, accounting for severance and transition costs?"
+4. "How do we distinguish a genuinely sustainable cost optimization from one that just defers cost to a future period?"
 
 ## Tips
 

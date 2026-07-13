@@ -43,20 +43,15 @@ Comprehensive DEI support — from building diversity and inclusion strategies a
 5. "How can I promote our company's commitment to diversity and inclusion in our employer brand?"
 6. "What are best practices for implementing diverse interview panels that reduce hiring bias?"
 
-### Training and education
+### Training, education, and employee resource groups
 
 1. "Explain the importance of unconscious bias training and how it promotes a bias-free workplace."
 2. "Design a diversity and inclusion training program for [employees/managers/executives] covering [key topics]."
 3. "How can I create diversity training that is engaging, evidence-based, and leads to behavior change?"
 4. "What training approaches address microaggressions effectively and help employees respond constructively?"
-5. "How can I design cross-cultural leadership training for managers leading diverse global teams?"
-
-### Employee resource groups
-
-1. "Describe the role of employee resource groups (ERGs) in promoting diversity and inclusion."
-2. "What is best practice for launching and supporting an ERG for [specific community/identity group]?"
-3. "How can I create an inclusive ERG structure that is open to allies, not just members of the group?"
-4. "How should ERGs be resourced and governed to ensure they are sustainable and effective?"
+5. "Describe the role of employee resource groups (ERGs) in promoting diversity and inclusion."
+6. "What is best practice for launching and supporting an ERG for [specific community/identity group]?"
+7. "How should ERGs be resourced and governed to ensure they are sustainable and effective?"
 
 ### Measuring inclusion
 
@@ -66,21 +61,15 @@ Comprehensive DEI support — from building diversity and inclusion strategies a
 4. "How can I use HR data to identify equity gaps in hiring, promotion, pay, and development?"
 5. "Implementing a diversity and inclusion scorecard to track progress — what KPIs matter most?"
 
-### Equity in HR processes
+### Equity in HR processes and intersectionality
 
 1. "How can HR managers ensure that performance evaluations are conducted without bias or stereotypes?"
 2. "What measures help ensure pay equity and transparency across diverse employee groups?"
 3. "How can I address biases in talent development and succession planning processes?"
-4. "What steps help create an inclusive performance feedback culture that values diverse perspectives?"
-5. "How should I design an inclusive employee recognition and rewards system?"
-
-### Intersectionality and inclusion
-
-1. "What strategies address intersectionality and the unique challenges faced by employees with multiple identities?"
-2. "How can I create an inclusive work environment for LGBTQ+ employees?"
-3. "What measures promote inclusivity for employees with disabilities?"
-4. "How can I address ageism and promote effective intergenerational collaboration?"
-5. "What strategies address systemic racism and promote racial equity in the workplace?"
+4. "How should I design an inclusive employee recognition and rewards system?"
+5. "What strategies address intersectionality and the unique challenges faced by employees with multiple identities?"
+6. "What measures promote inclusivity for employees with disabilities?"
+7. "How can I address ageism and promote effective intergenerational collaboration?"
 
 ### Communication and culture
 

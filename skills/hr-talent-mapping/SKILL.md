@@ -46,6 +46,7 @@ Track named individuals — internal successors and external targets — against
 1. "Summarize bench strength and coverage gaps for [critical role family] for the leadership talent review."
 2. "How should talent mapping data feed into our succession planning and CRM nurture workflows?"
 3. "Build a talent map dashboard structure showing coverage ratio (mapped candidates per critical role) by function."
+4. "Draft a quarterly talent mapping update format that highlights what changed since the last leadership review."
 
 ## Tips
 

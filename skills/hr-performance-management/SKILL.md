@@ -67,20 +67,15 @@ End-to-end performance management support — from goal setting and performance 
 4. "What data should I include in a talent review report for senior leadership?"
 5. "How can I use performance data to identify high-potential employees for succession planning?"
 
-### Recognition programs
+### Recognition and succession planning
 
 1. "Design an employee recognition program that reinforces [company values] and motivates [team type]."
 2. "What are creative ways to recognize employee achievements that go beyond monetary rewards?"
-3. "How should I structure an employee awards program to ensure fairness and broad participation?"
-4. "Write a nomination template for an employee excellence award program."
-5. "How can I create a peer recognition system that encourages a culture of appreciation?"
-
-### Succession planning
-
-1. "How can I develop a succession planning program that identifies and prepares high-potential employees?"
-2. "What criteria should be used to identify succession candidates for [role/level]?"
-3. "Write a succession planning framework for [department] that ensures business continuity."
-4. "How can I create individual development plans for succession candidates?"
+3. "How can I create a peer recognition system that encourages a culture of appreciation?"
+4. "How can I develop a succession planning program that identifies and prepares high-potential employees?"
+5. "What criteria should be used to identify succession candidates for [role/level]?"
+6. "Write a succession planning framework for [department] that ensures business continuity."
+7. "How can I create individual development plans for succession candidates?"
 
 ## Tips
 

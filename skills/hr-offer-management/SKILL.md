@@ -32,24 +32,28 @@ Manage the offer lifecycle from internal approval through candidate negotiation 
 1. "Build an offer package for [role] at [level] within our approved salary band, including base, bonus, and equity components."
 2. "Design an internal offer approval workflow with clear escalation points for exceptions above band."
 3. "Draft an offer letter template for [role type] compliant with [jurisdiction] requirements."
+4. "What is the right mix of base, bonus, and equity for [role] at [level] to stay competitive without breaking internal equity?"
 
 ### Negotiation
 
 1. "Prepare talking points for a hiring manager negotiating salary with a candidate who has a competing offer."
 2. "Draft a response to a candidate who countered with a number above our approved band."
 3. "How should we handle a candidate who wants to negotiate equity or sign-on bonus but not base salary?"
+4. "Draft guidance for hiring managers on what they can and cannot commit to during offer negotiation without HR approval."
 
 ### Counteroffers and competing offers
 
 1. "The candidate received a retention counteroffer from their current employer — how do we respond without over-negotiating?"
 2. "Draft messaging for a candidate weighing our offer against a competing offer from another company."
 3. "What questions should a recruiter ask to understand what's really driving a candidate's hesitation before assuming it's about money?"
+4. "How do we handle a competing offer with a deadline that's shorter than our own approval process can accommodate?"
 
 ### Process and tracking
 
 1. "Design a tracker for monitoring offer status, expiry, and follow-up actions across multiple open requisitions."
 2. "Draft a professional decline message for a candidate we're not extending an offer to after the interview stage."
 3. "How do we coordinate offer extension timing with pending background check or reference results?"
+4. "Design an offer expiration and follow-up cadence that creates urgency without pressuring the candidate unfairly."
 
 ## Tips
 

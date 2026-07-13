@@ -32,18 +32,21 @@ Manage retained search engagements end-to-end — from client agreement and sear
 1. "Draft a retained search engagement outline with milestone-based fee structure for a [role] search."
 2. "What should be covered in a search kickoff meeting with the client for a retained [role] search?"
 3. "Write client-facing language explaining what differentiates retained search from contingent recruiting."
+4. "Draft a scope-of-work document defining deliverables, timeline, and exclusivity terms for a retained search engagement."
 
 ### Running the search
 
 1. "Build a candidate longlist-to-shortlist process for a retained search on [role], including research and vetting steps."
 2. "Draft a candidate slate presentation summarizing 3 to 5 shortlisted candidates for [role] with comparative strengths."
 3. "How should I communicate a search setback (thin market, candidate withdrawal) to the client without losing confidence?"
+4. "Design a weekly status update format that keeps the client informed without overwhelming them with detail."
 
 ### Closing and follow-through
 
 1. "Draft a negotiation approach for closing an offer with a candidate who has a competing offer, on behalf of the client."
 2. "What should a post-placement check-in cadence look like during the guarantee period for a retained search?"
 3. "How do we handle a client scope change mid-search (revised requirements, budget change) without restarting from zero?"
+4. "Draft a renewal or expansion pitch for an existing retained search client considering a second search."
 
 ## Tips
 

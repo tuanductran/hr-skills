@@ -33,13 +33,15 @@ A supplementary skill covering Vietnam-specific employment law, compliance oblig
 - "Summarize an employee's rights when terminated without cause under Vietnam Labor Code, including severance pay calculation."
 - "What notice periods are legally required for resignation and employer-initiated termination in Vietnam?"
 
-### Social insurance and benefits compliance
+### Social insurance, benefits, and leave compliance
 
 - "Create a new-hire compliance checklist for Vietnam covering Social Insurance enrollment, Health Insurance, Unemployment Insurance, and PIT registration within 30 days."
 - "How is Social Insurance contribution calculated for both employer and employee in Vietnam? List the current rates."
 - "What are the rules for Health Insurance coverage for dependents of employees in Vietnam?"
-- "Explain the Unemployment Insurance claim process in Vietnam and what documentation HR must prepare."
-- "Draft an internal memo explaining changes to Social Insurance contribution rates for [year] to all Vietnam-based employees."
+- "List all statutory leave entitlements in Vietnam: annual leave, sick leave, maternity, paternity, and public holidays."
+- "How is annual leave accrual calculated in Vietnam for employees with different tenure lengths?"
+- "Explain maternity leave rights in Vietnam including duration, Social Insurance payment, and breastfeeding breaks."
+- "Draft a leave policy addendum that complies with Vietnam Labor Code and reflects our [company name] internal leave benefits."
 
 ### Disciplinary procedures and termination
 
@@ -71,13 +73,6 @@ A supplementary skill covering Vietnam-specific employment law, compliance oblig
 - "Draft a Tet bonus policy that is fair, legally compliant, and aligned with Vietnamese employee expectations."
 - "What is the 13th-month salary expectation in Vietnam, and how should it be structured in an employment contract?"
 - "Create an internal guide for foreign managers on Vietnamese workplace communication norms, decision-making styles, and team motivation approaches."
-
-### Leave entitlements and payroll
-
-- "List all statutory leave entitlements in Vietnam: annual leave, sick leave, maternity, paternity, and public holidays."
-- "How is annual leave accrual calculated in Vietnam for employees with different tenure lengths?"
-- "Explain maternity leave rights in Vietnam including duration, Social Insurance payment, and breastfeeding breaks."
-- "Draft a leave policy addendum that complies with Vietnam Labor Code and reflects our [company name] internal leave benefits."
 
 ## Tips
 

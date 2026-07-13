@@ -32,24 +32,28 @@ Plan and write clear, consistent internal communications — routine updates, po
 1. "Write an internal announcement about [policy/benefits change] in plain, accessible language."
 2. "Draft a holiday schedule / open enrollment / policy reminder announcement for [audience]."
 3. "Plan an HR internal communications calendar for [year/quarter] covering recurring and one-off announcements."
+4. "Draft a reminder communication for [deadline-driven task, e.g. benefits enrollment] that prompts action without sounding naggy."
 
 ### Sensitive announcements
 
 1. "Draft a sensitive announcement about [restructuring/leadership change] that is honest, clear, and empathetic."
 2. "Write manager talking points to accompany this employee-wide announcement about [change]."
 3. "How should we sequence and time this announcement to minimize rumor and confusion before the official communication goes out?"
+4. "Draft a follow-up communication for [sensitive change] a few weeks after the initial announcement to address lingering concerns."
 
 ### Adapting and simplifying
 
 1. "Adapt this HR announcement for [email / Slack / town hall script], keeping the core message consistent across formats."
 2. "Simplify this policy language into a plain-English version employees can actually understand without legal background."
 3. "Build an FAQ document to accompany this announcement, anticipating the questions employees are most likely to ask."
+4. "Rewrite this announcement for a [frontline / non-desk] audience who may not read email regularly."
 
 ### Measurement and consistency
 
 1. "How can we measure whether this employee communication is actually being read and understood, not just sent?"
 2. "Audit our recent HR communications for consistency in tone and clarity, and flag where they diverge."
 3. "How should we localize this communication for our [multi-country/multi-language] workforce?"
+4. "Design a lightweight feedback mechanism employees can use to flag when an HR communication was confusing."
 
 ## Tips
 

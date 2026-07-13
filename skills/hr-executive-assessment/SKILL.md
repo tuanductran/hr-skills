@@ -32,22 +32,28 @@ Assess senior leadership and C-suite candidates for capability, strategic fit, a
 1. "Design an executive assessment framework for a [C-suite role] hire, covering strategic capability, leadership style, and organizational fit."
 2. "Build a case-based scenario exercise for a finalist [executive role] candidate reflecting a real strategic challenge the business faces."
 3. "What should a board-level evaluation process look like for a [CEO/CFO] search, including who's involved at each stage?"
+4. "How should the assessment approach differ for an internal candidate already known to the organization versus an external one?"
 
 ### Assessing risk and capability
 
 1. "What questions or exercises help surface derailment risks like rigidity or poor stakeholder management in an executive candidate?"
 2. "How do we assess strategic thinking in an interview rather than relying on the candidate's self-description of it?"
 3. "Design an approach for integrating 360-style peer and direct-report input into an executive assessment process."
+4. "What reference-checking approach works for a senior executive whose current employer doesn't know they're interviewing?"
 
 ### Comparing candidates
 
 1. "Compare an internal successor's readiness against an external executive candidate's profile for [role] using consistent criteria."
 2. "Summarize this executive assessment into a board-ready recommendation with clear strengths, risks, and mitigations."
+3. "How should we weigh a strong strategic thinker against a stronger operational executor when the two finalists trade off on these dimensions?"
+4. "Design a structured debrief process for the search committee to reach a decision without groupthink dominating the discussion."
 
 ### Onboarding risk
 
 1. "Design an early-tenure support plan for an incoming [executive role] hire based on the risks identified during assessment."
 2. "What onboarding risks should we plan for given this candidate's assessed gaps in [area]?"
+3. "Design a 100-day check-in process for the board or CEO to monitor whether early derailment risks are materializing."
+4. "What coaching or advisory support should we pair with this executive hire based on their assessed development areas?"
 
 ## Tips
 

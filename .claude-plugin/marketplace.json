@@ -133,7 +133,7 @@
     {
       "name": "hr-candidate-assessment",
       "source": "./",
-      "description": "Help recruiters and hiring managers design and run structured candidate assessments beyond interviews \u2014 skills tests, work samples, assessment centers, and scoring rubrics. Use when asked to \"design a candidate assessment\", \"build a skills test for [role]\", \"create an assessment center\", \"build a scoring rubric\", or \"choose the right assessment method for this role\".",
+      "description": "Help recruiters and hiring managers design and run structured candidate assessments beyond interviews — skills tests, work samples, assessment centers, and scoring rubrics. Use when asked to \"design a candidate assessment\", \"build a skills test for [role]\", \"create an assessment center\", \"build a scoring rubric\", or \"choose the right assessment method for this role\".",
       "skills": [
         "./skills/hr-candidate-assessment"
       ]
@@ -253,7 +253,7 @@
     {
       "name": "hr-crisis-management",
       "source": "./",
-      "description": "Help HR and business leaders plan for and respond to workforce crises \u2014 layoffs handled poorly, safety incidents, natural disasters, leadership scandals, or sudden business disruption. Use when asked to \"build a crisis response plan for HR\", \"respond to a workplace incident\", \"communicate during a crisis\", \"plan for business continuity from an HR perspective\", or \"handle a sudden leadership departure crisis\".",
+      "description": "Help HR and business leaders plan for and respond to workforce crises — layoffs handled poorly, safety incidents, natural disasters, leadership scandals, or sudden business disruption. Use when asked to \"build a crisis response plan for HR\", \"respond to a workplace incident\", \"communicate during a crisis\", \"plan for business continuity from an HR perspective\", or \"handle a sudden leadership departure crisis\".",
       "skills": [
         "./skills/hr-crisis-management"
       ]
@@ -621,7 +621,7 @@
     {
       "name": "hr-mergers-acquisitions",
       "source": "./",
-      "description": "Help HR leaders manage the people dimensions of M&A transactions \u2014 due diligence, deal structuring input, and pre-close workforce planning. Use when asked to \"conduct HR due diligence for an acquisition\", \"assess culture fit before a merger\", \"plan workforce implications of a deal\", \"build an M&A HR integration plan\", or \"identify people risks in this transaction\".",
+      "description": "Help HR leaders manage the people dimensions of M&A transactions — due diligence, deal structuring input, and pre-close workforce planning. Use when asked to \"conduct HR due diligence for an acquisition\", \"assess culture fit before a merger\", \"plan workforce implications of a deal\", \"build an M&A HR integration plan\", or \"identify people risks in this transaction\".",
       "skills": [
         "./skills/hr-mergers-acquisitions"
       ]
@@ -645,7 +645,7 @@
     {
       "name": "hr-offer-management",
       "source": "./",
-      "description": "Help recruiters and hiring managers manage the offer process from approval through acceptance \u2014 offer construction, approval workflows, negotiation, and counteroffer handling. Use when asked to \"build an offer package\", \"manage the offer approval process\", \"handle a counteroffer\", \"negotiate salary with a candidate\", or \"track offer status across open roles\".",
+      "description": "Help recruiters and hiring managers manage the offer process from approval through acceptance — offer construction, approval workflows, negotiation, and counteroffer handling. Use when asked to \"build an offer package\", \"manage the offer approval process\", \"handle a counteroffer\", \"negotiate salary with a candidate\", or \"track offer status across open roles\".",
       "skills": [
         "./skills/hr-offer-management"
       ]
@@ -717,7 +717,7 @@
     {
       "name": "hr-people-budgeting",
       "source": "./",
-      "description": "Help HR leaders and people finance partners own the people budget \u2014 headcount cost-center modeling, budget planning cycles, and variance tracking. Use when asked to \"build the people budget\", \"model headcount by cost center\", \"explain budget variance to finance\", \"plan the HR budget for next fiscal year\", or \"reconcile actual headcount spend against plan\".",
+      "description": "Help HR leaders and people finance partners own the people budget — headcount cost-center modeling, budget planning cycles, and variance tracking. Use when asked to \"build the people budget\", \"model headcount by cost center\", \"explain budget variance to finance\", \"plan the HR budget for next fiscal year\", or \"reconcile actual headcount spend against plan\".",
       "skills": [
         "./skills/hr-people-budgeting"
       ]
@@ -765,7 +765,7 @@
     {
       "name": "hr-post-merger-integration",
       "source": "./",
-      "description": "Help HR and integration leaders manage the people side of post-close M&A integration \u2014 org design harmonization, culture integration, systems consolidation, and retention through the transition. Use when asked to \"plan post-merger HR integration\", \"harmonize two organizations after a merger\", \"integrate compensation and benefits post-close\", \"manage culture integration after an acquisition\", or \"retain talent through post-merger transition\".",
+      "description": "Help HR and integration leaders manage the people side of post-close M&A integration — org design harmonization, culture integration, systems consolidation, and retention through the transition. Use when asked to \"plan post-merger HR integration\", \"harmonize two organizations after a merger\", \"integrate compensation and benefits post-close\", \"manage culture integration after an acquisition\", or \"retain talent through post-merger transition\".",
       "skills": [
         "./skills/hr-post-merger-integration"
       ]
@@ -837,7 +837,7 @@
     {
       "name": "hr-recruitment-operations",
       "source": "./",
-      "description": "Help TA operations leaders design and run the operational backbone of recruiting \u2014 requisition workflows, ATS process design, recruiting SLAs, and reporting cadence. Use when asked to \"design our requisition approval workflow\", \"build recruiting SLAs\", \"set up ATS stages and workflows\", \"audit our recruiting process for bottlenecks\", or \"build a recruiting operations dashboard\".",
+      "description": "Help TA operations leaders design and run the operational backbone of recruiting — requisition workflows, ATS process design, recruiting SLAs, and reporting cadence. Use when asked to \"design our requisition approval workflow\", \"build recruiting SLAs\", \"set up ATS stages and workflows\", \"audit our recruiting process for bottlenecks\", or \"build a recruiting operations dashboard\".",
       "skills": [
         "./skills/hr-recruitment-operations"
       ]
@@ -853,7 +853,7 @@
     {
       "name": "hr-retained-search",
       "source": "./",
-      "description": "Help executive search consultants and internal TA leaders run retained search engagements \u2014 client agreements, milestone-based delivery, confidential search process, and candidate slates. Use when asked to \"structure a retained search engagement\", \"write a retained search agreement\", \"build a candidate slate for a retained search\", or \"manage a retained search timeline\".",
+      "description": "Help executive search consultants and internal TA leaders run retained search engagements — client agreements, milestone-based delivery, confidential search process, and candidate slates. Use when asked to \"structure a retained search engagement\", \"write a retained search agreement\", \"build a candidate slate for a retained search\", or \"manage a retained search timeline\".",
       "skills": [
         "./skills/hr-retained-search"
       ]
@@ -885,7 +885,7 @@
     {
       "name": "hr-search-strategy",
       "source": "./",
-      "description": "Help recruiters, sourcers, and search consultants design the overall strategy for a search assignment before sourcing begins \u2014 target companies, channels, timeline, and positioning. Use when asked to \"build a search strategy for [role]\", \"plan a search before we start sourcing\", \"define the search brief\", or \"decide which channels to prioritize for this search\".",
+      "description": "Help recruiters, sourcers, and search consultants design the overall strategy for a search assignment before sourcing begins — target companies, channels, timeline, and positioning. Use when asked to \"build a search strategy for [role]\", \"plan a search before we start sourcing\", \"define the search brief\", or \"decide which channels to prioritize for this search\".",
       "skills": [
         "./skills/hr-search-strategy"
       ]
@@ -917,7 +917,7 @@
     {
       "name": "hr-skills-intelligence",
       "source": "./",
-      "description": "Help workforce planners and L&D leaders turn skills data into decision-ready intelligence \u2014 skills inventories, emerging skill trend analysis, and skills-gap forecasting at scale. Use when asked to \"analyze our skills data\", \"identify emerging skills we're missing\", \"build a skills intelligence dashboard\", \"forecast future skill demand\", or \"benchmark our skills against the market\".",
+      "description": "Help workforce planners and L&D leaders turn skills data into decision-ready intelligence — skills inventories, emerging skill trend analysis, and skills-gap forecasting at scale. Use when asked to \"analyze our skills data\", \"identify emerging skills we're missing\", \"build a skills intelligence dashboard\", \"forecast future skill demand\", or \"benchmark our skills against the market\".",
       "skills": [
         "./skills/hr-skills-intelligence"
       ]
@@ -965,7 +965,7 @@
     {
       "name": "hr-strategic-workforce-planning",
       "source": "./",
-      "description": "Help CHROs and workforce planners connect long-range business strategy to workforce implications \u2014 future role needs, capability shifts, and multi-year workforce roadmaps. Use when asked to \"build a strategic workforce plan\", \"translate our 5-year business strategy into workforce needs\", \"identify future critical roles\", or \"align workforce planning with business strategy\".",
+      "description": "Help CHROs and workforce planners connect long-range business strategy to workforce implications — future role needs, capability shifts, and multi-year workforce roadmaps. Use when asked to \"build a strategic workforce plan\", \"translate our 5-year business strategy into workforce needs\", \"identify future critical roles\", or \"align workforce planning with business strategy\".",
       "skills": [
         "./skills/hr-strategic-workforce-planning"
       ]
@@ -1085,7 +1085,7 @@
     {
       "name": "hr-vendor-management",
       "source": "./",
-      "description": "Help HR operations and procurement teams select, contract, and manage HR vendors \u2014 from ATS and HRIS providers to staffing agencies, benefits brokers, and background check vendors. Use when asked to \"select an HR vendor\", \"evaluate vendors for [HR tool/service]\", \"manage our HR vendor relationships\", \"negotiate an HR vendor contract\", or \"consolidate our HR vendor stack\".",
+      "description": "Help HR operations and procurement teams select, contract, and manage HR vendors — from ATS and HRIS providers to staffing agencies, benefits brokers, and background check vendors. Use when asked to \"select an HR vendor\", \"evaluate vendors for [HR tool/service]\", \"manage our HR vendor relationships\", \"negotiate an HR vendor contract\", or \"consolidate our HR vendor stack\".",
       "skills": [
         "./skills/hr-vendor-management"
       ]
@@ -1117,7 +1117,7 @@
     {
       "name": "hr-workforce-economics",
       "source": "./",
-      "description": "Help HR and finance leaders model the financial dimensions of workforce decisions \u2014 labor cost structure, productivity economics, and the ROI of workforce investments. Use when asked to \"model the cost of this workforce decision\", \"calculate fully loaded labor cost\", \"build a business case for headcount\", \"analyze workforce productivity economics\", or \"compare the cost of hiring vs. contracting\".",
+      "description": "Help HR and finance leaders model the financial dimensions of workforce decisions — labor cost structure, productivity economics, and the ROI of workforce investments. Use when asked to \"model the cost of this workforce decision\", \"calculate fully loaded labor cost\", \"build a business case for headcount\", \"analyze workforce productivity economics\", or \"compare the cost of hiring vs. contracting\".",
       "skills": [
         "./skills/hr-workforce-economics"
       ]

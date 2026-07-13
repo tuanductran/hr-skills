@@ -39,16 +39,21 @@ Design the upfront plan for a recruiting search assignment — target market, ch
 1. "Draft a one-page search brief to align the hiring manager and recruiter before sourcing starts on [role]."
 2. "What questions should I ask the hiring manager before finalizing search strategy for [role]?"
 3. "How do I present a search strategy that sets realistic expectations for a hard-to-fill role?"
+4. "How should stakeholder alignment differ for a confidential search versus a publicly posted one?"
 
 ### Risk and course correction
 
 1. "What risks should we flag upfront for a search for [role] given [thin talent market / tight comp band / remote restriction]?"
 2. "Our search for [role] hasn't produced qualified candidates after [timeframe] — how should we adjust strategy?"
 3. "Compare a broader-market search strategy vs. a narrow, highly targeted approach for [role] — trade-offs of each."
+4. "At what point should we recommend pausing a search entirely rather than continuing to invest in it?"
 
 ### Confidential searches
 
 1. "Design a search strategy for a confidential replacement search for [role] that protects the incumbent."
+2. "How do we source and screen candidates for a confidential search without tipping off the market or the incumbent's network?"
+3. "Draft candidate-facing language explaining confidentiality expectations for a sensitive replacement search."
+4. "What internal stakeholders need to know about a confidential search, and how do we limit that circle appropriately?"
 
 ## Tips
 

@@ -64,20 +64,15 @@ Comprehensive workforce planning support — from skills gap analyses, headcount
 4. "What workforce cost optimization strategies can reduce our labor costs without harming performance?"
 5. "How should I manage headcount reductions in a way that is humane, compliant, and preserves culture?"
 
-### Workforce analytics and reporting
+### Workforce analytics and contingent workforce
 
 1. "What should a workforce analytics report include to give leadership a clear picture of talent health?"
 2. "How can I create predictive staffing models that anticipate attrition and sourcing lead times?"
-3. "Write a workforce analysis framework for [organization] that covers demographics, skills, and engagement."
-4. "What metrics should I track in a workforce planning scorecard to monitor progress against targets?"
-
-### Contingent and diverse workforce
-
-1. "How should we develop a strategy for managing gig economy talent and contingent workers?"
-2. "What should a contingent workforce policy include to ensure compliance and consistent treatment?"
-3. "How can I develop workforce diversity strategies that build a more representative talent pipeline?"
-4. "What are the key components of a job family classification framework for workforce segmentation?"
-5. "How should I write workforce development plans that address both individual and organizational needs?"
+3. "What metrics should I track in a workforce planning scorecard to monitor progress against targets?"
+4. "How should we develop a strategy for managing gig economy talent and contingent workers?"
+5. "What should a contingent workforce policy include to ensure compliance and consistent treatment?"
+6. "How can I develop workforce diversity strategies that build a more representative talent pipeline?"
+7. "What are the key components of a job family classification framework for workforce segmentation?"
 
 ## Tips
 

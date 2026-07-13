@@ -64,6 +64,7 @@ Govern the ethical use of artificial intelligence in HR processes — from asses
 1. "Design an AI ethics training module for HR professionals covering bias, fairness, transparency, and accountability."
 2. "What case studies best illustrate the real-world consequences of unethical AI use in HR for [training audience]?"
 3. "How do we build AI ethics awareness in hiring managers who use AI-assisted screening tools daily?"
+4. "Design a short refresher exercise that keeps AI ethics principles top of mind for HR staff between formal training cycles."
 
 ## Tips
 

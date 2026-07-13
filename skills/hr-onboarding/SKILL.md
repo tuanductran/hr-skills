@@ -42,20 +42,14 @@ Comprehensive onboarding and offboarding support — from designing onboarding p
 4. "Create a pre-boarding compliance checklist for [country] covering tax registration, social insurance enrollment, and work permit verification."
 5. "What are the mandatory enrollment and registration steps for a new hire in [country], and what deadlines apply?"
 
-### Orientation and culture
+### Orientation, culture, and manager onboarding
 
 1. "How should I design an orientation program that effectively communicates our mission, vision, and values?"
 2. "Create an orientation presentation outline that welcomes new hires and introduces our culture."
 3. "What strategies help introduce new hires to the company's history, achievements, and culture in an engaging way?"
-4. "How can I use storytelling to convey company values and culture during orientation?"
-5. "What creative welcome activities make new employees feel appreciated and valued from day one?"
-
-### Manager and team onboarding
-
-1. "Describe the role of managers and team members in creating a successful onboarding experience."
-2. "How should I design an onboarding program specifically for new managers that covers people management fundamentals?"
-3. "What manager actions during the first 30/60/90 days most strongly predict new hire success?"
-4. "How can I build a buddy system program that pairs new hires with experienced employees for support?"
+4. "How should I design an onboarding program specifically for new managers that covers people management fundamentals?"
+5. "What manager actions during the first 30/60/90 days most strongly predict new hire success?"
+6. "How can I build a buddy system program that pairs new hires with experienced employees for support?"
 
 ### Remote and virtual onboarding
 
@@ -64,19 +58,15 @@ Comprehensive onboarding and offboarding support — from designing onboarding p
 3. "What tools and platforms best support virtual onboarding experiences?"
 4. "How should I adapt onboarding activities and team-building exercises for a fully remote workforce?"
 
-### Measuring effectiveness
+### Measuring effectiveness and inclusive onboarding
 
 1. "How can I assess the effectiveness of our onboarding process and gather feedback from new employees?"
 2. "What survey questions should I include in a 30/60/90-day new hire check-in?"
 3. "What metrics should I track to measure onboarding effectiveness and its impact on retention?"
-4. "How can I use HR analytics to evaluate which onboarding elements most strongly predict new hire performance?"
-
-### Diverse and inclusive onboarding
-
-1. "What strategies help create an inclusive onboarding experience that welcomes employees from diverse backgrounds?"
-2. "How can I address the specific onboarding needs of employees who are relocating for the job?"
-3. "What adaptations make onboarding more inclusive for employees with disabilities or neurodivergent employees?"
-4. "How can I ensure onboarding supports the mental and emotional well-being of new hires?"
+4. "What strategies help create an inclusive onboarding experience that welcomes employees from diverse backgrounds?"
+5. "How can I address the specific onboarding needs of employees who are relocating for the job?"
+6. "What adaptations make onboarding more inclusive for employees with disabilities or neurodivergent employees?"
+7. "How can I ensure onboarding supports the mental and emotional well-being of new hires?"
 
 ### Offboarding and exit
 

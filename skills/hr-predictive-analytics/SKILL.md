@@ -32,23 +32,28 @@ Build, validate, and responsibly interpret predictive models for HR outcomes —
 1. "Frame [HR question, e.g. 'which employees are likely to leave in the next 6 months'] as a predictive modeling problem — what data and approach would this need?"
 2. "What predictors are commonly associated with attrition risk, and which of these could we responsibly use given our available data?"
 3. "What features would be relevant for a model predicting hiring success for [role type], and how would we validate them against actual performance outcomes?"
+4. "What data quality issues in our HRIS would we need to fix before a predictive model on [outcome] would be trustworthy?"
 
 ### Interpreting and validating
 
 1. "Explain this model's feature importance output in plain language for an HR business partner audience."
 2. "How should we validate whether this attrition prediction model is actually accurate and stable over time, not just fitted to historical data?"
 3. "Assess this predictive model for potential bias or disparate impact against protected groups before we put it into use."
+4. "How do we explain a false positive or false negative from this model to an employee or manager who questions the result?"
 
 ### Applying responsibly
 
 1. "Design a process for how managers should use attrition risk flags — as a conversation prompt, not an automated verdict."
 2. "How do we communicate predictive analytics findings to leadership without overstating certainty or implying the model is deterministic?"
 3. "What governance should control who can access individual-level predictive risk scores, and for what purposes?"
+4. "Should this model's output ever be shared directly with the employee it concerns, or only used internally by HR and managers?"
 
 ### Ongoing management
 
 1. "How should we monitor this predictive model over time and decide when it needs retraining or retirement?"
 2. "Compare this model's performance against a simple baseline (e.g., tenure-based heuristic) — is the added complexity worth it?"
+3. "What would trigger us to retire this model entirely rather than retrain it?"
+4. "How do we audit whether managers are actually using model output responsibly rather than over-relying on it?"
 
 ## Tips
 

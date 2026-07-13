@@ -32,23 +32,28 @@ Analyze informal collaboration patterns — communication flows, cross-team conn
 1. "Design an organizational network analysis study for [team/function], including data sources and privacy safeguards."
 2. "What data sources (survey, calendar, communication metadata) are appropriate and proportionate for an ONA in [context]?"
 3. "Draft a consent and privacy framework for running an ONA that respects employee trust."
+4. "How do we communicate the purpose of an ONA to employees so it doesn't feel like covert surveillance?"
 
 ### Identifying patterns
 
 1. "Analyze this network data to identify informal influencers or connectors who aren't reflected in the formal org chart."
 2. "Where are the collaboration bottlenecks in [team] — points where too much flow depends on one person?"
 3. "Identify silos or weak connections between [team A] and [team B] that could be limiting collaboration."
+4. "Which roles show signs of being overloaded network hubs at risk of burnout or single-point-of-failure attrition?"
 
 ### Applying findings
 
 1. "How might network centrality data inform succession planning for [role], beyond what the formal hierarchy suggests?"
 2. "Design an onboarding approach that helps new hires build network connections faster in their first 90 days."
 3. "Recommend interventions to strengthen a strategically important but currently weak connection between [team A] and [team B]."
+4. "How should network analysis findings be shared with leaders without exposing individual employees to unwanted attention?"
 
 ### Measuring change
 
 1. "Compare network structure for [team] before and after [reorganization/intervention] and summarize what changed."
 2. "Design a way to track network health over time without turning it into a surveillance exercise."
+3. "What is a reasonable cadence for re-running an ONA so it captures real change without becoming intrusive routine monitoring?"
+4. "How do we present a before/after network comparison in a way non-technical leaders can act on?"
 
 ## Tips
 

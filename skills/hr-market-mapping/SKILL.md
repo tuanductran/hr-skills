@@ -52,6 +52,8 @@ Build structured maps of where target talent lives — which companies, function
 
 1. "Summarize this market map into a one-page briefing for the hiring manager on [role]."
 2. "Turn this market research into a target-company list prioritized by likelihood of candidate interest."
+3. "Draft an executive summary of this market map explaining what it means for our sourcing strategy over the next two quarters."
+4. "How should we present a market map to a skeptical hiring manager who wants to focus only on direct competitors?"
 
 ## Tips
 

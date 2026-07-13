@@ -32,23 +32,28 @@ Manage the people side of integration after a deal closes — org design harmoni
 1. "Build a post-merger HR integration plan and 100-day timeline for combining [acquirer] and [target]."
 2. "Design an approach for harmonizing org structure and reporting lines across [acquirer] and [target]."
 3. "What sequence should we follow for integrating compensation, benefits, and job architecture without disrupting operations?"
+4. "Build a decision log template capturing key integration decisions and their rationale for future reference."
 
 ### Culture and communication
 
 1. "Design a culture integration approach that acknowledges and respects both organizations rather than assuming one absorbs the other."
 2. "Draft an integration communication plan for the first 90 days, covering key milestones and what employees can expect."
 3. "How should we support managers who are now leading newly combined teams with different cultures and working norms?"
+4. "Design a listening strategy to surface real employee sentiment during integration without relying only on formal surveys."
 
 ### Retention and restructuring
 
 1. "Design a retention strategy for critical talent through the highest-risk integration period."
 2. "Build a plan for managing role redundancy and restructuring fairly and legally compliant across [jurisdictions]."
 3. "What early warning signs should we monitor to catch integration-driven attrition before it becomes a pattern?"
+4. "How do we design retention agreements that are fair to both legacy [acquirer] and [target] employees in equivalent roles?"
 
 ### Tracking and closing
 
 1. "Design a set of integration milestones and metrics (retention, engagement, systems consolidation) to track progress."
 2. "How do we know when post-merger integration is complete and we've transitioned to steady-state operations?"
+3. "Draft a post-integration retrospective agenda to capture lessons learned for the next acquisition."
+4. "What integration metrics should be reported to the board or executive team as evidence the deal is delivering expected value?"
 
 ## Tips
 

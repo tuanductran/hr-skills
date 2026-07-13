@@ -32,23 +32,28 @@ Plan and manage integrations across the HR technology stack — HRIS, ATS, payro
 1. "Map our current HR tech stack and identify all integration points between [systems]."
 2. "Design an integration architecture connecting our HRIS, ATS, and payroll systems, including system of record for each data type."
 3. "What integration approach — native connector, middleware, custom API, or manual process — fits best for connecting [system A] and [system B]?"
+4. "What integration monitoring and alerting should we set up to catch sync failures before they cause downstream data issues?"
 
 ### Data mapping and quality
 
 1. "Design field-level data mapping rules between [system A] and [system B] for [data type, e.g. employee status changes]."
 2. "Diagnose why employee data is out of sync between [system A] and [system B] and identify likely root causes."
 3. "Audit our existing integrations for data quality issues, latency, or reliability problems."
+4. "How should we handle conflicting field values when two systems both claim to be the source of truth for the same data?"
 
 ### Implementation and testing
 
 1. "Plan integration testing steps to run before go-live for a new connector between [system A] and [system B]."
 2. "Sequence integration work for a new HRIS implementation involving [number] connected downstream systems."
 3. "Assess integration risk and design a rollback plan for [a major system change or migration]."
+4. "Design a parallel-run validation plan comparing old and new integration outputs before fully cutting over."
 
 ### Documentation and vendor management
 
 1. "Document our integration architecture in a format usable by HR IT and vendor support teams."
 2. "What questions should we ask a vendor about integration capabilities before selecting a new HR system?"
+3. "Draft a data ownership and support-responsibility matrix between HR IT and each system vendor."
+4. "What should a runbook for diagnosing and fixing a broken integration include so any team member can follow it?"
 
 ## Tips
 

@@ -32,24 +32,28 @@ Drive practical, sustained adoption of AI tools — among HR teams and the broad
 1. "Design an AI adoption strategy for [HR team / broader employee population] rolling out [AI tool]."
 2. "Sequence the rollout of [AI tool] to build early momentum before expanding to the full population."
 3. "Design a champion or early-adopter program to drive peer-led adoption of [AI tool]."
+4. "What criteria should we use to decide which teams or functions get [AI tool] access first versus later in the rollout?"
 
 ### Enablement and communication
 
 1. "Build an enablement and training plan to get [HR team] actually using [AI tool] day-to-day, not just aware of it."
 2. "Draft communication explaining why we're adopting [AI tool] in a way that reduces anxiety rather than increasing it."
 3. "How should managers be equipped to support their teams through adopting [AI tool]?"
+4. "Draft an FAQ document addressing the most common practical questions employees ask when [AI tool] is first introduced."
 
 ### Addressing resistance
 
 1. "What are the most common sources of resistance to AI adoption in HR teams, and how should we address each?"
 2. "Draft talking points addressing job security concerns tied to the introduction of [AI tool]."
 3. "How do we respond to skepticism from experienced HR practitioners who don't see the value of [AI tool] in their workflow?"
+4. "What should we do when a vocal team member actively discourages peers from adopting [AI tool]?"
 
 ### Measuring and sustaining
 
 1. "Design a way to measure actual usage and productivity impact of [AI tool], not just initial adoption numbers."
 2. "How do we sustain adoption momentum for [AI tool] after the initial rollout excitement fades?"
 3. "Design a feedback loop so real usage patterns of [AI tool] inform ongoing improvements."
+4. "How do we know when [AI tool] adoption has reached a healthy, self-sustaining steady state versus still needing active push?"
 
 ## Tips
 

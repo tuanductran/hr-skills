@@ -32,24 +32,28 @@ Benchmark pay against external market data to set competitive, defensible salary
 1. "What salary survey or market data sources are most appropriate for benchmarking [role] in [industry/region]?"
 2. "How should we accurately match our internal [role] to the closest external benchmark job code, given differences in scope?"
 3. "Compare the reliability and cost trade-offs of [benchmarking vendor A] vs. [benchmarking vendor B] for [role type]."
+4. "How often should we refresh benchmark data for [fast-moving role/industry] versus a more stable function?"
 
 ### Building ranges
 
 1. "Build a salary range for [role] in [location] using [percentile target] against current market benchmark data."
 2. "Adjust this benchmark-derived salary range for [level/geography] differences from the base survey data."
 3. "How should we handle benchmarking for a role with thin or unreliable external market data?"
+4. "How do we set ranges for a hybrid role that spans two distinct market benchmark job codes?"
 
 ### Assessing competitiveness
 
 1. "Assess whether our current pay for [role/function] is competitive against the [50th/75th] percentile of market data."
 2. "Benchmark total compensation, including bonus and equity, for [role] against market, not just base salary."
 3. "Benchmark pay for [role] consistently across [multiple countries/regions], accounting for cost-of-labor differences."
+4. "What should trigger an off-cycle benchmark refresh for [role] outside our normal annual cadence?"
 
 ### Governance and presentation
 
 1. "Present these salary benchmarking findings to leadership with clear recommendations on where pay adjustments are needed."
 2. "Draft a benchmarking methodology document explaining our data sources, job matching approach, and refresh cadence."
 3. "Reconcile market benchmark data with internal pay equity findings where the two suggest different actions."
+4. "Draft governance guidelines for who can approve pay decisions that fall outside the benchmarked range."
 
 ## Tips
 

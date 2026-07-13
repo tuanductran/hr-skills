@@ -39,17 +39,21 @@ Design and run structured assessments — skills tests, work samples, simulation
 1. "Write an assessor calibration guide to reduce scoring inconsistency across interviewers for [assessment]."
 2. "Review this assessment exercise for potential adverse impact or unnecessary barriers unrelated to job performance."
 3. "How do we balance assessment thoroughness against candidate drop-off from a lengthy process?"
+4. "How do we handle a case where two calibrated assessors give meaningfully different scores for the same candidate?"
 
 ### Evaluating tools and results
 
 1. "What criteria should we use to evaluate a third-party assessment vendor for [role type]?"
 2. "How do we combine assessment scores with interview feedback into a single hiring recommendation?"
 3. "Design a process for auditing whether our [role] assessment actually predicts on-the-job performance."
+4. "What should we do if our assessment vendor cannot show validity evidence linking scores to job performance?"
 
 ### Candidate-facing communication
 
 1. "Draft candidate-facing instructions for [assessment exercise] that set clear expectations without giving away the evaluation criteria."
 2. "Write feedback for a candidate who didn't pass the assessment stage, focused on constructive, specific points."
+3. "How much detail about our assessment methodology should we share with candidates before they take it?"
+4. "Draft a response to a candidate who requests a re-assessment after receiving a low score."
 
 ## Tips
 

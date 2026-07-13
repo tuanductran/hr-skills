@@ -85,3 +85,34 @@ export function first<T>(items: readonly T[]): T {
 
 	return first;
 }
+
+/**
+ * Build content with N subtopics of M prompts each.
+ */
+export function makeKeyPromptsContent(subtopics: number, promptsEach: number): string {
+	const blocks = Array.from({ length: subtopics }, (_, si) => {
+		const prompts = Array.from(
+			{ length: promptsEach },
+			(_, pi) => `${pi + 1}. "Prompt ${si + 1}-${pi + 1} for [role]."`,
+		).join('\n');
+		return `### Subtopic ${si + 1}\n\n${prompts}`;
+	});
+
+	return [
+		'---',
+		'name: hr-test',
+		'description: This is a sufficiently long description for validation purposes.',
+		'metadata:',
+		'  author: Tuan Duc Tran',
+		'  version: "1.0.0"',
+		'---',
+		'',
+		'## Key prompts',
+		'',
+		...blocks,
+		'',
+		'## Tips',
+		'',
+		'- Tip',
+	].join('\n');
+}

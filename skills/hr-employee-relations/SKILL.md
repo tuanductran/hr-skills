@@ -51,14 +51,15 @@ Comprehensive employee relations support — from managing workplace investigati
 4. "How can I ensure confidentiality throughout a workplace investigation?"
 5. "What should a final investigation report include for a case involving [type of allegation]?"
 
-### Policies and contracts
+### Policies, contracts, and team communications
 
 1. "Write a remote work policy that balances flexibility with accountability and business needs."
 2. "What should be included in a flexible work policy that covers hybrid, remote, and alternative schedules?"
 3. "Write an employee contract template for a [full-time/part-time/contract] [job title] role."
-4. "What should a job sharing policy include to ensure clarity for both employees and managers?"
-5. "How should we write a company culture guidelines document that reflects our values?"
-6. "Write a harassment prevention policy that is clear, comprehensive, and legally compliant."
+4. "Write a harassment prevention policy that is clear, comprehensive, and legally compliant."
+5. "Develop team-building strategies for a [remote/hybrid/in-person] team experiencing low morale."
+6. "Write an internal communications strategy that keeps employees informed and engaged during [change/transition]."
+7. "Create an HR communication plan for announcing [policy change/restructuring/new program]."
 
 ### Employee surveys
 
@@ -73,13 +74,6 @@ Comprehensive employee relations support — from managing workplace investigati
 2. "What are the legal requirements and best practices for providing reasonable accommodations?"
 3. "How can HR develop an employee assistance program (EAP) that effectively supports employee well-being?"
 4. "What mental health support programs are most effective in reducing stigma and improving help-seeking?"
-
-### Team building and communications
-
-1. "Develop team-building strategies for a [remote/hybrid/in-person] team experiencing low morale."
-2. "Write an internal communications strategy that keeps employees informed and engaged during [change/transition]."
-3. "Create an HR communication plan for announcing [policy change/restructuring/new program]."
-4. "What team-building activities are most effective for improving collaboration in [department/team type]?"
 
 ## Tips
 

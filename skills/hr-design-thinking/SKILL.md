@@ -64,6 +64,7 @@ Apply human-centered design principles to HR challenges — from empathy researc
 1. "Design a measurement approach for evaluating whether our redesigned [HR process] is better from the employee perspective."
 2. "How do we gather feedback from pilot participants in a way that generates actionable improvement insights?"
 3. "What metrics should we track over time to know whether our design thinking intervention sustained its impact?"
+4. "How do we decide when a piloted HR process change is ready to scale beyond the original pilot group?"
 
 ## Tips
 

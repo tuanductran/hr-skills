@@ -1,10 +1,8 @@
+import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import process from 'node:process';
 import * as p from '@clack/prompts';
 import { validate as validateRef } from 'skills-ref';
-
-import { readFile } from 'node:fs/promises';
-import { join } from 'node:path';
 import {
 	HR_SKILL_PREFIX,
 	KEY_PROMPTS_REGEX,
@@ -249,7 +247,7 @@ export function validateAuthor(
 /**
  * Validate the structure of the ## Key prompts section.
  *
- * Per docs/format.md: 3–6 subtopics (H3 headings) and 4–7 quoted prompts per subtopic.
+ * Per docs/format.md: 3-6 subtopics (H3 headings) and 4-7 quoted prompts per subtopic.
  */
 export function validatePromptStructure(
 	skillName: string,
@@ -267,7 +265,7 @@ export function validatePromptStructure(
 	if (subtopicBlocks.length < 3 || subtopicBlocks.length > 6) {
 		errors.push({
 			skill: skillName,
-			message: `Key prompts section has ${subtopicBlocks.length} subtopic(s) — expected 3–6`,
+			message: `Key prompts section has ${subtopicBlocks.length} subtopic(s) — expected 3-6`,
 		});
 	}
 
@@ -279,7 +277,7 @@ export function validatePromptStructure(
 		if (prompts.length < 4 || prompts.length > 7) {
 			errors.push({
 				skill: skillName,
-				message: `Key prompts subtopic "${subtopicName}" has ${prompts.length} prompt(s) — expected 4–7`,
+				message: `Key prompts subtopic "${subtopicName}" has ${prompts.length} prompt(s) — expected 4-7`,
 			});
 		}
 	}
@@ -306,14 +304,15 @@ export async function validateRouterConsistency(
 	} catch {
 		errors.push({
 			skill: '(consistency)',
-			message: 'Could not read .claude-plugin/marketplace.json for consistency check',
+			message:
+				'Could not read .claude-plugin/marketplace.json for consistency check',
 		});
 		return;
 	}
 
 	// --- Root SKILL.md router ---
 	const routerPath = join(ROOT_DIR, 'SKILL.md');
-	let routerNames: string[] = [];
+	const routerNames: string[] = [];
 
 	try {
 		const routerContent = await readFile(routerPath, 'utf8');
