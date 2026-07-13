@@ -63,19 +63,15 @@ Comprehensive HR technology support — from evaluating and selecting HR systems
 3. "How can HR gamification platforms be used to improve adoption of [training/wellness/performance] programs?"
 4. "What social media strategies can HR use to strengthen employer brand and support recruiting?"
 
-### Data governance and security
+### Data governance, security, and ROI reporting
 
 1. "What should an HR data governance framework include to manage employee data responsibly?"
-2. "How can I create HR data warehousing solutions that support analytics and reporting needs?"
-3. "Write an HR cybersecurity policy that protects sensitive employee data from breaches and unauthorized access."
-4. "What are the key components of an HR data privacy policy that complies with GDPR and other regulations?"
-5. "How should I manage HR data visualization platforms to ensure data accuracy and access security?"
-
-### ROI and reporting
-
-1. "How can I create an HR technology ROI report that demonstrates the value of our [system] investment?"
-2. "Write HR data analytics reports that show the business impact of our HR technology implementations."
-3. "What metrics should I track to evaluate the success of an HR system implementation?"
+2. "Write an HR cybersecurity policy that protects sensitive employee data from breaches and unauthorized access."
+3. "What are the key components of an HR data privacy policy that complies with GDPR and other regulations?"
+4. "How can I create an HR technology ROI report that demonstrates the value of our [system] investment?"
+5. "Write HR data analytics reports that show the business impact of our HR technology implementations."
+6. "What metrics should I track to evaluate the success of an HR system implementation?"
+7. "How do we attribute efficiency gains to a new HR system versus other process changes happening at the same time?"
 
 ## Tips
 

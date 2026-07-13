@@ -32,23 +32,28 @@ Translate multi-year business strategy into workforce implications — future cr
 1. "Translate this [3-5 year] business strategy into workforce demand implications — what roles and capabilities grow, shrink, or emerge?"
 2. "Identify the future critical roles [company] will need to execute [strategic priority] that don't fully exist in our current structure."
 3. "What workforce risks are embedded in our current strategic plan that leadership hasn't explicitly surfaced?"
+4. "How far out should strategic workforce planning realistically forecast given the volatility in [industry]?"
 
 ### Building the roadmap
 
 1. "Build a phased strategic workforce roadmap aligned to [business strategy] milestones over [timeframe]."
 2. "Assess our current workforce capability against what [strategic priority] will require, and identify the biggest gaps."
 3. "For each major capability gap identified, recommend whether to build, buy, borrow, or automate, and why."
+4. "Sequence competing workforce investments when budget only supports funding some of the identified priorities."
 
 ### Facilitation and alignment
 
 1. "Design a strategic workforce planning session agenda to run with executive leadership, tied to the annual planning cycle."
 2. "How should strategic workforce planning connect to and inform our talent acquisition and L&D investment priorities this year?"
 3. "Model the workforce implications of [entering a new market / launching a new business line] over the next [timeframe]."
+4. "How do we get functional leaders to actually engage with strategic workforce planning rather than treating it as an HR-only exercise?"
 
 ### Communication
 
 1. "Summarize this strategic workforce plan into a board-level presentation connecting workforce investment to business outcomes."
 2. "How should we revisit and update our strategic workforce plan given [a recent shift in business strategy]?"
+3. "What leading indicators should tell us our strategic workforce plan needs revisiting before the next annual cycle?"
+4. "Draft a one-page summary translating the strategic workforce plan into what each functional leader needs to do this quarter."
 
 ## Tips
 

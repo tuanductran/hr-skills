@@ -32,24 +32,28 @@ Select, contract, and manage HR vendors across the vendor lifecycle — from RFP
 1. "Build an RFP and evaluation criteria for selecting a vendor for [HR tool/service category]."
 2. "Design a vendor evaluation scorecard comparing [Vendor A], [Vendor B], and [Vendor C] on cost, functionality, and support quality."
 3. "What data security and compliance questions should we ask before onboarding [type of vendor] given the employee data they'll access?"
+4. "How should we weigh a cheaper vendor with weaker support against a pricier vendor with stronger implementation track record?"
 
 ### Contracting and negotiation
 
 1. "What contract terms and SLAs should we prioritize when negotiating with [vendor type]?"
 2. "Draft negotiation talking points for renewing our contract with [vendor] given [usage/performance context]."
 3. "Benchmark this vendor's pricing proposal against typical market rates for [service category]."
+4. "What exit and data-portability clauses should we insist on before signing with [vendor]?"
 
 ### Ongoing management
 
 1. "Design a vendor governance framework with clear ownership, review cadence, and escalation paths for our HR vendor stack."
 2. "How should we handle underperformance from [vendor], including remediation steps before considering an exit?"
 3. "Build a vendor performance review template to use at [quarterly/annual] business reviews."
+4. "What early warning signs suggest a vendor relationship is deteriorating before it becomes a formal escalation?"
 
 ### Consolidation and transition
 
 1. "Assess our current HR vendor stack for redundancy and consolidation opportunities."
 2. "Plan a vendor transition and data migration approach for switching from [current vendor] to [new vendor]."
 3. "Document our HR vendor contracts, renewal dates, and key terms in a central tracking format."
+4. "Draft a communication plan for employees affected by a vendor transition, such as a new benefits or payroll provider."
 
 ## Tips
 

@@ -43,47 +43,9 @@ Directory name rules: lowercase, hyphens only, must start with `hr-`.
 
 ### 2. Write SKILL.md
 
-Use this template:
+Use the canonical template in [`.github/skill-template.md`](../.github/skill-template.md).
 
-```markdown
----
-name: hr-your-skill-name
-description: One-sentence description. Include trigger phrases like "Write a ...", "Conduct a ...", or "Analyze ...".
-metadata:
-  author: Tuan Duc Tran
-  version: "1.0.0"
----
-
-# HR skill title
-
-Brief paragraph describing what this skill covers.
-
-## Supported tasks
-
-- Task one
-- Task two
-(8–12 tasks)
-
-## Key prompts
-
-### Subtopic one
-
-1. "Prompt one for [variable]"
-2. "Prompt two for [context]"
-(4–7 prompts per subtopic, 3–6 subtopics)
-
-### Subtopic two
-
-1. "..."
-
-## Tips
-
-- Tip one (professional best-practice guidance)
-- Tip two
-(4–6 tips)
-```
-
-See [format.md](./docs/format.md) for the full specification.
+See [`docs/format.md`](./docs/format.md) for the full specification.
 
 ### 3. Sync skill references
 

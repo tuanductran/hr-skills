@@ -32,23 +32,28 @@ Map the end-to-end employee journey — from attraction through alumni — to id
 1. "Build an end-to-end employee journey map from attraction through alumni for [company/role type]."
 2. "Map a detailed journey for the [onboarding / promotion / parental leave / offboarding] stage, including touchpoints, emotions, and systems involved."
 3. "Design a persona-specific journey map for [new graduate / senior IC / returning parent] that reflects their distinct experience."
+4. "What data sources — surveys, exit interviews, HRIS timestamps — should feed into an accurate journey map for [stage]?"
 
 ### Identifying moments and friction
 
 1. "Identify the 'moments that matter' in our employee journey — points that disproportionately shape how employees feel about the company."
 2. "Where are the biggest friction points in our [specific stage] journey based on this qualitative and quantitative data?"
 3. "Compare our intended [journey stage] design against what employees report actually experiencing — where's the gap?"
+4. "How do we distinguish a true moment that matters from a minor annoyance that doesn't significantly shape the employee experience?"
 
 ### Redesign and prioritization
 
 1. "Prioritize which friction points in this journey map to fix first, based on impact and feasibility."
 2. "Redesign the [journey stage] to address the top friction points identified, with specific process or policy changes."
 3. "Design a journey mapping workshop agenda to run with cross-functional stakeholders for [stage]."
+4. "Draft a business case for investing in [journey stage] redesign that quantifies the cost of the current friction."
 
 ### Measuring impact
 
 1. "What metrics should we track to measure whether our journey redesign for [stage] actually improved the employee experience?"
 2. "How should we maintain and update this journey map as our processes and systems evolve?"
+3. "What is the right cadence for revisiting a journey map to ensure it stays accurate as the organization changes?"
+4. "How do we attribute an improvement in retention or engagement scores to a specific journey redesign versus other factors?"
 
 ## Tips
 

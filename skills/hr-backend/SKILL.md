@@ -123,21 +123,15 @@ Modern backend ecosystems in 2026 continue to be heavily influenced by:
 4. "What backend skills are most important for [Junior vs Senior server-side roles]?"
 5. "How does backend engineering impact [application scalability, data security, and business performance]?"
 
-### Backend frameworks
+### Frameworks, APIs, and databases
 
 1. "What is the difference between [NestJS, Express.js, Django, and Spring Boot] from a candidate screening perspective?"
 2. "Why are many modern backend teams adopting [TypeScript and NestJS] over [traditional JavaScript/Express]?"
 3. "When should companies choose Go or Rust instead of [Node.js, Python, or Ruby]?"
-4. "What backend frameworks are common in [startups vs enterprise companies]?"
-5. "What backend framework trends should recruiters understand when hiring in [2026]?"
-
-### APIs and databases
-
-1. "Explain [REST API, GraphQL, and gRPC] in simple terms for [technical sourcers]."
-2. "Why are databases important in backend systems, and how should I screen for [SQL vs NoSQL experience]?"
-3. "What is the difference between [PostgreSQL] and [MongoDB/Redis]?"
-4. "How do backend engineers design [highly available and scalable APIs]?"
-5. "What backend database design skills are commonly required in [Senior Backend Architect roles]?"
+4. "What backend framework trends should recruiters understand when hiring in [2026]?"
+5. "Explain [REST API, GraphQL, and gRPC] in simple terms for [technical sourcers]."
+6. "Why are databases important in backend systems, and how should I screen for [SQL vs NoSQL experience]?"
+7. "What backend database design skills are commonly required in [Senior Backend Architect roles]?"
 
 ### Backend architecture and infrastructure
 
@@ -155,14 +149,6 @@ Modern backend ecosystems in 2026 continue to be heavily influenced by:
 4. "How do I distinguish between [Junior, Middle, Senior, and Staff] backend engineers?"
 5. "Create a technical screening scorecard and questions for a [Senior Backend Developer] role."
 
-### Backend scalability and security
-
-1. "Why is scalability important in backend engineering, and how does [horizontal vs vertical scaling] differ?"
-2. "What does high-concurrency backend architecture mean, and how do engineers handle [high traffic spikes]?"
-3. "How do backend engineers improve application [reliability, uptime, and database performance]?"
-4. "What backend security knowledge (for example, OAuth, JWT, SQL injection prevention) is important for hiring in [fintech/healthcare]?"
-5. "How can recruiters identify backend candidates with strong [system design and data modeling] knowledge?"
-
 ### Backend hiring and job descriptions
 
 1. "Help me write a Backend Developer job description for a [startup/enterprise] requiring [Node.js/Go/Java]."
@@ -171,13 +157,15 @@ Modern backend ecosystems in 2026 continue to be heavily influenced by:
 4. "What backend skills are overused buzzwords that recruiters should analyze carefully?"
 5. "How do I avoid unrealistic backend hiring expectations in a job description for [role/team]?"
 
-### Backend terminology for HR
+### Scalability, security, and terminology for HR
 
-1. "Explain [API, microservices, caching, queues, and load balancing] in simple terms for [recruiting coordinators]."
-2. "What do backend developers mean by [scalability and high availability]?"
-3. "What is the difference between monolith and microservices, and why does it affect [our hiring requirements]?"
-4. "What is Docker and containerization, and why do [modern backend teams] use it?"
-5. "Which backend terms are [core engineering skills] versus [transient technologies] that I should recognize?"
+1. "Why is scalability important in backend engineering, and how does [horizontal vs vertical scaling] differ?"
+2. "What does high-concurrency backend architecture mean, and how do engineers handle [high traffic spikes]?"
+3. "What backend security knowledge (for example, OAuth, JWT, SQL injection prevention) is important for hiring in [fintech/healthcare]?"
+4. "How can recruiters identify backend candidates with strong [system design and data modeling] knowledge?"
+5. "Explain [API, microservices, caching, queues, and load balancing] in simple terms for [recruiting coordinators]."
+6. "What is the difference between monolith and microservices, and why does it affect [our hiring requirements]?"
+7. "What is Docker and containerization, and why do [modern backend teams] use it?"
 
 ## Backend hiring insights
 

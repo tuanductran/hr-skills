@@ -32,23 +32,28 @@ Design and run the operational infrastructure behind recruiting — requisition 
 1. "Design a requisition approval workflow with clear stages from headcount request to job posting approval."
 2. "Configure recommended ATS pipeline stages for [role type], including automation triggers between stages."
 3. "Standardize our interview scheduling process to reduce coordination time between recruiter, panel, and candidate."
+4. "Design an intake process for hiring managers that captures role requirements clearly enough to avoid rework mid-search."
 
 ### SLAs and process health
 
 1. "Define recruiting SLAs for time-to-screen, time-to-schedule, and time-to-offer appropriate for [role type/volume]."
 2. "Audit this recruiting process end-to-end and identify the top three bottlenecks slowing time-to-hire."
 3. "Run a root-cause analysis on why we're missing hiring targets for [team/quarter]."
+4. "What escalation process should trigger when a requisition breaches its time-to-fill SLA?"
 
 ### Reporting and governance
 
 1. "Design a recruiting operations dashboard showing pipeline health, SLA adherence, and recruiter capacity."
 2. "What ATS data hygiene rules should we enforce to keep reporting accurate (mandatory fields, disposition reasons, stage definitions)?"
 3. "Build a capacity planning model estimating how many open reqs one recruiter can effectively manage at a time."
+4. "Design a weekly recruiting operations review agenda that surfaces problems early rather than at quarter-end."
 
 ### Documentation and scale
 
 1. "Write a recruiting process playbook for onboarding a new recruiter, covering requisition-to-offer workflow."
 2. "How should recruiting operations be structured and governed across multiple business units or regions?"
+3. "What should be standardized globally versus left to regional recruiting teams to adapt locally?"
+4. "Draft a change management plan for rolling out a new ATS workflow to a recruiting team used to the old process."
 
 ## Tips
 

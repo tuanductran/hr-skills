@@ -32,23 +32,28 @@ Plan the people and HR infrastructure needed to enter a new country or region â€
 1. "Compare entity establishment vs. EOR options for hiring our first [number] employees in [country], including cost, timeline, and risk trade-offs."
 2. "Build an HR readiness plan and timeline for entering [country], covering compliance, hiring, and policy needs."
 3. "At what headcount or timeline threshold should we consider transitioning from EOR to a local entity in [country]?"
+4. "What are the practical trade-offs of hiring in [country A] versus [country B] for the same role and budget?"
 
 ### Compliance and local requirements
 
 1. "Research the key labor law, statutory benefits, and employment contract requirements for hiring employees in [country]."
 2. "What payroll and tax compliance requirements apply to employing staff in [country]?"
 3. "Are there works council, union, or employee representation requirements we need to plan for in [country]?"
+4. "What termination and severance requirements apply in [country], and how do they differ from our home-country practices?"
 
 ### Hiring and compensation
 
 1. "Design a hiring strategy and sourcing approach appropriate for the talent market in [country]."
 2. "Benchmark compensation and statutory/customary benefits for [role] in [country] against local market norms."
 3. "Evaluate local HR vendor, PEO, or EOR provider options for [country] based on our expected headcount and needs."
+4. "How should offer letters and employment contracts be adapted for [country] to remain legally compliant?"
 
 ### Local adaptation
 
 1. "Adapt our HR policy handbook for local compliance and cultural fit in [country]."
 2. "What cultural and management practice differences should our leaders be prepared for when managing a team in [country]?"
+3. "How do we adapt our performance review and feedback approach for cultural norms in [country]?"
+4. "What holidays, working-time norms, and leave entitlements in [country] should we build into our local calendar and policies?"
 
 ## Tips
 

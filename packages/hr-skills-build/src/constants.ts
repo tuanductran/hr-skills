@@ -11,7 +11,8 @@ export const TASK_ITEM_REGEX = /^- /;
 
 export const HR_SKILL_PREFIX = 'hr-';
 
-export const KEY_PROMPTS_REGEX = /## Key prompts\n\n([\s\S]*?)(?=\n## Tips|\n---\n|$)/;
+export const KEY_PROMPTS_REGEX =
+	/## Key prompts\r?\n\r?\n([\s\S]*?)(?=\r?\n## |\r?\n---\r?\n|$)/;
 
 export const QUOTED_PROMPT_REGEX = /^(?:\d+\. |[-*] )"([^"]+)"/gm;
 

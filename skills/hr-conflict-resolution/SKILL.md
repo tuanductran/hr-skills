@@ -50,13 +50,15 @@ Comprehensive conflict resolution support — from mediating disputes and facili
 4. "What measures can be taken to prevent conflicts from escalating and becoming more challenging to resolve?"
 5. "How should I address conflicts related to misunderstandings or miscommunication in a remote team?"
 
-### Policy and prevention
+### Policy, prevention, and post-conflict recovery
 
 1. "Establish a conflict resolution policy that outlines our process, guidelines, and employee rights."
 2. "What role can HR play in creating policies and procedures that promote a healthy conflict resolution culture?"
-3. "How can I use role-playing exercises and simulations to help managers practice conflict resolution?"
-4. "Describe the benefits of restorative justice principles in our conflict resolution processes."
-5. "How can I create an anonymous reporting system that allows employees to surface conflicts safely?"
+3. "Describe the benefits of restorative justice principles in our conflict resolution processes."
+4. "How can I create an anonymous reporting system that allows employees to surface conflicts safely?"
+5. "What measures can be taken to rebuild trust and working relationships after a conflict has been resolved?"
+6. "How should I document conflict resolution discussions and agreements to protect all parties?"
+7. "What follow-up support should HR provide to employees after a conflict resolution process?"
 
 ### Training and development
 
@@ -74,14 +76,6 @@ Comprehensive conflict resolution support — from mediating disputes and facili
 4. "How should I handle conflicts arising from organizational change, restructuring, or leadership transitions?"
 5. "How can I manage a conflict between an employee and their direct manager in a fair and neutral way?"
 6. "What approaches help resolve conflicts related to different attitudes toward work-life balance?"
-
-### Post-Conflict recovery
-
-1. "What measures can be taken to rebuild trust and working relationships after a conflict has been resolved?"
-2. "How should I document conflict resolution discussions and agreements to protect all parties?"
-3. "What follow-up support should HR provide to employees after a conflict resolution process?"
-4. "How can I use a conflict resolution outcome to identify and address systemic organizational issues?"
-5. "What team-building activities help restore collaboration and morale after a team conflict?"
 
 ## Tips
 

@@ -32,23 +32,28 @@ Evaluate AI tools and vendors being considered for HR use cases — screening, s
 1. "Build an AI vendor evaluation framework for [use case, e.g. resume screening, interview scheduling, chatbot] covering accuracy, bias, transparency, and cost."
 2. "What questions should we ask an AI vendor about their model's training data and bias testing before considering adoption?"
 3. "Design an evaluation scorecard to compare multiple AI vendors for [HR use case] on a consistent basis."
+4. "What red flags in a vendor demo or sales pitch should make us slow down and dig deeper before proceeding?"
 
 ### Assessing risk
 
 1. "What bias risks should we specifically evaluate for an AI tool used in [screening/sourcing/performance assessment]?"
 2. "Critically assess this vendor's accuracy and fairness claims — what evidence would we need to actually validate them?"
 3. "What data privacy and security questions should we ask before allowing this AI tool access to employee or candidate data?"
+4. "What legal or regulatory review should this AI tool go through before we allow it to influence [hiring/performance] decisions?"
 
 ### Piloting and deciding
 
 1. "Design a pilot program to test [AI tool] on a limited scale before full rollout, including success criteria."
 2. "Compare [Vendor A] and [Vendor B] for [HR use case] against our evaluation framework and recommend an approach."
 3. "How feasible is integrating [AI tool] with our existing [ATS/HRIS], and what are the risks of a poor integration?"
+4. "What would trigger us to pause or roll back a pilot of [AI tool] before it reaches full rollout?"
 
 ### Ongoing governance
 
 1. "Document our evaluation decision and rationale for [AI tool] for audit and compliance purposes."
 2. "How often should we re-evaluate [AI tool] as the vendor updates the model or as relevant regulation changes?"
+3. "Who owns ongoing accountability for [AI tool] performance once it moves from pilot into standard operations?"
+4. "Design an offboarding plan for retiring [AI tool] if a re-evaluation determines it no longer meets our standards."
 
 ## Tips
 

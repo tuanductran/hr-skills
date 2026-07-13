@@ -56,13 +56,6 @@ Comprehensive HR analytics support — from defining HR metrics and building das
 4. "What machine learning approaches are most applicable to HR analytics use cases?"
 5. "How should I develop workforce segmentation strategies to identify different employee personas?"
 
-### Talent acquisition analytics
-
-1. "How can I conduct a talent acquisition ROI analysis that demonstrates the value of our recruiting investments?"
-2. "What metrics should I track to evaluate the effectiveness of our sourcing channels?"
-3. "How can I use data to identify which interview stages have the highest drop-off rates in our funnel?"
-4. "Write an analysis framework for measuring the quality of hire from different sources."
-
 ### Data governance and privacy
 
 1. "What should a comprehensive HR data governance strategy include for our organization?"
@@ -72,12 +65,15 @@ Comprehensive HR analytics support — from defining HR metrics and building das
 5. "Write an HR data management policy that governs how employee data is collected, stored, and used."
 6. "What are best practices for conducting an HR data quality audit?"
 
-### Diversity and inclusion analytics
+### Talent acquisition and D&I analytics
 
-1. "How can I create a diversity and inclusion scorecard that tracks representation and inclusion metrics?"
-2. "What data should I collect to measure the effectiveness of our D&I initiatives?"
-3. "How can I use HR data to identify potential equity gaps in hiring, promotion, and pay?"
-4. "Write a workforce analytics case study template for a D&I initiative that demonstrates impact."
+1. "How can I conduct a talent acquisition ROI analysis that demonstrates the value of our recruiting investments?"
+2. "What metrics should I track to evaluate the effectiveness of our sourcing channels?"
+3. "How can I use data to identify which interview stages have the highest drop-off rates in our funnel?"
+4. "Write an analysis framework for measuring the quality of hire from different sources."
+5. "How can I create a diversity and inclusion scorecard that tracks representation and inclusion metrics?"
+6. "How can I use HR data to identify potential equity gaps in hiring, promotion, and pay?"
+7. "Write a workforce analytics case study template for a D&I initiative that demonstrates impact."
 
 ## Tips
 

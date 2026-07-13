@@ -32,24 +32,28 @@ Design and conduct structured reference checks that validate candidate claims, s
 1. "Design a structured reference check question set for [role/level] covering performance, collaboration, and areas for development."
 2. "What references should we request for [role] — direct manager, peers, direct reports — and why?"
 3. "Draft guidance for candidates explaining how our reference check process works and what to expect."
+4. "How many references should we require for [role/level], and does that number change for senior or executive hires?"
 
 ### Conducting the call
 
 1. "Write opening and closing scripts for a reference check call that build rapport and get candid answers."
 2. "How do I get useful signal from a reference who is only willing to confirm dates and title?"
 3. "Draft follow-up questions to ask when a reference gives a vague or generic positive answer."
+4. "How should the reference check approach differ for an internal mobility move versus an external hire?"
 
 ### Interpreting results
 
 1. "How should I interpret a reference that is polite but notably lukewarm compared to the candidate's other references?"
 2. "What questions can distinguish a genuinely strong reference from a scripted, overly positive one?"
 3. "A reference raised a specific concern about [area] — how do we weigh this against strong interview performance?"
+4. "How do we compare conflicting signals when one reference is strongly positive and another is strongly negative?"
 
 ### Compliance and documentation
 
 1. "What should our reference check process account for regarding [jurisdiction]-specific disclosure and defamation rules?"
 2. "Draft a documentation template for recording reference check outcomes consistently across recruiters."
 3. "How should we responsibly use an informal back-channel reference alongside the formal process?"
+4. "What is our policy for handling a reference request we receive about a former employee, to stay consistent with what we ask of others?"
 
 ## Tips
 

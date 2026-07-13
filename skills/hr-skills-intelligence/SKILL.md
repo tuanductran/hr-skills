@@ -32,23 +32,28 @@ Turn raw skills data — from HRIS, learning systems, job postings, and self-rep
 1. "Design a process for building an organization-wide skills inventory from HRIS, LMS, and project data."
 2. "How should we validate self-reported skills data against actual performance or project evidence?"
 3. "Build a skills intelligence dashboard structure for [function] showing current capability against business priorities."
+4. "What data quality checks should we run before trusting skills inventory data enough to act on it?"
 
 ### Trend and demand analysis
 
 1. "Identify emerging skills in [industry/function] that our current workforce likely lacks."
 2. "Forecast future skill demand for [function] over the next 3 years based on [technology/business trend]."
 3. "Benchmark our internal skills profile for [function] against external labor market data — where are we ahead or behind?"
+4. "How reliable are external labor market skills taxonomies for predicting demand in our specific industry?"
 
 ### Applying the intelligence
 
 1. "Analyze skill adjacency for [role] to identify realistic reskilling pathways into adjacent roles."
 2. "Which roles or skill sets in [function] carry the highest obsolescence risk over the next few years?"
 3. "How should skills intelligence findings feed into our workforce planning and L&D investment priorities this year?"
+4. "Design a build-vs-buy-vs-borrow decision framework informed by our current skills intelligence data."
 
 ### Communicating findings
 
 1. "Summarize this skills intelligence analysis into a briefing for business leaders who aren't familiar with skills taxonomy concepts."
 2. "Compare skills intelligence findings across [business unit A] and [business unit B] and highlight the most important differences."
+3. "Draft an executive summary translating skills intelligence findings into three concrete recommended actions."
+4. "How should we update skills intelligence reporting cadence to stay useful without becoming a reporting burden?"
 
 ## Tips
 

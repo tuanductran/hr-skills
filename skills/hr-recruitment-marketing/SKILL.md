@@ -32,24 +32,28 @@ Plan and run marketing campaigns that attract candidates at scale — job ad cop
 1. "Plan a recruitment marketing campaign to fill [number] [role] positions over [timeframe], including channels and budget allocation."
 2. "Build a content calendar for our careers social channels over the next quarter, mixing culture, role, and employee content."
 3. "Design a candidate persona for [role type] and outline messaging that would resonate with them specifically."
+4. "How should our recruitment marketing messaging differ for active job seekers versus passive candidates?"
 
 ### Copy and creative
 
 1. "Write job ad copy for [role] optimized for conversion — clear, compelling, free of jargon and unrealistic requirements."
 2. "Write three variations of a headline for a [role] job ad to A/B test."
 3. "Draft an employee testimonial-style post about working in [team/function] for social recruitment marketing."
+4. "Rewrite this job ad to remove biased or exclusionary language while keeping it compelling."
 
 ### Channel and budget
 
 1. "Recommend a paid vs. organic channel mix for a recruitment marketing campaign targeting [persona] in [market]."
 2. "How should we allocate a [budget] recruitment marketing budget across job boards, social, and programmatic advertising?"
 3. "Design a landing page structure for a hiring campaign for [role/team] that maximizes application conversion."
+4. "How do we decide when to boost or pause a job ad based on early performance data?"
 
 ### Measurement
 
 1. "Design a recruitment marketing funnel report tracking impressions, clicks, applications, and hires by channel."
 2. "How do we attribute hires to specific recruitment marketing campaigns when candidates touch multiple channels?"
 3. "Summarize campaign performance and ROI for [campaign] to present to TA and marketing leadership."
+4. "What benchmark click-to-apply and apply-to-hire rates should we expect for [role type/channel], and how do ours compare?"
 
 ## Tips
 

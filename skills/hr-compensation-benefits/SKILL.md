@@ -67,18 +67,15 @@ Comprehensive compensation and benefits support — from pay analysis, salary su
 3. "How can we create a global mobility policy that supports employee relocations and international assignments?"
 4. "How should we communicate benefits changes to employees in a clear and timely manner?"
 
-### Retention
+### Retention and employee surveys
 
 1. "What retention strategies are most effective for [high-demand talent segment, for example, software engineers, nurses]?"
 2. "How can we use compensation data to identify flight-risk employees and proactively address retention?"
-3. "Design a recognition and rewards program that improves employee satisfaction and reduces voluntary turnover."
-4. "What non-monetary retention strategies work alongside competitive pay to keep top talent engaged?"
-
-### Employee surveys
-
-1. "Write an employee engagement survey focused on compensation satisfaction and benefits effectiveness."
-2. "What questions in an employee satisfaction survey best reveal concerns about pay equity and fairness?"
-3. "How should I analyze survey results to identify the most effective changes to our total rewards program?"
+3. "What non-monetary retention strategies work alongside competitive pay to keep top talent engaged?"
+4. "Write an employee engagement survey focused on compensation satisfaction and benefits effectiveness."
+5. "What questions in an employee satisfaction survey best reveal concerns about pay equity and fairness?"
+6. "How should I analyze survey results to identify the most effective changes to our total rewards program?"
+7. "Draft a communication summarizing survey findings and planned actions back to employees who participated."
 
 ## Tips
 

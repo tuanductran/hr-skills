@@ -124,21 +124,15 @@ Comprehensive Frontend Engineering knowledge for HR and recruiters — from unde
 4. "How do I distinguish between [Junior, Middle, Senior, and Staff] frontend engineers?"
 5. "Create a technical screening scorecard and interview questions for a [Senior Frontend Engineer] role."
 
-### Frontend architecture and workflows
+### Frontend architecture, workflows, and performance
 
 1. "What is [component-based architecture] in frontend development?"
 2. "What is [SSR, CSR, SSG, and hydration] in modern frontend frameworks?"
-3. "How do frontend developers collaborate with [UI/UX designers and backend developers]?"
-4. "What frontend software delivery workflows are common in [modern agile engineering teams]?"
-5. "What modern frontend tooling (for example, Vite, Tailwind CSS, TypeScript) should recruiters recognize on resumes?"
-
-### Frontend performance and accessibility
-
-1. "Why is frontend performance important for [e-commerce conversion rates and SEO metrics]?"
-2. "What does web accessibility (a11y/WCAG) mean in frontend development, and how do I screen for it?"
-3. "How do frontend developers optimize website speed and [Core Web Vitals]?"
-4. "What frontend performance optimization skills are valuable for [Senior/Staff Frontend Engineers]?"
-5. "How can recruiters identify frontend candidates with strong [user experience and accessibility] awareness?"
+3. "What modern frontend tooling (for example, Vite, Tailwind CSS, TypeScript) should recruiters recognize on resumes?"
+4. "What does web accessibility (a11y/WCAG) mean in frontend development, and how do I screen for it?"
+5. "How do frontend developers optimize website speed and [Core Web Vitals]?"
+6. "What frontend performance optimization skills are valuable for [Senior/Staff Frontend Engineers]?"
+7. "How can recruiters identify frontend candidates with strong [user experience and accessibility] awareness?"
 
 ### Frontend hiring and job descriptions
 

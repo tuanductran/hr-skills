@@ -63,6 +63,7 @@ Translate business strategy and operational plans into accurate headcount demand
 1. "Build a monthly headcount demand report for [CHRO / CFO / business leadership] showing demand, approved positions, and pipeline coverage."
 2. "What governance process ensures demand changes go through proper review before recruiting resources are committed?"
 3. "How do we track demand forecast accuracy and use it to improve planning in future quarters?"
+4. "Design a dashboard that shows demand plan status to business leaders without requiring them to interpret raw HRIS data."
 
 ## Tips
 

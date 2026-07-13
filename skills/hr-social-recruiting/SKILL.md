@@ -189,30 +189,24 @@ Enable participation by: providing content and context, making sharing easy, let
 
 ## Key prompts
 
-### Recruiting strategy and platform selection
+### Strategy and sourcing
 
 1. "Help me choose between [LinkedIn], [GitHub], and [Discord] for recruiting [role type] in [geography]."
 2. "Design a 90-day social recruiting strategy for [startup/scale-up/enterprise] focused on [domain] hiring."
-3. "Compare effectiveness and cost for recruiting [role] through [Platform A] vs [Platform B]."
-4. "Create a recruiting funnel using [Platform 1], [Platform 2], and [Platform 3] for [target talent]."
-5. "How should we adjust our social recruiting strategy for [remote vs location-specific] roles?"
+3. "Create a recruiting funnel using [Platform 1], [Platform 2], and [Platform 3] for [target talent]."
+4. "Create Boolean search queries for finding [specialized role] on [platform]."
+5. "Design multi-platform sourcing workflow for [role type] combining [Platforms]."
+6. "Build sourcing workflow to find [underrepresented talent] on social platforms."
 
-### LinkedIn recruiting tactics
+### LinkedIn and outreach messaging
 
 1. "Write 5 different LinkedIn connection request variations for sourcing [role type] candidates."
-2. "Create a LinkedIn recruiter profile that attracts [specific talent] and positions us as experts."
-3. "Design an InMail campaign for reaching [passive candidates] with subject lines, hooks, and CTAs."
-4. "Build Boolean search strings to find [specialized role] candidates with [specific skills]."
-5. "Create a 4-week LinkedIn content calendar to build recruiting credibility."
-
-### Outreach and messaging
-
-1. "Write recruiter outreach messages targeting [role] candidates who [specific activity or background]."
-2. "Improve my recruiter response rate from [current]% to [target]% on [platform]."
-3. "Create a follow-up sequence for candidates who didn't respond to initial outreach."
-4. "Design personalization frameworks for [bulk sourcing situation] that don't feel generic."
-5. "Write warm outreach messages to [network type] with [mutual connection/shared interest]."
-6. "Create recruiter outreach for [senior/executive] roles where candidates aren't actively looking."
+2. "Design an InMail campaign for reaching [passive candidates] with subject lines, hooks, and CTAs."
+3. "Build Boolean search strings to find [specialized role] candidates with [specific skills]."
+4. "Write recruiter outreach messages targeting [role] candidates who [specific activity or background]."
+5. "Improve my recruiter response rate from [current]% to [target]% on [platform]."
+6. "Create a follow-up sequence for candidates who didn't respond to initial outreach."
+7. "Design personalization frameworks for [bulk sourcing situation] that don't feel generic."
 
 ### Community and platform-specific recruiting
 
@@ -232,14 +226,6 @@ Enable participation by: providing content and context, making sharing easy, let
 5. "Build Instagram or TikTok recruiting content strategy for [Gen Z/younger talent]."
 6. "Design hiring announcements that generate real candidate interest on [platform]."
 
-### Sourcing and search strategy
-
-1. "Create Boolean search queries for finding [specialized role] on [platform]."
-2. "Build GitHub X-Ray search strategies to find contributors in [technology/project]."
-3. "Design multi-platform sourcing workflow for [role type] combining [Platforms]."
-4. "Create targeted searches for [passive candidates/specific background] on [platform]."
-5. "Build sourcing workflow to find [underrepresented talent] on social platforms."
-
 ### Anti-spam and platform safety
 
 1. "How can I scale my outreach on [platform] without getting flagged for spam?"
@@ -249,25 +235,15 @@ Enable participation by: providing content and context, making sharing easy, let
 5. "Design recruiting workflow that respects privacy, guidelines, and avoids spam detection."
 6. "Help me build recruiting reputation so candidates say yes instead of ignoring me."
 
-### Candidate engagement and optimization
+### Candidate engagement and specialist scenarios
 
 1. "Design a talent community strategy that generates inbound recruiting leads."
-2. "Create engagement strategy for passive candidates before a role opens."
-3. "Build recruiting relationship strategy for [executive/specialist] candidates."
-4. "Design re-engagement campaign for candidates who said no, now fit for [new role]."
-5. "Analyze why recruiter outreach response rate is [low rate]% and fix it."
-6. "Compare sourcing channel effectiveness across [Platforms] for [role type]."
-7. "Build recruiting dashboard and KPI framework for social recruiting."
-8. "Design A/B testing strategy for recruiting messages and outreach timing."
-
-### Specialist roles and scenarios
-
-1. "Recruit [AI engineers/ML engineers/specialized role] through [platform] where they're passive."
-2. "Source [executive/C-level] candidates on [platform] with respect and authenticity."
-3. "Build referral recruiting program using [social platforms]."
-4. "Design campus recruiting strategy using [social platforms]."
-5. "Create recruiting strategy for [hard-to-fill role] across multiple platforms."
-6. "Build recruiting approach for [underrepresented talent] authentically."
+2. "Design re-engagement campaign for candidates who said no, now fit for [new role]."
+3. "Build recruiting dashboard and KPI framework for social recruiting."
+4. "Design A/B testing strategy for recruiting messages and outreach timing."
+5. "Recruit [AI engineers/ML engineers/specialized role] through [platform] where they're passive."
+6. "Source [executive/C-level] candidates on [platform] with respect and authenticity."
+7. "Build referral recruiting program using [social platforms]."
 
 ## Tips
 

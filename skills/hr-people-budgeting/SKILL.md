@@ -32,24 +32,28 @@ Own the people budget end-to-end — cost-center headcount modeling, annual and 
 1. "Build a people budget for [function/cost center] for [fiscal year], including base, benefits, and planned headcount changes."
 2. "Model headcount cost by cost center for [org unit], reflecting approved and planned-but-not-approved positions separately."
 3. "What assumptions (merit increase %, attrition rate, average backfill delay) should we align with finance before finalizing next year's people budget?"
+4. "Build a multi-year people budget projection for [org unit] tied to planned headcount growth."
 
 ### Running the cycle
 
 1. "Design an annual people budgeting cycle and calendar that aligns with finance's broader planning timeline."
 2. "Build a rolling forecast update process for the people budget that reflects actual hiring pace each quarter."
 3. "How should we allocate shared HR program costs like L&D or recruiting marketing across business unit cost centers?"
+4. "What checkpoints should exist during the budgeting cycle to catch unrealistic assumptions before they reach final sign-off?"
 
 ### Variance and reconciliation
 
 1. "Reconcile actual people spend against budget for [period] and explain the key drivers of variance."
 2. "Draft a variance narrative for finance explaining why [cost center] is over/under budget, in language finance will find credible."
 3. "Model the budget impact of [a mid-year reorg / accelerated hiring plan / hiring freeze] on the remaining fiscal year."
+4. "What is the process for requesting an in-year budget exception, and what evidence should support that request?"
 
 ### Presenting to finance and leadership
 
 1. "Prepare a people budget summary for the executive budget review, highlighting key assumptions and risks."
 2. "Build a zero-based view of our HR program spend for [function] to support a budget reprioritization conversation."
 3. "Document clear ownership and approval authority for people budget decisions between HR and finance."
+4. "Draft a one-page people budget summary a non-finance business leader can understand in under two minutes."
 
 ## Tips
 

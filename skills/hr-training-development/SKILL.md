@@ -58,20 +58,15 @@ Comprehensive learning and development support — from needs assessments and tr
 4. "Write a coaching session agenda for a manager working on improving [leadership skill]."
 5. "What are best practices for conducting train-the-trainer sessions that build internal training capability?"
 
-### Competency models and career development
+### Competency models, career development, and onboarding training
 
 1. "Develop a competency model for [role/function] that defines the key skills, knowledge, and behaviors for success."
 2. "Write a career development plan for [employee name] who aspires to move into [target role]."
 3. "How can I create personalized learning plans that align with both employee goals and business needs?"
-4. "What framework should I use to design a leadership competency model for our organization?"
-5. "How can I develop a job rotation plan that builds broad skills and prepares employees for advancement?"
-
-### Onboarding training
-
-1. "Design a manager onboarding training program that covers [key topics: people management, company culture, systems]."
-2. "What should be included in an onboarding training curriculum for new employees in [role]?"
-3. "How can I create an engaging orientation program that helps new hires feel welcomed and prepared?"
-4. "Write an employee handbook outline that covers policies, culture, and essential information for new hires."
+4. "How can I develop a job rotation plan that builds broad skills and prepares employees for advancement?"
+5. "Design a manager onboarding training program that covers [key topics: people management, company culture, systems]."
+6. "What should be included in an onboarding training curriculum for new employees in [role]?"
+7. "Write an employee handbook outline that covers policies, culture, and essential information for new hires."
 
 ### Assessment and measurement
 
