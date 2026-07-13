@@ -155,7 +155,7 @@ Two-layer architecture:
 7. **Two ValidationError symbols**:
    - `skills-ref/src/errors.ts`: ValidationError (class)
    - `hr-skills-build/src/types.ts`: ValidationError (interface)
-   - **Action:** Rename one to remove collision (e.g., `SkillValidationIssue`)
+   - ✅ **Resolved in PR #74:** `hr-skills-build`'s type renamed to `SkillValidationIssue`
 
 ### Metadata Issues 🔴
 
@@ -169,7 +169,7 @@ Two-layer architecture:
 
 ## Validation & Quality
 
-### Current Rules (11 implemented)
+### Current Rules (13 implemented)
 
 | Rule | Layer | Enforced by |
 |---|---|---|
@@ -184,11 +184,11 @@ Two-layer architecture:
 | 8–12 supported tasks | hr-skills-build | validateSupportedTasks() |
 | 4–6 tips | hr-skills-build | validateTips() |
 | Blank line before list | hr-skills-build | validateBlankLines() |
+| Prompt subtopic structure (3–6 subtopics, 4–7 prompts each) | hr-skills-build | validatePromptStructure() |
+| Router ↔ filesystem ↔ marketplace.json three-way consistency | hr-skills-build | validateRouterConsistency() |
 
 ### Missing Validation Rules 🚨
 
-- [ ] Prompt subtopic structure (3–6 subtopics, 4–7 prompts each) — documented but unenforced
-- [ ] Router ↔ filesystem ↔ marketplace.json three-way consistency — manual verification only
 - [ ] Duplicate content detection (`SKILL.md` vs. `content/` vs. `prompts/`)
 - [ ] Hidden Unicode / prompt-injection pattern scanning (extends `skill-vetter` scope)
 - [ ] `skill-vetter` integration into CI (currently documentation only)
@@ -222,20 +222,22 @@ Two-layer architecture:
 
 ### P0 — Critical (blocking quality)
 
-| Issue | Impact | Recommendation |
+> ✅ All P0 issues resolved in PR #74 (feat/v1.1.0-quality).
+
+| Issue | Status | Resolution |
 |---|---|---|
-| Prompt subtopic validation unenforced | Spec/code mismatch; quality bar unmet | Implement 3–6/4–7 rule in `validate.ts` |
-| Router ↔ filesystem ↔ marketplace consistency unchecked | Silent regressions possible | Add automated 3-way consistency check |
+| Prompt subtopic validation unenforced | ✅ Done | `validatePromptStructure()` implemented in `validate.ts` |
+| Router ↔ filesystem ↔ marketplace consistency unchecked | ✅ Done | `validateRouterConsistency()` implemented in `validate.ts` |
 
 ### P1 — High (technical debt)
 
-| Issue | Impact | Recommendation |
+| Issue | Status | Notes |
 |---|---|---|
-| Template duplication (CONTRIBUTING.md + new-skill.md) | Template drift risk | Single-source to `.github/skill-template.md` |
-| ValidationError name collision | IDE confusion, import risk | Rename `hr-skills-build`'s to `SkillValidationIssue` |
-| Three dependency bots (Renovate, Dependabot, Whitesource) | Duplicate PRs, noise | Consolidate to Renovate; remove others |
-| 76 bare skills (52%) | Library depth shallower than count suggests | Prioritized content remediation, AI cluster first |
-| `.agents/valibot` metadata inconsistent | Would fail validation if in scope | Normalize or explicitly exempt |
+| Template duplication (CONTRIBUTING.md + new-skill.md) | ✅ Done | Single-sourced to `.github/skill-template.md` in PR #74 |
+| ValidationError name collision | ✅ Done | Renamed to `SkillValidationIssue` in PR #74 |
+| Three dependency bots (Renovate, Dependabot, Whitesource) | ⬜ Open | Consolidate to Renovate; remove others |
+| 76 bare skills (52%) | ⬜ Open | Prioritized content remediation, AI cluster first |
+| `.agents/valibot` metadata inconsistent | ✅ Done | Normalized and rewritten in PR #74 |
 
 ### P2 — Medium (nice to have)
 
@@ -250,33 +252,28 @@ Two-layer architecture:
 
 ## Prioritized Action Items
 
-### Immediate (Next release: v1.1.0)
+### Immediate (Next release: v1.1.0) — ✅ Completed in PR #74
 
-1. **De-duplicate SKILL.md template**
-   - Extract to `.github/skill-template.md`
-   - Update `CONTRIBUTING.md` and `.claude/commands/new-skill.md` to reference it
-   - Commit: `docs: single-source SKILL.md template`
+1. ✅ **De-duplicate SKILL.md template**
+   - Extracted to `.github/skill-template.md`
+   - `CONTRIBUTING.md` and `.claude/commands/new-skill.md` updated to reference canonical source
 
-2. **Implement missing validator rules**
-   - Add `validatePromptStructure()` (3–6 subtopics, 4–7 prompts)
-   - Add `validateRouterConsistency()` (router ↔ filesystem ↔ marketplace)
-   - Run against all 146 skills; fix any that fail
-   - Commit: `feat(validation): enforce prompt structure and router consistency`
+2. ✅ **Implement missing validator rules**
+   - `validatePromptStructure()` added (3–6 subtopics, 4–7 prompts)
+   - `validateRouterConsistency()` added (router ↔ filesystem ↔ marketplace)
+   - All 146 skills pass CI validation
 
-3. **Resolve ValidationError naming collision**
-   - Rename `hr-skills-build/src/types.ts` ValidationError → SkillValidationIssue
-   - Update all imports
-   - Commit: `refactor(types): rename ValidationError to SkillValidationIssue`
+3. ✅ **Resolve ValidationError naming collision**
+   - `hr-skills-build/src/types.ts` renamed to `SkillValidationIssue`
+   - All imports updated across the codebase
 
-4. **Consolidate dependency bots**
+4. ⬜ **Consolidate dependency bots**
    - Decide: Keep Renovate, remove Dependabot + Whitesource (or document why keep all)
    - Delete unnecessary bot configs from `.github/`
    - Commit: `chore: consolidate to Renovate for dependency updates`
 
-5. **Normalize `.agents/valibot` metadata**
-   - Option A: Update to author "Tuan Duc Tran", version "1.0.0"
-   - Option B: Document `.agents/` as exempt from HR-skill validation rules
-   - Commit: `fix(meta-skills): normalize valibot metadata` or `docs: scope validation rules`
+5. ✅ **Normalize `.agents/valibot` metadata**
+   - Rewritten to author "Tuan Duc Tran", version "1.0.0", HR-skills monorepo context
 
 ### Short-term (v1.2.0 – v1.3.0)
 
@@ -321,7 +318,7 @@ Two-layer architecture:
 | Version | Focus | Key Deliverables | Status |
 |---|---|---|---|
 | v1.0.3 | Current | 146 skills, initial tooling | ✅ Released |
-| v1.1.0 | Quality & clarity | Template de-duplication, missing validators, bot consolidation | 📋 Planned |
+| v1.1.0 | Quality & clarity | Template de-duplication, missing validators, `SkillValidationIssue` rename, valibot normalization | ✅ Merged (PR #74) — bot consolidation pending |
 | v1.2.0 | Automation | Auto-generate skill matrix, release CI workflow | 📋 Planned |
 | v1.3.0 | Validation completeness | Prompt structure enforcement, router consistency check | 📋 Planned |
 | v1.4.0 | Content depth | Bare-skill remediation (AI cluster priority) | 📋 Planned |
@@ -333,10 +330,10 @@ Two-layer architecture:
 
 | Category | Current | Target | Notes |
 |---|---|---|---|
-| **Validation coverage** | 11/13 major rules | 13/13 (100%) | Missing prompt structure + router consistency |
+| **Validation coverage** | 13/13 major rules | 13/13 (100%) | ✅ All rules enforced including prompt structure + router consistency |
 | **Skill depth** | 52% bare, 23% partial, 25% full | 25% bare, 30% partial, 45% full | Prioritize AI cluster |
 | **CI coverage** | 5 workflows (no release) | 6 workflows + npm publish | Add release.yml |
-| **Template consistency** | 2 copies (drift risk) | 1 source (single-source pattern) | Extract to `.github/` |
+| **Template consistency** | 1 source (single-source pattern) | 1 source (single-source pattern) | ✅ Canonical `.github/skill-template.md` in place |
 | **Code quality** | Biome + Markdown lint enforced | Biome + Markdown lint + skill-vetter in CI | Add security scanning |
 | **Bus factor** | 1 maintainer | 2+ trusted reviewers | CODEOWNERS expansion |
 | **Ecosystem presence** | Internal tools only | skills-ref published to npm | Formalize public API |
@@ -382,4 +379,4 @@ This roadmap should be reviewed and updated:
 - When package structure or skill count changes significantly
 - When community/contributor feedback identifies new gaps
 
-Last updated: July 12, 2026 (v1.0.3 era)
+Last updated: July 14, 2026
