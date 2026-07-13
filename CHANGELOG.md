@@ -4,6 +4,70 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## v1.0.4
+
+[compare changes](https://github.com/tuanductran/hr-skills/compare/v1.0.3...v1.0.4)
+
+### 🚀 Features
+
+- **skills:** Add hr-social-recruiting skill ([8088158](https://github.com/tuanductran/hr-skills/commit/8088158))
+- Add prompt libraries and regenerate repository bundles ([4f9b922](https://github.com/tuanductran/hr-skills/commit/4f9b922))
+- **skills:** Add advanced HR capability skills ([9c0e8a0](https://github.com/tuanductran/hr-skills/commit/9c0e8a0))
+- **skills:** Expand HR skills catalog and refresh marketplace ([63329b2](https://github.com/tuanductran/hr-skills/commit/63329b2))
+
+### 🐛 Bug Fixes
+
+- **meta-skills:** Normalize valibot SKILL.md metadata to repo standard ([9dd4c94](https://github.com/tuanductran/hr-skills/commit/9dd4c94))
+- **quality:** Resolve validate, typecheck, and lint failures ([6587dbc](https://github.com/tuanductran/hr-skills/commit/6587dbc))
+
+### ♻️ Refactors
+
+- **hr-skills-build:** Improve testability and add validator tests ([65e1da6](https://github.com/tuanductran/hr-skills/commit/65e1da6))
+- **docs:** Consolidate project documentation ([bbdf50b](https://github.com/tuanductran/hr-skills/commit/bbdf50b))
+- **skills-ref:** Optimize XML escaping with lookup map ([3e9bf43](https://github.com/tuanductran/hr-skills/commit/3e9bf43))
+- **repo:** Modernize repository tooling and documentation ([14371f8](https://github.com/tuanductran/hr-skills/commit/14371f8))
+- **types:** Rename ValidationError to SkillValidationIssue ([65d2a39](https://github.com/tuanductran/hr-skills/commit/65d2a39))
+- **meta-skills:** Rewrite valibot skill for hr-skills monorepo context ([0280061](https://github.com/tuanductran/hr-skills/commit/0280061))
+
+### 📖 Documentation
+
+- Add Contributor Covenant code of conduct ([4dd668f](https://github.com/tuanductran/hr-skills/commit/4dd668f))
+- **readme:** Clarify repository maturity and skill coverage ([737441e](https://github.com/tuanductran/hr-skills/commit/737441e))
+- **biome:** Remove leftover content reference markers ([d418d75](https://github.com/tuanductran/hr-skills/commit/d418d75))
+- **skills:** Standardize skill metadata and improve skill routing ([6422921](https://github.com/tuanductran/hr-skills/commit/6422921))
+- Add comprehensive project roadmap ([9a0b249](https://github.com/tuanductran/hr-skills/commit/9a0b249))
+- **ROADMAP:** Clarify dependency scanning tool separation ([3335688](https://github.com/tuanductran/hr-skills/commit/3335688))
+- **ROADMAP:** Mark knip & lint:links as added to CI ([d2f91b2](https://github.com/tuanductran/hr-skills/commit/d2f91b2))
+- **roadmap:** Rewrite roadmap structure ([9e964df](https://github.com/tuanductran/hr-skills/commit/9e964df))
+- Single-source SKILL.md template to .github/skill-template.md ([efb4aa6](https://github.com/tuanductran/hr-skills/commit/efb4aa6))
+- Sync ROADMAP with feat/v1.1.0-quality (PR #74) ([#74](https://github.com/tuanductran/hr-skills/issues/74))
+
+### 📦 Build System
+
+- **tooling:** Standardize Bun, Turborepo, and repository workflows ([9469704](https://github.com/tuanductran/hr-skills/commit/9469704))
+- **bun:** Adopt dependency catalogs across the workspace ([c998084](https://github.com/tuanductran/hr-skills/commit/c998084))
+
+### 🧹 Chores
+
+- **skills:** Normalize marketplace metadata and update skill catalog ([22b84c0](https://github.com/tuanductran/hr-skills/commit/22b84c0))
+- **renovate:** Improve dependency update configuration ([878aff0](https://github.com/tuanductran/hr-skills/commit/878aff0))
+- **config:** Migrate config renovate.json5 ([8ccabe5](https://github.com/tuanductran/hr-skills/commit/8ccabe5))
+
+### 🧪 Tests
+
+- Fix assertTemplateMarkerExists drift case ([3fb0eee](https://github.com/tuanductran/hr-skills/commit/3fb0eee))
+- Remove unnecessary comment in sync test ([1b9dc6f](https://github.com/tuanductran/hr-skills/commit/1b9dc6f))
+
+### 🤖 CI
+
+- Add validate.yml workflow for SKILL.md validation ([32cdeab](https://github.com/tuanductran/hr-skills/commit/32cdeab))
+- Add lint:links & knip CI; docs: require root router update ([96e7e8b](https://github.com/tuanductran/hr-skills/commit/96e7e8b))
+
+### ❤️ Contributors
+
+- Tuan Duc Tran ([@tuanductran](https://github.com/tuanductran))
+- Claude <claude@anthropic.com>
+
 ## v1.0.3
 
 [compare changes](https://github.com/tuanductran/hr-skills/compare/v1.0.2...v1.0.3)
