@@ -36,7 +36,7 @@ skills/<full-name>/
 
 ## SKILL.md template
 
-Use this exact template for `skills/<full-name>/SKILL.md`:
+Use this exact template for `skills/<full-name>/SKILL.md` (canonical source: [`.github/skill-template.md`](../../.github/skill-template.md)):
 
 ````markdown
 ---
