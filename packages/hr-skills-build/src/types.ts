@@ -12,7 +12,15 @@ export interface SkillMeta {
 	supportedTasks: string[];
 }
 
-export interface ValidationError {
+/**
+ * A single validation issue found in a skill.
+ *
+ * Named `SkillValidationIssue` (not `ValidationError`) to avoid a naming
+ * collision with the `ValidationError` class exported by `skills-ref`, which
+ * has a different shape and different semantics. Both names exist in the same
+ * monorepo — keeping them distinct prevents IDE auto-import confusion.
+ */
+export interface SkillValidationIssue {
 	skill: string;
 	message: string;
 }

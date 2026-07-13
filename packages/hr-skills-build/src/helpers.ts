@@ -4,7 +4,7 @@ import { join } from 'node:path';
 import { HR_SKILL_PREFIX, SKILLS_DIR } from './constants.js';
 import { parseSkillFrontmatter } from './parser.js';
 import type { SkillFrontmatter } from './schema.js';
-import type { ValidationError } from './types.js';
+import type { SkillValidationIssue } from './types.js';
 
 /**
  * Extract a match from a markdown skill file.
@@ -48,7 +48,7 @@ export async function readSkill(skillName: string): Promise<{
  */
 export async function readSkillContent(
 	skillName: string,
-	errors: ValidationError[],
+	errors: SkillValidationIssue[],
 ): Promise<string | null> {
 	const skillPath = join(SKILLS_DIR, skillName, 'SKILL.md');
 

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'bun:test';
 import { first } from '../src/helpers.js';
-import type { ValidationError } from '../src/types.js';
+import type { SkillValidationIssue } from '../src/types.js';
 import {
 	validateAuthor,
 	validateBlankLines,
@@ -10,9 +10,10 @@ import {
 	validateRequiredSections,
 	validateSupportedTasks,
 	validateTips,
+	validatePromptStructure,
 } from '../src/validate.js';
 
-function createErrors(): ValidationError[] {
+function createErrors(): SkillValidationIssue[] {
 	return [];
 }
 
@@ -295,5 +296,84 @@ describe('validateBlankLines()', () => {
 
 		expect(errors).toHaveLength(1);
 		expect(first(errors).message).toContain('Missing blank line');
+	});
+});
+
+// Shared helper: build content with N subtopics of M prompts each
+function makeKeyPromptsContent(subtopics: number, promptsEach: number): string {
+	const blocks = Array.from({ length: subtopics }, (_, si) => {
+		const prompts = Array.from(
+			{ length: promptsEach },
+			(_, pi) => `${pi + 1}. "Prompt ${si + 1}-${pi + 1} for [role]."`,
+		).join('\n');
+		return `### Subtopic ${si + 1}\n\n${prompts}`;
+	});
+
+	return [
+		'---',
+		'name: hr-test',
+		'description: This is a sufficiently long description for validation purposes.',
+		'metadata:',
+		'  author: Tuan Duc Tran',
+		'  version: "1.0.0"',
+		'---',
+		'',
+		'## Key prompts',
+		'',
+		...blocks,
+		'',
+		'## Tips',
+		'',
+		'- Tip',
+	].join('\n');
+}
+
+describe('validatePromptStructure()', () => {
+	it('accepts 3 subtopics with 4 prompts each', () => {
+		const errors = createErrors();
+
+		validatePromptStructure('hr-test', makeKeyPromptsContent(3, 4), errors);
+
+		expect(errors).toEqual([]);
+	});
+
+	it('accepts 6 subtopics with 7 prompts each', () => {
+		const errors = createErrors();
+
+		validatePromptStructure('hr-test', makeKeyPromptsContent(6, 7), errors);
+
+		expect(errors).toEqual([]);
+	});
+
+	it('rejects fewer than 3 subtopics', () => {
+		const errors = createErrors();
+
+		validatePromptStructure('hr-test', makeKeyPromptsContent(2, 4), errors);
+
+		expect(errors.some((e) => e.message.includes('expected 3–6'))).toBe(true);
+	});
+
+	it('rejects more than 6 subtopics', () => {
+		const errors = createErrors();
+
+		validatePromptStructure('hr-test', makeKeyPromptsContent(7, 4), errors);
+
+		expect(errors.some((e) => e.message.includes('expected 3–6'))).toBe(true);
+	});
+
+	it('rejects fewer than 4 prompts in a subtopic', () => {
+		const errors = createErrors();
+
+		validatePromptStructure('hr-test', makeKeyPromptsContent(3, 3), errors);
+
+		expect(errors.some((e) => e.message.includes('expected 4–7'))).toBe(true);
+	});
+
+	it('rejects more than 7 prompts in a subtopic', () => {
+		const errors = createErrors();
+
+		validatePromptStructure('hr-test', makeKeyPromptsContent(3, 8), errors);
+
+		expect(errors.some((e) => e.message.includes('expected 4–7'))).toBe(true);
 	});
 });
