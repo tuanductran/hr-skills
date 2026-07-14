@@ -202,17 +202,17 @@ Effective payroll management now requires both:
 - analytical capability to model cutover options and diagnose discrepancy root causes accurately
 - and operational discipline to run recurring cycles reliably under fixed deadlines
 
-## Key Industry Benchmarks (2025–2026)
+## Key Industry Benchmarks (2025-2026)
 
 | Metric | Benchmark | Source |
 |---|---|---|
 | Acceptable Payroll Error Rate (per cycle) | Under 1% of pay runs | Industry standard |
-| Payroll Cycles Processed Fully On Time | ~96–98% target | ADP / industry benchmark |
+| Payroll Cycles Processed Fully On Time | ~96-98% target | ADP / industry benchmark |
 | Post-Migration Stabilization Window | 90 days | Payroll operations standard |
 | Parallel Validation Period (per country/entity) | At least 1 full cycle | Global payroll migration practice |
 | Statutory Filing Accuracy Target | 100% (zero penalty tolerance) | Regulatory compliance standard |
-| Employee Payroll Inquiry Resolution Time | Within 2–3 business days | HR operations benchmark |
-| Multi-Country Payroll Consolidation Timeline | 6–12 months typical | Global payroll industry observation |
+| Employee Payroll Inquiry Resolution Time | Within 2-3 business days | HR operations benchmark |
+| Multi-Country Payroll Consolidation Timeline | 6-12 months typical | Global payroll industry observation |
 
 ## Example Workflow
 

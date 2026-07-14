@@ -38,7 +38,7 @@ Fast-growing companies often see this ratio climb before it stabilizes. You need
 
 At 150 people and growing, your recruiting pipeline is under constant pressure. These three metrics will tell you if the process is keeping pace or creating hidden bottlenecks.
 
-> **Avoid:** Do not try to track all 150 KPIs at once. Build a working dashboard with 8–10 metrics first, prove the cadence works, then expand coverage next quarter.
+> **Avoid:** Do not try to track all 150 KPIs at once. Build a working dashboard with 8-10 metrics first, prove the cadence works, then expand coverage next quarter.
 
 ## Step 2 — Calculating Your Baseline Metrics
 
@@ -78,7 +78,7 @@ Annualized: ~25%
 
 The global voluntary turnover rate for the technology sector is approximately 12% annually (Mercer 2025). At ~19.4% annualized, your voluntary turnover is running roughly 60% above the industry benchmark. Combined with the concentration in engineering flagged by the Head of Engineering, this warrants immediate investigation — not just monitoring.
 
-> **Financial impact estimate:** If average fully-loaded compensation in engineering is $120,000 USD, replacing one engineer costs 75–150% of annual salary ($90,000–$180,000 USD). Four unexpected departures in one quarter represents $360,000–$720,000 USD in replacement cost before accounting for lost productivity and team disruption.
+> **Financial impact estimate:** If average fully-loaded compensation in engineering is $120,000 USD, replacing one engineer costs 75-150% of annual salary ($90,000-$180,000 USD). Four unexpected departures in one quarter represents $360,000-$720,000 USD in replacement cost before accounting for lost productivity and team disruption.
 
 ## Step 3 — Diagnosing the Turnover Problem
 
@@ -100,14 +100,14 @@ Common root causes at fast-growing SaaS companies: compensation falling behind m
 
 **2. Tenure pattern analysis:**
 
-- Are the resignations concentrated among employees hired in a specific period (for example, during the growth surge 12–18 months ago)?
+- Are the resignations concentrated among employees hired in a specific period (for example, during the growth surge 12-18 months ago)?
 - Is First-Year Turnover Rate elevated compared to the overall rate?
 - Are the departures senior, junior, or distributed across levels?
 
 **3. Department and manager correlation:**
 
 - Is attrition concentrated under specific managers?
-- Has the engineering team structure, reporting lines, or leadership changed in the past 6–12 months?
+- Has the engineering team structure, reporting lines, or leadership changed in the past 6-12 months?
 - What is the span of control for engineering managers — are they overloaded?
 
 **4. Compensation positioning:**
@@ -116,7 +116,7 @@ Common root causes at fast-growing SaaS companies: compensation falling behind m
 - Have you lost anyone to a company offering significantly higher pay?
 - Is your total compensation package (salary, equity, benefits) competitive for your market and stage?
 
-> **What to bring to leadership:** Do not walk in with a single number. Bring the trend (quarterly turnover over 4–6 quarters), the department breakdown, a cost estimate of the attrition impact, and at least one hypothesis about root cause backed by exit data or manager observations.
+> **What to bring to leadership:** Do not walk in with a single number. Bring the trend (quarterly turnover over 4-6 quarters), the department breakdown, a cost estimate of the attrition impact, and at least one hypothesis about root cause backed by exit data or manager observations.
 
 ## Step 4 — Building the Leadership Dashboard
 
@@ -142,10 +142,10 @@ Design your executive dashboard around three sections: workforce health, cost ef
 
 | Metric | This Month | Last Month | Target | Benchmark |
 |--------|------------|------------|--------|-----------|
-| Labor Expense / Revenue (%) | | | <55% | 50–60% (SaaS) |
+| Labor Expense / Revenue (%) | | | <55% | 50-60% (SaaS) |
 | HR Expense per Employee | | | — | Track trend |
 | Cost per Hire | | | <$6,000 | $5,475 (SHRM 2025) |
-| Benefits Expense per Employee | | | — | 30–40% of HR cost |
+| Benefits Expense per Employee | | | — | 30-40% of HR cost |
 
 **Section 3 — Pipeline performance (operational):**
 
@@ -179,11 +179,11 @@ CFOs think in ratios and trends, not headcount stories. Structure your response 
 
 **Part 2 — Contextualize against the plan and the market:**
 
-"For a SaaS company at our growth stage and revenue run rate, a labor ratio between 50–60% is within the expected range. Our Q2 ratio of 54% is elevated but not structurally concerning — it reflects the lag between hiring investment and revenue contribution from new headcount. Based on our current pipeline and no further unplanned attrition, we expect this ratio to normalize toward 50% by Q4."
+"For a SaaS company at our growth stage and revenue run rate, a labor ratio between 50-60% is within the expected range. Our Q2 ratio of 54% is elevated but not structurally concerning — it reflects the lag between hiring investment and revenue contribution from new headcount. Based on our current pipeline and no further unplanned attrition, we expect this ratio to normalize toward 50% by Q4."
 
 **Part 3 — Flag the real risk and what you are doing about it:**
 
-"The more meaningful risk is that voluntary turnover in engineering is running at approximately 19% annualized, above the 12% sector benchmark. Each unexpected departure in engineering costs an estimated $90,000–$180,000 in replacement cost. I am presenting a retention action plan at next month's leadership review with three targeted interventions for Q3."
+"The more meaningful risk is that voluntary turnover in engineering is running at approximately 19% annualized, above the 12% sector benchmark. Each unexpected departure in engineering costs an estimated $90,000-$180,000 in replacement cost. I am presenting a retention action plan at next month's leadership review with three targeted interventions for Q3."
 
 > **Key principle:** CFOs respond to numbers, trends, benchmarks, and risk-adjusted cost implications. Avoid HR jargon. Translate every metric into financial language.
 
@@ -216,7 +216,7 @@ Please:
 4. Compare results to these benchmarks:
    - Voluntary turnover benchmark (tech sector): 12% annually
    - First-year turnover benchmark: 26% annually (SHRM)
-5. Summarize the top 2–3 risks in plain language suitable
+5. Summarize the top 2-3 risks in plain language suitable
    for a CEO briefing
 ```
 
@@ -255,7 +255,7 @@ Evaluate your recruiting function across four dimensions:
 | Metric | Your Number | Benchmark | Status |
 |--------|-------------|-----------|--------|
 | Time to Fill (all roles) | ? days | 42 days (SHRM) | |
-| Time to Fill (engineering) | ? days | 60–75 days | |
+| Time to Fill (engineering) | ? days | 60-75 days | |
 | Requisition days on hold | ? days | <10 days | |
 
 Time to Fill above benchmark is usually caused by: unclear job requirements, slow interview scheduling, or bottlenecked hiring manager availability — not a sourcing problem.
@@ -282,8 +282,8 @@ High first-year turnover is often a recruiting quality signal — it means hires
 
 | Metric | Your Number | Benchmark | Status |
 |--------|-------------|-----------|--------|
-| Requisitions per recruiter | ? | 15–20 (standard) | |
-| Hires per recruiter per year | ? | 40–60 (standard) | |
+| Requisitions per recruiter | ? | 15-20 (standard) | |
+| Hires per recruiter per year | ? | 40-60 (standard) | |
 
 > **Common finding at fast-growing companies:** Recruiting cost is elevated not because the process is inefficient, but because the company over-relies on external agencies for hard-to-fill roles. The fastest fix is usually improving the employee referral program — referrals produce the lowest cost per hire and the highest first-year retention rate.
 
@@ -312,7 +312,7 @@ Example:
 "We grew from 138 to 150 employees in Q2, adding a net 12 people
 against a plan of 15. Voluntary turnover in engineering reached
 19% annualized — 60% above sector benchmark — representing an
-estimated $360,000–$720,000 in replacement cost risk for H2.
+estimated $360,000-$720,000 in replacement cost risk for H2.
 Our Q3 priority is executing a targeted retention plan for the
 engineering team while maintaining our recruiting pace for the
 3 remaining open roles."
@@ -376,7 +376,7 @@ KPI 3: Reduce Labor Expense / Revenue to ___% by Q3 end
 ```text
 Identify organizational priority (retention / cost / recruiting / growth)
                     ↓
-Select 5–10 KPIs aligned to that priority
+Select 5-10 KPIs aligned to that priority
                     ↓
 Establish baseline calculations with current data
                     ↓
@@ -396,7 +396,7 @@ Review and update KPI set every quarter as priorities shift
 | Mistake | How to avoid it |
 |---------|----------------|
 | Reporting a turnover number without a benchmark | Always pair the metric with the industry benchmark — a number without context is just noise |
-| Tracking 30+ KPIs from the start | Begin with 5–10 that match current organizational priorities; expand coverage quarterly |
+| Tracking 30+ KPIs from the start | Begin with 5-10 that match current organizational priorities; expand coverage quarterly |
 | Presenting to the CFO using HR terminology | Translate every metric into financial impact — cost, risk exposure, and business outcome |
 | Measuring outputs (training hours) instead of outcomes (performance change) | Connect activity metrics to business impact wherever data allows |
 | Treating lagging indicators as early warning | Build a leading indicator layer: pulse scores, manager effectiveness ratings, internal mobility rates |

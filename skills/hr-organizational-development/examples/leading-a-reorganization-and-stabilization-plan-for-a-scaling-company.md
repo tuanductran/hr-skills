@@ -16,7 +16,7 @@ Given your situation — a strategic direction already announced without a detai
 
 **Structural clarity (the team leads' concern):**
 
-- Translate the CEO's vision into 2–3 concrete structural options before presenting anything final
+- Translate the CEO's vision into 2-3 concrete structural options before presenting anything final
 - Define decision rights early — who owns prioritization, hiring, and budget within each pod
 - Identify which roles are most affected by the change in reporting lines
 
@@ -248,7 +248,7 @@ Build the stabilization plan around three checkpoints, each with a specific diag
 | Delivery velocity review | Engineering/Product leadership | Monthly |
 | Career development conversation audit | HRBP | 60 days |
 
-> **Common finding at fast-growing companies:** Reorganizations frequently look successful immediately after launch because the announcement itself creates temporary clarity and energy. The real test is whether the new decision rights are still being used, unprompted, 60–90 days later — without a deliberate check-in cadence, informal reversion to old patterns is the most common failure mode.
+> **Common finding at fast-growing companies:** Reorganizations frequently look successful immediately after launch because the announcement itself creates temporary clarity and energy. The real test is whether the new decision rights are still being used, unprompted, 60-90 days later — without a deliberate check-in cadence, informal reversion to old patterns is the most common failure mode.
 
 ## Step 8 — Writing the Reorganization Status Report for Leadership
 
@@ -340,7 +340,7 @@ Report on adoption and stability to leadership at each checkpoint
 | Mistake | How to avoid it |
 |---------|----------------|
 | Announcing a structural direction before any detailed plan exists | Pair any public announcement with a committed timeline for detailed follow-up |
-| Finalizing one structural option without modeling alternatives | Model 2–3 structural options and compare trade-offs before recommending one |
+| Finalizing one structural option without modeling alternatives | Model 2-3 structural options and compare trade-offs before recommending one |
 | Treating resistance as a sign the decision was wrong | Diagnose resistance as structural, communication-based, or individual before reacting |
 | Building a change plan only after the structure is finalized | Build change management alongside the structural design, not after it |
 | Assuming adoption is complete once the announcement is sent | Track adoption through defined checkpoints over the following 90 days |

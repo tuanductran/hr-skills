@@ -2,7 +2,7 @@
 
 ## Context
 
-You are a Technical Recruiter at a scale-up building a long-term pipeline for **Engineering Manager** roles — not for an immediate opening, but because leadership expects to need 2–3 EMs over the next two quarters as the company grows. You've been told to start building relationships now, rather than starting from zero once a req actually opens. You've never done relationship-based sourcing before; all your prior experience is reactive, req-driven outreach.
+You are a Technical Recruiter at a scale-up building a long-term pipeline for **Engineering Manager** roles — not for an immediate opening, but because leadership expects to need 2-3 EMs over the next two quarters as the company grows. You've been told to start building relationships now, rather than starting from zero once a req actually opens. You've never done relationship-based sourcing before; all your prior experience is reactive, req-driven outreach.
 
 ## Step 1 — Understanding the Passive Candidate Mindset
 
@@ -29,7 +29,7 @@ You are a Technical Recruiter at a scale-up building a long-term pipeline for **
 - [ ] Currently an EM at a company of similar or adjacent stage/size — natural lateral fit
 - [ ] Active in engineering leadership content (writes or comments thoughtfully on management topics)
 - [ ] Speaks at meetups/conferences on team leadership, technical strategy, or engineering culture
-- [ ] Tenure pattern suggests they might be reaching a natural transition point (2.5–4 years at current company, without being so recent it looks unstable)
+- [ ] Tenure pattern suggests they might be reaching a natural transition point (2.5-4 years at current company, without being so recent it looks unstable)
 
 **HR note:** For a pipeline-building exercise (not an active req), be more selective than usual — you're investing real relationship time, so prioritize genuinely strong signals over broad volume.
 
@@ -44,7 +44,7 @@ You are a Technical Recruiter at a scale-up building a long-term pipeline for **
 | Stage | Action | Purpose |
 |---|---|---|
 | 1 | Follow/connect with a light, honest note (not role-related) | Get on their radar without pressure |
-| 2 | Thoughtfully comment on 1–2 of their posts over several weeks | Build visibility and show genuine engagement, not drive-by |
+| 2 | Thoughtfully comment on 1-2 of their posts over several weeks | Build visibility and show genuine engagement, not drive-by |
 | 3 | Share or reference something relevant they wrote, if genuinely useful | Demonstrates you actually read their content |
 | 4 | Light, low-stakes direct message — not a pitch | Open a real conversation |
 | 5 | Only after some rapport — mention what you're building, without an ask | Plant awareness for the future |

@@ -152,34 +152,34 @@ Interviewer: ___________________|
 SECTION 1: TECHNICAL SKILLS (40 points)
 ─────────────────────────────────────────
 [ /10] Automation Framework Depth
-       1–3: Has used Playwright or Cypress but only in tutorials or shallow projects
-       4–6: Has built and maintained a real automation suite in production
-       7–10: Has built automation from scratch, handles flakiness, owns framework architecture
+       1-3: Has used Playwright or Cypress but only in tutorials or shallow projects
+       4-6: Has built and maintained a real automation suite in production
+       7-10: Has built automation from scratch, handles flakiness, owns framework architecture
 
 [ /10] Test Strategy and Coverage Thinking
-       1–3: Tests whatever is convenient — no risk-based prioritization
-       4–6: Understands what to automate vs manual, covers edge cases and error states
-       7–10: Designs a full testing strategy, balances E2E, integration, API, and manual coverage
+       1-3: Tests whatever is convenient — no risk-based prioritization
+       4-6: Understands what to automate vs manual, covers edge cases and error states
+       7-10: Designs a full testing strategy, balances E2E, integration, API, and manual coverage
 
 [ /10] CI/CD Integration
-       1–3: Knows CI/CD exists but hasn't set it up themselves
-       4–6: Has integrated tests into an existing pipeline
-       7–10: Has built CI/CD test pipelines, handles environment management, parallelization
+       1-3: Knows CI/CD exists but hasn't set it up themselves
+       4-6: Has integrated tests into an existing pipeline
+       7-10: Has built CI/CD test pipelines, handles environment management, parallelization
 
 [ /10] API Testing & Debugging Depth
-       1–3: Limited to UI testing only
-       4–6: Performs API testing with Postman or Bruno, understands request/response cycles
-       7–10: Deep API testing skills, contract testing awareness, integrates API tests into CI
+       1-3: Limited to UI testing only
+       4-6: Performs API testing with Postman or Bruno, understands request/response cycles
+       7-10: Deep API testing skills, contract testing awareness, integrates API tests into CI
 
 SECTION 2: QUALITY STRATEGY & PROCESS (20 points)
 ───────────────────────────────────────────────────
 [ /10] Release Quality Ownership
-       1–5: Executes tests but defers release decisions to others
-       6–10: Owns release confidence, communicates quality risk clearly to stakeholders
+       1-5: Executes tests but defers release decisions to others
+       6-10: Owns release confidence, communicates quality risk clearly to stakeholders
 
 [ /10] Shift-Left & Cross-Team Collaboration
-       1–5: Involved only at the end of development cycles
-       6–10: Actively reviews requirements, joins sprint planning, coaches developers on testability
+       1-5: Involved only at the end of development cycles
+       6-10: Actively reviews requirements, joins sprint planning, coaches developers on testability
 
 SECTION 3: COLLABORATION & LEADERSHIP (20 points)
 ───────────────────────────────────────────────────
@@ -196,9 +196,9 @@ SECTION 4: CULTURE & GROWTH FIT (20 points)
 TOTAL: ____/100
 
 HIRING THRESHOLDS:
- 85–100:  Strong Hire
- 70–84:   Hire (with a clear onboarding plan for identified gaps)
- 55–69:   Needs discussion — flag specific gaps with CTO
+ 85-100:  Strong Hire
+ 70-84:   Hire (with a clear onboarding plan for identified gaps)
+ 55-69:   Needs discussion — flag specific gaps with CTO
  Below 55: No Hire
 
 NOTES:
@@ -239,7 +239,7 @@ Write a focused JD (automation-first, not "QA + DevOps + security + AI" in one r
           ↓
 CV screening: look for real automation projects and CI/CD experience, not just tool lists
           ↓
-Phone screen: 2–3 behavioral questions + confirm "built from scratch" vs "maintained existing"
+Phone screen: 2-3 behavioral questions + confirm "built from scratch" vs "maintained existing"
           ↓
 Technical interview (led by CTO or Tech Lead): strategy + framework + CI/CD depth
           ↓

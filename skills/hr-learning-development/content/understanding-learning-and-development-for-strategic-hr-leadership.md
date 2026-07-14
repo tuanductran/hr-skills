@@ -215,16 +215,16 @@ Effective L&D now requires both:
 - analytical capability to diagnose skills gaps and model program options accurately
 - and facilitation and design skill to build experiences that transfer into real behavior change
 
-## Key Industry Benchmarks (2025–2026)
+## Key Industry Benchmarks (2025-2026)
 
 | Metric | Benchmark | Source |
 |---|---|---|
-| Learning Transfer Rate (behavior change from formal training) | 10–20% without reinforcement; 60%+ with active manager reinforcement | Learning Transfer research |
-| First-Time Manager Time-to-Effectiveness (with structured development) | 6–12 months | Industry observation |
-| New Hire Time-to-Full-Productivity (with structured onboarding) | 3–6 months depending on role complexity | SHRM / industry standard |
+| Learning Transfer Rate (behavior change from formal training) | 10-20% without reinforcement; 60%+ with active manager reinforcement | Learning Transfer research |
+| First-Time Manager Time-to-Effectiveness (with structured development) | 6-12 months | Industry observation |
+| New Hire Time-to-Full-Productivity (with structured onboarding) | 3-6 months depending on role complexity | SHRM / industry standard |
 | High-Potential Attrition Risk Without Visible Development Path | 2x baseline attrition rate | Industry observation |
 | 70-20-10 Recommended Formal Training Proportion | ~10% of total development | Charles Jennings / industry |
-| L&D Budget per Employee (benchmark for mid-size companies) | $1,000–$1,500 per employee annually | ATD / industry standard |
+| L&D Budget per Employee (benchmark for mid-size companies) | $1,000-$1,500 per employee annually | ATD / industry standard |
 | Succession Plan Coverage for Critical Roles | At least 1 identified successor per role | Industry standard |
 
 ## Example Workflow

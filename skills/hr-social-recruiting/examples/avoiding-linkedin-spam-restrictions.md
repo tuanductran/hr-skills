@@ -77,9 +77,9 @@ LinkedIn (like most platforms) uses automated systems to detect behavior pattern
 
 | Phase | Duration (approximate, adjust to context) | Activity |
 |---|---|---|
-| 1 | First 1–2 weeks | Complete profile fully (photo, headline, About, experience). Connect with existing colleagues and a modest number of relevant industry contacts. No cold outreach yet. |
+| 1 | First 1-2 weeks | Complete profile fully (photo, headline, About, experience). Connect with existing colleagues and a modest number of relevant industry contacts. No cold outreach yet. |
 | 2 | Following 2 weeks | Begin light, genuine engagement — commenting on relevant posts, following industry pages. Start very limited, highly personalized connection requests, well below typical volume. |
-| 3 | Following 2–4 weeks | Gradually increase outreach volume, always paired with strong personalization. Monitor acceptance and response rate closely. |
+| 3 | Following 2-4 weeks | Gradually increase outreach volume, always paired with strong personalization. Monitor acceptance and response rate closely. |
 | 4 | Ongoing | Maintain consistent, moderate activity. Avoid sudden large spikes even once established — pace increases in volume, don't jump straight to peak activity for a single urgent sprint. |
 
 **Checklist for new recruiter accounts:**

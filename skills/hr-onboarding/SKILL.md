@@ -80,7 +80,7 @@ Comprehensive onboarding and offboarding support — from designing onboarding p
 ## Tips
 
 - Start onboarding before day one — strong pre-boarding dramatically reduces first-day anxiety and accelerates ramp-up.
-- Extend onboarding beyond the first week — the most effective onboarding programs span 3–6 months.
+- Extend onboarding beyond the first week — the most effective onboarding programs span 3-6 months.
 - Assign a buddy/mentor to every new hire — peer connection is one of the strongest predictors of early retention.
 - Gather feedback at 30, 60, and 90 days to continuously improve the onboarding experience.
 - Treat offboarding as seriously as onboarding — positive exits create alumni advocates and protect your employer brand.

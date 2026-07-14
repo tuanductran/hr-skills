@@ -25,7 +25,7 @@ A six-week timeline with a board deadline means you need a methodology that is r
 **Population scoping (manageability concern):**
 
 - Segment the analysis by comparable role groups, not the whole company as one pool
-- Exclude populations too small for statistical significance (fewer than roughly 5–8 people per comparison group) and flag them for qualitative review instead
+- Exclude populations too small for statistical significance (fewer than roughly 5-8 people per comparison group) and flag them for qualitative review instead
 
 At 280 people, some role groups will be statistically thin. You need to decide upfront how those will be handled so it does not stall the timeline.
 
@@ -80,7 +80,7 @@ unexplained pay gap requiring further review.
 
 Pay equity audits conducted under this type of regression methodology are the current standard expected by investors, auditors, and regulators in markets with active pay transparency legislation. A company at your stage that has not yet formalized this process is not unusual, but completing it now — proactively, ahead of a forced disclosure — is significantly more defensible than waiting for a complaint or audit to trigger it.
 
-> **Financial impact framing:** Unexplained pay gaps typically require remediation in the range of 1–3% of total payroll when caught at a reasonable scale and addressed proactively. Left unaddressed, the same gaps create legal exposure, investor diligence risk, and employee trust damage that cost considerably more to resolve after the fact.
+> **Financial impact framing:** Unexplained pay gaps typically require remediation in the range of 1-3% of total payroll when caught at a reasonable scale and addressed proactively. Left unaddressed, the same gaps create legal exposure, investor diligence risk, and employee trust damage that cost considerably more to resolve after the fact.
 
 ## Step 3 — Interpreting the Results and Diagnosing Root Causes
 
@@ -140,7 +140,7 @@ Design the remediation plan around three components: who gets adjusted, how much
 ```text
 For each included employee:
   Target adjustment = bring residual gap to within an agreed tolerance
-  (commonly within 2–3% of the model-predicted salary, not necessarily to zero,
+  (commonly within 2-3% of the model-predicted salary, not necessarily to zero,
    to avoid overcorrection noise in the statistical model)
 
 Example:
@@ -156,7 +156,7 @@ Example:
 Total remediation cost: approximately $145,000 (one-time base salary impact)
 Represents approximately 0.6% of total company payroll
 
-This is within the typical 1–3% range expected for a first formal pay equity
+This is within the typical 1-3% range expected for a first formal pay equity
 remediation at this company size and growth stage.
 ```
 

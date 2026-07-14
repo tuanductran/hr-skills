@@ -77,7 +77,7 @@ today or tomorrow 🙏
 **Structure explanation for HR:**
 
 - Opens conversationally ("our team is growing"), not with a corporate job-ad header
-- Gives 3–4 concrete facts (product, scale, stack) instead of a long bullet list of requirements
+- Gives 3-4 concrete facts (product, scale, stack) instead of a long bullet list of requirements
 - Explicitly signals flexibility on experience level — this widens engagement and reduces the "I'm not qualified enough to comment" hesitation
 - Ends with a clear, low-friction call to action and a response-time commitment, which builds trust that this is a real, actively-monitored post
 
@@ -124,7 +124,7 @@ today or tomorrow 🙏
 **Sample response templates:**
 
 > *"Thanks for your interest! I've sent you the details in a DM 🙌"*
-> *"Good question — remote is fully flexible, we just ask for overlap during core hours (10am–3pm). Feel free to DM me if you'd like to chat more!"*
+> *"Good question — remote is fully flexible, we just ask for overlap during core hours (10am-3pm). Feel free to DM me if you'd like to chat more!"*
 
 ## Step 6 — Moving Conversations into Private Messages
 

@@ -268,7 +268,7 @@ Effective <short-name> now requires both:
 - [analytical/technical capability]
 - and [communication/influence skill]
 
-## Key Industry Benchmarks (2025–2026)
+## Key Industry Benchmarks (2025-2026)
 
 | Metric | Benchmark | Source |
 |---|---|---|
@@ -318,7 +318,7 @@ what data or tooling is currently in place versus missing.]
 
 **Expected skill response:**
 
-[Guidance broken into 2–3 named sub-areas, each with a short rationale tying back
+[Guidance broken into 2-3 named sub-areas, each with a short rationale tying back
 to the context above.]
 
 > **Avoid:** [One sentence warning against a common overreach or mistake at this step.]
@@ -349,7 +349,7 @@ code block where appropriate.]
 
 **Skill response — diagnostic framework:**
 
-[Four numbered dimensions to investigate, each with 2–3 sub-questions.]
+[Four numbered dimensions to investigate, each with 2-3 sub-questions.]
 
 > **What to bring to leadership:** [One sentence on how to present findings credibly.]
 
@@ -361,7 +361,7 @@ code block where appropriate.]
 
 **Skill response — [deliverable] structure:**
 
-[Tables or structured sections showing the deliverable, broken into 2–3 parts.]
+[Tables or structured sections showing the deliverable, broken into 2-3 parts.]
 
 **Implementation notes:**
 

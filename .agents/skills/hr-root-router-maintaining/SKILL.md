@@ -40,7 +40,7 @@ frontmatter (---...---)
 intro paragraph          ← never change
 
 ## How to use this skill ← never change
-numbered rules 1–5       ← never change
+numbered rules 1-5       ← never change
 
 ## Routing tables        ← H2, never change
 ### <Section name>       ← H3 section headers (see canonical list below)

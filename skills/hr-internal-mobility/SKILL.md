@@ -58,7 +58,7 @@ Design and operate internal mobility programs that move talent across roles, tea
 
 ## Tips
 
-- Establish a minimum tenure policy (typically 12–18 months) before employees can apply internally, but make exceptions for critical business needs.
+- Establish a minimum tenure policy (typically 12-18 months) before employees can apply internally, but make exceptions for critical business needs.
 - Train managers to be talent multipliers, not talent hoarders—their willingness to release people drives program success.
 - Make internal roles visible before external posting to signal commitment to internal growth.
 - Track internal mobility rates by function and level to identify where the program is underutilized.

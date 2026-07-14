@@ -16,7 +16,7 @@ You are a Talent Acquisition Partner at a Series B fintech company. Engineering 
 - Posting a job is "passive recruitment" — it only reaches people already looking. For a scarce, senior, specialized skill set, the pool of active job-seekers is small and often already being chased by every other fintech
 - Active sourcing flips the model: instead of waiting for candidates to find you, you find them where their public profile already demonstrates the skills you need (title history, endorsements, project descriptions)
 - This role profile (senior + niche technical skill + urgency) is exactly the case where the skill recommends **active outreach over passive posting**
-- Expectation-setting: active sourcing has a lower per-candidate conversion rate than inbound applications, but a much larger addressable pool — plan to reach 40–60 candidates to fill 1 role, not 5–10
+- Expectation-setting: active sourcing has a lower per-candidate conversion rate than inbound applications, but a much larger addressable pool — plan to reach 40-60 candidates to fill 1 role, not 5-10
 
 ## Step 2 — Defining the Search Strategy Before Searching
 
@@ -83,7 +83,7 @@ site:linkedin.com/in "Golang" "payments" ("senior" OR "staff" OR "lead")
 |---|---|---|
 | Headline | "Recruiter at [Company]" | "Sourcing Backend & Infra Engineers @ [Company] — Go, distributed systems, fintech" — signals relevance immediately |
 | Photo | No photo or outdated corporate headshot | Clear, current, professional photo — profiles without photos get ignored or reported as fake |
-| About section | Blank or generic company boilerplate | 3–4 sentences on what you're hiring for, why the team is worth joining, and how candidates can reach you |
+| About section | Blank or generic company boilerplate | 3-4 sentences on what you're hiring for, why the team is worth joining, and how candidates can reach you |
 | Featured section | Empty | Link to the actual job posting or a short team/culture post |
 | Recent activity | Silent for months | Some recent engagement (comments, shares) on engineering-relevant content — an inactive profile reads as inauthentic |
 
@@ -131,8 +131,8 @@ site:linkedin.com/in "Golang" "payments" ("senior" OR "staff" OR "lead")
 | Touch | Timing | Angle | Example |
 |---|---|---|---|
 | 1 | Day 0 | Initial outreach | (Step 6 message) |
-| 2 | Day 6–7 | New angle, not a repeat | *"Hi [Name] — following up in case this got buried. Happy to share more detail on the tech stack and team if useful, even without committing to anything. No pressure."* |
-| 3 | Day 13–14 | Final, respectful close | *"Totally understand if the timing isn't right. I'll leave the door open — feel free to reach out anytime if that changes. Wishing you well either way!"* |
+| 2 | Day 6-7 | New angle, not a repeat | *"Hi [Name] — following up in case this got buried. Happy to share more detail on the tech stack and team if useful, even without committing to anything. No pressure."* |
+| 3 | Day 13-14 | Final, respectful close | *"Totally understand if the timing isn't right. I'll leave the door open — feel free to reach out anytime if that changes. Wishing you well either way!"* |
 | 4 | No response after touch 3 | Stop | Move to nurture list; do not send further unsolicited messages |
 
 > ⚠️ **Warning:** Never repeat the exact same message on follow-up. Identical repeated messages are one of the strongest spam signals LinkedIn's systems and human recipients both react to negatively.
@@ -162,7 +162,7 @@ site:linkedin.com/in "Golang" "payments" ("senior" OR "staff" OR "lead")
 - [ ] Confirm current employment status and general compensation expectations early (respectfully) to avoid a mismatch later in the process
 - [ ] Send a short, specific calendar link rather than a long back-and-forth on timing
 - [ ] Before the call, review their profile once more for talking points specific to their background
-- [ ] Prepare 2–3 questions that test genuine interest in *this* role, not just "why are you open to new roles" — e.g., "What part of the payments/distributed-systems space interests you most right now?"
+- [ ] Prepare 2-3 questions that test genuine interest in *this* role, not just "why are you open to new roles" — e.g., "What part of the payments/distributed-systems space interests you most right now?"
 - [ ] Set a clear expectation for what happens after the call (timeline, next interview stage)
 
 ## Step 10 — Sourcing Metrics to Track
@@ -181,7 +181,7 @@ site:linkedin.com/in "Golang" "payments" ("senior" OR "staff" OR "lead")
 | Time from outreach to screen call | Pipeline velocity | Should trend down as your process gets more efficient |
 | Source-to-hire ratio | Whether LinkedIn sourcing specifically is worth the time investment vs other channels | Compare across roles over multiple quarters, not one campaign |
 
-> **HR note:** Don't judge a single week of outreach against a single week of results — senior passive candidates often take 2–4 weeks to respond, if they respond at all. Evaluate the campaign over its full follow-up cycle, not day one.
+> **HR note:** Don't judge a single week of outreach against a single week of results — senior passive candidates often take 2-4 weeks to respond, if they respond at all. Evaluate the campaign over its full follow-up cycle, not day one.
 
 ## Full Workflow Summary
 
@@ -211,5 +211,5 @@ Move responders into screening with light pre-call research
 | Reaching out with a thin or generic profile | Fix headline, photo, and About section before any outreach sprint |
 | Sending all outreach in one burst | Spread across the week to avoid spam-detection risk and mirror natural usage patterns |
 | Giving up after one message | Run the full 3-touch sequence — many positive replies come on the second or third touch |
-| Judging results after 2–3 days | Senior passive candidates respond slowly; evaluate campaigns over 2–4 weeks |
+| Judging results after 2-3 days | Senior passive candidates respond slowly; evaluate campaigns over 2-4 weeks |
 | Using automation/scraping tools | Avoid — these risk account restriction regardless of message quality |

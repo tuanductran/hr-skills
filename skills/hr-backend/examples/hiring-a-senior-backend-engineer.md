@@ -144,24 +144,24 @@ Interviewer: ___________________|
 SECTION 1: TECHNICAL SKILLS (40 points)
 ─────────────────────────────────────────
 [ /10] API Design & Architecture
-       1–3: Builds working APIs but no design thinking
-       4–6: Designs clean, versioned APIs with solid error handling
-       7–10: Strong architecture decisions, explains trade-offs clearly
+       1-3: Builds working APIs but no design thinking
+       4-6: Designs clean, versioned APIs with solid error handling
+       7-10: Strong architecture decisions, explains trade-offs clearly
 
 [ /10] Database Design & Optimization
-       1–3: Basic CRUD, no schema design ownership
-       4–6: Designs schemas, understands indexing and query optimization
-       7–10: Multi-tenant design, migration strategies, production tuning experience
+       1-3: Basic CRUD, no schema design ownership
+       4-6: Designs schemas, understands indexing and query optimization
+       7-10: Multi-tenant design, migration strategies, production tuning experience
 
 [ /10] Distributed Systems & Scalability
-       1–3: Knows terms but no real experience
-       4–6: Has worked with caching, async jobs, or basic microservices
-       7–10: Designed or evolved a distributed system under real production load
+       1-3: Knows terms but no real experience
+       4-6: Has worked with caching, async jobs, or basic microservices
+       7-10: Designed or evolved a distributed system under real production load
 
 [ /10] Infrastructure & Deployment
-       1–3: Relies entirely on others for deployment
-       4–6: Comfortable with Docker, CI/CD basics, and cloud environments
-       7–10: Owns deployment pipelines, cloud infrastructure, and observability setup
+       1-3: Relies entirely on others for deployment
+       4-6: Comfortable with Docker, CI/CD basics, and cloud environments
+       7-10: Owns deployment pipelines, cloud infrastructure, and observability setup
 
 SECTION 2: SYSTEM DESIGN DEPTH (20 points)
 ────────────────────────────────────────────
@@ -184,9 +184,9 @@ SECTION 4: COLLABORATION & LEADERSHIP (20 points)
 TOTAL: ____/100
 
 HIRING THRESHOLDS:
- 85–100:  Strong Hire
- 70–84:   Hire (with a clear onboarding plan)
- 55–69:   Needs discussion — flag specific gaps
+ 85-100:  Strong Hire
+ 70-84:   Hire (with a clear onboarding plan)
+ 55-69:   Needs discussion — flag specific gaps
  Below 55: No Hire
 
 NOTES:
@@ -232,7 +232,7 @@ Write a focused JD scoped to one backend specialization
                     ↓
 CV screening: look for production ownership, not just tool lists
                     ↓
-Phone screen: 2–3 behavioral questions + one system design question
+Phone screen: 2-3 behavioral questions + one system design question
                     ↓
 Technical interview (led by CTO or Staff Engineer)
                     ↓

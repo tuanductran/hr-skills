@@ -13,7 +13,7 @@ Comprehensive HR KPI knowledge for HR managers, people analytics practitioners, 
 ## Supported tasks
 
 - Explaining HR KPIs and workforce metrics in plain language for HR teams and business stakeholders
-- Selecting 5–10 strategic KPIs aligned to organizational goals and priorities
+- Selecting 5-10 strategic KPIs aligned to organizational goals and priorities
 - Calculating and interpreting KPIs across recruiting, retention, compensation, training, and employee relations
 - Benchmarking HR metrics against industry standards (SHRM, Gallup, Mercer, ATD)
 - Building HR KPI dashboards using tools like Notion, Google Sheets, Power BI, or Tableau
@@ -40,7 +40,7 @@ Organizations that lack a structured HR measurement system commonly face:
 - misaligned HR strategy that cannot be defended with data
 - DEI blind spots in hiring, promotion, and compensation decisions
 
-> **Core principle:** Focus on 5–10 strategic KPIs aligned to current organizational goals rather than tracking all 150 metrics simultaneously. More metrics does not equal better decisions.
+> **Core principle:** Focus on 5-10 strategic KPIs aligned to current organizational goals rather than tracking all 150 metrics simultaneously. More metrics does not equal better decisions.
 
 ## The 8 HR KPI categories
 
@@ -75,10 +75,10 @@ Key metrics include:
 - **Unit Cost: Enroll in Benefits** — Cost to process one benefits enrollment
 - **Unit Cost: Request / Process Salary Change** — Cost to process one salary adjustment
 
-**Industry benchmarks (2024–2025):**
+**Industry benchmarks (2024-2025):**
 
-- Benefits expense: 30–40% of total HR costs (US market, Mercer)
-- Labor cost / revenue: 50–60% in services; 20–30% in manufacturing
+- Benefits expense: 30-40% of total HR costs (US market, Mercer)
+- Labor cost / revenue: 50-60% in services; 20-30% in manufacturing
 - Average cost per hire: ~$5,475 USD for non-executive roles; ~$35,879 USD for executive roles (SHRM 2025)
 
 ### 3. Employee Relations
@@ -126,12 +126,12 @@ Key metrics include:
 - **Productive Hours / Total Hours Worked (%)** — Effective utilization rate
 - **HCM Expense per Employee** — Total human capital investment per headcount
 
-**Industry benchmarks (2025–2026):**
+**Industry benchmarks (2025-2026):**
 
 - Global voluntary turnover: ~13% annually (Mercer 2025)
 - By industry: Insurance 8.2% | Technology 12% | Retail 26.7% | Hospitality ~74%
 - First-year turnover: 26% average (SHRM); 17% leave within the first 6 months
-- Replacement cost per employee: 50–200% of annual salary for that role
+- Replacement cost per employee: 50-200% of annual salary for that role
 - 75% of voluntary turnover is preventable (Work Institute 2025)
 
 ### 6. Recruiting and Hiring
@@ -143,7 +143,7 @@ Key metrics include:
 - **Cost per Hire** — Total recruiting cost divided by number of hires
   - Benchmark: ~$5,475 USD non-executive; ~$35,879 USD executive (SHRM 2025, +14% vs 2019)
 - **Time to Fill** — Business days from requisition open to offer accepted
-  - Benchmark: 42 days average (SHRM); 60–90 days for senior roles
+  - Benchmark: 42 days average (SHRM); 60-90 days for senior roles
 - **Time to Start** — Days from job posting to employee first day
 - **% Positions Filled Internally** — Internal mobility rate; target >20% reflects strong development culture
 - **% Positions Filled Externally** — External market hiring rate
@@ -161,7 +161,7 @@ Measures the investment, efficiency, and reach of learning and development progr
 Key metrics include:
 
 - **Training Expense per Employee** — Annual L&D spend per headcount
-  - Benchmark: $1,200–$1,700 USD per employee per year (ATD Report 2025)
+  - Benchmark: $1,200-$1,700 USD per employee per year (ATD Report 2025)
 - **Training Expense / Labor Expense (%)** — L&D investment as a share of total payroll
 - **Training Expense / Revenue (%)** — L&D investment relative to revenue
 - **Training Days per Year** — Annual training days allocated per employee
@@ -194,7 +194,7 @@ Key metrics include:
 
 ### KPI selection and strategy
 
-1. "Which 5–10 HR KPIs should [a 200-person SaaS company / a retail chain / a manufacturing plant] prioritize right now based on [our growth stage / retention challenges / cost pressure]?"
+1. "Which 5-10 HR KPIs should [a 200-person SaaS company / a retail chain / a manufacturing plant] prioritize right now based on [our growth stage / retention challenges / cost pressure]?"
 2. "Help me build a quarterly HR KPI scorecard for [our HR business partner team] to present to [the CEO and CFO]."
 3. "What are the most important leading indicators versus lagging indicators in [HR KPI measurement]?"
 4. "How do I choose between tracking [voluntary turnover rate] and [first-year turnover rate] for our retention strategy?"
@@ -230,7 +230,7 @@ Key metrics include:
 2. "Help me write an executive summary for our Q[X] HR report in under 150 words based on this data: [paste data]."
 3. "What AI prompt should I use to get [Claude / ChatGPT / Gemini] to benchmark my HR KPIs against industry data?"
 4. "How can I use [Perplexity] to find current HR benchmarks for [my industry] quickly?"
-5. "Design a monthly AI-assisted HR analytics workflow for a small HR team of [3–5 people] without a dedicated data analyst."
+5. "Design a monthly AI-assisted HR analytics workflow for a small HR team of [3-5 people] without a dedicated data analyst."
 
 ### Compensation and benefits
 
@@ -256,7 +256,7 @@ My data:
 
 Please:
 1. Compare this to industry benchmarks
-2. Identify 3–5 most likely root causes
+2. Identify 3-5 most likely root causes
 3. Recommend 3 specific actions to improve within the next 90 days
 ```
 
@@ -325,7 +325,7 @@ Please help me:
 
 ### Tracking too many KPIs at once
 
-Monitoring 30–50 KPIs simultaneously leads to analysis paralysis. Focus on 5–10 strategic metrics tied to current organizational goals and review the full list quarterly to adjust priorities.
+Monitoring 30-50 KPIs simultaneously leads to analysis paralysis. Focus on 5-10 strategic metrics tied to current organizational goals and review the full list quarterly to adjust priorities.
 
 ### Measuring outputs instead of outcomes
 

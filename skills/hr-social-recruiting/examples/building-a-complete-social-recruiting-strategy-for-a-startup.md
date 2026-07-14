@@ -47,7 +47,7 @@ You are the first dedicated People/Talent hire at a startup that just closed a S
 
 - [ ] Company LinkedIn page: complete About section, current logo/cover image, careers link visible
 - [ ] Founders' and hiring managers' personal LinkedIn profiles: updated headlines reflecting current company/hiring focus
-- [ ] A small initial content backlog (4–6 posts) ready before active sourcing begins, so candidates who check the page see genuine activity, not emptiness
+- [ ] A small initial content backlog (4-6 posts) ready before active sourcing begins, so candidates who check the page see genuine activity, not emptiness
 - [ ] A simple, honest careers page or job board presence linked consistently everywhere
 
 **HR note:** This foundation doesn't need to be extensive on day one — it needs to be credible. A thin but authentic presence beats a rushed, generic one.
@@ -62,7 +62,7 @@ You are the first dedicated People/Talent hire at a startup that just closed a S
 
 - Both, but weighted differently by function: engineering candidates often respond more to engineering leaders' authentic voice; sales/CS candidates often respond well to a strong, consistent recruiter presence
 - As the sole Talent hire, your profile becomes core sourcing infrastructure — invest early in headline, About section, and consistent activity, since you'll be the face of most outbound outreach across all functions
-- Encourage (don't force) 1–2 founders or senior engineering/sales leaders to post occasionally — even light, infrequent founder content tends to perform well early in a company's public presence, since it's inherently more novel and credible than recruiter-only content
+- Encourage (don't force) 1-2 founders or senior engineering/sales leaders to post occasionally — even light, infrequent founder content tends to perform well early in a company's public presence, since it's inherently more novel and credible than recruiter-only content
 
 ## Step 5 — Building the Recruiting Funnel
 
@@ -101,7 +101,7 @@ Offer
 - [ ] Save reusable message templates per function, with clear personalization slots
 - [ ] Maintain a running sourcing brief template so each new role doesn't start from zero
 - [ ] Track every candidate's channel source in the ATS from day one — critical for later ROI analysis
-- [ ] Standardize the follow-up cadence (per earlier examples: initial, +6–7 days, +13–14 days, then stop) across all roles
+- [ ] Standardize the follow-up cadence (per earlier examples: initial, +6-7 days, +13-14 days, then stop) across all roles
 
 ## Step 6 — Content Calendar Across Functions
 
@@ -120,7 +120,7 @@ Offer
 | 5 | Process transparency (what interviewing here looks like) | General |
 | 6 | Sales/CS-specific culture or customer-win story | Sales/CS |
 
-**HR note:** With limited bandwidth, aim for 1–2 posts per week consistently rather than a heavier but unsustainable cadence — consistency compounds more than volume in the early months.
+**HR note:** With limited bandwidth, aim for 1-2 posts per week consistently rather than a heavier but unsustainable cadence — consistency compounds more than volume in the early months.
 
 ## Step 7 — Passive and Active Sourcing Balance
 
@@ -132,9 +132,9 @@ Offer
 
 | Approach | Time horizon to results | Role fit at this stage |
 |---|---|---|
-| Active sourcing | Fast (days–weeks) | Carries most of the first 2 quarters of hiring, since brand/inbound hasn't compounded yet |
+| Active sourcing | Fast (days-weeks) | Carries most of the first 2 quarters of hiring, since brand/inbound hasn't compounded yet |
 | Employer brand/inbound | Slow (months), then compounding | Should be started immediately despite the delay, since 12 months of hiring means later quarters benefit significantly if started now |
-| Passive relationship pipelines | Medium (weeks–months) | Worth investing in for senior/hard-to-fill roles expected later in the year, started now so they're warm by the time roles open |
+| Passive relationship pipelines | Medium (weeks-months) | Worth investing in for senior/hard-to-fill roles expected later in the year, started now so they're warm by the time roles open |
 
 > **HR note:** A common mistake at this growth stage is under-investing in employer brand because active sourcing produces faster short-term results. Given a full year of aggressive hiring ahead, delaying brand-building simply pushes the payoff further out — start it in parallel with active sourcing from week one.
 
@@ -147,7 +147,7 @@ Offer
 **Expected skill response:**
 
 - Start light community presence (following, genuine engagement) as soon as bandwidth allows — even before active hiring need, since community trust takes time to build
-- Prioritize 2–3 well-chosen communities directly relevant to your specific tech stack over broad participation in many loosely-relevant ones
+- Prioritize 2-3 well-chosen communities directly relevant to your specific tech stack over broad participation in many loosely-relevant ones
 - As engineering hiring volume increases (later quarters), formalize this into a defined cadence — e.g., a specific team member spending a set amount of time weekly on community participation, rather than ad hoc effort
 - Apply the same "participate before recruiting" principle throughout — this doesn't scale down as urgency increases; skipping it produces the same credibility problems at any hiring volume
 
@@ -237,7 +237,7 @@ Measure full-year ROI: cost-per-hire, time-to-fill, source mix shift, quality of
 | Mistake | Fix |
 |---|---|
 | Delaying employer brand investment because active sourcing works faster short-term | Start both in parallel from week one — brand payoff takes months regardless of when you start |
-| Trying to be active on every platform at once with limited bandwidth | Prioritize 1–2 primary platforms per function; expand only as bandwidth allows |
+| Trying to be active on every platform at once with limited bandwidth | Prioritize 1-2 primary platforms per function; expand only as bandwidth allows |
 | Treating each new role as a one-off sourcing project | Build reusable templates and a repeatable funnel from the start |
 | Only tracking hiring volume, not source-of-hire or quality-of-hire | Track source and quality metrics from day one, not retroactively |
 | Skipping community "participate before recruiting" norms under time pressure | Maintain the principle regardless of urgency — shortcuts here damage long-term community access |

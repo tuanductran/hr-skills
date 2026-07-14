@@ -138,24 +138,24 @@ Interviewer: ___________________|
 SECTION 1: TECHNICAL SKILLS (40 points)
 ─────────────────────────────────────────
 [ /10] React / Next.js Depth
-       1–3: Can use it, limited understanding of internals
-       4–6: Understands trade-offs, explains decisions well
-       7–10: Strong architecture thinking, clear rationale for each choice
+       1-3: Can use it, limited understanding of internals
+       4-6: Understands trade-offs, explains decisions well
+       7-10: Strong architecture thinking, clear rationale for each choice
 
 [ /10] TypeScript Proficiency
-       1–3: Uses it but relies on `any` frequently
-       4–6: Solid usage, understands basic generics
-       7–10: Strict mode fluency, custom utility types, deep type system knowledge
+       1-3: Uses it but relies on `any` frequently
+       4-6: Solid usage, understands basic generics
+       7-10: Strict mode fluency, custom utility types, deep type system knowledge
 
 [ /10] Performance Optimization
-       1–3: Knows the concepts but limited real practice
-       4–6: Has improved Core Web Vitals in a real project
-       7–10: Specific case study with measurable before/after metrics
+       1-3: Knows the concepts but limited real practice
+       4-6: Has improved Core Web Vitals in a real project
+       7-10: Specific case study with measurable before/after metrics
 
 [ /10] Architecture & System Design
-       1–3: Code works but no structural thinking evident
-       4–6: Organizes components well, follows conventions
-       7–10: Has designed a design system or led a significant refactor
+       1-3: Code works but no structural thinking evident
+       4-6: Organizes components well, follows conventions
+       7-10: Has designed a design system or led a significant refactor
 
 SECTION 2: PORTFOLIO QUALITY (20 points)
 ──────────────────────────────────────────
@@ -178,9 +178,9 @@ SECTION 4: CULTURE & GROWTH FIT (20 points)
 TOTAL: ____/100
 
 HIRING THRESHOLDS:
- 85–100:  Strong Hire
- 70–84:   Hire (with a clear onboarding plan)
- 55–69:   Needs discussion — flag specific gaps
+ 85-100:  Strong Hire
+ 70-84:   Hire (with a clear onboarding plan)
+ 55-69:   Needs discussion — flag specific gaps
  Below 55: No Hire
 
 NOTES:
@@ -197,7 +197,7 @@ _________________________________________________
 **Skill explanation:**
 
 - **TanStack Query** = a specialized tool for fetching, caching, and syncing data from an API — the candidate understands the difference between "data that lives on the server" and "data that lives in the UI." This is a sign of architectural maturity.
-- **Zustand** = a lightweight, modern state management library — a leaner alternative to Redux that reduces boilerplate and is widely adopted in 2025–2026 teams
+- **Zustand** = a lightweight, modern state management library — a leaner alternative to Redux that reduces boilerplate and is widely adopted in 2025-2026 teams
 - Using both together = the candidate knows that no single tool is the right solution for every problem (not over-engineering with one global solution)
 - **Assessment: Strong signal** — this is a well-established pattern among senior frontend engineers in 2026. It shows the candidate is current and thoughtful about tool selection.
 
@@ -208,7 +208,7 @@ Write a focused, realistic JD
           ↓
 CV screening: look for real projects, not buzzword lists
           ↓
-Phone screen: 2–3 behavioral questions to filter early
+Phone screen: 2-3 behavioral questions to filter early
           ↓
 Technical interview (led by CTO or Tech Lead)
           ↓
@@ -224,7 +224,7 @@ Offer / No Offer decision
 | Mistake | How to avoid it |
 |---------|----------------|
 | Requiring 5+ years experience for a mid-level role | Use the seniority framework from the skill to calibrate expectations |
-| Listing 10 frameworks in one JD | Ask the CTO which framework is primary — list only 2–3 |
+| Listing 10 frameworks in one JD | Ask the CTO which framework is primary — list only 2-3 |
 | Evaluating frontend candidates with LeetCode-style algorithm tests | Frontend seniority is better assessed through portfolio review or a scoped take-home project |
 | Ignoring soft skills because "technical ability matters more" | Senior = leadership and communication, not just code quality |
 | Not asking about accessibility | Accessibility awareness is one of the clearest signals of senior frontend maturity |

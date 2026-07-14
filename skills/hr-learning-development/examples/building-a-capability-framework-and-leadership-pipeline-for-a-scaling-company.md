@@ -256,7 +256,7 @@ Build the stabilization plan around three checkpoints, each with a specific diag
 | High-potential retention and development status | Head of People | Monthly |
 | Succession readiness framework update | L&D Manager + CEO | Quarterly |
 
-> **Common finding at high-growth companies:** L&D programs frequently show strong enthusiasm immediately after launch because the investment itself signals that the company cares. The real test is whether behavior has genuinely changed 60–90 days later — without a deliberate transfer and reinforcement cadence, informal reversion to pre-program patterns is the most common failure mode, and it is invisible without a check-in structure to surface it.
+> **Common finding at high-growth companies:** L&D programs frequently show strong enthusiasm immediately after launch because the investment itself signals that the company cares. The real test is whether behavior has genuinely changed 60-90 days later — without a deliberate transfer and reinforcement cadence, informal reversion to pre-program patterns is the most common failure mode, and it is invisible without a check-in structure to surface it.
 
 ## Step 8 — Writing the L&D Status Report for Leadership
 
@@ -349,7 +349,7 @@ Report on capability progress and program adoption to leadership at each checkpo
 | Mistake | How to avoid it |
 |---------|----------------|
 | Launching an LMS or program before diagnosing what gaps actually exist | Run a capability diagnostic with affected managers and employees before designing any program |
-| Finalizing one program option without modeling alternatives | Model 2–3 L&D approaches and compare trade-offs before recommending one |
+| Finalizing one program option without modeling alternatives | Model 2-3 L&D approaches and compare trade-offs before recommending one |
 | Treating manager capability gaps as training problems when they are role clarity or workload problems | Diagnose whether gaps are skill-based, clarity-based, or structural before designing any intervention |
 | Building career frameworks in HR and publishing them without co-creation | Involve the teams the frameworks apply to in the design phase; frameworks imposed from HR are rarely adopted |
 | Assuming L&D impact is visible from completion metrics alone | Define behavior change and business impact measures before launch, not after |

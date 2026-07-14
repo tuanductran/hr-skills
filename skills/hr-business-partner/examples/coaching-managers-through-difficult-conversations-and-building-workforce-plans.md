@@ -214,7 +214,7 @@ Report progress and readiness at checkpoints
 |---------|----------------|
 | Treating performance issue as isolated | Diagnose skill, will, structural causes |
 | Delaying workforce plan until performance issue resolves | Model parallel approach |
-| Finalizing one option without trade-off analysis | Compare 2–3 options before recommending |
+| Finalizing one option without trade-off analysis | Compare 2-3 options before recommending |
 | Assuming coaching alone will resolve underperformance | Document with PIP if needed |
 | Treating workforce planning as annual exercise | Align continuously with product priorities |
 | Skipping stabilization plan | Build 90-day cadence with named owners |

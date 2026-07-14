@@ -107,7 +107,7 @@ Not a fit if:
 
 ### ✅ Strong signals
 
-- [ ] At least 1–2 apps are live on the App Store or Google Play (real deployment, not just screenshots)
+- [ ] At least 1-2 apps are live on the App Store or Google Play (real deployment, not just screenshots)
 - [ ] App has real reviews and ratings — evidence of actual users
 - [ ] GitHub README clearly explains the tech stack, architecture decisions, and how to run the project
 - [ ] Commit history is consistent over time with meaningful commit messages (not just "fix" or "update")
@@ -148,34 +148,34 @@ Interviewer: ___________________|
 SECTION 1: TECHNICAL SKILLS (40 points)
 ─────────────────────────────────────────
 [ /10] React Native & Platform Depth
-       1–3: Uses React Native but limited understanding of internals or platform behavior
-       4–6: Understands New Architecture, JSI, native module trade-offs
-       7–10: Deep platform knowledge, can debug at native level, clear architectural reasoning
+       1-3: Uses React Native but limited understanding of internals or platform behavior
+       4-6: Understands New Architecture, JSI, native module trade-offs
+       7-10: Deep platform knowledge, can debug at native level, clear architectural reasoning
 
 [ /10] Offline-First & State Management
-       1–3: Knows the concepts but no production implementation experience
-       4–6: Has shipped offline features with local DB and basic sync
-       7–10: Designed conflict resolution strategy, handled edge cases in production
+       1-3: Knows the concepts but no production implementation experience
+       4-6: Has shipped offline features with local DB and basic sync
+       7-10: Designed conflict resolution strategy, handled edge cases in production
 
 [ /10] Performance Optimization
-       1–3: Aware of performance concepts but no hands-on profiling experience
-       4–6: Has diagnosed and resolved real performance issues (frame drops, memory leaks)
-       7–10: Uses profiling tools regularly, can cite before/after metrics from real projects
+       1-3: Aware of performance concepts but no hands-on profiling experience
+       4-6: Has diagnosed and resolved real performance issues (frame drops, memory leaks)
+       7-10: Uses profiling tools regularly, can cite before/after metrics from real projects
 
 [ /10] Mobile Architecture & System Design
-       1–3: Code works but no structural thinking evident
-       4–6: Organizes codebase well, understands navigation and state patterns
-       7–10: Has designed scalable mobile architecture, led codebase migrations, sets team standards
+       1-3: Code works but no structural thinking evident
+       4-6: Organizes codebase well, understands navigation and state patterns
+       7-10: Has designed scalable mobile architecture, led codebase migrations, sets team standards
 
 SECTION 2: DEPLOYMENT & DEVOPS (20 points)
 ────────────────────────────────────────────
 [ /10] App Store / Google Play experience
-       1–5: Submitted apps but limited release pipeline knowledge
-       6–10: Owns full release process, handles staged rollouts, OTA updates, crash monitoring
+       1-5: Submitted apps but limited release pipeline knowledge
+       6-10: Owns full release process, handles staged rollouts, OTA updates, crash monitoring
 
 [ /10] CI/CD and mobile DevOps
-       1–5: Familiar with tools but not the person who set them up
-       6–10: Has built and maintained Fastlane pipelines, GitHub Actions, TestFlight workflows
+       1-5: Familiar with tools but not the person who set them up
+       6-10: Has built and maintained Fastlane pipelines, GitHub Actions, TestFlight workflows
 
 SECTION 3: COLLABORATION & LEADERSHIP (20 points)
 ───────────────────────────────────────────────────
@@ -192,9 +192,9 @@ SECTION 4: CULTURE & GROWTH FIT (20 points)
 TOTAL: ____/100
 
 HIRING THRESHOLDS:
- 85–100:  Strong Hire
- 70–84:   Hire (with a clear onboarding plan for identified gaps)
- 55–69:   Needs discussion — flag specific gaps with CTO
+ 85-100:  Strong Hire
+ 70-84:   Hire (with a clear onboarding plan for identified gaps)
+ 55-69:   Needs discussion — flag specific gaps with CTO
  Below 55: No Hire
 
 NOTES:
@@ -232,7 +232,7 @@ Write a focused, realistic JD (React Native focus, not "iOS + Android + Flutter 
           ↓
 CV screening: look for real App Store / Google Play deployments, not just framework lists
           ↓
-Phone screen: 2–3 behavioral questions + confirm deployment experience early
+Phone screen: 2-3 behavioral questions + confirm deployment experience early
           ↓
 Technical interview (led by CTO or Tech Lead): architecture + performance + platform depth
           ↓

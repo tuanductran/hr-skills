@@ -260,16 +260,16 @@ Effective skills taxonomy practice now requires both:
 - and change management skill to drive adoption across hiring managers, L&D designers,
   employees, and business leaders who need to trust and use the taxonomy in decisions
 
-## Key Industry Benchmarks (2025–2026)
+## Key Industry Benchmarks (2025-2026)
 
 | Metric | Benchmark | Source |
 |---|---|---|
 | Typical Taxonomy Hierarchy Depth | 3 tiers: Domain → Cluster → Skill | Industry standard |
-| Skills per Role (average) | 10–20 skills per role at working proficiency or above | Lightcast / Eightfold |
-| Proficiency Levels in a Taxonomy | 3–4 levels (Awareness / Working / Advanced / Expert) | HR industry standard |
-| Skills Half-Life (technical skills) | 2.5–5 years before significant obsolescence | World Economic Forum |
+| Skills per Role (average) | 10-20 skills per role at working proficiency or above | Lightcast / Eightfold |
+| Proficiency Levels in a Taxonomy | 3-4 levels (Awareness / Working / Advanced / Expert) | HR industry standard |
+| Skills Half-Life (technical skills) | 2.5-5 years before significant obsolescence | World Economic Forum |
 | Internal Mobility Improvement with Skills Matching | 2x higher match rate vs. title-based search | Gloat / Eightfold data |
-| Taxonomy Governance Review Frequency | Every 6–12 months | Talent management best practice |
+| Taxonomy Governance Review Frequency | Every 6-12 months | Talent management best practice |
 | Skills Gap Analysis Refresh Cadence | Annually minimum; quarterly for critical domains | Workforce planning standard |
 
 ## Example Workflow

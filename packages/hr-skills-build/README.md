@@ -43,8 +43,8 @@ Checks every `skills/hr-*/SKILL.md` for:
 - Minimum content length of 1 000 characters
 - `SKILL.md` body length under 500 lines
 - `metadata.author` exactly set to `Tuan Duc Tran`
-- 8–12 supported task items
-- 4–6 tip items
+- 8-12 supported task items
+- 4-6 tip items
 - Blank lines before lists for MD032 compliance
 
 ```text

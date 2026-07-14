@@ -130,14 +130,14 @@ Interviewer: ___________________|
 SECTION 1: DIRECTNESS AND FEEDBACK (25 points)
 ─────────────────────────────────────────────────
 [ /10] Gives direct, specific feedback (not vague or overly diplomatic)
-       1–3: Answers stay abstract, avoids specifics
-       4–6: Gives one concrete example with some detail
-       7–10: Gives multiple concrete, credible examples unprompted
+       1-3: Answers stay abstract, avoids specifics
+       4-6: Gives one concrete example with some detail
+       7-10: Gives multiple concrete, credible examples unprompted
 
 [ /15] Receives and acts on direct feedback well
-       1–5: Becomes defensive or dismissive when discussing critical feedback received
-       6–10: Acknowledges feedback, describes what changed
-       11–15: Actively sought out critical feedback and can describe how it changed their approach
+       1-5: Becomes defensive or dismissive when discussing critical feedback received
+       6-10: Acknowledges feedback, describes what changed
+       11-15: Actively sought out critical feedback and can describe how it changed their approach
 
 SECTION 2: OWNERSHIP AND BUILDER MINDSET (25 points)
 ──────────────────────────────────────────────────────
@@ -157,9 +157,9 @@ SECTION 4: SELF-AWARENESS ABOUT TRADE-OFFS (25 points)
 TOTAL: ____/100
 
 INTERPRETATION THRESHOLDS:
- 85–100:  Strong culture alignment
- 70–84:   Good alignment — confirm any specific gaps in debrief
- 55–69:   Mixed signals — discuss with hiring panel before proceeding
+ 85-100:  Strong culture alignment
+ 70-84:   Good alignment — confirm any specific gaps in debrief
+ 55-69:   Mixed signals — discuss with hiring panel before proceeding
  Below 55: Significant misalignment — do not proceed without addressing directly
 
 NOTE: This scorecard measures values alignment only. It should never be
@@ -195,7 +195,7 @@ _________________________________________________
 | Dimension | Culture Fit (as commonly misused) | Culture Add |
 |-----------|-----------------------------------|--------------|
 | Core question | "Does this person feel similar to our existing team?" | "Does this person share our core values, and what do they bring that we lack?" |
-| What it evaluates | Communication style, background, personal rapport | Alignment on 2–4 non-negotiable working values, plus distinct strengths |
+| What it evaluates | Communication style, background, personal rapport | Alignment on 2-4 non-negotiable working values, plus distinct strengths |
 | Common failure mode | Filters out candidates who think or communicate differently, reinforces homogeneity | Requires interviewers to separate "different from us" from "misaligned with our values" |
 | Good interview follow-up | "Push the interviewer: what specifically felt off — a stated value, or just a different style?" | Ask what specific gap the candidate would fill that the current team doesn't cover |
 | When it's a real signal | Rarely, on its own | When tied to a specific, named value (for example, avoiding direct feedback) |
@@ -209,7 +209,7 @@ Reframe "culture fit" concern into named, specific values
                     ↓
 Write JD with observable behaviors, not vague culture language
                     ↓
-Screen: ask 2–3 targeted values questions in the phone screen
+Screen: ask 2-3 targeted values questions in the phone screen
                     ↓
 Interview loop: values-based behavioral questions + sales competency
                     ↓

@@ -351,7 +351,7 @@ Report on accuracy and stability to leadership at each checkpoint
 | Mistake | How to avoid it |
 |---------|----------------|
 | Setting a go-live date before a country-by-country validation plan exists | Pair any vendor contract signing with a committed scoping timeline before announcing a date |
-| Cutting over all countries simultaneously without modeling alternatives | Model 2–3 cutover options and compare risk before committing to a sequence |
+| Cutting over all countries simultaneously without modeling alternatives | Model 2-3 cutover options and compare risk before committing to a sequence |
 | Treating a compliance error as a sign the platform decision was wrong | Diagnose errors as configuration-fixable, process-gap, or platform-level before reacting |
 | Building a compliance sign-off process only after an error occurs | Assign a named compliance reviewer and sign-off step before any cutover, not after |
 | Assuming accuracy is confirmed once a parallel validation cycle passes | Track error rates through defined checkpoints over the following 90 days post-cutover |

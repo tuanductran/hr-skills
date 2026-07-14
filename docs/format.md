@@ -81,7 +81,7 @@ Every skill must contain these sections.
 
 A bullet list describing the HR tasks the skill supports.
 
-Recommended: **8–12 tasks**.
+Recommended: **8-12 tasks**.
 
 Example:
 
@@ -99,8 +99,8 @@ Reusable prompt templates grouped into logical subtopics.
 
 Recommendations:
 
-- 3–6 subtopics
-- 4–7 prompts per subtopic
+- 3-6 subtopics
+- 4-7 prompts per subtopic
 - use numbered lists
 - use `[placeholders]` for variable inputs
 
@@ -119,7 +119,7 @@ Example:
 
 Professional best practices and practical HR guidance.
 
-Recommended: **4–6 bullet points**.
+Recommended: **4-6 bullet points**.
 
 Example:
 

@@ -154,31 +154,31 @@ Interviewer: ___________________|
 SECTION 1: KNOWLEDGE ARCHITECTURE AND WRITING (35 points)
 ────────────────────────────────────────────────────────────
 [ /15] Information Architecture
-       1–5: Can write individual articles, no structural thinking
-       6–10: Can organize content into a logical category structure
-       11–15: Designs scalable structures with clear tagging and navigation
+       1-5: Can write individual articles, no structural thinking
+       6-10: Can organize content into a logical category structure
+       11-15: Designs scalable structures with clear tagging and navigation
 
 [ /10] Writing Clarity
-       1–3: Dense, hard-to-follow writing samples
-       4–7: Clear writing, reasonably scannable
-       8–10: Consistently clear, scannable, well-structured for a first-time reader
+       1-3: Dense, hard-to-follow writing samples
+       4-7: Clear writing, reasonably scannable
+       8-10: Consistently clear, scannable, well-structured for a first-time reader
 
 [ /10] Prioritization and Data Use
-       1–3: No clear method for deciding what to document first
-       4–7: Uses some reasoning (ticket volume, common questions) to prioritize
-       8–10: Systematically uses search/ticket data to prioritize and measure impact
+       1-3: No clear method for deciding what to document first
+       4-7: Uses some reasoning (ticket volume, common questions) to prioritize
+       8-10: Systematically uses search/ticket data to prioritize and measure impact
 
 SECTION 2: KNOWLEDGE EXTRACTION (25 points)
 ────────────────────────────────────────────
 [ /15] Interviewing and Extraction Skill
-       1–5: Relies on people to write things down themselves
-       6–10: Has techniques for extracting knowledge from reluctant experts
-       11–15: Strong, specific track record of surfacing undocumented tribal knowledge
+       1-5: Relies on people to write things down themselves
+       6-10: Has techniques for extracting knowledge from reluctant experts
+       11-15: Strong, specific track record of surfacing undocumented tribal knowledge
 
 [ /10] Stakeholder Management
-       1–3: Struggles to get buy-in or time from busy subject matter experts
-       4–7: Has some strategies for securing cooperation
-       8–10: Consistently gets cooperation even from resistant or time-poor stakeholders
+       1-3: Struggles to get buy-in or time from busy subject matter experts
+       4-7: Has some strategies for securing cooperation
+       8-10: Consistently gets cooperation even from resistant or time-poor stakeholders
 
 SECTION 3: GOVERNANCE AND MAINTENANCE (20 points)
 ────────────────────────────────────────────────────
@@ -193,9 +193,9 @@ SECTION 4: OUTCOME ORIENTATION (20 points)
 TOTAL: ____/100
 
 HIRING THRESHOLDS:
- 85–100:  Strong Hire
- 70–84:   Hire (with a clear onboarding plan)
- 55–69:   Needs discussion — flag specific gaps
+ 85-100:  Strong Hire
+ 70-84:   Hire (with a clear onboarding plan)
+ 55-69:   Needs discussion — flag specific gaps
  Below 55: No Hire
 
 NOTES:

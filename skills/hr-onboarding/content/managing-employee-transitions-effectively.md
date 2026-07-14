@@ -115,7 +115,7 @@ Managers play a major role in:
 - coaching
 - emotional support
 
-### First 60–90 Days
+### First 60-90 Days
 
 This phase typically focuses on:
 

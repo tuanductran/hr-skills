@@ -2,7 +2,7 @@
 
 ## Context
 
-You are the People Operations Manager at a 180-person logistics tech company that has grown from 70 to 180 employees in 14 months. The company is hiring 12–15 people per month, and onboarding is still run manually through a shared spreadsheet, email chains with IT, and a generic offer letter template. The CFO flagged that two new hires this month did not have laptops ready on day one, and Legal raised concerns after discovering inconsistent employee records between your HRIS and payroll system during a recent audit prep exercise. You have a basic HRIS in place but no automation, no documented runbooks, and no data governance process.
+You are the People Operations Manager at a 180-person logistics tech company that has grown from 70 to 180 employees in 14 months. The company is hiring 12-15 people per month, and onboarding is still run manually through a shared spreadsheet, email chains with IT, and a generic offer letter template. The CFO flagged that two new hires this month did not have laptops ready on day one, and Legal raised concerns after discovering inconsistent employee records between your HRIS and payroll system during a recent audit prep exercise. You have a basic HRIS in place but no automation, no documented runbooks, and no data governance process.
 
 ## Step 1 — Choosing Where to Start
 
@@ -65,9 +65,9 @@ process needs to be rebuilt from scratch immediately.
 
 **Benchmark context:**
 
-A target onboarding completion rate above 90% for the first 90 days is a reasonable industry benchmark, but day-one equipment readiness failures typically indicate a process design gap rather than an execution capacity problem. At your current hiring volume of 12–15 new hires per month, a manual handoff with no defined SLA between HR and IT will continue to fail intermittently until a trigger-based process replaces it.
+A target onboarding completion rate above 90% for the first 90 days is a reasonable industry benchmark, but day-one equipment readiness failures typically indicate a process design gap rather than an execution capacity problem. At your current hiring volume of 12-15 new hires per month, a manual handoff with no defined SLA between HR and IT will continue to fail intermittently until a trigger-based process replaces it.
 
-> **Experience impact estimate:** A new hire without a working laptop on day one creates an immediate negative first impression that is disproportionately memorable relative to its actual severity. Left unaddressed at your current hiring pace, this could affect 2–3 new hires per month, compounding into a broader pattern that surfaces in engagement and first-year retention data.
+> **Experience impact estimate:** A new hire without a working laptop on day one creates an immediate negative first impression that is disproportionately memorable relative to its actual severity. Left unaddressed at your current hiring pace, this could affect 2-3 new hires per month, compounding into a broader pattern that surfaces in engagement and first-year retention data.
 
 ## Step 3 — Diagnosing the Data Integrity Issue
 

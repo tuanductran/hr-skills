@@ -147,24 +147,24 @@ Interviewer: ___________________|
 SECTION 1: TECHNICAL SKILLS (40 points)
 ─────────────────────────────────────────
 [ /10] CI/CD Design & Automation
-       1–3: Uses CI/CD tools but has not designed pipelines from scratch
-       4–6: Designs reliable pipelines with testing, security, and deployment stages
-       7–10: Production-grade pipeline architecture with rollback, secrets, and DX optimization
+       1-3: Uses CI/CD tools but has not designed pipelines from scratch
+       4-6: Designs reliable pipelines with testing, security, and deployment stages
+       7-10: Production-grade pipeline architecture with rollback, secrets, and DX optimization
 
 [ /10] Kubernetes & Container Orchestration
-       1–3: Basic Docker and Kubernetes awareness, no production ownership
-       4–6: Manages production Kubernetes workloads confidently
-       7–10: Cluster design, upgrade strategy, networking, and multi-environment management
+       1-3: Basic Docker and Kubernetes awareness, no production ownership
+       4-6: Manages production Kubernetes workloads confidently
+       7-10: Cluster design, upgrade strategy, networking, and multi-environment management
 
 [ /10] Infrastructure as Code (Terraform)
-       1–3: Has used Terraform but no modular or team-scale experience
-       4–6: Owns IaC for real environments with remote state and module structure
-       7–10: Scalable IaC architecture with drift detection, environment promotion, and team workflows
+       1-3: Has used Terraform but no modular or team-scale experience
+       4-6: Owns IaC for real environments with remote state and module structure
+       7-10: Scalable IaC architecture with drift detection, environment promotion, and team workflows
 
 [ /10] Observability & Reliability
-       1–3: Knows monitoring exists but has not designed an observability strategy
-       4–6: Implements logging, metrics, and alerting for production systems
-       7–10: Full SLO/SLA framework, on-call design, alert quality, and blameless post-mortem culture
+       1-3: Knows monitoring exists but has not designed an observability strategy
+       4-6: Implements logging, metrics, and alerting for production systems
+       7-10: Full SLO/SLA framework, on-call design, alert quality, and blameless post-mortem culture
 
 SECTION 2: PRODUCTION OPERATIONS EXPERIENCE (20 points)
 ──────────────────────────────────────────────────────────
@@ -187,9 +187,9 @@ SECTION 4: COLLABORATION & LEADERSHIP (20 points)
 TOTAL: ____/100
 
 HIRING THRESHOLDS:
- 85–100:  Strong Hire
- 70–84:   Hire (with a clear onboarding plan)
- 55–69:   Needs discussion — flag specific gaps
+ 85-100:  Strong Hire
+ 70-84:   Hire (with a clear onboarding plan)
+ 55-69:   Needs discussion — flag specific gaps
  Below 55: No Hire
 
 NOTES:

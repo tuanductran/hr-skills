@@ -110,8 +110,8 @@ Two-layer architecture:
    - Required sections present
    - Content ≥ 1000 characters
    - Body ≤ 500 lines
-   - 8–12 supported tasks
-   - 4–6 tips
+   - 8-12 supported tasks
+   - 4-6 tips
    - Blank line before every list
 
 ---
@@ -138,7 +138,7 @@ Two-layer architecture:
 3. ~~**Template duplication**~~ ✅ **Resolved (PR #74):** Single-sourced to `.github/skill-template.md`, referenced by `CONTRIBUTING.md` and `.claude/commands/new-skill.md`
 
 4. **Validator rule gaps**: Several documented rules in `docs/format.md` aren't automated in `validate.ts`:
-   - Prompt subtopic structure: 3–6 subtopics, 4–7 prompts each
+   - Prompt subtopic structure: 3-6 subtopics, 4-7 prompts each
    - `[placeholder]` bracket syntax validation
    - Router ↔ filesystem ↔ marketplace.json three-way consistency check
 
@@ -175,10 +175,10 @@ Two-layer architecture:
 | Required sections present | hr-skills-build | validateRequiredSections() |
 | Content ≥ 1000 chars | hr-skills-build | validateContentLength() |
 | Body ≤ 500 lines | hr-skills-build | validateLineCount() |
-| 8–12 supported tasks | hr-skills-build | validateSupportedTasks() |
-| 4–6 tips | hr-skills-build | validateTips() |
+| 8-12 supported tasks | hr-skills-build | validateSupportedTasks() |
+| 4-6 tips | hr-skills-build | validateTips() |
 | Blank line before list | hr-skills-build | validateBlankLines() |
-| Prompt subtopic structure (3–6 subtopics, 4–7 prompts each) | hr-skills-build | validatePromptStructure() |
+| Prompt subtopic structure (3-6 subtopics, 4-7 prompts each) | hr-skills-build | validatePromptStructure() |
 | Router ↔ filesystem ↔ marketplace.json three-way consistency | hr-skills-build | validateRouterConsistency() |
 
 ### Missing Validation Rules 🚨
@@ -255,7 +255,7 @@ Two-layer architecture:
    - `CONTRIBUTING.md` and `.claude/commands/new-skill.md` updated to reference canonical source
 
 2. ✅ **Implement missing validator rules**
-   - `validatePromptStructure()` added (3–6 subtopics, 4–7 prompts)
+   - `validatePromptStructure()` added (3-6 subtopics, 4-7 prompts)
    - `validateRouterConsistency()` added (router ↔ filesystem ↔ marketplace)
    - All 146 skills pass CI validation
 
@@ -271,7 +271,7 @@ Two-layer architecture:
 5. ✅ **Normalize `.agents/valibot` metadata**
    - Rewritten to author "Tuan Duc Tran", version "1.0.0", HR-skills monorepo context
 
-### Short-term (v1.2.0 – v1.3.0)
+### Short-term (v1.2.0 - v1.3.0)
 
 1. ✅ **Auto-generate skill-matrix.md in CI** *(feat/v1.2.0)*
    - `scripts/generate-skill-matrix.ts` created
@@ -336,7 +336,7 @@ Two-layer architecture:
 
 ---
 
-## Long-term Vision (3–5 years)
+## Long-term Vision (3-5 years)
 
 1. **skills-ref** becomes an established, independently-maintained Agent Skills reference library with external users and contributors.
 

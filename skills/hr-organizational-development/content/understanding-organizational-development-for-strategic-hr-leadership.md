@@ -199,15 +199,15 @@ Effective organizational development now requires both:
 - analytical capability to model structure options and diagnose health signals accurately
 - and facilitation skill to lead people through ambiguity and change with confidence
 
-## Key Industry Benchmarks (2025–2026)
+## Key Industry Benchmarks (2025-2026)
 
 | Metric | Benchmark | Source |
 |---|---|---|
-| Healthy Span of Control (manager to direct reports) | 6–10 direct reports | Industry standard |
+| Healthy Span of Control (manager to direct reports) | 6-10 direct reports | Industry standard |
 | Change Initiatives Achieving Full Adoption | ~34% succeed fully (most underperform) | McKinsey |
 | Post-Reorg Stabilization Window | 90 days | OD industry standard |
-| Engagement Score Dip Following Major Reorg (typical) | 5–10 point temporary decline | Gallup / Culture Amp |
-| M&A Integration Timeline for Core People Decisions | First 90–100 days | M&A industry standard |
+| Engagement Score Dip Following Major Reorg (typical) | 5-10 point temporary decline | Gallup / Culture Amp |
+| M&A Integration Timeline for Core People Decisions | First 90-100 days | M&A industry standard |
 | Organizational Health Index Coverage (McKinsey OHI) | 9 management practice outcomes | McKinsey |
 | Voluntary Turnover Risk Window Post-Reorg | First 6 months elevated | Industry observation |
 

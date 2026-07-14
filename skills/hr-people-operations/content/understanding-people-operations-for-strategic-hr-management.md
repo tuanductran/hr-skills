@@ -210,7 +210,7 @@ Effective people operations now requires both:
 - systems and process design capability to build workflows that scale
 - and judgment to know which moments require automation versus human attention
 
-## Key Industry Benchmarks (2025–2026)
+## Key Industry Benchmarks (2025-2026)
 
 | Metric | Benchmark | Source |
 |---|---|---|
