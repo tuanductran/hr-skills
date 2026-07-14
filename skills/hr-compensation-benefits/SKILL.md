@@ -80,7 +80,7 @@ Comprehensive compensation and benefits support — from pay analysis, salary su
 ## Tips
 
 - Conduct regular market pay reviews (at least annually) to stay competitive and prevent talent flight.
-- Communicate total compensation clearly — most employees undervalue their benefits by 30–50%.
+- Communicate total compensation clearly — most employees undervalue their benefits by 30-50%.
 - Ensure all compensation decisions are documented and defensible against pay equity claims.
 - Design incentive plans with clear, measurable metrics that employees can directly influence.
 - Tailor benefits offerings to the demographics and preferences of your workforce through annual surveys.

@@ -210,18 +210,18 @@ Effective total rewards now requires both:
 - analytical and statistical capability to model pay structures and equity outcomes accurately
 - and communication skill to translate those outcomes into employee and leadership trust
 
-## Key Industry Benchmarks (2025–2026)
+## Key Industry Benchmarks (2025-2026)
 
 | Metric | Benchmark | Source |
 |---|---|---|
-| Typical First-Audit Pay Equity Remediation Cost | 1–3% of total payroll | Industry standard |
-| Benefits Expense Share of Total HR Cost | 30–40% | Mercer |
-| Salary Band Overlap (healthy range) | 10–20% between adjacent levels | Compensation industry standard |
-| Recommended Compa-Ratio Target Range | 0.90–1.10 | Radford / Industry standard |
-| Statistically Valid Comparison Group Size | ≥5–8 employees per group | Pay equity methodology standard |
+| Typical First-Audit Pay Equity Remediation Cost | 1-3% of total payroll | Industry standard |
+| Benefits Expense Share of Total HR Cost | 30-40% | Mercer |
+| Salary Band Overlap (healthy range) | 10-20% between adjacent levels | Compensation industry standard |
+| Recommended Compa-Ratio Target Range | 0.90-1.10 | Radford / Industry standard |
+| Statistically Valid Comparison Group Size | ≥5-8 employees per group | Pay equity methodology standard |
 | Market Benchmark Refresh Cadence | Annually, or semi-annually in volatile markets | Radford / Mercer |
 | Equity Refresh Grant Trigger Point | Approaching 4-year vesting cliff | Equity compensation standard |
-| ESPP Typical Discount Range | 10–15% | Industry standard |
+| ESPP Typical Discount Range | 10-15% | Industry standard |
 
 ## Example Workflow
 

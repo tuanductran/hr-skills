@@ -226,16 +226,16 @@ Effective labor relations now requires both:
 - legal and regulatory literacy to navigate a complex and rapidly shifting employment law landscape
 - and employee relations skill to address the underlying conditions that generate labor relations risk in the first place
 
-## Key Industry Benchmarks (2025–2026)
+## Key Industry Benchmarks (2025-2026)
 
 | Metric | Benchmark | Source |
 |---|---|---|
 | NLRB Election Timeline (petition to election) | ~25 days under current NLRB rules | NLRB |
-| Union Win Rate in NLRB Elections (2024–2025) | Approximately 70%+ | NLRB election data |
-| Grievance Arbitration Cost (average per case) | $50,000–$200,000+ depending on complexity | Labor relations industry |
-| Workplace Investigation Timeline (standard) | 30–45 days from intake to outcome | HR industry standard |
+| Union Win Rate in NLRB Elections (2024-2025) | Approximately 70%+ | NLRB election data |
+| Grievance Arbitration Cost (average per case) | $50,000-$200,000+ depending on complexity | Labor relations industry |
+| Workplace Investigation Timeline (standard) | 30-45 days from intake to outcome | HR industry standard |
 | Wrongful Termination Claim Risk Window | Within 180 days of termination (EEOC filing period) | EEOC |
-| Second Organizing Campaign Risk After Union Loss | Elevated for 12–18 months if root causes unaddressed | Industry observation |
+| Second Organizing Campaign Risk After Union Loss | Elevated for 12-18 months if root causes unaddressed | Industry observation |
 | Progressive Discipline Documentation Standard | Written, signed, dated, and comparative at each stage | HR/legal industry standard |
 
 ## Example Workflow

@@ -252,7 +252,7 @@ Build the stabilization plan around three checkpoints, each with a specific diag
 | Candidate funnel drop-off review | TA Lead | Monthly |
 | EVP relaunch readiness assessment | Employer Brand Manager | 90 days |
 
-> **Common finding at companies recovering from a reputation drop:** Repair efforts frequently look successful immediately after a public response, because the response itself generates short-term goodwill. The real test is whether candidate-facing behavior and review sentiment have genuinely shifted 60–90 days later — without a deliberate tracking cadence, quiet reversion to the old process is the most common failure mode, and it sets up a second, harder-to-recover reputation hit.
+> **Common finding at companies recovering from a reputation drop:** Repair efforts frequently look successful immediately after a public response, because the response itself generates short-term goodwill. The real test is whether candidate-facing behavior and review sentiment have genuinely shifted 60-90 days later — without a deliberate tracking cadence, quiet reversion to the old process is the most common failure mode, and it sets up a second, harder-to-recover reputation hit.
 
 ## Step 8 — Writing the Employer Brand Status Report for Leadership
 
@@ -344,7 +344,7 @@ Report on repair signal and relaunch readiness to leadership at each checkpoint
 | Mistake | How to avoid it |
 |---------|----------------|
 | Launching a "brand refresh" before diagnosing what is actually driving the reputation drop | Read and categorize the actual themes in reviews and candidate feedback before drafting any messaging |
-| Finalizing one strategic response without modeling alternatives | Model 2–3 strategic options and compare trade-offs before recommending one |
+| Finalizing one strategic response without modeling alternatives | Model 2-3 strategic options and compare trade-offs before recommending one |
 | Treating negative reviews as proof the culture is irredeemable, or as something that will pass on its own | Diagnose concerns as structural, communication-based, or credibility-based before reacting |
 | Building new EVP messaging before fixing the underlying experience gaps | Sequence repair work ahead of relaunch messaging, not after it |
 | Assuming the reputation issue is resolved once a public response is published | Track repair signal through defined checkpoints over the following 90 days |

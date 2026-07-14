@@ -78,7 +78,7 @@ Would you be open to a quick chat about it?
 **Filling the slots takes ~90 seconds per candidate, not 20 minutes:**
 
 - [SPECIFIC REFERENCE]: pull one detail from their headline, recent post, or current company (e.g., "your work on the data pipeline team at [Company]")
-- [ONE CONCRETE FACT]: keep a running list of 3–4 rotating facts about the role/team so you're not writing from scratch each time (e.g., "a real-time ingestion pipeline handling 40K+ events/day")
+- [ONE CONCRETE FACT]: keep a running list of 3-4 rotating facts about the role/team so you're not writing from scratch each time (e.g., "a real-time ingestion pipeline handling 40K+ events/day")
 
 **Checklist:**
 
@@ -118,8 +118,8 @@ Would you be open to a quick chat about it?
 |---|---|---|
 | 1 | Connection request with light personalization | Get accepted |
 | 2 | First real message (Step 5 style) within a day of acceptance | Deliver value proposition |
-| 3 | Follow-up, new angle, ~6–7 days later | Re-surface without repeating |
-| 4 | Final respectful close, ~13–14 days later | Leave the door open, don't push further |
+| 3 | Follow-up, new angle, ~6-7 days later | Re-surface without repeating |
+| 4 | Final respectful close, ~13-14 days later | Leave the door open, don't push further |
 
 - Avoid sending outreach late at night or right at the very start/end of the work week in the candidate's time zone — mid-week, mid-day tends to perform more consistently, though this varies by audience and isn't a hard rule
 - A single message with no follow-up structurally caps your response rate — many genuine positive replies come on message 2 or 3, not message 1
@@ -138,7 +138,7 @@ Would you be open to a quick chat about it?
 | Thin/empty recruiter profile | Candidates check before responding | Fix headline, About, and photo |
 | Vague value proposition ("exciting role," "competitive salary") | No differentiation from every other message they get | Concrete facts about the actual work |
 | Vague call to action | Higher friction to respond | Specific ask ("15-minute call") |
-| Giving up after one message | Misses replies that come on touch 2–3 | Run the full follow-up sequence |
+| Giving up after one message | Misses replies that come on touch 2-3 | Run the full follow-up sequence |
 | No funnel tracking | Can't tell which stage is broken | Track request→accept→message→response separately |
 
 ## Step 8 — Results After Applying the Fixes
@@ -166,7 +166,7 @@ Fix recruiter profile fundamentals first
                     ↓
 Rebuild message using the personalization framework (2 variable slots)
                     ↓
-Run a proper 3–4 touch follow-up sequence, not a single message
+Run a proper 3-4 touch follow-up sequence, not a single message
                     ↓
 Track acceptance rate, response rate, and positive rate separately
                     ↓

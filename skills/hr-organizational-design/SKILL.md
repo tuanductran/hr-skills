@@ -61,7 +61,7 @@ Design, restructure, and optimize organizational structures and operating models
 
 - Start org design from strategy, not from the current org chart—structure should follow purpose.
 - Validate design decisions with workload data, not just intuition about headcount needs.
-- Minimize management layers to reduce decision latency; target 5–8 direct reports for most manager roles.
+- Minimize management layers to reduce decision latency; target 5-8 direct reports for most manager roles.
 - Communicate the rationale for structural changes clearly—ambiguity drives attrition during transitions.
 - Separate org design decisions from people placement decisions to reduce bias and politics.
-- Review organizational effectiveness 6–12 months after a major redesign to assess whether the structure is delivering intended outcomes.
+- Review organizational effectiveness 6-12 months after a major redesign to assess whether the structure is delivering intended outcomes.

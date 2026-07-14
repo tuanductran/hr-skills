@@ -24,7 +24,7 @@ metadata:
 ### Rewrite tasks
 
 - "Rewrite this SKILL.md description to sound natural and clear: [text]."
-- "Shorten and sharpen the description to 50–120 characters while keeping trigger phrases."
+- "Shorten and sharpen the description to 50-120 characters while keeping trigger phrases."
 - "Convert this list of prompts into a consistent style and tone."
 - "Generate three tone variants for the Tips section: formal, friendly, concise."
 

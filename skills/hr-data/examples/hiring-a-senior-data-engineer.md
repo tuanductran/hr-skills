@@ -146,24 +146,24 @@ Interviewer: ___________________|
 SECTION 1: TECHNICAL SKILLS (40 points)
 ─────────────────────────────────────────
 [ /10] Data Pipeline Architecture
-       1–3: Builds basic pipelines but no system design thinking
-       4–6: Designs reliable pipelines with ingestion, transformation, and serving layers
-       7–10: End-to-end production architecture with failure handling, cost efficiency, and scale
+       1-3: Builds basic pipelines but no system design thinking
+       4-6: Designs reliable pipelines with ingestion, transformation, and serving layers
+       7-10: End-to-end production architecture with failure handling, cost efficiency, and scale
 
 [ /10] Data Modeling & dbt
-       1–3: Writes SQL queries, no formal modeling knowledge
-       4–6: Applies layered dbt conventions, writes tests and documentation
-       7–10: Owns transformation architecture, enforces modeling standards across teams
+       1-3: Writes SQL queries, no formal modeling knowledge
+       4-6: Applies layered dbt conventions, writes tests and documentation
+       7-10: Owns transformation architecture, enforces modeling standards across teams
 
 [ /10] Data Quality & Reliability
-       1–3: No structured approach to data quality
-       4–6: Implements automated tests, monitors pipeline health
-       7–10: Owns data quality framework with alerting, SLAs, and stakeholder communication
+       1-3: No structured approach to data quality
+       4-6: Implements automated tests, monitors pipeline health
+       7-10: Owns data quality framework with alerting, SLAs, and stakeholder communication
 
 [ /10] Cloud Data Infrastructure
-       1–3: Familiar with tools but no architecture ownership
-       4–6: Works confidently in BigQuery or Snowflake with cost and performance awareness
-       7–10: Designs scalable lakehouse or warehouse architecture with governance practices
+       1-3: Familiar with tools but no architecture ownership
+       4-6: Works confidently in BigQuery or Snowflake with cost and performance awareness
+       7-10: Designs scalable lakehouse or warehouse architecture with governance practices
 
 SECTION 2: PRODUCTION DATA EXPERIENCE (20 points)
 ────────────────────────────────────────────────────
@@ -186,9 +186,9 @@ SECTION 4: COLLABORATION & LEADERSHIP (20 points)
 TOTAL: ____/100
 
 HIRING THRESHOLDS:
- 85–100:  Strong Hire
- 70–84:   Hire (with a clear onboarding plan)
- 55–69:   Needs discussion — flag specific gaps
+ 85-100:  Strong Hire
+ 70-84:   Hire (with a clear onboarding plan)
+ 55-69:   Needs discussion — flag specific gaps
  Below 55: No Hire
 
 NOTES:

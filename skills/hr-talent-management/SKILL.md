@@ -193,7 +193,7 @@ Focuses on:
 ### Succession planning
 
 1. "Build a succession planning framework for [critical leadership roles] at [a 500-person company] with a [3-year talent horizon]."
-2. "How do I identify [ready now, ready in 1–2 years, ready in 3+ years] successors for [our VP and Director-level positions]?"
+2. "How do I identify [ready now, ready in 1-2 years, ready in 3+ years] successors for [our VP and Director-level positions]?"
 3. "What is the best way to run a [9-box talent review] session with [a leadership team of 10 executives]?"
 4. "How do I maintain a [living succession pipeline] that stays current without becoming a bureaucratic exercise?"
 5. "What are the most common reasons [succession plans fail] and how do I avoid them at [our growth stage]?"
@@ -219,7 +219,7 @@ Focuses on:
 1. "Design an [employee engagement survey] for [a 150-person company] that produces [actionable insights] rather than just a score."
 2. "Our engagement score dropped from [X] to [Y] this quarter. What are the most likely [root causes] and [90-day interventions]?"
 3. "How do I build a [retention risk model] using [tenure, performance, engagement, and manager data] to identify [flight risk employees]?"
-4. "What are the most effective [stay interview] questions to ask [mid-level employees with 2–4 years of tenure]?"
+4. "What are the most effective [stay interview] questions to ask [mid-level employees with 2-4 years of tenure]?"
 5. "How do I present [engagement and retention risk data] to [our CEO and CFO] in a way that connects to [financial impact]?"
 
 ## Talent management hiring insights
@@ -350,7 +350,7 @@ A high engagement score does not guarantee retention. Strong talent professional
 
 Competency models with 30+ competencies create confusion rather than clarity. Effective frameworks focus on:
 
-- 6–10 core competencies per role family
+- 6-10 core competencies per role family
 - behavioral indicators calibrated to each level
 - language that managers and employees actually use
 - clear connection to performance and promotion criteria

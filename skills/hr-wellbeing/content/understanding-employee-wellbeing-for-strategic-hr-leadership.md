@@ -203,14 +203,14 @@ Effective employee wellbeing now requires both:
 - analytical capability to model program options and diagnose risk signals accurately
 - and facilitation and coaching skill to support managers and employees through sensitive situations
 
-## Key Industry Benchmarks (2025–2026)
+## Key Industry Benchmarks (2025-2026)
 
 | Metric | Benchmark | Source |
 |---|---|---|
-| Employees Reporting Burnout Symptoms (global average) | ~40–50% report at least moderate burnout | Gallup / industry surveys |
-| EAP Utilization Rate (typical) | 5–10% of eligible employees | Industry benchmark |
+| Employees Reporting Burnout Symptoms (global average) | ~40-50% report at least moderate burnout | Gallup / industry surveys |
+| EAP Utilization Rate (typical) | 5-10% of eligible employees | Industry benchmark |
 | Post-Leave Stabilization Window | 90 days | Wellbeing operations standard |
-| Engagement Score Dip During Sustained High-Pressure Periods | 5–10 point temporary decline | Gallup / Culture Amp |
+| Engagement Score Dip During Sustained High-Pressure Periods | 5-10 point temporary decline | Gallup / Culture Amp |
 | Manager Training Coverage on Wellbeing Recognition (leading orgs) | 80%+ of people managers trained annually | Industry observation |
 | Relapse Risk Window Following Burnout-Related Leave | First 90 days elevated | Industry observation |
 | Flexible Work Policy Adoption (hybrid or outcome-based) | Majority of knowledge-work organizations by 2026 | Industry survey trend |

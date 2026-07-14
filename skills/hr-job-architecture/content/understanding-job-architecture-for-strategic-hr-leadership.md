@@ -242,17 +242,17 @@ Effective job architecture now requires both:
 - and facilitation skill to lead calibration sessions and career conversations that
   require managers to apply criteria consistently under pressure
 
-## Key Industry Benchmarks (2025–2026)
+## Key Industry Benchmarks (2025-2026)
 
 | Metric | Benchmark | Source |
 |---|---|---|
-| Typical IC Career Levels per Job Family | 4–6 levels (L1–L6 or equivalent) | Radford / Mercer |
-| Healthy Band Range Width (min to max) | 50–80% spread per grade | Compensation industry standard |
-| Internal Promotion Fill Rate (target) | 60–70% of open roles filled internally | LinkedIn Talent Trends |
-| Pay Equity Gap Target | Within 2–3% after controlling for level, role, and tenure | SHRM / HR industry standard |
+| Typical IC Career Levels per Job Family | 4-6 levels (L1-L6 or equivalent) | Radford / Mercer |
+| Healthy Band Range Width (min to max) | 50-80% spread per grade | Compensation industry standard |
+| Internal Promotion Fill Rate (target) | 60-70% of open roles filled internally | LinkedIn Talent Trends |
+| Pay Equity Gap Target | Within 2-3% after controlling for level, role, and tenure | SHRM / HR industry standard |
 | Job Architecture Governance Audit Frequency | Semi-annual to annual | Total rewards best practice |
 | Title Inflation Signal Threshold | More than 20% of roles outside defined job family structure | Industry observation |
-| Manager Enablement Coverage at Launch | 90–100% of people managers trained before employee communication | Change management standard |
+| Manager Enablement Coverage at Launch | 90-100% of people managers trained before employee communication | Change management standard |
 
 ## Example Workflow
 

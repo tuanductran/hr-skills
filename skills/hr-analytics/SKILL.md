@@ -52,7 +52,7 @@ Comprehensive HR analytics support — from defining HR metrics and building das
 
 1. "How can I build a predictive attrition model using our employee data to identify at-risk employees?"
 2. "What data inputs are most valuable for building a predictive staffing/hiring model?"
-3. "How can I use predictive analytics to forecast workforce needs for the next 12–24 months?"
+3. "How can I use predictive analytics to forecast workforce needs for the next 12-24 months?"
 4. "What machine learning approaches are most applicable to HR analytics use cases?"
 5. "How should I develop workforce segmentation strategies to identify different employee personas?"
 

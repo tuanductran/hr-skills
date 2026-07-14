@@ -152,24 +152,24 @@ Interviewer: ___________________|
 SECTION 1: TECHNICAL AND SYSTEMS SKILLS (40 points)
 ─────────────────────────────────────────────────────
 [ /10] Implementation and Migration Experience
-       1–3: Only administered already-configured systems
-       4–6: Supported an implementation as part of a team
-       7–10: Led a full implementation end-to-end, including data migration
+       1-3: Only administered already-configured systems
+       4-6: Supported an implementation as part of a team
+       7-10: Led a full implementation end-to-end, including data migration
 
 [ /10] Integration Design
-       1–3: Aware of the concept, no hands-on depth
-       4–6: Has configured basic integrations (payroll, ATS, SSO)
-       7–10: Deep understanding of data flow, error handling, and testing across systems
+       1-3: Aware of the concept, no hands-on depth
+       4-6: Has configured basic integrations (payroll, ATS, SSO)
+       7-10: Deep understanding of data flow, error handling, and testing across systems
 
 [ /10] Data Governance and Compliance
-       1–3: No structured approach to access control or data governance
-       4–6: Understands and applies basic access control practices
-       7–10: Owns data governance strategy, including audit trails and compliance requirements
+       1-3: No structured approach to access control or data governance
+       4-6: Understands and applies basic access control practices
+       7-10: Owns data governance strategy, including audit trails and compliance requirements
 
 [ /10] Vendor and Platform Evaluation
-       1–3: No experience evaluating or comparing HRIS vendors
-       4–6: Has participated in a vendor evaluation process
-       7–10: Has led vendor evaluation with clear, defensible criteria and reference checks
+       1-3: No experience evaluating or comparing HRIS vendors
+       4-6: Has participated in a vendor evaluation process
+       7-10: Has led vendor evaluation with clear, defensible criteria and reference checks
 
 SECTION 2: PROJECT AND CHANGE MANAGEMENT (20 points)
 ──────────────────────────────────────────────────────
@@ -192,9 +192,9 @@ SECTION 4: COLLABORATION AND LEADERSHIP (20 points)
 TOTAL: ____/100
 
 HIRING THRESHOLDS:
- 85–100:  Strong Hire
- 70–84:   Hire (with a clear onboarding plan)
- 55–69:   Needs discussion — flag specific gaps
+ 85-100:  Strong Hire
+ 70-84:   Hire (with a clear onboarding plan)
+ 55-69:   Needs discussion — flag specific gaps
  Below 55: No Hire
 
 NOTES:

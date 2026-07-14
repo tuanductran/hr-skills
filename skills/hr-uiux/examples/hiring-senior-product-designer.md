@@ -168,39 +168,39 @@ Interviewer: ___________________|
 SECTION 1: DESIGN SKILLS (40 points)
 ──────────────────────────────────────
 [ /10] UX Problem-Solving Depth
-       1–3: Focuses on visual output; cannot explain the user problem being solved
-       4–6: Demonstrates clear UX reasoning with some research involvement
-       7–10: Articulates user problem clearly, shows research-informed decisions,
+       1-3: Focuses on visual output; cannot explain the user problem being solved
+       4-6: Demonstrates clear UX reasoning with some research involvement
+       7-10: Articulates user problem clearly, shows research-informed decisions,
              demonstrates iteration and trade-off thinking
 
 [ /10] Information Architecture and Interaction Design
-       1–3: Designs individual screens without considering full user flows
-       4–6: Maps complete workflows, considers edge cases and error states
-       7–10: Designs for complex multi-step workflows and data-heavy interfaces;
+       1-3: Designs individual screens without considering full user flows
+       4-6: Maps complete workflows, considers edge cases and error states
+       7-10: Designs for complex multi-step workflows and data-heavy interfaces;
              considers cognitive load, progressive disclosure, and accessibility
 
 [ /10] Design Systems Thinking
-       1–3: Creates individual components without scalability thinking
-       4–6: Has contributed to a design system; understands reusability
-       7–10: Has built or led a design system; understands tokens, component
+       1-3: Creates individual components without scalability thinking
+       4-6: Has contributed to a design system; understands reusability
+       7-10: Has built or led a design system; understands tokens, component
              architecture, and design-to-engineering handoff at scale
 
 [ /10] Portfolio Quality and Case Study Depth
-       1–3: Screens only, no process explanation, no user or business context
-       4–6: Shows process and reasoning with some research evidence
-       7–10: Complete case studies with problem framing, research, iteration,
+       1-3: Screens only, no process explanation, no user or business context
+       4-6: Shows process and reasoning with some research evidence
+       7-10: Complete case studies with problem framing, research, iteration,
              trade-offs, and outcomes — explains what they'd change in hindsight
 
 SECTION 2: RESEARCH AND VALIDATION (20 points)
 ────────────────────────────────────────────────
 [ /10] User Research Capability
-       1–5: Designs based on assumptions; limited or no research experience
-       6–10: Conducts user interviews and usability tests; synthesizes findings
+       1-5: Designs based on assumptions; limited or no research experience
+       6-10: Conducts user interviews and usability tests; synthesizes findings
              into design decisions; distinguishes what users say from what they do
 
 [ /10] Data and Analytics Awareness
-       1–5: Does not connect design decisions to user behavior or product metrics
-       6–10: References analytics, A/B test results, or behavioral data
+       1-5: Does not connect design decisions to user behavior or product metrics
+       6-10: References analytics, A/B test results, or behavioral data
              to validate or challenge design assumptions
 
 SECTION 3: COLLABORATION AND COMMUNICATION (20 points)
@@ -220,9 +220,9 @@ SECTION 4: CULTURE AND PRODUCT FIT (20 points)
 TOTAL: ____/100
 
 HIRING THRESHOLDS:
- 85–100:  Strong Hire
- 70–84:   Hire (with a clear onboarding plan for identified gaps)
- 55–69:   Needs discussion — flag specific gaps with CPO before deciding
+ 85-100:  Strong Hire
+ 70-84:   Hire (with a clear onboarding plan for identified gaps)
+ 55-69:   Needs discussion — flag specific gaps with CPO before deciding
  Below 55: No Hire
 
 NOTES:
@@ -264,7 +264,7 @@ Write a focused JD (product design for complex UX, not
 Portfolio screening: look for case studies with process and reasoning,
 not just beautiful final screens
           ↓
-Phone screen: 2–3 behavioral questions + ask them to describe one
+Phone screen: 2-3 behavioral questions + ask them to describe one
 design decision and why they made it
           ↓
 Portfolio walkthrough interview (led by CPO or Design Lead):

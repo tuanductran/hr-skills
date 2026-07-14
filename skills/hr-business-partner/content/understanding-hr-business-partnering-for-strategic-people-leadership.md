@@ -161,13 +161,13 @@ Effective HRBP practice now requires both:
 - Analytical capability to model options and diagnose risks  
 - Coaching skill to build manager capability and organizational resilience  
 
-## Key Industry Benchmarks (2025–2026)
+## Key Industry Benchmarks (2025-2026)
 
 | Metric | Benchmark | Source |
 |---|---|---|
 | Healthy attrition rate | <12% | Industry standard |
-| PIP success rate | 60–70% | HR observation |
-| Case resolution window | 30–45 days | ER practice |
+| PIP success rate | 60-70% | HR observation |
+| Case resolution window | 30-45 days | ER practice |
 | Succession readiness for critical roles | 80% coverage | Talent planning benchmark |
 | Manager coaching adoption | 75%+ managers engaged | Industry observation |
 | Stabilization window after reorg | 90 days | HRBP practice standard |

@@ -89,7 +89,7 @@ Trade-off: Easier to get function-specific buy-in, but creates
 **Option B — Unified job family architecture (common level spine across all functions):**
 
 ```text
-Structure: A single level spine (L1–L6 or equivalent) applied across
+Structure: A single level spine (L1-L6 or equivalent) applied across
            all job families, with function-specific titles mapped to
            the common level at each grade
            Example: L4 = Senior Software Engineer / Senior PM /
@@ -106,7 +106,7 @@ Trade-off: Stronger for pay equity, internal mobility, and finance
 Structure: Unified level spine implemented for Engineering and Product
            in the first phase given the active pay equity concern and
            the acqui-hire title conflict, with Design, Data, and GTM
-           following in a second phase 3–4 months later
+           following in a second phase 3-4 months later
 Trade-off: Addresses the highest-urgency problem first and allows
            learning from the Engineering/Product rollout before
            extending, but creates a temporary period where only

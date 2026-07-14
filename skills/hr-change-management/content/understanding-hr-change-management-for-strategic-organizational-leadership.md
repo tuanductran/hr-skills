@@ -162,16 +162,16 @@ Effective change management now requires both:
 - Analytical capability to model options and diagnose risks  
 - Communication and coaching skill to build trust and adoption  
 
-## Key Industry Benchmarks (2025–2026)
+## Key Industry Benchmarks (2025-2026)
 
 | Metric | Benchmark | Source |
 |---|---|---|
-| Healthy change adoption rate | 70–80% | Industry standard |
+| Healthy change adoption rate | 70-80% | Industry standard |
 | Readiness survey participation | 75%+ | Change practice benchmark |
 | Training completion rate | 90%+ | Learning industry standard |
 | Stabilization window post-launch | 90 days | Change management standard |
 | Manager coaching adoption | 70%+ managers engaged | Industry observation |
-| Sentiment improvement post-change | +10–15 points | Engagement benchmark |
+| Sentiment improvement post-change | +10-15 points | Engagement benchmark |
 
 ## Example Workflow
 

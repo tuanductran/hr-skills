@@ -89,7 +89,7 @@ You need a practical, culturally appropriate recruiting strategy that leverages 
 [HIRING] Production Supervisor
 
 - Location: [Industrial Park], [Province]
-- Salary: VND 12–15 million/month + allowances
+- Salary: VND 12-15 million/month + allowances
 - Requirements: Experience supervising a production team or manufacturing line; experience in [industry] preferred
 - Schedule: Full-time, with company shuttle service available from [area]
 
@@ -106,7 +106,7 @@ Interested candidates can message our Zalo Official Account ([Company Name]) dir
 
 ### Expected skill response
 
-> "Hello [Name], my name is [Recruiter's Name], and I work in the HR team at [Company Name] in [Industrial Park]. I noticed your experience as a Production Supervisor and wanted to reach out. We're currently hiring for a similar role with a salary range of VND 12–15 million plus benefits. If you're open to exploring new opportunities, I'd be happy to share more details."
+> "Hello [Name], my name is [Recruiter's Name], and I work in the HR team at [Company Name] in [Industrial Park]. I noticed your experience as a Production Supervisor and wanted to reach out. We're currently hiring for a similar role with a salary range of VND 12-15 million plus benefits. If you're open to exploring new opportunities, I'd be happy to share more details."
 
 ### Why this approach works
 

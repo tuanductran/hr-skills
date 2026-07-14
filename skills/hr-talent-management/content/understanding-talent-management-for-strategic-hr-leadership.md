@@ -47,7 +47,7 @@ Measures the organization's readiness to fill critical roles without disruption.
 
 Focuses on:
 
-- Readiness tiers (ready now, ready in 1–2 years, ready in 3+ years)
+- Readiness tiers (ready now, ready in 1-2 years, ready in 3+ years)
 - Coverage ratio for business-critical and leadership positions
 - Bench strength depth across functions and levels
 
@@ -210,20 +210,20 @@ Effective talent management now requires both:
 - analytical capability to assess potential and readiness accurately
 - and influence skill to translate those assessments into leadership decisions
 
-## Key Industry Benchmarks (2025–2026)
+## Key Industry Benchmarks (2025-2026)
 
 | Metric | Benchmark | Source |
 |---|---|---|
 | Internal Fill Rate (healthy target) | >20% | Industry standard |
 | Critical Role Succession Coverage | ≥2 ready successors per role | Korn Ferry |
-| HiPo Population Size | 3–5% of workforce | Gartner |
+| HiPo Population Size | 3-5% of workforce | Gartner |
 | HiPo Retention Rate (target) | >90% annually | DDI |
 | Voluntary Turnover Among Top Performers | <10% annually | SHRM |
 | Engagement Survey Participation Rate | >70% | Gallup |
 | Global Employee Engagement | 20% | Gallup 2026 |
 | US Employee Engagement | 31% | Gallup 2026 |
 | Manager-Driven Variance in Engagement Scores | Up to 70% of team variance | Gallup |
-| Promotion Rate from HiPo Pools | 25–40% within 2 years | DDI |
+| Promotion Rate from HiPo Pools | 25-40% within 2 years | DDI |
 
 ## Example Workflow
 

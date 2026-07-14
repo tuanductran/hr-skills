@@ -16,7 +16,7 @@ Given your situation — a direct board-level trigger, an identified single poin
 
 **Critical role coverage (board's concern):**
 
-- Identify the 8–12 roles whose sudden departure would materially disrupt the business
+- Identify the 8-12 roles whose sudden departure would materially disrupt the business
 - For each, assess whether a "ready now" internal successor exists
 - Flag any role with zero viable internal successors as a critical gap
 
@@ -41,8 +41,8 @@ The VP of Engineering question is not really about one person — it is a proxy 
 **Readiness tiers to apply to each critical role:**
 
 ```text
-Ready Now      → Could step into the role within 0–3 months with minimal support
-Ready 1–2 Yrs  → Has the trajectory but needs targeted development first
+Ready Now      → Could step into the role within 0-3 months with minimal support
+Ready 1-2 Yrs  → Has the trajectory but needs targeted development first
 Ready 3+ Yrs   → Long-term potential identified, early-stage development
 No Successor   → No internal candidate identified — critical gap
 ```
@@ -54,14 +54,14 @@ Candidate: Senior Engineering Manager (3 years tenure, owns largest platform tea
 Performance: Consistently exceeds expectations, last 2 cycles
 Gaps: No experience managing managers across multiple teams,
       limited exposure to board-level reporting
-Classification: Ready in 1–2 years, with a structured stretch assignment
+Classification: Ready in 1-2 years, with a structured stretch assignment
 ```
 
 **Coverage ratio across the 10 critical roles:**
 
 ```text
 3 roles — Ready Now
-4 roles — Ready in 1–2 Years
+4 roles — Ready in 1-2 Years
 2 roles — Ready in 3+ Years
 1 role  — No Successor Identified (critical gap)
 
@@ -73,7 +73,7 @@ immediate action (external bench-building or accelerated internal development)
 
 Korn Ferry research recommends at least two viable successors per critical leadership role to maintain resilience. At present, your 10 critical roles average fewer than one developing successor each, and one role has none. This is a reasonable starting baseline for a fast-scaling company, but the board will expect to see the "no successor" gap closed within two quarters.
 
-> **Business impact estimate:** An unplanned VP-level departure with no internal successor typically results in 4–6 months of external search time, a 6–12 month ramp period for an external hire, and a measurable dip in team retention during the vacancy. For a function the size of Engineering at your stage, this represents meaningful execution risk during the gap, not just a hiring-cost line item.
+> **Business impact estimate:** An unplanned VP-level departure with no internal successor typically results in 4-6 months of external search time, a 6-12 month ramp period for an external hire, and a measurable dip in team retention during the vacancy. For a function the size of Engineering at your stage, this represents meaningful execution risk during the gap, not just a hiring-cost line item.
 
 ## Step 3 — Diagnosing the Flight-Risk Signals
 
@@ -87,7 +87,7 @@ Before assuming the cause, gather signals across four dimensions:
 
 **1. Engagement and pulse data:**
 
-- Have their individual engagement scores dropped over the last 2–3 survey cycles?
+- Have their individual engagement scores dropped over the last 2-3 survey cycles?
 - Are specific themes showing up — career growth, manager relationship, recognition, workload?
 - How does their score compare to their peer group and team average?
 
@@ -163,7 +163,7 @@ Boards think in risk exposure and trend direction, not individual employee stori
 
 **Part 1 — State the coverage position with data:**
 
-"Across our 10 board-critical roles, 3 have a ready-now internal successor, 6 have a successor in active development on a 1–3 year timeline, and 1 — VP of Engineering — currently has no internal successor, though we have identified and begun developing a candidate on an accelerated 12–18 month track."
+"Across our 10 board-critical roles, 3 have a ready-now internal successor, 6 have a successor in active development on a 1-3 year timeline, and 1 — VP of Engineering — currently has no internal successor, though we have identified and begun developing a candidate on an accelerated 12-18 month track."
 
 **Part 2 — Contextualize against company stage:**
 
@@ -205,7 +205,7 @@ Please:
 4. Compare engagement trends to these benchmarks:
    - Global employee engagement: 20% (Gallup 2026)
    - High performer voluntary turnover benchmark: under 10% annually (SHRM)
-5. Summarize the top 2–3 talent risks in plain language suitable
+5. Summarize the top 2-3 talent risks in plain language suitable
    for a leadership briefing
 ```
 
@@ -243,9 +243,9 @@ Design career paths around three components: levels, expectations, and transitio
 
 | Level | Scope | Example Expectation Shift |
 |-------|-------|---------------------------|
-| Individual Contributor (IC1–IC3) | Own tasks and projects with increasing independence | IC1: executes defined work → IC3: owns ambiguous problems end-to-end |
-| Senior / Staff IC (IC4–IC5) | Influence beyond own team without formal authority | Sets technical or functional direction across multiple teams |
-| Manager (M1–M2) | Owns people outcomes for a single team | Manages performance, hiring, and team execution |
+| Individual Contributor (IC1-IC3) | Own tasks and projects with increasing independence | IC1: executes defined work → IC3: owns ambiguous problems end-to-end |
+| Senior / Staff IC (IC4-IC5) | Influence beyond own team without formal authority | Sets technical or functional direction across multiple teams |
+| Manager (M1-M2) | Owns people outcomes for a single team | Manages performance, hiring, and team execution |
 | Senior Manager / Director | Owns outcomes across multiple teams or a function | Translates strategy into multi-team execution plans |
 
 **Transition criteria (example — Sales role family, Account Executive to Senior AE):**
@@ -297,7 +297,7 @@ to address the growth-path gap surfaced in engagement data."
 SECTION 1: SUCCESSION COVERAGE
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Critical roles tracked: ___
-Ready now: ___ | Ready 1–2 years: ___ | Ready 3+ years: ___ | No successor: ___
+Ready now: ___ | Ready 1-2 years: ___ | Ready 3+ years: ___ | No successor: ___
 Roles with closed gaps this quarter: ___
 Roles still flagged as critical risk: ___
 
@@ -305,7 +305,7 @@ Roles still flagged as critical risk: ___
 SECTION 2: HIGH-POTENTIAL PIPELINE
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Total HiPo population: ___ (___% of workforce)
-Benchmark: 3–5% of workforce (Gartner)
+Benchmark: 3-5% of workforce (Gartner)
 HiPo retention rate this quarter: ___%
 Promotions from HiPo pool this quarter: ___
 Development actions in progress: ___

@@ -41,7 +41,7 @@ role, and no existing process — start with two priority areas in parallel:
 - Translate the investor's governance requirement into a concrete scope before building
   anything — a full company succession plan in 90 days is not realistic; a C-suite and
   critical role plan is
-- Identify the 6–8 most critical roles by business continuity risk, not just by
+- Identify the 6-8 most critical roles by business continuity risk, not just by
   seniority, to anchor the plan in something defensible
 - Map current successor availability for each role before the 9-box session — walking
   into a calibration without pre-work data is the most common reason talent reviews
@@ -90,7 +90,7 @@ Trade-off: More representative of actual organizational risk, stronger
 **Option C — Full company calibration (all roles above manager level):**
 
 ```text
-Scope: All director-level and above roles, estimated 35–40 roles
+Scope: All director-level and above roles, estimated 35-40 roles
 Coverage today: Unknown — no calibration data exists yet
 Trade-off: Comprehensive in theory, but produces low-quality data
            if rushed to meet a 90-day deadline with no prior
@@ -170,14 +170,14 @@ Before assuming departure is inevitable, gather signals across four dimensions:
 | Critical role scope defined | Not yet — scope has not been agreed | Align with CEO and CPO on the 8 critical roles before scheduling any calibration |
 | Pre-work data collected | Not yet — no prior performance or potential ratings exist | Gather last 12 months of performance review data and manager nominations before the session |
 | Calibration facilitation designed | Not yet | Design a structured facilitation with bias-reduction anchors, not an open discussion |
-| Successor readiness rated | Not yet | Use a consistent time-to-readiness framework (Ready Now / 1–2 Years / 3+ Years) per candidate |
+| Successor readiness rated | Not yet | Use a consistent time-to-readiness framework (Ready Now / 1-2 Years / 3+ Years) per candidate |
 | Development plans built | Not yet | Assign development plan ownership immediately after calibration, before the session output decays |
 
 **Calibration session structure (recommended for this context):**
 
 1. Pre-work: each participating leader submits performance and potential ratings for their direct reports one week before the session
 2. Opening anchor: facilitator presents the 9-box definition with behavioral examples to normalize ratings across leaders
-3. Individual calibration: each nominee is discussed for 5–8 minutes; facilitator surfaces discrepancies between manager ratings
+3. Individual calibration: each nominee is discussed for 5-8 minutes; facilitator surfaces discrepancies between manager ratings
 4. Succession mapping: identified high-potentials are mapped to critical roles with time-to-readiness ratings
 5. Action assignment: each named successor receives a development plan owner and a 30-day development conversation commitment
 
@@ -344,7 +344,7 @@ question and an owner.
 > **Common finding at scaling companies:** Leadership transitions frequently appear
 > successful immediately after announcement because the energy of the promotion itself
 > creates temporary momentum. The real test is whether the successor is fully exercising
-> their mandate and building authority 60–90 days later — without a deliberate
+> their mandate and building authority 60-90 days later — without a deliberate
 > stabilization cadence, informal deference to the previous role-holder or to peers is
 > the most common early failure pattern.
 

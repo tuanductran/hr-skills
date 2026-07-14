@@ -129,7 +129,7 @@ Focuses on:
 
 1. "Help me identify [the 10 most critical roles] in [a 300-person company] and assess [the succession coverage and readiness gap] for each."
 2. "What is the right [bench strength coverage ratio] for [Director-level and above roles], and how do I evaluate whether our current pipeline is too thin or well-developed?"
-3. "Design a [critical role mapping framework] clarifying which roles carry [the highest business continuity risk] if they became vacant in [the next 6–12 months]."
+3. "Design a [critical role mapping framework] clarifying which roles carry [the highest business continuity risk] if they became vacant in [the next 6-12 months]."
 4. "How do I evaluate whether [our current succession candidates] are [actually ready within 12 months] versus [ready in 3+ years] for their target roles?"
 5. "Help me model [the succession risk exposure] for [a department where three senior leaders are within 3 years of retirement]."
 
@@ -143,7 +143,7 @@ Focuses on:
 
 ### Successor development and pipeline acceleration
 
-1. "Design a [12-month development plan] for [a high-potential senior manager identified as a 1–2 year successor] for [a VP of Engineering role]."
+1. "Design a [12-month development plan] for [a high-potential senior manager identified as a 1-2 year successor] for [a VP of Engineering role]."
 2. "Our talent review surfaced [a strong pipeline for commercial roles but a critical gap in technical leadership]. What development interventions should I prioritize?"
 3. "How do I design [a stretch assignment] that genuinely accelerates [a successor's readiness] rather than [simply adding workload without developmental intent]?"
 4. "Help me facilitate a [succession conversation] between [a business unit leader and an identified successor] who [does not yet know they are in the pipeline]."

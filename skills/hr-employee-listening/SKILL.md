@@ -60,7 +60,7 @@ Build a comprehensive employee listening strategy — from designing engagement 
 ## Tips
 
 - Follow up every survey with visible action—employees disengage from listening programs when feedback appears to disappear.
-- Communicate results within 4–6 weeks of survey close to maintain trust and momentum.
+- Communicate results within 4-6 weeks of survey close to maintain trust and momentum.
 - Segment results by manager, function, and tenure to identify where action is most needed rather than reporting only company averages.
 - Balance quantitative surveys with qualitative listening through focus groups and stay interviews.
 - Protect anonymity rigorously—employees need to trust that individual responses cannot be identified.

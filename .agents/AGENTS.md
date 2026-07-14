@@ -28,9 +28,9 @@ SKILL.md required structure
 - `name` must match directory name exactly
 - `description` minimum 50 characters and include realistic HR trigger phrases
 - Required sections: `## Supported tasks`, `## Key prompts`, `## Tips`
-- `## Supported tasks`: 8–12 bullet items
-- `## Key prompts`: 3–6 named subtopics, 4–7 prompts each, use `[placeholders]`
-- `## Tips`: 4–6 bullet items
+- `## Supported tasks`: 8-12 bullet items
+- `## Key prompts`: 3-6 named subtopics, 4-7 prompts each, use `[placeholders]`
+- `## Tips`: 4-6 bullet items
 - Max 500 lines total
 - No time-sensitive content (laws, versions, vendor-specific details)
 - Always leave a blank line between a heading or bold label and the list that follows

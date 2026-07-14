@@ -274,7 +274,7 @@ Gap: LLM fine-tuning — 6 engineers needed, 2 exist
   Build: 12-month upskilling program, Degreed + external specialist trainer
          Cost: $180K; timeline: 12 months to Working proficiency
   Buy: 4 external hires at Senior Engineer level
-       Cost: ~$800K fully loaded; timeline: 3–6 months to hire
+       Cost: ~$800K fully loaded; timeline: 3-6 months to hire
   Borrow: 2 contractor specialists embedded for 6 months
           Cost: ~$240K; timeline: immediate but not sustainable
   Recommendation: Hire 2, build 4 through accelerated upskilling

@@ -213,7 +213,7 @@ Report progress and adoption at checkpoints
 |---------|----------------|
 | Treating change as technical rollout | Address readiness and communication |
 | Delaying communication until launch | Build stakeholder plan early |
-| Finalizing one option without trade-off analysis | Compare 2–3 approaches |
+| Finalizing one option without trade-off analysis | Compare 2-3 approaches |
 | Assuming training alone drives adoption | Pair with coaching and communication |
 | Treating resistance as attitude only | Diagnose structural and workload concerns |
 | Skipping stabilization plan | Build 90-day cadence with named owners |

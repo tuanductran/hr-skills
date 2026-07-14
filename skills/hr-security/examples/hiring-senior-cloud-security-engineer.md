@@ -162,39 +162,39 @@ Interviewer: ___________________|
 SECTION 1: TECHNICAL SKILLS (40 points)
 ─────────────────────────────────────────
 [ /10] AWS Security Architecture Depth
-       1–3: Knows AWS services but has not designed or owned a security posture
-       4–6: Has hardened real AWS environments, understands IAM, Security Hub, GuardDuty
-       7–10: Deep architecture thinking, designed IAM from scratch, led cloud security posture
+       1-3: Knows AWS services but has not designed or owned a security posture
+       4-6: Has hardened real AWS environments, understands IAM, Security Hub, GuardDuty
+       7-10: Deep architecture thinking, designed IAM from scratch, led cloud security posture
              across multi-account environments, clear risk reasoning for every decision
 
 [ /10] IAM and Identity Security
-       1–3: Understands roles and policies at a basic level
-       4–6: Has audited and restructured IAM for a real organization
-       7–10: Designed zero-trust IAM: SSO, MFA enforcement, just-in-time access, privilege
+       1-3: Understands roles and policies at a basic level
+       4-6: Has audited and restructured IAM for a real organization
+       7-10: Designed zero-trust IAM: SSO, MFA enforcement, just-in-time access, privilege
              access management, service-to-service identity controls
 
 [ /10] Compliance and SOC 2 / Regulatory Experience
-       1–3: Knows what SOC 2 is but has not owned the process
-       4–6: Has contributed to a compliance program and can map controls to evidence
-       7–10: Has led SOC 2 or equivalent end to end: gap assessment, remediation,
+       1-3: Knows what SOC 2 is but has not owned the process
+       4-6: Has contributed to a compliance program and can map controls to evidence
+       7-10: Has led SOC 2 or equivalent end to end: gap assessment, remediation,
              audit preparation, and ongoing compliance maintenance
 
 [ /10] Incident Response and Threat Detection
-       1–3: Knows the theory but limited hands-on incident response
-       4–6: Has participated in real incidents with clear contribution
-       7–10: Has led incident response, designed detection systems, written runbooks,
+       1-3: Knows the theory but limited hands-on incident response
+       4-6: Has participated in real incidents with clear contribution
+       7-10: Has led incident response, designed detection systems, written runbooks,
              conducted post-incident analysis and improved controls afterward
 
 SECTION 2: DEVOPS AND SECURITY INTEGRATION (20 points)
 ────────────────────────────────────────────────────────
 [ /10] DevSecOps and CI/CD security integration
-       1–5: Understands the concept but has not implemented pipeline security tooling
-       6–10: Has built automated security scanning into real CI/CD pipelines,
+       1-5: Understands the concept but has not implemented pipeline security tooling
+       6-10: Has built automated security scanning into real CI/CD pipelines,
              balanced security controls with developer velocity
 
 [ /10] Infrastructure and cloud operations understanding
-       1–5: Security knowledge is siloed from infrastructure context
-       6–10: Understands Terraform, Kubernetes, networking, and cloud architecture
+       1-5: Security knowledge is siloed from infrastructure context
+       6-10: Understands Terraform, Kubernetes, networking, and cloud architecture
              well enough to identify risks and propose realistic security controls
 
 SECTION 3: COMMUNICATION & LEADERSHIP (20 points)
@@ -212,9 +212,9 @@ SECTION 4: CULTURE & STRATEGIC FIT (20 points)
 TOTAL: ____/100
 
 HIRING THRESHOLDS:
- 85–100:  Strong Hire
- 70–84:   Hire (with a clear onboarding plan for identified gaps)
- 55–69:   Needs discussion — flag specific gaps with CTO before deciding
+ 85-100:  Strong Hire
+ 70-84:   Hire (with a clear onboarding plan for identified gaps)
+ 55-69:   Needs discussion — flag specific gaps with CTO before deciding
  Below 55: No Hire
 
 NOTES:
@@ -254,7 +254,7 @@ Write a focused JD (cloud security + compliance, not "SOC + pentesting + AppSec 
 CV screening: look for AWS experience + compliance involvement + operational examples,
 not just certification lists
           ↓
-Phone screen: 2–3 behavioral questions + confirm "owned" vs "supported" cloud security
+Phone screen: 2-3 behavioral questions + confirm "owned" vs "supported" cloud security
           ↓
 Technical interview (led by CTO or external security advisor):
 architecture + IAM + incident response + DevSecOps depth

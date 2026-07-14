@@ -146,24 +146,24 @@ Interviewer: ___________________|
 SECTION 1: TECHNICAL SKILLS (40 points)
 ─────────────────────────────────────────
 [ /10] Frontend Depth (Next.js / React / TypeScript)
-       1–3: Can implement UI components with guidance
-       4–6: Builds complete UI features with state, routing, and API integration
-       7–10: Makes rendering strategy decisions, optimizes performance, owns frontend architecture
+       1-3: Can implement UI components with guidance
+       4-6: Builds complete UI features with state, routing, and API integration
+       7-10: Makes rendering strategy decisions, optimizes performance, owns frontend architecture
 
 [ /10] Backend & API Design (Node.js / REST / Auth)
-       1–3: Builds basic CRUD APIs following existing patterns
-       4–6: Designs clean APIs with authentication, error handling, and validation
-       7–10: Makes architecture decisions, handles complex business logic, owns API design standards
+       1-3: Builds basic CRUD APIs following existing patterns
+       4-6: Designs clean APIs with authentication, error handling, and validation
+       7-10: Makes architecture decisions, handles complex business logic, owns API design standards
 
 [ /10] Database Design (PostgreSQL / Schema / Migrations)
-       1–3: Writes queries but does not design schemas independently
-       4–6: Designs relational schemas for real product requirements, handles migrations
-       7–10: Models complex domains, optimizes queries, designs for scale and evolution
+       1-3: Writes queries but does not design schemas independently
+       4-6: Designs relational schemas for real product requirements, handles migrations
+       7-10: Models complex domains, optimizes queries, designs for scale and evolution
 
 [ /10] Deployment & Infrastructure Awareness
-       1–3: Has deployed to a platform but does not understand the infrastructure
-       4–6: Manages Docker, CI/CD, and cloud deployments confidently
-       7–10: Designs deployment architecture, monitors production, handles incidents independently
+       1-3: Has deployed to a platform but does not understand the infrastructure
+       4-6: Manages Docker, CI/CD, and cloud deployments confidently
+       7-10: Designs deployment architecture, monitors production, handles incidents independently
 
 SECTION 2: END-TO-END PRODUCT OWNERSHIP (20 points)
 ──────────────────────────────────────────────────────
@@ -186,9 +186,9 @@ SECTION 4: COLLABORATION & GROWTH (20 points)
 TOTAL: ____/100
 
 HIRING THRESHOLDS:
- 85–100:  Strong Hire
- 70–84:   Hire (with a clear onboarding plan)
- 55–69:   Needs discussion — flag specific gaps
+ 85-100:  Strong Hire
+ 70-84:   Hire (with a clear onboarding plan)
+ 55-69:   Needs discussion — flag specific gaps
  Below 55: No Hire
 
 NOTES:
@@ -220,7 +220,7 @@ _________________________________________________
 
 | Dimension | One Senior Fullstack | Frontend + Backend Specialists |
 |-----------|---------------------|-------------------------------|
-| Best for | Small teams (2–8 engineers), startups, MVP stage | Teams of 8+, established products with clear specialization needs |
+| Best for | Small teams (2-8 engineers), startups, MVP stage | Teams of 8+, established products with clear specialization needs |
 | Speed | Faster feature delivery — one person owns the whole thing | Slower due to coordination and handoffs between two people |
 | Cost | One salary instead of two | Higher total cost, but deeper specialization |
 | Risk | Single point of knowledge — losing this person hurts more | Knowledge is distributed across two people |
@@ -254,7 +254,7 @@ Offer / No Offer decision
 | Mistake | How to avoid it |
 |---------|----------------|
 | Expecting equal depth in frontend and backend at senior level | Most strong fullstack engineers lean slightly toward one side — this is normal and acceptable |
-| Listing frontend + backend + DevOps + AI + design + data in one JD | Define the primary stack (2–3 technologies) and list everything else as nice-to-have |
+| Listing frontend + backend + DevOps + AI + design + data in one JD | Define the primary stack (2-3 technologies) and list everything else as nice-to-have |
 | Evaluating fullstack candidates with frontend-only or backend-only test tasks | Use a take-home that requires connecting a UI to an API to a database — test the integration, not one layer |
 | Confusing "knows multiple frameworks" with fullstack depth | Framework breadth is not the signal — end-to-end product ownership is |
 | Hiring a fullstack engineer at a large company where specialists already exist | At large engineering orgs, fullstack engineers often feel pigeonholed — align expectations clearly before hiring |

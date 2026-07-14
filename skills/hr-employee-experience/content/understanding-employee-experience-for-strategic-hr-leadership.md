@@ -224,17 +224,17 @@ Effective employee experience now requires both:
 - analytical capability to diagnose experience breakdowns across multiple signal types and journey stages
 - and design and facilitation skill to build experiences that employees actually notice and that managers can consistently deliver
 
-## Key Industry Benchmarks (2025–2026)
+## Key Industry Benchmarks (2025-2026)
 
 | Metric | Benchmark | Source |
 |---|---|---|
-| Typical Annual Engagement Survey Participation Rate | 70–85% in healthy organizations | Culture Amp / Qualtrics |
-| Engagement Score Dip Following Rapid Growth Phase (typical) | 8–15 points | Industry observation |
+| Typical Annual Engagement Survey Participation Rate | 70-85% in healthy organizations | Culture Amp / Qualtrics |
+| Engagement Score Dip Following Rapid Growth Phase (typical) | 8-15 points | Industry observation |
 | Time-to-Belonging for New Hires (with structured onboarding) | 90 days with deliberate program; 6+ months without | Onboarding research |
 | Manager Effectiveness Variance in Engagement Scores (same company) | Up to 30+ points between best and worst manager teams | Gallup |
 | eNPS Benchmark (healthy mid-size company) | +10 to +30 | Industry standard |
 | Recognition Frequency Benchmark (meaningful impact) | At least once per week at team level | Workhuman / Gallup |
-| Voluntary Turnover Cost per Employee | 50–200% of annual salary depending on role | SHRM |
+| Voluntary Turnover Cost per Employee | 50-200% of annual salary depending on role | SHRM |
 
 ## Example Workflow
 

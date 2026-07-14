@@ -35,7 +35,7 @@ You are Head of Talent at a 60-person B2B SaaS company. Leadership has approved 
 |---|---|
 | Headline | Include what you're building/hiring for, not just your title |
 | About | Include your recruiting philosophy and what makes the company worth joining, written personally |
-| Featured section | Pin 2–3 of your best-performing posts or the current top-priority job openings |
+| Featured section | Pin 2-3 of your best-performing posts or the current top-priority job openings |
 | Posting cadence | Aim for consistent presence (a few posts per week) rather than sporadic bursts |
 
 ## Step 3 — Building a Content Calendar
@@ -138,7 +138,7 @@ directness doesn't happen by accident, it's something we work at.
 
 **Checklist:**
 
-- [ ] Identify 5–8 naturally active employees across different teams to start
+- [ ] Identify 5-8 naturally active employees across different teams to start
 - [ ] Give them early access/context on posts before they go live
 - [ ] Provide adaptable draft captions, not mandatory scripts
 - [ ] Publicly acknowledge participation to build a positive feedback loop
@@ -160,7 +160,7 @@ directness doesn't happen by accident, it's something we work at.
 | Employee participation rate | Advocacy program health | % of invited employees who engaged per post |
 | Response rate on sourcing outreach (secondary effect) | Whether brand awareness is making cold outreach warmer | Compare sourcing response rates before/after the content push |
 
-> ⚠️ **Warning:** Employer branding is a compounding, slow-return channel — don't judge success after 2–3 posts. Evaluate trend lines over the full quarter, and expect the clearest impact to show up as improved response rates on sourcing outreach and unprompted inbound interest, not instant application volume.
+> ⚠️ **Warning:** Employer branding is a compounding, slow-return channel — don't judge success after 2-3 posts. Evaluate trend lines over the full quarter, and expect the clearest impact to show up as improved response rates on sourcing outreach and unprompted inbound interest, not instant application volume.
 
 ## Full Workflow Summary
 

@@ -149,7 +149,7 @@ Each tracked metric should be connected to a specific decision or intervention.
 Modern HR measurement frameworks typically follow this structure:
 
 1. Organizational priorities are identified by HR leadership and business partners
-2. 5–10 KPIs aligned to those priorities are selected from the full metric library
+2. 5-10 KPIs aligned to those priorities are selected from the full metric library
 3. Data sources are connected — HRIS, ATS, payroll, LMS, engagement surveys
 4. Baseline calculations are established for the current period
 5. Benchmarks are sourced from SHRM, Mercer, Gallup, or ATD
@@ -187,7 +187,7 @@ This framework is often supported by:
 ### More Metrics Does Not Mean Better Decisions
 
 Tracking 50 KPIs simultaneously leads to analysis paralysis. The most effective HR
-measurement systems focus on 5–10 strategic metrics and expand coverage only after
+measurement systems focus on 5-10 strategic metrics and expand coverage only after
 the reporting cadence is working.
 
 ### Turnover Rate Is Not a Single Number
@@ -224,7 +224,7 @@ Effective HR measurement now requires both:
 - analytical capability to select and calculate the right metrics
 - and communication skill to translate those metrics into decisions
 
-## Key Industry Benchmarks (2025–2026)
+## Key Industry Benchmarks (2025-2026)
 
 | Metric | Benchmark | Source |
 |---|---|---|
@@ -234,7 +234,7 @@ Effective HR measurement now requires both:
 | Voluntary Turnover (technology) | ~12% annually | Mercer 2025 |
 | Voluntary Turnover (retail) | ~26.7% annually | Mercer 2025 |
 | First-Year Turnover | ~26% | SHRM |
-| Training Expense per Employee | $1,200–$1,700 USD/year | ATD 2025 |
+| Training Expense per Employee | $1,200-$1,700 USD/year | ATD 2025 |
 | Global Employee Engagement | 20% | Gallup 2026 |
 | US Employee Engagement | 31% | Gallup 2026 |
 | HR Headcount Ratio | ~100:1 | Global benchmark |

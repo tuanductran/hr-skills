@@ -29,7 +29,7 @@ Build skills-based talent strategies — from developing skills taxonomies and c
 
 1. "Build a skills taxonomy for [function/industry] covering technical, behavioral, and leadership skills."
 2. "Create a skills classification framework with categories, subcategories, and proficiency levels."
-3. "Develop a future-critical skills list for [industry] over the next 3–5 years."
+3. "Develop a future-critical skills list for [industry] over the next 3-5 years."
 4. "Design a skills ontology connecting related skills for reskilling pathway planning."
 5. "Create a skills proficiency scale from foundational to expert for [skill category]."
 

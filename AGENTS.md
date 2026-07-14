@@ -161,7 +161,7 @@ Before publishing a skill, verify:
 - [ ] No time-sensitive information (laws, tools, versions)
 - [ ] Consistent HR terminology throughout
 - [ ] Prompts use `[placeholders]` for variable inputs
-- [ ] Each subtopic has 4–7 focused prompts
+- [ ] Each subtopic has 4-7 focused prompts
 - [ ] Tips section provides actionable professional guidance
 
 ### Frontmatter
@@ -172,6 +172,6 @@ Before publishing a skill, verify:
 
 ### Structure
 
-- [ ] `## Supported tasks` lists 8–12 concrete tasks
+- [ ] `## Supported tasks` lists 8-12 concrete tasks
 - [ ] `## Key prompts` is divided into logical subtopic sections
-- [ ] `## Tips` has 4–6 professional best-practice tips
+- [ ] `## Tips` has 4-6 professional best-practice tips

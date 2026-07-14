@@ -118,7 +118,7 @@ Language-specific searches ("language:python"), location filters, repository sea
 
 ### Outreach to developers
 
-Research profile thoroughly, reference specific work or contribution, explain value of their background, keep message brief (5–7 sentences), provide clear next step (usually email or LinkedIn).
+Research profile thoroughly, reference specific work or contribution, explain value of their background, keep message brief (5-7 sentences), provide clear next step (usually email or LinkedIn).
 
 ## Community and niche platform recruiting
 
@@ -149,7 +149,7 @@ Example: "Hi [name], I came across your [specific project/achievement] and was i
 
 ### Follow-up sequences
 
-Multi-touch approach: (1) initial outreach via preferred channel, (2) after 5–7 days with no response, follow up with new angle, (3) after another 5–7 days, one final attempt, (4) respect clear "no thanks" responses. Track and optimize which sequences work.
+Multi-touch approach: (1) initial outreach via preferred channel, (2) after 5-7 days with no response, follow up with new angle, (3) after another 5-7 days, one final attempt, (4) respect clear "no thanks" responses. Track and optimize which sequences work.
 
 ## Platform safety and anti-spam
 
@@ -159,7 +159,7 @@ Platforms enforce limits to protect user experience, maintain platform health, p
 
 ### Platform-specific guidelines
 
-**LinkedIn**: 100–500 connection requests per week (100 recommended), messaging varies by account age, new profiles restricted first 30 days, rapid activity flagged as suspicious. Never send identical messages.
+**LinkedIn**: 100-500 connection requests per week (100 recommended), messaging varies by account age, new profiles restricted first 30 days, rapid activity flagged as suspicious. Never send identical messages.
 
 **Facebook groups**: participate before recruiting, ask moderators about rules, customize posts for each group, don't mass DM members, respect group culture.
 
@@ -169,7 +169,7 @@ Platforms enforce limits to protect user experience, maintain platform health, p
 
 Protecting accounts: use company email, strong passwords and 2FA, gradual activity increase, natural engagement patterns, avoid automation tools and bots, review terms of service regularly.
 
-Warming up new profiles: (1) complete profile authentically, (2) add photo and compelling bio, (3) spend 2–4 weeks engaging (not recruiting), (4) follow people in target areas, (5) comment thoughtfully on content, (6) only then start active recruiting, (7) start small, scale gradually.
+Warming up new profiles: (1) complete profile authentically, (2) add photo and compelling bio, (3) spend 2-4 weeks engaging (not recruiting), (4) follow people in target areas, (5) comment thoughtfully on content, (6) only then start active recruiting, (7) start small, scale gradually.
 
 ## Employer branding and content
 

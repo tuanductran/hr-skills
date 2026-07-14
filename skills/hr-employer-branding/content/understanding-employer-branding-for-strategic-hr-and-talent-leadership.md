@@ -204,15 +204,15 @@ Effective employer branding now requires both:
 - analytical capability to model strategic options and diagnose reputation signals accurately
 - and content and communication skill to represent the brand credibly across every candidate touchpoint
 
-## Key Industry Benchmarks (2025–2026)
+## Key Industry Benchmarks (2025-2026)
 
 | Metric | Benchmark | Source |
 |---|---|---|
 | Healthy Glassdoor Rating Threshold (talent-competitive employer) | 3.8+ | Industry standard |
-| Candidate Drop-off Recoverable Within Repair Window | ~60–90 days | Industry observation |
-| Offer-Acceptance Rate Benchmark (competitive talent markets) | 85–90% | TA industry standard |
+| Candidate Drop-off Recoverable Within Repair Window | ~60-90 days | Industry observation |
+| Offer-Acceptance Rate Benchmark (competitive talent markets) | 85-90% | TA industry standard |
 | Post-Reputation-Event Stabilization Window | 90 days | Employer brand industry standard |
-| Time-to-Fill Increase Following a Reputation Drop (typical) | 15–25% temporary increase | Industry observation |
+| Time-to-Fill Increase Following a Reputation Drop (typical) | 15-25% temporary increase | Industry observation |
 | LinkedIn Talent Brand Index Coverage | Engagement, reach, and applicant signals | LinkedIn |
 | Early Attrition Risk Window Post-Hire (EVP-reality gap) | First 90 days elevated | Industry observation |
 

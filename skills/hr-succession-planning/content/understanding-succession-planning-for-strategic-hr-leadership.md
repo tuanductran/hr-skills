@@ -210,14 +210,14 @@ Effective succession planning now requires both:
 - analytical capability to assess readiness accurately and model pipeline scenarios
 - and facilitation skill to lead sensitive talent conversations with executives, candidates, and boards
 
-## Key Industry Benchmarks (2025–2026)
+## Key Industry Benchmarks (2025-2026)
 
 | Metric | Benchmark | Source |
 |---|---|---|
-| Critical Role Coverage Ratio (successors per role) | 2–3 successors minimum per critical role | Korn Ferry / DDI |
-| Internal Fill Rate for Leadership Roles | 60–70% target for healthy pipeline | LinkedIn Talent Trends |
-| High-Potential Identification Rate (typical) | 10–15% of employee population | Gartner |
-| Time-to-Readiness (Near-Term Successors) | 12–24 months | DDI Global Leadership Forecast |
+| Critical Role Coverage Ratio (successors per role) | 2-3 successors minimum per critical role | Korn Ferry / DDI |
+| Internal Fill Rate for Leadership Roles | 60-70% target for healthy pipeline | LinkedIn Talent Trends |
+| High-Potential Identification Rate (typical) | 10-15% of employee population | Gartner |
+| Time-to-Readiness (Near-Term Successors) | 12-24 months | DDI Global Leadership Forecast |
 | Post-Transition Failure Rate (promoted leaders) | ~40% underperform within 18 months without support | CEB / Gartner |
 | Succession Plan Review Frequency | At minimum annually; quarterly for critical roles | SHRM |
 | Board-Level Succession Reporting Frequency | Annually as governance minimum | Governance standards |

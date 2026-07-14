@@ -149,24 +149,24 @@ Interviewer: ___________________|
 SECTION 1: TECHNICAL SKILLS (40 points)
 ─────────────────────────────────────────
 [ /10] LLM System Design
-       1–3: Knows APIs but no system architecture thinking
-       4–6: Designs functional LLM pipelines with retrieval and prompt management
-       7–10: Production-grade design with evaluation, observability, cost management
+       1-3: Knows APIs but no system architecture thinking
+       4-6: Designs functional LLM pipelines with retrieval and prompt management
+       7-10: Production-grade design with evaluation, observability, cost management
 
 [ /10] RAG and Retrieval Systems
-       1–3: Aware of the concept, no hands-on depth
-       4–6: Has built a RAG pipeline, understands chunking and retrieval tuning
-       7–10: Deep understanding of retrieval quality, re-ranking, evaluation, scale
+       1-3: Aware of the concept, no hands-on depth
+       4-6: Has built a RAG pipeline, understands chunking and retrieval tuning
+       7-10: Deep understanding of retrieval quality, re-ranking, evaluation, scale
 
 [ /10] AI Evaluation and Observability
-       1–3: No structured approach to measuring AI quality
-       4–6: Uses metrics or LLM-as-judge, tracks failure cases
-       7–10: Owns evaluation framework, ties AI quality to product metrics
+       1-3: No structured approach to measuring AI quality
+       4-6: Uses metrics or LLM-as-judge, tracks failure cases
+       7-10: Owns evaluation framework, ties AI quality to product metrics
 
 [ /10] Agentic AI and Orchestration
-       1–3: No experience with tool use or multi-step reasoning
-       4–6: Has built basic agentic flows with external tool calls
-       7–10: Designs reliable, safe, production-grade agentic systems
+       1-3: No experience with tool use or multi-step reasoning
+       4-6: Has built basic agentic flows with external tool calls
+       7-10: Designs reliable, safe, production-grade agentic systems
 
 SECTION 2: PRODUCTION AI EXPERIENCE (20 points)
 ──────────────────────────────────────────────────
@@ -189,9 +189,9 @@ SECTION 4: COLLABORATION AND LEADERSHIP (20 points)
 TOTAL: ____/100
 
 HIRING THRESHOLDS:
- 85–100:  Strong Hire
- 70–84:   Hire (with a clear onboarding plan)
- 55–69:   Needs discussion — flag specific gaps
+ 85-100:  Strong Hire
+ 70-84:   Hire (with a clear onboarding plan)
+ 55-69:   Needs discussion — flag specific gaps
  Below 55: No Hire
 
 NOTES:
