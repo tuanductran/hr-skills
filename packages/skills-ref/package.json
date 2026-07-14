@@ -1,8 +1,8 @@
 {
 	"name": "skills-ref",
-	"version": "0.0.0",
-	"private": true,
-	"description": "Reference library for Agent Skills — validate, read, and generate prompts from SKILL.md files",
+	"version": "1.0.0",
+	"private": false,
+	"description": "Reference library for Agent Skills \u2014 validate, read, and generate prompts from SKILL.md files",
 	"type": "module",
 	"license": "Apache-2.0",
 	"author": "Tuan Duc Tran",
@@ -48,5 +48,9 @@
 	},
 	"devDependencies": {
 		"tsdown": "catalog:"
+	},
+	"publishConfig": {
+		"access": "public",
+		"provenance": true
 	}
 }
