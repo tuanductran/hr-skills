@@ -1,0 +1,39 @@
+name: Skill matrix
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'skills/**'
+      - 'scripts/generate-skill-matrix.ts'
+
+permissions:
+  contents: write
+
+jobs:
+  matrix:
+    name: Regenerate skill matrix
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install bun
+        uses: oven-sh/setup-bun@v2
+
+      - name: Install dependencies
+        run: bun ci
+
+      - name: Generate skill matrix
+        run: bun run matrix
+
+      - name: Commit updated matrix
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: 'docs(skill-matrix): auto-regenerate [skip ci]'
+          file_pattern: docs/skill-matrix.md
+          commit_user_name: github-actions[bot]
+          commit_user_email: github-actions[bot]@users.noreply.github.com

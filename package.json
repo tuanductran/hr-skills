@@ -76,7 +76,8 @@
 		"release": "changelogen --release --patch --push",
 		"prepare": "lefthook install",
 		"preinstall": "bunx only-allow bun",
-		"commitlint": "commitlint --edit"
+		"commitlint": "commitlint --edit",
+		"matrix": "bun scripts/generate-skill-matrix.ts"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "catalog:biome",
