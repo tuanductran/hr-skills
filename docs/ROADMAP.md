@@ -53,8 +53,8 @@ This roadmap documents the current state and future direction of the HR Skills l
 | HR skills (`skills/hr-*`) | 146 | Comprehensive HR domain coverage |
 | Meta/maintainer skills (`.agents/skills/*`) | 12 | Repository maintenance via AI agents |
 | Total `SKILL.md` files | 159 | 146 HR + 12 `.agents` + 1 root router |
-| **Bare skills** (SKILL.md only) | 76 (52%) | Starting tier |
-| **Partial skills** (some optional dirs) | 34 (23%) | Largest incomplete tier |
+| **Bare skills** (SKILL.md only) | 64 (44%) | Starting tier |
+| **Partial skills** (some optional dirs) | 46 (31%) | Largest incomplete tier |
 | **Full skills** (content + prompts + examples) | 36 (25%) | Gold standard tier |
 | Internal TypeScript packages | 2 | `hr-skills-build`, `skills-ref` |
 | GitHub Actions workflows | 5 | lint, test, typecheck, validate, knip |
@@ -163,7 +163,9 @@ Two-layer architecture:
 ### Content Depth
 
 - [x] AI/GenAI cluster brought from bare to partial tier: `hr-agentic-ai`, `hr-ai-ethics`, `hr-genai`, `hr-ai-adoption`, `hr-ai-evaluation`
-- [ ] Continue bare-skill remediation for remaining 71 bare skills — next priority: compliance and analytics clusters
+- [x] Compliance/risk cluster brought from bare to partial tier: `hr-risk-management`, `hr-policy-management`
+- [x] Analytics cluster brought from bare to partial tier: `hr-predictive-analytics`, `hr-skills-intelligence`, `hr-organization-network-analysis`, `hr-workforce-economics`, `hr-workforce-forecasting`
+- [ ] Continue bare-skill remediation for remaining 64 bare skills — next priority: TA/recruiting (10 bare) and OD/change (6 bare) clusters
 - [ ] Auto-generate `docs/skill-matrix.md` in CI as a pre-release step
 
 ### Tooling & Infrastructure
@@ -185,7 +187,7 @@ Two-layer architecture:
 | Category | Current | Target |
 |---|---|---|
 | Validation rules | 13 implemented | 13 + duplicate detection + skill-vetter patterns |
-| Skill depth | 49% bare, 25% partial, 25% full | 25% bare, 30% partial, 45% full |
+| Skill depth | 44% bare, 31% partial, 25% full | 25% bare, 30% partial, 45% full |
 | CI workflows | 5 (no release) | 6 + npm publish |
 | Dependency bots | Renovate only | Renovate only ✅ |
 | skills-ref | Internal only | Published to npm |
