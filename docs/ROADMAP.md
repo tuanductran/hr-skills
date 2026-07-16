@@ -53,8 +53,8 @@ This roadmap documents the current state and future direction of the HR Skills l
 | HR skills (`skills/hr-*`) | 146 | Comprehensive HR domain coverage |
 | Meta/maintainer skills (`.agents/skills/*`) | 12 | Repository maintenance via AI agents |
 | Total `SKILL.md` files | 159 | 146 HR + 12 `.agents` + 1 root router |
-| **Bare skills** (SKILL.md only) | 48 (33%) | Starting tier |
-| **Partial skills** (some optional dirs) | 62 (42%) | Largest incomplete tier |
+| **Bare skills** (SKILL.md only) | 35 (24%) | Starting tier |
+| **Partial skills** (some optional dirs) | 75 (51%) | Largest incomplete tier |
 | **Full skills** (content + prompts + examples) | 36 (25%) | Gold standard tier |
 | Internal TypeScript packages | 2 | `hr-skills-build`, `skills-ref` |
 | GitHub Actions workflows | 5 | lint, test, typecheck, validate, knip |
@@ -167,7 +167,9 @@ Two-layer architecture:
 - [x] Analytics cluster brought from bare to partial tier: `hr-predictive-analytics`, `hr-skills-intelligence`, `hr-organization-network-analysis`, `hr-workforce-economics`, `hr-workforce-forecasting`
 - [x] TA/recruiting core cluster brought from bare to partial tier: `hr-talent-acquisition`, `hr-job-description`, `hr-job-analysis`, `hr-candidate-experience`, `hr-candidate-assessment`, `hr-reference-checking`, `hr-offer-management`, `hr-recruitment-operations`, `hr-recruitment-marketing`, `hr-talent-crm`
 - [x] OD/change core cluster brought from bare to partial tier: `hr-organizational-design`, `hr-organization-effectiveness`, `hr-change-communication`, `hr-design-thinking`, `hr-consulting`, `hr-strategic-planning`
-- [ ] Continue bare-skill remediation for remaining 48 bare skills — next priority: talent intelligence/search cluster (`hr-demand-planning`, `hr-talent-supply-chain`, `hr-talent-intelligence`, `hr-market-mapping`, `hr-talent-mapping`, `hr-passive-candidate-engagement`, `hr-search-strategy`, `hr-retained-search`, `hr-executive-assessment`) and M&A/crisis cluster (`hr-crisis-management`, `hr-mergers-acquisitions`, `hr-post-merger-integration`, `hr-ma-integration-by-country`)
+- [x] Talent intelligence/search cluster brought from bare to partial tier: `hr-demand-planning`, `hr-talent-supply-chain`, `hr-talent-intelligence`, `hr-market-mapping`, `hr-talent-mapping`, `hr-passive-candidate-engagement`, `hr-search-strategy`, `hr-retained-search`, `hr-executive-assessment`
+- [x] M&A/crisis cluster brought from bare to partial tier: `hr-crisis-management`, `hr-mergers-acquisitions`, `hr-post-merger-integration`, `hr-ma-integration-by-country`
+- [ ] Continue bare-skill remediation for remaining 35 bare skills
 - [ ] Auto-generate `docs/skill-matrix.md` in CI as a pre-release step
 
 ### Tooling & Infrastructure
@@ -189,7 +191,7 @@ Two-layer architecture:
 | Category | Current | Target |
 |---|---|---|
 | Validation rules | 13 implemented | 13 + duplicate detection + skill-vetter patterns |
-| Skill depth | 33% bare, 42% partial, 25% full | 25% bare, 30% partial, 45% full |
+| Skill depth | 24% bare, 51% partial, 25% full | 25% bare, 30% partial, 45% full |
 | CI workflows | 5 (no release) | 6 + npm publish |
 | Dependency bots | Renovate only | Renovate only ✅ |
 | skills-ref | Internal only | Published to npm |
