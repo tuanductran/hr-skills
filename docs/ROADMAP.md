@@ -158,16 +158,17 @@ Two-layer architecture:
 
 - [x] Remove `.github/dependabot.yml` — consolidated to Renovate
 - [x] Remove `.whitesource` — not actively used at current project scale
-- [ ] Confirm Renovate is the sole dependency update source going forward
+- [x] Renovate is the sole dependency update source — no other bots configured
 
 ### Content Depth
 
-- [ ] Bring 76 bare skills to at least "content" tier — prioritize the AI/GenAI cluster first (`hr-agentic-ai`, `hr-ai-ethics`, `hr-genai`, `hr-ai-adoption`, `hr-ai-evaluation`)
+- [x] AI/GenAI cluster brought from bare to partial tier: `hr-agentic-ai`, `hr-ai-ethics`, `hr-genai`, `hr-ai-adoption`, `hr-ai-evaluation`
+- [ ] Continue bare-skill remediation for remaining 71 bare skills — next priority: compliance and analytics clusters
 - [ ] Auto-generate `docs/skill-matrix.md` in CI as a pre-release step
 
 ### Tooling & Infrastructure
 
-- [ ] Add explicit no-op `build` script to `hr-skills-build` or comment in `turbo.jsonc` explaining why none is needed (CLI tool, not a library)
+- [x] Add no-op `build` script to `hr-skills-build` with explanatory message (CLI tool, not a library)
 - [ ] Publish `skills-ref` to npm once API is stable (flip `private: false`, bump to `1.0.0`, add `--provenance`)
 - [ ] Add `release.yml` GitHub Actions workflow triggered on version tag push
 
@@ -184,9 +185,9 @@ Two-layer architecture:
 | Category | Current | Target |
 |---|---|---|
 | Validation rules | 13 implemented | 13 + duplicate detection + skill-vetter patterns |
-| Skill depth | 52% bare, 23% partial, 25% full | 25% bare, 30% partial, 45% full |
+| Skill depth | 49% bare, 25% partial, 25% full | 25% bare, 30% partial, 45% full |
 | CI workflows | 5 (no release) | 6 + npm publish |
-| Dependency bots | Renovate only (Dependabot + Whitesource removed) | Renovate only |
+| Dependency bots | Renovate only | Renovate only ✅ |
 | skills-ref | Internal only | Published to npm |
 
 ---
@@ -206,4 +207,4 @@ Two-layer architecture:
 
 ---
 
-Last updated: July 16, 2026
+Last updated: July 17, 2026

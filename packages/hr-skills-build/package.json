@@ -21,6 +21,7 @@
 		"agents"
 	],
 	"scripts": {
+		"build": "echo 'hr-skills-build: CLI tool — no compile step needed'",
 		"validate": "bun src/validate.ts",
 		"sync": "bun src/sync.ts",
 		"test": "bun test",
