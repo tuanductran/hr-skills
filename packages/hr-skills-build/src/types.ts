@@ -16,13 +16,6 @@ export interface SkillRow {
 	description: string;
 }
 
-export interface SkillMatrixStats {
-	bare: number;
-	partial: number;
-	full: number;
-	total: number;
-}
-
 // ---------------------------------------------------------------------------
 // Skill directory types
 // ---------------------------------------------------------------------------
