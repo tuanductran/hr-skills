@@ -135,7 +135,7 @@ Two-layer architecture:
 
 ## CI/CD & Workflows
 
-### Current Workflows (5 total)
+### Current Workflows (7 total)
 
 | Workflow | Trigger | Notes |
 |---|---|---|
