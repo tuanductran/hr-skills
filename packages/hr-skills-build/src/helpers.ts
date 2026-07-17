@@ -1,10 +1,10 @@
-import { readdir, readFile } from 'node:fs/promises';
+import { readdir, readFile, stat } from 'node:fs/promises';
 import { join } from 'node:path';
 
 import { HR_SKILL_PREFIX, SKILLS_DIR } from './constants.js';
 import { parseSkillFrontmatter } from './parser.js';
 import type { SkillFrontmatter } from './schema.js';
-import type { SkillValidationIssue } from './types.js';
+import type { SkillValidationIssue, Tier } from './types.js';
 
 /**
  * Extract a match from a markdown skill file.
@@ -84,6 +84,48 @@ export function first<T>(items: readonly T[]): T {
 		throw new Error('Expected array to contain at least one element.');
 
 	return first;
+}
+
+/**
+ * Check if a directory exists.
+ */
+export async function dirExists(path: string): Promise<boolean> {
+	try {
+		const s = await stat(path);
+		return s.isDirectory();
+	} catch {
+		return false;
+	}
+}
+
+/**
+ * Count .md files in a directory.
+ */
+export async function countFiles(dirPath: string): Promise<number> {
+	try {
+		const entries = await readdir(dirPath);
+		return entries.filter((f) => f.endsWith('.md')).length;
+	} catch {
+		return 0;
+	}
+}
+
+/**
+ * Return the emoji icon for a skill tier.
+ */
+export function tierIcon(tier: Tier): string {
+	if (tier === 'full') return '🟢';
+	if (tier === 'partial') return '🟡';
+	return '🔴';
+}
+
+/**
+ * Return the display label for a skill tier.
+ */
+export function tierLabel(tier: Tier): string {
+	if (tier === 'full') return 'Full';
+	if (tier === 'partial') return 'Partial';
+	return 'Bare';
 }
 
 /**

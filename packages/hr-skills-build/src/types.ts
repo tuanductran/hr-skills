@@ -1,3 +1,32 @@
+// ---------------------------------------------------------------------------
+// Skill matrix types
+// ---------------------------------------------------------------------------
+
+export type Tier = 'full' | 'partial' | 'bare';
+
+export interface SkillRow {
+	name: string;
+	displayName: string;
+	tier: Tier;
+	hasContent: boolean;
+	hasPrompts: boolean;
+	hasExamples: boolean;
+	contentFiles: number;
+	version: string;
+	description: string;
+}
+
+export interface SkillMatrixStats {
+	bare: number;
+	partial: number;
+	full: number;
+	total: number;
+}
+
+// ---------------------------------------------------------------------------
+// Skill directory types
+// ---------------------------------------------------------------------------
+
 export interface SkillDirectoryOptions {
 	readonly prefix?: string;
 	readonly sort?: boolean;

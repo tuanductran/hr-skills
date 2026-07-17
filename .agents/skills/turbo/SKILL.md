@@ -19,6 +19,7 @@ Turborepo coordinates tasks across every workspace package while Bun provides th
 - Build workspace packages
 - Validate HR skills and repository metadata
 - Synchronize generated repository artifacts
+- Generate the skill maturity matrix
 - Run tests and TypeScript type checking
 - Execute filtered workspace tasks
 - Recommend efficient development workflows
@@ -37,6 +38,7 @@ Current pipeline tasks include:
 - typecheck
 - validate
 - sync
+- matrix
 
 Repository scripts invoke Turborepo from the workspace root while package-level scripts provide the implementation.
 
@@ -75,6 +77,12 @@ Synchronize repository metadata.
 
 ```bash
 bun run sync
+```
+
+Generate the skill maturity matrix.
+
+```bash
+bun run matrix
 ```
 
 Run every test suite.
@@ -149,6 +157,7 @@ Current repository tasks include:
 | `typecheck` | Run TypeScript type checking |
 | `validate` | Validate HR skills and repository metadata |
 | `sync` | Synchronize generated repository artifacts |
+| `matrix` | Generate `docs/skill-matrix.md` skill maturity snapshot |
 
 ## Examples
 
@@ -168,6 +177,12 @@ Synchronize generated files.
 
 ```bash
 bun run sync
+```
+
+Generate the skill maturity matrix.
+
+```bash
+bun run matrix
 ```
 
 Build only one package.
@@ -190,13 +205,14 @@ A typical validation workflow is:
 bun install --frozen-lockfile
 bun run typecheck
 bun run validate
+bun run matrix
 bun run test
 bun run build
 ```
 
 Use Turborepo caching to avoid rebuilding unchanged packages.
 
-Tasks such as `validate` and `sync` intentionally disable caching because they always operate on the latest repository state.
+Tasks such as `validate`, `sync`, and `matrix` intentionally disable caching because they always operate on the latest repository state.
 
 ## Tips
 

@@ -73,6 +73,7 @@
 		"knip": "knip",
 		"sync": "turbo run sync --filter=hr-skills-build",
 		"validate": "turbo run validate --filter=hr-skills-build",
+		"matrix": "turbo run matrix --filter=hr-skills-build",
 		"release": "changelogen --release --patch --push",
 		"prepare": "lefthook install",
 		"preinstall": "bunx only-allow bun",

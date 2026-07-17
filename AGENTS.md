@@ -71,6 +71,7 @@ Use these project commands from the repository root. After completing any task, 
 bun install          # Install all dependencies (run once, or after package changes)
 bun run sync         # Sync generated skill references after adding/removing a skill
 bun run validate     # Validate all skill SKILL.md files
+bun run matrix       # Generate docs/skill-matrix.md — snapshot of every skill's maturity tier
 bun run test         # Run tests across workspace packages
 bun run typecheck    # Run type-checking across workspace packages
 bun run build        # Run all workspace build tasks through Turborepo
@@ -98,7 +99,8 @@ When you add a new skill directory (for example `skills/hr-new-skill/SKILL.md`),
 | `skills/hr-*/content/` | Optional human-readable companion guidance for each HR skill domain |
 | `skills/hr-*/prompts/` | Optional reusable prompt libraries grouped by HR topic |
 | `skills/hr-*/examples/` | Optional practical end-to-end HR workflows and business scenarios |
-| `docs/` | Skill format specification |
+| `docs/` | Skill format specification and generated reports |
+| `docs/skill-matrix.md` | Generated skill maturity snapshot — do not edit manually, run `bun run matrix` |
 | `.claude-plugin/marketplace.json` | Generated marketplace metadata synced from skill frontmatter |
 | `packages/hr-skills-build` | Build and maintenance tooling for validation, sync, and packaging support |
 | `packages/skills-ref` | TypeScript library for reading, validating, and generating prompts from skill files |

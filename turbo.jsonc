@@ -6,6 +6,10 @@
 			"dependsOn": ["^build"],
 			"outputs": ["dist/**"]
 		},
+		"hr-skills-build#build": {
+			"dependsOn": ["^build"],
+			"outputs": []
+		},
 		"dev": {
 			"persistent": true,
 			"cache": false
@@ -21,6 +25,10 @@
 		},
 		"sync": {
 			"cache": false
+		},
+		"matrix": {
+			"cache": false,
+			"outputs": ["docs/skill-matrix.md"]
 		}
 	}
 }

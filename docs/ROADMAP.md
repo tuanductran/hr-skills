@@ -163,26 +163,29 @@ Two-layer architecture:
 ### Content Depth
 
 - [x] AI/GenAI cluster brought from bare to partial tier: `hr-agentic-ai`, `hr-ai-ethics`, `hr-genai`, `hr-ai-adoption`, `hr-ai-evaluation`
-- [x] Compliance/risk cluster brought from bare to partial tier: `hr-risk-management`, `hr-policy-management`
-- [x] Analytics cluster brought from bare to partial tier: `hr-predictive-analytics`, `hr-skills-intelligence`, `hr-organization-network-analysis`, `hr-workforce-economics`, `hr-workforce-forecasting`
-- [x] TA/recruiting core cluster brought from bare to partial tier: `hr-talent-acquisition`, `hr-job-description`, `hr-job-analysis`, `hr-candidate-experience`, `hr-candidate-assessment`, `hr-reference-checking`, `hr-offer-management`, `hr-recruitment-operations`, `hr-recruitment-marketing`, `hr-talent-crm`
-- [x] OD/change core cluster brought from bare to partial tier: `hr-organizational-design`, `hr-organization-effectiveness`, `hr-change-communication`, `hr-design-thinking`, `hr-consulting`, `hr-strategic-planning`
-- [x] Talent intelligence/search cluster brought from bare to partial tier: `hr-demand-planning`, `hr-talent-supply-chain`, `hr-talent-intelligence`, `hr-market-mapping`, `hr-talent-mapping`, `hr-passive-candidate-engagement`, `hr-search-strategy`, `hr-retained-search`, `hr-executive-assessment`
-- [x] M&A/crisis cluster brought from bare to partial tier: `hr-crisis-management`, `hr-mergers-acquisitions`, `hr-post-merger-integration`, `hr-ma-integration-by-country`
-- [ ] Continue bare-skill remediation for remaining 35 bare skills
+- [x] Compliance cluster: hr-risk-management, hr-policy-management brought to partial tier
+- [x] Analytics cluster: hr-predictive-analytics, hr-workforce-forecasting, hr-skills-intelligence, hr-workforce-economics, hr-people-budgeting brought to partial tier
+- [x] TA/Recruiting cluster: hr-talent-acquisition, hr-talent-intelligence, hr-talent-crm, hr-talent-mapping, hr-recruitment-marketing, hr-recruitment-operations, hr-candidate-assessment, hr-candidate-experience, hr-offer-management, hr-reference-checking brought to partial tier
+- [x] OD/Change cluster: hr-organizational-design, hr-organization-effectiveness, hr-change-communication, hr-operating-model, hr-mergers-acquisitions, hr-post-merger-integration brought to partial tier
+- [x] EX/L&D cluster: hr-employee-communications, hr-employee-listening, hr-employee-journey-mapping, hr-offboarding, hr-recognition, hr-internal-mobility, hr-career-development, hr-coaching-mentoring, hr-learning-strategy brought to partial tier
+- [x] **All 146 skills at partial tier or above — 0 bare skills remaining**
+- [ ] Promote highest-quality partial skills to full tier (add prompts/ + examples/)
 - [ ] Auto-generate `docs/skill-matrix.md` in CI as a pre-release step
 
 ### Tooling & Infrastructure
 
 - [x] Add no-op `build` script to `hr-skills-build` with explanatory message (CLI tool, not a library)
+- [x] Add `matrix` script to `hr-skills-build` and root — `bun run matrix` generates `docs/skill-matrix.md`
+- [x] Add `matrix.yml` CI workflow — auto-regenerates skill-matrix.md on push to main
+- [x] Add `release.yml` CI workflow — creates GitHub Release on version tag push, runs validate + matrix first
 - [ ] Publish `skills-ref` to npm once API is stable (flip `private: false`, bump to `1.0.0`, add `--provenance`)
-- [ ] Add `release.yml` GitHub Actions workflow triggered on version tag push
 
 ### Security
 
-- [ ] Convert `skill-vetter` meta-skill rules into real `hr-skills-build/src/validators/`
-  - Pattern checks: dangerous shell commands, wide file permissions, suspicious URLs, credential leaks, hidden Unicode
-- [ ] Wire automated security scanning into CI
+- [x] Convert `skill-vetter` meta-skill rules into `hr-skills-build/src/security.ts`
+  - Implemented: dangerous shell commands, sensitive path writes, suspicious URLs, credential leak patterns, hidden Unicode
+  - Wired into `validateSkill()` — runs as part of `bun run validate`
+- [ ] Wire `security.ts` coverage into a dedicated `security.yml` CI workflow (CodeQL + secret scanning)
 
 ---
 
@@ -191,8 +194,8 @@ Two-layer architecture:
 | Category | Current | Target |
 |---|---|---|
 | Validation rules | 13 implemented | 13 + duplicate detection + skill-vetter patterns |
-| Skill depth | 24% bare, 51% partial, 25% full | 25% bare, 30% partial, 45% full |
-| CI workflows | 5 (no release) | 6 + npm publish |
+| Skill depth | **0% bare, 75% partial, 25% full** | 0% bare, 55% partial, 45% full |
+| CI workflows | 7 (validate, lint, test, typecheck, knip, matrix, release) | 7 + CodeQL/security ✅ |
 | Dependency bots | Renovate only | Renovate only ✅ |
 | skills-ref | Internal only | Published to npm |
 

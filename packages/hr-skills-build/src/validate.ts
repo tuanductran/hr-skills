@@ -22,6 +22,13 @@ import {
 	readSkillContent,
 } from './helpers.js';
 import { parseSkillFrontmatter } from './parser.js';
+import {
+	validateCredentialLeaks,
+	validateHiddenUnicode,
+	validateSecurityCommands,
+	validateSensitivePaths,
+	validateSuspiciousUrls,
+} from './security.js';
 import type { SkillValidationIssue } from './types.js';
 
 /**
@@ -394,6 +401,13 @@ async function validateSkill(skillName: string): Promise<SkillValidationIssue[]>
 	validateTips(skillName, content, errors);
 	validateBlankLines(skillName, content, errors);
 	validatePromptStructure(skillName, content, errors);
+
+	// Security checks (from skill-vetter)
+	validateSecurityCommands(skillName, content, errors);
+	validateSensitivePaths(skillName, content, errors);
+	validateSuspiciousUrls(skillName, content, errors);
+	validateCredentialLeaks(skillName, content, errors);
+	validateHiddenUnicode(skillName, content, errors);
 
 	return errors;
 }
