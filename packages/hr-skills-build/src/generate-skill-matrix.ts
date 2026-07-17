@@ -16,7 +16,7 @@ import {
 	tierIcon,
 	tierLabel,
 } from './helpers.js';
-import type { SkillMatrixStats, SkillRow, Tier } from './types.js';
+import type { SkillRow, Tier } from './types.js';
 
 // ---------------------------------------------------------------------------
 // Main
@@ -60,26 +60,15 @@ async function generateSkillMatrix(): Promise<void> {
 		}),
 	);
 
-	const stats: SkillMatrixStats = {
-		bare: rows.filter((r) => r.tier === 'bare').length,
-		partial: rows.filter((r) => r.tier === 'partial').length,
-		full: rows.filter((r) => r.tier === 'full').length,
-		total: rows.length,
-	};
+	// Stats
+	const bare = rows.filter((r) => r.tier === 'bare').length;
+	const partial = rows.filter((r) => r.tier === 'partial').length;
+	const full = rows.filter((r) => r.tier === 'full').length;
+	const total = rows.length;
 
-	const output = buildMarkdown(rows, stats);
-	const outputPath = join(ROOT_DIR, 'docs', 'skill-matrix.md');
-	await writeFile(outputPath, output, 'utf8');
-
-	console.log(
-		`✅ skill-matrix.md written — ${stats.total} skills (${stats.full} full, ${stats.partial} partial, ${stats.bare} bare)`,
-	);
-}
-
-function buildMarkdown(rows: SkillRow[], stats: SkillMatrixStats): string {
-	const { bare, partial, full, total } = stats;
 	const now = new Date().toISOString().slice(0, 10);
 
+	// Build markdown
 	const lines: string[] = [
 		'# HR Skills — Skill Matrix',
 		'',
@@ -87,8 +76,8 @@ function buildMarkdown(rows: SkillRow[], stats: SkillMatrixStats): string {
 		'',
 		'## Summary',
 		'',
-		'| Tier | Count | % |',
-		'|---|---:|---:|',
+		`| Tier | Count | % |`,
+		`|---|---:|---:|`,
 		`| 🟢 Full (SKILL.md + content + prompts + examples) | ${full} | ${Math.round((full / total) * 100)}% |`,
 		`| 🟡 Partial (SKILL.md + some optional dirs) | ${partial} | ${Math.round((partial / total) * 100)}% |`,
 		`| 🔴 Bare (SKILL.md only) | ${bare} | ${Math.round((bare / total) * 100)}% |`,
@@ -101,14 +90,27 @@ function buildMarkdown(rows: SkillRow[], stats: SkillMatrixStats): string {
 	];
 
 	for (const row of rows) {
+		const icon = tierIcon(row.tier);
+		const label = tierLabel(row.tier);
+		const content = row.hasContent ? '✅' : '—';
+		const prompts = row.hasPrompts ? '✅' : '—';
+		const examples = row.hasExamples ? '✅' : '—';
+		const files = row.hasContent ? String(row.contentFiles) : '—';
+
 		lines.push(
-			`| \`${row.name}\` | ${tierIcon(row.tier)} ${tierLabel(row.tier)} | ${row.hasContent ? '✅' : '—'} | ${row.hasPrompts ? '✅' : '—'} | ${row.hasExamples ? '✅' : '—'} | ${row.hasContent ? String(row.contentFiles) : '—'} | ${row.version} |`,
+			`| \`${row.name}\` | ${icon} ${label} | ${content} | ${prompts} | ${examples} | ${files} | ${row.version} |`,
 		);
 	}
 
 	lines.push('');
 
-	return lines.join('\n');
+	const output = lines.join('\n');
+	const outputPath = join(ROOT_DIR, 'docs', 'skill-matrix.md');
+	await writeFile(outputPath, output, 'utf8');
+
+	console.log(
+		`✅ skill-matrix.md written — ${total} skills (${full} full, ${partial} partial, ${bare} bare)`,
+	);
 }
 
 generateSkillMatrix().catch((err) => {

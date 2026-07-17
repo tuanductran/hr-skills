@@ -6,6 +6,7 @@ import * as v from 'valibot';
 import { getHrSkills } from './config.js';
 import { ROOT_DIR } from './constants.js';
 import { parseSkillMeta } from './parser.js';
+import { syncRouter } from './router.js';
 import { MarketplaceJsonSchema } from './schema.js';
 import type { SkillMeta } from './types.js';
 
@@ -62,6 +63,11 @@ export async function sync(): Promise<void> {
 
 	if (marketplaceChanged) p.log.success('Updated marketplace.json');
 	else p.log.info('marketplace.json already in sync');
+
+	const routerResult = await syncRouter();
+
+	if (routerResult.changed) p.log.success('Updated root SKILL.md router');
+	else p.log.info('Root SKILL.md router already in sync');
 
 	p.log.success('Sync complete');
 	p.outro('Done');

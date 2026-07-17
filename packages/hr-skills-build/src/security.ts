@@ -47,10 +47,9 @@ export function validateSecurityCommands(
 ): void {
 	// Only scan code blocks — shell commands in prose context are informational
 	const codeBlockRegex = /```(?:bash|sh|shell|zsh)?\n([\s\S]*?)```/g;
+	const blocks = [...content.matchAll(codeBlockRegex)].map((m) => m[1] ?? '');
 
-	for (const match of content.matchAll(codeBlockRegex)) {
-		const block = match[1] ?? '';
-
+	for (const block of blocks) {
 		for (const { pattern, label } of DANGEROUS_COMMANDS) {
 			if (pattern.test(block)) {
 				errors.push({
@@ -83,11 +82,7 @@ export function validateSensitivePaths(
 	errors: SkillValidationIssue[],
 ): void {
 	const codeBlockRegex = /```[\s\S]*?```/g;
-	let codeOnly = '';
-
-	for (const match of content.matchAll(codeBlockRegex)) {
-		codeOnly += `${match[0]}\n`;
-	}
+	const codeOnly = [...content.matchAll(codeBlockRegex)].map((m) => m[0]).join('\n');
 
 	if (!codeOnly) return;
 

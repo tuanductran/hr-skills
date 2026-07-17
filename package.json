@@ -46,10 +46,10 @@
 				"@biomejs/biome": "^2.5.3"
 			},
 			"commit": {
+				"@changesets/cli": "^2.31.1",
 				"@commitlint/cli": "^21.2.1",
 				"@commitlint/config-conventional": "^21.2.0",
 				"@commitlint/types": "^21.2.0",
-				"changelogen": "^0.6.2",
 				"lefthook": "^2.1.10"
 			},
 			"markdown": {
@@ -74,7 +74,8 @@
 		"sync": "turbo run sync --filter=hr-skills-build",
 		"validate": "turbo run validate --filter=hr-skills-build",
 		"matrix": "turbo run matrix --filter=hr-skills-build",
-		"release": "changelogen --release --patch --push",
+		"changeset": "changeset",
+		"release": "changeset version",
 		"prepare": "lefthook install",
 		"preinstall": "bunx only-allow bun",
 		"commitlint": "commitlint --edit"
@@ -86,7 +87,7 @@
 		"@commitlint/types": "catalog:commit",
 		"@types/bun": "catalog:",
 		"case-police": "catalog:markdown",
-		"changelogen": "catalog:commit",
+		"@changesets/cli": "catalog:commit",
 		"knip": "catalog:",
 		"lefthook": "catalog:commit",
 		"markdown-link-check": "catalog:markdown",
