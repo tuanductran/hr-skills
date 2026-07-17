@@ -9,6 +9,7 @@ Essential commands
 | `bun install` | install dependencies |
 | `bun run validate` | validate all SKILL.md files |
 | `bun run sync` | sync metadata after adding/removing a skill |
+| `bun run matrix` | generate `docs/skill-matrix.md` skill maturity snapshot |
 | `bun run build` | build all workspace packages |
 | `bun run test` | run tests |
 | `bun run typecheck` | type-check all packages |
