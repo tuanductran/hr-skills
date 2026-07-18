@@ -6,9 +6,9 @@
 
 | Tier | Count | % |
 |---|---:|---:|
-| 🟢 Full (SKILL.md + content + prompts + examples) | 37 | 25% |
+| 🟢 Full (SKILL.md + content + prompts + examples) | 38 | 26% |
 | 🟡 Partial (SKILL.md + some optional dirs) | 100 | 68% |
-| 🔴 Bare (SKILL.md only) | 9 | 6% |
+| 🔴 Bare (SKILL.md only) | 8 | 5% |
 | **Total** | **146** | 100% |
 
 ## Skill Inventory
@@ -130,7 +130,7 @@
 | `hr-service-delivery` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-shared-services` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-skills-intelligence` | 🟡 Partial | ✅ | — | — | 2 | 1.0.0 |
-| `hr-skills-management` | 🔴 Bare | — | — | — | — | 1.0.0 |
+| `hr-skills-management` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-skills-taxonomy` | 🟡 Partial | ✅ | — | ✅ | 1 | 1.0.0 |
 | `hr-social-recruiting` | 🟡 Partial | ✅ | — | ✅ | 1 | 1.0.0 |
 | `hr-software-architecture` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
