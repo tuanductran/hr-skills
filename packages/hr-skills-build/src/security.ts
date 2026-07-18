@@ -22,16 +22,26 @@ const DANGEROUS_COMMANDS: ReadonlyArray<{ pattern: RegExp; label: string }> = [
 	{ pattern: /rm\s+-rf?\s+[/~]/, label: 'rm -rf targeting root or home path' },
 	{ pattern: /chmod\s+[0-7]*7[0-7]{2}\s/, label: 'chmod with world-write permission' },
 	{
-		pattern: /curl\s+.*\|\s*(bash|sh)/,
+		// [^|\n]* instead of .* — eliminates O(n) backtracking when no pipe is present
+		pattern: /curl\s+[^|\n]*\|\s*(bash|sh)/,
 		label: 'curl piped to shell (remote code execution)',
 	},
 	{
-		pattern: /wget\s+.*\|\s*(bash|sh)/,
+		// [^|\n]* instead of .* — same fix as curl
+		pattern: /wget\s+[^|\n]*\|\s*(bash|sh)/,
 		label: 'wget piped to shell (remote code execution)',
 	},
-	{ pattern: /eval\s*\(.*\$\(/, label: 'eval with subshell substitution' },
+	{
+		// [^$\n]* instead of .* — stops at $ so no backtracking through subshell chars
+		pattern: /eval\s*\([^$\n]*\$\(/,
+		label: 'eval with subshell substitution',
+	},
 	{ pattern: />\s*\/dev\/sd[a-z]/, label: 'write to raw block device' },
-	{ pattern: /dd\s+.*of=\/dev\//, label: 'dd targeting raw device' },
+	{
+		// [^\n]* instead of .* — newline-bounded, avoids cross-line backtracking
+		pattern: /dd\s+[^\n]*of=\/dev\//,
+		label: 'dd targeting raw device',
+	},
 	{ pattern: /mkfs\s+/, label: 'mkfs — formats a filesystem' },
 	{ pattern: /:\(\)\{:\|:&\}/, label: 'fork bomb pattern' },
 	{
@@ -102,8 +112,24 @@ export function validateSensitivePaths(
 
 const URL_REGEX = /https?:\/\/[^\s<>"')]+/gi;
 
+/**
+ * Known data-exfiltration / request-inspection hosts.
+ *
+ * Includes all current ngrok tunnel domains:
+ *   - ngrok.io      — legacy v2 tunnels
+ *   - ngrok.app     — v3 tunnels (HSTS preloaded)
+ *   - ngrok.dev     — v3 dev tunnels (HSTS preloaded)
+ *   - ngrok-free.app / ngrok-free.dev — v3 free-tier static domains
+ *
+ * The suffix-walk in isSuspiciousHost() means any subdomain of these
+ * (e.g. abc123.ngrok.app, my-tunnel.eu.ngrok.io) is also caught.
+ */
 const SUSPICIOUS_HOSTS = new Set([
 	'ngrok.io',
+	'ngrok.app',
+	'ngrok.dev',
+	'ngrok-free.app',
+	'ngrok-free.dev',
 	'webhook.site',
 	'hookbin.com',
 	'pipedream.net',
