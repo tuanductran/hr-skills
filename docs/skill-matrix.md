@@ -6,9 +6,9 @@
 
 | Tier | Count | % |
 |---|---:|---:|
-| 🟢 Full (SKILL.md + content + prompts + examples) | 36 | 25% |
+| 🟢 Full (SKILL.md + content + prompts + examples) | 37 | 25% |
 | 🟡 Partial (SKILL.md + some optional dirs) | 100 | 68% |
-| 🔴 Bare (SKILL.md only) | 10 | 7% |
+| 🔴 Bare (SKILL.md only) | 9 | 6% |
 | **Total** | **146** | 100% |
 
 ## Skill Inventory
@@ -114,7 +114,7 @@
 | `hr-predictive-analytics` | 🟡 Partial | ✅ | — | — | 2 | 1.0.0 |
 | `hr-product-management` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-project-management` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
-| `hr-prompt-engineering` | 🔴 Bare | — | — | — | — | 1.0.0 |
+| `hr-prompt-engineering` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-qa` | 🟡 Partial | ✅ | — | ✅ | 1 | 1.0.0 |
 | `hr-recognition` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
 | `hr-recruiting` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
