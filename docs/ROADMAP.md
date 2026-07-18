@@ -1,64 +1,81 @@
 # HR Skills — Project Roadmap
 
-> **Repository:** [tuanductran/hr-skills](https://github.com/tuanductran/hr-skills)
-> **Maintainer:** Tuan Duc Tran | **License:** MIT | **Status:** Actively maintained
+> **Repository:** [HR Skills](https://github.com/tuanductran/hr-skills)
+> **Maintainer:** Tuan Duc Tran
+> **License:** MIT
+> **Status:** Actively maintained
 
-This roadmap documents the current state and future direction of the HR Skills library — a Bun/Turborepo monorepo hosting 146 domain-specific Agent Skills for Human Resources professionals.
+This roadmap describes the long-term direction, architecture evolution, and engineering priorities of the HR Skills library.
+
+HR Skills is a Bun/Turborepo monorepo containing domain-specific Agent Skills for Human Resources professionals. The repository focuses on building a structured, validated, and extensible skill ecosystem that enables AI agents to provide reliable HR domain expertise.
+
+For the current skill maturity status, always refer to the generated matrix:
+
+* `docs/skill-matrix.md`
+
+For active implementation tasks, milestones, and execution tracking:
+
+* GitHub Issues
 
 ---
 
 ## Table of Contents
 
-1. [Project Overview](#project-overview)
-2. [Repository Statistics](#repository-statistics)
+1. [Project Vision](#project-vision)
+2. [Repository Overview](#repository-overview)
 3. [Architecture](#architecture)
-4. [Validation & Quality](#validation--quality)
-5. [CI/CD & Workflows](#cicd--workflows)
-6. [Action Items](#action-items)
-7. [Success Metrics](#success-metrics)
+4. [Development Phases](#development-phases)
+5. [Validation & Quality System](#validation--quality-system)
+6. [CI/CD & Automation](#cicd--automation)
+7. [Future Direction](#future-direction)
+8. [Success Metrics](#success-metrics)
+9. [Glossary](#glossary)
 
 ---
 
-## Project Overview
+## Project Vision
 
-**HR Skills** is a structured, versioned library of 146 domain-specific AI skills for HR professionals, packaged as `SKILL.md` files conforming to the [Agent Skills](https://agentskills.io/) open format. Each skill is validated against strict quality rules and distributed via:
+### Building a Structured HR Agent Skill Ecosystem
 
-- **Claude Code / claude.ai**: Direct installation from `.claude-plugin/marketplace.json`
-- **skills.sh**: `npx skills add tuanductran/hr-skills`
-- **Direct clone**: `git clone https://github.com/tuanductran/hr-skills.git`
+HR Skills aims to become a comprehensive, versioned knowledge infrastructure for AI-powered Human Resources workflows.
 
-### Core Philosophy
+The project follows the principle:
 
-**Content is code** — every `SKILL.md` is treated as a versioned artifact with:
+> **Content is code.**
 
-- Required frontmatter (name, description, author, version)
-- Required sections (Supported tasks, Key prompts, Tips)
-- Enforced length limits (500-line max body, 1000-char min content)
-- Automated validation in CI via `bun run validate`
+Every skill is treated as a maintainable software artifact with:
 
-### Target Audience
+* Structured metadata
+* Version control
+* Automated validation
+* Security checks
+* Reproducible distribution
+* Continuous improvement
 
-- HR managers, HRBPs, People Ops professionals
-- Technical recruiters and engineering hiring teams (18 specialized hiring skills: `hr-frontend`, `hr-backend`, `hr-devops`, and so on)
-- Vietnam-based HR teams (`hr-vietnam-context` as a cross-cutting differentiator)
-- AI developers building on the `skills-ref` generic Agent Skills library
-- Contributors maintaining the repository
+The goal is not only to create documentation, but to provide reliable building blocks for AI agents working in HR domains.
 
 ---
 
-## Repository Statistics
+## Repository Overview
 
-| Metric | Count | Notes |
-|---|---:|---|
-| HR skills (`skills/hr-*`) | 146 | Comprehensive HR domain coverage |
-| Meta/maintainer skills (`.agents/skills/*`) | 12 | Repository maintenance via AI agents |
-| Total `SKILL.md` files | 159 | 146 HR + 12 `.agents` + 1 root router |
-| **Bare skills** (SKILL.md only) | 0 (0%) | ✅ Eliminated |
-| **Partial skills** (some optional dirs) | 110 (75%) | Active development tier |
-| **Full skills** (content + prompts + examples) | 36 (25%) | Gold standard tier |
-| Internal TypeScript packages | 2 | `hr-skills-build`, `skills-ref` |
-| GitHub Actions workflows | 7 | lint, test, typecheck, validate, knip, matrix, release |
-| Claude Code slash commands | 4 | new-skill, validate, sync-and-validate, release-check |
+HR Skills provides domain-specific Agent Skills covering areas including:
+
+* Talent Acquisition
+* People Operations
+* HR Analytics
+* Workforce Planning
+* Learning & Development
+* Compensation & Benefits
+* HR Technology
+* AI for HR
+* Organization Development
+* Employee Experience
+
+Skills follow the Agent Skills open format and are distributed through:
+
+* Claude Code / claude.ai marketplace integration
+* skills.sh installation
+* Direct repository cloning
 
 ---
 
@@ -66,155 +83,330 @@ This roadmap documents the current state and future direction of the HR Skills l
 
 ### Technology Stack
 
-| Layer | Technology |
-|---|---|
-| Runtime & Package Manager | Bun |
-| Monorepo Orchestration | Turborepo |
-| Language | TypeScript (strict mode, ESM) |
-| Schema Validation | Valibot |
-| Formatter / Linter | Biome (tabs, width 90, single quotes) |
-| Markdown QA | markdownlint-cli + case-police |
-| Commit Discipline | Commitlint + Lefthook (Conventional Commits) |
-| Release Automation | Changesets (`bun changeset` + `bun run release` → tag → GitHub Release) |
-| Dependency Updates | Renovate |
+| Layer              | Technology                     |
+| ------------------ | ------------------------------ |
+| Runtime            | Bun                            |
+| Monorepo           | Turborepo                      |
+| Language           | TypeScript (strict mode, ESM)  |
+| Validation         | Valibot                        |
+| Formatter / Linter | Biome                          |
+| Markdown Quality   | markdownlint-cli + case-police |
+| Commit Workflow    | Commitlint + Lefthook          |
+| Release Automation | Changesets                     |
+| Dependency Updates | Renovate                       |
 
-### Package Structure
+---
+
+### Repository Structure
 
 ```text
-hr-skills/ (root, private)
+hr-skills/
+│
 ├── packages/
-│   ├── hr-skills-build/       ← Validation, sync, CLI tooling
-│   └── skills-ref/            ← Generic Agent Skills library (Apache-2.0)
-├── skills/hr-*/               ← 146 HR content packages
-├── .agents/skills/*           ← 12 meta skills for repository maintenance
-├── .claude/                   ← Claude Code commands & configuration
-├── .claude-plugin/            ← Generated marketplace.json
-└── docs/                      ← Specification & documentation
+│   ├── hr-skills-build/
+│   │   └── Validation, generation, CLI tooling
+│   │
+│   └── skills-ref/
+│       └── Generic Agent Skills library
+│
+├── skills/
+│   └── hr-*/
+│       └── Domain-specific HR skills
+│
+├── .agents/
+│   └── skills/
+│       └── Repository maintenance skills
+│
+├── .claude/
+│   └── Claude Code configuration
+│
+├── .claude-plugin/
+│   └── Generated marketplace manifest
+│
+└── docs/
+    ├── ROADMAP.md
+    ├── skill-matrix.md
+    └── engineering/
 ```
 
-### Validation Pipeline
+---
 
-Two-layer architecture:
+### Skill Architecture
 
-1. **Generic layer** (`skills-ref.validate()`): Agent Skills format conformance
-2. **Policy layer** (`hr-skills-build` rules): Repository-specific checks
+Each HR skill follows a structured format:
+
+```text
+skills/hr-example/
+
+├── SKILL.md
+├── content/
+├── prompts/
+└── examples/
+```
+
+A skill contains:
+
+* Frontmatter metadata
+* Supported tasks
+* Domain knowledge
+* Prompt patterns
+* Practical examples
+
+The maturity state of every skill is automatically generated by:
+
+```bash
+bun run matrix
+```
+
+Output:
+
+```text
+docs/skill-matrix.md
+```
 
 ---
 
-## Validation & Quality
+## Development Phases
 
-### Implemented Rules (18 total)
+### Phase 1 — Foundation
 
-| Rule | Layer | Enforced by |
-|---|---|---|
-| Generic Agent Skills conformance | skills-ref | SkillPropertiesSchema |
-| Name present and matches directory | hr-skills-build | validateFrontmatter() |
-| Description ≥ 50 chars | hr-skills-build | validateFrontmatter() |
-| Author = "Tuan Duc Tran" | hr-skills-build | validateAuthor() |
-| Version present | hr-skills-build | validateFrontmatter() |
-| Required sections present | hr-skills-build | validateRequiredSections() |
-| Content ≥ 1000 chars | hr-skills-build | validateContentLength() |
-| Body ≤ 500 lines | hr-skills-build | validateLineCount() |
-| 8-12 supported tasks | hr-skills-build | validateSupportedTasks() |
-| 4-6 tips | hr-skills-build | validateTips() |
-| Blank line before list | hr-skills-build | validateBlankLines() |
-| Prompt subtopic structure (3-6 subtopics, 4-7 prompts each) | hr-skills-build | validatePromptStructure() |
-| Router ↔ filesystem ↔ marketplace.json three-way consistency | hr-skills-build | validateRouterConsistency() |
-| Dangerous shell commands in code blocks | hr-skills-build | validateSecurityCommands() |
-| Sensitive path write patterns | hr-skills-build | validateSensitivePaths() |
-| Suspicious external URLs and data-exfil hosts | hr-skills-build | validateSuspiciousUrls() |
-| Credential leak patterns (tokens, keys, passwords) | hr-skills-build | validateCredentialLeaks() |
-| Hidden Unicode / prompt-injection characters | hr-skills-build | validateHiddenUnicode() |
+Completed:
 
-### Missing Validation Rules
-
-- [ ] Duplicate content detection (`SKILL.md` vs. `content/` vs. `prompts/`)
-
-### Generated Artifacts
-
-**docs/skill-matrix.md** is regenerated by `packages/hr-skills-build/src/generate-skill-matrix.ts` via `bun run matrix`. Auto-regenerated in CI by `matrix.yml` on push to main. Shows: skill name, maturity tier, content file count, version.
+* Agent Skills format adoption
+* Repository structure stabilization
+* Bun/Turborepo migration
+* TypeScript tooling
+* Validation framework
+* CI pipeline foundation
 
 ---
 
-## CI/CD & Workflows
+### Phase 2 — Skill Coverage
 
-### Current Workflows (7 total)
+Completed:
 
-| Workflow | Trigger | Notes |
-|---|---|---|
-| lint.yml | PR to main/dev | Biome check, Markdown lint, link check |
-| test.yml | PR to main/dev | `bun run test`, OS matrix, Turbo cache |
-| typecheck.yml | PR to main/dev | `bun run typecheck`, OS matrix |
-| validate.yml | PR to main/dev | `bun run validate` — skills quality gate |
-| knip.yml | PR to main/dev | Unused file/dependency detection |
-| matrix.yml | Push to main | Auto-regenerates `docs/skill-matrix.md` |
-| release.yml | Push to main (`.changeset/` changed) | Creates GitHub Release via changesets/action |
+* Large-scale HR domain coverage
+* Skill inventory system
+* Marketplace synchronization
+* Skill metadata validation
+* Automated maturity matrix generation
 
 ---
 
-## Action Items
+### Phase 3 — Skill Maturity Improvement
 
-### Dependency Management
+Current phase.
 
-- [x] Remove `.github/dependabot.yml` — consolidated to Renovate
-- [x] Remove `.whitesource` — not actively used at current project scale
-- [x] Renovate is the sole dependency update source — no other bots configured
+Focus:
 
-### Content Depth
+* Increase Full maturity skills
+* Improve content depth
+* Add reusable prompts
+* Add practical examples
+* Improve domain consistency
 
-- [x] AI/GenAI cluster brought from bare to partial tier: `hr-agentic-ai`, `hr-ai-ethics`, `hr-genai`, `hr-ai-adoption`, `hr-ai-evaluation`
-- [x] Compliance cluster: hr-risk-management, hr-policy-management brought to partial tier
-- [x] Analytics cluster: hr-predictive-analytics, hr-workforce-forecasting, hr-skills-intelligence, hr-workforce-economics, hr-people-budgeting brought to partial tier
-- [x] TA/Recruiting cluster: hr-talent-acquisition, hr-talent-intelligence, hr-talent-crm, hr-talent-mapping, hr-recruitment-marketing, hr-recruitment-operations, hr-candidate-assessment, hr-candidate-experience, hr-offer-management, hr-reference-checking brought to partial tier
-- [x] OD/Change cluster: hr-organizational-design, hr-organization-effectiveness, hr-change-communication, hr-operating-model, hr-mergers-acquisitions, hr-post-merger-integration brought to partial tier
-- [x] EX/L&D cluster: hr-employee-communications, hr-employee-listening, hr-employee-journey-mapping, hr-offboarding, hr-recognition, hr-internal-mobility, hr-career-development, hr-coaching-mentoring, hr-learning-strategy brought to partial tier
-- [x] **All 146 skills at partial tier or above — 0 bare skills remaining**
-- [x] Auto-generate `docs/skill-matrix.md` in CI via `matrix.yml`
+Execution tracking:
 
-### Tooling & Infrastructure
+* GitHub Issues
+* Pull Requests
+* Generated skill matrix
 
-- [x] Add no-op `build` script to `hr-skills-build` with explanatory message (CLI tool, not a library)
-- [x] Add `matrix` script to `hr-skills-build` and root — `bun run matrix` generates `docs/skill-matrix.md`
-- [x] Add `matrix.yml` CI workflow — auto-regenerates skill-matrix.md on push to main
-- [x] Add `release.yml` CI workflow — creates GitHub Release on version tag push, runs validate + matrix first
-- [x] Migrate from changelogen to Changesets — `bun changeset` + `bun run release` workflow, no npm publish
-- [ ] Publish `skills-ref` to npm once API is stable (flip `private: false`, bump to `1.0.0`, add `--provenance`)
+Source of truth:
 
-### Security
+```text
+docs/skill-matrix.md
+```
 
-- [x] Convert `skill-vetter` meta-skill rules into `hr-skills-build/src/security.ts`
-  - Implemented: dangerous shell commands, sensitive path writes, suspicious URLs, credential leak patterns, hidden Unicode
-  - Wired into `validateSkill()` — runs as part of `bun run validate`
-- [x] Security validators wired into `bun run validate` — runs in CI via `validate.yml`
-- [ ] Duplicate content detection validator
+---
+
+### Phase 4 — AI Agent Ecosystem
+
+Future direction:
+
+* Better skill routing
+* More advanced AI workflows
+* Agent collaboration patterns
+* HR-specific reasoning frameworks
+* Evaluation datasets
+
+---
+
+### Phase 5 — Community & Distribution
+
+Future goals:
+
+* External contributors
+* Better documentation
+* Public examples
+* Ecosystem integrations
+* Stable package releases
+
+---
+
+## Validation & Quality System
+
+HR Skills uses a multi-layer validation architecture.
+
+### Generic Validation Layer
+
+Provided by:
+
+```text
+skills-ref
+```
+
+Responsibilities:
+
+* Agent Skills specification compliance
+* Schema validation
+* Format consistency
+
+---
+
+### Repository Policy Layer
+
+Provided by:
+
+```text
+hr-skills-build
+```
+
+Responsibilities:
+
+* Frontmatter validation
+* Content quality checks
+* Required sections
+* Skill structure validation
+* Security checks
+
+---
+
+### Security Validation
+
+Implemented checks include:
+
+* Dangerous shell commands
+* Sensitive path writes
+* Suspicious external URLs
+* Credential leakage patterns
+* Hidden Unicode characters
+* Prompt injection indicators
+
+Validation command:
+
+```bash
+bun run validate
+```
+
+---
+
+## CI/CD & Automation
+
+### Current Workflows
+
+| Workflow      | Purpose                        |
+| ------------- | ------------------------------ |
+| lint.yml      | Code and documentation quality |
+| test.yml      | Automated testing              |
+| typecheck.yml | Type validation                |
+| validate.yml  | Skill quality validation       |
+| knip.yml      | Dead code detection            |
+| matrix.yml    | Skill maturity generation      |
+| release.yml   | Changesets release automation  |
+
+---
+
+### Release System
+
+The project uses Changesets for release management.
+
+Workflow:
+
+```text
+Change
+  |
+Changeset
+  |
+Release workflow
+  |
+Version update
+  |
+GitHub Release
+```
+
+Commands:
+
+```bash
+bun changeset
+
+bun run release
+```
+
+---
+
+## Future Direction
+
+### Skill Intelligence
+
+Future improvements:
+
+* Better skill discovery
+* Relationship mapping between skills
+* Skill dependency graph
+* Automated recommendations
+
+---
+
+### Quality Automation
+
+Planned improvements:
+
+* Duplicate content detection
+* Better semantic validation
+* Automated content quality scoring
+* AI-assisted review workflows
+
+---
+
+### Ecosystem Expansion
+
+Potential directions:
+
+* Publish stable packages
+* Improve Agent Skills interoperability
+* Support additional AI platforms
+* Build HR AI tooling ecosystem
 
 ---
 
 ## Success Metrics
 
-| Category | Current | Target |
-|---|---|---|
-| Validation rules | 18 implemented (13 quality + 5 security) | 18 + duplicate detection |
-| Skill depth | **0% bare, 75% partial, 25% full** | 0% bare, 55% partial, 45% full |
-| CI workflows | 7 (validate, lint, test, typecheck, knip, matrix, release) ✅ | stable |
-| Dependency bots | Renovate only | Renovate only ✅ |
-| skills-ref | Internal only | Internal only — not published |
+| Area           | Direction                                  |
+| -------------- | ------------------------------------------ |
+| Skill Coverage | Maintain broad HR domain coverage          |
+| Skill Quality  | Increase Full maturity percentage          |
+| Validation     | Keep automated quality gates reliable      |
+| Security       | Prevent unsafe skill content               |
+| Documentation  | Keep generated and human docs synchronized |
+| Community      | Enable external contribution               |
 
 ---
 
 ## Glossary
 
-| Term | Definition |
-|---|---|
-| **Skill** | A `SKILL.md` file (+ optional `content/`, `prompts/`, `examples/`) conforming to Agent Skills format, scoped to one HR domain |
-| **Bare skill** | Skill with only `SKILL.md`, no supporting directories |
-| **Full skill** | Skill with `SKILL.md` + all three optional directories (content, prompts, examples) |
-| **Meta skill** | `.agents/skills/*` describing repository maintenance, consumed by AI agents not end users |
-| **Router** | Root `SKILL.md` — maps user requests to specialized skills, carries no HR content |
-| **Validate** | `bun run validate` — runs 13 quality rules against all 146 skills |
-| **Sync** | `bun run sync` — regenerates `.claude-plugin/marketplace.json` from current skill inventory |
-| **Marketplace** | `.claude-plugin/marketplace.json` — distribution manifest consumed by Claude Code installer |
+| Term          | Definition                                                    |
+| ------------- | ------------------------------------------------------------- |
+| Skill         | A versioned Agent Skill package focused on one HR domain      |
+| SKILL.md      | Core skill definition file                                    |
+| Full Skill    | Skill containing documentation, prompts, and examples         |
+| Partial Skill | Skill with additional content but missing some optional areas |
+| Bare Skill    | Skill containing only SKILL.md                                |
+| Meta Skill    | Internal skill used by AI agents for repository maintenance   |
+| Router        | Root skill responsible for routing requests                   |
+| Matrix        | Generated report describing skill maturity                    |
+| Validate      | Automated quality and security validation                     |
+| Sync          | Marketplace metadata regeneration                             |
 
 ---
 
-Last updated: July 17, 2026
+Last updated: July 18, 2026
