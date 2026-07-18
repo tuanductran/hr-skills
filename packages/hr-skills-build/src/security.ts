@@ -100,41 +100,76 @@ export function validateSensitivePaths(
 // 3. Suspicious external URLs
 // ---------------------------------------------------------------------------
 
-// Raw IP address URLs (not localhost) are suspicious in skill content
-const RAW_IP_URL = /https?:\/\/\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/;
+const URL_REGEX = /https?:\/\/[^\s<>"')]+/gi;
 
-// Known data-exfil / webhook catch services that should not appear in skills
-const SUSPICIOUS_HOSTS = [
-	'requestbin',
-	'webhook.site',
+const SUSPICIOUS_HOSTS = new Set([
 	'ngrok.io',
-	'burpcollaborator',
-	'pipedream.net',
+	'webhook.site',
 	'hookbin.com',
-	'canarytokens',
-];
+	'pipedream.net',
+	'burpcollaborator.net',
+	'canarytokens.com',
+]);
+
+const RAW_IP = /^\d{1,3}(?:\.\d{1,3}){3}$/;
+
+function normalizeHost(hostname: string): string {
+	return hostname.toLowerCase().replace(/\.$/, '');
+}
+
+function isSuspiciousHost(hostname: string): string | undefined {
+	const host = normalizeHost(hostname);
+
+	if (RAW_IP.test(host)) {
+		return 'raw IP address';
+	}
+
+	const labels = host.split('.');
+
+	for (let i = 0; i < labels.length; i++) {
+		const candidate = labels.slice(i).join('.');
+
+		if (SUSPICIOUS_HOSTS.has(candidate)) {
+			return candidate;
+		}
+	}
+
+	return undefined;
+}
 
 export function validateSuspiciousUrls(
 	skillName: string,
 	content: string,
 	errors: SkillValidationIssue[],
 ): void {
-	if (RAW_IP_URL.test(content)) {
-		errors.push({
-			skill: skillName,
-			message:
-				'Security: raw IP address URL found — use domain names for external references',
-		});
-	}
+	for (const match of content.matchAll(URL_REGEX)) {
+		try {
+			const url = new URL(match[0]);
 
-	const lowerContent = content.toLowerCase();
-	for (const host of SUSPICIOUS_HOSTS) {
-		if (lowerContent.includes(host)) {
+			const suspicious = isSuspiciousHost(url.hostname);
+
+			if (!suspicious) {
+				continue;
+			}
+
 			errors.push({
 				skill: skillName,
-				message: `Security: suspicious external host detected — "${host}"`,
+				message:
+					suspicious === 'raw IP address'
+						? 'Security: raw IP address URL found'
+						: `Security: suspicious external host detected — "${suspicious}"`,
 			});
+		} catch {
+			// Ignore malformed URLs.
 		}
+	}
+
+	// requestbin is commonly referenced as plain text instead of a hostname.
+	if (/\brequestbin\b/i.test(content)) {
+		errors.push({
+			skill: skillName,
+			message: 'Security: suspicious external host detected — "requestbin"',
+		});
 	}
 }
 
