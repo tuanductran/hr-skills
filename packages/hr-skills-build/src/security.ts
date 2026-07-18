@@ -22,16 +22,26 @@ const DANGEROUS_COMMANDS: ReadonlyArray<{ pattern: RegExp; label: string }> = [
 	{ pattern: /rm\s+-rf?\s+[/~]/, label: 'rm -rf targeting root or home path' },
 	{ pattern: /chmod\s+[0-7]*7[0-7]{2}\s/, label: 'chmod with world-write permission' },
 	{
-		pattern: /curl\s+.*\|\s*(bash|sh)/,
+		// [^|\n]* instead of .* — eliminates O(n) backtracking when no pipe is present
+		pattern: /curl\s+[^|\n]*\|\s*(bash|sh)/,
 		label: 'curl piped to shell (remote code execution)',
 	},
 	{
-		pattern: /wget\s+.*\|\s*(bash|sh)/,
+		// [^|\n]* instead of .* — same fix as curl
+		pattern: /wget\s+[^|\n]*\|\s*(bash|sh)/,
 		label: 'wget piped to shell (remote code execution)',
 	},
-	{ pattern: /eval\s*\(.*\$\(/, label: 'eval with subshell substitution' },
+	{
+		// [^$\n]* instead of .* — stops at $ so no backtracking through subshell chars
+		pattern: /eval\s*\([^$\n]*\$\(/,
+		label: 'eval with subshell substitution',
+	},
 	{ pattern: />\s*\/dev\/sd[a-z]/, label: 'write to raw block device' },
-	{ pattern: /dd\s+.*of=\/dev\//, label: 'dd targeting raw device' },
+	{
+		// [^\n]* instead of .* — newline-bounded, avoids cross-line backtracking
+		pattern: /dd\s+[^\n]*of=\/dev\//,
+		label: 'dd targeting raw device',
+	},
 	{ pattern: /mkfs\s+/, label: 'mkfs — formats a filesystem' },
 	{ pattern: /:\(\)\{:\|:&\}/, label: 'fork bomb pattern' },
 	{
@@ -47,10 +57,9 @@ export function validateSecurityCommands(
 ): void {
 	// Only scan code blocks — shell commands in prose context are informational
 	const codeBlockRegex = /```(?:bash|sh|shell|zsh)?\n([\s\S]*?)```/g;
+	const blocks = [...content.matchAll(codeBlockRegex)].map((m) => m[1] ?? '');
 
-	for (const match of content.matchAll(codeBlockRegex)) {
-		const block = match[1] ?? '';
-
+	for (const block of blocks) {
 		for (const { pattern, label } of DANGEROUS_COMMANDS) {
 			if (pattern.test(block)) {
 				errors.push({
@@ -83,11 +92,7 @@ export function validateSensitivePaths(
 	errors: SkillValidationIssue[],
 ): void {
 	const codeBlockRegex = /```[\s\S]*?```/g;
-	let codeOnly = '';
-
-	for (const match of content.matchAll(codeBlockRegex)) {
-		codeOnly += `${match[0]}\n`;
-	}
+	const codeOnly = [...content.matchAll(codeBlockRegex)].map((m) => m[0]).join('\n');
 
 	if (!codeOnly) return;
 
@@ -105,41 +110,92 @@ export function validateSensitivePaths(
 // 3. Suspicious external URLs
 // ---------------------------------------------------------------------------
 
-// Raw IP address URLs (not localhost) are suspicious in skill content
-const RAW_IP_URL = /https?:\/\/\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/;
+const URL_REGEX = /https?:\/\/[^\s<>"')]+/gi;
 
-// Known data-exfil / webhook catch services that should not appear in skills
-const SUSPICIOUS_HOSTS = [
-	'requestbin',
-	'webhook.site',
+/**
+ * Known data-exfiltration / request-inspection hosts.
+ *
+ * Includes all current ngrok tunnel domains:
+ *   - ngrok.io      — legacy v2 tunnels
+ *   - ngrok.app     — v3 tunnels (HSTS preloaded)
+ *   - ngrok.dev     — v3 dev tunnels (HSTS preloaded)
+ *   - ngrok-free.app / ngrok-free.dev — v3 free-tier static domains
+ *
+ * The suffix-walk in isSuspiciousHost() means any subdomain of these
+ * (e.g. abc123.ngrok.app, my-tunnel.eu.ngrok.io) is also caught.
+ */
+const SUSPICIOUS_HOSTS = new Set([
 	'ngrok.io',
-	'burpcollaborator',
-	'pipedream.net',
+	'ngrok.app',
+	'ngrok.dev',
+	'ngrok-free.app',
+	'ngrok-free.dev',
+	'webhook.site',
 	'hookbin.com',
-	'canarytokens',
-];
+	'pipedream.net',
+	'burpcollaborator.net',
+	'canarytokens.com',
+]);
+
+const RAW_IP = /^\d{1,3}(?:\.\d{1,3}){3}$/;
+
+function normalizeHost(hostname: string): string {
+	return hostname.toLowerCase().replace(/\.$/, '');
+}
+
+function isSuspiciousHost(hostname: string): string | undefined {
+	const host = normalizeHost(hostname);
+
+	if (RAW_IP.test(host)) {
+		return 'raw IP address';
+	}
+
+	const labels = host.split('.');
+
+	for (let i = 0; i < labels.length; i++) {
+		const candidate = labels.slice(i).join('.');
+
+		if (SUSPICIOUS_HOSTS.has(candidate)) {
+			return candidate;
+		}
+	}
+
+	return undefined;
+}
 
 export function validateSuspiciousUrls(
 	skillName: string,
 	content: string,
 	errors: SkillValidationIssue[],
 ): void {
-	if (RAW_IP_URL.test(content)) {
-		errors.push({
-			skill: skillName,
-			message:
-				'Security: raw IP address URL found — use domain names for external references',
-		});
-	}
+	for (const match of content.matchAll(URL_REGEX)) {
+		try {
+			const url = new URL(match[0]);
 
-	const lowerContent = content.toLowerCase();
-	for (const host of SUSPICIOUS_HOSTS) {
-		if (lowerContent.includes(host)) {
+			const suspicious = isSuspiciousHost(url.hostname);
+
+			if (!suspicious) {
+				continue;
+			}
+
 			errors.push({
 				skill: skillName,
-				message: `Security: suspicious external host detected — "${host}"`,
+				message:
+					suspicious === 'raw IP address'
+						? 'Security: raw IP address URL found'
+						: `Security: suspicious external host detected — "${suspicious}"`,
 			});
+		} catch {
+			// Ignore malformed URLs.
 		}
+	}
+
+	// requestbin is commonly referenced as plain text instead of a hostname.
+	if (/\brequestbin\b/i.test(content)) {
+		errors.push({
+			skill: skillName,
+			message: 'Security: suspicious external host detected — "requestbin"',
+		});
 	}
 }
 
