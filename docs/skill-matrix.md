@@ -6,9 +6,9 @@
 
 | Tier | Count | % |
 |---|---:|---:|
-| 🟢 Full (SKILL.md + content + prompts + examples) | 40 | 27% |
+| 🟢 Full (SKILL.md + content + prompts + examples) | 43 | 29% |
 | 🟡 Partial (SKILL.md + some optional dirs) | 100 | 68% |
-| 🔴 Bare (SKILL.md only) | 6 | 4% |
+| 🔴 Bare (SKILL.md only) | 3 | 2% |
 | **Total** | **146** | 100% |
 
 ## Skill Inventory
@@ -135,7 +135,7 @@
 | `hr-social-recruiting` | 🟡 Partial | ✅ | — | ✅ | 1 | 1.0.0 |
 | `hr-software-architecture` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-strategic-planning` | 🟡 Partial | ✅ | — | — | 2 | 1.0.0 |
-| `hr-strategic-workforce-planning` | 🔴 Bare | — | — | — | — | 1.0.0 |
+| `hr-strategic-workforce-planning` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-succession-planning` | 🟡 Partial | ✅ | — | ✅ | 1 | 1.0.0 |
 | `hr-system-design` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-system-integration` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
@@ -153,11 +153,11 @@
 | `hr-vendor-management` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-vietnam-context` | 🟡 Partial | ✅ | — | ✅ | 1 | 1.0.0 |
 | `hr-wellbeing` | 🟡 Partial | ✅ | — | ✅ | 1 | 1.0.0 |
-| `hr-workforce-capability` | 🔴 Bare | — | — | — | — | 1.0.0 |
+| `hr-workforce-capability` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-workforce-economics` | 🟡 Partial | ✅ | — | — | 2 | 1.0.0 |
 | `hr-workforce-forecasting` | 🟡 Partial | ✅ | — | — | 2 | 1.0.0 |
 | `hr-workforce-intelligence` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-workforce-planning` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
-| `hr-workforce-scenario-planning` | 🔴 Bare | — | — | — | — | 1.0.0 |
+| `hr-workforce-scenario-planning` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-workforce-scheduling` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-workforce-transformation` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
