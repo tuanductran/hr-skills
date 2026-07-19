@@ -1,14 +1,14 @@
 # HR Skills — Skill Matrix
 
-> Auto-generated on 2026-07-18 by `bun run matrix`. Do not edit manually.
+> Auto-generated on 2026-07-19 by `bun run matrix`. Do not edit manually.
 
 ## Summary
 
 | Tier | Count | % |
 |---|---:|---:|
-| 🟢 Full (SKILL.md + content + prompts + examples) | 38 | 26% |
+| 🟢 Full (SKILL.md + content + prompts + examples) | 40 | 27% |
 | 🟡 Partial (SKILL.md + some optional dirs) | 100 | 68% |
-| 🔴 Bare (SKILL.md only) | 8 | 5% |
+| 🔴 Bare (SKILL.md only) | 6 | 4% |
 | **Total** | **146** | 100% |
 
 ## Skill Inventory
@@ -138,7 +138,7 @@
 | `hr-strategic-workforce-planning` | 🔴 Bare | — | — | — | — | 1.0.0 |
 | `hr-succession-planning` | 🟡 Partial | ✅ | — | ✅ | 1 | 1.0.0 |
 | `hr-system-design` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
-| `hr-system-integration` | 🔴 Bare | — | — | — | — | 1.0.0 |
+| `hr-system-integration` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-talent-acquisition` | 🟡 Partial | ✅ | — | — | 2 | 1.0.0 |
 | `hr-talent-crm` | 🟡 Partial | ✅ | — | — | 2 | 1.0.0 |
 | `hr-talent-intelligence` | 🟡 Partial | ✅ | — | — | 2 | 1.0.0 |
@@ -150,7 +150,7 @@
 | `hr-total-rewards` | 🟡 Partial | ✅ | — | ✅ | 1 | 1.0.0 |
 | `hr-training-development` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-uiux` | 🟡 Partial | ✅ | — | ✅ | 1 | 1.0.0 |
-| `hr-vendor-management` | 🔴 Bare | — | — | — | — | 1.0.0 |
+| `hr-vendor-management` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-vietnam-context` | 🟡 Partial | ✅ | — | ✅ | 1 | 1.0.0 |
 | `hr-wellbeing` | 🟡 Partial | ✅ | — | ✅ | 1 | 1.0.0 |
 | `hr-workforce-capability` | 🔴 Bare | — | — | — | — | 1.0.0 |
