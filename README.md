@@ -1,4 +1,4 @@
-# HR Skills
+# HR skills
 
 Master library of domain-specific AI prompt skills for Human Resources professionals using Claude.ai and Claude Code.
 
@@ -8,11 +8,11 @@ Built by [Tuan Duc Tran](https://linkedin.com/in/tuanductran) for the **[HR/TA J
 
 Skills follow the [Agent Skills](https://agentskills.io/) open format.
 
-## What's Inside
+## What's inside
 
 100+ structured Agent Skills covering the complete employee lifecycle:
 
-### Core HR Functions
+### Core HR functions
 
 - Talent Acquisition & Recruiting
 - Onboarding & Offboarding
@@ -22,7 +22,7 @@ Skills follow the [Agent Skills](https://agentskills.io/) open format.
 - Learning & Development
 - Organizational Design & Change Management
 
-### People & Analytics
+### People & analytics
 
 - HR Analytics & Workforce Intelligence
 - Strategic Workforce Planning & Forecasting
@@ -30,7 +30,7 @@ Skills follow the [Agent Skills](https://agentskills.io/) open format.
 - Prompt Engineering for HR
 - Agentic AI for HR Operations
 
-### Specialized Domains
+### Specialized domains
 
 - Compliance, Labor Relations & Risk
 - HR Business Partnerships
@@ -38,15 +38,15 @@ Skills follow the [Agent Skills](https://agentskills.io/) open format.
 - Diversity, Equity & Inclusion
 - Software Engineering & Technical Hiring
 
-### Regional Expertise
+### Regional expertise
 
 - Vietnam-specific HR & labor law guidance
 
 > **Note:** Each skill has different coverage levels. Some contain only `SKILL.md`, others include prompts, examples, and reference content. See [skill-matrix.md](docs/skill-matrix.md) for maturity status. New skills are added continuously.
 
-## Quick Start
+## Quick start
 
-### Claude Code (Recommended)
+### Claude Code (recommended)
 
 **Install a single skill:**
 
@@ -76,7 +76,7 @@ Create behavioral interview questions for a Senior Product Manager.
 
 Or paste the skill content directly in chat. Combine multiple skills when working across domains.
 
-## Try It Now
+## Try it now
 
 ```bash
 cp -r skills/hr-recruiting ~/.claude/skills/
@@ -92,7 +92,7 @@ Claude will use the recruiting skill to generate structured, high-quality questi
 
 ---
 
-## Available Skills
+## Available skills
 
 The repository includes **100+ HR skills** organized by function. For the complete, up-to-date list with maturity status, see:
 
@@ -100,20 +100,23 @@ The repository includes **100+ HR skills** organized by function. For the comple
 - **Matrix:** [`docs/skill-matrix.md`](docs/skill-matrix.md) — Full skill inventory with maturity levels (Full/Partial/Bare)
 - **Roadmap:** [`docs/ROADMAP.md`](docs/ROADMAP.md) — Long-term direction and architecture
 
-## What Are Agent Skills?
+## What are agent skills?
 
 Agent Skills are reusable prompt libraries that extend Claude with specialized domain knowledge.
 
-Each skill includes:
+Every skill requires:
 
 - **SKILL.md** — Core definitions and usage patterns
+
+Skills may also include optional supporting resources. Bare and partial skills may omit these directories:
+
 - **content/** — Domain frameworks and best practices
 - **prompts/** — Ready-to-use prompt templates
 - **examples/** — Real-world case studies and samples
 
 Claude automatically recognizes and applies relevant skills when you describe your task.
 
-## Repository Structure
+## Repository structure
 
 ```text
 hr-skills/
@@ -126,9 +129,9 @@ hr-skills/
 │   ├── hr-skills-build/            # Validation & tooling
 │   └── skills-ref/                 # Generic skills library
 ├── docs/
-│   ├── SKILL.md                    # Master router
 │   ├── skill-matrix.md             # Skill inventory & maturity
 │   └── ROADMAP.md                  # Project strategy
+├── SKILL.md                        # Master router
 └── ...
 ```
 
