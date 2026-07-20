@@ -10,7 +10,7 @@ Skills follow the [Agent Skills](https://agentskills.io/) open format.
 
 ## What's Inside
 
-100+ structured Agent Skills covering the complete employee lifecycle:
+**146 structured Agent Skills** covering the complete employee lifecycle — 43 Full, 103 Partial, 0 Bare.
 
 ### Core HR Functions
 
@@ -25,7 +25,8 @@ Skills follow the [Agent Skills](https://agentskills.io/) open format.
 ### People & Analytics
 
 - HR Analytics & Workforce Intelligence
-- Strategic Workforce Planning & Forecasting
+- Strategic Workforce Planning & Scenario Planning
+- Workforce Capability Building
 - HR Technology & Platform Integration
 - Prompt Engineering for HR
 - Agentic AI for HR Operations
@@ -36,13 +37,15 @@ Skills follow the [Agent Skills](https://agentskills.io/) open format.
 - HR Business Partnerships
 - Culture, Engagement & Wellbeing
 - Diversity, Equity & Inclusion
+- Global HR & International Expansion
+- Salary Benchmarking & Retirement Benefits
 - Software Engineering & Technical Hiring
 
 ### Regional Expertise
 
 - Vietnam-specific HR & labor law guidance
 
-> **Note:** Each skill has different coverage levels. Some contain only `SKILL.md`, others include prompts, examples, and reference content. See [skill-matrix.md](docs/skill-matrix.md) for maturity status. New skills are added continuously.
+> **Skill maturity:** 43 skills are Full (SKILL.md + content + prompts + examples). 103 skills are Partial (SKILL.md + content or examples). See [skill-matrix.md](docs/skill-matrix.md) for the complete inventory.
 
 ## Quick Start
 
@@ -60,7 +63,7 @@ cp -r skills/hr-recruiting ~/.claude/skills/
 cp -r skills/hr-* ~/.claude/skills/
 ```
 
-Once installed, just describe your HR task—Claude Code automatically loads relevant skills.
+Once installed, just describe your HR task — Claude Code automatically loads relevant skills.
 
 **Example:**
 
@@ -94,10 +97,10 @@ Claude will use the recruiting skill to generate structured, high-quality questi
 
 ## Available Skills
 
-The repository includes **100+ HR skills** organized by function. For the complete, up-to-date list with maturity status, see:
+The repository includes **146 HR skills** organized by function. For the complete, up-to-date list with maturity status, see:
 
 - **Router:** [`SKILL.md`](SKILL.md) — Master routing guide for all skills
-- **Matrix:** [`docs/skill-matrix.md`](docs/skill-matrix.md) — Full skill inventory with maturity levels (Full/Partial/Bare)
+- **Matrix:** [`docs/skill-matrix.md`](docs/skill-matrix.md) — Full skill inventory with maturity levels (Full / Partial)
 - **Roadmap:** [`docs/ROADMAP.md`](docs/ROADMAP.md) — Long-term direction and architecture
 
 ## What Are Agent Skills?
@@ -117,18 +120,23 @@ Claude automatically recognizes and applies relevant skills when you describe yo
 
 ```text
 hr-skills/
-├── skills/                          # 100+ HR-specific skills
+├── SKILL.md                         # Master router — start here
+├── skills/                          # 146 HR-specific skills
 │   ├── hr-recruiting/
+│   │   ├── SKILL.md
+│   │   ├── content/
+│   │   ├── prompts/
+│   │   └── examples/
 │   ├── hr-onboarding/
 │   ├── hr-performance-management/
 │   └── ...
 ├── packages/
-│   ├── hr-skills-build/            # Validation & tooling
-│   └── skills-ref/                 # Generic skills library
+│   ├── hr-skills-build/             # Validation, matrix generation & tooling
+│   └── skills-ref/                  # TypeScript library for reading skills
 ├── docs/
-│   ├── SKILL.md                    # Master router
-│   ├── skill-matrix.md             # Skill inventory & maturity
-│   └── ROADMAP.md                  # Project strategy
+│   ├── skill-matrix.md              # Skill inventory & maturity status
+│   ├── ROADMAP.md                   # Project strategy
+│   └── format.md                    # Skill format specification
 └── ...
 ```
 
@@ -140,28 +148,35 @@ This is a Bun + Turborepo workspace. All commands run from the project root.
 
 ```bash
 bun install              # Install dependencies
-bun run validate         # Validate all skills
-bun run sync             # Sync metadata and references
-bun run test             # Run tests
+bun run validate         # Validate all 146 skills
+bun run matrix           # Regenerate skill maturity matrix
 bun run build            # Build packages
 ```
 
-**Quality & releases:**
+**Quality:**
 
 ```bash
-bun run lint             # Lint code & markdown
+bun run lint             # Lint code (Biome)
+bun run lint:md          # Lint markdown
 bun run typecheck        # Type validation
-bun run release          # Automated versioning & release
+bun run check            # Run all checks
 ```
 
-For full command list, see [`bun run`](package.json).
+**Releases:**
+
+```bash
+bun run changeset        # Create a changeset
+bun run release          # Version packages
+```
+
+For the full command list, see [`package.json`](package.json).
 
 ## Packages
 
 | Package | Purpose |
-|---------|---------|
-| `hr-skills-build` | Validation, metadata sync, CLI tooling |
-| `skills-ref` | TypeScript library for reading & validating skills |
+|---|---|
+| `hr-skills-build` | Validation, matrix generation, metadata sync, CLI tooling |
+| `skills-ref` | TypeScript library for reading and validating skills |
 
 ## Contributing
 
@@ -170,9 +185,10 @@ Contributions are welcome. Before opening a PR, ensure all checks pass:
 ```bash
 bun install
 bun run validate
-bun run test
-bun run sync
+bun run matrix
 ```
+
+Follow [Conventional Commits](https://www.conventionalcommits.org/) for all commit messages.
 
 ## License
 
