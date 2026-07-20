@@ -7,8 +7,8 @@
 | Tier | Count | % |
 |---|---:|---:|
 | 🟢 Full (SKILL.md + content + prompts + examples) | 43 | 29% |
-| 🟡 Partial (SKILL.md + some optional dirs) | 100 | 68% |
-| 🔴 Bare (SKILL.md only) | 3 | 2% |
+| 🟡 Partial (SKILL.md + some optional dirs) | 103 | 71% |
+| 🔴 Bare (SKILL.md only) | 0 | 0% |
 | **Total** | **146** | 100% |
 
 ## Skill Inventory
@@ -72,7 +72,7 @@
 | `hr-game-development` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-genai` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
 | `hr-global-expansion` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
-| `hr-global-hr` | 🔴 Bare | — | — | — | — | 1.0.0 |
+| `hr-global-hr` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
 | `hr-hr-coordination` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
 | `hr-hr-management` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
 | `hr-hris` | 🟡 Partial | ✅ | — | ✅ | 1 | 1.0.0 |
@@ -122,9 +122,9 @@
 | `hr-recruitment-operations` | 🟡 Partial | ✅ | — | — | 2 | 1.0.0 |
 | `hr-reference-checking` | 🟡 Partial | ✅ | — | — | 2 | 1.0.0 |
 | `hr-retained-search` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
-| `hr-retirement-benefits` | 🔴 Bare | — | — | — | — | 1.0.0 |
+| `hr-retirement-benefits` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
 | `hr-risk-management` | 🟡 Partial | ✅ | — | — | 2 | 1.0.0 |
-| `hr-salary-benchmarking` | 🔴 Bare | — | — | — | — | 1.0.0 |
+| `hr-salary-benchmarking` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
 | `hr-search-strategy` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
 | `hr-security` | 🟡 Partial | ✅ | — | ✅ | 1 | 1.0.0 |
 | `hr-service-delivery` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
