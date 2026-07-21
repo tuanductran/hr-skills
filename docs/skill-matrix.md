@@ -95,7 +95,7 @@
 | `hr-mergers-acquisitions` | 🟡 Partial | ✅ | — | — | 2 | 1.0.0 |
 | `hr-mobile` | 🟡 Partial | ✅ | — | ✅ | 1 | 1.0.0 |
 | `hr-offboarding` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
-| `hr-offer-management` | 🟢 Full | ✅ | ✅ | ✅ | 2 | 1.0.0 |
+| `hr-offer-management` | 🟡 Partial | ✅ | — | — | 2 | 1.0.0 |
 | `hr-onboarding` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-operating-model` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
 | `hr-organization-effectiveness` | 🟡 Partial | ✅ | — | — | 2 | 1.0.0 |
@@ -118,9 +118,9 @@
 | `hr-qa` | 🟡 Partial | ✅ | — | ✅ | 1 | 1.0.0 |
 | `hr-recognition` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
 | `hr-recruiting` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
-| `hr-recruitment-marketing` | 🟢 Full | ✅ | ✅ | ✅ | 2 | 1.0.0 |
-| `hr-recruitment-operations` | 🟢 Full | ✅ | ✅ | ✅ | 2 | 1.0.0 |
-| `hr-reference-checking` | 🟢 Full | ✅ | ✅ | ✅ | 2 | 1.0.0 |
+| `hr-recruitment-marketing` | 🟡 Partial | ✅ | — | — | 2 | 1.0.0 |
+| `hr-recruitment-operations` | 🟡 Partial | ✅ | — | — | 2 | 1.0.0 |
+| `hr-reference-checking` | 🟡 Partial | ✅ | — | — | 2 | 1.0.0 |
 | `hr-retained-search` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
 | `hr-retirement-benefits` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
 | `hr-risk-management` | 🟡 Partial | ✅ | — | — | 2 | 1.0.0 |
@@ -140,10 +140,10 @@
 | `hr-system-design` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-system-integration` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-talent-acquisition` | 🟢 Full | ✅ | ✅ | ✅ | 3 | 1.0.0 |
-| `hr-talent-crm` | 🟢 Full | ✅ | ✅ | ✅ | 2 | 1.0.0 |
-| `hr-talent-intelligence` | 🟢 Full | ✅ | ✅ | ✅ | 2 | 1.0.0 |
+| `hr-talent-crm` | 🟡 Partial | ✅ | — | — | 2 | 1.0.0 |
+| `hr-talent-intelligence` | 🟡 Partial | ✅ | — | — | 2 | 1.0.0 |
 | `hr-talent-management` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
-| `hr-talent-mapping` | 🟢 Full | ✅ | ✅ | ✅ | 2 | 1.0.0 |
+| `hr-talent-mapping` | 🟡 Partial | ✅ | — | — | 2 | 1.0.0 |
 | `hr-talent-supply-chain` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
 | `hr-technology` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-time-attendance` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
