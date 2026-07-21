@@ -1,13 +1,13 @@
 # HR Skills — Skill Matrix
 
-> Auto-generated on 2026-07-19 by `bun run matrix`. Do not edit manually.
+> Auto-generated on 2026-07-21 by `bun run matrix`. Do not edit manually.
 
 ## Summary
 
 | Tier | Count | % |
 |---|---:|---:|
-| 🟢 Full (SKILL.md + content + prompts + examples) | 43 | 29% |
-| 🟡 Partial (SKILL.md + some optional dirs) | 103 | 71% |
+| 🟢 Full (SKILL.md + content + prompts + examples) | 56 | 38% |
+| 🟡 Partial (SKILL.md + some optional dirs) | 90 | 62% |
 | 🔴 Bare (SKILL.md only) | 0 | 0% |
 | **Total** | **146** | 100% |
 
@@ -17,7 +17,7 @@
 |---|---|:---:|:---:|:---:|---:|---|
 | `hr-accessibility-accommodation` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
 | `hr-agentic-ai` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
-| `hr-ai` | 🟡 Partial | ✅ | — | ✅ | 1 | 1.0.0 |
+| `hr-ai` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-ai-adoption` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
 | `hr-ai-change-management` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
 | `hr-ai-ethics` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
@@ -31,8 +31,8 @@
 | `hr-backend` | 🟡 Partial | ✅ | — | ✅ | 1 | 1.0.0 |
 | `hr-blockchain` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-business-partner` | 🟡 Partial | ✅ | — | ✅ | 1 | 1.0.0 |
-| `hr-candidate-assessment` | 🟡 Partial | ✅ | — | — | 2 | 1.0.0 |
-| `hr-candidate-experience` | 🟡 Partial | ✅ | — | — | 2 | 1.0.0 |
+| `hr-candidate-assessment` | 🟢 Full | ✅ | ✅ | ✅ | 2 | 1.0.0 |
+| `hr-candidate-experience` | 🟢 Full | ✅ | ✅ | ✅ | 2 | 1.0.0 |
 | `hr-candidate-sourcing` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-career-development` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
 | `hr-change-communication` | 🟡 Partial | ✅ | — | — | 2 | 1.0.0 |
@@ -87,7 +87,7 @@
 | `hr-kpi` | 🟡 Partial | ✅ | — | ✅ | 1 | 1.0.0 |
 | `hr-labor-relations` | 🟡 Partial | ✅ | — | ✅ | 1 | 1.0.0 |
 | `hr-leadership-development` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
-| `hr-learning-development` | 🟡 Partial | ✅ | — | ✅ | 1 | 1.0.0 |
+| `hr-learning-development` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-learning-strategy` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
 | `hr-ma-integration-by-country` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
 | `hr-manager-effectiveness` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
@@ -95,7 +95,7 @@
 | `hr-mergers-acquisitions` | 🟡 Partial | ✅ | — | — | 2 | 1.0.0 |
 | `hr-mobile` | 🟡 Partial | ✅ | — | ✅ | 1 | 1.0.0 |
 | `hr-offboarding` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
-| `hr-offer-management` | 🟡 Partial | ✅ | — | — | 2 | 1.0.0 |
+| `hr-offer-management` | 🟢 Full | ✅ | ✅ | ✅ | 2 | 1.0.0 |
 | `hr-onboarding` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-operating-model` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
 | `hr-organization-effectiveness` | 🟡 Partial | ✅ | — | — | 2 | 1.0.0 |
@@ -118,9 +118,9 @@
 | `hr-qa` | 🟡 Partial | ✅ | — | ✅ | 1 | 1.0.0 |
 | `hr-recognition` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
 | `hr-recruiting` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
-| `hr-recruitment-marketing` | 🟡 Partial | ✅ | — | — | 2 | 1.0.0 |
-| `hr-recruitment-operations` | 🟡 Partial | ✅ | — | — | 2 | 1.0.0 |
-| `hr-reference-checking` | 🟡 Partial | ✅ | — | — | 2 | 1.0.0 |
+| `hr-recruitment-marketing` | 🟢 Full | ✅ | ✅ | ✅ | 2 | 1.0.0 |
+| `hr-recruitment-operations` | 🟢 Full | ✅ | ✅ | ✅ | 2 | 1.0.0 |
+| `hr-reference-checking` | 🟢 Full | ✅ | ✅ | ✅ | 2 | 1.0.0 |
 | `hr-retained-search` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
 | `hr-retirement-benefits` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
 | `hr-risk-management` | 🟡 Partial | ✅ | — | — | 2 | 1.0.0 |
@@ -139,11 +139,11 @@
 | `hr-succession-planning` | 🟡 Partial | ✅ | — | ✅ | 1 | 1.0.0 |
 | `hr-system-design` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-system-integration` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
-| `hr-talent-acquisition` | 🟡 Partial | ✅ | — | — | 2 | 1.0.0 |
-| `hr-talent-crm` | 🟡 Partial | ✅ | — | — | 2 | 1.0.0 |
-| `hr-talent-intelligence` | 🟡 Partial | ✅ | — | — | 2 | 1.0.0 |
-| `hr-talent-management` | 🟡 Partial | ✅ | — | ✅ | 1 | 1.0.0 |
-| `hr-talent-mapping` | 🟡 Partial | ✅ | — | — | 2 | 1.0.0 |
+| `hr-talent-acquisition` | 🟢 Full | ✅ | ✅ | ✅ | 3 | 1.0.0 |
+| `hr-talent-crm` | 🟢 Full | ✅ | ✅ | ✅ | 2 | 1.0.0 |
+| `hr-talent-intelligence` | 🟢 Full | ✅ | ✅ | ✅ | 2 | 1.0.0 |
+| `hr-talent-management` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
+| `hr-talent-mapping` | 🟢 Full | ✅ | ✅ | ✅ | 2 | 1.0.0 |
 | `hr-talent-supply-chain` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
 | `hr-technology` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-time-attendance` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
