@@ -9,6 +9,7 @@ import {
 	validateLineCount,
 	validatePromptStructure,
 	validateRequiredSections,
+	validateSubdirectoryContents,
 	validateSupportedTasks,
 	validateTips,
 } from '../src/validate.js';
@@ -346,5 +347,20 @@ describe('validatePromptStructure()', () => {
 		validatePromptStructure('hr-test', makeKeyPromptsContent(3, 8), errors);
 
 		expect(errors.some((e) => e.message.includes('expected 4-7'))).toBe(true);
+	});
+});
+
+describe('validateSubdirectoryContents()', () => {
+	it('accepts non-existent or populated subdirectories', async () => {
+		const errors = createErrors();
+
+		// Use existing valid skill path
+		await validateSubdirectoryContents(
+			'hr-recruiting',
+			'skills/hr-recruiting',
+			errors,
+		);
+
+		expect(errors).toHaveLength(0);
 	});
 });

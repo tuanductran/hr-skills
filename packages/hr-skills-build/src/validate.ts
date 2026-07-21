@@ -16,6 +16,8 @@ import {
 	TIPS_REGEX,
 } from './constants.js';
 import {
+	countFiles,
+	dirExists,
 	discoverSkills,
 	extractMatch,
 	normalizeAuthorName,
@@ -382,6 +384,28 @@ export async function validateRouterConsistency(
 }
 
 /**
+ * Validate that optional subdirectories (content, prompts, examples), if present, are non-empty.
+ */
+export async function validateSubdirectoryContents(
+	skillName: string,
+	skillDir: string,
+	errors: SkillValidationIssue[],
+): Promise<void> {
+	for (const subDir of ['content', 'prompts', 'examples']) {
+		const subPath = join(skillDir, subDir);
+		if (await dirExists(subPath)) {
+			const fileCount = await countFiles(subPath);
+			if (fileCount === 0) {
+				errors.push({
+					skill: skillName,
+					message: `Empty subdirectory "${subDir}/" is not allowed — must contain at least one .md file`,
+				});
+			}
+		}
+	}
+}
+
+/**
  * Validate a single skill.
  */
 async function validateSkill(skillName: string): Promise<SkillValidationIssue[]> {
@@ -401,6 +425,7 @@ async function validateSkill(skillName: string): Promise<SkillValidationIssue[]>
 	validateTips(skillName, content, errors);
 	validateBlankLines(skillName, content, errors);
 	validatePromptStructure(skillName, content, errors);
+	await validateSubdirectoryContents(skillName, skillDir, errors);
 
 	// Security checks (from skill-vetter)
 	validateSecurityCommands(skillName, content, errors);
