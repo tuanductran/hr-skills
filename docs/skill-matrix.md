@@ -6,8 +6,8 @@
 
 | Tier | Count | % |
 |---|---:|---:|
-| 🟢 Full (SKILL.md + content + prompts + examples) | 75 | 51% |
-| 🟡 Partial (SKILL.md + some optional dirs) | 71 | 49% |
+| 🟢 Full (SKILL.md + content + prompts + examples) | 67 | 46% |
+| 🟡 Partial (SKILL.md + some optional dirs) | 79 | 54% |
 | 🔴 Bare (SKILL.md only) | 0 | 0% |
 | **Total** | **146** | 100% |
 
@@ -31,8 +31,8 @@
 | `hr-backend` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-blockchain` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-business-partner` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
-| `hr-candidate-assessment` | 🟢 Full | ✅ | ✅ | ✅ | 2 | 1.0.0 |
-| `hr-candidate-experience` | 🟢 Full | ✅ | ✅ | ✅ | 2 | 1.0.0 |
+| `hr-candidate-assessment` | 🟡 Partial | ✅ | — | — | 2 | 1.0.0 |
+| `hr-candidate-experience` | 🟡 Partial | ✅ | — | — | 2 | 1.0.0 |
 | `hr-candidate-sourcing` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-career-development` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
 | `hr-change-communication` | 🟡 Partial | ✅ | — | — | 2 | 1.0.0 |
@@ -119,7 +119,7 @@
 | `hr-recognition` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
 | `hr-recruiting` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-recruitment-marketing` | 🟡 Partial | ✅ | — | — | 2 | 1.0.0 |
-| `hr-recruitment-operations` | 🟡 Partial | ✅ | — | — | 2 | 1.0.0 |
+| `hr-recruitment-operations` | 🟢 Full | ✅ | ✅ | ✅ | 2 | 1.0.0 |
 | `hr-reference-checking` | 🟡 Partial | ✅ | — | — | 2 | 1.0.0 |
 | `hr-retained-search` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
 | `hr-retirement-benefits` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
