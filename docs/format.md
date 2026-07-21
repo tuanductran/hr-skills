@@ -23,6 +23,17 @@ skills/
 - `content/`, `prompts/`, and `examples/` are optional but recommended for larger skills.
 - The directory name must exactly match the `name` field in `SKILL.md`.
 
+## Skill maturity tiers
+
+Each skill in the repository belongs to one of three maturity tiers:
+
+- **🟢 Full Skill**: Contains a required `SKILL.md` file plus non-empty `content/`, `prompts/`, and `examples/` subdirectories (each directory must contain at least one `.md` file).
+- **🟡 Partial Skill**: Contains a required `SKILL.md` file plus 1 or 2 non-empty supporting subdirectories (`content/`, `prompts/`, or `examples/`).
+- **🔴 Bare Skill**: Contains a required `SKILL.md` file only (no supporting subdirectories).
+
+> [!IMPORTANT]
+> **Subdirectory Rule:** Empty subdirectories are strictly forbidden. Any supporting subdirectory (`content/`, `prompts/`, `examples/`) present on disk must contain at least one `.md` file.
+
 ## SKILL.md
 
 `SKILL.md` defines when Claude should activate the skill, what the skill can do, and provides reusable prompts and guidance.

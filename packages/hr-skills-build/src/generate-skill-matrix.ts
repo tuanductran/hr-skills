@@ -8,14 +8,7 @@ import { writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
 import { ROOT_DIR, SKILLS_DIR } from './constants.js';
-import {
-	countFiles,
-	dirExists,
-	discoverSkills,
-	readSkill,
-	tierIcon,
-	tierLabel,
-} from './helpers.js';
+import { countFiles, discoverSkills, readSkill, tierIcon, tierLabel } from './helpers.js';
 import type { SkillRow, Tier } from './types.js';
 
 // ---------------------------------------------------------------------------
@@ -27,22 +20,21 @@ async function generateSkillMatrix(): Promise<void> {
 
 	const rows: SkillRow[] = await Promise.all(
 		skillNames.map(async (name) => {
-			const { frontmatter } = await readSkill(name);
-
 			const skillDir = join(SKILLS_DIR, name);
-			const hasContent = await dirExists(join(skillDir, 'content'));
-			const hasPrompts = await dirExists(join(skillDir, 'prompts'));
-			const hasExamples = await dirExists(join(skillDir, 'examples'));
+			const { frontmatter } = await readSkill(name);
+			const contentFiles = await countFiles(join(skillDir, 'content'));
+			const promptsFiles = await countFiles(join(skillDir, 'prompts'));
+			const examplesFiles = await countFiles(join(skillDir, 'examples'));
+
+			const hasContent = contentFiles > 0;
+			const hasPrompts = promptsFiles > 0;
+			const hasExamples = examplesFiles > 0;
 
 			const subDirCount = [hasContent, hasPrompts, hasExamples].filter(
 				Boolean,
 			).length;
 			const tier: Tier =
 				subDirCount === 0 ? 'bare' : subDirCount === 3 ? 'full' : 'partial';
-
-			const contentFiles = hasContent
-				? await countFiles(join(skillDir, 'content'))
-				: 0;
 
 			return {
 				name,
