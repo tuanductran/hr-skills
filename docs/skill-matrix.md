@@ -6,8 +6,8 @@
 
 | Tier | Count | % |
 |---|---:|---:|
-| 🟢 Full (SKILL.md + content + prompts + examples) | 108 | 74% |
-| 🟡 Partial (SKILL.md + some optional dirs) | 38 | 26% |
+| 🟢 Full (SKILL.md + content + prompts + examples) | 111 | 76% |
+| 🟡 Partial (SKILL.md + some optional dirs) | 35 | 24% |
 | 🔴 Bare (SKILL.md only) | 0 | 0% |
 | **Total** | **146** | 100% |
 
@@ -64,25 +64,25 @@
 | `hr-employee-relations` | 🟡 Partial | ✅ | — | ✅ | 1 | 1.0.0 |
 | `hr-employee-self-service` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-employer-branding` | 🟡 Partial | ✅ | — | ✅ | 1 | 1.0.0 |
-| `hr-executive-assessment` | 🟡 Partial | ✅ | — | — | 2 | 1.0.0 |
+| `hr-executive-assessment` | 🟢 Full | ✅ | ✅ | ✅ | 2 | 1.0.0 |
 | `hr-executive-search` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-frontend` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-fullstack` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-future-of-work` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-game-development` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-genai` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
-| `hr-global-expansion` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
-| `hr-global-hr` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
+| `hr-global-expansion` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
+| `hr-global-hr` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-hr-coordination` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
 | `hr-hr-management` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
 | `hr-hris` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-immigration` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
-| `hr-internal-mobility` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
+| `hr-internal-mobility` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-interviewing` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-iot` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
-| `hr-job-analysis` | 🟡 Partial | ✅ | — | — | 2 | 1.0.0 |
+| `hr-job-analysis` | 🟢 Full | ✅ | ✅ | ✅ | 2 | 1.0.0 |
 | `hr-job-architecture` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
-| `hr-job-description` | 🟡 Partial | ✅ | — | — | 2 | 1.0.0 |
+| `hr-job-description` | 🟢 Full | ✅ | ✅ | ✅ | 2 | 1.0.0 |
 | `hr-knowledge-management` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-kpi` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-labor-relations` | 🟡 Partial | ✅ | — | ✅ | 1 | 1.0.0 |
@@ -91,7 +91,7 @@
 | `hr-learning-strategy` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
 | `hr-ma-integration-by-country` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
 | `hr-manager-effectiveness` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
-| `hr-market-mapping` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
+| `hr-market-mapping` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-mergers-acquisitions` | 🟢 Full | ✅ | ✅ | ✅ | 2 | 1.0.0 |
 | `hr-mobile` | 🟡 Partial | ✅ | — | ✅ | 1 | 1.0.0 |
 | `hr-offboarding` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
@@ -102,14 +102,14 @@
 | `hr-organization-network-analysis` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-organizational-design` | 🟢 Full | ✅ | ✅ | ✅ | 2 | 1.0.0 |
 | `hr-organizational-development` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
-| `hr-passive-candidate-engagement` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
+| `hr-passive-candidate-engagement` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-payroll` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-people-budgeting` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-people-leadership` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
 | `hr-people-operations` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-performance-management` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-performance-review` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
-| `hr-policy-management` | 🟡 Partial | ✅ | — | — | 2 | 1.0.0 |
+| `hr-policy-management` | 🟢 Full | ✅ | ✅ | ✅ | 2 | 1.0.0 |
 | `hr-post-merger-integration` | 🟢 Full | ✅ | ✅ | ✅ | 2 | 1.0.0 |
 | `hr-predictive-analytics` | 🟢 Full | ✅ | ✅ | ✅ | 2 | 1.0.0 |
 | `hr-product-management` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
@@ -121,9 +121,9 @@
 | `hr-recruitment-marketing` | 🟢 Full | ✅ | ✅ | ✅ | 2 | 1.0.0 |
 | `hr-recruitment-operations` | 🟢 Full | ✅ | ✅ | ✅ | 2 | 1.0.0 |
 | `hr-reference-checking` | 🟢 Full | ✅ | ✅ | ✅ | 2 | 1.0.0 |
-| `hr-retained-search` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
+| `hr-retained-search` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-retirement-benefits` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
-| `hr-risk-management` | 🟡 Partial | ✅ | — | — | 2 | 1.0.0 |
+| `hr-risk-management` | 🟢 Full | ✅ | ✅ | ✅ | 2 | 1.0.0 |
 | `hr-salary-benchmarking` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-search-strategy` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
 | `hr-security` | 🟡 Partial | ✅ | — | ✅ | 1 | 1.0.0 |
