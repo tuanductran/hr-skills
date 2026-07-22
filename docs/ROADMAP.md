@@ -204,46 +204,63 @@ Completed:
 
 ---
 
-### Phase 4 — AI Agent Ecosystem
+### Phase 4 — AI Agent Foundation
 
 Current phase.
 
 Focus:
 
-#### 4.1 Skill Intelligence
+#### 4.1 Skill Registry
 
+Build the machine-readable foundation for the skill ecosystem.
+
+* Registry schema
+* Registry generator
 * Capability registry
-* Search index for skills and domains
-* Relationship mapping between skills
-* Skill dependency graph
-* Related-skill recommendations
-* Alias and tag-based routing
+* Alias registry
+* Domain registry
+* Search indexes
+* Relationship graph
+* Dependency graph
+* Registry validation
+* Deterministic skill discovery
 
-#### 4.2 Agent Runtime
+#### 4.2 Skill Planner
 
-* Intent classification
-* Skill routing
-* Context assembly
-* Multi-skill planning
-* Workflow execution
-* Prompt composition across skills
+Build a deterministic planning layer that composes workflows from the Skill Registry.
 
-#### 4.3 Quality Evaluation
+* Intent analysis
+* Capability matching
+* Skill selection
+* Workflow planning
+* Dependency-aware execution planning
+* Context propagation model
+* Explainable execution plans
+
+#### 4.3 Workflow Runtime
+
+Build a deterministic runtime responsible for executing workflow plans.
+
+* Execution engine
+* Workflow state management
+* Context propagation
+* Retry and failure handling
+* Execution events
+* Execution tracing
+* Deterministic workflow execution
+
+#### 4.4 Quality & Evaluation
+
+Ensure the reliability and correctness of the skill ecosystem.
 
 * Golden test suite
 * Regression testing
-* Prompt evaluation
+* Planner evaluation
+* Workflow evaluation
 * Output benchmarking
+* Registry validation
 * Continuous quality metrics
 * Failure-case tracking
-
-#### 4.4 Ecosystem Integration
-
-* Multi-model support
-* MCP compatibility where applicable
-* Marketplace metadata readiness
-* Runtime APIs for skill discovery
-* Stable compatibility across agent surfaces
 
 ---
 
