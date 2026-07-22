@@ -6,8 +6,8 @@
 
 | Tier | Count | % |
 |---|---:|---:|
-| 🟢 Full (SKILL.md + content + prompts + examples) | 111 | 76% |
-| 🟡 Partial (SKILL.md + some optional dirs) | 35 | 24% |
+| 🟢 Full (SKILL.md + content + prompts + examples) | 119 | 82% |
+| 🟡 Partial (SKILL.md + some optional dirs) | 27 | 18% |
 | 🔴 Bare (SKILL.md only) | 0 | 0% |
 | **Total** | **146** | 100% |
 
