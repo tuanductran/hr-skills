@@ -1,5 +1,20 @@
 # Changelog
 
+## 1.1.0
+
+### Minor Changes
+
+- 438f6f8: Completed Phase 3 — Skill Maturity Improvement by upgrading ten remaining Partial skills (`hr-accessibility-accommodation`, `hr-competency-management`, `hr-consulting`, `hr-crisis-management`, `hr-design-thinking`, `hr-digital-hr`, `hr-learning-strategy`, `hr-ma-integration-by-country`, `hr-mobile`, and `hr-qa`) to Full tier with production-ready prompt libraries and operational workflow examples. Regenerated the Skill Matrix (136 full, 10 partial, 0 bare). Updated roadmap to mark Phase 3 as completed and Phase 4 — AI Agent Ecosystem as the current phase.
+- 6a1f9ea: Completed the remaining ten Partial skills to Full tier (`hr-change-communication`, `hr-employer-branding`, `hr-retirement-benefits`, `hr-search-strategy`, `hr-security`, `hr-skills-taxonomy`, `hr-succession-planning`, `hr-talent-supply-chain`, `hr-total-rewards`, and `hr-uiux`) by adding the missing `prompts/` and `examples/` subdirectories. New prompt libraries and operational workflow examples match the structure, tone, and quality of existing Full skills, with `content/` files cross-linked to their new examples. Regenerated the Skill Matrix (146 full, 0 partial, 0 bare) — the repository now has zero remaining Partial or Bare skills.
+- 8b80927: Expanded 28 skills from Partial to Full tier by adding prompt libraries and operational workflow examples. Updated `bun run validate` and `bun run matrix` tooling to enforce the canonical Full Skill standard requiring non-empty `content/`, `prompts/`, and `examples/` subdirectories.
+- f83faf9: Upgraded nine organization design and transformation skills (`hr-operating-model`, `hr-organization-effectiveness`, `hr-organization-network-analysis`, `hr-organizational-design`, `hr-organizational-development`, `hr-mergers-acquisitions`, `hr-post-merger-integration`, `hr-strategic-planning`, and `hr-workforce-transformation`) to Full tier by adding prompt libraries and operational workflow examples.
+- f63f8a7: Upgraded seven people leadership and management skills (`hr-hr-coordination`, `hr-hr-management`, `hr-manager-effectiveness`, `hr-people-leadership`, `hr-coaching-mentoring`, `hr-employee-relations`, and `hr-labor-relations`) to Full tier by adding prompt libraries and operational workflow examples.
+- bc119c3: Upgraded 11 talent acquisition and HR operations skills (`hr-executive-assessment`, `hr-global-expansion`, `hr-global-hr`, `hr-internal-mobility`, `hr-job-analysis`, `hr-job-description`, `hr-market-mapping`, `hr-passive-candidate-engagement`, `hr-policy-management`, `hr-retained-search`, and `hr-risk-management`) to Full tier by adding prompt libraries and operational workflow examples.
+
+### Patch Changes
+
+- 8521aac: Updated HR AI privacy and agentic AI examples to align headings and remove jurisdiction-specific legal conclusions.
+
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
@@ -120,7 +135,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## v1.0.2
 
-
 ### 🚀 Features
 
 - Initial release of HR Skills for Claude ([e1b17f9](https://github.com/tuanductran/hr-skills/commit/e1b17f9))
@@ -197,7 +211,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Tuan Duc Tran ([@tuanductran](https://github.com/tuanductran))
 
 ## v1.0.1
-
 
 ### 🚀 Features
 
