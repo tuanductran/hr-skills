@@ -6,8 +6,8 @@
 
 | Tier | Count | % |
 |---|---:|---:|
-| 🟢 Full (SKILL.md + content + prompts + examples) | 84 | 58% |
-| 🟡 Partial (SKILL.md + some optional dirs) | 62 | 42% |
+| 🟢 Full (SKILL.md + content + prompts + examples) | 93 | 64% |
+| 🟡 Partial (SKILL.md + some optional dirs) | 53 | 36% |
 | 🔴 Bare (SKILL.md only) | 0 | 0% |
 | **Total** | **146** | 100% |
 
@@ -34,7 +34,7 @@
 | `hr-candidate-assessment` | 🟢 Full | ✅ | ✅ | ✅ | 2 | 1.0.0 |
 | `hr-candidate-experience` | 🟢 Full | ✅ | ✅ | ✅ | 2 | 1.0.0 |
 | `hr-candidate-sourcing` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
-| `hr-career-development` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
+| `hr-career-development` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-change-communication` | 🟡 Partial | ✅ | — | — | 2 | 1.0.0 |
 | `hr-change-management` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-chatbot-design` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
@@ -55,14 +55,14 @@
 | `hr-digital-hr` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
 | `hr-diversity-inclusion` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-embedded` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
-| `hr-employee-communications` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
+| `hr-employee-communications` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-employee-engagement` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-employee-experience` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
-| `hr-employee-journey-mapping` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
-| `hr-employee-lifecycle` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
-| `hr-employee-listening` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
+| `hr-employee-journey-mapping` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
+| `hr-employee-lifecycle` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
+| `hr-employee-listening` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-employee-relations` | 🟡 Partial | ✅ | — | ✅ | 1 | 1.0.0 |
-| `hr-employee-self-service` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
+| `hr-employee-self-service` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-employer-branding` | 🟡 Partial | ✅ | — | ✅ | 1 | 1.0.0 |
 | `hr-executive-assessment` | 🟡 Partial | ✅ | — | — | 2 | 1.0.0 |
 | `hr-executive-search` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
@@ -94,7 +94,7 @@
 | `hr-market-mapping` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
 | `hr-mergers-acquisitions` | 🟡 Partial | ✅ | — | — | 2 | 1.0.0 |
 | `hr-mobile` | 🟡 Partial | ✅ | — | ✅ | 1 | 1.0.0 |
-| `hr-offboarding` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
+| `hr-offboarding` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-offer-management` | 🟢 Full | ✅ | ✅ | ✅ | 2 | 1.0.0 |
 | `hr-onboarding` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-operating-model` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
@@ -116,7 +116,7 @@
 | `hr-project-management` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-prompt-engineering` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-qa` | 🟡 Partial | ✅ | — | ✅ | 1 | 1.0.0 |
-| `hr-recognition` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
+| `hr-recognition` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-recruiting` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-recruitment-marketing` | 🟢 Full | ✅ | ✅ | ✅ | 2 | 1.0.0 |
 | `hr-recruitment-operations` | 🟢 Full | ✅ | ✅ | ✅ | 2 | 1.0.0 |
@@ -152,7 +152,7 @@
 | `hr-uiux` | 🟡 Partial | ✅ | — | ✅ | 1 | 1.0.0 |
 | `hr-vendor-management` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-vietnam-context` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
-| `hr-wellbeing` | 🟡 Partial | ✅ | — | ✅ | 1 | 1.0.0 |
+| `hr-wellbeing` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-workforce-capability` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-workforce-economics` | 🟡 Partial | ✅ | — | — | 2 | 1.0.0 |
 | `hr-workforce-forecasting` | 🟡 Partial | ✅ | — | — | 2 | 1.0.0 |
