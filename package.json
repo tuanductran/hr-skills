@@ -29,6 +29,7 @@
 	],
 	"workspaces": {
 		"packages": [
+			".",
 			"packages/*"
 		],
 		"catalog": {
@@ -60,10 +61,10 @@
 		}
 	},
 	"scripts": {
-		"build": "turbo run build",
-		"dev": "turbo run dev",
-		"test": "turbo run test",
-		"typecheck": "turbo run typecheck",
+		"build": "turbo run build --filter=!hr-skills",
+		"dev": "turbo run dev --filter=!hr-skills",
+		"test": "turbo run test --filter=!hr-skills",
+		"typecheck": "turbo run typecheck --filter=!hr-skills",
 		"check": "biome check .",
 		"lint": "biome check . --write",
 		"format": "biome format . --write",
