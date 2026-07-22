@@ -6,8 +6,8 @@
 
 | Tier | Count | % |
 |---|---:|---:|
-| 🟢 Full (SKILL.md + content + prompts + examples) | 93 | 64% |
-| 🟡 Partial (SKILL.md + some optional dirs) | 53 | 36% |
+| 🟢 Full (SKILL.md + content + prompts + examples) | 100 | 68% |
+| 🟡 Partial (SKILL.md + some optional dirs) | 46 | 32% |
 | 🔴 Bare (SKILL.md only) | 0 | 0% |
 | **Total** | **146** | 100% |
 
@@ -49,7 +49,7 @@
 | `hr-crisis-management` | 🟡 Partial | ✅ | — | — | 2 | 1.0.0 |
 | `hr-culture` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-data` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
-| `hr-demand-planning` | 🟡 Partial | ✅ | — | — | 2 | 1.0.0 |
+| `hr-demand-planning` | 🟢 Full | ✅ | ✅ | ✅ | 2 | 1.0.0 |
 | `hr-design-thinking` | 🟡 Partial | ✅ | — | — | 2 | 1.0.0 |
 | `hr-devops` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-digital-hr` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
@@ -104,14 +104,14 @@
 | `hr-organizational-development` | 🟡 Partial | ✅ | — | ✅ | 1 | 1.0.0 |
 | `hr-passive-candidate-engagement` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
 | `hr-payroll` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
-| `hr-people-budgeting` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
+| `hr-people-budgeting` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-people-leadership` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
 | `hr-people-operations` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-performance-management` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-performance-review` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-policy-management` | 🟡 Partial | ✅ | — | — | 2 | 1.0.0 |
 | `hr-post-merger-integration` | 🟡 Partial | ✅ | — | — | 2 | 1.0.0 |
-| `hr-predictive-analytics` | 🟡 Partial | ✅ | — | — | 2 | 1.0.0 |
+| `hr-predictive-analytics` | 🟢 Full | ✅ | ✅ | ✅ | 2 | 1.0.0 |
 | `hr-product-management` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-project-management` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-prompt-engineering` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
@@ -124,12 +124,12 @@
 | `hr-retained-search` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
 | `hr-retirement-benefits` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
 | `hr-risk-management` | 🟡 Partial | ✅ | — | — | 2 | 1.0.0 |
-| `hr-salary-benchmarking` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
+| `hr-salary-benchmarking` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-search-strategy` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
 | `hr-security` | 🟡 Partial | ✅ | — | ✅ | 1 | 1.0.0 |
 | `hr-service-delivery` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-shared-services` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
-| `hr-skills-intelligence` | 🟡 Partial | ✅ | — | — | 2 | 1.0.0 |
+| `hr-skills-intelligence` | 🟢 Full | ✅ | ✅ | ✅ | 2 | 1.0.0 |
 | `hr-skills-management` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-skills-taxonomy` | 🟡 Partial | ✅ | — | ✅ | 1 | 1.0.0 |
 | `hr-social-recruiting` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
@@ -154,8 +154,8 @@
 | `hr-vietnam-context` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-wellbeing` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-workforce-capability` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
-| `hr-workforce-economics` | 🟡 Partial | ✅ | — | — | 2 | 1.0.0 |
-| `hr-workforce-forecasting` | 🟡 Partial | ✅ | — | — | 2 | 1.0.0 |
+| `hr-workforce-economics` | 🟢 Full | ✅ | ✅ | ✅ | 2 | 1.0.0 |
+| `hr-workforce-forecasting` | 🟢 Full | ✅ | ✅ | ✅ | 2 | 1.0.0 |
 | `hr-workforce-intelligence` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-workforce-planning` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-workforce-scenario-planning` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
