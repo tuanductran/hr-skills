@@ -2,6 +2,8 @@
 
 ## Overview
 
+> Related example: [Building a Search Strategy for a Hard-to-Fill Engineering Leadership Role](../examples/building-a-search-strategy-for-a-hard-to-fill-engineering-leadership-role.md).
+
 Sourcing that starts before the search is strategically planned tends to produce a scattered, inconsistent candidate pool and a much longer time-to-fill than a search that invests upfront in defining target companies, channels, and positioning. The search brief is the artifact that forces this planning to happen deliberately, rather than being figured out reactively as sourcing proceeds.
 
 ## Building the Search Brief

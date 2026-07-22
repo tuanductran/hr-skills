@@ -2,6 +2,8 @@
 
 ## Overview
 
+> Related example: [Building a Resilient Talent Supply Chain for a Scarce Technical Skill](../examples/building-a-resilient-talent-supply-chain-for-a-scarce-technical-skill.md).
+
 Most organizations default to "buy" (external hiring) as the answer to nearly every talent gap, largely because it's the most familiar lever, not because it's consistently the best one. A deliberate talent supply chain strategy treats build, buy, borrow, and bot as genuine alternatives, each with a different cost, speed, and risk profile, and matches the lever to the specific gap rather than reaching for the same tool every time.
 
 ## The Four Levers

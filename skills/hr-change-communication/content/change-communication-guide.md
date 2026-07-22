@@ -2,6 +2,8 @@
 
 ## Overview
 
+> Related example: [Communicating a Restructuring Across a Multi-Site Organization](../examples/communicating-a-restructuring-across-a-multi-site-organization.md).
+
 Change communication is how organizations help employees understand, accept, and adapt to significant changes — restructurings, strategy shifts, leadership transitions, M&A events, technology transformations, and policy changes. It is one of the highest-leverage activities in change management and one of the most consistently underfunded.
 
 Most change communication fails not because the message is wrong, but because it is too late, too infrequent, too abstract, or too one-directional. Employees fill communication gaps with rumor. The organization that communicates proactively, honestly, and frequently controls more of the narrative than the one that communicates only when legally required.
