@@ -12,16 +12,16 @@ Expected response: A map identifying the specific fields collected (review score
 
 ## Step 2: Determine legal obligations
 
-Sample prompt: "Assess whether processing employee data through [AI tool] requires a Data Protection Impact Assessment under our applicable privacy law."
+Sample prompt: "Assess what privacy obligations may apply when [AI tool] processes employee data, and identify where we need legal or privacy-specialist review."
 
-Expected response: A short assessment noting that automated profiling producing a risk score with potential managerial impact likely triggers heightened obligations, including disclosure of the logic involved and the employee's right to request human review of any action taken based on the score.
+Expected response: A short assessment that identifies the applicable jurisdictions, privacy notices, vendor terms, retention rules, and internal review paths to confirm before responding, without assuming that any specific disclosure, assessment, objection, or human-review right applies.
 
 ## Step 3: Respond to the employee
 
-Sample prompt: "Write a response to an employee's data subject access request asking what personal data an AI tool holds about them."
+Sample prompt: "Write a response to an employee's data subject access request asking what personal data an AI tool holds about them, subject to review by our privacy or legal specialist."
 
-Expected response: A response listing the specific data categories held, explaining in plain language how the attrition-risk score is generated and used (as an input for manager check-ins, not automatic action), and confirming the employee's right to request a human review of any decision informed by the score.
+Expected response: A response listing the specific data categories held, explaining in plain language how the attrition-risk score is generated and used (as an input for manager check-ins, not automatic action), and explaining any available review, correction, objection, escalation, or complaint options based on the organization's applicable privacy obligations.
 
 ## Workflow summary
 
-The team responds by first mapping the actual data flow rather than guessing, confirming the applicable legal obligations for automated profiling, and giving the employee a clear, honest, plain-language answer instead of a generic privacy-notice reference.
+The team responds by first mapping the actual data flow rather than guessing, assessing obligations under the privacy laws and policies that apply to the request, involving legal or privacy specialists where appropriate, and giving the employee a clear, honest, plain-language answer instead of a generic privacy-notice reference.
