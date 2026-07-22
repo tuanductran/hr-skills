@@ -2,6 +2,8 @@
 
 ## Overview
 
+> Related example: [Redesigning the 401(k) Plan and Communicating a Provider Change](../examples/redesigning-the-401k-plan-and-communicating-a-provider-change.md).
+
 Retirement benefits are the most significant long-term financial obligation an organization takes on. They affect employee retention, recruitment competitiveness, organizational liability, and financial statements. Designing and managing retirement benefits is highly technical, regulated, and consequential.
 
 A retirement plan is not just "we put money in a savings account for you." It is a complex system involving tax treatment, vesting schedules, investment options, required disclosures, fiduciary duties, and actuarial assumptions.
