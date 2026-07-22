@@ -1,127 +1,125 @@
 # HR Skills
 
-Master library of domain-specific AI prompt skills for Human Resources professionals using Claude.ai and Claude Code.
+A comprehensive library of domain-specific Agent Skills for Human Resources professionals, designed for AI-powered HR workflows using Claude.ai, Claude Code, and other Agent Skills–compatible platforms.
 
 [![skills.sh](https://skills.sh/b/tuanductran/hr-skills)](https://skills.sh/tuanductran/hr-skills)
 
-Built by [Tuan Duc Tran](https://linkedin.com/in/tuanductran) for the **[HR/TA Job Onsite/Hybrid/Remote](https://zalo.me/g/mphdei134)** Zalo community.
+Built by [Tuan Duc Tran](https://linkedin.com/in/tuanductran) for the **HR/TA Job Onsite/Hybrid/Remote** community.
 
-Skills follow the [Agent Skills](https://agentskills.io/) open format.
+HR Skills follows the open **Agent Skills** specification and provides structured, reusable building blocks that help AI agents perform HR tasks consistently, safely, and with domain-specific expertise.
 
 ## What's Inside
 
-**146 structured Agent Skills** covering the complete employee lifecycle — 43 Full, 103 Partial, 0 Bare.
+HR Skills covers the complete employee lifecycle together with strategic HR, workforce planning, organizational effectiveness, AI adoption, and HR technology.
 
 ### Core HR Functions
 
 - Talent Acquisition & Recruiting
 - Onboarding & Offboarding
-- Performance Management & Reviews
+- Performance Management
 - Career Development & Succession Planning
-- Compensation, Benefits & Total Rewards
+- Compensation & Benefits
 - Learning & Development
-- Organizational Design & Change Management
+- Employee Experience
+- HR Business Partnering
 
-### People & Analytics
+### Strategy & Analytics
 
-- HR Analytics & Workforce Intelligence
-- Strategic Workforce Planning & Scenario Planning
-- Workforce Capability Building
-- HR Technology & Platform Integration
+- Workforce Planning
+- HR Analytics
+- Workforce Intelligence
+- Talent Intelligence
+- Skills Intelligence
+- Strategic Planning
+- Organizational Design
+- Organizational Development
+- Change & Transformation
+
+### HR Technology & AI
+
+- HR Technology
+- HR Automation
 - Prompt Engineering for HR
-- Agentic AI for HR Operations
+- Agentic AI for HR
+- AI Governance
+- AI Adoption
+- AI Evaluation
 
 ### Specialized Domains
 
-- Compliance, Labor Relations & Risk
-- HR Business Partnerships
-- Culture, Engagement & Wellbeing
+- Compliance & Labor Relations
+- Culture & Engagement
+- Wellbeing
 - Diversity, Equity & Inclusion
-- Global HR & International Expansion
-- Salary Benchmarking & Retirement Benefits
-- Software Engineering & Technical Hiring
+- Global HR
+- Technical Recruiting
+- Vietnam HR & Labor Law
 
-### Regional Expertise
-
-- Vietnam-specific HR & labor law guidance
-
-> **Skill maturity:** 43 skills are Full (SKILL.md + content + prompts + examples). 103 skills are Partial (SKILL.md + content or examples). See [skill-matrix.md](docs/skill-matrix.md) for the complete inventory.
+> **Skill maturity is continuously generated.** See [`docs/skill-matrix.md`](docs/skill-matrix.md) for the latest inventory and maturity status.
 
 ## Quick Start
 
 ### Claude Code (Recommended)
 
-**Install a single skill:**
+Install a single skill:
 
 ```bash
 cp -r skills/hr-recruiting ~/.claude/skills/
 ```
 
-**Install all skills:**
+Install the complete library:
 
 ```bash
 cp -r skills/hr-* ~/.claude/skills/
 ```
 
-Once installed, just describe your HR task — Claude Code automatically loads relevant skills.
+Once installed, simply describe your HR task. Claude Code automatically discovers and loads the most relevant skills.
 
-**Example:**
-
-```text
-Create behavioral interview questions for a Senior Product Manager.
-```
-
-### claude.ai
-
-1. Create or open a Project
-2. Go to Project knowledge → Upload `SKILL.md`
-3. Start chatting
-
-Or paste the skill content directly in chat. Combine multiple skills when working across domains.
-
-## Try It Now
-
-```bash
-cp -r skills/hr-recruiting ~/.claude/skills/
-```
-
-Then ask:
+Example:
 
 ```text
-Write 5 competency-based interview questions for a Product Manager focused on cross-functional leadership.
+Create competency-based interview questions for a Senior Product Manager.
 ```
 
-Claude will use the recruiting skill to generate structured, high-quality questions.
+### Claude.ai
 
----
+1. Create or open a Project.
+2. Upload the desired `SKILL.md` file to Project Knowledge.
+3. Start chatting.
+
+Multiple skills can be combined to support more complex HR workflows.
 
 ## Available Skills
 
-The repository includes **146 HR skills** organized by function. For the complete, up-to-date list with maturity status, see:
+The repository contains a broad collection of HR Agent Skills organized by functional domain.
+
+Key navigation documents:
 
 - **Router:** [`SKILL.md`](SKILL.md) — Master routing guide for all skills
-- **Matrix:** [`docs/skill-matrix.md`](docs/skill-matrix.md) — Full skill inventory with maturity levels (Full / Partial)
-- **Roadmap:** [`docs/ROADMAP.md`](docs/ROADMAP.md) — Long-term direction and architecture
+- **Skill Matrix:** [`docs/skill-matrix.md`](docs/skill-matrix.md) — Generated inventory and maturity status
+- **Roadmap:** [`docs/ROADMAP.md`](docs/ROADMAP.md) — Project vision, architecture, and future direction
+
+The Skill Matrix is the authoritative source for repository coverage and maturity.
 
 ## What Are Agent Skills?
 
-Agent Skills are reusable prompt libraries that extend Claude with specialized domain knowledge.
+Agent Skills are reusable prompt packages that extend AI assistants with specialized domain expertise.
 
-Each skill includes:
+Each HR Skill follows a consistent structure:
 
-- **SKILL.md** — Core definitions and usage patterns
-- **content/** — Domain frameworks and best practices
-- **prompts/** — Ready-to-use prompt templates
-- **examples/** — Real-world case studies and samples
+- **SKILL.md** — Core capability definition
+- **content/** — Domain knowledge and reference material
+- **prompts/** — Reusable prompt templates
+- **examples/** — Practical HR scenarios and example interactions
 
-Claude automatically recognizes and applies relevant skills when you describe your task.
+Together, these components provide reusable, version-controlled building blocks for HR AI workflows.
 
 ## Repository Structure
 
 ```text
 hr-skills/
-├── SKILL.md                         # Master router — start here
-├── skills/                          # 146 HR-specific skills
+├── SKILL.md                         # Master router
+├── skills/                          # Domain-specific HR Skills
 │   ├── hr-recruiting/
 │   │   ├── SKILL.md
 │   │   ├── content/
@@ -131,56 +129,58 @@ hr-skills/
 │   ├── hr-performance-management/
 │   └── ...
 ├── packages/
-│   ├── hr-skills-build/             # Validation, matrix generation & tooling
-│   └── skills-ref/                  # TypeScript library for reading skills
+│   ├── hr-skills-build/             # Validation, generation & CLI tooling
+│   └── skills-ref/                  # TypeScript Agent Skills library
 ├── docs/
-│   ├── skill-matrix.md              # Skill inventory & maturity status
-│   ├── ROADMAP.md                   # Project strategy
-│   └── format.md                    # Skill format specification
+│   ├── skill-matrix.md
+│   ├── ROADMAP.md
+│   └── ...
 └── ...
 ```
 
 ## Development
 
-This is a Bun + Turborepo workspace. All commands run from the project root.
+HR Skills is built as a Bun + Turborepo monorepo.
 
-**Core commands:**
-
-```bash
-bun install              # Install dependencies
-bun run validate         # Validate all 146 skills
-bun run matrix           # Regenerate skill maturity matrix
-bun run build            # Build packages
-```
-
-**Quality:**
+Core commands:
 
 ```bash
-bun run lint             # Lint code (Biome)
-bun run lint:md          # Lint markdown
-bun run typecheck        # Type validation
-bun run check            # Run all checks
+bun install
+bun run build
+bun run validate
+bun run matrix
 ```
 
-**Releases:**
+Quality commands:
 
 ```bash
-bun run changeset        # Create a changeset
-bun run release          # Version packages
+bun run lint
+bun run lint:md
+bun run typecheck
+bun run check
 ```
 
-For the full command list, see [`package.json`](package.json).
+Release commands:
+
+```bash
+bun run changeset
+bun run release
+```
+
+For additional scripts, see [`package.json`](package.json).
 
 ## Packages
 
-| Package | Purpose |
-|---|---|
-| `hr-skills-build` | Validation, matrix generation, metadata sync, CLI tooling |
-| `skills-ref` | TypeScript library for reading and validating skills |
+| Package           | Purpose                                                                  |
+| ----------------- | ------------------------------------------------------------------------ |
+| `hr-skills-build` | Validation, matrix generation, metadata synchronization, and CLI tooling |
+| `skills-ref`      | TypeScript library for reading, parsing, and validating Agent Skills     |
 
 ## Contributing
 
-Contributions are welcome. Before opening a PR, ensure all checks pass:
+Contributions are welcome.
+
+Before opening a pull request, ensure the repository passes validation:
 
 ```bash
 bun install
@@ -188,8 +188,8 @@ bun run validate
 bun run matrix
 ```
 
-Follow [Conventional Commits](https://www.conventionalcommits.org/) for all commit messages.
+Follow the Conventional Commits specification for commit messages.
 
 ## License
 
-[MIT](./LICENSE) License © 2026-PRESENT [Tuan Duc Tran](https://github.com/tuanductran)
+MIT License © 2026–Present Tuan Duc Tran
