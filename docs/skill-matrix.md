@@ -6,8 +6,8 @@
 
 | Tier | Count | % |
 |---|---:|---:|
-| 🟢 Full (SKILL.md + content + prompts + examples) | 100 | 68% |
-| 🟡 Partial (SKILL.md + some optional dirs) | 46 | 32% |
+| 🟢 Full (SKILL.md + content + prompts + examples) | 108 | 74% |
+| 🟡 Partial (SKILL.md + some optional dirs) | 38 | 26% |
 | 🔴 Bare (SKILL.md only) | 0 | 0% |
 | **Total** | **146** | 100% |
 
@@ -92,16 +92,16 @@
 | `hr-ma-integration-by-country` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
 | `hr-manager-effectiveness` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
 | `hr-market-mapping` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
-| `hr-mergers-acquisitions` | 🟡 Partial | ✅ | — | — | 2 | 1.0.0 |
+| `hr-mergers-acquisitions` | 🟢 Full | ✅ | ✅ | ✅ | 2 | 1.0.0 |
 | `hr-mobile` | 🟡 Partial | ✅ | — | ✅ | 1 | 1.0.0 |
 | `hr-offboarding` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-offer-management` | 🟢 Full | ✅ | ✅ | ✅ | 2 | 1.0.0 |
 | `hr-onboarding` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
-| `hr-operating-model` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
-| `hr-organization-effectiveness` | 🟡 Partial | ✅ | — | — | 2 | 1.0.0 |
-| `hr-organization-network-analysis` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
-| `hr-organizational-design` | 🟡 Partial | ✅ | — | — | 2 | 1.0.0 |
-| `hr-organizational-development` | 🟡 Partial | ✅ | — | ✅ | 1 | 1.0.0 |
+| `hr-operating-model` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
+| `hr-organization-effectiveness` | 🟢 Full | ✅ | ✅ | ✅ | 2 | 1.0.0 |
+| `hr-organization-network-analysis` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
+| `hr-organizational-design` | 🟢 Full | ✅ | ✅ | ✅ | 2 | 1.0.0 |
+| `hr-organizational-development` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-passive-candidate-engagement` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
 | `hr-payroll` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-people-budgeting` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
@@ -110,7 +110,7 @@
 | `hr-performance-management` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-performance-review` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-policy-management` | 🟡 Partial | ✅ | — | — | 2 | 1.0.0 |
-| `hr-post-merger-integration` | 🟡 Partial | ✅ | — | — | 2 | 1.0.0 |
+| `hr-post-merger-integration` | 🟢 Full | ✅ | ✅ | ✅ | 2 | 1.0.0 |
 | `hr-predictive-analytics` | 🟢 Full | ✅ | ✅ | ✅ | 2 | 1.0.0 |
 | `hr-product-management` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-project-management` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
@@ -134,7 +134,7 @@
 | `hr-skills-taxonomy` | 🟡 Partial | ✅ | — | ✅ | 1 | 1.0.0 |
 | `hr-social-recruiting` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-software-architecture` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
-| `hr-strategic-planning` | 🟡 Partial | ✅ | — | — | 2 | 1.0.0 |
+| `hr-strategic-planning` | 🟢 Full | ✅ | ✅ | ✅ | 2 | 1.0.0 |
 | `hr-strategic-workforce-planning` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-succession-planning` | 🟡 Partial | ✅ | — | ✅ | 1 | 1.0.0 |
 | `hr-system-design` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
