@@ -38,7 +38,6 @@ For active implementation tasks, milestones, and execution tracking:
 ### Building a Structured HR Agent Skill Ecosystem
 
 HR Skills aims to become a comprehensive, versioned knowledge infrastructure for AI-powered Human Resources workflows.
-
 The project follows the principle:
 
 > **Content is code.**
@@ -223,11 +222,40 @@ docs/skill-matrix.md
 
 Future direction:
 
-* Better skill routing
-* More advanced AI workflows
-* Agent collaboration patterns
-* HR-specific reasoning frameworks
-* Evaluation datasets
+#### 4.1 Skill Intelligence
+
+* Capability registry
+* Search index for skills and domains
+* Relationship mapping between skills
+* Skill dependency graph
+* Related-skill recommendations
+* Alias and tag-based routing
+
+#### 4.2 Agent Runtime
+
+* Intent classification
+* Skill routing
+* Context assembly
+* Multi-skill planning
+* Workflow execution
+* Prompt composition across skills
+
+#### 4.3 Quality Evaluation
+
+* Golden test suite
+* Regression testing
+* Prompt evaluation
+* Output benchmarking
+* Continuous quality metrics
+* Failure-case tracking
+
+#### 4.4 Ecosystem Integration
+
+* Multi-model support
+* MCP compatibility where applicable
+* Marketplace metadata readiness
+* Runtime APIs for skill discovery
+* Stable compatibility across agent surfaces
 
 ---
 
