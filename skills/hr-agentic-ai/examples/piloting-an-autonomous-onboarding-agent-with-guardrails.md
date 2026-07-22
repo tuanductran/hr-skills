@@ -1,4 +1,4 @@
-# Piloting an Autonomous Onboarding Agent With Guardrails
+# Pilot an autonomous onboarding agent with guardrails
 
 ## Context
 
