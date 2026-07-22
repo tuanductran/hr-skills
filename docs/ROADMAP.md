@@ -125,7 +125,6 @@ hr-skills/
 └── docs/
     ├── ROADMAP.md
     ├── skill-matrix.md
-    └── engineering/
 ```
 
 ---
@@ -426,4 +425,4 @@ Potential directions:
 
 ---
 
-Last updated: July 22, 2026
+Last updated: July 23, 2026
