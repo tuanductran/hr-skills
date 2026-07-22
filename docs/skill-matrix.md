@@ -1,13 +1,13 @@
 # HR Skills — Skill Matrix
 
-> Auto-generated on 2026-07-21 by `bun run matrix`. Do not edit manually.
+> Auto-generated on 2026-07-22 by `bun run matrix`. Do not edit manually.
 
 ## Summary
 
 | Tier | Count | % |
 |---|---:|---:|
-| 🟢 Full (SKILL.md + content + prompts + examples) | 75 | 51% |
-| 🟡 Partial (SKILL.md + some optional dirs) | 71 | 49% |
+| 🟢 Full (SKILL.md + content + prompts + examples) | 84 | 58% |
+| 🟡 Partial (SKILL.md + some optional dirs) | 62 | 42% |
 | 🔴 Bare (SKILL.md only) | 0 | 0% |
 | **Total** | **146** | 100% |
 
@@ -16,18 +16,18 @@
 | Skill | Tier | content/ | prompts/ | examples/ | Content files | Version |
 |---|---|:---:|:---:|:---:|---:|---|
 | `hr-accessibility-accommodation` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
-| `hr-agentic-ai` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
+| `hr-agentic-ai` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-ai` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
-| `hr-ai-adoption` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
-| `hr-ai-change-management` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
-| `hr-ai-ethics` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
-| `hr-ai-evaluation` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
+| `hr-ai-adoption` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
+| `hr-ai-change-management` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
+| `hr-ai-ethics` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
+| `hr-ai-evaluation` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-ai-governance` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
-| `hr-ai-privacy` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
+| `hr-ai-privacy` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-analytics` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-ar-vr` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-audit` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
-| `hr-automation` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
+| `hr-automation` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-backend` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-blockchain` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-business-partner` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
@@ -37,7 +37,7 @@
 | `hr-career-development` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
 | `hr-change-communication` | 🟡 Partial | ✅ | — | — | 2 | 1.0.0 |
 | `hr-change-management` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
-| `hr-chatbot-design` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
+| `hr-chatbot-design` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-cloud` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-coaching-mentoring` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
 | `hr-compensation-benefits` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
@@ -70,7 +70,7 @@
 | `hr-fullstack` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-future-of-work` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-game-development` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
-| `hr-genai` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
+| `hr-genai` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-global-expansion` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
 | `hr-global-hr` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
 | `hr-hr-coordination` | 🟡 Partial | ✅ | — | — | 1 | 1.0.0 |
