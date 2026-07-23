@@ -25,6 +25,7 @@
 		"validate": "bun src/validate.ts",
 		"sync": "bun src/sync.ts",
 		"matrix": "bun src/generate-skill-matrix.ts",
+		"registry": "bun src/generate-registry.ts",
 		"test": "bun test",
 		"dev": "bun --watch src/validate.ts",
 		"typecheck": "tsc --noEmit"

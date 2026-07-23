@@ -72,6 +72,7 @@ bun install          # Install all dependencies (run once, or after package chan
 bun run sync         # Sync generated skill references after adding/removing a skill
 bun run validate     # Validate all skill SKILL.md files
 bun run matrix       # Generate docs/skill-matrix.md — snapshot of every skill's maturity tier
+bun run registry     # Generate registry/skills.json — machine-readable skill registry (see docs/registry.md)
 bun run test         # Run tests across workspace packages
 bun run typecheck    # Run type-checking across workspace packages
 bun run build        # Run all workspace build tasks through Turborepo
@@ -101,6 +102,8 @@ When you add a new skill directory (for example `skills/hr-new-skill/SKILL.md`),
 | `skills/hr-*/examples/` | Optional practical end-to-end HR workflows and business scenarios |
 | `docs/` | Skill format specification and generated reports |
 | `docs/skill-matrix.md` | Generated skill maturity snapshot — do not edit manually, run `bun run matrix` |
+| `docs/registry.md` | Skill Registry architecture, schema, and extension guide |
+| `registry/skills.json` | Generated machine-readable skill registry — do not edit manually, run `bun run registry` |
 | `.claude-plugin/marketplace.json` | Generated marketplace metadata synced from skill frontmatter |
 | `packages/hr-skills-build` | Build and maintenance tooling for validation, sync, and packaging support |
 | `packages/skills-ref` | TypeScript library for reading, validating, and generating prompts from skill files |

@@ -31,3 +31,12 @@ export const MIN_DESCRIPTION_LENGTH = 50;
 export const MIN_CONTENT_LENGTH = 1000;
 
 export const TIPS_REGEX = /## Tips\r?\n\r?\n([\s\S]*?)(?=\r?\n##|$)/;
+
+/**
+ * Matches markdown links to skills, e.g. `[hr-recruiting](skills/hr-recruiting)`.
+ * Shared by router consistency validation and registry dependency extraction
+ * (CATEGORY_META.preamble in classifier.ts) so both stay in sync.
+ */
+export const SKILL_LINK_REGEX = /\[hr-[a-z0-9-]+\]\(skills\/(hr-[a-z0-9-]+)\)/g;
+
+export const REGISTRY_SCHEMA_VERSION = 1;

@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   matrix:
-    name: Generate Skill Matrix
+    name: Generate Skill Matrix and Registry
     runs-on: ubuntu-latest
 
     steps:
@@ -36,10 +36,13 @@ jobs:
       - name: Generate skill matrix
         run: bun run matrix
 
-      - name: Commit updated skill matrix
+      - name: Generate skill registry
+        run: bun run registry
+
+      - name: Commit updated skill matrix and registry
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add docs/skill-matrix.md
-          git diff --cached --quiet || git commit -m "chore(docs): regenerate skill-matrix.md [skip ci]"
+          git add docs/skill-matrix.md registry/skills.json
+          git diff --cached --quiet || git commit -m "chore(docs): regenerate skill-matrix.md and registry/skills.json [skip ci]"
           git push

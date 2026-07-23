@@ -214,6 +214,9 @@ Focus:
 
 Build the machine-readable foundation for the skill ecosystem.
 
+> Implemented — see [docs/registry.md](registry.md) for the architecture,
+> schema, generation (`bun run registry`), and validation details.
+
 * Registry schema
 * Registry generator
 * Capability registry

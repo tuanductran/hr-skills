@@ -29,6 +29,10 @@
 		"matrix": {
 			"cache": false,
 			"outputs": ["docs/skill-matrix.md"]
+		},
+		"registry": {
+			"cache": false,
+			"outputs": ["registry/skills.json"]
 		}
 	}
 }
