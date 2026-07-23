@@ -372,15 +372,14 @@ describe('validateSuspiciousUrls()', () => {
 	// --- requestbin keyword -------------------------------------------------
 
 	describe('requestbin keyword', () => {
-		it.each([
-			'requestbin',
-			'REQUESTBIN',
-			'Use RequestBin to inspect requests.',
-		])('flags text containing "%s"', (text) => {
-			const errs = run(text);
-			expect(errs).toHaveLength(1);
-			expect(errs[0]?.message).toContain('requestbin');
-		});
+		it.each(['requestbin', 'REQUESTBIN', 'Use RequestBin to inspect requests.'])(
+			'flags text containing "%s"',
+			(text) => {
+				const errs = run(text);
+				expect(errs).toHaveLength(1);
+				expect(errs[0]?.message).toContain('requestbin');
+			},
+		);
 	});
 
 	// --- path/query/fragment bypass attempts --------------------------------
@@ -415,16 +414,12 @@ describe('validateSuspiciousUrls()', () => {
 	// --- malformed URLs — must not throw ------------------------------------
 
 	describe('malformed URLs', () => {
-		it.each([
-			'http://',
-			'https://',
-			'https:///foo',
-			'https://[]',
-			'not a url',
-			'',
-		])('does not throw for: "%s"', (url) => {
-			expect(() => run(url)).not.toThrow();
-		});
+		it.each(['http://', 'https://', 'https:///foo', 'https://[]', 'not a url', ''])(
+			'does not throw for: "%s"',
+			(url) => {
+				expect(() => run(url)).not.toThrow();
+			},
+		);
 	});
 });
 
