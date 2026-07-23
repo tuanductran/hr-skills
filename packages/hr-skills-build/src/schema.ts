@@ -46,7 +46,7 @@ const SKILL_CATEGORIES = [
 	'uncategorized',
 ] as const;
 
-export const RegistryEntrySchema = v.object({
+const RegistryEntrySchema = v.object({
 	id: v.pipe(v.string(), v.minLength(1)),
 	name: v.pipe(v.string(), v.minLength(1)),
 	version: v.string(),
@@ -72,6 +72,3 @@ export const RegistrySchema = v.object({
 	skillCount: v.number(),
 	skills: v.array(RegistryEntrySchema),
 });
-
-export type RegistryEntryParsed = v.InferOutput<typeof RegistryEntrySchema>;
-export type RegistryParsed = v.InferOutput<typeof RegistrySchema>;
