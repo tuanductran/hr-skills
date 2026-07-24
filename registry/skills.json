@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-23",
+  "generatedAt": "2026-07-24",
   "skillCount": 146,
   "skills": [
     {
@@ -1457,6 +1457,52 @@
       ]
     },
     {
+      "id": "hr-coordination",
+      "name": "hr-coordination",
+      "version": "1.0.0",
+      "description": "Help HR coordinators, HR generalists, and People Ops teams manage day-to-day HR coordination tasks including scheduling, onboarding logistics, HR administration, cross-team coordination, and HR project support. Use when asked to \"coordinate HR activities\", \"manage HR logistics\", \"support HR projects\", \"schedule HR programs\", or \"handle HR admin tasks\".",
+      "tier": "full",
+      "domain": "onboarding-offboarding",
+      "tags": [],
+      "aliases": [
+        "coordination"
+      ],
+      "capabilities": [
+        "Coordinating interview scheduling and candidate logistics",
+        "Managing onboarding and offboarding logistics and checklists",
+        "Supporting HR projects and initiative coordination",
+        "Tracking HR program calendars and event logistics",
+        "Coordinating cross-functional HR activities across departments",
+        "Maintaining HR documentation, templates, and process guides",
+        "Managing HR data entry, reporting, and record-keeping",
+        "Supporting benefits enrollment and HR inquiry management",
+        "Coordinating performance review cycles and logistics",
+        "Managing HR vendor and service provider coordination",
+        "Drafting HR communications and announcements",
+        "Coordinating HR compliance activities and training logistics"
+      ],
+      "triggerPhrases": [
+        "Build an interview coordination checklist for [role] covering scheduling, logistics, and candidate communications.",
+        "Write a candidate-facing email confirming an interview schedule for [role] including all logistics details.",
+        "Design a hiring coordinator workflow that manages [number] interviews per week with minimal errors.",
+        "How do we streamline interview scheduling across multiple time zones for [location / remote roles]?",
+        "Write a hiring manager preparation guide that ensures panels are ready before each interview."
+      ],
+      "paths": {
+        "content": true,
+        "prompts": true,
+        "examples": true
+      },
+      "dependencies": [],
+      "relatedSkills": [
+        "hr-employee-lifecycle",
+        "hr-employee-self-service",
+        "hr-management",
+        "hr-offboarding",
+        "hr-onboarding"
+      ]
+    },
+    {
       "id": "hr-crisis-management",
       "name": "hr-crisis-management",
       "version": "1.0.0",
@@ -2101,9 +2147,9 @@
       },
       "dependencies": [],
       "relatedSkills": [
+        "hr-coordination",
         "hr-employee-self-service",
-        "hr-hr-coordination",
-        "hr-hr-management",
+        "hr-management",
         "hr-offboarding",
         "hr-onboarding"
       ]
@@ -2236,9 +2282,9 @@
       },
       "dependencies": [],
       "relatedSkills": [
+        "hr-coordination",
         "hr-employee-lifecycle",
-        "hr-hr-coordination",
-        "hr-hr-management",
+        "hr-management",
         "hr-offboarding",
         "hr-onboarding"
       ]
@@ -2713,98 +2759,6 @@
         "hr-global-expansion",
         "hr-project-management",
         "hr-vietnam-context"
-      ]
-    },
-    {
-      "id": "hr-hr-coordination",
-      "name": "hr-hr-coordination",
-      "version": "1.0.0",
-      "description": "Help HR coordinators, HR generalists, and People Ops teams manage day-to-day HR coordination tasks including scheduling, onboarding logistics, HR administration, cross-team coordination, and HR project support. Use when asked to \"coordinate HR activities\", \"manage HR logistics\", \"support HR projects\", \"schedule HR programs\", or \"handle HR admin tasks\".",
-      "tier": "full",
-      "domain": "onboarding-offboarding",
-      "tags": [],
-      "aliases": [
-        "hr-coordination"
-      ],
-      "capabilities": [
-        "Coordinating interview scheduling and candidate logistics",
-        "Managing onboarding and offboarding logistics and checklists",
-        "Supporting HR projects and initiative coordination",
-        "Tracking HR program calendars and event logistics",
-        "Coordinating cross-functional HR activities across departments",
-        "Maintaining HR documentation, templates, and process guides",
-        "Managing HR data entry, reporting, and record-keeping",
-        "Supporting benefits enrollment and HR inquiry management",
-        "Coordinating performance review cycles and logistics",
-        "Managing HR vendor and service provider coordination",
-        "Drafting HR communications and announcements",
-        "Coordinating HR compliance activities and training logistics"
-      ],
-      "triggerPhrases": [
-        "Build an interview coordination checklist for [role] covering scheduling, logistics, and candidate communications.",
-        "Write a candidate-facing email confirming an interview schedule for [role] including all logistics details.",
-        "Design a hiring coordinator workflow that manages [number] interviews per week with minimal errors.",
-        "How do we streamline interview scheduling across multiple time zones for [location / remote roles]?",
-        "Write a hiring manager preparation guide that ensures panels are ready before each interview."
-      ],
-      "paths": {
-        "content": true,
-        "prompts": true,
-        "examples": true
-      },
-      "dependencies": [],
-      "relatedSkills": [
-        "hr-employee-lifecycle",
-        "hr-employee-self-service",
-        "hr-hr-management",
-        "hr-offboarding",
-        "hr-onboarding"
-      ]
-    },
-    {
-      "id": "hr-hr-management",
-      "name": "hr-hr-management",
-      "version": "1.0.0",
-      "description": "Help HR directors, HRBPs, and People leaders manage the HR function effectively, including HR team leadership, HR department planning, budgeting, governance, performance management for HR teams, and building HR function credibility. Use when asked to \"manage the HR team\", \"build the HR department\", \"set HR team goals\", \"plan the HR budget\", \"improve HR function effectiveness\", or \"lead the HR organization\".",
-      "tier": "full",
-      "domain": "onboarding-offboarding",
-      "tags": [],
-      "aliases": [
-        "hr-management"
-      ],
-      "capabilities": [
-        "Setting HR function strategy, goals, and OKRs",
-        "Managing HR department budgets and resource allocation",
-        "Designing HR team structures and role definitions",
-        "Building HR team capability and professional development plans",
-        "Establishing HR governance and decision-making frameworks",
-        "Managing HR vendor and partner relationships",
-        "Measuring HR function effectiveness and value delivery",
-        "Managing HR team performance, feedback, and career development",
-        "Building HR function credibility and business partnership",
-        "Designing HR communication and reporting to leadership",
-        "Running HR team planning and retrospectives",
-        "Building HR function resilience and succession"
-      ],
-      "triggerPhrases": [
-        "Define strategic priorities for the HR function at [company] aligned to [business strategy].",
-        "Write OKRs for the HR team for [quarter / year] that connect to [company's] growth goals.",
-        "How should the HR function evolve as [company] scales from [current stage] to [next stage]?",
-        "What are the highest-usee activities the HR function should focus on to create business value?",
-        "Design an HR function scorecard that measures effectiveness across all HR domains."
-      ],
-      "paths": {
-        "content": true,
-        "prompts": true,
-        "examples": true
-      },
-      "dependencies": [],
-      "relatedSkills": [
-        "hr-employee-lifecycle",
-        "hr-employee-self-service",
-        "hr-hr-coordination",
-        "hr-offboarding",
-        "hr-onboarding"
       ]
     },
     {
@@ -3494,6 +3448,52 @@
       ]
     },
     {
+      "id": "hr-management",
+      "name": "hr-management",
+      "version": "1.0.0",
+      "description": "Help HR directors, HRBPs, and People leaders manage the HR function effectively, including HR team leadership, HR department planning, budgeting, governance, performance management for HR teams, and building HR function credibility. Use when asked to \"manage the HR team\", \"build the HR department\", \"set HR team goals\", \"plan the HR budget\", \"improve HR function effectiveness\", or \"lead the HR organization\".",
+      "tier": "full",
+      "domain": "onboarding-offboarding",
+      "tags": [],
+      "aliases": [
+        "management"
+      ],
+      "capabilities": [
+        "Setting HR function strategy, goals, and OKRs",
+        "Managing HR department budgets and resource allocation",
+        "Designing HR team structures and role definitions",
+        "Building HR team capability and professional development plans",
+        "Establishing HR governance and decision-making frameworks",
+        "Managing HR vendor and partner relationships",
+        "Measuring HR function effectiveness and value delivery",
+        "Managing HR team performance, feedback, and career development",
+        "Building HR function credibility and business partnership",
+        "Designing HR communication and reporting to leadership",
+        "Running HR team planning and retrospectives",
+        "Building HR function resilience and succession"
+      ],
+      "triggerPhrases": [
+        "Define strategic priorities for the HR function at [company] aligned to [business strategy].",
+        "Write OKRs for the HR team for [quarter / year] that connect to [company's] growth goals.",
+        "How should the HR function evolve as [company] scales from [current stage] to [next stage]?",
+        "What are the highest-usee activities the HR function should focus on to create business value?",
+        "Design an HR function scorecard that measures effectiveness across all HR domains."
+      ],
+      "paths": {
+        "content": true,
+        "prompts": true,
+        "examples": true
+      },
+      "dependencies": [],
+      "relatedSkills": [
+        "hr-coordination",
+        "hr-employee-lifecycle",
+        "hr-employee-self-service",
+        "hr-offboarding",
+        "hr-onboarding"
+      ]
+    },
+    {
       "id": "hr-manager-effectiveness",
       "name": "hr-manager-effectiveness",
       "version": "1.0.0",
@@ -3720,10 +3720,10 @@
       },
       "dependencies": [],
       "relatedSkills": [
+        "hr-coordination",
         "hr-employee-lifecycle",
         "hr-employee-self-service",
-        "hr-hr-coordination",
-        "hr-hr-management",
+        "hr-management",
         "hr-onboarding"
       ]
     },
@@ -3810,10 +3810,10 @@
       },
       "dependencies": [],
       "relatedSkills": [
+        "hr-coordination",
         "hr-employee-lifecycle",
         "hr-employee-self-service",
-        "hr-hr-coordination",
-        "hr-hr-management",
+        "hr-management",
         "hr-offboarding"
       ]
     },
@@ -3855,10 +3855,10 @@
       },
       "dependencies": [],
       "relatedSkills": [
+        "hr-coordination",
         "hr-employee-lifecycle",
         "hr-employee-self-service",
-        "hr-hr-coordination",
-        "hr-hr-management",
+        "hr-management",
         "hr-offboarding"
       ]
     },
@@ -4262,10 +4262,10 @@
       },
       "dependencies": [],
       "relatedSkills": [
+        "hr-coordination",
         "hr-employee-lifecycle",
         "hr-employee-self-service",
-        "hr-hr-coordination",
-        "hr-hr-management",
+        "hr-management",
         "hr-offboarding"
       ]
     },
@@ -5236,10 +5236,10 @@
       },
       "dependencies": [],
       "relatedSkills": [
+        "hr-coordination",
         "hr-employee-lifecycle",
         "hr-employee-self-service",
-        "hr-hr-coordination",
-        "hr-hr-management",
+        "hr-management",
         "hr-offboarding"
       ]
     },
@@ -5282,10 +5282,10 @@
       },
       "dependencies": [],
       "relatedSkills": [
+        "hr-coordination",
         "hr-employee-lifecycle",
         "hr-employee-self-service",
-        "hr-hr-coordination",
-        "hr-hr-management",
+        "hr-management",
         "hr-offboarding"
       ]
     },
@@ -6299,10 +6299,10 @@
       },
       "dependencies": [],
       "relatedSkills": [
+        "hr-coordination",
         "hr-employee-lifecycle",
         "hr-employee-self-service",
-        "hr-hr-coordination",
-        "hr-hr-management",
+        "hr-management",
         "hr-offboarding"
       ]
     },

@@ -1,5 +1,5 @@
 ---
-name: hr-hr-coordination
+name: hr-coordination
 description: Help HR coordinators, HR generalists, and People Ops teams manage day-to-day HR coordination tasks including scheduling, onboarding logistics, HR administration, cross-team coordination, and HR project support. Use when asked to "coordinate HR activities", "manage HR logistics", "support HR projects", "schedule HR programs", or "handle HR admin tasks".
 metadata:
   author: Tuan Duc Tran
