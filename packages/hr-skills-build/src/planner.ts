@@ -143,7 +143,7 @@ function matchCapabilityAgainstRegistry(
 		);
 		const maxPartialScore = Math.max(...partialScores);
 
-		if (maxPartialScore > 0.3) {
+		if (maxPartialScore >= 0.2) {
 			matches.push({
 				skillId: entry.id,
 				matchType: 'partial',

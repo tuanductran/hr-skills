@@ -73,10 +73,10 @@ describe('analyzeIntent', () => {
 
 	it('should filter out filler words', () => {
 		const result = analyzeIntent('create an onboarding plan for the company');
-		const joined = result.join(' ');
-		expect(joined).not.toContain('an');
-		expect(joined).not.toContain('the');
-		expect(joined).not.toContain('for');
+		const joined = ` ${result.join(' ')} `;
+		expect(joined).not.toContain(' an ');
+		expect(joined).not.toContain(' the ');
+		expect(joined).not.toContain(' for ');
 	});
 });
 
