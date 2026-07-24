@@ -8,8 +8,15 @@ import { writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
 import { ROOT_DIR, SKILLS_DIR } from './constants.js';
-import { countFiles, discoverSkills, readSkill, tierIcon, tierLabel } from './helpers.js';
-import type { SkillRow, Tier } from './types.js';
+import {
+	computeTier,
+	countFiles,
+	discoverSkills,
+	readSkill,
+	tierIcon,
+	tierLabel,
+} from './helpers.js';
+import type { SkillRow } from './types.js';
 
 // ---------------------------------------------------------------------------
 // Main
@@ -30,11 +37,7 @@ async function generateSkillMatrix(): Promise<void> {
 			const hasPrompts = promptsFiles > 0;
 			const hasExamples = examplesFiles > 0;
 
-			const subDirCount = [hasContent, hasPrompts, hasExamples].filter(
-				Boolean,
-			).length;
-			const tier: Tier =
-				subDirCount === 0 ? 'bare' : subDirCount === 3 ? 'full' : 'partial';
+			const tier = computeTier(hasContent, hasPrompts, hasExamples);
 
 			return {
 				name,

@@ -29,6 +29,18 @@
 		"matrix": {
 			"cache": false,
 			"outputs": ["docs/skill-matrix.md"]
+		},
+		"registry": {
+			"cache": false,
+			"outputs": ["registry/skills.json"]
+		},
+		"plan": {
+			"cache": false,
+			"outputs": ["execution-plan.json"]
+		},
+		"evaluate": {
+			"cache": false,
+			"outputs": ["eval-report.json"]
 		}
 	}
 }

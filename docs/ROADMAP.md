@@ -206,13 +206,14 @@ Completed:
 
 ### Phase 4 — AI Agent Foundation
 
-Current phase.
-
-Focus:
+Completed.
 
 #### 4.1 Skill Registry
 
 Build the machine-readable foundation for the skill ecosystem.
+
+> Implemented — see [docs/registry.md](registry.md) for the architecture,
+> schema, generation (`bun run registry`), and validation details.
 
 * Registry schema
 * Registry generator
@@ -229,38 +230,69 @@ Build the machine-readable foundation for the skill ecosystem.
 
 Build a deterministic planning layer that composes workflows from the Skill Registry.
 
-* Intent analysis
-* Capability matching
-* Skill selection
-* Workflow planning
-* Dependency-aware execution planning
-* Context propagation model
-* Explainable execution plans
+Completed:
+
+* Intent analysis — deterministic capability extraction from natural language
+* Capability matching — token-based similarity scoring against skill capabilities
+* Skill selection — recursive dependency and related-skill addition
+* Workflow planning — ordered execution plans
+* Dependency-aware execution planning — topological sort (Kahn's algorithm)
+* Context propagation model — foundation for runtime input/output threading
+* Explainable execution plans — every decision includes reasoning
+* Plan validation — detect and report common issues (circular deps, dangling refs, order violations)
+* CLI tool (`bun run plan`) — generate and validate plans from user intent
+* Comprehensive documentation and tests
+
+See [`docs/planner.md`](planner.md) for detailed architecture and usage.
 
 #### 4.3 Workflow Runtime
 
 Build a deterministic runtime responsible for executing workflow plans.
 
-* Execution engine
-* Workflow state management
-* Context propagation
-* Retry and failure handling
-* Execution events
-* Execution tracing
-* Deterministic workflow execution
+> Implemented — see [docs/runtime.md](runtime.md) for the architecture,
+> execution lifecycle, and extension points.
+
+Completed:
+
+* Execution engine (`WorkflowExecutor` / `executeWorkflow`) — consumes Planner
+  output directly, executes steps in plan order
+* Workflow state management — pending/running/completed/failed/skipped
+  tracking via `RuntimeStateTracker`
+* Context propagation — explicit `RuntimeContext` threading step outputs
+  between steps
+* Retry handling — pluggable `RetryPolicy` (`noRetryPolicy`,
+  `fixedRetryPolicy`, `exponentialRetryPolicy`), deterministic (no real
+  waiting)
+* Failure handling — structured, JSON-serializable `RuntimeError`;
+  dependency-aware skipping of downstream steps
+* Execution events — `EventDispatcher` with a logical clock for deterministic
+  event ordering
+* Execution tracing — `TraceCollector` pairing each event with a state
+  snapshot
+* CLI tool (`bun run execute`) — generate a plan and run it through the
+  Runtime with a stub step executor
+* Comprehensive documentation and tests
 
 #### 4.4 Quality & Evaluation
 
 Ensure the reliability and correctness of the skill ecosystem.
 
-* Golden test suite
-* Regression testing
-* Planner evaluation
-* Workflow evaluation
-* Output benchmarking
-* Registry validation
-* Continuous quality metrics
-* Failure-case tracking
+> Implemented — see [docs/evaluation.md](evaluation.md) for the architecture,
+> dataset format, golden fixtures, and how to add new evaluation cases.
+
+Completed:
+
+* Evaluation datasets — representative planning scenarios (`eval/datasets/`)
+* Golden fixtures — committed expected planner/workflow outcomes (`eval/golden/`)
+* Benchmark runner — executes datasets against the real Skill Registry and
+  produces deterministic summaries
+* Quality metrics — capability matching accuracy, skill selection accuracy,
+  execution ordering accuracy, dependency correctness, workflow success rate
+* Regression detection — field-level diff against golden fixtures, reported
+  per case
+* CLI tool (`bun run evaluate`) — run the full evaluation, or
+  `--update-golden` to regenerate fixtures
+* Comprehensive documentation and tests
 
 ---
 
@@ -442,4 +474,4 @@ Potential directions:
 
 ---
 
-Last updated: July 23, 2026
+Last updated: July 24, 2026

@@ -11,6 +11,7 @@ import {
 	QUOTED_PROMPT_REGEX,
 	REQUIRED_SECTIONS,
 	ROOT_DIR,
+	SKILL_LINK_REGEX,
 	SKILLS_DIR,
 	TASKS_REGEX,
 	TIPS_REGEX,
@@ -32,6 +33,7 @@ import {
 	validateSuspiciousUrls,
 } from './security.js';
 import type { SkillValidationIssue } from './types.js';
+import { validateRegistryConsistency } from './validate-registry.js';
 
 /**
  * Validate the core of a skill.
@@ -326,8 +328,7 @@ export async function validateRouterConsistency(
 	try {
 		const routerContent = await readFile(routerPath, 'utf8');
 		// Extract skill slugs from markdown links: [hr-skill-name](skills/hr-skill-name)
-		const linkPattern = /\[hr-[a-z0-9-]+\]\(skills\/(hr-[a-z0-9-]+)\)/g;
-		for (const match of routerContent.matchAll(linkPattern)) {
+		for (const match of routerContent.matchAll(SKILL_LINK_REGEX)) {
 			if (match[1]) routerNames.push(match[1]);
 		}
 	} catch {
@@ -455,6 +456,7 @@ async function validate(): Promise<void> {
 	const allErrors: SkillValidationIssue[] = [];
 
 	await validateRouterConsistency(skillNames, allErrors);
+	await validateRegistryConsistency(allErrors);
 
 	for (const skillName of skillNames) {
 		const errors = await validateSkill(skillName);

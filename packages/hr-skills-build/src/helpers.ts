@@ -111,6 +111,23 @@ export async function countFiles(dirPath: string): Promise<number> {
 }
 
 /**
+ * Compute a skill's maturity tier from its subdirectory presence.
+ *
+ * Single source of truth for tier classification — used by both
+ * generate-skill-matrix.ts and generate-registry.ts so the matrix and the
+ * registry can never disagree about a skill's tier.
+ */
+export function computeTier(
+	hasContent: boolean,
+	hasPrompts: boolean,
+	hasExamples: boolean,
+): Tier {
+	const subDirCount = [hasContent, hasPrompts, hasExamples].filter(Boolean).length;
+
+	return subDirCount === 0 ? 'bare' : subDirCount === 3 ? 'full' : 'partial';
+}
+
+/**
  * Return the emoji icon for a skill tier.
  */
 export function tierIcon(tier: Tier): string {

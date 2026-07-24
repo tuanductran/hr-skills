@@ -1,0 +1,54 @@
+{
+	"name": "planning-scenarios",
+	"description": "Representative user intents spanning the core HR domains, used to evaluate the Skill Planner's capability matching, skill selection, and execution ordering, and the Workflow Runtime's execution behavior.",
+	"cases": [
+		{
+			"id": "recruiting-interview-questions",
+			"description": "A single, narrow recruiting request that should match a small, focused plan.",
+			"intent": "create interview questions for a senior manager",
+			"category": "recruiting"
+		},
+		{
+			"id": "onboarding-program-checklist",
+			"description": "An onboarding request combining two related capabilities.",
+			"intent": "design an onboarding program and checklist",
+			"category": "onboarding-offboarding"
+		},
+		{
+			"id": "compensation-benefits-strategy",
+			"description": "A compensation request combining strategy and benefits capabilities.",
+			"intent": "develop a compensation strategy and benefits package",
+			"category": "total-rewards"
+		},
+		{
+			"id": "performance-review-pip",
+			"description": "A performance-management request combining a review cycle and a PIP.",
+			"intent": "write a performance review and a performance improvement plan",
+			"category": "performance-management"
+		},
+		{
+			"id": "learning-development-plan",
+			"description": "A learning and development request for a career growth plan.",
+			"intent": "build a learning and development plan for career growth",
+			"category": "learning-development"
+		},
+		{
+			"id": "succession-talent-development",
+			"description": "A multi-capability request spanning succession planning and talent development.",
+			"intent": "help with succession planning and talent development",
+			"category": "talent-management"
+		},
+		{
+			"id": "offboarding-exit-process",
+			"description": "An offboarding request for exit process documentation.",
+			"intent": "create an employee offboarding and exit interview process",
+			"category": "onboarding-offboarding"
+		},
+		{
+			"id": "unmatched-generic-request",
+			"description": "A deliberately vague, non-HR request with no expected capability match — exercises the unmatched-capability path.",
+			"intent": "xyzzy plugh quux",
+			"category": "unmatched"
+		}
+	]
+}
