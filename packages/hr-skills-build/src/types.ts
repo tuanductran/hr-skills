@@ -184,3 +184,176 @@ export interface PlanValidationResult {
 	isValid: boolean;
 	issues: PlanValidationIssue[];
 }
+
+// ---------------------------------------------------------------------------
+// Workflow runtime types
+// ---------------------------------------------------------------------------
+
+/**
+ * Lifecycle status of a single execution step within the runtime.
+ *
+ * `pending` -> `running` -> (`completed` | `failed` | `skipped`)
+ */
+export type StepStatus = 'pending' | 'running' | 'completed' | 'failed' | 'skipped';
+
+/**
+ * A snapshot of the runtime's execution state at a point in time.
+ *
+ * Skill IDs move between these buckets as execution proceeds. A skill ID
+ * appears in exactly one bucket at any given moment.
+ */
+export interface RuntimeStateSnapshot {
+	pending: string[];
+	running: string[];
+	completed: string[];
+	failed: string[];
+	skipped: string[];
+}
+
+/**
+ * A step's result after it finishes running (successfully or not).
+ */
+export interface StepResult {
+	skillId: string;
+	status: 'completed' | 'failed' | 'skipped';
+	/** Output produced by the step, available to later steps via RuntimeContext. */
+	output?: unknown;
+	/** Populated when status is 'failed'. */
+	error?: RuntimeErrorInfo;
+	/** Number of attempts made (1 = succeeded/failed on first try). */
+	attempts: number;
+}
+
+/**
+ * Plain, serializable description of a runtime failure — used in traces and
+ * results so failures survive JSON serialization (unlike Error instances).
+ */
+export interface RuntimeErrorInfo {
+	code: string;
+	message: string;
+	skillId?: string;
+	attempt?: number;
+	cause?: string;
+}
+
+/**
+ * A function that performs the actual work for a single execution step.
+ *
+ * The Runtime is deliberately agnostic about *what* a step does — invoking a
+ * skill, calling a model, running a tool, and so on are all the caller's
+ * responsibility. The Runtime only sequences calls to this function,
+ * threads context between them, and manages state/retries/events/tracing.
+ *
+ * Throw (or reject) to signal step failure; the Runtime will apply the
+ * configured RetryPolicy before giving up.
+ */
+export type StepExecutorFn = (
+	step: ExecutionStep,
+	context: RuntimeContext,
+) => unknown | Promise<unknown>;
+
+/**
+ * Explicit, mutable context object threaded through workflow execution.
+ *
+ * Each completed step's output is recorded here and made available to every
+ * subsequent step — this is how "context propagation" is implemented, rather
+ * than relying on module-level globals or closures.
+ */
+export interface RuntimeContext {
+	/** The original user intent the plan was generated for. */
+	readonly intent: string;
+	/** Read a previous step's output by skill ID. Returns undefined if absent. */
+	get(skillId: string): unknown;
+	/** Record a step's output, making it visible to later steps. */
+	set(skillId: string, value: unknown): void;
+	/** True if the given skill ID has already produced output. */
+	has(skillId: string): boolean;
+	/** A plain-object snapshot of all outputs recorded so far, keyed by skill ID. */
+	toObject(): Record<string, unknown>;
+}
+
+/**
+ * Deterministic retry policy consulted by the runtime after a step fails.
+ *
+ * `delayForAttempt` returns a logical delay in milliseconds; the runtime
+ * never actually sleeps for it (that would break determinism and slow down
+ * tests) — the value is recorded on retry events/traces for callers that
+ * want to honor it in their own step executor or a wrapping scheduler.
+ */
+export interface RetryPolicy {
+	/** Maximum number of retry attempts after the initial try (0 = no retries). */
+	readonly maxRetries: number;
+	/** Logical delay (ms) to record before retry attempt `attempt` (1-indexed). */
+	delayForAttempt(attempt: number): number;
+	/** Whether this error should be retried at all. Defaults to "always" when omitted. */
+	shouldRetry?(error: unknown, attempt: number): boolean;
+}
+
+export type RuntimeEventType =
+	| 'workflow-started'
+	| 'step-started'
+	| 'step-retry'
+	| 'step-completed'
+	| 'step-failed'
+	| 'step-skipped'
+	| 'workflow-completed'
+	| 'workflow-failed';
+
+/**
+ * A single runtime event. `order` is a logical clock (a monotonically
+ * increasing integer assigned by the EventDispatcher) rather than a wall
+ * clock timestamp, which keeps execution fully deterministic and makes
+ * traces reproducible in tests.
+ */
+export interface RuntimeEvent {
+	order: number;
+	type: RuntimeEventType;
+	skillId?: string;
+	attempt?: number;
+	data?: Record<string, unknown>;
+}
+
+/**
+ * One entry in the execution trace — an event paired with the runtime state
+ * snapshot immediately after that event was applied. Traces are the primary
+ * debugging artifact: replaying them reconstructs exactly what happened and
+ * in what order, without needing wall-clock timestamps.
+ */
+export interface TraceEntry {
+	order: number;
+	type: RuntimeEventType;
+	skillId?: string;
+	attempt?: number;
+	state: RuntimeStateSnapshot;
+	result?: unknown;
+	error?: RuntimeErrorInfo;
+}
+
+/**
+ * Configuration accepted by `executeWorkflow` / `WorkflowExecutor`.
+ */
+export interface RuntimeOptions {
+	/** Retry behavior applied to every step. Defaults to zero retries. */
+	retryPolicy?: RetryPolicy;
+	/** Called synchronously as each event is emitted (for live progress UIs, logging, etc). */
+	onEvent?: (event: RuntimeEvent) => void;
+	/**
+	 * Whether a step failure (after exhausting retries) halts remaining
+	 * steps. Defaults to true. When false, downstream steps that depend on
+	 * the failed step are skipped, but independent steps still run.
+	 */
+	stopOnFailure?: boolean;
+}
+
+/**
+ * The final outcome of running an execution plan through the Runtime.
+ */
+export interface WorkflowResult {
+	status: 'completed' | 'failed';
+	intent: string;
+	outputs: Record<string, unknown>;
+	steps: StepResult[];
+	events: RuntimeEvent[];
+	trace: TraceEntry[];
+	state: RuntimeStateSnapshot;
+}

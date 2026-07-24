@@ -74,6 +74,7 @@ bun run validate     # Validate all skill SKILL.md files
 bun run matrix       # Generate docs/skill-matrix.md — snapshot of every skill's maturity tier
 bun run registry     # Generate registry/skills.json — machine-readable skill registry (see docs/registry.md)
 bun run plan "<intent>"  # Generate execution plan for a user intent (see docs/planner.md)
+bun run execute "<intent>"  # Generate a plan and run it through the Workflow Runtime (see docs/runtime.md)
 bun run test         # Run tests across workspace packages
 bun run typecheck    # Run type-checking across workspace packages
 bun run build        # Run all workspace build tasks through Turborepo

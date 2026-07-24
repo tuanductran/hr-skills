@@ -251,13 +251,29 @@ See [`docs/planner.md`](planner.md) for detailed architecture and usage.
 
 Build a deterministic runtime responsible for executing workflow plans.
 
-* Execution engine
-* Workflow state management
-* Context propagation
-* Retry and failure handling
-* Execution events
-* Execution tracing
-* Deterministic workflow execution
+> Implemented — see [docs/runtime.md](runtime.md) for the architecture,
+> execution lifecycle, and extension points.
+
+Completed:
+
+* Execution engine (`WorkflowExecutor` / `executeWorkflow`) — consumes Planner
+  output directly, executes steps in plan order
+* Workflow state management — pending/running/completed/failed/skipped
+  tracking via `RuntimeStateTracker`
+* Context propagation — explicit `RuntimeContext` threading step outputs
+  between steps
+* Retry handling — pluggable `RetryPolicy` (`noRetryPolicy`,
+  `fixedRetryPolicy`, `exponentialRetryPolicy`), deterministic (no real
+  waiting)
+* Failure handling — structured, JSON-serializable `RuntimeError`;
+  dependency-aware skipping of downstream steps
+* Execution events — `EventDispatcher` with a logical clock for deterministic
+  event ordering
+* Execution tracing — `TraceCollector` pairing each event with a state
+  snapshot
+* CLI tool (`bun run execute`) — generate a plan and run it through the
+  Runtime with a stub step executor
+* Comprehensive documentation and tests
 
 #### 4.4 Quality & Evaluation
 
