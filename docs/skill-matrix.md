@@ -1,6 +1,6 @@
 # HR Skills — Skill Matrix
 
-> Auto-generated on 2026-07-23 by `bun run matrix`. Do not edit manually.
+> Auto-generated on 2026-07-24 by `bun run matrix`. Do not edit manually.
 
 ## Summary
 
@@ -46,6 +46,7 @@
 | `hr-conflict-resolution` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-consulting` | 🟢 Full | ✅ | ✅ | ✅ | 2 | 1.0.0 |
 | `hr-contingent-workforce` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
+| `hr-coordination` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-crisis-management` | 🟢 Full | ✅ | ✅ | ✅ | 2 | 1.0.0 |
 | `hr-culture` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-data` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
@@ -73,8 +74,6 @@
 | `hr-genai` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-global-expansion` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-global-hr` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
-| `hr-hr-coordination` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
-| `hr-hr-management` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-hris` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-immigration` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-internal-mobility` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
@@ -90,6 +89,7 @@
 | `hr-learning-development` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-learning-strategy` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-ma-integration-by-country` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
+| `hr-management` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-manager-effectiveness` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-market-mapping` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.0 |
 | `hr-mergers-acquisitions` | 🟢 Full | ✅ | ✅ | ✅ | 2 | 1.0.0 |
