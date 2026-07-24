@@ -33,6 +33,10 @@
 		"registry": {
 			"cache": false,
 			"outputs": ["registry/skills.json"]
+		},
+		"plan": {
+			"cache": false,
+			"outputs": ["execution-plan.json"]
 		}
 	}
 }
