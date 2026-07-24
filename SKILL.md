@@ -69,10 +69,10 @@ the task and tell you which `skills/<name>/SKILL.md` to load next.
 
 | Skill | Use when the task involves... |
 |---|---|
+| [hr-coordination](skills/hr-coordination) | asked to "coordinate HR activities", "manage HR logistics", "support HR projects", "schedule HR programs", or "handle HR admin tasks" |
 | [hr-employee-lifecycle](skills/hr-employee-lifecycle) | asked to map the employee journey, improve the employee experience, design touchpoints across the lifecycle, create lifecycle frameworks, or similar end-to-end people management tasks |
 | [hr-employee-self-service](skills/hr-employee-self-service) | asked to "build an employee self-service portal", "design an HR chatbot", "create an HR knowledge base", "reduce HR inquiry volume", or "improve employee access to HR information" |
-| [hr-hr-coordination](skills/hr-hr-coordination) | asked to "coordinate HR activities", "manage HR logistics", "support HR projects", "schedule HR programs", or "handle HR admin tasks" |
-| [hr-hr-management](skills/hr-hr-management) | asked to "manage the HR team", "build the HR department", "set HR team goals", "plan the HR budget", "improve HR function effectiveness", or "lead the HR organization" |
+| [hr-management](skills/hr-management) | asked to "manage the HR team", "build the HR department", "set HR team goals", "plan the HR budget", "improve HR function effectiveness", or "lead the HR organization" |
 | [hr-offboarding](skills/hr-offboarding) | asked to create an offboarding checklist, conduct exit interviews, manage employee separations, handle involuntary terminations, build an alumni program, or similar departure management tasks |
 | [hr-onboarding](skills/hr-onboarding) | asked to "create an onboarding plan", "design orientation programs", "build a buddy system", "write onboarding checklists", "conduct exit interviews", "manage knowledge transfer", "create offboarding processes", or any employee onboarding or offboarding task |
 | [hr-operating-model](skills/hr-operating-model) | asked to "redesign our HR function", "define HRBP accountabilities", "build a CoE", "set up shared services", "clarify HR roles", "assess our HR operating model", or "move to a three-pillar HR model" |

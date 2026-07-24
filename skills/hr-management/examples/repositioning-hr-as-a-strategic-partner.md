@@ -64,4 +64,4 @@ Expected response: A structured 30-minute presentation format with four sections
 
 ## Workflow summary
 
-Use `hr-hr-management` to redesign the HR operating model, shift team capacity toward high-value work, and build the credibility and reporting cadence that earns HR a seat at the strategic table.
+Use `hr-management` to redesign the HR operating model, shift team capacity toward high-value work, and build the credibility and reporting cadence that earns HR a seat at the strategic table.

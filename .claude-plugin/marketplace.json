@@ -251,6 +251,14 @@
       ]
     },
     {
+      "name": "hr-coordination",
+      "source": "./",
+      "description": "Help HR coordinators, HR generalists, and People Ops teams manage day-to-day HR coordination tasks including scheduling, onboarding logistics, HR administration, cross-team coordination, and HR project support. Use when asked to \"coordinate HR activities\", \"manage HR logistics\", \"support HR projects\", \"schedule HR programs\", or \"handle HR admin tasks\".",
+      "skills": [
+        "./skills/hr-coordination"
+      ]
+    },
+    {
       "name": "hr-crisis-management",
       "source": "./",
       "description": "Help HR and business leaders plan for and respond to workforce crises — layoffs handled poorly, safety incidents, natural disasters, leadership scandals, or sudden business disruption. Use when asked to \"build a crisis response plan for HR\", \"respond to a workplace incident\", \"communicate during a crisis\", \"plan for business continuity from an HR perspective\", or \"handle a sudden leadership departure crisis\".",
@@ -467,22 +475,6 @@
       ]
     },
     {
-      "name": "hr-hr-coordination",
-      "source": "./",
-      "description": "Help HR coordinators, HR generalists, and People Ops teams manage day-to-day HR coordination tasks including scheduling, onboarding logistics, HR administration, cross-team coordination, and HR project support. Use when asked to \"coordinate HR activities\", \"manage HR logistics\", \"support HR projects\", \"schedule HR programs\", or \"handle HR admin tasks\".",
-      "skills": [
-        "./skills/hr-hr-coordination"
-      ]
-    },
-    {
-      "name": "hr-hr-management",
-      "source": "./",
-      "description": "Help HR directors, HRBPs, and People leaders manage the HR function effectively, including HR team leadership, HR department planning, budgeting, governance, performance management for HR teams, and building HR function credibility. Use when asked to \"manage the HR team\", \"build the HR department\", \"set HR team goals\", \"plan the HR budget\", \"improve HR function effectiveness\", or \"lead the HR organization\".",
-      "skills": [
-        "./skills/hr-hr-management"
-      ]
-    },
-    {
       "name": "hr-hris",
       "source": "./",
       "description": "Help HR managers, HR operations teams, and recruiters understand HRIS (Human Resource Information Systems), including HRIS platforms, implementation and migration, system integrations, employee data management, HR automation, and HRIS-related hiring. Use when asked to \"explain HRIS\", \"choose an HRIS platform\", \"implement or migrate an HRIS\", \"screen HRIS analysts or managers\", \"understand HR system integrations\", \"configure HRIS to automate HR workflows\", \"evaluate HRIS vendors\", or any HR technology and systems task.",
@@ -600,6 +592,14 @@
       "description": "Help HR and integration leaders navigate country-specific labor law and cultural considerations when integrating an acquired workforce in major markets like the US, EU, and India. Use when asked to \"what labor law applies to this M&A integration in [country]\", \"compare works council requirements across our merger markets\", \"plan country-specific integration steps for [US/EU/India]\", or \"identify country-level people risks in this cross-border deal\".",
       "skills": [
         "./skills/hr-ma-integration-by-country"
+      ]
+    },
+    {
+      "name": "hr-management",
+      "source": "./",
+      "description": "Help HR directors, HRBPs, and People leaders manage the HR function effectively, including HR team leadership, HR department planning, budgeting, governance, performance management for HR teams, and building HR function credibility. Use when asked to \"manage the HR team\", \"build the HR department\", \"set HR team goals\", \"plan the HR budget\", \"improve HR function effectiveness\", or \"lead the HR organization\".",
+      "skills": [
+        "./skills/hr-management"
       ]
     },
     {
