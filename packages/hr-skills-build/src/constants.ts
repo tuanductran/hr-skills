@@ -40,3 +40,9 @@ export const TIPS_REGEX = /## Tips\r?\n\r?\n([\s\S]*?)(?=\r?\n##|$)/;
 export const SKILL_LINK_REGEX = /\[hr-[a-z0-9-]+\]\(skills\/(hr-[a-z0-9-]+)\)/g;
 
 export const REGISTRY_SCHEMA_VERSION = 1;
+
+const EVAL_DIR = join(__dirname, '..', 'eval');
+
+export const EVAL_DATASETS_DIR = join(EVAL_DIR, 'datasets');
+
+export const EVAL_GOLDEN_DIR = join(EVAL_DIR, 'golden');

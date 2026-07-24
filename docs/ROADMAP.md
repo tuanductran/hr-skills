@@ -279,14 +279,22 @@ Completed:
 
 Ensure the reliability and correctness of the skill ecosystem.
 
-* Golden test suite
-* Regression testing
-* Planner evaluation
-* Workflow evaluation
-* Output benchmarking
-* Registry validation
-* Continuous quality metrics
-* Failure-case tracking
+> Implemented — see [docs/evaluation.md](evaluation.md) for the architecture,
+> dataset format, golden fixtures, and how to add new evaluation cases.
+
+Completed:
+
+* Evaluation datasets — representative planning scenarios (`eval/datasets/`)
+* Golden fixtures — committed expected planner/workflow outcomes (`eval/golden/`)
+* Benchmark runner — executes datasets against the real Skill Registry and
+  produces deterministic summaries
+* Quality metrics — capability matching accuracy, skill selection accuracy,
+  execution ordering accuracy, dependency correctness, workflow success rate
+* Regression detection — field-level diff against golden fixtures, reported
+  per case
+* CLI tool (`bun run evaluate`) — run the full evaluation, or
+  `--update-golden` to regenerate fixtures
+* Comprehensive documentation and tests
 
 ---
 
@@ -468,4 +476,4 @@ Potential directions:
 
 ---
 
-Last updated: July 23, 2026
+Last updated: July 24, 2026

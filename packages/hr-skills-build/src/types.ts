@@ -357,3 +357,110 @@ export interface WorkflowResult {
 	trace: TraceEntry[];
 	state: RuntimeStateSnapshot;
 }
+
+// ---------------------------------------------------------------------------
+// Evaluation framework types
+// ---------------------------------------------------------------------------
+
+/**
+ * A single evaluation dataset entry — a representative planning scenario the
+ * Planner and Runtime are expected to handle correctly.
+ *
+ * Datasets store the *input* (`intent`) only. The *expected output* is a
+ * golden fixture (see `GoldenCaseResult`), generated once from an actual run
+ * against the real Skill Registry and committed to `eval/golden/`. This
+ * keeps the dataset human-authored and small, while expected outputs stay
+ * exactly in sync with what the Planner and Runtime actually produce —
+ * avoiding hand-guessed expectations that drift from reality.
+ */
+export interface EvaluationCase {
+	/** Stable identifier, e.g. "recruiting-interview-questions". */
+	id: string;
+	/** Short human-readable description of the scenario. */
+	description: string;
+	/** The user intent passed to `generateExecutionPlan`. */
+	intent: string;
+	/** Free-form category tag for grouping in reports (e.g. "recruiting"). */
+	category: string;
+}
+
+/** A dataset is a named, ordered collection of evaluation cases. */
+export interface EvaluationDataset {
+	name: string;
+	description: string;
+	cases: EvaluationCase[];
+}
+
+/**
+ * The deterministic, golden-fixture shape of a single case's expected
+ * outcome — captures only the fields that are meaningful to compare across
+ * runs (skill selection, ordering, capability coverage, validation, and
+ * workflow outcome), not the full `ExecutionPlan`/`WorkflowResult` objects,
+ * which carry incidental detail (rationale strings, timestamps) that would
+ * make the fixture noisy and prone to false-positive regressions.
+ */
+export interface GoldenCaseResult {
+	caseId: string;
+	/** Skill IDs selected by the Planner, in execution order. */
+	skillIds: string[];
+	/** Number of requested capabilities that matched at least one skill. */
+	matchedCapabilities: number;
+	/** Total number of capabilities extracted from the intent. */
+	totalCapabilities: number;
+	/** Whether `validateExecutionPlan` reported zero errors. */
+	planIsValid: boolean;
+	/** Final Runtime status when the plan is executed with the stub executor. */
+	workflowStatus: 'completed' | 'failed';
+}
+
+/** A named collection of golden case results for one dataset. */
+export interface GoldenFixture {
+	dataset: string;
+	/** ISO date the fixture was generated/last updated on. */
+	generatedAt: string;
+	results: GoldenCaseResult[];
+}
+
+/** The actual outcome of running one evaluation case in the current code. */
+export interface EvaluationCaseResult {
+	caseId: string;
+	category: string;
+	intent: string;
+	actual: GoldenCaseResult;
+	/** Present only if a golden fixture entry exists for this case. */
+	golden?: GoldenCaseResult;
+	/** Fields that differ between `actual` and `golden` (empty if none, or no golden entry). */
+	regressions: string[];
+}
+
+/**
+ * Deterministic quality metrics aggregated across an evaluation run.
+ * Each score is a 0.0-1.0 ratio; `NaN`-free by construction (denominators of
+ * 0 map to a score of 1 — vacuously satisfied, nothing to fail).
+ */
+export interface QualityMetrics {
+	/** Fraction of requested capabilities across all cases that matched a skill. */
+	capabilityMatchingAccuracy: number;
+	/** Fraction of cases whose selected skill set exactly matches the golden fixture. */
+	skillSelectionAccuracy: number;
+	/** Fraction of cases whose execution order exactly matches the golden fixture. */
+	executionOrderingAccuracy: number;
+	/** Fraction of cases with zero plan-validation errors (dependency correctness). */
+	dependencyCorrectness: number;
+	/** Fraction of cases whose Runtime execution completed successfully. */
+	workflowSuccessRate: number;
+}
+
+/** The full report produced by one benchmark run. */
+export interface EvaluationReport {
+	/** ISO date the evaluation was run on. */
+	generatedAt: string;
+	datasetName: string;
+	totalCases: number;
+	passedCases: number;
+	failedCases: number;
+	metrics: QualityMetrics;
+	results: EvaluationCaseResult[];
+	/** Case IDs with at least one regression against the golden fixture. */
+	regressedCaseIds: string[];
+}

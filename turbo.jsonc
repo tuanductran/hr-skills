@@ -37,6 +37,10 @@
 		"plan": {
 			"cache": false,
 			"outputs": ["execution-plan.json"]
+		},
+		"evaluate": {
+			"cache": false,
+			"outputs": ["eval-report.json"]
 		}
 	}
 }

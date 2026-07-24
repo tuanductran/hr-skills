@@ -75,6 +75,7 @@ bun run matrix       # Generate docs/skill-matrix.md — snapshot of every skill
 bun run registry     # Generate registry/skills.json — machine-readable skill registry (see docs/registry.md)
 bun run plan "<intent>"  # Generate execution plan for a user intent (see docs/planner.md)
 bun run execute "<intent>"  # Generate a plan and run it through the Workflow Runtime (see docs/runtime.md)
+bun run evaluate     # Run the evaluation framework against eval/datasets (see docs/evaluation.md)
 bun run test         # Run tests across workspace packages
 bun run typecheck    # Run type-checking across workspace packages
 bun run build        # Run all workspace build tasks through Turborepo
@@ -104,6 +105,9 @@ When you add a new skill directory (for example `skills/hr-new-skill/SKILL.md`),
 | `skills/hr-*/examples/` | Optional practical end-to-end HR workflows and business scenarios |
 | `docs/` | Skill format specification and generated reports |
 | `docs/skill-matrix.md` | Generated skill maturity snapshot — do not edit manually, run `bun run matrix` |
+| `docs/evaluation.md` | Evaluation framework architecture, dataset format, and golden fixture workflow |
+| `packages/hr-skills-build/eval/datasets/` | Hand-authored evaluation datasets (planning scenarios) |
+| `packages/hr-skills-build/eval/golden/` | Committed golden fixtures — expected planner/workflow outcomes, regenerate with `bun src/run-evaluation.ts --update-golden` from `packages/hr-skills-build` |
 | `docs/registry.md` | Skill Registry architecture, schema, and extension guide |
 | `registry/skills.json` | Generated machine-readable skill registry — do not edit manually, run `bun run registry` |
 | `.claude-plugin/marketplace.json` | Generated marketplace metadata synced from skill frontmatter |

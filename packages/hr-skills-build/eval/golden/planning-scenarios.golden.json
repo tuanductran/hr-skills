@@ -1,0 +1,88 @@
+{
+	"dataset": "planning-scenarios",
+	"generatedAt": "2026-07-24",
+	"results": [
+		{
+			"caseId": "recruiting-interview-questions",
+			"skillIds": ["hr-interviewing", "hr-candidate-assessment"],
+			"matchedCapabilities": 1,
+			"totalCapabilities": 1,
+			"planIsValid": true,
+			"workflowStatus": "completed"
+		},
+		{
+			"caseId": "onboarding-program-checklist",
+			"skillIds": ["hr-ai-governance", "hr-agentic-ai"],
+			"matchedCapabilities": 1,
+			"totalCapabilities": 2,
+			"planIsValid": true,
+			"workflowStatus": "completed"
+		},
+		{
+			"caseId": "compensation-benefits-strategy",
+			"skillIds": ["hr-total-rewards", "hr-compensation-benefits"],
+			"matchedCapabilities": 1,
+			"totalCapabilities": 2,
+			"planIsValid": true,
+			"workflowStatus": "completed"
+		},
+		{
+			"caseId": "performance-review-pip",
+			"skillIds": [
+				"hr-performance-review",
+				"hr-business-partner",
+				"hr-career-development"
+			],
+			"matchedCapabilities": 2,
+			"totalCapabilities": 2,
+			"planIsValid": true,
+			"workflowStatus": "completed"
+		},
+		{
+			"caseId": "learning-development-plan",
+			"skillIds": [
+				"hr-training-development",
+				"hr-career-development",
+				"hr-leadership-development",
+				"hr-business-partner"
+			],
+			"matchedCapabilities": 2,
+			"totalCapabilities": 2,
+			"planIsValid": true,
+			"workflowStatus": "completed"
+		},
+		{
+			"caseId": "succession-talent-development",
+			"skillIds": [
+				"hr-performance-management",
+				"hr-performance-review",
+				"hr-business-partner"
+			],
+			"matchedCapabilities": 2,
+			"totalCapabilities": 2,
+			"planIsValid": true,
+			"workflowStatus": "completed"
+		},
+		{
+			"caseId": "offboarding-exit-process",
+			"skillIds": [
+				"hr-performance-review",
+				"hr-offboarding",
+				"hr-business-partner",
+				"hr-coordination"
+			],
+			"matchedCapabilities": 2,
+			"totalCapabilities": 2,
+			"planIsValid": true,
+			"workflowStatus": "completed"
+		},
+		{
+			"caseId": "unmatched-generic-request",
+			"skillIds": [],
+			"matchedCapabilities": 0,
+			"totalCapabilities": 1,
+			"planIsValid": true,
+			"workflowStatus": "completed"
+		}
+	]
+}

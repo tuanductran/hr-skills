@@ -77,6 +77,7 @@
 		"matrix": "turbo run matrix --filter=hr-skills-build",
 		"registry": "turbo run registry --filter=hr-skills-build",
 		"plan": "turbo run plan --filter=hr-skills-build",
+		"evaluate": "turbo run evaluate --filter=hr-skills-build",
 		"changeset": "changeset",
 		"release": "changeset version",
 		"prepare": "lefthook install",
