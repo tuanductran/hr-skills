@@ -206,9 +206,7 @@ Completed:
 
 ### Phase 4 — AI Agent Foundation
 
-Current phase.
-
-Focus:
+Completed.
 
 #### 4.1 Skill Registry
 
