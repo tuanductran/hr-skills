@@ -27,6 +27,7 @@
 		"matrix": "bun src/generate-skill-matrix.ts",
 		"registry": "bun src/generate-registry.ts",
 		"plan": "bun src/generate-plan.ts",
+		"execute": "bun src/execute-plan.ts",
 		"test": "bun test",
 		"dev": "bun --watch src/validate.ts",
 		"typecheck": "tsc --noEmit"
