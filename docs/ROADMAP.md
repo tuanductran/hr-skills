@@ -232,13 +232,20 @@ Build the machine-readable foundation for the skill ecosystem.
 
 Build a deterministic planning layer that composes workflows from the Skill Registry.
 
-* Intent analysis
-* Capability matching
-* Skill selection
-* Workflow planning
-* Dependency-aware execution planning
-* Context propagation model
-* Explainable execution plans
+Completed:
+
+* Intent analysis — deterministic capability extraction from natural language
+* Capability matching — token-based similarity scoring against skill capabilities
+* Skill selection — recursive dependency and related-skill addition
+* Workflow planning — ordered execution plans
+* Dependency-aware execution planning — topological sort (Kahn's algorithm)
+* Context propagation model — foundation for runtime input/output threading
+* Explainable execution plans — every decision includes reasoning
+* Plan validation — detect and report common issues (circular deps, dangling refs, order violations)
+* CLI tool (`bun run plan`) — generate and validate plans from user intent
+* Comprehensive documentation and tests
+
+See [`docs/planner.md`](planner.md) for detailed architecture and usage.
 
 #### 4.3 Workflow Runtime
 
