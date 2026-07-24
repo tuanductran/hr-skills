@@ -50,4 +50,4 @@ Expected response: Assign a single HR coordinator as the program owner with auth
 
 ## Workflow summary
 
-Use `hr-hr-coordination` to build the process infrastructure, calendar visibility, and cross-team coordination discipline that prevents HR operations from depending on institutional knowledge held by any single person.
+Use `hr-coordination` to build the process infrastructure, calendar visibility, and cross-team coordination discipline that prevents HR operations from depending on institutional knowledge held by any single person.
