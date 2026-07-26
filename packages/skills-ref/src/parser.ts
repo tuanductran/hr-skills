@@ -3,7 +3,18 @@ import { ParseError } from './errors.js';
 import { unquote } from './helpers.js';
 
 /**
- * Parse YAML frontmatter from SKILL.md content.
+ * Parse the YAML frontmatter block from a `SKILL.md` file.
+ *
+ * Expects the content to begin with a `---` delimiter, followed by YAML,
+ * followed by a closing `---` delimiter. Everything after the closing
+ * delimiter is the body.
+ *
+ * @param content - The full UTF-8 content of a `SKILL.md` file.
+ * @returns A tuple of `[frontmatter, body]` where `frontmatter` is the
+ *   parsed key-value map and `body` is the trimmed markdown content
+ *   that follows the closing `---`.
+ * @throws {ParseError} If the content does not start with `---` or the
+ *   frontmatter block is not properly closed.
  */
 export function parseFrontmatter(content: string): [Record<string, unknown>, string] {
 	if (!content.startsWith(FRONTMATTER_DELIMITER))
@@ -25,7 +36,22 @@ export function parseFrontmatter(content: string): [Record<string, unknown>, str
 }
 
 /**
- * Parse a simple YAML string.
+ * Parse a restricted subset of YAML sufficient for `SKILL.md` frontmatter.
+ *
+ * Supports:
+ * - Scalar string values (quoted or unquoted).
+ * - Nested objects (one level deep, indented with any consistent whitespace).
+ * - Block scalars (`|` literal and `>` folded).
+ * - Comment lines (lines beginning with `#`).
+ *
+ * Does **not** support: arrays, anchors, aliases, multi-document streams,
+ * or more than one level of nesting.
+ *
+ * Prototype-pollution keys (`__proto__`, `constructor`, `prototype`) are
+ * silently ignored.
+ *
+ * @param yaml - The raw YAML string extracted between the `---` delimiters.
+ * @returns A `Record<string, unknown>` of parsed top-level key-value pairs.
  */
 function parseSimpleYaml(yaml: string): Record<string, unknown> {
 	const result: Record<string, unknown> = {};
@@ -102,7 +128,7 @@ function parseSimpleYaml(yaml: string): Record<string, unknown> {
 			continue;
 		}
 
-		// Nested object
+		// Nested object (value is empty, children follow on indented lines)
 		if (value === '') {
 			const nested: Record<string, string> = {};
 			index++;

@@ -5,7 +5,20 @@ import { HR_SKILL_PREFIX, SKILLS_DIR } from './constants.js';
 import type { SkillDirectoryOptions } from './types.js';
 
 /**
- * Get a list of HR skills.
+ * Discover all HR skill directory names in `skills/` that satisfy the given options.
+ *
+ * A directory is included only if:
+ *  1. It starts with the configured `prefix` (default: `"hr-"`).
+ *  2. It contains a `SKILL.md` file at its root (checked via `fs.access`).
+ *
+ * @param options - Filtering and sorting options.
+ * @param options.prefix - Directory-name prefix to filter by. Defaults to `"hr-"`.
+ * @param options.sort - Whether to return names in lexicographic order. Defaults to `true`.
+ * @returns A promise that resolves to an array of skill directory names (not full paths).
+ *
+ * @example
+ * const skills = await getHrSkills();
+ * // => ['hr-analytics', 'hr-compliance', 'hr-onboarding', ...]
  */
 export async function getHrSkills(
 	options: SkillDirectoryOptions = {},
