@@ -11,7 +11,15 @@
 
 import type { RetryPolicy } from './types.js';
 
-/** No retries: fail immediately on the first error. */
+/**
+ * Create a retry policy that never retries — the step fails immediately
+ * on the first error.
+ *
+ * This is the default policy used by `WorkflowExecutor` when no
+ * `retryPolicy` option is provided.
+ *
+ * @returns A {@link RetryPolicy} with `maxRetries: 0`.
+ */
 export function noRetryPolicy(): RetryPolicy {
 	return {
 		maxRetries: 0,
@@ -19,7 +27,15 @@ export function noRetryPolicy(): RetryPolicy {
 	};
 }
 
-/** Retry a fixed number of times with a constant logical delay. */
+/**
+ * Create a retry policy that retries a fixed number of times with a
+ * constant logical delay between each attempt.
+ *
+ * @param options.maxRetries - Maximum number of retry attempts after the initial try.
+ * @param options.delayMs - Logical delay in milliseconds recorded per retry attempt.
+ *   Defaults to `0` (no delay recorded). The runtime does not actually sleep.
+ * @returns A {@link RetryPolicy} with a fixed delay for all attempts.
+ */
 export function fixedRetryPolicy(options: {
 	maxRetries: number;
 	delayMs?: number;
@@ -31,7 +47,18 @@ export function fixedRetryPolicy(options: {
 	};
 }
 
-/** Retry with exponential backoff: delay = baseDelayMs * 2^(attempt - 1). */
+/**
+ * Create a retry policy that uses exponential backoff:
+ * `delay = baseDelayMs * 2^(attempt - 1)`, capped at `maxDelayMs`.
+ *
+ * Example with `baseDelayMs: 100`: attempt 1 → 100 ms, attempt 2 → 200 ms,
+ * attempt 3 → 400 ms, and so on.
+ *
+ * @param options.maxRetries - Maximum number of retry attempts after the initial try.
+ * @param options.baseDelayMs - Base delay in milliseconds. Defaults to `100`.
+ * @param options.maxDelayMs - Upper bound on any single delay. Defaults to `Infinity`.
+ * @returns A {@link RetryPolicy} with exponential backoff delays.
+ */
 export function exponentialRetryPolicy(options: {
 	maxRetries: number;
 	baseDelayMs?: number;

@@ -7,14 +7,22 @@ import type { SkillFrontmatter } from './schema.js';
 import type { SkillValidationIssue, Tier } from './types.js';
 
 /**
- * Extract a match from a markdown skill file.
+ * Extract and trim the first capture group from a regex match against `content`.
+ *
+ * @param regex - A regular expression with at least one capture group.
+ * @param content - The string to search.
+ * @returns The trimmed contents of capture group 1, or `null` if the regex did not match.
  */
 export function extractMatch(regex: RegExp, content: string): string | null {
 	return regex.exec(content)?.[1]?.trim() ?? null;
 }
 
 /**
- * Discover skills in the skills directory.
+ * Discover all HR skill directory names in `skills/`, sorted lexicographically.
+ *
+ * Only directories whose names start with `HR_SKILL_PREFIX` (`"hr-"`) are returned.
+ *
+ * @returns A promise that resolves to a sorted array of skill directory names.
  */
 export async function discoverSkills(): Promise<string[]> {
 	const entries = await readdir(SKILLS_DIR, {
@@ -28,7 +36,12 @@ export async function discoverSkills(): Promise<string[]> {
 }
 
 /**
- * Read a skill file.
+ * Read a skill's `SKILL.md` content and parse its YAML frontmatter.
+ *
+ * @param skillName - The skill's directory name (e.g. `"hr-onboarding"`).
+ * @returns A promise that resolves to an object containing the raw `content`
+ *   string and the parsed `frontmatter` record.
+ * @throws If `SKILL.md` cannot be read from the filesystem.
  */
 export async function readSkill(skillName: string): Promise<{
 	content: string;
@@ -44,7 +57,14 @@ export async function readSkill(skillName: string): Promise<{
 }
 
 /**
- * Read a skill file content.
+ * Read a skill's `SKILL.md` content, collecting a validation issue instead of
+ * throwing if the file is not found.
+ *
+ * @param skillName - The skill's directory name (e.g. `"hr-onboarding"`).
+ * @param errors - Mutable array to which a `SkillValidationIssue` is pushed
+ *   if the file cannot be read.
+ * @returns A promise that resolves to the raw file content, or `null` if the
+ *   file was not found (in which case an issue has been added to `errors`).
  */
 export async function readSkillContent(
 	skillName: string,
@@ -64,7 +84,16 @@ export async function readSkillContent(
 }
 
 /**
- * Normalize author name.
+ * Normalize an author name to Title Case.
+ *
+ * Each whitespace-separated word is capitalized; all other characters are
+ * lower-cased. Leading and trailing whitespace is stripped.
+ *
+ * @param name - The raw author string to normalize.
+ * @returns The normalized Title Case author name.
+ *
+ * @example
+ * normalizeAuthorName('john DOE') // => 'John Doe'
  */
 export function normalizeAuthorName(name: string): string {
 	return name
@@ -75,7 +104,11 @@ export function normalizeAuthorName(name: string): string {
 }
 
 /**
- * Get the first element of an array.
+ * Return the first element of a non-empty readonly array.
+ *
+ * @param items - A readonly array that must contain at least one element.
+ * @returns The first element of `items`.
+ * @throws {Error} If `items` is empty.
  */
 export function first<T>(items: readonly T[]): T {
 	const first = items.at(0);
@@ -87,7 +120,11 @@ export function first<T>(items: readonly T[]): T {
 }
 
 /**
- * Check if a directory exists.
+ * Check whether a filesystem path exists and is a directory.
+ *
+ * @param path - The filesystem path to check.
+ * @returns A promise that resolves to `true` if `path` is an existing directory,
+ *   or `false` if it does not exist or is not a directory.
  */
 export async function dirExists(path: string): Promise<boolean> {
 	try {
@@ -99,7 +136,11 @@ export async function dirExists(path: string): Promise<boolean> {
 }
 
 /**
- * Count .md files in a directory.
+ * Count the number of `.md` files directly inside a directory.
+ * Returns `0` if the directory does not exist or cannot be read.
+ *
+ * @param dirPath - The absolute path to the directory to inspect.
+ * @returns A promise that resolves to the count of `.md` files found.
  */
 export async function countFiles(dirPath: string): Promise<number> {
 	try {
@@ -111,11 +152,21 @@ export async function countFiles(dirPath: string): Promise<number> {
 }
 
 /**
- * Compute a skill's maturity tier from its subdirectory presence.
+ * Compute a skill's maturity tier based on which optional subdirectories it contains.
  *
- * Single source of truth for tier classification — used by both
- * generate-skill-matrix.ts and generate-registry.ts so the matrix and the
+ * Tier rules:
+ * - `'full'`    — all three subdirectories (`content/`, `prompts/`, `examples/`) are present.
+ * - `'bare'`    — none of the subdirectories are present.
+ * - `'partial'` — one or two subdirectories are present.
+ *
+ * This is the single source of truth for tier classification — used by both
+ * `generate-skill-matrix.ts` and `generate-registry.ts` so the matrix and the
  * registry can never disagree about a skill's tier.
+ *
+ * @param hasContent - Whether the `content/` subdirectory exists and is non-empty.
+ * @param hasPrompts - Whether the `prompts/` subdirectory exists and is non-empty.
+ * @param hasExamples - Whether the `examples/` subdirectory exists and is non-empty.
+ * @returns The computed {@link Tier} for the skill.
  */
 export function computeTier(
 	hasContent: boolean,
@@ -128,7 +179,14 @@ export function computeTier(
 }
 
 /**
- * Return the emoji icon for a skill tier.
+ * Return the emoji icon associated with a skill maturity tier.
+ *
+ * - `'full'`    → `'🟢'`
+ * - `'partial'` → `'🟡'`
+ * - `'bare'`    → `'🔴'`
+ *
+ * @param tier - The skill's maturity tier.
+ * @returns A single emoji string representing the tier.
  */
 export function tierIcon(tier: Tier): string {
 	if (tier === 'full') return '🟢';
@@ -137,7 +195,10 @@ export function tierIcon(tier: Tier): string {
 }
 
 /**
- * Return the display label for a skill tier.
+ * Return the human-readable display label for a skill maturity tier.
+ *
+ * @param tier - The skill's maturity tier.
+ * @returns `'Full'`, `'Partial'`, or `'Bare'`.
  */
 export function tierLabel(tier: Tier): string {
 	if (tier === 'full') return 'Full';
@@ -146,7 +207,15 @@ export function tierLabel(tier: Tier): string {
 }
 
 /**
- * Build content with N subtopics of M prompts each.
+ * Build a SKILL.md content string with a `## Key prompts` section containing
+ * `subtopics` H3 sub-headings, each with `promptsEach` numbered quoted prompts.
+ *
+ * Used in unit tests to generate fixture content of a specific size without
+ * manually crafting strings.
+ *
+ * @param subtopics - Number of H3 sub-heading blocks to generate.
+ * @param promptsEach - Number of quoted prompts to generate under each sub-heading.
+ * @returns A full SKILL.md string with valid frontmatter and the generated prompts section.
  */
 export function makeKeyPromptsContent(subtopics: number, promptsEach: number): string {
 	const blocks = Array.from({ length: subtopics }, (_, si) => {
