@@ -1,0 +1,10 @@
+# Exclude macOS Finder metadata from packaged knowledge files and skill plugin
+# bundles.
+.DS_Store
+Icon?
+._*
+
+# Exclude common editor and OS artifacts
+Thumbs.db
+.Spotlight-V100
+.Trashes
