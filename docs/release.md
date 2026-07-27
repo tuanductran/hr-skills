@@ -203,6 +203,32 @@ Release notes are generated, not hand-written, following the same
    record only — do not hand-edit them, and do not mix the two formats in
    a new entry.
 
+### Changelog format history
+
+`CHANGELOG.md` has gone through three tools over the project's life, and
+entries before `1.1.0` were originally written in two different formats
+(a hand-written [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
+style for `1.0.0`, then a Conventional-Commits-based generator with `v`
+prefixes, emoji section headers, and compare-changes links for
+`1.0.1`–`1.0.4`, before migrating to Changesets at `1.1.0`). All version
+headers have since been normalized to the single format Changesets
+produces — plain `major.minor.patch`, no `v` prefix — so every entry in
+the file now uses one consistent header style. Bullet content for
+pre-`1.1.0` entries was left untouched; only headers, dates, and
+compare-change links were reformatted.
+
+Two things to know when working with `CHANGELOG.md` going forward:
+
+- **Changesets always inserts new content directly under the `# Changelog`
+  H1**, not at the end of the file — this is why the file reads newest
+  version first. Don't hand-insert a new section anywhere else; let
+  `changesets/action` do it.
+- **Never hand-edit a version's bullet list after it's released.** If a
+  changeset description was wrong, that's a documentation bug in a
+  historical record — fix it forward in the next release's notes rather
+  than editing an already-tagged section, for the same reason git tags
+  aren't rewritten (see [Rollback guidance](#rollback-guidance)).
+
 ### Writing a good changeset description
 
 - Lead with what changed, not how — "Add `hr-x` skill" not "Ran the skill
