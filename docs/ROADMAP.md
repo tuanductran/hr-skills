@@ -302,7 +302,8 @@ Future goals:
 
 * External contributors
 * Better documentation
-* Public examples
+* Public examples — see [`examples/`](../examples/README.md) for end-to-end
+  multi-skill workflows and planner/runtime integration examples
 * Ecosystem integrations
 * Stable package releases
 

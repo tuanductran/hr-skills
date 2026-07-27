@@ -165,6 +165,10 @@ Output includes:
 - Validation results (any issues detected)
 - Suggestions (improvements the user might consider)
 
+See [`examples/planner-runtime/from-intent-to-execution.md`](../examples/planner-runtime/from-intent-to-execution.md)
+for a full worked example, including sample plan output for a real hiring
+intent.
+
 ### Programmatic
 
 ```typescript

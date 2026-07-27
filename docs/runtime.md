@@ -216,6 +216,10 @@ bun run execute "<user intent>"
 
 Generates a plan for the given intent via the Planner, runs it through the Runtime using a stub step executor (for demonstration — it does not call a model), prints step results and events, and writes the full `WorkflowResult` to `execution-result.json`.
 
+See [`examples/planner-runtime/from-intent-to-execution.md`](../examples/planner-runtime/from-intent-to-execution.md)
+for a full worked example, including sample trace output and how to swap
+the stub executor for a real one.
+
 ## Testing
 
 `test/runtime.test.ts` covers:
