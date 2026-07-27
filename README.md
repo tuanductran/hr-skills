@@ -89,6 +89,14 @@ Create competency-based interview questions for a Senior Product Manager.
 
 Multiple skills can be combined to support more complex HR workflows.
 
+### Examples
+
+See [`examples/`](examples/README.md) for practical, end-to-end usage:
+single-skill prompt → expected output examples, multi-skill HR workflows
+(hiring, onboarding, succession), and how to drive the same workflows
+programmatically with the [Skill Planner](docs/planner.md) and
+[Workflow Runtime](docs/runtime.md).
+
 ## Available Skills
 
 The repository contains a broad collection of HR Agent Skills organized by functional domain.
