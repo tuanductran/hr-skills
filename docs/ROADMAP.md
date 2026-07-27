@@ -304,7 +304,9 @@ Future goals:
 * Better documentation
 * Public examples — see [`examples/`](../examples/README.md) for end-to-end
   multi-skill workflows and planner/runtime integration examples
-* Ecosystem integrations
+* Ecosystem integrations — see [`docs/integrations.md`](integrations.md) for
+  the supported-platform matrix, installation/onboarding guides, integration
+  testing strategy, and backward-compatibility requirements
 * Stable package releases
 
 ---
@@ -439,8 +441,10 @@ Planned improvements:
 Potential directions:
 
 * Publish stable packages
-* Improve Agent Skills interoperability
-* Support additional AI platforms
+* Improve Agent Skills interoperability — tracked in
+  [`docs/integrations.md`](integrations.md)
+* Support additional AI platforms — see the Supported platforms table in
+  [`docs/integrations.md`](integrations.md) for current 🟢/🟡 status
 * Build HR AI tooling ecosystem
 
 ---
