@@ -307,7 +307,9 @@ Future goals:
 * Ecosystem integrations — see [`docs/integrations.md`](integrations.md) for
   the supported-platform matrix, installation/onboarding guides, integration
   testing strategy, and backward-compatibility requirements
-* Stable package releases
+* Stable package releases — see [`docs/release.md`](release.md) for the
+  release lifecycle, versioning strategy, validation checklist, and
+  release notes workflow
 
 ---
 

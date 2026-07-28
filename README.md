@@ -107,6 +107,7 @@ Key navigation documents:
 - **Skill Matrix:** [`docs/skill-matrix.md`](docs/skill-matrix.md) — Generated inventory and maturity status
 - **Roadmap:** [`docs/ROADMAP.md`](docs/ROADMAP.md) — Project vision, architecture, and future direction
 - **Ecosystem Integrations:** [`docs/integrations.md`](docs/integrations.md) — Supported platforms, installation guides, and compatibility testing strategy
+- **Release Process:** [`docs/release.md`](docs/release.md) — Release lifecycle, versioning strategy, validation checklist, and release notes workflow
 
 The Skill Matrix is the authoritative source for repository coverage and maturity.
 
