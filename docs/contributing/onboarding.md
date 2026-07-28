@@ -45,7 +45,8 @@ table and confirmed by inspecting the files on disk.
 
 ## Step-by-step: first look at the repository
 
-1. Read `README.md` for the product pitch and `AGENTS.md` for the branch/commit rules.
+1. Read `README.md` for the product pitch, `AGENTS.md` for the branch/commit rules, and
+   [`../../GOVERNANCE.md`](../../GOVERNANCE.md) for who reviews what and how PRs get approved.
 2. Skim `docs/format.md` — this is the spec every skill must satisfy, and `bun run validate`
    enforces it mechanically.
 3. Open one existing Full-tier skill end-to-end, for example `skills/hr-onboarding/`: read

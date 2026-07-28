@@ -300,7 +300,8 @@ Completed:
 
 Future goals:
 
-* External contributors
+* External contributors — see [`GOVERNANCE.md`](../GOVERNANCE.md) for roles, the
+  review/approval workflow, ownership per area, and how roadmap feedback is collected
 * Better documentation
 * Public examples — see [`examples/`](../examples/README.md) for end-to-end
   multi-skill workflows and planner/runtime integration examples

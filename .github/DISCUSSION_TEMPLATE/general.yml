@@ -1,0 +1,28 @@
+labels:
+  - question
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this for questions, "how do I…", or general feedback about HR Skills.
+
+        - If something is broken, open a [Bug Report](../../issues/new?template=bug_report.yml) instead.
+        - If you have a concrete new skill idea, use [New Skill Request](../../issues/new?template=new_skill.yml).
+        - If it's an early-stage idea, see the [Ideas](https://github.com/tuanductran/hr-skills/discussions/new?category=ideas) category instead.
+
+  - type: textarea
+    id: question
+    attributes:
+      label: What's your question or feedback?
+      description: Be as specific as you can — link to the relevant skill, doc, or file if applicable.
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Context (optional)
+      description: What are you trying to accomplish? What have you already tried or read?
+    validations:
+      required: false

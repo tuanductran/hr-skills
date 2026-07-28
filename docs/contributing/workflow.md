@@ -118,11 +118,13 @@ bun run knip           # no unused files/dependencies
    / assessment criteria / recruiting workflow / AI prompt / documentation / tooling), why,
    related issue, and the validation checklist.
 7. A maintainer reviews and merges. **[Existing]** `.github/CODEOWNERS` lists a single owner
-   (`@tuanductran`) for the entire repository. **[Unknown]** review turnaround time / SLA is
-   not documented.
-8. Periodically, `dev` is released to `main` via the release process
-   (`bun run release`, `.github/workflows/release.yml`). **[Unknown]** the exact cadence or
-   trigger for this is not documented in the repository.
+   (`@tuanductran`) for the entire repository. **[Resolved, see `GOVERNANCE.md`]** review
+   turnaround has a working target of 7 days (best-effort, not a guaranteed SLA) — see
+   [`GOVERNANCE.md`'s review and approval workflow](../../GOVERNANCE.md#review-and-approval-workflow).
+8. Periodically, `dev` is released to `main` via the release process — see
+   [`docs/release.md`](../release.md) for the full five-stage lifecycle (changeset → merge →
+   automated release PR → merge → tag/publish). There is no fixed cadence; a release is cut
+   when the maintainer decides `dev` is ready to ship.
 
 ## Best practices
 
@@ -142,10 +144,14 @@ bun run knip           # no unused files/dependencies
 
 ## Suggested improvements
 
-- **[Proposed]** CONTRIBUTING.md's checklist should include `lint:links`, `test`, and `knip`
-  to match what CI actually enforces (see `CONTRIBUTING.md.suggestions.md`, item 1).
+- **[Merged]** CONTRIBUTING.md's checklist now includes `lint:links`, `test`, and `knip` to
+  match what CI actually enforces (see `CONTRIBUTING.md.suggestions.md`, item 1).
 
 ## Unknown or ambiguous information
 
-- **[Unknown]** PR review SLA / backup reviewer path.
-- **[Unknown]** `dev` → `main` release cadence/trigger.
+- **[Resolved]** PR review turnaround target and ownership model — see
+  [`GOVERNANCE.md`](../../GOVERNANCE.md#review-and-approval-workflow). A backup-reviewer path
+  doesn't exist yet since there is a single maintainer; `GOVERNANCE.md` documents how that
+  would extend via path-scoped `CODEOWNERS` entries if it's added later.
+- **[Resolved]** `dev` → `main` release cadence — see [`docs/release.md`](../release.md);
+  it's maintainer-triggered, not scheduled.

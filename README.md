@@ -108,6 +108,7 @@ Key navigation documents:
 - **Roadmap:** [`docs/ROADMAP.md`](docs/ROADMAP.md) — Project vision, architecture, and future direction
 - **Ecosystem Integrations:** [`docs/integrations.md`](docs/integrations.md) — Supported platforms, installation guides, and compatibility testing strategy
 - **Release Process:** [`docs/release.md`](docs/release.md) — Release lifecycle, versioning strategy, validation checklist, and release notes workflow
+- **Governance:** [`GOVERNANCE.md`](GOVERNANCE.md) — Roles, review and approval workflow, ownership, and roadmap feedback process
 
 The Skill Matrix is the authoritative source for repository coverage and maturity.
 
@@ -188,7 +189,9 @@ For additional scripts, see [`package.json`](package.json).
 
 ## Contributing
 
-Contributions are welcome.
+Contributions are welcome. See [`CONTRIBUTING.md`](CONTRIBUTING.md) for the step-by-step
+guide and [`GOVERNANCE.md`](GOVERNANCE.md) for how review, ownership, and roadmap feedback
+work.
 
 Before opening a pull request, ensure the repository passes validation:
 

@@ -1,0 +1,39 @@
+labels:
+  - idea
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this for early-stage ideas — new skill directions, tooling improvements, or
+        process changes that aren't concrete enough for a formal issue yet.
+
+        Once an idea firms up into a specific proposal, it can move to a
+        [New Skill Request](../../issues/new?template=new_skill.yml) or
+        [Feature Request](../../issues/new?template=feature_request.yml) issue. See
+        [`GOVERNANCE.md`](../../blob/main/GOVERNANCE.md#roadmap-feedback-process) for how
+        accepted ideas make it into the roadmap.
+
+  - type: textarea
+    id: idea
+    attributes:
+      label: What's the idea?
+      description: Describe it in a sentence or two — detail can come later in discussion.
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem does it solve?
+      description: What's missing or painful today that this would address?
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered (optional)
+      description: Are there existing skills, docs, or workarounds that partially cover this?
+    validations:
+      required: false
