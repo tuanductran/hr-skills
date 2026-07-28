@@ -298,13 +298,67 @@ Completed:
 
 ### Phase 5 — Community & Distribution
 
+Completed:
+
+* External contributors — see [`GOVERNANCE.md`](../GOVERNANCE.md) for roles, the
+  review/approval workflow, ownership per area, and how roadmap feedback is collected
+* Better documentation — contributor onboarding, workflow, and skill-authoring guides in
+  [`docs/contributing/`](contributing/), plus [`docs/registry.md`](registry.md),
+  [`docs/release.md`](release.md), [`docs/integrations.md`](integrations.md), and
+  [`GOVERNANCE.md`](../GOVERNANCE.md)
+* Public examples — see [`examples/`](../examples/README.md) for end-to-end
+  multi-skill workflows and planner/runtime integration examples
+* Ecosystem integrations — see [`docs/integrations.md`](integrations.md) for
+  the supported-platform matrix, installation/onboarding guides, integration
+  testing strategy, and backward-compatibility requirements
+* Stable package releases — see [`docs/release.md`](release.md) for the
+  release lifecycle, versioning strategy, validation checklist, and
+  release notes workflow
+
+---
+
+### Phase 6 — Skill Intelligence & Quality Automation
+
 Future goals:
 
-* External contributors
-* Better documentation
-* Public examples
-* Ecosystem integrations
-* Stable package releases
+#### 6.1 Skill Intelligence
+
+Build on the Skill Registry's existing relationship and dependency graphs
+(delivered in [4.1](#41-skill-registry)) to surface them to users and
+contributors, rather than leaving them as internal planner input only.
+
+* Recommendation engine — surface `registry/skills.json`'s existing
+  `relatedSkills` graph as user-facing "skills you might also need"
+  suggestions, instead of only consuming it internally in the Planner
+  (4.2)
+* Improved skill discovery — ranked/fuzzy search over the registry
+  (capabilities, tags, aliases) beyond exact trigger-phrase matching
+* Usage-informed relevance — once there's a way to observe which skills
+  are actually selected together in practice (for example via evaluation
+  runs or planner telemetry), use that signal to refine
+  `relatedSkills` weighting rather than relying on static classification
+  alone
+
+#### 6.2 Quality Automation
+
+Extend validation beyond the current structural/format checks
+(`bun run validate`) into content-level quality signals.
+
+* Duplicate content detection — flag skills with substantially
+  overlapping `description`/`content/` before they're merged, not just
+  overlapping directory names
+* Semantic validation — check that a skill's `prompts/` and `examples/`
+  are actually consistent with its `description` and `content/`, beyond
+  today's non-empty-directory structural check
+* Automated content quality scoring — a repeatable score (clarity,
+  completeness, example coverage) usable as a review aid, not a merge
+  gate, so a low score prompts a closer look rather than an automatic
+  rejection
+* AI-assisted review workflows — apply
+  [`.agents/skills/skill-vetter/SKILL.md`](../.agents/skills/skill-vetter/SKILL.md)'s
+  pattern (already used for security review) to content quality, and
+  surface its output as a PR comment maintainers can act on directly,
+  consistent with [`GOVERNANCE.md`](../GOVERNANCE.md)'s review criteria
 
 ---
 
@@ -411,25 +465,11 @@ bun run release
 
 ## Future Direction
 
-### Skill Intelligence
+### Skill Intelligence & Quality Automation
 
-Future improvements:
-
-* Better skill discovery
-* Relationship mapping between skills
-* Skill dependency graph
-* Automated recommendations
-
----
-
-### Quality Automation
-
-Planned improvements:
-
-* Duplicate content detection
-* Better semantic validation
-* Automated content quality scoring
-* AI-assisted review workflows
+Now tracked as [Phase 6](#phase-6--skill-intelligence--quality-automation)
+under Development Phases, since both had grown concrete enough to scope
+as a phase rather than stay as an open-ended list here.
 
 ---
 
@@ -438,8 +478,10 @@ Planned improvements:
 Potential directions:
 
 * Publish stable packages
-* Improve Agent Skills interoperability
-* Support additional AI platforms
+* Improve Agent Skills interoperability — tracked in
+  [`docs/integrations.md`](integrations.md)
+* Support additional AI platforms — see the Supported platforms table in
+  [`docs/integrations.md`](integrations.md) for current 🟢/🟡 status
 * Build HR AI tooling ecosystem
 
 ---

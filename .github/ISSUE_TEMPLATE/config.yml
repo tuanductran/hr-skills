@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Ask a question / General discussion
+    url: https://github.com/tuanductran/hr-skills/discussions/new?category=general
+    about: Not a bug, feature request, or new skill proposal? Start a Discussion instead.
+  - name: Early-stage idea
+    url: https://github.com/tuanductran/hr-skills/discussions/new?category=ideas
+    about: Have a rough idea that isn't concrete enough for a New Skill Request yet? Share it as a Discussion.

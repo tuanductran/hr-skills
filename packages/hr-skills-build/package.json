@@ -21,7 +21,9 @@
 		"agents"
 	],
 	"scripts": {
-		"build": "echo 'hr-skills-build: CLI tool — no compile step needed'",
+		"build": "bun run build-zip && bun run build-skill",
+		"build-zip": "bun src/build-skills.ts",
+		"build-skill": "bun src/build-skills.ts --skill",
 		"validate": "bun src/validate.ts",
 		"sync": "bun src/sync.ts",
 		"matrix": "bun src/generate-skill-matrix.ts",

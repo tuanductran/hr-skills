@@ -2,7 +2,16 @@ import { ALLOWED_TOOLS_KEY } from './constants.js';
 import type { SkillProperties } from './schema.js';
 
 /**
- * Converts a skill's properties to a dictionary.
+ * Convert a skill's {@link SkillProperties} to a plain dictionary suitable for
+ * serialization (e.g. JSON output or YAML round-tripping).
+ *
+ * Only fields with defined, non-null values are included in the result —
+ * optional properties are omitted rather than serialized as `null`.
+ * The `allowedTools` field is keyed as `"allowed-tools"` to match the raw
+ * frontmatter field name expected by the Claude plugin format.
+ *
+ * @param props - The validated skill properties to convert.
+ * @returns A `Record<string, unknown>` containing only the present fields.
  */
 export function toDict(props: SkillProperties): Record<string, unknown> {
 	const result: Record<string, unknown> = {

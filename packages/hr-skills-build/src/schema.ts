@@ -1,5 +1,9 @@
 import * as v from 'valibot';
 
+/**
+ * Valibot schema for `.claude-plugin/marketplace.json`.
+ * Used by `sync.ts` to parse and validate the file before updating it.
+ */
 export const MarketplaceJsonSchema = v.object({
 	name: v.string(),
 	description: v.string(),
@@ -13,6 +17,12 @@ export const MarketplaceJsonSchema = v.object({
 	),
 });
 
+/**
+ * Valibot schema for the YAML frontmatter of a skill's `SKILL.md`.
+ * All fields are optional — callers should treat a missing field as absent
+ * rather than as an error at this layer (higher-level validation handles
+ * required-field checks).
+ */
 export const SkillFrontmatterSchema = v.object({
 	name: v.optional(v.pipe(v.string(), v.trim())),
 	description: v.optional(v.pipe(v.string(), v.trim())),
@@ -24,12 +34,17 @@ export const SkillFrontmatterSchema = v.object({
 	),
 });
 
+/** TypeScript type inferred from {@link SkillFrontmatterSchema}. */
 export type SkillFrontmatter = v.InferOutput<typeof SkillFrontmatterSchema>;
 
 // ---------------------------------------------------------------------------
 // Skill registry schema
 // ---------------------------------------------------------------------------
 
+/**
+ * All valid domain category slugs for a skill entry.
+ * Must stay in sync with `SkillCategory` in classifier.ts.
+ */
 const SKILL_CATEGORIES = [
 	'talent-acquisition',
 	'onboarding-offboarding',
@@ -46,6 +61,10 @@ const SKILL_CATEGORIES = [
 	'uncategorized',
 ] as const;
 
+/**
+ * Valibot schema for a single entry in `registry/skills.json`.
+ * Mirrors the `RegistryEntry` interface in types.ts.
+ */
 const RegistryEntrySchema = v.object({
 	id: v.pipe(v.string(), v.minLength(1)),
 	name: v.pipe(v.string(), v.minLength(1)),
@@ -66,6 +85,11 @@ const RegistryEntrySchema = v.object({
 	relatedSkills: v.array(v.string()),
 });
 
+/**
+ * Valibot schema for the full `registry/skills.json` document.
+ * Used by `validate-registry.ts` to confirm the committed file conforms to
+ * the expected shape before checking staleness, duplicates, and graph integrity.
+ */
 export const RegistrySchema = v.object({
 	schemaVersion: v.number(),
 	generatedAt: v.string(),
