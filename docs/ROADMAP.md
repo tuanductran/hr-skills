@@ -362,6 +362,118 @@ Extend validation beyond the current structural/format checks
 
 ---
 
+### Phase 7 — Product & Web Platform
+
+Build the user-facing layer that turns the repository into a browsable product rather than only a repository of skills and infrastructure.
+
+#### 7.1 Web UI foundation
+
+* Public documentation site
+* Responsive skill catalog UI
+* Skill detail pages with content, prompts, examples, and metadata
+* Search and filtering across registry fields
+* Navigation for categories, domains, and tiers
+
+#### 7.2 Interactive product surfaces
+
+* Registry explorer
+* Skill graph visualization
+* Planner playground
+* Runtime trace viewer
+* Evaluation dashboard
+* Release and changelog viewer
+
+#### 7.3 Developer experience
+
+* Local preview workflow
+* Static generation or hybrid rendering strategy
+* Reusable UI components for skill cards, filters, and results
+* Accessibility and mobile-first layout requirements
+
+---
+
+### Phase 8 — API & Services
+
+Expose the core registry, planner, runtime, and evaluation capabilities through stable service interfaces.
+
+#### 8.1 Service layer
+
+* Registry search API
+* Planner API
+* Runtime execution API
+* Evaluation API
+* Health and version endpoints
+
+#### 8.2 Platform integration
+
+* API contracts for web UI and external clients
+* Auth and rate limiting strategy if public endpoints are introduced
+* Request validation and error normalization
+* Deterministic behavior aligned with the library implementations
+
+#### 8.3 Operational concerns
+
+* Caching strategy for registry and evaluation artifacts
+* Observability and structured logs
+* Backward-compatible versioning for public endpoints
+* Deployment guidance for self-hosted and managed environments
+
+---
+
+### Phase 9 — Intelligent Agent Platform
+
+Turn HR Skills into an agentic platform for composing, running, and inspecting HR workflows.
+
+#### 9.1 Agent orchestration
+
+* Multi-step and multi-skill orchestration
+* Visual workflow builder
+* Conditional branching and fallback paths
+* Skill chaining and reusable workflow templates
+
+#### 9.2 Intelligence layer
+
+* Agent memory and context propagation across sessions
+* Recommendation-aware task routing
+* Adaptive skill selection based on workflow outcomes
+* Human-in-the-loop approvals for sensitive HR actions
+
+#### 9.3 Guardrails
+
+* Policy enforcement for high-risk HR workflows
+* Audit trails for agent decisions
+* Approval checkpoints and escalation logic
+* Safety validation before execution
+
+---
+
+### Phase 10 — Ecosystem & Community
+
+Expand HR Skills from a single repository into a sustainable ecosystem with community contributions, interoperability, and long-term governance.
+
+#### 10.1 Ecosystem growth
+
+* Community skill submissions
+* Skill certification or review status
+* Extension points for third-party skill packs
+* Ecosystem analytics and adoption metrics
+
+#### 10.2 Distribution and interoperability
+
+* Hosted registry or sync service
+* Plugin and marketplace expansion
+* External platform adapters
+* Cross-repository import/export workflows
+
+#### 10.3 Governance and sustainability
+
+* Maintainer model for larger scope
+* Contribution pathways for domain experts
+* Deprecation policy for outdated skills and APIs
+* Long-term roadmap review cadence
+
+---
+
 ## Validation & Quality System
 
 HR Skills uses a multi-layer validation architecture.
@@ -442,78 +554,4 @@ The project uses Changesets for release management.
 Workflow:
 
 ```text
-Change
-  |
-Changeset
-  |
-Release workflow
-  |
-Version update
-  |
-GitHub Release
-```
-
-Commands:
-
-```bash
-bun changeset
-
-bun run release
-```
-
----
-
-## Future Direction
-
-### Skill Intelligence & Quality Automation
-
-Now tracked as [Phase 6](#phase-6--skill-intelligence--quality-automation)
-under Development Phases, since both had grown concrete enough to scope
-as a phase rather than stay as an open-ended list here.
-
----
-
-### Ecosystem Expansion
-
-Potential directions:
-
-* Publish stable packages
-* Improve Agent Skills interoperability — tracked in
-  [`docs/integrations.md`](integrations.md)
-* Support additional AI platforms — see the Supported platforms table in
-  [`docs/integrations.md`](integrations.md) for current 🟢/🟡 status
-* Build HR AI tooling ecosystem
-
----
-
-## Success Metrics
-
-| Area           | Direction                                  |
-| -------------- | ------------------------------------------ |
-| Skill Coverage | Maintain broad HR domain coverage          |
-| Skill Quality  | Increase Full maturity percentage          |
-| Validation     | Keep automated quality gates reliable      |
-| Security       | Prevent unsafe skill content               |
-| Documentation  | Keep generated and human docs synchronized |
-| Community      | Enable external contribution               |
-
----
-
-## Glossary
-
-| Term          | Definition                                                    |
-| ------------- | ------------------------------------------------------------- |
-| Skill         | A versioned Agent Skill package focused on one HR domain      |
-| SKILL.md      | Core skill definition file                                    |
-| Full Skill    | Skill containing documentation, prompts, and examples         |
-| Partial Skill | Skill with additional content but missing some optional areas |
-| Bare Skill    | Skill containing only SKILL.md                                |
-| Meta Skill    | Internal skill used by AI agents for repository maintenance   |
-| Router        | Root skill responsible for routing requests                   |
-| Matrix        | Generated report describing skill maturity                    |
-| Validate      | Automated quality and security validation                     |
-| Sync          | Marketplace metadata regeneration                             |
-
----
-
-Last updated: July 24, 2026
+Change...
