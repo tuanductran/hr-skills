@@ -2,6 +2,8 @@
 
 Contributions are welcome — new HR skills, improvements to existing skills, documentation updates, and enhancements to the build and tooling workflow.
 
+For a deeper walkthrough — repository architecture, the full contributor journey, and worked examples — see [`docs/contributing/`](./docs/contributing/onboarding.md). This file covers the minimum steps to get a pull request merged. For how contributions are reviewed, who owns what, and how community feedback reaches the roadmap, see [`GOVERNANCE.md`](./GOVERNANCE.md).
+
 ## Prerequisites
 
 - [Bun](https://bun.sh/) ≥ 1.3.9
@@ -22,11 +24,14 @@ Run the full check suite from the project root:
 Build and typecheck tasks are orchestrated through Turborepo and may run in parallel across workspace packages.
 
 ```bash
-bun run validate    # Validate all SKILL.md files
-bun run check       # 0 Biome check errors required
-bun run lint:md     # 0 markdownlint errors required
-bun run typecheck   # 0 TypeScript errors required
-bun run build       # All workspace builds must complete successfully
+bun run validate     # Validate all SKILL.md files
+bun run check        # 0 Biome check errors required
+bun run lint:md       # 0 markdownlint errors required
+bun run lint:links    # No broken links in docs/ or skills/
+bun run typecheck    # 0 TypeScript errors required
+bun run build        # All workspace builds must complete successfully
+bun run test          # All workspace tests must pass
+bun run knip          # No unused files or dependencies introduced
 ```
 
 All checks must pass before opening a pull request.
@@ -97,6 +102,15 @@ Changes there should:
 - Not break `bun run sync`
 - Not break generated package outputs
 
+## Review process
+
+Pull requests are reviewed by the repository owner (see
+[`.github/CODEOWNERS`](.github/CODEOWNERS)). The working target is an
+initial response within 7 days; every PR gets an explicit signal
+(approve, requested changes, or a reason it's paused) rather than sitting
+open silently. See [`GOVERNANCE.md`](GOVERNANCE.md#review-and-approval-workflow)
+for the full review criteria by content type and how ownership works.
+
 ## Questions
 
-Open an issue on GitHub if you're unsure about scope or approach before writing code.
+Open an issue on GitHub if you're unsure about scope or approach before writing code. For open-ended questions or early-stage ideas that aren't a bug, feature, or concrete skill proposal, use [GitHub Discussions](https://github.com/tuanductran/hr-skills/discussions) instead — see `GOVERNANCE.md`'s [issue and discussion template guide](GOVERNANCE.md#issue-and-discussion-templates).

@@ -1,11 +1,18 @@
 # Suggested edits to `CONTRIBUTING.md`
 
+> **Status update:** Items 1–3 below were applied in the
+> `feature/community-governance` change that introduced
+> [`GOVERNANCE.md`](GOVERNANCE.md). Item 4 remains open pending maintainer
+> confirmation. This file is kept as the historical record of what was
+> proposed and why — see `GOVERNANCE.md` for the resolved, authoritative
+> version of items 1–3.
+
 All suggestions are additive or clarifying — nothing in the current file is incorrect, so
 nothing needs to be removed. Each item states the exact location and proposed text.
 
 ---
 
-## 1. Expand "Before you submit" to match CI — **[Proposed]**
+## 1. Expand "Before you submit" to match CI — **[Merged]**
 
 **Where:** the `## Before you submit` section, current code block.
 
@@ -39,7 +46,7 @@ bun run knip          # No unused files or dependencies introduced
 
 ---
 
-## 2. Link out to `docs/contributing/` — **[Proposed]**
+## 2. Link out to `docs/contributing/` — **[Merged]**
 
 **Where:** add a short paragraph directly under the `# Contributing` H1, before `## Prerequisites`.
 
@@ -56,7 +63,7 @@ the minimum steps to get a pull request merged.
 
 ---
 
-## 3. Clarify PR review expectations — **[Unknown, needs maintainer input]**
+## 3. Clarify PR review expectations — **[Merged, see `GOVERNANCE.md`]**
 
 **Where:** end of `CONTRIBUTING.md`, after `## Questions`.
 
@@ -97,7 +104,7 @@ see [`.agents/skills/skill-vetter/SKILL.md`](../.agents/skills/skill-vetter/SKIL
 
 | # | Change | Confidence | Action needed |
 |---|---|---|---|
-| 1 | Expand pre-submit checklist | **[Proposed]**, low-risk, matches existing scripts/CI | Safe to merge |
-| 2 | Link to `docs/contributing/` | **[Proposed]**, depends on that subtree being added | Merge together with subtree |
-| 3 | Review process note | **[Unknown]** | Needs maintainer to supply content |
-| 4 | `skill-vetter` reference | **[Unknown]** | Needs maintainer to confirm intent |
+| 1 | Expand pre-submit checklist | **[Merged]** | Applied in `CONTRIBUTING.md` |
+| 2 | Link to `docs/contributing/` | **[Merged]** | Applied in `CONTRIBUTING.md` |
+| 3 | Review process note | **[Merged]** | Resolved via `GOVERNANCE.md`; `CONTRIBUTING.md` links to it |
+| 4 | `skill-vetter` reference | **[Unknown]** | Still needs maintainer to confirm intent — see `GOVERNANCE.md`'s review-criteria section, which references it for maintainer-side security review only, not (yet) contributor self-check |
