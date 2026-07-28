@@ -554,4 +554,78 @@ The project uses Changesets for release management.
 Workflow:
 
 ```text
-Change...
+Change
+  |
+Changeset
+  |
+Release workflow
+  |
+Version update
+  |
+GitHub Release
+```
+
+Commands:
+
+```bash
+bun changeset
+
+bun run release
+```
+
+---
+
+## Future Direction
+
+### Skill Intelligence & Quality Automation
+
+Now tracked as [Phase 6](#phase-6--skill-intelligence--quality-automation)
+under Development Phases, since both had grown concrete enough to scope
+as a phase rather than stay as an open-ended list here.
+
+---
+
+### Ecosystem Expansion
+
+Potential directions:
+
+* Publish stable packages
+* Improve Agent Skills interoperability — tracked in
+  [`docs/integrations.md`](integrations.md)
+* Support additional AI platforms — see the Supported platforms table in
+  [`docs/integrations.md`](integrations.md) for current 🟢/🟡 status
+* Build HR AI tooling ecosystem
+
+---
+
+## Success Metrics
+
+| Area           | Direction                                  |
+| -------------- | ------------------------------------------ |
+| Skill Coverage | Maintain broad HR domain coverage          |
+| Skill Quality  | Increase Full maturity percentage          |
+| Validation     | Keep automated quality gates reliable      |
+| Security       | Prevent unsafe skill content               |
+| Documentation  | Keep generated and human docs synchronized |
+| Community      | Enable external contribution               |
+
+---
+
+## Glossary
+
+| Term          | Definition                                                    |
+| ------------- | ------------------------------------------------------------- |
+| Skill         | A versioned Agent Skill package focused on one HR domain      |
+| SKILL.md      | Core skill definition file                                    |
+| Full Skill    | Skill containing documentation, prompts, and examples         |
+| Partial Skill | Skill with additional content but missing some optional areas |
+| Bare Skill    | Skill containing only SKILL.md                                |
+| Meta Skill    | Internal skill used by AI agents for repository maintenance   |
+| Router        | Root skill responsible for routing requests                   |
+| Matrix        | Generated report describing skill maturity                    |
+| Validate      | Automated quality and security validation                     |
+| Sync          | Marketplace metadata regeneration                             |
+
+---
+
+Last updated: July 28, 2026
