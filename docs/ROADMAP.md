@@ -330,7 +330,9 @@ contributors, rather than leaving them as internal planner input only.
 * Recommendation engine — surface `registry/skills.json`'s existing
   `relatedSkills` graph as user-facing "skills you might also need"
   suggestions, instead of only consuming it internally in the Planner
-  (4.2)
+  (4.2). Delivered — see [`docs/recommendations.md`](recommendations.md)
+  for the recommendation format, ranking rule, limitations, and intended
+  consumer usage
 * Improved skill discovery — ranked/fuzzy search over the registry
   (capabilities, tags, aliases) beyond exact trigger-phrase matching
 * Usage-informed relevance — once there's a way to observe which skills

@@ -100,6 +100,39 @@ export interface RegistryEntry {
 	relatedSkills: string[];
 }
 
+// ---------------------------------------------------------------------------
+// Recommendation types (Phase 6.1)
+// ---------------------------------------------------------------------------
+
+/**
+ * A single "you might also need" suggestion, derived from a `RegistryEntry`'s
+ * `relatedSkills` list. `rank` is the suggestion's 1-based position within
+ * that list, preserved as-is — recommendations never re-sort or re-score.
+ */
+export interface SkillRecommendation {
+	/** Recommended skill's ID, e.g. "hr-onboarding". */
+	id: string;
+	/** Recommended skill's display name. */
+	name: string;
+	/** Recommended skill's one-sentence description. */
+	description: string;
+	/** Recommended skill's routing domain. */
+	domain: SkillCategory;
+	/** 1-based position in the source skill's `relatedSkills` order. */
+	rank: number;
+}
+
+/**
+ * The recommendation output for one source skill: its ID plus the ranked
+ * list of related skills, capped at the requested limit.
+ */
+export interface RecommendationResult {
+	/** The skill the recommendations are for. */
+	skillId: string;
+	/** Related skills, ordered by rank (best match first). */
+	recommendations: SkillRecommendation[];
+}
+
 /**
  * The full generated Skill Registry document.
  */
