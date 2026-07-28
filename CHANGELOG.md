@@ -1,5 +1,35 @@
 # Changelog
 
+## 1.2.0
+
+### Minor Changes
+
+- 39858ce: Added `GOVERNANCE.md` defining the community governance model: maintainer vs. contributor roles, a review-and-approval workflow mapping the PR template's content types to concrete review criteria, a per-area ownership table, issue/discussion routing, and the roadmap feedback process. Resolves the review-process question left open in `CONTRIBUTING.md.suggestions.md` and the `[Unknown]` review-SLA and release-cadence notes in `docs/contributing/workflow.md` and `onboarding.md`.
+
+  - Added `.github/ISSUE_TEMPLATE/config.yml` (disables blank issues, links to Discussions) and `.github/DISCUSSION_TEMPLATE/{general,ideas}.yml` as the structured entry points for open-ended questions and early-stage ideas that the existing bug/feature/new-skill issue templates didn't cover.
+  - Annotated `.github/CODEOWNERS` explaining the single-owner model and where area-scoped entries would go as the project grows.
+  - Expanded `CONTRIBUTING.md`'s pre-submit checklist to match what CI actually enforces (`lint:links`, `test`, `knip`), added a Review process section, and linked to `docs/contributing/` and `GOVERNANCE.md`.
+  - Marked `CONTRIBUTING.md.suggestions.md` items 1-3 `[Merged]`; item 4 (`skill-vetter` contributor self-check) stays open pending confirmation.
+
+- 2c42bcb: Added `docs/integrations.md` (Phase 5) defining the supported-platform matrix (Claude Code, claude.ai, `.claude-plugin/marketplace.json`, skills.sh, direct clone), candidate platforms (generic Agent Skills runtimes, OpenAI-style agents, LangChain/CrewAI), installation/onboarding requirements, the process for adding a new platform adapter, a three-layer integration testing strategy, backward-compatibility rules, and known platform limitations. Linked from `README.md` and `docs/ROADMAP.md`'s Phase 5 and Ecosystem Expansion sections.
+- 2c42bcb: Added `docs/release.md` (Phase 5) defining the full release lifecycle for HR Skills: the five-stage flow from changeset through tag/publish matching the `changesets/action` + `release.yml` automation, a repo-specific semver versioning strategy, a release validation checklist split into automated and manual items, a release-notes workflow explaining how changeset descriptions become `CHANGELOG.md` and GitHub Release content, a cross-channel consistency table tying every distribution channel back to its generator, and rollback guidance for three concrete scenarios.
+
+  - Corrected `.changeset/README.md`'s "Releasing" instructions, which had described a manual `bun changeset version` + tag + push flow that incorrectly claimed `release.yml` would then auto-create the GitHub Release; rewrote it to match the actual PR-bot flow (`release.yml` only runs a `version` step, no `publish` step, so it opens a Version Packages PR and never creates a tag or Release on its own).
+  - Normalized `CHANGELOG.md`'s version headers to a single consistent format (Changesets' bare `major.minor.patch`, no `v` prefix) across all historical entries, which had mixed three different formats from three prior tooling generations; moved a misplaced intro paragraph back under the `# Changelog` heading. No bullet content, commit hashes, or historical facts were altered.
+
+- e4ce8a1: Implemented Phase 4.1 of the roadmap: a generated, machine-readable Skill Registry (`registry/skills.json`) that indexes every skill's tier, domain, tags, aliases, capabilities, trigger phrases, dependencies, and a deterministic related-skills graph.
+
+  - New `packages/hr-skills-build/src/registry.ts` — pure `buildRegistry()` function, deriving all metadata from existing sources (SKILL.md frontmatter and sections, and the existing `classifySkill()` classifier) rather than introducing a second manually maintained metadata store.
+  - New `bun run registry` command (`generate-registry.ts`) generates `registry/skills.json`; wired into `turbo.jsonc` and CI (`matrix.yml` now regenerates and commits both `docs/skill-matrix.md` and `registry/skills.json` on every push to `main`).
+  - `bun run validate` now also validates the registry (`validate-registry.ts`): schema conformance, staleness vs. the current filesystem, duplicate IDs, dangling `dependencies`/`relatedSkills` references, and circular dependencies.
+  - `SKILL.md` frontmatter is unchanged — no routing metadata was added to any of the 146 skill files.
+  - Extracted a shared `computeTier()` helper (previously duplicated inline in the skill-matrix generator) so the matrix and the registry can never disagree about a skill's maturity tier.
+  - Added `docs/registry.md` documenting the architecture, schema, generation, validation, and extension guidelines, and linked it from `docs/ROADMAP.md` and `AGENTS.md`.
+
+### Patch Changes
+
+- 39858ce: Marked Phase 5 — Community & Distribution as completed in `docs/ROADMAP.md` (external contributors, documentation, public examples, ecosystem integrations, and stable releases all now have shipped, linked deliverables) and added Phase 6 — Skill Intelligence & Quality Automation, formalizing the previously unphased "Skill Intelligence" and "Quality Automation" items from the Future Direction section into a concrete phase (6.1 recommendation engine and discovery improvements building on the Skill Registry's existing relationship graph from 4.1; 6.2 duplicate detection, semantic validation, quality scoring, and AI-assisted review). The old Future Direction subsections now point to Phase 6 instead of duplicating it.
+
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/). Version headers use plain `major.minor.patch` (no `v` prefix), matching the output of [Changesets](https://github.com/changesets/changesets), the versioning tool used from `1.1.0` onward — see [`docs/release.md`](docs/release.md) for the full release process. Git tags are prefixed `v` (for example, tag `v1.1.0` corresponds to the `## 1.1.0` section below).
