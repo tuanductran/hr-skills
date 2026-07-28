@@ -133,6 +133,94 @@ export interface RecommendationResult {
 	recommendations: SkillRecommendation[];
 }
 
+// ---------------------------------------------------------------------------
+// Skill search / discovery types (Phase 6.1)
+// ---------------------------------------------------------------------------
+
+/**
+ * Registry fields that `searchSkills()` can match against. Kept in sync
+ * with the field list in the Phase 6.1 issue: capabilities, aliases, tags,
+ * domain, trigger phrases.
+ */
+export type SearchableField =
+	| 'capabilities'
+	| 'aliases'
+	| 'tags'
+	| 'domain'
+	| 'triggerPhrases';
+
+/** How a single field value matched the query text. */
+export type MatchType = 'exact' | 'fuzzy';
+
+/**
+ * One matched field value for one skill, with enough detail to explain
+ * *why* the skill matched — the raw ingredients of the result's score.
+ */
+export interface SkillFieldMatch {
+	/** Which registry field matched, e.g. "capabilities". */
+	field: SearchableField;
+	/** The exact field value that matched, e.g. "employee onboarding". */
+	value: string;
+	/** Whether this was an exact or fuzzy match. */
+	matchType: MatchType;
+	/** Match strength, 0–1. Always 1 for exact matches. */
+	similarity: number;
+	/** The field's base weight (see `FIELD_WEIGHTS` in search.ts). */
+	weight: number;
+	/** `weight * similarity`, before any cross-field bonuses. */
+	contribution: number;
+}
+
+/**
+ * One skill's search result: its identity, final score, every field match
+ * that contributed to that score, and a human-readable explanation.
+ */
+export interface SkillSearchResult {
+	/** Matched skill's ID, e.g. "hr-onboarding". */
+	skillId: string;
+	/** Matched skill's display name. */
+	name: string;
+	/** Matched skill's one-sentence description. */
+	description: string;
+	/** Matched skill's routing domain. */
+	domain: SkillCategory;
+	/** Final composite relevance score (see search.ts for the formula). */
+	score: number;
+	/** Every field match that contributed to `score`, most relevant first. */
+	matches: SkillFieldMatch[];
+	/** Deterministic, human-readable summary of why this skill matched. */
+	explanation: string;
+}
+
+/**
+ * A search query against the generated Skill Registry.
+ */
+export interface SkillSearchQuery {
+	/** Free-text query, matched (exact and/or fuzzy) against `fields`. */
+	text: string;
+	/** Fields to search. Defaults to all `SearchableField`s. */
+	fields?: SearchableField[];
+	/** Restrict results to a single domain before scoring. */
+	domain?: SkillCategory;
+	/** Enable fuzzy matching in addition to exact matching. Defaults to true. */
+	fuzzy?: boolean;
+	/** Maximum number of results to return. Defaults to 10. */
+	limit?: number;
+}
+
+/**
+ * The full output of `searchSkills()`: the query that was run plus its
+ * ranked results.
+ */
+export interface SkillSearchResponse {
+	/** The `text` query that was run, echoed back verbatim. */
+	query: string;
+	/** Number of results returned (i.e. `results.length`). */
+	resultCount: number;
+	/** Matching skills, ranked by `score` descending. */
+	results: SkillSearchResult[];
+}
+
 /**
  * The full generated Skill Registry document.
  */

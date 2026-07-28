@@ -334,7 +334,10 @@ contributors, rather than leaving them as internal planner input only.
   for the recommendation format, ranking rule, limitations, and intended
   consumer usage
 * Improved skill discovery — ranked/fuzzy search over the registry
-  (capabilities, tags, aliases) beyond exact trigger-phrase matching
+  (capabilities, tags, aliases) beyond exact trigger-phrase matching.
+  Delivered — see [`docs/search.md`](search.md) for supported query
+  types, searchable fields, ranking strategy, determinism guarantees,
+  the public API, and usage examples
 * Usage-informed relevance — once there's a way to observe which skills
   are actually selected together in practice (for example via evaluation
   runs or planner telemetry), use that signal to refine
