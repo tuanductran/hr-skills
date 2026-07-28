@@ -106,6 +106,7 @@ Key navigation documents:
 - **Router:** [`SKILL.md`](SKILL.md) — Master routing guide for all skills
 - **Skill Matrix:** [`docs/skill-matrix.md`](docs/skill-matrix.md) — Generated inventory and maturity status
 - **Roadmap:** [`docs/ROADMAP.md`](docs/ROADMAP.md) — Project vision, architecture, and future direction
+- **Ecosystem Integrations:** [`docs/integrations.md`](docs/integrations.md) — Supported platforms, installation guides, and compatibility testing strategy
 
 The Skill Matrix is the authoritative source for repository coverage and maturity.
 
