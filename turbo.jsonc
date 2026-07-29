@@ -26,6 +26,16 @@
 		"sync": {
 			"cache": false
 		},
+		"discover": {
+			"cache": false
+		},
+		"recommend": {
+			"cache": false
+		},
+		"execute": {
+			"cache": false,
+			"outputs": ["execution-result.json"]
+		},
 		"matrix": {
 			"cache": false,
 			"outputs": ["docs/skill-matrix.md"]

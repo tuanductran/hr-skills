@@ -79,6 +79,8 @@ bun run sync         # Sync generated skill references after adding/removing a s
 bun run validate     # Validate all skill SKILL.md files
 bun run matrix       # Generate docs/skill-matrix.md — snapshot of every skill's maturity tier
 bun run registry     # Generate registry/skills.json — machine-readable skill registry (see docs/registry.md)
+bun run discover "<query>"  # Search the generated registry by text/domain (see docs/search.md)
+bun run recommend <skill-id>  # Get related-skill recommendations (see docs/recommendations.md)
 bun run plan "<intent>"  # Generate execution plan for a user intent (see docs/planner.md)
 bun run execute "<intent>"  # Generate a plan and run it through the Workflow Runtime (see docs/runtime.md)
 bun run evaluate     # Run the evaluation framework against eval/datasets (see docs/evaluation.md)
