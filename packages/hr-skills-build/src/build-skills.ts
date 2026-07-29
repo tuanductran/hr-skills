@@ -39,6 +39,7 @@ import { ROOT_DIR } from './constants.js';
 interface ZipEntry {
 	arcname: string;
 	data: Buffer;
+	mtime: Date;
 }
 
 /** CRC-32 table (polynomial 0xEDB88320, as required by the ZIP spec). */
@@ -80,6 +81,34 @@ function writeUInt32LE(buf: Buffer, value: number, offset: number): void {
 }
 
 /**
+ * Pack a JS Date into ZIP's MS-DOS date/time fields (local time, matching
+ * Python's zipfile module, which derives these from `time.localtime(mtime)`).
+ *
+ * date = (year-1980 << 9) | (month << 5) | day
+ * time = (hour << 11) | (minute << 5) | (second / 2)
+ *
+ * DOS format cannot represent years before 1980 or after 2107, and only
+ * stores even seconds — dates outside that range are clamped to the
+ * earliest representable value (1980-01-01 00:00:00) instead of wrapping
+ * into another invalid bit pattern.
+ */
+function dateToDos(date: Date): { time: number; date: number } {
+	const year = date.getFullYear();
+
+	if (year < 1980 || year > 2107) {
+		return { time: 0, date: 0x21 };
+	}
+
+	const dosDate = ((year - 1980) << 9) | ((date.getMonth() + 1) << 5) | date.getDate();
+	const dosTime =
+		(date.getHours() << 11) |
+		(date.getMinutes() << 5) |
+		Math.floor(date.getSeconds() / 2);
+
+	return { time: dosTime, date: dosDate };
+}
+
+/**
  * Assemble a ZIP archive from entries and return it as a Buffer.
  * Uses DEFLATE compression (method 8), matching Python's ZIP_DEFLATED.
  */
@@ -89,21 +118,12 @@ function buildZipBuffer(entries: ZipEntry[]): Buffer {
 	const offsets: number[] = [];
 	let currentOffset = 0;
 
-	// DOS date/time fields are packed bitfields, not raw epoch offsets:
-	// date = (year-1980 << 9) | (month << 5) | day, time = (hour << 11) | (minute << 5) | (second/2).
-	// 0x0000 is a VALID time (00:00:00) but 0x0000 as a date means day=0, month=0,
-	// which is not a real calendar date — most unzip tools fall back inconsistently
-	// (1979-12-31, 1970-01-01, etc.) when they hit it. 0x0021 is the correctly packed
-	// value for 1980-01-01, the earliest date the DOS format can represent, still
-	// fully deterministic for reproducible builds.
-	const DOS_TIME = 0x0000; // 00:00:00
-	const DOS_DATE = 0x0021; // 1980-01-01
-
 	for (const entry of entries) {
 		const nameBytes = Buffer.from(entry.arcname, 'utf8');
 		const raw = entry.data;
 		const compressed = deflateRawSync(raw, { level: 6 });
 		const checksum = crc32(raw);
+		const { time: dosTime, date: dosDate } = dateToDos(entry.mtime);
 
 		// Local file header: 30 bytes + filename
 		const local = Buffer.alloc(30 + nameBytes.length);
@@ -111,8 +131,8 @@ function buildZipBuffer(entries: ZipEntry[]): Buffer {
 		writeUInt16LE(local, 20, 4); // version needed (2.0)
 		writeUInt16LE(local, 0, 6); // general purpose flags
 		writeUInt16LE(local, 8, 8); // compression: deflate
-		writeUInt16LE(local, DOS_TIME, 10); // last mod time
-		writeUInt16LE(local, DOS_DATE, 12); // last mod date
+		writeUInt16LE(local, dosTime, 10); // last mod time
+		writeUInt16LE(local, dosDate, 12); // last mod date
 		writeUInt32LE(local, checksum, 14); // CRC-32
 		writeUInt32LE(local, compressed.length, 18); // compressed size
 		writeUInt32LE(local, raw.length, 22); // uncompressed size
@@ -131,8 +151,8 @@ function buildZipBuffer(entries: ZipEntry[]): Buffer {
 		writeUInt16LE(central, 20, 6); // version needed
 		writeUInt16LE(central, 0, 8); // general purpose flags
 		writeUInt16LE(central, 8, 10); // compression: deflate
-		writeUInt16LE(central, DOS_TIME, 12); // last mod time
-		writeUInt16LE(central, DOS_DATE, 14); // last mod date
+		writeUInt16LE(central, dosTime, 12); // last mod time
+		writeUInt16LE(central, dosDate, 14); // last mod date
 		writeUInt32LE(central, checksum, 16); // CRC-32
 		writeUInt32LE(central, compressed.length, 20); // compressed size
 		writeUInt32LE(central, raw.length, 24); // uncompressed size
@@ -257,7 +277,8 @@ async function buildArchive(
 		const rel = relative(repoRoot, absPath).replace(/\\/g, '/');
 		if (isIgnored(rel, patterns)) continue;
 		const data = await readFile(absPath);
-		entries.push({ arcname: rel, data });
+		const { mtime } = await stat(absPath);
+		entries.push({ arcname: rel, data, mtime });
 	}
 
 	const buf = buildZipBuffer(entries);
