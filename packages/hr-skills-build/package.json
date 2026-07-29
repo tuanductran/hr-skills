@@ -29,6 +29,7 @@
 		"matrix": "bun src/generate-skill-matrix.ts",
 		"registry": "bun src/generate-registry.ts",
 		"discover": "bun src/discover.ts",
+		"signals": "bun src/generate-relevance-signals.ts",
 		"plan": "bun src/generate-plan.ts",
 		"recommend": "bun src/recommend.ts",
 		"execute": "bun src/execute-plan.ts",

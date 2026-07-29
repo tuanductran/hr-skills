@@ -69,3 +69,21 @@ export async function listGoldenFixtureNames(): Promise<string[]> {
 		.map((entry) => entry.name.replace(GOLDEN_SUFFIX_REGEX, ''))
 		.sort();
 }
+
+/**
+ * Load and return every committed golden fixture, sorted by dataset name.
+ *
+ * Used by the relevance-signal generator to collect all available evidence
+ * without requiring the caller to enumerate dataset names manually.
+ */
+export async function loadAllGoldenFixtures(): Promise<GoldenFixture[]> {
+	const names = await listGoldenFixtureNames();
+	const fixtures: GoldenFixture[] = [];
+
+	for (const name of names) {
+		const fixture = await loadGoldenFixture(name);
+		if (fixture !== undefined) fixtures.push(fixture);
+	}
+
+	return fixtures;
+}
