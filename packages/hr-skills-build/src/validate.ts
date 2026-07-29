@@ -410,6 +410,9 @@ export async function validateSubdirectoryContents(
 
 /**
  * Validate a single skill.
+ *
+ * All checks within a single skill are run sequentially — they share the same
+ * content string and errors array, so no parallelism is needed here.
  */
 async function validateSkill(skillName: string): Promise<SkillValidationIssue[]> {
 	const errors: SkillValidationIssue[] = [];
@@ -442,6 +445,11 @@ async function validateSkill(skillName: string): Promise<SkillValidationIssue[]>
 
 /**
  * Validate all HR skills.
+ *
+ * Skills are validated concurrently with `Promise.all` so that I/O-bound
+ * work (reading SKILL.md + subdirectory checks) overlaps across all skills
+ * at once. Global consistency checks (router, registry, duplicates, semantic)
+ * run in parallel with the per-skill phase via a second `Promise.all`.
  */
 async function validate(): Promise<void> {
 	p.intro('Validating HR skills...');
@@ -458,23 +466,30 @@ async function validate(): Promise<void> {
 	const allErrors: SkillValidationIssue[] = [];
 	const allWarnings: SkillValidationIssue[] = [];
 
-	await validateRouterConsistency(skillNames, allErrors);
-	await validateRegistryConsistency(allErrors);
+	// Run per-skill validation and global consistency checks concurrently.
+	const [perSkillResults] = await Promise.all([
+		// Per-skill: all 146 skills validated in parallel
+		Promise.all(skillNames.map((name) => validateSkill(name))),
+		// Global: router + registry run concurrently alongside per-skill work
+		validateRouterConsistency(skillNames, allErrors),
+		validateRegistryConsistency(allErrors),
+	]);
 
-	for (const skillName of skillNames) {
-		const errors = await validateSkill(skillName);
-
-		if (errors.length > 0) {
-			allErrors.push(...errors);
-			p.log.error(skillName);
-		}
+	// Collect per-skill errors and log any failing skill names
+	for (let i = 0; i < perSkillResults.length; i++) {
+		const errors = perSkillResults[i];
+		if (!errors || errors.length === 0) continue;
+		allErrors.push(...errors);
+		const skillName = skillNames[i];
+		if (skillName) p.log.error(skillName);
 	}
 
-	// Phase 6.2 — duplicate-content detection (quality warnings, not failures)
-	await detectDuplicates(skillNames, allWarnings);
-
-	// Phase 6.2 — semantic validation of prompts/examples (quality warnings, not failures)
-	await validateSemanticConsistency(SKILLS_DIR, skillNames, allWarnings);
+	// Phase 6.2 — duplicate-content detection and semantic validation run
+	// concurrently since neither depends on the other's output.
+	await Promise.all([
+		detectDuplicates(skillNames, allWarnings),
+		validateSemanticConsistency(SKILLS_DIR, skillNames, allWarnings),
+	]);
 
 	// Report warnings (informational — do not affect exit code)
 	if (allWarnings.length > 0) {
