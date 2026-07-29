@@ -89,8 +89,15 @@ function buildZipBuffer(entries: ZipEntry[]): Buffer {
 	const offsets: number[] = [];
 	let currentOffset = 0;
 
-	// DOS epoch (1980-01-01 00:00:00) — deterministic, reproducible builds
-	const DOS_EPOCH = 0;
+	// DOS date/time fields are packed bitfields, not raw epoch offsets:
+	// date = (year-1980 << 9) | (month << 5) | day, time = (hour << 11) | (minute << 5) | (second/2).
+	// 0x0000 is a VALID time (00:00:00) but 0x0000 as a date means day=0, month=0,
+	// which is not a real calendar date — most unzip tools fall back inconsistently
+	// (1979-12-31, 1970-01-01, etc.) when they hit it. 0x0021 is the correctly packed
+	// value for 1980-01-01, the earliest date the DOS format can represent, still
+	// fully deterministic for reproducible builds.
+	const DOS_TIME = 0x0000; // 00:00:00
+	const DOS_DATE = 0x0021; // 1980-01-01
 
 	for (const entry of entries) {
 		const nameBytes = Buffer.from(entry.arcname, 'utf8');
@@ -104,8 +111,8 @@ function buildZipBuffer(entries: ZipEntry[]): Buffer {
 		writeUInt16LE(local, 20, 4); // version needed (2.0)
 		writeUInt16LE(local, 0, 6); // general purpose flags
 		writeUInt16LE(local, 8, 8); // compression: deflate
-		writeUInt16LE(local, DOS_EPOCH, 10); // last mod time
-		writeUInt16LE(local, DOS_EPOCH, 12); // last mod date
+		writeUInt16LE(local, DOS_TIME, 10); // last mod time
+		writeUInt16LE(local, DOS_DATE, 12); // last mod date
 		writeUInt32LE(local, checksum, 14); // CRC-32
 		writeUInt32LE(local, compressed.length, 18); // compressed size
 		writeUInt32LE(local, raw.length, 22); // uncompressed size
@@ -124,8 +131,8 @@ function buildZipBuffer(entries: ZipEntry[]): Buffer {
 		writeUInt16LE(central, 20, 6); // version needed
 		writeUInt16LE(central, 0, 8); // general purpose flags
 		writeUInt16LE(central, 8, 10); // compression: deflate
-		writeUInt16LE(central, DOS_EPOCH, 12); // last mod time
-		writeUInt16LE(central, DOS_EPOCH, 14); // last mod date
+		writeUInt16LE(central, DOS_TIME, 12); // last mod time
+		writeUInt16LE(central, DOS_DATE, 14); // last mod date
 		writeUInt32LE(central, checksum, 16); // CRC-32
 		writeUInt32LE(central, compressed.length, 20); // compressed size
 		writeUInt32LE(central, raw.length, 24); // uncompressed size
