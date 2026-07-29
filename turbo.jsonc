@@ -26,6 +26,16 @@
 		"sync": {
 			"cache": false
 		},
+		"discover": {
+			"cache": false
+		},
+		"recommend": {
+			"cache": false
+		},
+		"execute": {
+			"cache": false,
+			"outputs": ["execution-result.json"]
+		},
 		"matrix": {
 			"cache": false,
 			"outputs": ["docs/skill-matrix.md"]
@@ -33,6 +43,11 @@
 		"registry": {
 			"cache": false,
 			"outputs": ["registry/skills.json"]
+		},
+		"signals": {
+			"cache": false,
+			"outputs": ["registry/relevance-signals.json"],
+			"dependsOn": ["evaluate"]
 		},
 		"plan": {
 			"cache": false,

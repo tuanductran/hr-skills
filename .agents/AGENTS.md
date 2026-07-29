@@ -1,5 +1,7 @@
 # Project overview
 
+> This is a condensed, agent-optimized digest of the canonical [`/AGENTS.md`](../AGENTS.md) at the repository root. If the two ever disagree, the root file wins — update it first, then reflect the change here.
+
 This repository is a Bun + Turborepo monorepo hosting HR AI skills for Claude Code and claude.ai. Each skill lives in `skills/hr-*/SKILL.md`. The project uses Bun as the runtime and Turborepo for orchestration.
 
 Essential commands

@@ -330,14 +330,21 @@ contributors, rather than leaving them as internal planner input only.
 * Recommendation engine — surface `registry/skills.json`'s existing
   `relatedSkills` graph as user-facing "skills you might also need"
   suggestions, instead of only consuming it internally in the Planner
-  (4.2)
+  (4.2). Delivered — see [`docs/recommendations.md`](recommendations.md)
+  for the recommendation format, ranking rule, limitations, and intended
+  consumer usage
 * Improved skill discovery — ranked/fuzzy search over the registry
-  (capabilities, tags, aliases) beyond exact trigger-phrase matching
+  (capabilities, tags, aliases) beyond exact trigger-phrase matching.
+  Delivered — see [`docs/search.md`](search.md) for supported query
+  types, searchable fields, ranking strategy, determinism guarantees,
+  the public API, and usage examples
 * Usage-informed relevance — once there's a way to observe which skills
   are actually selected together in practice (for example via evaluation
   runs or planner telemetry), use that signal to refine
   `relatedSkills` weighting rather than relying on static classification
-  alone
+  alone. Phase 6.1-A is implemented: see
+  [`docs/usage-informed-relevance.md`](usage-informed-relevance.md) for
+  the architecture, signal pipeline, and implementation roadmap.
 
 #### 6.2 Quality Automation
 
@@ -346,10 +353,14 @@ Extend validation beyond the current structural/format checks
 
 * Duplicate content detection — flag skills with substantially
   overlapping `description`/`content/` before they're merged, not just
-  overlapping directory names
+  overlapping directory names. Delivered — see
+  [`docs/duplicate-detection.md`](duplicate-detection.md)
 * Semantic validation — check that a skill's `prompts/` and `examples/`
   are actually consistent with its `description` and `content/`, beyond
-  today's non-empty-directory structural check
+  today's non-empty-directory structural check. Delivered — see
+  [`docs/semantic-validation.md`](semantic-validation.md) for the
+  heuristics, calibrated thresholds, determinism guarantees, and
+  maintainer guidance
 * Automated content quality scoring — a repeatable score (clarity,
   completeness, example coverage) usable as a review aid, not a merge
   gate, so a low score prompts a closer look rather than an automatic
@@ -628,4 +639,4 @@ Potential directions:
 
 ---
 
-Last updated: July 28, 2026
+Last updated: July 29, 2026

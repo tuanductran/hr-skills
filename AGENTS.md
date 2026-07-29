@@ -1,5 +1,11 @@
 # HR skills development guide
 
+## Project overview
+
+`hr-skills` is a Bun + Turborepo monorepo of domain-specific Agent Skills for HR and talent acquisition, distributed for Claude Code and claude.ai. Each skill lives at `skills/hr-*/SKILL.md`. Two internal TypeScript packages, `packages/hr-skills-build` and `packages/skills-ref`, validate, sync, and package the skills. Generated artifacts — `docs/skill-matrix.md`, `registry/skills.json`, `.claude-plugin/marketplace.json` — are derived from skill frontmatter and must never be hand-edited; regenerate them with the corresponding `bun run` command instead.
+
+This file is the canonical, tool-agnostic guide for both human contributors and AI agents. `CLAUDE.md` is a symlink to this file — edit `AGENTS.md` only.
+
 ## Branch strategy
 
 > [!IMPORTANT]
@@ -73,6 +79,8 @@ bun run sync         # Sync generated skill references after adding/removing a s
 bun run validate     # Validate all skill SKILL.md files
 bun run matrix       # Generate docs/skill-matrix.md — snapshot of every skill's maturity tier
 bun run registry     # Generate registry/skills.json — machine-readable skill registry (see docs/registry.md)
+bun run discover "<query>"  # Search the generated registry by text/domain (see docs/search.md)
+bun run recommend <skill-id>  # Get related-skill recommendations (see docs/recommendations.md)
 bun run plan "<intent>"  # Generate execution plan for a user intent (see docs/planner.md)
 bun run execute "<intent>"  # Generate a plan and run it through the Workflow Runtime (see docs/runtime.md)
 bun run evaluate     # Run the evaluation framework against eval/datasets (see docs/evaluation.md)

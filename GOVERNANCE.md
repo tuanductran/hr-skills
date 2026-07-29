@@ -13,10 +13,10 @@ the process scales* as the project grows beyond a single maintainer.
 
 Like the rest of `docs/contributing/`, this file marks anything not yet
 confirmed by the maintainer as **[Proposed]** rather than stating it as
-settled fact. That convention is inherited from
-[`CONTRIBUTING.md.suggestions.md`](CONTRIBUTING.md.suggestions.md), which
-flagged review-process and ownership questions as open before this
-document existed — this document is where those flags get resolved.
+settled fact. That convention is inherited from an earlier contributor-docs
+proposal that flagged review-process and ownership questions as open
+before this document existed — this document is where those flags get
+resolved.
 
 ## Roles
 
@@ -76,9 +76,8 @@ routes to the rest.
 
 ## Review and approval workflow
 
-This resolves the review-process question left open in
-[`CONTRIBUTING.md.suggestions.md`](CONTRIBUTING.md.suggestions.md) (item
-3) and the `[Unknown]` review-SLA notes in
+This resolves the review-process question left open in an earlier
+contributor-docs proposal (item 3) and the `[Unknown]` review-SLA notes in
 [`docs/contributing/workflow.md`](docs/contributing/workflow.md) and
 [`docs/contributing/onboarding.md`](docs/contributing/onboarding.md).
 

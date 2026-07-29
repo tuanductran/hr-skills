@@ -100,6 +100,127 @@ export interface RegistryEntry {
 	relatedSkills: string[];
 }
 
+// ---------------------------------------------------------------------------
+// Recommendation types (Phase 6.1)
+// ---------------------------------------------------------------------------
+
+/**
+ * A single "you might also need" suggestion, derived from a `RegistryEntry`'s
+ * `relatedSkills` list. `rank` is the suggestion's 1-based position within
+ * that list, preserved as-is — recommendations never re-sort or re-score.
+ */
+export interface SkillRecommendation {
+	/** Recommended skill's ID, e.g. "hr-onboarding". */
+	id: string;
+	/** Recommended skill's display name. */
+	name: string;
+	/** Recommended skill's one-sentence description. */
+	description: string;
+	/** Recommended skill's routing domain. */
+	domain: SkillCategory;
+	/** 1-based position in the source skill's `relatedSkills` order. */
+	rank: number;
+}
+
+/**
+ * The recommendation output for one source skill: its ID plus the ranked
+ * list of related skills, capped at the requested limit.
+ */
+export interface RecommendationResult {
+	/** The skill the recommendations are for. */
+	skillId: string;
+	/** Related skills, ordered by rank (best match first). */
+	recommendations: SkillRecommendation[];
+}
+
+// ---------------------------------------------------------------------------
+// Skill search / discovery types (Phase 6.1)
+// ---------------------------------------------------------------------------
+
+/**
+ * Registry fields that `searchSkills()` can match against. Kept in sync
+ * with the field list in the Phase 6.1 issue: capabilities, aliases, tags,
+ * domain, trigger phrases.
+ */
+export type SearchableField =
+	| 'capabilities'
+	| 'aliases'
+	| 'tags'
+	| 'domain'
+	| 'triggerPhrases';
+
+/** How a single field value matched the query text. */
+export type MatchType = 'exact' | 'fuzzy';
+
+/**
+ * One matched field value for one skill, with enough detail to explain
+ * *why* the skill matched — the raw ingredients of the result's score.
+ */
+export interface SkillFieldMatch {
+	/** Which registry field matched, e.g. "capabilities". */
+	field: SearchableField;
+	/** The exact field value that matched, e.g. "employee onboarding". */
+	value: string;
+	/** Whether this was an exact or fuzzy match. */
+	matchType: MatchType;
+	/** Match strength, 0–1. Always 1 for exact matches. */
+	similarity: number;
+	/** The field's base weight (see `FIELD_WEIGHTS` in search.ts). */
+	weight: number;
+	/** `weight * similarity`, before any cross-field bonuses. */
+	contribution: number;
+}
+
+/**
+ * One skill's search result: its identity, final score, every field match
+ * that contributed to that score, and a human-readable explanation.
+ */
+export interface SkillSearchResult {
+	/** Matched skill's ID, e.g. "hr-onboarding". */
+	skillId: string;
+	/** Matched skill's display name. */
+	name: string;
+	/** Matched skill's one-sentence description. */
+	description: string;
+	/** Matched skill's routing domain. */
+	domain: SkillCategory;
+	/** Final composite relevance score (see search.ts for the formula). */
+	score: number;
+	/** Every field match that contributed to `score`, most relevant first. */
+	matches: SkillFieldMatch[];
+	/** Deterministic, human-readable summary of why this skill matched. */
+	explanation: string;
+}
+
+/**
+ * A search query against the generated Skill Registry.
+ */
+export interface SkillSearchQuery {
+	/** Free-text query, matched (exact and/or fuzzy) against `fields`. */
+	text: string;
+	/** Fields to search. Defaults to all `SearchableField`s. */
+	fields?: SearchableField[];
+	/** Restrict results to a single domain before scoring. */
+	domain?: SkillCategory;
+	/** Enable fuzzy matching in addition to exact matching. Defaults to true. */
+	fuzzy?: boolean;
+	/** Maximum number of results to return. Defaults to 10. */
+	limit?: number;
+}
+
+/**
+ * The full output of `searchSkills()`: the query that was run plus its
+ * ranked results.
+ */
+export interface SkillSearchResponse {
+	/** The `text` query that was run, echoed back verbatim. */
+	query: string;
+	/** Number of results returned (i.e. `results.length`). */
+	resultCount: number;
+	/** Matching skills, ranked by `score` descending. */
+	results: SkillSearchResult[];
+}
+
 /**
  * The full generated Skill Registry document.
  */
@@ -464,3 +585,10 @@ export interface EvaluationReport {
 	/** Case IDs with at least one regression against the golden fixture. */
 	regressedCaseIds: string[];
 }
+
+// ---------------------------------------------------------------------------
+// Re-exports — relevance signal types (defined in relevance-signals.ts to keep
+// that module self-contained, but surfaced here for convenience).
+// ---------------------------------------------------------------------------
+
+export type { RelevanceSignalTable } from './relevance-signals.js';

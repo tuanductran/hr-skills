@@ -16,6 +16,7 @@ import {
 	TASKS_REGEX,
 	TIPS_REGEX,
 } from './constants.js';
+import { detectDuplicates } from './detect-duplicates.js';
 import {
 	countFiles,
 	dirExists,
@@ -32,6 +33,7 @@ import {
 	validateSensitivePaths,
 	validateSuspiciousUrls,
 } from './security.js';
+import { validateSemanticConsistency } from './semantic-validation.js';
 import type { SkillValidationIssue } from './types.js';
 import { validateRegistryConsistency } from './validate-registry.js';
 
@@ -454,6 +456,7 @@ async function validate(): Promise<void> {
 	p.log.info(`Found ${skillNames.length} skill directories`);
 
 	const allErrors: SkillValidationIssue[] = [];
+	const allWarnings: SkillValidationIssue[] = [];
 
 	await validateRouterConsistency(skillNames, allErrors);
 	await validateRegistryConsistency(allErrors);
@@ -467,7 +470,22 @@ async function validate(): Promise<void> {
 		}
 	}
 
-	// Report
+	// Phase 6.2 — duplicate-content detection (quality warnings, not failures)
+	await detectDuplicates(skillNames, allWarnings);
+
+	// Phase 6.2 — semantic validation of prompts/examples (quality warnings, not failures)
+	await validateSemanticConsistency(SKILLS_DIR, skillNames, allWarnings);
+
+	// Report warnings (informational — do not affect exit code)
+	if (allWarnings.length > 0) {
+		p.log.warn(`Quality warnings: ${allWarnings.length} potential issue(s) detected`);
+		for (const w of allWarnings) p.log.warn(`  ${w.skill}: ${w.message}`);
+		p.log.warn(
+			'These are informational. Review the flagged skills and decide whether to merge, refactor, or update them.',
+		);
+	}
+
+	// Report errors (fatal)
 	if (allErrors.length > 0) {
 		p.log.error('Validation failed');
 
@@ -477,6 +495,7 @@ async function validate(): Promise<void> {
 	}
 
 	p.log.success(`All ${skillNames.length} HR skills are valid`);
+	if (allWarnings.length === 0) p.log.info('No quality warnings.');
 	p.outro('Done');
 }
 
