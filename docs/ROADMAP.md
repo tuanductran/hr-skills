@@ -353,10 +353,14 @@ Extend validation beyond the current structural/format checks
 
 * Duplicate content detection — flag skills with substantially
   overlapping `description`/`content/` before they're merged, not just
-  overlapping directory names
+  overlapping directory names. Delivered — see
+  [`docs/duplicate-detection.md`](duplicate-detection.md)
 * Semantic validation — check that a skill's `prompts/` and `examples/`
   are actually consistent with its `description` and `content/`, beyond
-  today's non-empty-directory structural check
+  today's non-empty-directory structural check. Delivered — see
+  [`docs/semantic-validation.md`](semantic-validation.md) for the
+  heuristics, calibrated thresholds, determinism guarantees, and
+  maintainer guidance
 * Automated content quality scoring — a repeatable score (clarity,
   completeness, example coverage) usable as a review aid, not a merge
   gate, so a low score prompts a closer look rather than an automatic
