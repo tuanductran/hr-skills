@@ -430,6 +430,51 @@ export interface DuplicateWarning {
 // ---------------------------------------------------------------------------
 
 /**
+ * Build a `DuplicateWarning` from pre-computed similarity scores.
+ *
+ * Extracted so both the public `comparePair()` API and the O(N²) fast path
+ * inside `detectDuplicates()` can share the same result-building logic without
+ * duplicating code.
+ */
+function buildWarning(
+	a: SkillContent,
+	b: SkillContent,
+	descScore: number,
+	contentScore: number,
+	bigramScore: number,
+	composite: number,
+	threshold: number,
+): DuplicateWarning {
+	// Canonical ordering: lexicographically smaller name first
+	const [skillA, skillB] = a.name < b.name ? [a.name, b.name] : [b.name, a.name];
+
+	// Human-readable explanation
+	const parts: string[] = [];
+	if (descScore >= 0.5) parts.push(`high description overlap (${pct(descScore)})`);
+	if (contentScore >= 0.5)
+		parts.push(`high content token overlap (${pct(contentScore)})`);
+	if (bigramScore >= 0.4)
+		parts.push(`significant phrase overlap (${pct(bigramScore)})`);
+	if (parts.length === 0) parts.push('moderate overlap across multiple signals');
+
+	const explanation =
+		`Composite score ${pct(composite)} exceeds threshold ${pct(threshold)}: ` +
+		parts.join('; ') +
+		'. ' +
+		'Review both skills to determine if they cover genuinely distinct knowledge or should be merged/refactored.';
+
+	return {
+		skillA,
+		skillB,
+		score: round(composite),
+		descriptionSimilarity: round(descScore),
+		contentSimilarity: round(contentScore),
+		bigramSimilarity: round(bigramScore),
+		explanation,
+	};
+}
+
+/**
  * Compute the composite duplicate score for a pair of pre-loaded skills.
  *
  * @returns A `DuplicateWarning` when `score >= threshold`, or `null`.
@@ -471,33 +516,7 @@ export function comparePair(
 
 	if (composite < threshold) return null;
 
-	// Canonical ordering: lexicographically smaller name first
-	const [skillA, skillB] = a.name < b.name ? [a.name, b.name] : [b.name, a.name];
-
-	// Human-readable explanation
-	const parts: string[] = [];
-	if (descScore >= 0.5) parts.push(`high description overlap (${pct(descScore)})`);
-	if (contentScore >= 0.5)
-		parts.push(`high content token overlap (${pct(contentScore)})`);
-	if (bigramScore >= 0.4)
-		parts.push(`significant phrase overlap (${pct(bigramScore)})`);
-	if (parts.length === 0) parts.push('moderate overlap across multiple signals');
-
-	const explanation =
-		`Composite score ${pct(composite)} exceeds threshold ${pct(threshold)}: ` +
-		parts.join('; ') +
-		'. ' +
-		'Review both skills to determine if they cover genuinely distinct knowledge or should be merged/refactored.';
-
-	return {
-		skillA,
-		skillB,
-		score: round(composite),
-		descriptionSimilarity: round(descScore),
-		contentSimilarity: round(contentScore),
-		bigramSimilarity: round(bigramScore),
-		explanation,
-	};
+	return buildWarning(a, b, descScore, contentScore, bigramScore, composite, threshold);
 }
 
 function pct(n: number): string {
@@ -536,13 +555,52 @@ export async function detectDuplicates(
 
 	const findings: DuplicateWarning[] = [];
 
-	for (let i = 0; i < contents.length; i++) {
-		for (let j = i + 1; j < contents.length; j++) {
-			const skillA = contents[i];
-			const skillB = contents[j];
-			if (!skillA || !skillB) continue;
-			const finding = comparePair(skillA, skillB, threshold);
-			if (finding) findings.push(finding);
+	// Pre-compute description tokens, sorted body tokens, and bigrams once per
+	// skill before entering the O(N²) pair loop. Without this, comparePair()
+	// would call stripMarkdown + split + filter + sort + buildBigrams on each
+	// skill body once per pair it appears in — 145× per skill with 146 skills.
+	const precomputed = contents.map((c) => {
+		if (!c) return null;
+		const bodyTokensNatural = stripMarkdown(c.body)
+			.split(/\s+/)
+			.filter((t) => t.length >= 3 && !HR_STOP_WORDS.has(t));
+		return {
+			content: c,
+			descTokens: tokenise(c.description),
+			bodyTokensSorted: [...bodyTokensNatural].sort(),
+			bigrams: buildBigrams(bodyTokensNatural),
+		};
+	});
+
+	for (let i = 0; i < precomputed.length; i++) {
+		for (let j = i + 1; j < precomputed.length; j++) {
+			const a = precomputed[i];
+			const b = precomputed[j];
+			if (!a || !b) continue;
+
+			const descScore = jaccardSimilarity(a.descTokens, b.descTokens);
+			const contentScore = jaccardSimilarity(
+				a.bodyTokensSorted,
+				b.bodyTokensSorted,
+			);
+			const bigramScore = jaccardSimilarity(a.bigrams, b.bigrams);
+			const composite =
+				WEIGHT_DESCRIPTION * descScore +
+				WEIGHT_CONTENT * contentScore +
+				WEIGHT_BIGRAM * bigramScore;
+
+			if (composite < threshold) continue;
+			findings.push(
+				buildWarning(
+					a.content,
+					b.content,
+					descScore,
+					contentScore,
+					bigramScore,
+					composite,
+					threshold,
+				),
+			);
 		}
 	}
 
