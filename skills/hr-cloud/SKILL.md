@@ -3,7 +3,7 @@ name: hr-cloud
 description: "Help HR and technical recruiting teams hire, screen, and interview cloud engineering candidates (AWS/Azure/GCP, DevOps, cloud architecture). Use when asked to write a cloud engineer job description, create cloud interview questions, assess a cloud candidates skills, build a cloud role leveling framework, or similar cloud-hiring tasks."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # HR cloud hiring

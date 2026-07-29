@@ -1,9 +1,9 @@
 ---
 name: hr-retirement-benefits
-description: Help compensation and benefits teams design, communicate, and administer retirement and pension benefits. Use when asked to "design our retirement benefit offering", "explain 401(k)/pension options to employees", "compare retirement plan providers", "communicate a retirement plan change", or "help an employee understand their retirement benefits".
+description: "Help compensation and benefits teams design, communicate, and administer retirement and pension benefits. Use when asked to design our retirement benefit offering, explain 401(k)/pension options to employees, compare retirement plan providers, communicate a retirement plan change, or help an employee understand their retirement benefits."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # Retirement & pension benefits

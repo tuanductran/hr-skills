@@ -1,9 +1,9 @@
 ---
 name: hr-mergers-acquisitions
-description: Help HR leaders manage the people dimensions of M&A transactions — due diligence, deal structuring input, and pre-close workforce planning. Use when asked to "conduct HR due diligence for an acquisition", "assess culture fit before a merger", "plan workforce implications of a deal", "build an M&A HR integration plan", or "identify people risks in this transaction".
+description: "Help HR leaders manage the people dimensions of M&A transactions — due diligence, deal structuring input, and pre-close workforce planning. Use when asked to conduct HR due diligence for an acquisition, assess culture fit before a merger, plan workforce implications of a deal, build an M&A HR integration plan, or identify people risks in this transaction."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # Mergers & acquisitions (HR)

@@ -1,9 +1,9 @@
 ---
 name: hr-onboarding
-description: Help HR managers with employee onboarding and offboarding. Use when asked to "create an onboarding plan", "design orientation programs", "build a buddy system", "write onboarding checklists", "conduct exit interviews", "manage knowledge transfer", "create offboarding processes", or any employee onboarding or offboarding task.
+description: "Help HR managers with employee onboarding and offboarding. Use when asked to create an onboarding plan, design orientation programs, build a buddy system, write onboarding checklists, conduct exit interviews, manage knowledge transfer, create offboarding processes, or any employee onboarding or offboarding task."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # HR onboarding and offboarding

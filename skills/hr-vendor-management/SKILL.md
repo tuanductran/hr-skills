@@ -1,9 +1,9 @@
 ---
 name: hr-vendor-management
-description: Help HR operations and procurement teams select, contract, and manage HR vendors — from ATS and HRIS providers to staffing agencies, benefits brokers, and background check vendors. Use when asked to "select an HR vendor", "evaluate vendors for [HR tool/service]", "manage our HR vendor relationships", "negotiate an HR vendor contract", or "consolidate our HR vendor stack".
+description: "Help HR operations and procurement teams select, contract, and manage HR vendors — from ATS and HRIS providers to staffing agencies, benefits brokers, and background check vendors. Use when asked to select an HR vendor, evaluate vendors for [HR tool/service], manage our HR vendor relationships, negotiate an HR vendor contract, or consolidate our HR vendor stack."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # HR vendor management

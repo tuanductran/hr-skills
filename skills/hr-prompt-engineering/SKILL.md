@@ -1,9 +1,9 @@
 ---
 name: hr-prompt-engineering
-description: Help HR professionals, recruiters, and people teams write better AI prompts to get higher-quality, more accurate, and more useful outputs from AI tools across HR workflows. Use when asked to "write better AI prompts", "improve my prompt for HR tasks", "learn prompt engineering for HR", "get better ChatGPT outputs", "design prompts for recruiting or performance", or "build a prompt library for the HR team".
+description: "Help HR professionals, recruiters, and people teams write better AI prompts to get higher-quality, more accurate, and more useful outputs from AI tools across HR workflows. Use when asked to write better AI prompts, improve my prompt for HR tasks, learn prompt engineering for HR, get better ChatGPT outputs, design prompts for recruiting or performance, or build a prompt library for the HR team."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # Prompt engineering for HR professionals

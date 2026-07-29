@@ -1,9 +1,9 @@
 ---
 name: hr-recruitment-marketing
-description: Help TA marketing specialists and employer branding teams plan and run recruitment marketing campaigns to attract candidates at scale. Use when asked to "plan a recruitment marketing campaign", "write job ad copy that converts", "build a careers content calendar", "run a hiring campaign on [channel]", or "measure recruitment marketing ROI".
+description: "Help TA marketing specialists and employer branding teams plan and run recruitment marketing campaigns to attract candidates at scale. Use when asked to plan a recruitment marketing campaign, write job ad copy that converts, build a careers content calendar, run a hiring campaign on [channel], or measure recruitment marketing ROI."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # Recruitment marketing

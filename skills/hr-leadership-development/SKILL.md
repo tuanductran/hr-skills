@@ -1,9 +1,9 @@
 ---
 name: hr-leadership-development
-description: "Help HR managers with leadership development programs. Use when asked to create a leadership program, develop leadership competencies, conduct leadership assessments, design executive coaching, create a leadership succession plan, develop cross-cultural leadership training, or any leadership development task., or design a leadership development program at scale"
+description: "Help HR managers with leadership development programs. Use when asked to create a leadership program, develop leadership competencies, conduct leadership assessments, design executive coaching, create a leadership succession plan, develop cross-cultural leadership training, or any leadership development task, or design a leadership development program at scale."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # HR leadership development

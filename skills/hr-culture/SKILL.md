@@ -1,9 +1,9 @@
 ---
 name: hr-culture
-description: Help HR managers, recruiters, and people leaders understand, assess, build, and communicate organizational culture. Use when asked to "explain company culture", "assess culture fit", "build a strong workplace culture", "write culture-related job description content", "evaluate culture add vs culture fit", "diagnose culture problems", "design culture interview questions", "improve employee engagement through culture", or any organizational culture, values, and workplace environment task.
+description: "Help HR managers, recruiters, and people leaders understand, assess, build, and communicate organizational culture. Use when asked to explain company culture, assess culture fit, build a strong workplace culture, write culture-related job description content, evaluate culture add vs culture fit, diagnose culture problems, design culture interview questions, improve employee engagement through culture, or any organizational culture, values, and workplace environment task."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # HR culture

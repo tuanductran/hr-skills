@@ -1,9 +1,9 @@
 ---
 name: hr-consulting
-description: Help HR business partners, HR leaders, and internal HR consultants advise business stakeholders, diagnose people problems, build business cases, and deliver strategic HR consulting engagements. Use when asked to "advise a business leader on a people issue", "build an HR business case", "consult on an org problem", "run an HR diagnostic", or "position HR as a strategic advisor".
+description: "Help HR business partners, HR leaders, and internal HR consultants advise business stakeholders, diagnose people problems, build business cases, and deliver strategic HR consulting engagements. Use when asked to advise a business leader on a people issue, build an HR business case, consult on an org problem, run an HR diagnostic, or position HR as a strategic advisor."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # Internal HR consulting

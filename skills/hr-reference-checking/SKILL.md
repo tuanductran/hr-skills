@@ -1,9 +1,9 @@
 ---
 name: hr-reference-checking
-description: Help recruiters and hiring managers design and conduct structured reference checks that validate candidate claims and surface real signal. Use when asked to "design reference check questions", "conduct a reference call for [candidate]", "write a reference check template", "handle a mixed or negative reference", or "verify employment history".
+description: "Help recruiters and hiring managers design and conduct structured reference checks that validate candidate claims and surface real signal. Use when asked to design reference check questions, conduct a reference call for [candidate], write a reference check template, handle a mixed or negative reference, or verify employment history."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # Reference checking

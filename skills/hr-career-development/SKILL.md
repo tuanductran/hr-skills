@@ -3,7 +3,7 @@ name: hr-career-development
 description: "Help HR teams and managers design career development programs, frameworks, and conversations. Use when asked to create career paths, build individual development plans, design career ladders, run career development conversations, develop career frameworks, or similar career growth tasks."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # HR career development

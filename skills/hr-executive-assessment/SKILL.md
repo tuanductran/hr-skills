@@ -1,9 +1,9 @@
 ---
 name: hr-executive-assessment
-description: Help executive search consultants, boards, and CHROs assess senior leadership candidates for fit, capability, and derailment risk. Use when asked to "assess an executive candidate", "design a leadership assessment for a C-suite hire", "evaluate executive readiness", "build a board-level candidate evaluation", or "assess derailment risk for a leadership hire".
+description: "Help executive search consultants, boards, and CHROs assess senior leadership candidates for fit, capability, and derailment risk. Use when asked to assess an executive candidate, design a leadership assessment for a C-suite hire, evaluate executive readiness, build a board-level candidate evaluation, or assess derailment risk for a leadership hire."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # Executive assessment

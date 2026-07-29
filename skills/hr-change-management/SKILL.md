@@ -1,9 +1,9 @@
 ---
 name: hr-change-management
-description: Help HR leaders, change managers, and business partners design, lead, and sustain organizational change initiatives. Use when asked to "design a change management plan", "advise leadership on change communication", "build a stakeholder engagement strategy", "create a change readiness assessment", "design training and enablement for change adoption", "measure change success", or any task where HR needs to guide leaders and employees through organizational change.
+description: "Help HR leaders, change managers, and business partners design, lead, and sustain organizational change initiatives. Use when asked to design a change management plan, advise leadership on change communication, build a stakeholder engagement strategy, create a change readiness assessment, design training and enablement for change adoption, measure change success, or any task where HR needs to guide leaders and employees through organizational change."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # HR change management

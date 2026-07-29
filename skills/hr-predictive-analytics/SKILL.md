@@ -1,9 +1,9 @@
 ---
 name: hr-predictive-analytics
-description: Help people analytics teams build and interpret predictive models for HR outcomes like attrition risk, performance, and hiring success. Use when asked to "build an attrition prediction model", "predict which employees are flight risks", "identify predictors of hiring success", "build a predictive people analytics model", or "interpret this predictive model's results for HR".
+description: "Help people analytics teams build and interpret predictive models for HR outcomes like attrition risk, performance, and hiring success. Use when asked to build an attrition prediction model, predict which employees are flight risks, identify predictors of hiring success, build a predictive people analytics model, or interpret this predictive model's results for HR."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # Predictive people analytics

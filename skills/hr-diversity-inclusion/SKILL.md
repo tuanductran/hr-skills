@@ -1,9 +1,9 @@
 ---
 name: hr-diversity-inclusion
-description: Help HR managers with diversity, equity, and inclusion initiatives. Use when asked to "develop a diversity and inclusion strategy", "create inclusive job descriptions", "conduct unconscious bias training", "build employee resource groups", "measure diversity metrics", "develop a DEI scorecard", or any diversity and inclusion task.
+description: "Help HR managers with diversity, equity, and inclusion initiatives. Use when asked to develop a diversity and inclusion strategy, create inclusive job descriptions, conduct unconscious bias training, build employee resource groups, measure diversity metrics, develop a DEI scorecard, or any diversity and inclusion task."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # HR diversity, equity and inclusion

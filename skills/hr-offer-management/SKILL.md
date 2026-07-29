@@ -1,9 +1,9 @@
 ---
 name: hr-offer-management
-description: Help recruiters and hiring managers manage the offer process from approval through acceptance — offer construction, approval workflows, negotiation, and counteroffer handling. Use when asked to "build an offer package", "manage the offer approval process", "handle a counteroffer", "negotiate salary with a candidate", or "track offer status across open roles".
+description: "Help recruiters and hiring managers manage the offer process from approval through acceptance — offer construction, approval workflows, negotiation, and counteroffer handling. Use when asked to build an offer package, manage the offer approval process, handle a counteroffer, negotiate salary with a candidate, or track offer status across open roles."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # Offer management

@@ -1,9 +1,9 @@
 ---
 name: hr-passive-candidate-engagement
-description: Help recruiters and sourcers engage passive candidates who aren't actively job-hunting through personalized, low-pressure outreach and relationship-building. Use when asked to "write an outreach message to a passive candidate", "engage someone who isn't looking", "build a nurture sequence", "re-engage a cold lead", or "start a conversation without pitching a job first".
+description: "Help recruiters and sourcers engage passive candidates who aren't actively job-hunting through personalized, low-pressure outreach and relationship-building. Use when asked to write an outreach message to a passive candidate, engage someone who isn't looking, build a nurture sequence, re-engage a cold lead, or start a conversation without pitching a job first."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # Passive candidate engagement

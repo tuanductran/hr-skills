@@ -1,9 +1,9 @@
 ---
 name: hr-performance-review
-description: "Help managers, HR professionals, and team leaders write fair, balanced, evidence-based performance reviews, self-assessments, and development plans. Use when asked to write or calibrate an individual performance review, draft manager feedback, evaluate employee performance, write appraisal comments, create a development plan, review employee goals, or any employee performance evaluation task., or write or calibrate individual performance reviews"
+description: "Help managers, HR professionals, and team leaders write fair, balanced, evidence-based performance reviews, self-assessments, and development plans. Use when asked to write or calibrate an individual performance review, draft manager feedback, evaluate employee performance, write appraisal comments, create a development plan, review employee goals, or any employee performance evaluation task, or write or calibrate individual performance reviews."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # HR performance review

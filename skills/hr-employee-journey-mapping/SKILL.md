@@ -1,9 +1,9 @@
 ---
 name: hr-employee-journey-mapping
-description: Help employee experience and HR teams map the end-to-end employee journey to identify moments that matter and friction points. Use when asked to "map the employee journey", "build a journey map for [stage]", "identify moments that matter", "find friction points in the employee experience", or "redesign a specific stage of the employee lifecycle".
+description: "Help employee experience and HR teams map the end-to-end employee journey to identify moments that matter and friction points. Use when asked to map the employee journey, build a journey map for [stage], identify moments that matter, find friction points in the employee experience, or redesign a specific stage of the employee lifecycle."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # Employee journey mapping

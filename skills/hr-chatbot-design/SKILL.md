@@ -1,9 +1,9 @@
 ---
 name: hr-chatbot-design
-description: Help HR technology teams design HR service-delivery chatbots and conversational tools for platforms like Slack and Microsoft Teams. Use when asked to "design an HR chatbot", "build a Slack bot for HR questions", "plan a Teams HR assistant", "write conversation flows for an HR bot", or "decide what an HR bot should and shouldn't handle".
+description: "Help HR technology teams design HR service-delivery chatbots and conversational tools for platforms like Slack and Microsoft Teams. Use when asked to design an HR chatbot, build a Slack bot for HR questions, plan a Teams HR assistant, write conversation flows for an HR bot, or decide what an HR bot should and shouldn't handle."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # HR chatbot design

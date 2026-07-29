@@ -1,9 +1,9 @@
 ---
 name: hr-workforce-scenario-planning
-description: Help workforce planners and HR leaders model multiple future workforce scenarios to stress-test plans against uncertainty. Use when asked to "build workforce scenarios", "model a best/worst case headcount plan", "stress-test our workforce plan against [risk]", "plan for a hiring freeze or rapid growth scenario", or "run scenario planning for restructuring".
+description: "Help workforce planners and HR leaders model multiple future workforce scenarios to stress-test plans against uncertainty. Use when asked to build workforce scenarios, model a best/worst case headcount plan, stress-test our workforce plan against [risk], plan for a hiring freeze or rapid growth scenario, or run scenario planning for restructuring."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # Workforce scenario planning

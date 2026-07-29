@@ -3,7 +3,7 @@ name: hr-system-design
 description: "Help HR and technical recruiting teams hire and assess candidates for system design skills across engineering roles, including interview design and evaluation rubrics. Use when asked to create a system design interview, evaluate a candidates system design skills, write a system design interview rubric, prepare interviewers for system design rounds."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # HR system design hiring

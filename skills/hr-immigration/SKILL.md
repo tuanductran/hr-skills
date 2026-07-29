@@ -3,7 +3,7 @@ name: hr-immigration
 description: "Help HR and mobility teams manage employee immigration and work authorization processes, including visa sponsorship, global mobility, and compliance tracking. Use when asked to sponsor a work visa, plan a global mobility relocation, track visa expiration compliance, draft an immigration policy, or similar HR immigration tasks."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # HR immigration

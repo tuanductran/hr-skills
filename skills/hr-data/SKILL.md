@@ -1,9 +1,9 @@
 ---
 name: hr-data
-description: Help HR managers, recruiters, and talent acquisition teams understand Data Engineering, Data Analytics, Data Science, Business Intelligence, Machine Learning, and modern data ecosystems. Use when asked to "explain data roles", "screen data engineers or data scientists", "understand analytics workflows", "compare data engineering and data science", "evaluate data skills", "create data interview questions", "understand AI and machine learning teams", or any data and analytics hiring and recruiting task.
+description: "Help HR managers, recruiters, and talent acquisition teams understand Data Engineering, Data Analytics, Data Science, Business Intelligence, Machine Learning, and modern data ecosystems. Use when asked to explain data roles, screen data engineers or data scientists, understand analytics workflows, compare data engineering and data science, evaluate data skills, create data interview questions, understand AI and machine learning teams, or any data and analytics hiring and recruiting task."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # HR data engineering hiring

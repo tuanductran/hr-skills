@@ -1,9 +1,9 @@
 ---
 name: hr-compliance
-description: Help HR managers with HR compliance and workplace policies. Use when asked to "write an employee handbook", "develop OSHA compliance", "manage EEO compliance", "handle FMLA", "conduct a compliance audit", "create background check policies", "develop immigration compliance strategies", or any HR compliance task.
+description: "Help HR managers with HR compliance and workplace policies. Use when asked to write an employee handbook, develop OSHA compliance, manage EEO compliance, handle FMLA, conduct a compliance audit, create background check policies, develop immigration compliance strategies, or any HR compliance task."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # HR compliance and workplace policies

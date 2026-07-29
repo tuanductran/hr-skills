@@ -3,7 +3,7 @@ name: hr-skills-management
 description: "Help HR teams build skills taxonomies, conduct skills gap analyses, and design skills-based talent strategies. Use when asked to create a skills framework, build a skills taxonomy, identify skills gaps, design skills-based hiring, develop a skills inventory, or similar skills management tasks."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # HR skills management

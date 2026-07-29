@@ -1,9 +1,9 @@
 ---
 name: hr-job-architecture
-description: Help HR business partners, compensation specialists, and total rewards leaders understand, design, and implement job architecture frameworks including job families, career levels, leveling criteria, and career pathing structures. Use when asked to "build a job leveling framework", "design a career ladder", "create job families", "define leveling criteria", "audit our job titles", "build a career path", "standardize roles across teams", "design a grade structure", "benchmark roles against the market", or any job architecture, career leveling, and role standardization task.
+description: "Help HR business partners, compensation specialists, and total rewards leaders understand, design, and implement job architecture frameworks including job families, career levels, leveling criteria, and career pathing structures. Use when asked to build a job leveling framework, design a career ladder, create job families, define leveling criteria, audit our job titles, build a career path, standardize roles across teams, design a grade structure, benchmark roles against the market, or any job architecture, career leveling, and role standardization task."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # HR job architecture

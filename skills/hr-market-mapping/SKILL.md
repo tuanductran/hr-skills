@@ -1,9 +1,9 @@
 ---
 name: hr-market-mapping
-description: Help talent acquisition leaders, executive researchers, and sourcers build talent market maps that show where target talent sits, who employs it, and how it moves. Use when asked to "map the talent market", "build a market map for [role/industry]", "identify competitor talent pools", "size the addressable talent market", or "research org charts at target companies".
+description: "Help talent acquisition leaders, executive researchers, and sourcers build talent market maps that show where target talent sits, who employs it, and how it moves. Use when asked to map the talent market, build a market map for [role/industry], identify competitor talent pools, size the addressable talent market, or research org charts at target companies."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # Talent market mapping

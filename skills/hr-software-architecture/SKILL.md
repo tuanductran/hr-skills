@@ -3,7 +3,7 @@ name: hr-software-architecture
 description: "Help HR and technical recruiting teams hire and evaluate software architect and staff/principal engineer candidates. Use when asked to write a software architect job description, assess architecture leadership skills, design a principal engineer interview loop, build an architecture role leveling framework."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # HR software architecture hiring

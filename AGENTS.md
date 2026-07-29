@@ -186,6 +186,7 @@ Before publishing a skill, verify:
 ### Frontmatter
 
 - [ ] `name` matches the skill directory name exactly
+- [ ] `description` is wrapped in a single pair of double quotes, with trigger phrases as plain comma-separated text (not individually quoted)
 - [ ] `metadata.author` is set to `Tuan Duc Tran`
 - [ ] `metadata.version` is set
 

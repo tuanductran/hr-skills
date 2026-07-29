@@ -1,9 +1,9 @@
 ---
 name: hr-analytics
-description: "Help HR managers with HR analytics and data management. Use when asked to analyze employee data, create HR metrics, build an HR dashboard, analyze turnover data, develop HR reports, build predictive analytics models, create a data governance strategy, or any HR data and analytics task., or analyze HR data at depth"
+description: "Help HR managers with HR analytics and data management. Use when asked to analyze employee data, create HR metrics, build an HR dashboard, analyze turnover data, develop HR reports, build predictive analytics models, create a data governance strategy, or any HR data and analytics task, or analyze HR data at depth."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # HR analytics and data

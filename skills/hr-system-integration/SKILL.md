@@ -1,9 +1,9 @@
 ---
 name: hr-system-integration
-description: Help HR technology teams plan and manage integrations between HR systems (HRIS, ATS, payroll, LMS, benefits platforms) so data flows accurately across the HR tech stack. Use when asked to "integrate our HRIS with [system]", "plan a system integration for HR tools", "fix data sync issues between systems", "design an HR tech integration architecture", or "audit our HR system integrations".
+description: "Help HR technology teams plan and manage integrations between HR systems (HRIS, ATS, payroll, LMS, benefits platforms) so data flows accurately across the HR tech stack. Use when asked to integrate our HRIS with [system], plan a system integration for HR tools, fix data sync issues between systems, design an HR tech integration architecture, or audit our HR system integrations."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # HR system integration

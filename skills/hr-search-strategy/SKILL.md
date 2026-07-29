@@ -1,9 +1,9 @@
 ---
 name: hr-search-strategy
-description: Help recruiters, sourcers, and search consultants design the overall strategy for a search assignment before sourcing begins — target companies, channels, timeline, and positioning. Use when asked to "build a search strategy for [role]", "plan a search before we start sourcing", "define the search brief", or "decide which channels to prioritize for this search".
+description: "Help recruiters, sourcers, and search consultants design the overall strategy for a search assignment before sourcing begins — target companies, channels, timeline, and positioning. Use when asked to build a search strategy for [role], plan a search before we start sourcing, define the search brief, or decide which channels to prioritize for this search."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # Search strategy

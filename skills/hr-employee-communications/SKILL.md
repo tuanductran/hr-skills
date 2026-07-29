@@ -1,9 +1,9 @@
 ---
 name: hr-employee-communications
-description: Help HR and internal comms teams plan and write clear, consistent employee communications across routine updates, policy changes, and sensitive announcements. Use when asked to "write an internal announcement", "plan our internal communications calendar", "draft a policy change communication", "write a sensitive HR message", or "improve how we communicate HR updates to employees".
+description: "Help HR and internal comms teams plan and write clear, consistent employee communications across routine updates, policy changes, and sensitive announcements. Use when asked to write an internal announcement, plan our internal communications calendar, draft a policy change communication, write a sensitive HR message, or improve how we communicate HR updates to employees."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # Employee communications

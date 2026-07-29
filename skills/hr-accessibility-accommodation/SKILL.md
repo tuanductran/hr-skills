@@ -1,9 +1,9 @@
 ---
 name: hr-accessibility-accommodation
-description: Help HR and people ops teams design and manage workplace accessibility and disability accommodation as a first-class, proactive practice, not just an ADA compliance checklist. Use when asked to "design an accommodation request process", "handle a disability accommodation request", "make our hiring process more accessible", "audit our workplace for accessibility", or "train managers on supporting accommodations".
+description: "Help HR and people ops teams design and manage workplace accessibility and disability accommodation as a first-class, proactive practice, not just an ADA compliance checklist. Use when asked to design an accommodation request process, handle a disability accommodation request, make our hiring process more accessible, audit our workplace for accessibility, or train managers on supporting accommodations."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # Accessibility & disability accommodation

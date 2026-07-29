@@ -1,9 +1,9 @@
 ---
 name: hr-talent-mapping
-description: Help TA leaders and workforce planners build individual-level talent maps that track named candidates, internal successors, and external targets against current and future roles. Use when asked to "map talent against future roles", "build a bench for [role]", "track external talent for succession", "create a talent pipeline map", or "identify named candidates for a future opening".
+description: "Help TA leaders and workforce planners build individual-level talent maps that track named candidates, internal successors, and external targets against current and future roles. Use when asked to map talent against future roles, build a bench for [role], track external talent for succession, create a talent pipeline map, or identify named candidates for a future opening."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # Talent mapping
