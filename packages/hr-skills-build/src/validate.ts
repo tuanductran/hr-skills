@@ -33,6 +33,7 @@ import {
 	validateSensitivePaths,
 	validateSuspiciousUrls,
 } from './security.js';
+import { validateSemanticConsistency } from './semantic-validation.js';
 import type { SkillValidationIssue } from './types.js';
 import { validateRegistryConsistency } from './validate-registry.js';
 
@@ -472,14 +473,15 @@ async function validate(): Promise<void> {
 	// Phase 6.2 — duplicate-content detection (quality warnings, not failures)
 	await detectDuplicates(skillNames, allWarnings);
 
+	// Phase 6.2 — semantic validation of prompts/examples (quality warnings, not failures)
+	await validateSemanticConsistency(SKILLS_DIR, skillNames, allWarnings);
+
 	// Report warnings (informational — do not affect exit code)
 	if (allWarnings.length > 0) {
-		p.log.warn(
-			`Duplicate-content warnings: ${allWarnings.length} potential overlap(s) detected`,
-		);
+		p.log.warn(`Quality warnings: ${allWarnings.length} potential issue(s) detected`);
 		for (const w of allWarnings) p.log.warn(`  ${w.skill}: ${w.message}`);
 		p.log.warn(
-			'These are informational. Review the flagged pairs and decide whether to merge or refactor them.',
+			'These are informational. Review the flagged skills and decide whether to merge, refactor, or update them.',
 		);
 	}
 
@@ -493,7 +495,7 @@ async function validate(): Promise<void> {
 	}
 
 	p.log.success(`All ${skillNames.length} HR skills are valid`);
-	if (allWarnings.length === 0) p.log.info('No duplicate-content warnings.');
+	if (allWarnings.length === 0) p.log.info('No quality warnings.');
 	p.outro('Done');
 }
 
