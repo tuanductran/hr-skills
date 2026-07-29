@@ -1,9 +1,9 @@
 ---
 name: hr-people-budgeting
-description: Help HR leaders and people finance partners own the people budget — headcount cost-center modeling, budget planning cycles, and variance tracking. Use when asked to "build the people budget", "model headcount by cost center", "explain budget variance to finance", "plan the HR budget for next fiscal year", or "reconcile actual headcount spend against plan".
+description: "Help HR leaders and people finance partners own the people budget — headcount cost-center modeling, budget planning cycles, and variance tracking. Use when asked to build the people budget, model headcount by cost center, explain budget variance to finance, plan the HR budget for next fiscal year, or reconcile actual headcount spend against plan."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # People budgeting & financial planning

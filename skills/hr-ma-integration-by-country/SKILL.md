@@ -1,9 +1,9 @@
 ---
 name: hr-ma-integration-by-country
-description: Help HR and integration leaders navigate country-specific labor law and cultural considerations when integrating an acquired workforce in major markets like the US, EU, and India. Use when asked to "what labor law applies to this M&A integration in [country]", "compare works council requirements across our merger markets", "plan country-specific integration steps for [US/EU/India]", or "identify country-level people risks in this cross-border deal".
+description: "Help HR and integration leaders navigate country-specific labor law and cultural considerations when integrating an acquired workforce in major markets like the US, EU, and India. Use when asked to what labor law applies to this M&A integration in [country], compare works council requirements across our merger markets, plan country-specific integration steps for [US/EU/India], or identify country-level people risks in this cross-border deal."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # M&A integration by country

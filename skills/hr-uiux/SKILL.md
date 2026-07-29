@@ -1,9 +1,9 @@
 ---
 name: hr-uiux
-description: Help HR managers, recruiters, and talent acquisition teams understand UI/UX Design, Product Design, Design Systems, User Research, Interaction Design, and modern digital product design workflows. Use when asked to "explain UI/UX", "screen product designers", "understand UX research", "compare UI and UX", "evaluate design portfolios", "create UI/UX interview questions", "understand product design workflows", or any design hiring and recruiting task.
+description: "Help HR managers, recruiters, and talent acquisition teams understand UI/UX Design, Product Design, Design Systems, User Research, Interaction Design, and modern digital product design workflows. Use when asked to explain UI/UX, screen product designers, understand UX research, compare UI and UX, evaluate design portfolios, create UI/UX interview questions, understand product design workflows, or any design hiring and recruiting task."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # HR UI/UX design hiring

@@ -1,9 +1,9 @@
 ---
 name: hr-conflict-resolution
-description: Help HR managers with workplace conflict resolution. Use when asked to "resolve a workplace conflict", "mediate between employees", "facilitate a difficult conversation", "develop conflict resolution training", "address a team dispute", "create a conflict resolution policy", or any workplace conflict task.
+description: "Help HR managers with workplace conflict resolution. Use when asked to resolve a workplace conflict, mediate between employees, facilitate a difficult conversation, develop conflict resolution training, address a team dispute, create a conflict resolution policy, or any workplace conflict task."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # HR conflict resolution

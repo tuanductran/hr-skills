@@ -1,9 +1,9 @@
 ---
 name: hr-mobile
-description: Help HR managers, recruiters, and talent acquisition teams understand Mobile Development, iOS, Android, cross-platform engineering, mobile app architecture, and modern mobile ecosystems. Use when asked to "explain mobile development", "screen mobile developers", "understand React Native or Flutter", "compare native and cross-platform development", "evaluate mobile skills", "create mobile interview questions", "understand iOS and Android workflows", or any mobile engineering hiring and recruiting task.
+description: "Help HR managers, recruiters, and talent acquisition teams understand Mobile Development, iOS, Android, cross-platform engineering, mobile app architecture, and modern mobile ecosystems. Use when asked to explain mobile development, screen mobile developers, understand React Native or Flutter, compare native and cross-platform development, evaluate mobile skills, create mobile interview questions, understand iOS and Android workflows, or any mobile engineering hiring and recruiting task."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # HR mobile engineering hiring

@@ -1,9 +1,9 @@
 ---
 name: hr-job-description
-description: Help HR professionals, recruiters, hiring managers, and talent acquisition teams write clear, inclusive, and compelling job descriptions that attract qualified candidates. Use when asked to "write a job description", "rewrite a JD", "create a job posting", "improve hiring requirements", "define responsibilities", "write hiring criteria", or any job description and recruitment marketing task.
+description: "Help HR professionals, recruiters, hiring managers, and talent acquisition teams write clear, inclusive, and compelling job descriptions that attract qualified candidates. Use when asked to write a job description, rewrite a JD, create a job posting, improve hiring requirements, define responsibilities, write hiring criteria, or any job description and recruitment marketing task."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # HR job description writing

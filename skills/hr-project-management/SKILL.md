@@ -3,7 +3,7 @@ name: hr-project-management
 description: "Help HR teams plan and run HR initiatives using project management practices, including project charters, timelines, stakeholder plans, and risk tracking for HR programs. Use when asked to build a project plan for an HR initiative, create a project charter, track HR project risks, build a stakeholder communication plan, or similar HR project management tasks."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # HR project management

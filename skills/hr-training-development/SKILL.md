@@ -1,9 +1,9 @@
 ---
 name: hr-training-development
-description: "Help HR managers with learning and development programs. Use when asked to design a training program, create an e-learning course, develop a coaching plan, conduct a needs assessment, write a competency model, design a mentorship program, create a learning plan, or any training and development task., or create a specific training module or course"
+description: "Help HR managers with learning and development programs. Use when asked to design a training program, create an e-learning course, develop a coaching plan, conduct a needs assessment, write a competency model, design a mentorship program, create a learning plan, or any training and development task, or create a specific training module or course."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # HR training and development

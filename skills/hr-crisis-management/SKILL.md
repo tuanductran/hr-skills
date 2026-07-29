@@ -1,9 +1,9 @@
 ---
 name: hr-crisis-management
-description: Help HR and business leaders plan for and respond to workforce crises — layoffs handled poorly, safety incidents, natural disasters, leadership scandals, or sudden business disruption. Use when asked to "build a crisis response plan for HR", "respond to a workplace incident", "communicate during a crisis", "plan for business continuity from an HR perspective", or "handle a sudden leadership departure crisis".
+description: "Help HR and business leaders plan for and respond to workforce crises — layoffs handled poorly, safety incidents, natural disasters, leadership scandals, or sudden business disruption. Use when asked to build a crisis response plan for HR, respond to a workplace incident, communicate during a crisis, plan for business continuity from an HR perspective, or handle a sudden leadership departure crisis."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # HR crisis management

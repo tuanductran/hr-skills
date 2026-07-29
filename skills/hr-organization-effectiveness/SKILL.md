@@ -1,9 +1,9 @@
 ---
 name: hr-organization-effectiveness
-description: Help HR leaders, HRBPs, and OD consultants assess and improve organizational effectiveness, including team health, operating model fitness, capability gaps, and organizational performance. Use when asked to "assess org effectiveness", "diagnose team performance issues", "improve org health", "run an OE diagnostic", "evaluate our operating model", or "measure organizational capability".
+description: "Help HR leaders, HRBPs, and OD consultants assess and improve organizational effectiveness, including team health, operating model fitness, capability gaps, and organizational performance. Use when asked to assess org effectiveness, diagnose team performance issues, improve org health, run an OE diagnostic, evaluate our operating model, or measure organizational capability."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # Organization effectiveness

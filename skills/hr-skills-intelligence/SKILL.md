@@ -1,9 +1,9 @@
 ---
 name: hr-skills-intelligence
-description: Help workforce planners and L&D leaders turn skills data into decision-ready intelligence — skills inventories, emerging skill trend analysis, and skills-gap forecasting at scale. Use when asked to "analyze our skills data", "identify emerging skills we're missing", "build a skills intelligence dashboard", "forecast future skill demand", or "benchmark our skills against the market".
+description: "Help workforce planners and L&D leaders turn skills data into decision-ready intelligence — skills inventories, emerging skill trend analysis, and skills-gap forecasting at scale. Use when asked to analyze our skills data, identify emerging skills we're missing, build a skills intelligence dashboard, forecast future skill demand, or benchmark our skills against the market."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # Skills intelligence

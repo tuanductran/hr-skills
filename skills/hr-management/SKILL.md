@@ -1,9 +1,9 @@
 ---
 name: hr-management
-description: Help HR directors, HRBPs, and People leaders manage the HR function effectively, including HR team leadership, HR department planning, budgeting, governance, performance management for HR teams, and building HR function credibility. Use when asked to "manage the HR team", "build the HR department", "set HR team goals", "plan the HR budget", "improve HR function effectiveness", or "lead the HR organization".
+description: "Help HR directors, HRBPs, and People leaders manage the HR function effectively, including HR team leadership, HR department planning, budgeting, governance, performance management for HR teams, and building HR function credibility. Use when asked to manage the HR team, build the HR department, set HR team goals, plan the HR budget, improve HR function effectiveness, or lead the HR organization."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # HR function management

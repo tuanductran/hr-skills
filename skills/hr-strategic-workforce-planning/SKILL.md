@@ -1,9 +1,9 @@
 ---
 name: hr-strategic-workforce-planning
-description: Help CHROs and workforce planners connect long-range business strategy to workforce implications — future role needs, capability shifts, and multi-year workforce roadmaps. Use when asked to "build a strategic workforce plan", "translate our 5-year business strategy into workforce needs", "identify future critical roles", or "align workforce planning with business strategy".
+description: "Help CHROs and workforce planners connect long-range business strategy to workforce implications — future role needs, capability shifts, and multi-year workforce roadmaps. Use when asked to build a strategic workforce plan, translate our 5-year business strategy into workforce needs, identify future critical roles, or align workforce planning with business strategy."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # Strategic workforce planning

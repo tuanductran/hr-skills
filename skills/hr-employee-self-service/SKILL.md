@@ -1,9 +1,9 @@
 ---
 name: hr-employee-self-service
-description: Help HR operations teams and digital HR leaders design, implement, and optimize employee self-service programs including ESS portals, HR chatbots, knowledge bases, and manager self-service tools. Use when asked to "build an employee self-service portal", "design an HR chatbot", "create an HR knowledge base", "reduce HR inquiry volume", or "improve employee access to HR information".
+description: "Help HR operations teams and digital HR leaders design, implement, and optimize employee self-service programs including ESS portals, HR chatbots, knowledge bases, and manager self-service tools. Use when asked to build an employee self-service portal, design an HR chatbot, create an HR knowledge base, reduce HR inquiry volume, or improve employee access to HR information."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # Employee self-service design and optimization

@@ -1,9 +1,9 @@
 ---
 name: hr-post-merger-integration
-description: Help HR and integration leaders manage the people side of post-close M&A integration — org design harmonization, culture integration, systems consolidation, and retention through the transition. Use when asked to "plan post-merger HR integration", "harmonize two organizations after a merger", "integrate compensation and benefits post-close", "manage culture integration after an acquisition", or "retain talent through post-merger transition".
+description: "Help HR and integration leaders manage the people side of post-close M&A integration — org design harmonization, culture integration, systems consolidation, and retention through the transition. Use when asked to plan post-merger HR integration, harmonize two organizations after a merger, integrate compensation and benefits post-close, manage culture integration after an acquisition, or retain talent through post-merger transition."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # Post-merger integration (HR)

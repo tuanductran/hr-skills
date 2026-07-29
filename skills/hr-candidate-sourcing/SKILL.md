@@ -3,7 +3,7 @@ name: hr-candidate-sourcing
 description: "Help talent acquisition and recruiting teams find, engage, and build pipelines of qualified candidates. Use when asked to source candidates, build a talent pipeline, write a Boolean search string, find passive candidates, draft an outreach message, or similar sourcing tasks."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # HR candidate sourcing

@@ -1,9 +1,9 @@
 ---
 name: hr-retained-search
-description: Help executive search consultants and internal TA leaders run retained search engagements — client agreements, milestone-based delivery, confidential search process, and candidate slates. Use when asked to "structure a retained search engagement", "write a retained search agreement", "build a candidate slate for a retained search", or "manage a retained search timeline".
+description: "Help executive search consultants and internal TA leaders run retained search engagements — client agreements, milestone-based delivery, confidential search process, and candidate slates. Use when asked to structure a retained search engagement, write a retained search agreement, build a candidate slate for a retained search, or manage a retained search timeline."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # Retained search

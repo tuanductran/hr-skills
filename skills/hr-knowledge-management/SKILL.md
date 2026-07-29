@@ -1,9 +1,9 @@
 ---
 name: hr-knowledge-management
-description: Help HR managers, People Ops teams, and recruiters understand HR knowledge management, including HR knowledge bases, policy and SOP documentation, employee self-service content, tribal knowledge capture, and knowledge management tooling. Use when asked to "build an HR knowledge base", "organize HR documentation", "reduce HR ticket volume", "write HR policies and SOPs", "capture tribal knowledge", "screen a Knowledge Manager or HR documentation specialist", "set up an employee self-service FAQ or chatbot", or any HR content, documentation, or institutional knowledge task.
+description: "Help HR managers, People Ops teams, and recruiters understand HR knowledge management, including HR knowledge bases, policy and SOP documentation, employee self-service content, tribal knowledge capture, and knowledge management tooling. Use when asked to build an HR knowledge base, organize HR documentation, reduce HR ticket volume, write HR policies and SOPs, capture tribal knowledge, screen a Knowledge Manager or HR documentation specialist, set up an employee self-service FAQ or chatbot, or any HR content, documentation, or institutional knowledge task."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # HR knowledge management

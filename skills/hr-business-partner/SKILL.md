@@ -1,9 +1,9 @@
 ---
 name: hr-business-partner
-description: Help HR Business Partners, People Partners, and HRBP leaders advise managers and leadership on people strategy, performance management, organizational health, employee relations, and workforce planning within their business unit. Use when asked to "act as an HR business partner", "advise this manager on a people issue", "build a performance improvement plan", "design a workforce plan", "handle an employee relations case", "coach a manager through a difficult conversation", "diagnose team dysfunction", "prepare talent review or succession planning input", or any task where HR needs to operate as a strategic partner embedded with a business leader or team rather than as a centralized HR function.
+description: "Help HR Business Partners, People Partners, and HRBP leaders advise managers and leadership on people strategy, performance management, organizational health, employee relations, and workforce planning within their business unit. Use when asked to act as an HR business partner, advise this manager on a people issue, build a performance improvement plan, design a workforce plan, handle an employee relations case, coach a manager through a difficult conversation, diagnose team dysfunction, prepare talent review or succession planning input, or any task where HR needs to operate as a strategic partner embedded with a business leader or team rather than as a centralized HR function."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # HR business partner

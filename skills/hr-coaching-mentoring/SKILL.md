@@ -3,7 +3,7 @@ name: hr-coaching-mentoring
 description: "Help HR teams design coaching and mentoring programs, train managers in coaching skills, and support individual coaching conversations. Use when asked to build a coaching culture, create a mentoring program, develop manager coaching skills, design coaching frameworks, run coaching sessions, or similar coaching and mentoring tasks."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # HR coaching and mentoring

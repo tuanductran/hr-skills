@@ -3,7 +3,7 @@ name: hr-contingent-workforce
 description: "Help HR and procurement teams manage contractors, freelancers, and temporary staff, including classification, vendor management, and program design. Use when asked to set up a contingent workforce program, classify a worker as contractor or employee, manage a VMS/MSP program, draft a statement of work, or similar contingent workforce tasks."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # HR contingent workforce

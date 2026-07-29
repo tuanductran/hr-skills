@@ -1,9 +1,9 @@
 ---
 name: hr-workforce-economics
-description: Help HR and finance leaders model the financial dimensions of workforce decisions — labor cost structure, productivity economics, and the ROI of workforce investments. Use when asked to "model the cost of this workforce decision", "calculate fully loaded labor cost", "build a business case for headcount", "analyze workforce productivity economics", or "compare the cost of hiring vs. contracting".
+description: "Help HR and finance leaders model the financial dimensions of workforce decisions — labor cost structure, productivity economics, and the ROI of workforce investments. Use when asked to model the cost of this workforce decision, calculate fully loaded labor cost, build a business case for headcount, analyze workforce productivity economics, or compare the cost of hiring vs. contracting."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # Workforce economics

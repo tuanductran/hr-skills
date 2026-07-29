@@ -1,9 +1,9 @@
 ---
 name: hr-ai-privacy
-description: Help HR and compliance teams protect employee data privacy in AI-driven HR systems, including GDPR compliance, data minimization, employee consent design, and privacy risk assessment for HR AI tools. Use when asked to "protect employee data in AI systems", "design HR AI privacy policies", "assess privacy risks of AI tools", "build employee consent for AI", "comply with GDPR for HR AI", or "audit HR data privacy".
+description: "Help HR and compliance teams protect employee data privacy in AI-driven HR systems, including GDPR compliance, data minimization, employee consent design, and privacy risk assessment for HR AI tools. Use when asked to protect employee data in AI systems, design HR AI privacy policies, assess privacy risks of AI tools, build employee consent for AI, comply with GDPR for HR AI, or audit HR data privacy."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # Employee data privacy in AI-driven HR

@@ -1,9 +1,9 @@
 ---
 name: hr-technology
-description: Help HR managers with HR technology strategy and implementation. Use when asked to "evaluate HR systems", "implement an HRIS", "create an HR technology roadmap", "select an ATS", "develop HR chatbots", "manage HR automation", "write an HR technology RFP", or any HR technology task.
+description: "Help HR managers with HR technology strategy and implementation. Use when asked to evaluate HR systems, implement an HRIS, create an HR technology roadmap, select an ATS, develop HR chatbots, manage HR automation, write an HR technology RFP, or any HR technology task."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # HR technology

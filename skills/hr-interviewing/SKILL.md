@@ -1,9 +1,9 @@
 ---
 name: hr-interviewing
-description: Help HR managers, recruiters, hiring managers, and interview panels design structured, competency-based interview questions, interview guides, and evaluation scorecards for any role. Use when asked to "design structured interview questions or scoring rubrics", "design a structured interview", "generate behavioral questions", "build an interview scorecard", "evaluate candidates consistently", "reduce interview bias", or any interview planning and assessment task.
+description: "Help HR managers, recruiters, hiring managers, and interview panels design structured, competency-based interview questions, interview guides, and evaluation scorecards for any role. Use when asked to design structured interview questions or scoring rubrics, design a structured interview, generate behavioral questions, build an interview scorecard, evaluate candidates consistently, reduce interview bias, or any interview planning and assessment task."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # HR interviewing

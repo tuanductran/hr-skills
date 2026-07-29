@@ -1,9 +1,9 @@
 ---
 name: hr-workforce-forecasting
-description: Help workforce planners build and maintain quantitative forecasts of headcount, attrition, and hiring demand. Use when asked to "forecast headcount for next year", "predict attrition trends", "build a hiring demand forecast", "model seasonal staffing needs", or "improve the accuracy of our workforce forecast".
+description: "Help workforce planners build and maintain quantitative forecasts of headcount, attrition, and hiring demand. Use when asked to forecast headcount for next year, predict attrition trends, build a hiring demand forecast, model seasonal staffing needs, or improve the accuracy of our workforce forecast."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # Workforce forecasting

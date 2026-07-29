@@ -3,7 +3,7 @@ name: hr-strategic-planning
 description: "Help HR leaders and business partners develop, align, and execute HR strategic plans. Use when asked to create an HR strategy, align HR with business goals, build an HR roadmap, develop workforce planning, write an HR annual plan, or similar strategic HR planning tasks."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # HR strategic planning

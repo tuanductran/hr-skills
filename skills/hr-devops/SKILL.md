@@ -1,9 +1,9 @@
 ---
 name: hr-devops
-description: Help HR managers, recruiters, and talent acquisition teams understand DevOps, Platform Engineering, Site Reliability Engineering (SRE), cloud infrastructure, CI/CD, and modern software delivery workflows. Use when asked to "explain DevOps", "screen DevOps candidates", "understand CI/CD", "compare DevOps and SRE", "evaluate infrastructure skills", "create DevOps interview questions", "understand cloud systems", or any DevOps hiring and recruiting task.
+description: "Help HR managers, recruiters, and talent acquisition teams understand DevOps, Platform Engineering, Site Reliability Engineering (SRE), cloud infrastructure, CI/CD, and modern software delivery workflows. Use when asked to explain DevOps, screen DevOps candidates, understand CI/CD, compare DevOps and SRE, evaluate infrastructure skills, create DevOps interview questions, understand cloud systems, or any DevOps hiring and recruiting task."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # HR DevOps hiring

@@ -1,9 +1,9 @@
 ---
 name: hr-social-recruiting
-description: Help HR managers, recruiters, talent acquisition teams, employer branding specialists, and founders recruit effectively through social media platforms including LinkedIn, Facebook, Zalo, GitHub, Reddit, Discord, Slack communities, TikTok, Instagram, and X (Twitter). Use when asked to "recruit on LinkedIn", "hire through Facebook groups", "avoid LinkedIn spam", "write recruiter outreach messages", "source passive candidates", "build employer branding on social media", "increase recruiter response rates", or any social recruiting, online sourcing, or community recruiting task.
+description: "Help HR managers, recruiters, talent acquisition teams, employer branding specialists, and founders recruit effectively through social media platforms including LinkedIn, Facebook, Zalo, GitHub, Reddit, Discord, Slack communities, TikTok, Instagram, and X (Twitter). Use when asked to recruit on LinkedIn, hire through Facebook groups, avoid LinkedIn spam, write recruiter outreach messages, source passive candidates, build employer branding on social media, increase recruiter response rates, or any social recruiting, online sourcing, or community recruiting task."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # HR social media recruiting

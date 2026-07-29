@@ -1,9 +1,9 @@
 ---
 name: hr-recruiting
-description: "Help HR managers with end-to-end recruiting and talent acquisition. Use when asked to write or improve a job description for a role, create interview questions, screen resumes, develop employer branding, send offer letters, conduct reference checks, or any other recruiting and hiring task., or handle day-to-day recruiting tasks for a role"
+description: "Help HR managers with end-to-end recruiting and talent acquisition. Use when asked to write or improve a job description for a role, create interview questions, screen resumes, develop employer branding, send offer letters, conduct reference checks, or any other recruiting and hiring task, or handle day-to-day recruiting tasks for a role."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # HR recruiting and talent acquisition

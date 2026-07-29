@@ -30,6 +30,7 @@ SKILL.md required structure
 - YAML frontmatter: `name`, `description`, `metadata.author` (must be "Tuan Duc Tran"), `metadata.version`
 - `name` must match directory name exactly
 - `description` minimum 50 characters and include realistic HR trigger phrases
+- `description` value must be wrapped in one pair of double quotes; trigger phrases inside are plain comma-separated text, never individually quoted
 - Required sections: `## Supported tasks`, `## Key prompts`, `## Tips`
 - `## Supported tasks`: 8-12 bullet items
 - `## Key prompts`: 3-6 named subtopics, 4-7 prompts each, use `[placeholders]`
