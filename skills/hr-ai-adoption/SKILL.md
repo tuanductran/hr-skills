@@ -1,9 +1,9 @@
 ---
 name: hr-ai-adoption
-description: Help HR leaders drive practical, sustained adoption of AI tools among HR teams and the broader employee population, beyond initial rollout. Use when asked to "drive AI adoption in HR", "get our team to actually use this AI tool", "build an AI adoption strategy for employees", "measure AI tool usage and impact", or "overcome resistance to AI tools in HR".
+description: "Help HR leaders drive practical, sustained adoption of AI tools among HR teams and the broader employee population, beyond initial rollout. Use when asked to drive AI adoption in HR, get our team to actually use this AI tool, build an AI adoption strategy for employees, measure AI tool usage and impact, or overcome resistance to AI tools in HR."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # AI adoption in HR

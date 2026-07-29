@@ -1,9 +1,9 @@
 ---
 name: hr-performance-management
-description: "Help HR managers with performance management processes. Use when asked to design a performance management process or write review frameworks, create a PIP, design performance appraisal forms, set employee goals, conduct 360-degree feedback, develop performance metrics, or any other performance management task., or design or improve the performance management system"
+description: "Help HR managers with performance management processes. Use when asked to design a performance management process or write review frameworks, create a PIP, design performance appraisal forms, set employee goals, conduct 360-degree feedback, develop performance metrics, or any other performance management task, or design or improve the performance management system."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # HR performance management

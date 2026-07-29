@@ -1,9 +1,9 @@
 ---
 name: hr-labor-relations
-description: Help HR business partners, employee relations specialists, and people leaders understand, design, and manage labor relations, collective bargaining, union avoidance and engagement strategies, grievance and dispute resolution processes, employment law compliance, and workforce policy design. Use when asked to "manage a union organizing campaign", "prepare for collective bargaining", "design a grievance process", "respond to a labor dispute", "build an employment law compliance framework", "design a disciplinary and termination process", "respond to a workplace investigation", "draft a workforce policy", or any labor relations, employee relations, or employment compliance task.
+description: "Help HR business partners, employee relations specialists, and people leaders understand, design, and manage labor relations, collective bargaining, union avoidance and engagement strategies, grievance and dispute resolution processes, employment law compliance, and workforce policy design. Use when asked to manage a union organizing campaign, prepare for collective bargaining, design a grievance process, respond to a labor dispute, build an employment law compliance framework, design a disciplinary and termination process, respond to a workplace investigation, draft a workforce policy, or any labor relations, employee relations, or employment compliance task."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # HR labor relations

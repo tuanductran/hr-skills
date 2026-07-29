@@ -1,9 +1,9 @@
 ---
 name: hr-candidate-experience
-description: Help HR teams, recruiters, and talent acquisition leaders design and improve the candidate experience across the full hiring journey. Use when asked to "improve candidate experience", "map the candidate journey", "reduce candidate drop-off", "design interview feedback", "create a candidate communication plan", or "measure candidate satisfaction".
+description: "Help HR teams, recruiters, and talent acquisition leaders design and improve the candidate experience across the full hiring journey. Use when asked to improve candidate experience, map the candidate journey, reduce candidate drop-off, design interview feedback, create a candidate communication plan, or measure candidate satisfaction."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # Candidate experience design

@@ -1,9 +1,9 @@
 ---
 name: hr-talent-crm
-description: Help TA teams design and operate a talent CRM to nurture candidate relationships, segment talent communities, and build pipeline ahead of need. Use when asked to "set up a talent CRM", "segment our talent pool", "build a nurture campaign in our CRM", "design talent community engagement", or "improve our silver medalist re-engagement process".
+description: "Help TA teams design and operate a talent CRM to nurture candidate relationships, segment talent communities, and build pipeline ahead of need. Use when asked to set up a talent CRM, segment our talent pool, build a nurture campaign in our CRM, design talent community engagement, or improve our silver medalist re-engagement process."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # Talent CRM

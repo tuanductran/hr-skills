@@ -78,10 +78,14 @@ A good description should:
 - include realistic trigger phrases
 - describe the types of requests the skill handles
 
+The whole description value must be wrapped in a single pair of double
+quotes, with trigger phrases written as plain comma-separated text (not
+individually quoted).
+
 Example:
 
 ```yaml
-description: Help HR managers with end-to-end recruiting and talent acquisition. Use when asked to "write a job description", "create interview questions", "screen resumes", "develop employer branding", or similar recruiting tasks.
+description: "Help HR managers with end-to-end recruiting and talent acquisition. Use when asked to write a job description, create interview questions, screen resumes, develop employer branding, or similar recruiting tasks."
 ```
 
 ### Required sections

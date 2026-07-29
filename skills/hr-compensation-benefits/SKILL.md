@@ -1,9 +1,9 @@
 ---
 name: hr-compensation-benefits
-description: Help HR managers with compensation and benefits programs. Use when asked to "analyze compensation data", "design a bonus plan", "create benefits programs", "conduct a job evaluation", "write a compensation philosophy", "calculate pay rates", "develop retention strategies", or any compensation and benefits task.
+description: "Help HR managers with compensation and benefits programs. Use when asked to analyze compensation data, design a bonus plan, create benefits programs, conduct a job evaluation, write a compensation philosophy, calculate pay rates, develop retention strategies, or any compensation and benefits task."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # HR compensation and benefits

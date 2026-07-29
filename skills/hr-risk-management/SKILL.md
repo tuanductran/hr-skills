@@ -3,7 +3,7 @@ name: hr-risk-management
 description: "Help HR teams identify, assess, and mitigate people-related risks across compliance, workforce continuity, conduct, and organizational health. Use when asked to identify HR risks, build an HR risk register, manage compliance risk, develop HR risk mitigation plans, handle employee relations risks, or similar HR risk management tasks."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # HR risk management

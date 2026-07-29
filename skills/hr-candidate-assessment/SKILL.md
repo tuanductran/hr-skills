@@ -1,9 +1,9 @@
 ---
 name: hr-candidate-assessment
-description: Help recruiters and hiring managers design and run structured candidate assessments beyond interviews — skills tests, work samples, assessment centers, and scoring rubrics. Use when asked to "design a candidate assessment", "build a skills test for [role]", "create an assessment center", "build a scoring rubric", or "choose the right assessment method for this role".
+description: "Help recruiters and hiring managers design and run structured candidate assessments beyond interviews — skills tests, work samples, assessment centers, and scoring rubrics. Use when asked to design a candidate assessment, build a skills test for [role], create an assessment center, build a scoring rubric, or choose the right assessment method for this role."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # Candidate assessment

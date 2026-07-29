@@ -1,9 +1,9 @@
 ---
 name: hr-vietnam-context
-description: Vietnam-specific HR guidance covering the Labor Code, Social Insurance Law, personal income tax registration, work permits for foreign workers, trade union obligations, and cultural norms for managing teams in Vietnam. Use when you need to navigate Vietnam employment law, onboard foreign staff, handle disciplinary procedures under Vietnamese law, or adapt global HR practices for the Vietnam market.
+description: "Vietnam-specific HR guidance covering the Labor Code, Social Insurance Law, personal income tax registration, work permits for foreign workers, trade union obligations, and cultural norms for managing teams in Vietnam. Use when you need to navigate Vietnam employment law, onboard foreign staff, handle disciplinary procedures under Vietnamese law, or adapt global HR practices for the Vietnam market."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # HR Vietnam context

@@ -3,7 +3,7 @@ name: hr-iot
 description: "Help HR and recruiting teams hire and assess Internet of Things (IoT) engineering candidates, spanning device firmware, connectivity, and cloud/edge integration. Use when asked to write an IoT engineer job description, create IoT interview questions, assess an IoT candidates skills across the stack, build an IoT engineering leveling framework, or similar IoT-hiring tasks."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # HR IoT hiring

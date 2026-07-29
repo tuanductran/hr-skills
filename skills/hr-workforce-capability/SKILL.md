@@ -1,9 +1,9 @@
 ---
 name: hr-workforce-capability
-description: Help HR leaders, L&D teams, and talent strategists assess, build, and sustain workforce capability at an organizational level. Use when asked to "build workforce capability", "close a capability gap", "assess our workforce skills", "design a capability building program", "create a capability heat map", "identify critical capabilities", or "develop a reskilling strategy".
+description: "Help HR leaders, L&D teams, and talent strategists assess, build, and sustain workforce capability at an organizational level. Use when asked to build workforce capability, close a capability gap, assess our workforce skills, design a capability building program, create a capability heat map, identify critical capabilities, or develop a reskilling strategy."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # Workforce capability building

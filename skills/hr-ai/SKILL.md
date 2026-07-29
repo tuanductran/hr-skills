@@ -1,9 +1,9 @@
 ---
 name: hr-ai
-description: Help HR managers, recruiters, and talent acquisition teams understand Artificial Intelligence (AI), Machine Learning (ML), Generative AI, LLM Engineering, AI Infrastructure, and modern AI product development workflows. Use when asked to "explain AI engineering", "screen AI engineers", "understand machine learning roles", "compare AI and data science", "evaluate AI skills", "create AI interview questions", "understand LLM systems", or any AI and machine learning hiring and recruiting task.
+description: "Help HR managers, recruiters, and talent acquisition teams understand Artificial Intelligence (AI), Machine Learning (ML), Generative AI, LLM Engineering, AI Infrastructure, and modern AI product development workflows. Use when asked to explain AI engineering, screen AI engineers, understand machine learning roles, compare AI and data science, evaluate AI skills, create AI interview questions, understand LLM systems, or any AI and machine learning hiring and recruiting task."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # HR AI hiring

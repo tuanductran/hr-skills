@@ -1,9 +1,9 @@
 ---
 name: hr-employee-relations
-description: Help HR managers with employee relations matters. Use when asked to "handle a grievance", "conduct an exit interview", "manage workplace investigations", "create a remote work policy", "write employee contracts", "manage accommodations", "conduct satisfaction surveys", or any employee relations task.
+description: "Help HR managers with employee relations matters. Use when asked to handle a grievance, conduct an exit interview, manage workplace investigations, create a remote work policy, write employee contracts, manage accommodations, conduct satisfaction surveys, or any employee relations task."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # HR employee relations

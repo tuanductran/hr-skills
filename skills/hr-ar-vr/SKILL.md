@@ -3,7 +3,7 @@ name: hr-ar-vr
 description: "Help HR and recruiting teams hire and assess AR/VR (augmented and virtual reality) engineering and design candidates. Use when asked to write an AR/VR engineer job description, create a spatial computing interview, assess an AR/VR candidates portfolio, build an AR/VR role leveling framework, or similar AR/VR hiring tasks."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # HR AR/VR hiring

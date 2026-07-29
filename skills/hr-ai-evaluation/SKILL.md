@@ -1,9 +1,9 @@
 ---
 name: hr-ai-evaluation
-description: Help HR technology teams evaluate AI tools and vendors for HR use cases against accuracy, bias, and fit-for-purpose criteria before adoption. Use when asked to "evaluate an AI vendor for HR", "build an AI tool evaluation framework", "assess this AI tool for bias risk", "compare AI vendors for [HR use case]", or "pilot an AI tool before rolling it out".
+description: "Help HR technology teams evaluate AI tools and vendors for HR use cases against accuracy, bias, and fit-for-purpose criteria before adoption. Use when asked to evaluate an AI vendor for HR, build an AI tool evaluation framework, assess this AI tool for bias risk, compare AI vendors for [HR use case], or pilot an AI tool before rolling it out."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # AI tool evaluation for HR

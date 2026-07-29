@@ -3,7 +3,7 @@ name: hr-audit
 description: "Help HR and compliance teams plan and conduct HR audits, including policy compliance reviews, I-9/documentation audits, pay equity checks, and process audits. Use when asked to conduct an HR audit, audit HR compliance, review personnel files for compliance, build an HR audit checklist, or similar HR audit tasks."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # HR audit

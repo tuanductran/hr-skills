@@ -1,9 +1,9 @@
 ---
 name: hr-talent-management
-description: Help HR managers, HRBPs, L&D leads, and people operations teams understand, design, and execute talent management systems. Use when asked to "build a succession planning component within talent management", "design a performance management framework", "identify high potential employees", "create a career path", "build a competency model", "improve internal mobility", "design a talent management review and calibration process", "measure employee engagement", "develop a retention strategy", "run a 9-box assessment", or any talent development and workforce planning task.
+description: "Help HR managers, HRBPs, L&D leads, and people operations teams understand, design, and execute talent management systems. Use when asked to build a succession planning component within talent management, design a performance management framework, identify high potential employees, create a career path, build a competency model, improve internal mobility, design a talent management review and calibration process, measure employee engagement, develop a retention strategy, run a 9-box assessment, or any talent development and workforce planning task."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # HR talent management

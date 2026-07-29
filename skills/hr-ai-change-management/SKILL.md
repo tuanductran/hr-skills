@@ -1,9 +1,9 @@
 ---
 name: hr-ai-change-management
-description: Help HR leaders and change managers plan and execute the human side of AI adoption in the workplace, including managing employee resistance, designing reskilling programs, communicating AI changes, and building AI readiness. Use when asked to "manage AI adoption", "prepare employees for AI", "handle AI resistance", "communicate AI changes", "build AI readiness", or "lead the people side of AI transformation".
+description: "Help HR leaders and change managers plan and execute the human side of AI adoption in the workplace, including managing employee resistance, designing reskilling programs, communicating AI changes, and building AI readiness. Use when asked to manage AI adoption, prepare employees for AI, handle AI resistance, communicate AI changes, build AI readiness, or lead the people side of AI transformation."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # AI change management for HR

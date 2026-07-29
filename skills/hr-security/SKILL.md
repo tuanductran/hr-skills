@@ -1,9 +1,9 @@
 ---
 name: hr-security
-description: Help HR managers, recruiters, and talent acquisition teams understand Cybersecurity, Application Security, Cloud Security, Security Operations, Penetration Testing, and modern security engineering workflows. Use when asked to "explain cybersecurity", "screen security engineers", "understand SOC or AppSec", "compare security roles", "evaluate cybersecurity skills", "create security interview questions", "understand modern security systems", or any cybersecurity hiring and recruiting task.
+description: "Help HR managers, recruiters, and talent acquisition teams understand Cybersecurity, Application Security, Cloud Security, Security Operations, Penetration Testing, and modern security engineering workflows. Use when asked to explain cybersecurity, screen security engineers, understand SOC or AppSec, compare security roles, evaluate cybersecurity skills, create security interview questions, understand modern security systems, or any cybersecurity hiring and recruiting task."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # HR security engineering hiring

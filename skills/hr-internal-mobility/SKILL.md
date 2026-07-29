@@ -3,7 +3,7 @@ name: hr-internal-mobility
 description: "Help HR teams design and manage internal mobility programs including lateral moves, promotions, project rotations, and internal hiring. Use when asked to build an internal mobility program, create internal job posting processes, manage internal transfers, design talent marketplace, or similar internal talent movement tasks."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # HR internal mobility

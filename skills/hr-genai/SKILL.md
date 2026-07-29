@@ -1,9 +1,9 @@
 ---
 name: hr-genai
-description: Help HR professionals, recruiters, and HR teams leverage Generative AI tools to improve HR productivity, content quality, and decision support across the full HR lifecycle. Use when asked to "use generative AI for HR", "write HR content with AI", "use ChatGPT for HR", "generate HR documents with AI", "automate HR writing", or "apply GenAI to recruiting, performance, or learning".
+description: "Help HR professionals, recruiters, and HR teams leverage Generative AI tools to improve HR productivity, content quality, and decision support across the full HR lifecycle. Use when asked to use generative AI for HR, write HR content with AI, use ChatGPT for HR, generate HR documents with AI, automate HR writing, or apply GenAI to recruiting, performance, or learning."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # Generative AI for HR professionals

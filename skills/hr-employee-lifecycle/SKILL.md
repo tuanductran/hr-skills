@@ -3,7 +3,7 @@ name: hr-employee-lifecycle
 description: "Help HR teams design and manage the full employee lifecycle from attraction to alumni. Use when asked to map the employee journey, improve the employee experience, design touchpoints across the lifecycle, create lifecycle frameworks, or similar end-to-end people management tasks."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # HR employee lifecycle

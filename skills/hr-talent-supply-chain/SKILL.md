@@ -1,9 +1,9 @@
 ---
 name: hr-talent-supply-chain
-description: Help HR leaders and workforce planners design and manage talent supply chains, including build-buy-borrow-bot strategies, talent pools, internal mobility pipelines, and external talent market analysis. Use when asked to "build our talent supply chain", "analyze talent supply for [role]", "design a build vs. buy strategy", "manage talent pools", or "forecast talent availability".
+description: "Help HR leaders and workforce planners design and manage talent supply chains, including build-buy-borrow-bot strategies, talent pools, internal mobility pipelines, and external talent market analysis. Use when asked to build our talent supply chain, analyze talent supply for [role], design a build vs. buy strategy, manage talent pools, or forecast talent availability."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # Talent supply chain management

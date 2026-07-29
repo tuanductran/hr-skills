@@ -3,7 +3,7 @@ name: hr-future-of-work
 description: "Help HR and business leaders think through future-of-work trends, including hybrid work models, AIs impact on jobs, evolving employee expectations, and flexible work policy design. Use when asked to design a hybrid work policy, analyze future of work trends, assess AIs impact on jobs, design a flexible work model, or similar future-of-work tasks."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # HR future of work

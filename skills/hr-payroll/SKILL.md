@@ -1,9 +1,9 @@
 ---
 name: hr-payroll
-description: Help HR operations specialists, payroll administrators, and compensation teams understand, design, and run payroll processing, compliance, and payroll-related HR operations. Use when asked to "set up a payroll process", "run a payroll compliance audit", "design a payroll calendar", "handle a payroll discrepancy", "build a payroll onboarding checklist", "calculate overtime and statutory deductions", "design a multi-country payroll process", or any payroll administration, compliance, and operations task.
+description: "Help HR operations specialists, payroll administrators, and compensation teams understand, design, and run payroll processing, compliance, and payroll-related HR operations. Use when asked to set up a payroll process, run a payroll compliance audit, design a payroll calendar, handle a payroll discrepancy, build a payroll onboarding checklist, calculate overtime and statutory deductions, design a multi-country payroll process, or any payroll administration, compliance, and operations task."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # HR payroll

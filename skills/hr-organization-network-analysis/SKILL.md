@@ -1,9 +1,9 @@
 ---
 name: hr-organization-network-analysis
-description: Help org design and workforce analytics teams analyze informal collaboration networks to surface hidden influencers, bottlenecks, and silos beyond the formal org chart. Use when asked to "run an organizational network analysis", "identify hidden influencers", "find collaboration bottlenecks", "map informal networks", or "analyze who really drives collaboration in this team".
+description: "Help org design and workforce analytics teams analyze informal collaboration networks to surface hidden influencers, bottlenecks, and silos beyond the formal org chart. Use when asked to run an organizational network analysis, identify hidden influencers, find collaboration bottlenecks, map informal networks, or analyze who really drives collaboration in this team."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # Organizational network analysis

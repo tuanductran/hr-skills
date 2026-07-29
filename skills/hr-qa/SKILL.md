@@ -1,9 +1,9 @@
 ---
 name: hr-qa
-description: Help HR managers, recruiters, and talent acquisition teams understand Quality Assurance (QA), Software Testing, Test Automation, and modern Quality Engineering concepts. Use when asked to "explain QA testing", "screen QA candidates", "understand automation testing", "compare manual QA and SDET", "evaluate QA skills", "create QA interview questions", "understand software testing workflows", or any QA hiring and recruiting task.
+description: "Help HR managers, recruiters, and talent acquisition teams understand Quality Assurance (QA), Software Testing, Test Automation, and modern Quality Engineering concepts. Use when asked to explain QA testing, screen QA candidates, understand automation testing, compare manual QA and SDET, evaluate QA skills, create QA interview questions, understand software testing workflows, or any QA hiring and recruiting task."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # HR QA engineering hiring

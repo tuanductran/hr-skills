@@ -1,9 +1,9 @@
 ---
 name: hr-salary-benchmarking
-description: Help compensation teams and HR leaders benchmark pay against the external market to set competitive, defensible salary ranges. Use when asked to "benchmark salaries for [role]", "compare our pay against market data", "build salary ranges from market data", "assess whether we're paying competitively", or "choose salary survey data sources".
+description: "Help compensation teams and HR leaders benchmark pay against the external market to set competitive, defensible salary ranges. Use when asked to benchmark salaries for [role], compare our pay against market data, build salary ranges from market data, assess whether we're paying competitively, or choose salary survey data sources."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # Salary benchmarking

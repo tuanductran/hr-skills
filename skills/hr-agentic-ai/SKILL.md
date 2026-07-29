@@ -1,9 +1,9 @@
 ---
 name: hr-agentic-ai
-description: Help HR leaders, HR technology teams, and People Ops professionals understand, evaluate, and govern agentic AI systems deployed in HR contexts, including autonomous HR agents, multi-agent workflows, and AI-driven HR process automation. Use when asked to "use AI agents for HR", "build an HR automation agent", "govern agentic AI in HR", "design multi-agent HR workflows", or "evaluate autonomous AI for HR processes".
+description: "Help HR leaders, HR technology teams, and People Ops professionals understand, evaluate, and govern agentic AI systems deployed in HR contexts, including autonomous HR agents, multi-agent workflows, and AI-driven HR process automation. Use when asked to use AI agents for HR, build an HR automation agent, govern agentic AI in HR, design multi-agent HR workflows, or evaluate autonomous AI for HR processes."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # Agentic AI in HR

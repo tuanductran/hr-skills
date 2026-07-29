@@ -1,9 +1,9 @@
 ---
 name: hr-manager-effectiveness
-description: Help HR teams measure, improve, and develop manager effectiveness across the organization. Use when asked to "assess manager effectiveness", "improve manager quality", "build a manager effectiveness program", "measure people manager performance", "run a manager 360", "identify underperforming managers", or "develop our management population".
+description: "Help HR teams measure, improve, and develop manager effectiveness across the organization. Use when asked to assess manager effectiveness, improve manager quality, build a manager effectiveness program, measure people manager performance, run a manager 360, identify underperforming managers, or develop our management population."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # Manager effectiveness

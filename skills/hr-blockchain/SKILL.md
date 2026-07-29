@@ -3,7 +3,7 @@ name: hr-blockchain
 description: "Help HR and recruiting teams hire and screen blockchain and Web3 engineering candidates (smart contracts, protocol engineering, cryptography). Use when asked to write a blockchain engineer job description, create smart contract interview questions, assess a Web3 candidate, build a blockchain role leveling framework, or similar blockchain-hiring tasks."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # HR blockchain hiring

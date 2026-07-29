@@ -1,9 +1,9 @@
 ---
 name: hr-wellbeing
-description: Help HR business partners, wellbeing program managers, and people leaders understand, design, and run employee wellbeing, mental health, and work-life balance initiatives. Use when asked to "design a wellbeing program", "run a burnout risk assessment", "build a mental health support plan", "design a flexible work policy", "respond to a wellbeing crisis", "measure employee wellbeing", "design a return-to-work plan after burnout leave", or any employee wellbeing, mental health, and work-life balance task.
+description: "Help HR business partners, wellbeing program managers, and people leaders understand, design, and run employee wellbeing, mental health, and work-life balance initiatives. Use when asked to design a wellbeing program, run a burnout risk assessment, build a mental health support plan, design a flexible work policy, respond to a wellbeing crisis, measure employee wellbeing, design a return-to-work plan after burnout leave, or any employee wellbeing, mental health, and work-life balance task."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # HR employee wellbeing

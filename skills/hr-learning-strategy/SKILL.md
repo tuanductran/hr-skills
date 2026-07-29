@@ -1,9 +1,9 @@
 ---
 name: hr-learning-strategy
-description: Help HR leaders, L&D directors, and Chief Learning Officers design enterprise learning strategies, build learning ecosystems, and connect learning investment to business outcomes. Use when asked to "build a learning strategy", "design our L&D ecosystem", "align learning with business priorities", "evaluate our learning investment", "shift to skills-based learning", or "create a learning culture".
+description: "Help HR leaders, L&D directors, and Chief Learning Officers design enterprise learning strategies, build learning ecosystems, and connect learning investment to business outcomes. Use when asked to build a learning strategy, design our L&D ecosystem, align learning with business priorities, evaluate our learning investment, shift to skills-based learning, or create a learning culture."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # Enterprise learning strategy

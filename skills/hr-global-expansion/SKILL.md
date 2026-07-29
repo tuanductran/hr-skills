@@ -1,9 +1,9 @@
 ---
 name: hr-global-expansion
-description: Help HR and business leaders plan the people and HR infrastructure needed to expand into a new country or region. Use when asked to "plan HR for entering [country]", "decide between entity setup and EOR for a new market", "build an HR readiness plan for expansion", "assess labor law requirements for [country]", or "hire our first employees in a new market".
+description: "Help HR and business leaders plan the people and HR infrastructure needed to expand into a new country or region. Use when asked to plan HR for entering [country], decide between entity setup and EOR for a new market, build an HR readiness plan for expansion, assess labor law requirements for [country], or hire our first employees in a new market."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # Global expansion (HR)

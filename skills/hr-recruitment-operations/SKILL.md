@@ -1,9 +1,9 @@
 ---
 name: hr-recruitment-operations
-description: Help TA operations leaders design and run the operational backbone of recruiting — requisition workflows, ATS process design, recruiting SLAs, and reporting cadence. Use when asked to "design our requisition approval workflow", "build recruiting SLAs", "set up ATS stages and workflows", "audit our recruiting process for bottlenecks", or "build a recruiting operations dashboard".
+description: "Help TA operations leaders design and run the operational backbone of recruiting — requisition workflows, ATS process design, recruiting SLAs, and reporting cadence. Use when asked to design our requisition approval workflow, build recruiting SLAs, set up ATS stages and workflows, audit our recruiting process for bottlenecks, or build a recruiting operations dashboard."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # Recruitment operations

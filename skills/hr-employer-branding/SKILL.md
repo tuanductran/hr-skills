@@ -1,9 +1,9 @@
 ---
 name: hr-employer-branding
-description: Help HR leaders, talent acquisition teams, and employer brand managers understand, design, and run employer branding strategy, EVP (Employee Value Proposition) development, careers page and social content, and candidate experience initiatives. Use when asked to "design an employer brand strategy", "build an EVP", "write a careers page", "design a candidate experience journey", "run an employer brand audit", "respond to a Glassdoor/employer reputation crisis", "measure employer brand health", "build an employee advocacy / referral content program", or any employer branding, talent attraction, or recruitment marketing task.
+description: "Help HR leaders, talent acquisition teams, and employer brand managers understand, design, and run employer branding strategy, EVP (Employee Value Proposition) development, careers page and social content, and candidate experience initiatives. Use when asked to design an employer brand strategy, build an EVP, write a careers page, design a candidate experience journey, run an employer brand audit, respond to a Glassdoor/employer reputation crisis, measure employer brand health, build an employee advocacy / referral content program, or any employer branding, talent attraction, or recruitment marketing task."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # HR employer branding

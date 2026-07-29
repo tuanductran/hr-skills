@@ -1,9 +1,9 @@
 ---
 name: hr-ai-ethics
-description: Help HR and compliance teams govern the ethical use of AI in HR processes, including algorithmic fairness in hiring, bias auditing, AI transparency, accountability frameworks, and ethical AI policy design. Use when asked to "audit AI bias in hiring", "design ethical AI guidelines for HR", "assess algorithmic fairness", "build an AI ethics policy", "govern AI use in performance management", or "address bias in our AI tools".
+description: "Help HR and compliance teams govern the ethical use of AI in HR processes, including algorithmic fairness in hiring, bias auditing, AI transparency, accountability frameworks, and ethical AI policy design. Use when asked to audit AI bias in hiring, design ethical AI guidelines for HR, assess algorithmic fairness, build an AI ethics policy, govern AI use in performance management, or address bias in our AI tools."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # AI ethics in HR
