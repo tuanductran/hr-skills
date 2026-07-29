@@ -16,6 +16,7 @@ import {
 	TASKS_REGEX,
 	TIPS_REGEX,
 } from './constants.js';
+import { detectDuplicates } from './detect-duplicates.js';
 import {
 	countFiles,
 	dirExists,
@@ -454,6 +455,7 @@ async function validate(): Promise<void> {
 	p.log.info(`Found ${skillNames.length} skill directories`);
 
 	const allErrors: SkillValidationIssue[] = [];
+	const allWarnings: SkillValidationIssue[] = [];
 
 	await validateRouterConsistency(skillNames, allErrors);
 	await validateRegistryConsistency(allErrors);
@@ -467,7 +469,21 @@ async function validate(): Promise<void> {
 		}
 	}
 
-	// Report
+	// Phase 6.2 — duplicate-content detection (quality warnings, not failures)
+	await detectDuplicates(skillNames, allWarnings);
+
+	// Report warnings (informational — do not affect exit code)
+	if (allWarnings.length > 0) {
+		p.log.warn(
+			`Duplicate-content warnings: ${allWarnings.length} potential overlap(s) detected`,
+		);
+		for (const w of allWarnings) p.log.warn(`  ${w.skill}: ${w.message}`);
+		p.log.warn(
+			'These are informational. Review the flagged pairs and decide whether to merge or refactor them.',
+		);
+	}
+
+	// Report errors (fatal)
 	if (allErrors.length > 0) {
 		p.log.error('Validation failed');
 
@@ -477,6 +493,7 @@ async function validate(): Promise<void> {
 	}
 
 	p.log.success(`All ${skillNames.length} HR skills are valid`);
+	if (allWarnings.length === 0) p.log.info('No duplicate-content warnings.');
 	p.outro('Done');
 }
 
