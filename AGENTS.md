@@ -1,5 +1,11 @@
 # HR skills development guide
 
+## Project overview
+
+`hr-skills` is a Bun + Turborepo monorepo of domain-specific Agent Skills for HR and talent acquisition, distributed for Claude Code and claude.ai. Each skill lives at `skills/hr-*/SKILL.md`. Two internal TypeScript packages, `packages/hr-skills-build` and `packages/skills-ref`, validate, sync, and package the skills. Generated artifacts — `docs/skill-matrix.md`, `registry/skills.json`, `.claude-plugin/marketplace.json` — are derived from skill frontmatter and must never be hand-edited; regenerate them with the corresponding `bun run` command instead.
+
+This file is the canonical, tool-agnostic guide for both human contributors and AI agents. `CLAUDE.md` is a symlink to this file — edit `AGENTS.md` only.
+
 ## Branch strategy
 
 > [!IMPORTANT]
