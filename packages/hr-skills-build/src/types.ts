@@ -585,3 +585,10 @@ export interface EvaluationReport {
 	/** Case IDs with at least one regression against the golden fixture. */
 	regressedCaseIds: string[];
 }
+
+// ---------------------------------------------------------------------------
+// Re-exports — relevance signal types (defined in relevance-signals.ts to keep
+// that module self-contained, but surfaced here for convenience).
+// ---------------------------------------------------------------------------
+
+export type { RelevanceSignalTable } from './relevance-signals.js';

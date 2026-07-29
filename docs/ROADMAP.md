@@ -342,7 +342,9 @@ contributors, rather than leaving them as internal planner input only.
   are actually selected together in practice (for example via evaluation
   runs or planner telemetry), use that signal to refine
   `relatedSkills` weighting rather than relying on static classification
-  alone
+  alone. Phase 6.1-A is implemented: see
+  [`docs/usage-informed-relevance.md`](usage-informed-relevance.md) for
+  the architecture, signal pipeline, and implementation roadmap.
 
 #### 6.2 Quality Automation
 
@@ -633,4 +635,4 @@ Potential directions:
 
 ---
 
-Last updated: July 28, 2026
+Last updated: July 29, 2026

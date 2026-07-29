@@ -93,3 +93,10 @@ export const EVAL_DATASETS_DIR = join(EVAL_DIR, 'datasets');
 
 /** Absolute path to the `eval/golden/` directory containing committed golden fixtures. */
 export const EVAL_GOLDEN_DIR = join(EVAL_DIR, 'golden');
+
+/** Absolute path to the generated relevance-signals artifact at the repo root. */
+export const RELEVANCE_SIGNALS_PATH = join(
+	ROOT_DIR,
+	'registry',
+	'relevance-signals.json',
+);

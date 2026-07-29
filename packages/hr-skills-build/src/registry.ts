@@ -22,7 +22,8 @@ import {
 	readSkill,
 } from './helpers.js';
 import { parseSkillMeta } from './parser.js';
-import type { Registry, RegistryEntry } from './types.js';
+import { indexSignalsBySource, reRankRelatedSkills } from './relevance-signals.js';
+import type { Registry, RegistryEntry, RelevanceSignalTable } from './types.js';
 
 const HR_PREFIX_REGEX = /^hr-/;
 
@@ -81,8 +82,18 @@ function rankRelatedSkills(
 
 /**
  * Build the full Skill Registry from the current state of skills/ on disk.
+ *
+ * @param signalTable  Optional usage-informed relevance signal table loaded
+ *   from `registry/relevance-signals.json`.  When present, the static
+ *   tag-overlap `relatedSkills` ranking is blended with observed co-selection
+ *   rates.  When absent (the default), the registry is built exactly as before
+ *   — static ranking only — preserving full backwards compatibility.
  */
-export async function buildRegistry(): Promise<Registry> {
+export async function buildRegistry(
+	signalTable?: RelevanceSignalTable,
+): Promise<Registry> {
+	// Pre-build the signal index once so per-skill look-ups are O(1).
+	const signalIndex = signalTable ? indexSignalsBySource(signalTable) : null;
 	const skillIds = await discoverSkills();
 
 	// First pass: gather per-skill data that doesn't depend on other skills.
@@ -147,11 +158,16 @@ export async function buildRegistry(): Promise<Registry> {
 							entry.classification.category as keyof typeof CATEGORY_META,
 						).filter((depId) => depId !== entry.id);
 
-			const relatedSkills = rankRelatedSkills(
+			const staticRelated = rankRelatedSkills(
 				entry.id,
 				entry.classification.tags,
 				byDomain.get(entry.classification.category) ?? [],
 			);
+
+			// Optionally blend static ranking with observed co-selection evidence.
+			const relatedSkills = signalIndex
+				? reRankRelatedSkills(entry.id, staticRelated, signalIndex)
+				: staticRelated;
 
 			const registryEntry: RegistryEntry = {
 				id: entry.id,
