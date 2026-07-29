@@ -126,9 +126,8 @@ Applies to all of the above:
 
 ## Suggested improvements
 
-- **[Proposed]** None beyond what's already captured in `CONTRIBUTOR_GUIDE.md` and
-  `CONTRIBUTING.md.suggestions.md` — this page is meant to stay a stable set of worked
-  examples that references those files rather than duplicating their reasoning.
+- **[Proposed]** None currently open — this page is meant to stay a stable set of worked
+  examples rather than duplicating reasoning that belongs in `AGENTS.md` or `GOVERNANCE.md`.
 
 ## Unknown or ambiguous information
 

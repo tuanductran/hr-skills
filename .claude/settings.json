@@ -13,6 +13,9 @@
 			"Bash(bun run lint:md:fix)",
 			"Bash(bun run check)",
 			"Bash(bun run format)",
+			"Bash(bun run lint:links)",
+			"Bash(bun run matrix)",
+			"Bash(bun run knip)",
 			"Read(**)"
 		],
 		"deny": ["Write(node_modules/**)", "Write(dist/**)", "Write(.turbo/**)"]

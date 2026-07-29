@@ -64,9 +64,8 @@ All of the above is **[Existing]**, taken directly from `package.json` scripts a
 cross-checked against AGENTS.md's own command list, which matches exactly.
 
 **[Existing]** CI (`.github/workflows/`) runs `knip.yml`, `lint.yml`, `matrix.yml`,
-`release.yml`, `test.yml`, `typecheck.yml`, and `validate.yml` as separate jobs — meaning
-`test` and `knip` are enforced in CI even though they're not currently listed in
-CONTRIBUTING.md's pre-submit checklist (see `CONTRIBUTING.md.suggestions.md`).
+`release.yml`, `test.yml`, `typecheck.yml`, and `validate.yml` as separate jobs.
+CONTRIBUTING.md's pre-submit checklist already matches this list (see below).
 
 ## Existing behavior — testing and validation
 
@@ -145,7 +144,7 @@ bun run knip           # no unused files/dependencies
 ## Suggested improvements
 
 - **[Merged]** CONTRIBUTING.md's checklist now includes `lint:links`, `test`, and `knip` to
-  match what CI actually enforces (see `CONTRIBUTING.md.suggestions.md`, item 1).
+  match what CI actually enforces.
 
 ## Unknown or ambiguous information
 
