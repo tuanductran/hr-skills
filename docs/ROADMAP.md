@@ -364,7 +364,8 @@ Extend validation beyond the current structural/format checks
 * Automated content quality scoring — a repeatable score (clarity,
   completeness, example coverage) usable as a review aid, not a merge
   gate, so a low score prompts a closer look rather than an automatic
-  rejection
+  rejection. Delivered — see [`docs/quality-scoring.md`](quality-scoring.md)
+  for the scoring dimensions, weights, bands, and public API
 * AI-assisted review workflows — apply
   [`.agents/skills/skill-vetter/SKILL.md`](../.agents/skills/skill-vetter/SKILL.md)'s
   pattern (already used for security review) to content quality, and

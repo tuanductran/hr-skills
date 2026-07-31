@@ -1,4 +1,5 @@
 export * from './detect-duplicates.js';
+export * from './quality-scoring.js';
 export * from './security.js';
 export * from './semantic-validation.js';
 export * from './validate.js';
