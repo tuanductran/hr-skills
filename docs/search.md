@@ -6,7 +6,7 @@
 
 ## What it is
 
-`packages/hr-skills-build/src/search.ts` exports one function,
+`packages/hr-skills-build/src/search/search.ts` exports one function,
 `searchSkills(query, registry)`, that ranks skills against a free-text query
 matched across structured registry fields — capabilities, aliases, tags,
 domain, and trigger phrases.

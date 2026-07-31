@@ -30,7 +30,7 @@ Option 2 was chosen because:
   would need to be kept in sync by hand.
 - Almost all of the metadata the registry needs **already exists** somewhere
   in the repository — it just isn't indexed in one machine-readable place:
-  - Domain + tags → `classifySkill()` in `packages/hr-skills-build/src/classifier.ts`
+  - Domain + tags → `classifySkill()` in `packages/hr-skills-build/src/registry/classifier.ts`
     (already used to build the root `SKILL.md` router)
   - Capabilities → the `## Supported tasks` section, already parsed by
     `parseSkillMeta()`
@@ -84,8 +84,8 @@ first-class, browsable part of the repository, not build cache.
 ```
 
 The schema is defined with [valibot](https://valibot.dev) in
-`packages/hr-skills-build/src/schema.ts` (`RegistrySchema`) and typed in
-`packages/hr-skills-build/src/types.ts` (`Registry`, `RegistryEntry`). Bump
+`packages/hr-skills-build/src/shared/schema.ts` (`RegistrySchema`) and typed in
+`packages/hr-skills-build/src/shared/types.ts` (`Registry`, `RegistryEntry`). Bump
 `schemaVersion` (`REGISTRY_SCHEMA_VERSION` in `constants.ts`) if you make a
 breaking change to the shape of an entry.
 
@@ -116,8 +116,8 @@ breaking change to the shape of an entry.
 bun run registry
 ```
 
-This runs `packages/hr-skills-build/src/generate-registry.ts`, which calls
-the pure function `buildRegistry()` (`packages/hr-skills-build/src/registry.ts`)
+This runs `packages/hr-skills-build/src/cli/generate-registry.ts`, which calls
+the pure function `buildRegistry()` (`packages/hr-skills-build/src/registry/registry.ts`)
 and writes the result to `registry/skills.json`. `buildRegistry()` has no
 side effects, which is what lets validation reuse it (see below) instead of
 re-implementing the same logic.
@@ -135,7 +135,7 @@ and commit the result — the same workflow as `bun run matrix`.
 
 `bun run validate` (which every PR and the `validate.yml` / `matrix.yml` CI
 workflows already run) now also calls `validateRegistryConsistency()`
-(`packages/hr-skills-build/src/validate-registry.ts`), which checks:
+(`packages/hr-skills-build/src/validation/validate-registry.ts`), which checks:
 
 1. **File exists and is valid JSON** conforming to `RegistrySchema`.
 2. **Staleness** — recomputes the registry in memory via `buildRegistry()`

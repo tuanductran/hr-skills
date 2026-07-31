@@ -7,14 +7,14 @@
 
 ## What it is
 
-`packages/hr-skills-build/src/recommendations.ts` exports one function,
+`packages/hr-skills-build/src/search/recommendations.ts` exports one function,
 `getRecommendations(skillId, registry, limit?)`, that looks up a skill's
 already-computed `relatedSkills` list from a `Registry` object (as produced
 from `registry/skills.json`) and returns it in a stable, documented shape.
 
 This is a read-only lookup layer, not a new ranking system. The ranking
 itself already exists — `rankRelatedSkills()` in
-`packages/hr-skills-build/src/registry.ts` computes it once, at registry
+`packages/hr-skills-build/src/registry/registry.ts` computes it once, at registry
 generation time, and this module simply surfaces that result.
 
 ## Recommendation format
