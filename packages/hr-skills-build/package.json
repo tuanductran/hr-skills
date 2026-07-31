@@ -34,6 +34,7 @@
 		"recommend": "bun src/cli/recommend.ts",
 		"execute": "bun src/cli/execute-plan.ts",
 		"evaluate": "bun src/cli/run-evaluation.ts",
+		"skill-review": "bun src/cli/skill-review.ts",
 		"test": "bun test",
 		"dev": "bun --watch src/validation/validate.ts",
 		"typecheck": "tsc --noEmit"

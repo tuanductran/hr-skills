@@ -165,7 +165,7 @@ its PR comment (see below).
 Unlike structural validation, quality scoring is not (yet) wired into
 `bun run validate` — it's surfaced two ways:
 
-1. **CI PR comment** — the AI-assisted review workflow
+1. **CI PR comment** — the automated review workflow
    (`.github/workflows/skill-review.yml`) computes quality scores for
    changed skills and includes them in its PR comment alongside
    `skill-vetter`'s security findings. See that workflow for details.

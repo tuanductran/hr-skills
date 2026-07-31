@@ -370,7 +370,15 @@ Extend validation beyond the current structural/format checks
   [`.agents/skills/skill-vetter/SKILL.md`](../.agents/skills/skill-vetter/SKILL.md)'s
   pattern (already used for security review) to content quality, and
   surface its output as a PR comment maintainers can act on directly,
-  consistent with [`GOVERNANCE.md`](../GOVERNANCE.md)'s review criteria
+  consistent with [`GOVERNANCE.md`](../GOVERNANCE.md)'s review criteria.
+  Delivered as an **automated, deterministic** workflow rather than an
+  LLM-backed one — no Anthropic/OpenAI API key is required or used. See
+  [`.github/workflows/skill-review.yml`](../.github/workflows/skill-review.yml):
+  `bun run skill-review` computes the same security findings and
+  quality scores skill-vetter and quality-scoring already produce, for
+  only the skills a PR touches, and posts the result directly as a PR
+  comment via `actions/github-script` — no third-party API calls.
+  Informational only — never blocks merge
 
 ---
 
