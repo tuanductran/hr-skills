@@ -29,14 +29,17 @@ in that PR.
 
 # 2. Review and merge that PR (this lands the version bump + CHANGELOG.md).
 
-# 3. Tag and push from the updated main — this is a separate, manual step;
-#    no workflow creates the git tag or GitHub Release automatically.
+# 3. Tag and push from the updated main — this is a maintainer action;
+#    no workflow creates the git tag itself.
 git pull
 git tag v$(node -p "require('./package.json').version")
 git push --tags
 
-# 4. Create the GitHub Release from the tag, using the new CHANGELOG.md
-#    section as its body.
+# 4. Pushing the tag triggers .github/workflows/publish.yml, which builds
+#    dist/hr-skills.zip and dist/hr-skills.skill and creates the GitHub
+#    Release from the tag automatically, using the matching CHANGELOG.md
+#    section as its body and attaching both artifacts. No further manual
+#    step is needed.
 ```
 
 > No npm publish step — this repo is not published to npm. See
