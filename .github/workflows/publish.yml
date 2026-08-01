@@ -1,0 +1,102 @@
+name: Publish
+
+# Stage 5 of docs/release.md — automates what was previously a fully manual
+# step (see .changeset/README.md's "Releasing" section): once the maintainer
+# tags a release (git tag vX.Y.Z && git push --tags, after the Version
+# Packages PR from release.yml is merged), this workflow builds the
+# distribution artifacts and creates the GitHub Release with them attached.
+#
+# This does not run `changesets/action` and does not bump the version —
+# that already happened in the merged Version Packages PR. This workflow
+# only builds dist/hr-skills.zip and dist/hr-skills.skill from the tagged
+# commit and publishes the release.
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ github.ref }}
+
+      - name: Install Bun
+        uses: oven-sh/setup-bun@v2
+
+      - name: Setup Bun cache
+        uses: actions/cache@v5
+        with:
+          path: ~/.bun/install/cache
+          key: ${{ runner.os }}-bun-${{ hashFiles('**/bun.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-bun-
+
+      - name: Install dependencies
+        run: bun ci
+
+      - name: Validate skills
+        run: bun run validate
+
+      - name: Build distribution artifacts
+        # Root `bun run build` (`turbo run build --filter=!hr-skills`) builds
+        # every package except hr-skills — that's everything BUT what we
+        # want to target here, not a way to select hr-skills-build. It also
+        # runs skills-ref's build for no reason in this context.
+        # `bun run build -- --skill` is not valid syntax: bun forwards
+        # `--skill` to the root script (`turbo run build ...`), and turbo
+        # has no such flag — it fails with "unexpected argument '--skill'".
+        # The correct, filtered command targets hr-skills-build directly;
+        # its own "build" script already runs build-zip && build-skill, so
+        # one invocation produces both dist/hr-skills.zip and
+        # dist/hr-skills.skill.
+        # --force bypasses Turborepo's cache: the task's declared outputs
+        # (dist/**, resolved relative to the package) don't match where
+        # build-skills.ts actually writes (the repo-root dist/), so a cache
+        # hit replays the logged "OK" lines without restoring the real
+        # files — verified locally, a warm cache leaves dist/ empty even
+        # though the step reports success.
+        run: bunx turbo run build --filter=hr-skills-build --force
+
+      - name: Extract changelog section for this version
+        id: changelog
+        run: |
+          version="${GITHUB_REF_NAME#v}"
+          awk -v ver="$version" '
+            /^## / {
+              if (found) exit
+              if ($0 == "## " ver) { found = 1; next }
+              next
+            }
+            found { print }
+          ' CHANGELOG.md > /tmp/release-notes.md
+
+          if [ -s /tmp/release-notes.md ]; then
+            echo "found=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "found=false" >> "$GITHUB_OUTPUT"
+            echo "::warning::No CHANGELOG.md section found for ${GITHUB_REF_NAME}; falling back to auto-generated release notes."
+          fi
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v3.0.2
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: ${{ github.ref_name }}
+          body_path: ${{ steps.changelog.outputs.found == 'true' && '/tmp/release-notes.md' || '' }}
+          generate_release_notes: ${{ steps.changelog.outputs.found != 'true' }}
+          files: |
+            dist/hr-skills.zip
+            dist/hr-skills.skill

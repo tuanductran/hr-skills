@@ -87,7 +87,7 @@ Reviewing the release PR is itself part of validation — see the
   release PR can be merged and still reviewed once more before the tag is
   pushed
 
-### 5. Tag and publish (maintainer)
+### 5. Tag and publish (maintainer triggers, `publish.yml` completes it)
 
 ```bash
 # From an up-to-date main, after the release PR is merged
@@ -97,8 +97,12 @@ git push --tags
 
 Pushing the tag is the point of no return for that version number — see
 [Rollback guidance](#rollback-guidance) if something is wrong after this
-step. A GitHub Release is created from the tag (manually or via a tag-based
-workflow), using `CHANGELOG.md`'s new section as the release notes body.
+step. The pushed tag triggers `.github/workflows/publish.yml`, which builds
+`dist/hr-skills.zip` and `dist/hr-skills.skill` from the tagged commit and
+creates the GitHub Release automatically — using the matching
+`CHANGELOG.md` section as the release body and attaching both artifacts.
+The maintainer still decides *when* to tag; nothing after that point
+requires a manual step.
 
 ### Lifecycle at a glance
 
@@ -108,7 +112,7 @@ workflow), using `CHANGELOG.md`'s new section as the release notes body.
 | 2. Merge | PR approved | Maintainer | Change lands on `dev`, then `main` |
 | 3. Release PR | Push to `main` | `release.yml` (automated) | Version bump + `CHANGELOG.md` PR |
 | 4. Merge release PR | Checklist passes | Maintainer | Version bump lands on `main` |
-| 5. Tag + publish | Maintainer decision | Maintainer | Git tag, GitHub Release |
+| 5. Tag + publish | Maintainer pushes tag | Maintainer triggers, `publish.yml` (automated) | Git tag, built `dist/` artifacts, GitHub Release |
 
 ## Versioning strategy
 
@@ -161,6 +165,9 @@ maintainer's responsibility when reviewing the release PR.
 - [ ] `bun run knip` reports no unused files or dependencies (`knip.yml`)
 - [ ] Every pending `.changeset/*.md` file is consumed and reflected in the
       generated `CHANGELOG.md` diff
+- [ ] `bun run validate` passes again in `publish.yml` before the tagged
+      commit's artifacts are built (a second, independent check against the
+      exact commit being released, not just the release-PR commit)
 
 ### Manual (maintainer, before merging the release PR)
 
@@ -249,7 +256,8 @@ same state:
 | Channel | What must match | How it's kept in sync |
 | --- | --- | --- |
 | `package.json` version + git tag | Same version number | `changesets/action@v1` bumps `package.json`; maintainer tags the same value |
-| GitHub Release | Same version, changelog matches `CHANGELOG.md` | Created from the tag; body copied from the new `CHANGELOG.md` section |
+| GitHub Release | Same version, changelog matches `CHANGELOG.md` | Created automatically from the tag by `publish.yml`; body copied from the matching `CHANGELOG.md` section |
+| `dist/hr-skills.zip`, `dist/hr-skills.skill` | Built from the exact tagged commit, attached to the GitHub Release | `bun run build` / `bun run build -- --skill` in `publish.yml`, never built or uploaded by hand |
 | `.claude-plugin/marketplace.json` | Every current `hr-*` skill listed, no stale entries | `bun run sync`, validated for staleness by `bun run validate` |
 | `registry/skills.json` | `skillCount` and `skills[]` match `skills/` on disk | `bun run registry`, validated for staleness by `bun run validate` |
 | `docs/skill-matrix.md` | Same skill count and tier breakdown as the registry | `bun run matrix`, regenerated alongside the registry in `matrix.yml` |
