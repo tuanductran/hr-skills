@@ -1,5 +1,23 @@
 # Changelog
 
+## 1.3.0
+
+### Minor Changes
+
+- 23b7495: Added `.github/workflows/publish.yml`, triggered on `v*` tag pushes, which
+  automates the last manual step of the release lifecycle (`docs/release.md`
+  stage 5): it builds `dist/hr-skills.zip` and `dist/hr-skills.skill` from the
+  tagged commit, extracts the matching `CHANGELOG.md` section, and creates
+  the GitHub Release with both artifacts attached. Previously this step was
+  entirely manual, as documented in `.changeset/README.md`'s "Releasing"
+  section. Updated `docs/release.md` (lifecycle stage 5, the release
+  validation checklist, and the cross-channel consistency table) and
+  `.changeset/README.md` to describe the new automated step.
+
+### Patch Changes
+
+- a4937fe: Standardized the `description` frontmatter field across all 146 skills to a single consistent format: the entire value wrapped in one pair of double quotes, with trigger phrases written as plain comma-separated text instead of being individually quoted. Fixed a punctuation glitch ("task., or ...") present in 14 descriptions where a trailing clause had been appended incorrectly. Bumped `metadata.version` to `1.0.1` for every skill to reflect the frontmatter update. Updated the description example in `docs/format.md` and the frontmatter checklist in `AGENTS.md` / `.agents/AGENTS.md` to document the required quoting convention for future skills.
+
 ## 1.2.0
 
 ### Minor Changes
