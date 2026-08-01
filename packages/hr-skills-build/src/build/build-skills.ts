@@ -15,12 +15,15 @@
  * -------
  * hr-skills.zip
  *     Standard distribution zip for manual extraction and document-based tools.
- *     Includes root SKILL.md, LICENSE, and the full skills/ tree.
- *     Excludes .claude-plugin/ (internal tooling, not shipped in the zip).
+ *     Includes root SKILL.md, LICENSE, docs/usage-guide.md, and the full
+ *     skills/ tree. Excludes .claude-plugin/ (internal tooling, not shipped
+ *     in the zip).
  *
  * hr-skills.skill
  *     Skill-oriented archive with the same core knowledge files as the zip.
- *     Also includes the full .claude-plugin/ directory.
+ *     Also includes the .claude-plugin/ JSON manifests only (for example
+ *     marketplace.json) — non-JSON files such as .claude-plugin/README.md
+ *     are internal-repo documentation and are never packaged.
  *
  * Ported from soulmap-ai/src/soulmap/devtools/packaging/build_skill.py
  */
@@ -221,7 +224,7 @@ async function walkFiles(dir: string): Promise<string[]> {
 
 /**
  * Core knowledge files shared by both archive formats.
- * Includes SKILL.md, LICENSE, and the full skills/ tree.
+ * Includes SKILL.md, LICENSE, docs/usage-guide.md, and the full skills/ tree.
  */
 async function iterInputs(repoRoot: string): Promise<string[]> {
 	const paths: string[] = [];
@@ -230,6 +233,9 @@ async function iterInputs(repoRoot: string): Promise<string[]> {
 		const candidate = join(repoRoot, name);
 		if (existsSync(candidate)) paths.push(candidate);
 	}
+
+	const usageGuide = join(repoRoot, 'docs', 'usage-guide.md');
+	if (existsSync(usageGuide)) paths.push(usageGuide);
 
 	const skillsDir = join(repoRoot, 'skills');
 	if (existsSync(skillsDir)) {
@@ -241,11 +247,14 @@ async function iterInputs(repoRoot: string): Promise<string[]> {
 
 /**
  * .claude-plugin files — included only in the .skill archive.
+ * Only .json manifests (e.g. marketplace.json) are shipped; documentation
+ * files such as README.md are internal-repo-only and excluded here.
  */
 async function iterClaudePluginInputs(repoRoot: string): Promise<string[]> {
 	const base = join(repoRoot, '.claude-plugin');
 	if (!existsSync(base)) return [];
-	return (await walkFiles(base)).sort();
+	const all = await walkFiles(base);
+	return all.filter((p) => p.endsWith('.json')).sort();
 }
 
 // ---------------------------------------------------------------------------
