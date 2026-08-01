@@ -64,7 +64,7 @@ table and confirmed by inspecting the files on disk.
   since the skill already exists in the routing table.
 - **Fix a factual or formatting error in an existing skill** — smallest, lowest-risk PR type.
 - **Improve tooling** in `packages/hr-skills-build` or `packages/skills-ref` — requires
-  TypeScript and Bun familiarity; see AGENTS.md's "Packages" table.
+  TypeScript and Bun familiarity; see AGENTS.md's "Project structure" table.
 - **Improve documentation** — see `docs/contributing/workflow.md` for documentation
   maintenance conventions.
 

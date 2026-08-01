@@ -85,6 +85,48 @@ Generate the skill maturity matrix.
 bun run matrix
 ```
 
+Generate the machine-readable skill registry.
+
+```bash
+bun run registry
+```
+
+Generate usage-informed relevance signals from evaluation golden fixtures.
+
+```bash
+bun run signals
+```
+
+Search the generated registry by text or domain.
+
+```bash
+bun run discover "<query>"
+```
+
+Get related-skill recommendations for a skill ID.
+
+```bash
+bun run recommend <skill-id>
+```
+
+Generate an execution plan for a user intent.
+
+```bash
+bun run plan "<intent>"
+```
+
+Generate a plan and run it through the workflow runtime.
+
+```bash
+bun run execute "<intent>"
+```
+
+Run the evaluation framework against `eval/datasets`.
+
+```bash
+bun run evaluate
+```
+
 Run every test suite.
 
 ```bash

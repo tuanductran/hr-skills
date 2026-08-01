@@ -16,6 +16,13 @@
 			"Bash(bun run lint:links)",
 			"Bash(bun run matrix)",
 			"Bash(bun run knip)",
+			"Bash(bun run registry)",
+			"Bash(bun run signals)",
+			"Bash(bun run discover:*)",
+			"Bash(bun run recommend:*)",
+			"Bash(bun run plan:*)",
+			"Bash(bun run execute:*)",
+			"Bash(bun run evaluate)",
 			"Read(**)"
 		],
 		"deny": ["Write(node_modules/**)", "Write(dist/**)", "Write(.turbo/**)"]
