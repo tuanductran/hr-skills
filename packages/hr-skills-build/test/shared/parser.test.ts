@@ -20,8 +20,8 @@ metadata:
 
 const SAMPLE_SKILL_CRLF = SAMPLE_SKILL.replaceAll('\n', '\r\n');
 
-const NAME_REGEX = /^name:[ \t]*(.+)$/m;
-const NAME_REGEX_NON_MATCHING = /^missing:[ \t]*(.+)$/m;
+const NAME_REGEX = /^name:[ \t]*(\S.*)$/m;
+const NAME_REGEX_NON_MATCHING = /^missing:[ \t]*(\S.*)$/m;
 
 describe('extractMatch', () => {
 	it('returns the first capture group when regex matches', () => {
