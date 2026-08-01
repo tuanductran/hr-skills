@@ -21,7 +21,7 @@ export const HR_SKILL_PREFIX = 'hr-';
  * Capture group 1 contains the raw block text.
  */
 export const KEY_PROMPTS_REGEX =
-	/## Key prompts\r?\n\r?\n([\s\S]*?)(?=\r?\n## |\r?\n---\r?\n|$)/;
+	/## Key prompts\r?\n\r?\n((?:(?!\r?\n## |\r?\n---\r?\n)[\s\S])*)/;
 
 /**
  * Matches a numbered or bulleted quoted prompt line inside a Key prompts block,
@@ -49,7 +49,7 @@ export const FRONTMATTER_REGEX = /^---\r?\n([\s\S]*?)\r?\n---/;
  * Captures the body of a `## Supported tasks` section up to the next `##` heading
  * or end of file. Capture group 1 contains the raw block text.
  */
-export const TASKS_REGEX = /## Supported tasks\r?\n\r?\n([\s\S]*?)(?=\r?\n##|$)/;
+export const TASKS_REGEX = /## Supported tasks\r?\n\r?\n((?:(?!\r?\n##)[\s\S])*)/;
 
 /**
  * The three markdown section headings that every skill SKILL.md must contain.
@@ -67,7 +67,7 @@ export const MIN_CONTENT_LENGTH = 1000;
  * Captures the body of a `## Tips` section up to the next `##` heading or end of file.
  * Capture group 1 contains the raw block text.
  */
-export const TIPS_REGEX = /## Tips\r?\n\r?\n([\s\S]*?)(?=\r?\n##|$)/;
+export const TIPS_REGEX = /## Tips\r?\n\r?\n((?:(?!\r?\n##)[\s\S])*)/;
 
 /**
  * Matches markdown links that reference another skill, e.g.
