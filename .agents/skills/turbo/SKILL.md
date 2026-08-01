@@ -200,6 +200,13 @@ Current repository tasks include:
 | `validate` | Validate HR skills and repository metadata |
 | `sync` | Synchronize generated repository artifacts |
 | `matrix` | Generate `docs/skill-matrix.md` skill maturity snapshot |
+| `registry` | Generate the machine-readable skill registry (`registry/skills.json`) |
+| `signals` | Generate usage-informed relevance signals from evaluation golden fixtures |
+| `discover` | Search the generated registry by text or domain |
+| `recommend` | Get related-skill recommendations for a skill ID |
+| `plan` | Generate an execution plan for a user intent |
+| `execute` | Generate a plan and run it through the workflow runtime |
+| `evaluate` | Run the evaluation framework against `eval/datasets` |
 
 ## Examples
 
