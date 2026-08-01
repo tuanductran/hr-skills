@@ -9,7 +9,7 @@
  */
 
 import * as p from '@clack/prompts';
-import { buildRegistry } from '../registry/registry.js';
+import { buildRegistry, loadRelevanceSignalTable } from '../registry/registry.js';
 import { getRecommendations, UnknownSkillError } from '../search/recommendations.js';
 
 async function main() {
@@ -30,8 +30,17 @@ async function main() {
 
 	const spinner = p.spinner();
 	spinner.start('Building Skill Registry...');
-	const registry = await buildRegistry();
-	spinner.stop(`Registry ready (${registry.skillCount} skills)`);
+	// Load the same usage-informed relevance signal table generate-registry.ts
+	// uses (Phase 6.1-B/C), so ad-hoc recommendations here match what's
+	// actually committed to registry/skills.json instead of silently
+	// falling back to static tag-overlap-only ranking.
+	const signalTable = await loadRelevanceSignalTable();
+	const registry = await buildRegistry(signalTable);
+	spinner.stop(
+		signalTable
+			? `Registry ready (${registry.skillCount} skills, signal-blended relatedSkills)`
+			: `Registry ready (${registry.skillCount} skills)`,
+	);
 
 	try {
 		const result = getRecommendations(skillId, registry, limit);

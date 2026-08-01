@@ -319,7 +319,7 @@ Completed:
 
 ### Phase 6 — Skill Intelligence & Quality Automation
 
-Future goals:
+Completed.
 
 #### 6.1 Skill Intelligence
 
@@ -342,9 +342,16 @@ contributors, rather than leaving them as internal planner input only.
   are actually selected together in practice (for example via evaluation
   runs or planner telemetry), use that signal to refine
   `relatedSkills` weighting rather than relying on static classification
-  alone. Phase 6.1-A is implemented: see
+  alone. Delivered (Phase 6.1-A/B/C) — see
   [`docs/usage-informed-relevance.md`](usage-informed-relevance.md) for
-  the architecture, signal pipeline, and implementation roadmap.
+  the architecture, signal pipeline, and implementation roadmap. Signal
+  infrastructure (6.1-A), signal-augmented registry generation with a
+  non-blocking coverage warning (6.1-B), and the recommendation surface
+  (6.1-C, delivered earlier as `getRecommendations()`) are all in place.
+  Richer evidence sources beyond evaluation golden fixtures (6.1-D —
+  curated tables, org-specific overrides, opt-in telemetry) remain future
+  work; the architecture already accepts them as drop-in inputs with no
+  redesign required
 
 #### 6.2 Quality Automation
 

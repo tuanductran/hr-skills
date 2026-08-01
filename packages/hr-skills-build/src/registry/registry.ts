@@ -10,10 +10,16 @@
  * consistency).
  */
 
+import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
 import { CATEGORY_META, classifySkill } from './classifier.js';
-import { REGISTRY_SCHEMA_VERSION, SKILL_LINK_REGEX, SKILLS_DIR } from '../shared/constants.js';
+import {
+	REGISTRY_SCHEMA_VERSION,
+	RELEVANCE_SIGNALS_PATH,
+	SKILL_LINK_REGEX,
+	SKILLS_DIR,
+} from '../shared/constants.js';
 import {
 	computeTier,
 	countFiles,
@@ -22,10 +28,63 @@ import {
 	readSkill,
 } from '../shared/helpers.js';
 import { parseSkillMeta } from '../shared/parser.js';
-import { indexSignalsBySource, reRankRelatedSkills } from '../search/relevance-signals.js';
+import {
+	indexSignalsBySource,
+	RELEVANCE_SIGNAL_SCHEMA_VERSION,
+	reRankRelatedSkills,
+} from '../search/relevance-signals.js';
 import type { Registry, RegistryEntry, RelevanceSignalTable } from '../shared/types.js';
 
 const HR_PREFIX_REGEX = /^hr-/;
+
+/**
+ * Load the committed usage-informed relevance signal table
+ * (`registry/relevance-signals.json`), if present and valid — Phase 6.1-B.
+ *
+ * Returns `undefined` — rather than throwing — when the file is missing,
+ * unparsable, or has an unrecognized `schemaVersion`, so callers can always
+ * fall back to the static, signal-free ranking. This is what keeps
+ * `buildRegistry()`'s `signalTable` parameter genuinely optional: nothing
+ * downstream needs to know whether the artifact exists yet, and a
+ * corrupted or stale-schema file degrades gracefully instead of breaking
+ * registry generation.
+ *
+ * @param path - Absolute path to the signal table JSON file (defaults to
+ *   {@link RELEVANCE_SIGNALS_PATH}). Accepting this as a parameter — rather
+ *   than hardcoding the constant internally — keeps this function testable
+ *   against a temp file, matching `loadSkillSemanticContent()`'s pattern in
+ *   semantic-validation.ts and `scoreSkillQuality()`'s in quality-scoring.ts.
+ */
+export async function loadRelevanceSignalTable(
+	path: string = RELEVANCE_SIGNALS_PATH,
+): Promise<RelevanceSignalTable | undefined> {
+	let raw: string;
+	try {
+		raw = await readFile(path, 'utf8');
+	} catch {
+		return undefined;
+	}
+
+	let parsed: unknown;
+	try {
+		parsed = JSON.parse(raw);
+	} catch {
+		return undefined;
+	}
+
+	if (
+		typeof parsed !== 'object' ||
+		parsed === null ||
+		!('schemaVersion' in parsed) ||
+		(parsed as { schemaVersion: unknown }).schemaVersion !== RELEVANCE_SIGNAL_SCHEMA_VERSION ||
+		!('signals' in parsed) ||
+		!Array.isArray((parsed as { signals: unknown }).signals)
+	) {
+		return undefined;
+	}
+
+	return parsed as RelevanceSignalTable;
+}
 
 /**
  * Derive a short alias slug for a skill, e.g. "hr-onboarding" -> "onboarding".

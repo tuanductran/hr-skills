@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-29",
+  "generatedAt": "2026-08-01",
   "skillCount": 146,
   "skills": [
     {
@@ -92,9 +92,9 @@
       "relatedSkills": [
         "hr-ai-adoption",
         "hr-ai-change-management",
+        "hr-ai-governance",
         "hr-ai-ethics",
-        "hr-ai-evaluation",
-        "hr-ai-governance"
+        "hr-ai-evaluation"
       ]
     },
     {
@@ -769,7 +769,7 @@
         "hr-coaching-mentoring",
         "hr-competency-management",
         "hr-manager-effectiveness",
-        "hr-people-leadership"
+        "hr-performance-review"
       ]
     },
     {
@@ -814,8 +814,8 @@
         "hr-candidate-experience",
         "hr-candidate-sourcing",
         "hr-contingent-workforce",
-        "hr-demand-planning",
-        "hr-employer-branding"
+        "hr-interviewing",
+        "hr-demand-planning"
       ]
     },
     {
@@ -951,7 +951,7 @@
         "hr-coaching-mentoring",
         "hr-competency-management",
         "hr-manager-effectiveness",
-        "hr-people-leadership"
+        "hr-leadership-development"
       ]
     },
     {
@@ -1223,9 +1223,9 @@
       "relatedSkills": [
         "hr-job-architecture",
         "hr-recognition",
+        "hr-total-rewards",
         "hr-retirement-benefits",
-        "hr-salary-benchmarking",
-        "hr-total-rewards"
+        "hr-salary-benchmarking"
       ]
     },
     {
@@ -1496,10 +1496,10 @@
       "dependencies": [],
       "relatedSkills": [
         "hr-employee-lifecycle",
+        "hr-offboarding",
         "hr-employee-self-service",
         "hr-management",
-        "hr-offboarding",
-        "hr-onboarding"
+        "hr-business-partner"
       ]
     },
     {
@@ -3306,9 +3306,9 @@
       "relatedSkills": [
         "hr-learning-development",
         "hr-learning-strategy",
+        "hr-training-development",
         "hr-skills-management",
-        "hr-skills-taxonomy",
-        "hr-training-development"
+        "hr-business-partner"
       ]
     },
     {
@@ -3723,8 +3723,8 @@
         "hr-coordination",
         "hr-employee-lifecycle",
         "hr-employee-self-service",
-        "hr-management",
-        "hr-onboarding"
+        "hr-business-partner",
+        "hr-performance-review"
       ]
     },
     {
@@ -4309,8 +4309,8 @@
         "hr-business-partner",
         "hr-career-development",
         "hr-coaching-mentoring",
-        "hr-competency-management",
-        "hr-manager-effectiveness"
+        "hr-performance-review",
+        "hr-competency-management"
       ]
     },
     {
@@ -6204,8 +6204,8 @@
         "hr-leadership-development",
         "hr-learning-development",
         "hr-learning-strategy",
-        "hr-skills-management",
-        "hr-skills-taxonomy"
+        "hr-business-partner",
+        "hr-career-development"
       ]
     },
     {

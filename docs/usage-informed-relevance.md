@@ -226,6 +226,8 @@ const registry = await buildRegistry(signalData as RelevanceSignalTable);
 
 ### Phase 6.1-A — Signal infrastructure (this PR)
 
+**Status: Delivered.**
+
 **Objective:** Introduce the signal processing pipeline and its generated
 artifact.  No change to the default registry output.
 
@@ -252,21 +254,47 @@ existing golden fixtures; default registry output unchanged.
 
 ### Phase 6.1-B — Signal-augmented registry generation
 
+**Status: Delivered.**
+
 **Objective:** Wire the signal table into the default registry generation and
 validate that the blended `relatedSkills` output is regression-free.
 
 **Deliverables:**
 
-- Update `generate-registry.ts` to load `registry/relevance-signals.json` when
-  present and pass it to `buildRegistry()`.
-- Update `validate-registry.ts` to validate `relatedSkills` against the signal
-  table (warn when a high-evidence pair is absent from the list).
-- Expand `test/registry.test.ts` to cover signal-augmented generation.
-- Update golden fixtures after observing the blended ranking change.
+- `generate-registry.ts` loads `registry/relevance-signals.json` via the new
+  `loadRelevanceSignalTable()` (in `registry.ts`) when present and passes it
+  to `buildRegistry()`. Absent or invalid (bad JSON, wrong `schemaVersion`)
+  falls back to the static, signal-free ranking — no hard failure.
+- `validate-registry.ts` fixes a staleness-check bug this wiring would
+  otherwise introduce (it previously recomputed the "expected" registry with
+  `buildRegistry()` and no signal table, which would make a signal-blended
+  committed `skills.json` always look stale) — the check now loads and
+  passes the same signal table `generate-registry.ts` uses.
+- `validate-registry.ts` adds `validateRelatedSkillsAgainstSignals()`,
+  which warns (does not fail the build) when a high-evidence signal
+  (`coSelectionRate ≥ 0.5` and `observedCount ≥ 2`) is absent from a
+  skill's `relatedSkills` — wired into `validate.ts`'s existing
+  warnings group alongside duplicate-detection and semantic-validation.
+- `test/registry/registry.test.ts` expanded with signal-augmented
+  `buildRegistry()` coverage, `loadRelevanceSignalTable()` coverage, and a
+  dedicated `validateRelatedSkillsAgainstSignals()` suite.
+- `registry/relevance-signals.json` and `registry/skills.json` regenerated
+  (`bun run signals && bun run registry`) so the committed registry
+  actually reflects blended `relatedSkills`.
 
 **Dependencies:** Phase 6.1-A.
 
 ### Phase 6.1-C — Recommendation surface (Phase 6.1 UI)
+
+**Status: Delivered** — as `getRecommendations()` in `search/recommendations.ts`
+(same `(skillId, registry, limit?)` shape and "reads the committed registry,
+no runtime signal computation" design this section originally called
+`recommendRelatedSkills()`; the name differs, the deliverable doesn't) plus
+the `bun run recommend` CLI (`cli/recommend.ts`). What Phase 6.1-B added on
+top: `cli/recommend.ts` now also loads `registry/relevance-signals.json` and
+passes it to `buildRegistry()`, so ad-hoc CLI recommendations match what's
+actually committed to `registry/skills.json` instead of silently falling
+back to static tag-overlap-only ranking.
 
 **Objective:** Surface `relatedSkills` as user-facing "skills you might also
 need" suggestions (the Recommendation engine milestone in the roadmap).
@@ -331,8 +359,15 @@ and validation additions on top of the pipeline described here.
   determinism, graceful fallback to static order, cross-domain surfacing,
   self-reference exclusion.
 
-Future tests (Phase 6.1-B) will validate:
+Delivered in Phase 6.1-B (`test/registry/registry.test.ts`):
 
 - `buildRegistry(signalTable)` produces `relatedSkills` lists that differ from
-  the no-signal baseline for skills with strong observed co-selection evidence.
-- `validateRegistryConsistency()` catches a stale signal table.
+  the no-signal baseline for skills with strong observed co-selection evidence
+  (including surfacing a signal-only pair absent from the static ranking),
+  and is unaffected for skills with no matching signals.
+- `loadRelevanceSignalTable()` — missing file, invalid JSON, mismatched
+  `schemaVersion`, missing/non-array `signals`, and the valid-table path.
+- `validateRelatedSkillsAgainstSignals()` — warns on a high-evidence pair
+  missing from `relatedSkills`, stays silent when already reflected, below
+  the rate/observation thresholds, or when `sourceSkill` is a dangling
+  reference; no-ops with no signal table.

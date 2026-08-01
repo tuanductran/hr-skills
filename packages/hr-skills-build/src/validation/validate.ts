@@ -3,6 +3,7 @@ import { join } from 'node:path';
 import process from 'node:process';
 import * as p from '@clack/prompts';
 import { validate as validateRef } from 'skills-ref';
+import { buildRegistry, loadRelevanceSignalTable } from '../registry/registry.js';
 import {
 	HR_SKILL_PREFIX,
 	KEY_PROMPTS_REGEX,
@@ -35,7 +36,10 @@ import {
 	validateSuspiciousUrls,
 } from './security.js';
 import { validateSemanticConsistency } from './semantic-validation.js';
-import { validateRegistryConsistency } from './validate-registry.js';
+import {
+	validateRegistryConsistency,
+	validateRelatedSkillsAgainstSignals,
+} from './validate-registry.js';
 
 /**
  * Validate the core of a skill.
@@ -484,9 +488,15 @@ async function validate(): Promise<void> {
 		if (skillName) p.log.error(skillName);
 	}
 
-	// Phase 6.2 — duplicate-content detection and semantic validation run
-	// concurrently since neither depends on the other's output.
+	// Phase 6.1-B — warn when a high-evidence usage signal isn't reflected
+	// in relatedSkills, and Phase 6.2 — duplicate-content detection and
+	// semantic validation. All three run concurrently since none depends
+	// on another's output.
+	const signalTable = await loadRelevanceSignalTable();
 	await Promise.all([
+		buildRegistry(signalTable).then((registry) =>
+			validateRelatedSkillsAgainstSignals(registry, signalTable, allWarnings),
+		),
 		detectDuplicates(skillNames, allWarnings),
 		validateSemanticConsistency(SKILLS_DIR, skillNames, allWarnings),
 	]);

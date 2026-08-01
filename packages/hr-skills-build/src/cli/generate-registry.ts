@@ -11,11 +11,12 @@
 
 import { writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
-import { buildRegistry } from '../registry/registry.js';
+import { buildRegistry, loadRelevanceSignalTable } from '../registry/registry.js';
 import { ROOT_DIR } from '../shared/constants.js';
 
 async function generateRegistry(): Promise<void> {
-	const registry = await buildRegistry();
+	const signalTable = await loadRelevanceSignalTable();
+	const registry = await buildRegistry(signalTable);
 
 	const output = `${JSON.stringify(registry, null, 2)}\n`;
 	const outputPath = join(ROOT_DIR, 'registry', 'skills.json');
@@ -28,6 +29,11 @@ async function generateRegistry(): Promise<void> {
 
 	console.log(
 		`✅ registry/skills.json written — ${registry.skillCount} skills (${full} full, ${partial} partial, ${bare} bare)`,
+	);
+	console.log(
+		signalTable
+			? `   relatedSkills blended with ${signalTable.signals.length} usage-informed signal(s) from ${signalTable.sourceDatasets.join(', ')}`
+			: '   relatedSkills computed from static tag overlap only (no registry/relevance-signals.json found — run "bun run signals" to generate it)',
 	);
 }
 
