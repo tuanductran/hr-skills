@@ -67,7 +67,7 @@ they govern, rather than being duplicated here:
 | --- | --- |
 | New or updated skill | [`docs/contributing/skill-authoring.md`](docs/contributing/skill-authoring.md), [`docs/format.md`](docs/format.md) |
 | Documentation | [`docs/contributing/workflow.md`](docs/contributing/workflow.md), this repository's Markdown/link-lint conventions |
-| Tooling / tests (`packages/*`) | `CONTRIBUTING.md`'s "Improving the build tooling" section, `AGENTS.md`'s Packages table |
+| Tooling / tests (`packages/*`) | `CONTRIBUTING.md`'s "Improving the build tooling" section, `AGENTS.md`'s Project structure table |
 | Pull requests (general) | `.github/pull_request_template.md`, `AGENTS.md`'s branch and commit conventions |
 
 If you're unsure which applies, start at

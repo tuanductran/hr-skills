@@ -44,7 +44,10 @@ bun install
 | `bun run validate` | Validates every `SKILL.md` against the spec in `docs/format.md` (backed by `packages/hr-skills-build/src/validation/validate.ts`) |
 | `bun run sync` | Regenerates `.claude-plugin/marketplace.json` from skill frontmatter |
 | `bun run matrix` | Regenerates `docs/skill-matrix.md` |
-| `bun run registry` | Regenerates `registry/skills.json` |
+| `bun run registry` | Regenerates `registry/skills.json` (see `docs/registry.md`) |
+| `bun run signals` | Regenerates `registry/relevance-signals.json` from evaluation golden fixtures (see `docs/usage-informed-relevance.md`) |
+| `bun run discover "<query>"` | Searches the generated registry by text/domain (see `docs/search.md`) |
+| `bun run recommend <skill-id>` | Related-skill recommendations from the registry (see `docs/recommendations.md`) |
 | `bun run check` | Biome check, no writes |
 | `bun run lint` | Biome check with auto-fix |
 | `bun run format` | Biome formatter |
@@ -56,12 +59,18 @@ bun install
 | `bun run test` | Tests across workspace packages |
 | `bun run knip` | Detects unused files/dependencies |
 | `bun run plan "<intent>"` | Generates an execution plan for a user intent (see `docs/planner.md`) |
-| `bun run execute "<intent>"` | AGENTS.md-documented; generates a plan and runs it through the workflow runtime (see `docs/runtime.md`) |
+| `bun run execute "<intent>"` | Generates a plan and runs it through the workflow runtime (see `docs/runtime.md`) |
 | `bun run evaluate` | Runs the evaluation framework (see `docs/evaluation.md`) |
 | `bun run changeset` / `bun run release` | Versioning/release |
 
-All of the above is **[Existing]**, taken directly from `package.json` scripts and
-cross-checked against AGENTS.md's own command list, which matches exactly.
+All of the above is **[Existing]**, taken directly from `package.json` scripts. `AGENTS.md`
+itself keeps only a two-command quick start and points to
+[`.agents/skills/turbo/SKILL.md`](../../.agents/skills/turbo/SKILL.md) for the full reference
+of Turborepo-orchestrated tasks (`build`, `validate`, `sync`, `matrix`, `registry`, `signals`,
+`discover`, `recommend`, `plan`, `execute`, `evaluate`, `test`, `typecheck`,
+`dev`) — every one of those appears in this table too, verified by diff. The remaining rows
+here (`check`, `lint`, `format`, `knip`, `changeset`, `release`) are plain Bun scripts with no
+Turborepo task of their own; `.agents/skills/bun/SKILL.md` covers those.
 
 **[Existing]** CI (`.github/workflows/`) runs `knip.yml`, `lint.yml`, `matrix.yml`,
 `release.yml`, `test.yml`, `typecheck.yml`, and `validate.yml` as separate jobs.

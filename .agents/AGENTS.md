@@ -1,65 +1,39 @@
 # Project overview
 
-> This is a condensed, agent-optimized digest of the canonical [`/AGENTS.md`](../AGENTS.md) at the repository root. If the two ever disagree, the root file wins — update it first, then reflect the change here.
+> This is the routing index for agent workflows in this repository. The canonical, human-facing entry point is [`/AGENTS.md`](../AGENTS.md) at the repository root — keep that short; every workflow below lives in exactly one skill file here, not restated in either place.
 
-This repository is a Bun + Turborepo monorepo hosting HR AI skills for Claude Code and claude.ai. Each skill lives in `skills/hr-*/SKILL.md`. The project uses Bun as the runtime and Turborepo for orchestration.
+This repository is a Bun + Turborepo monorepo hosting HR AI skills for Claude Code and claude.ai. Each skill lives in `skills/hr-*/SKILL.md`.
 
-Essential commands
+## Critical rule
 
-| Command | Purpose |
+Never develop on `main` — branch from and open pull requests against `dev`.
+
+## Skill index
+
+| When you need to... | Load |
 |---|---|
-| `bun install` | install dependencies |
-| `bun run validate` | validate all SKILL.md files |
-| `bun run sync` | sync metadata after adding/removing a skill |
-| `bun run matrix` | generate `docs/skill-matrix.md` skill maturity snapshot |
-| `bun run build` | build all workspace packages |
-| `bun run test` | run tests |
-| `bun run typecheck` | type-check all packages |
-| `bun run lint` | Biome checks with auto-fix |
-| `bun run lint:md` | markdownlint + case-police |
-| `bun run lint:md:fix` | markdownlint with auto-fix |
+| Run or find a `bun run` / `turbo run` command | [`skills/turbo/SKILL.md`](skills/turbo/SKILL.md), [`skills/bun/SKILL.md`](skills/bun/SKILL.md) |
+| Write a commit message or split changes into commits | [`skills/github-awesome-copilot-git-commit/SKILL.md`](skills/github-awesome-copilot-git-commit/SKILL.md) |
+| Create, edit, or validate a `skills/hr-*/SKILL.md` package | [`skills/hr-skills-maintaining/SKILL.md`](skills/hr-skills-maintaining/SKILL.md) |
+| Update the root `SKILL.md` router (add/remove/move a skill entry) | [`skills/hr-root-router-maintaining/SKILL.md`](skills/hr-root-router-maintaining/SKILL.md) |
+| Write or fix Markdown — formatting, content-design rules, links | [`skills/markdown/SKILL.md`](skills/markdown/SKILL.md) |
+| Security-review a `SKILL.md` before installing or publishing | [`skills/skill-vetter/SKILL.md`](skills/skill-vetter/SKILL.md) |
+| Decide if a PR needs a changeset, or write one | [`skills/changeset/SKILL.md`](skills/changeset/SKILL.md) |
+| Write or review TypeScript in `packages/*` | [`skills/typescript/SKILL.md`](skills/typescript/SKILL.md) |
+| Configure or debug Biome lint/format rules | [`skills/biome/SKILL.md`](skills/biome/SKILL.md) |
+| Define or validate a schema with Valibot | [`skills/valibot/SKILL.md`](skills/valibot/SKILL.md) |
+| Rewrite AI-sounding prose to read more naturally | [`skills/humanizer/SKILL.md`](skills/humanizer/SKILL.md) |
+| Generate or fill a PDF | [`skills/pdf/SKILL.md`](skills/pdf/SKILL.md) |
 
-Workflow when adding a new skill
+## Fastest path: adding a new skill
 
-1. Create `skills/hr-<name>/SKILL.md`
+1. Create `skills/hr-<name>/SKILL.md` (or run the `/new-skill` command in `.claude/commands/new-skill.md`, which scaffolds this for you)
 2. Run `bun run sync`
 3. Run `bun run validate`
 
-SKILL.md required structure
+For the full required structure, frontmatter rules, and pre-publish checklist, load `skills/hr-skills-maintaining/SKILL.md` — don't guess, and don't duplicate its content here.
 
-- YAML frontmatter: `name`, `description`, `metadata.author` (must be "Tuan Duc Tran"), `metadata.version`
-- `name` must match directory name exactly
-- `description` minimum 50 characters and include realistic HR trigger phrases
-- `description` value must be wrapped in one pair of double quotes; trigger phrases inside are plain comma-separated text, never individually quoted
-- Required sections: `## Supported tasks`, `## Key prompts`, `## Tips`
-- `## Supported tasks`: 8-12 bullet items
-- `## Key prompts`: 3-6 named subtopics, 4-7 prompts each, use `[placeholders]`
-- `## Tips`: 4-6 bullet items
-- Max 500 lines total
-- No time-sensitive content (laws, versions, vendor-specific details)
-- Always leave a blank line between a heading or bold label and the list that follows
+## Workspace packages
 
-Content standards (Atlassian guidelines)
-
-- Sentence case for all headings
-- Do not use `e.g.`, `i.e.`, `etc.` or `&` — write "for example", "that is", "and so on", "and"
-- No periods at the end of headings
-- Avoid gerunds in headings (use "Add a skill" not "Adding a skill")
-- Use "they/their" for unknown gender
-
-Branch and commit rules
-
-- Never develop on `main` — use `dev` branch
-- Use Conventional Commits format: `<type>(<scope>): <summary>`
-- Types: feat, fix, chore, docs, refactor, style, test, build, ci
-- Scope examples: `hr-recruiting`, `skills-ref`, `hr-skills-build`
-- Summary under 72 characters, imperative mood
-
-Workspace packages
-
-- `packages/hr-skills-build` — validation, sync, and zip tooling
+- `packages/hr-skills-build` — validation, sync, registry/planner/runtime generation, and packaging tooling
 - `packages/skills-ref` — TypeScript library for reading and validating skill files
-
-Notes
-
-Keep SKILL.md files concise and follow the repository's lint and validation scripts before opening a pull request to `dev`.
