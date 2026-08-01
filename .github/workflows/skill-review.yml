@@ -1,0 +1,108 @@
+name: Skill Review
+
+# Phase 6.2 — automated review workflow (ROADMAP.md §6.2).
+#
+# Automates .agents/skills/skill-vetter/SKILL.md's checklist — already
+# used manually for security review (see GOVERNANCE.md §2) — and applies
+# the same deterministic treatment to content quality, surfacing both as
+# a PR comment maintainers can act on directly. This is a review aid, not
+# a merge gate: it never fails the build and never blocks merge.
+#
+# Deliberately no AI/LLM calls and no third-party API keys: this workflow
+# runs `bun run skill-review` (security findings + Phase 6.2 quality
+# scores, see docs/quality-scoring.md) against only the skills a PR
+# touches, then posts that report as-is via actions/github-script. Pure
+# regex/file-count arithmetic — same guarantee as detect-duplicates.ts
+# and semantic-validation.ts.
+
+on:
+  pull_request:
+    branches: [main, dev]
+    paths:
+      - 'skills/hr-*/**'
+
+permissions:
+  contents: read
+  pull-requests: write
+
+concurrency:
+  group: skill-review-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  skill-review:
+    name: Automated skill review
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: Install bun
+        uses: oven-sh/setup-bun@v2
+
+      - name: Install dependencies
+        run: bun ci
+
+      - name: Build skills-ref
+        run: bun run build --filter=skills-ref
+
+      - name: Determine changed skills
+        id: changed
+        run: |
+          mapfile -t skills < <(
+            git diff --name-only \
+              "origin/${{ github.base_ref }}...${{ github.event.pull_request.head.sha }}" \
+              -- 'skills/hr-*/**' \
+            | sed -E 's#^skills/(hr-[a-z0-9-]+)/.*#\1#' \
+            | sort -u
+          )
+          {
+            echo "list<<SKILL_REVIEW_EOF"
+            printf '%s\n' "${skills[@]}"
+            echo "SKILL_REVIEW_EOF"
+          } >> "$GITHUB_OUTPUT"
+          echo "count=${#skills[@]}" >> "$GITHUB_OUTPUT"
+
+      - name: Generate deterministic report
+        if: steps.changed.outputs.count != '0'
+        run: |
+          cd packages/hr-skills-build
+          echo "${{ steps.changed.outputs.list }}" > /tmp/changed-skills.txt
+          bun run skill-review -- --list-file /tmp/changed-skills.txt > /tmp/skill-review-report.md
+          cat /tmp/skill-review-report.md
+
+      - name: Post report as PR comment
+        if: steps.changed.outputs.count != '0'
+        uses: actions/github-script@v8
+        with:
+          script: |
+            const fs = require('fs');
+            const marker = '<!-- skill-review-report -->';
+            const body = marker + '\n\n' + fs.readFileSync('/tmp/skill-review-report.md', 'utf8');
+
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+            const existing = comments.find((c) => c.body.includes(marker));
+
+            if (existing) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: existing.id,
+                body,
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body,
+              });
+            }

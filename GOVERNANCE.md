@@ -111,10 +111,14 @@ these review criteria:
 | **Tooling / configuration** (`packages/*`, workflows) | Doesn't break `bun run build`, `sync`, `validate`, or generated artifact staleness checks; has test coverage for new logic |
 
 For any change touching a skill's permissions, shell commands, or external
-URLs, the maintainer may run the checklist in
+URLs, [`.github/workflows/skill-review.yml`](.github/workflows/skill-review.yml)
+now runs the checklist in
 [`.agents/skills/skill-vetter/SKILL.md`](.agents/skills/skill-vetter/SKILL.md)
-before merging — this is the same security-first check applied to
-third-party skill content generally, not a separate approval track.
+automatically and posts findings as a PR comment — the same security-first
+check applied to third-party skill content generally, not a separate
+approval track. This is informational: it doesn't block merge, and a
+maintainer can still run the checklist manually for anything the automated
+pass doesn't cover.
 
 ### 3. Approval
 

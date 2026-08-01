@@ -20,7 +20,7 @@ skills to load and *in what order*, rather than a person manually choosing
 bun src/generate-plan.ts "hire a senior backend engineer: write the job description, run interviews, and prepare an offer"
 ```
 
-The Planner (`packages/hr-skills-build/src/planner.ts`) splits this intent
+The Planner (`packages/hr-skills-build/src/planner/planner.ts`) splits this intent
 into capabilities, matches each one against `registry/skills.json` using
 Jaccard similarity, selects skills, and orders them with a topological
 sort. The shape of the result — illustrating the documented

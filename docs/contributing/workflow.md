@@ -41,7 +41,7 @@ bun install
 
 | Command | What it does |
 |---|---|
-| `bun run validate` | Validates every `SKILL.md` against the spec in `docs/format.md` (backed by `packages/hr-skills-build/src/validate.ts`) |
+| `bun run validate` | Validates every `SKILL.md` against the spec in `docs/format.md` (backed by `packages/hr-skills-build/src/validation/validate.ts`) |
 | `bun run sync` | Regenerates `.claude-plugin/marketplace.json` from skill frontmatter |
 | `bun run matrix` | Regenerates `docs/skill-matrix.md` |
 | `bun run registry` | Regenerates `registry/skills.json` |
