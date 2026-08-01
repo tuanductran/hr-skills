@@ -89,6 +89,12 @@ Create competency-based interview questions for a Senior Product Manager.
 
 Multiple skills can be combined to support more complex HR workflows.
 
+### Downloaded a package?
+
+If you have `hr-skills.zip` or `hr-skills.skill` instead of a clone of this
+repository, see [`docs/usage-guide.md`](docs/usage-guide.md) — it covers
+loading the package into Claude, ChatGPT, and other AI tools.
+
 ### Examples
 
 See [`examples/`](examples/README.md) for practical, end-to-end usage:

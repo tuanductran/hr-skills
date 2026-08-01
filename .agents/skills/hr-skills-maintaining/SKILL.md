@@ -3,7 +3,7 @@ name: hr-skills-maintaining
 description: "Repository-level skill describing metadata, directory structure, workflows, and conventions for the hr-skills monorepo. Use this skill when validating, creating, editing, or maintaining HR skill packages, including SKILL.md, content/, prompts/, and examples/."
 metadata:
   author: Tuan Duc Tran
-  version: "1.2.0"
+  version: "1.3.0"
 ---
 
 # HR Skills repository guide
@@ -37,6 +37,40 @@ Each file has a single responsibility.
 - `examples/` demonstrates realistic end-to-end HR workflows and business scenarios.
 
 Supporting files should complement each other instead of repeating the same information.
+
+## Content quality standards
+
+- **HR-domain only** — prompts and guidance must cover HR-specific patterns and best practices, not generic management or business advice.
+- **No obvious content** — avoid widely-known basics. Focus on nuanced guidance that HR professionals actually need AI assistance with.
+- **`SKILL.md` is for AI agents** — be concise; context window is a shared resource. Assume the agent is smart; only include what it doesn't already know. Use progressive disclosure — `SKILL.md` is an overview, not an exhaustive manual.
+- **Trigger phrases matter** — the `description` field determines when a skill activates. Include specific, realistic HR trigger phrases like "Write a PIP", "Conduct a stay interview", "Analyze turnover".
+
+## Checklist before publishing a skill
+
+### Core quality
+
+- [ ] `description` is specific and includes key HR trigger phrases
+- [ ] `description` covers both what the skill does and when to use it
+- [ ] `SKILL.md` body is under 500 lines
+- [ ] Prompts are grouped by meaningful subtopics
+- [ ] No time-sensitive information (laws, tools, versions)
+- [ ] Consistent HR terminology throughout
+- [ ] Prompts use `[placeholders]` for variable inputs
+- [ ] Each subtopic has 4-7 focused prompts
+- [ ] Tips section provides actionable professional guidance
+
+### Frontmatter
+
+- [ ] `name` matches the skill directory name exactly
+- [ ] `description` is wrapped in a single pair of double quotes, with trigger phrases as plain comma-separated text (not individually quoted)
+- [ ] `metadata.author` is set to `Tuan Duc Tran`
+- [ ] `metadata.version` is set
+
+### Structure
+
+- [ ] `## Supported tasks` lists 8-12 concrete tasks
+- [ ] `## Key prompts` is divided into logical subtopic sections
+- [ ] `## Tips` has 4-6 professional best-practice tips
 
 ## Supported tasks
 

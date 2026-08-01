@@ -319,7 +319,7 @@ Completed:
 
 ### Phase 6 — Skill Intelligence & Quality Automation
 
-Future goals:
+Completed.
 
 #### 6.1 Skill Intelligence
 
@@ -342,9 +342,16 @@ contributors, rather than leaving them as internal planner input only.
   are actually selected together in practice (for example via evaluation
   runs or planner telemetry), use that signal to refine
   `relatedSkills` weighting rather than relying on static classification
-  alone. Phase 6.1-A is implemented: see
+  alone. Delivered (Phase 6.1-A/B/C) — see
   [`docs/usage-informed-relevance.md`](usage-informed-relevance.md) for
-  the architecture, signal pipeline, and implementation roadmap.
+  the architecture, signal pipeline, and implementation roadmap. Signal
+  infrastructure (6.1-A), signal-augmented registry generation with a
+  non-blocking coverage warning (6.1-B), and the recommendation surface
+  (6.1-C, delivered earlier as `getRecommendations()`) are all in place.
+  Richer evidence sources beyond evaluation golden fixtures (6.1-D —
+  curated tables, org-specific overrides, opt-in telemetry) remain future
+  work; the architecture already accepts them as drop-in inputs with no
+  redesign required
 
 #### 6.2 Quality Automation
 
@@ -364,12 +371,21 @@ Extend validation beyond the current structural/format checks
 * Automated content quality scoring — a repeatable score (clarity,
   completeness, example coverage) usable as a review aid, not a merge
   gate, so a low score prompts a closer look rather than an automatic
-  rejection
+  rejection. Delivered — see [`docs/quality-scoring.md`](quality-scoring.md)
+  for the scoring dimensions, weights, bands, and public API
 * AI-assisted review workflows — apply
   [`.agents/skills/skill-vetter/SKILL.md`](../.agents/skills/skill-vetter/SKILL.md)'s
   pattern (already used for security review) to content quality, and
   surface its output as a PR comment maintainers can act on directly,
-  consistent with [`GOVERNANCE.md`](../GOVERNANCE.md)'s review criteria
+  consistent with [`GOVERNANCE.md`](../GOVERNANCE.md)'s review criteria.
+  Delivered as an **automated, deterministic** workflow rather than an
+  LLM-backed one — no Anthropic/OpenAI API key is required or used. See
+  [`.github/workflows/skill-review.yml`](../.github/workflows/skill-review.yml):
+  `bun run skill-review` computes the same security findings and
+  quality scores skill-vetter and quality-scoring already produce, for
+  only the skills a PR touches, and posts the result directly as a PR
+  comment via `actions/github-script` — no third-party API calls.
+  Informational only — never blocks merge
 
 ---
 

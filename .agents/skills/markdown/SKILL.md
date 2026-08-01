@@ -3,7 +3,7 @@ name: markdown
 description: "Repository guidance for writing, formatting, and validating Markdown documentation using markdownlint-cli, case-police, and markdown-link-check within the hr-skills monorepo."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.0"
+  version: "1.1.0"
 ---
 
 # Markdown
@@ -43,6 +43,27 @@ Repository documentation should:
 - remain readable in both source and rendered form
 
 Markdown quality is validated through formatting, capitalization, and link verification.
+
+## Content design rules
+
+All documentation and skill content follows [Atlassian's content design guidelines](https://atlassian.design/foundations/content/):
+
+- Use sentence case for all headings — capitalize the first word and proper nouns only
+- Don't use `e.g.`, `i.e.`, `etc.`, or `&` in prose — write "for example", "that is", "and so on", "and"
+- Don't use periods at the end of headings
+- Avoid gerunds in headings — prefer "Add a skill" over "Adding a skill"
+- Phrase list items in parallel: fragments get a lowercase first letter and no period, complete sentences get a capital first letter and a period
+- Use "they/their" instead of gendered pronouns when the person's identity isn't known
+- Avoid idioms or culturally specific expressions that don't translate well
+- Be clear, concise, and direct; use contractions ("don't", "can't") for a conversational tone
+
+## Blank line before lists
+
+Always leave a blank line between a heading or bold label and the list that follows it. Missing blank lines can break rendering, and the skill validator (`bun run validate`) enforces this rule for `SKILL.md` files specifically.
+
+This applies to every Markdown file in the repository — `AGENTS.md`, `README.md`, `SKILL.md`, `docs/*.md`, and generated files. AI tools in particular must insert a blank line every time a heading (`##`, `###`) or a bold label (`**Label:**`) is immediately followed by a list — this is easy to get wrong when generating Markdown programmatically.
+
+Run `bun run validate` (for `SKILL.md` files) and `bun run lint:md` (for everything else) before committing any Markdown change.
 
 ## Repository tooling
 

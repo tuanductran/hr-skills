@@ -81,7 +81,7 @@
 		"discover": "turbo run discover --filter=hr-skills-build --",
 		"recommend": "turbo run recommend --filter=hr-skills-build --",
 		"execute": "turbo run execute --filter=hr-skills-build --",
-		"evaluate": "turbo run evaluate --filter=hr-skills-build",
+		"evaluate": "turbo run evaluate --filter=hr-skills-build --",
 		"changeset": "changeset",
 		"release": "changeset version",
 		"prepare": "lefthook install",
