@@ -24,20 +24,7 @@
  *  technical-hiring         — engineering/design/product specialist skills
  */
 
-export type SkillCategory =
-	| 'talent-acquisition'
-	| 'onboarding-offboarding'
-	| 'performance-talent'
-	| 'compensation-rewards'
-	| 'learning-development'
-	| 'org-design-change'
-	| 'workforce-analytics'
-	| 'hr-technology-ai'
-	| 'compliance-risk'
-	| 'culture-experience'
-	| 'global-project'
-	| 'technical-hiring'
-	| 'uncategorized';
+import type { SkillCategory } from '../shared/types.js';
 
 export interface SkillClassification {
 	category: SkillCategory;

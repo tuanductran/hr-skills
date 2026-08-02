@@ -17,14 +17,11 @@
 import { readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
-import {
-	CATEGORY_META,
-	classifySkill,
-	type SkillCategory,
-} from '../registry/classifier.js';
+import { CATEGORY_META, classifySkill } from '../registry/classifier.js';
 import { ROOT_DIR, SKILLS_DIR } from '../shared/constants.js';
 import { discoverSkills } from '../shared/helpers.js';
 import { parseSkillFrontmatter } from '../shared/parser.js';
+import type { SkillCategory } from '../shared/types.js';
 
 // ---------------------------------------------------------------------------
 // Types
