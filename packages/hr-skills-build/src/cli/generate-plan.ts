@@ -17,17 +17,16 @@ import {
 	suggestPlanImprovements,
 	validateExecutionPlan,
 } from '../validation/validate-planner.js';
+import { printUsageAndExit, runCli } from './cli-bootstrap.js';
 
 async function main() {
 	const intent = process.argv[2];
 
 	if (!intent) {
-		p.log.error('Usage: bun src/generate-plan.ts "<user intent>"');
-		p.log.info('Example:');
-		p.log.message(
+		printUsageAndExit(
+			'Usage: bun src/generate-plan.ts "<user intent>"',
 			'  bun src/generate-plan.ts "Create interview questions for a senior manager"',
 		);
-		process.exit(1);
 	}
 
 	p.intro('Execution Plan Generator');
@@ -128,7 +127,4 @@ ${plan.notes && plan.notes.length > 0 ? `Notes:\n${plan.notes.map((note) => `  â
 	process.exit(validation.isValid ? 0 : 1);
 }
 
-main().catch((err) => {
-	p.log.error(`Error: ${err.message}`);
-	process.exit(1);
-});
+runCli(main);

@@ -9,6 +9,15 @@ export const ROOT_DIR = join(__dirname, '../../../..');
 /** Absolute path to the `skills/` directory at the repo root. */
 export const SKILLS_DIR = join(ROOT_DIR, 'skills');
 
+/**
+ * Base URL for linking to a file in this repo on GitHub, e.g. for use in
+ * generated Markdown that's posted somewhere with no "current file" context
+ * (a PR comment, a Slack message) where a relative link like `../docs/x.md`
+ * cannot resolve. Append a repo-root-relative path, e.g.
+ * `` `${GITHUB_BLOB_BASE_URL}/docs/quality-scoring.md` ``.
+ */
+export const GITHUB_BLOB_BASE_URL = 'https://github.com/tuanductran/hr-skills/blob/main';
+
 /** Matches a markdown task-list item line, e.g. `- some task`. */
 export const TASK_ITEM_REGEX = /^- /;
 

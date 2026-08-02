@@ -50,11 +50,15 @@
  * warnings in the same order.
  */
 
-import { readdir, readFile } from 'node:fs/promises';
 import { join } from 'node:path';
-import { FRONTMATTER_REGEX, SKILLS_DIR } from '../shared/constants.js';
-import { dirExists } from '../shared/helpers.js';
+import { SKILLS_DIR } from '../shared/constants.js';
 import type { SkillValidationIssue } from '../shared/types.js';
+import {
+	extractDescription,
+	readAllMarkdown,
+	readRawSkillMd,
+	stripFrontmatter,
+} from './skill-content-loading.js';
 
 // ---------------------------------------------------------------------------
 // Configuration — weights and thresholds
@@ -243,13 +247,6 @@ export const HR_STOP_WORDS = new Set([
 // ---------------------------------------------------------------------------
 
 /**
- * Strip YAML frontmatter from a markdown string.
- */
-function stripFrontmatter(text: string): string {
-	return text.replace(FRONTMATTER_REGEX, '').trim();
-}
-
-/**
  * Remove markdown syntax, code fences, URLs, and punctuation then lower-case.
  */
 function stripMarkdown(text: string): string {
@@ -336,65 +333,15 @@ export interface SkillContent {
 }
 
 /**
- * Extract the frontmatter `description` field from raw SKILL.md content.
- * Returns an empty string when the field is absent.
- */
-function extractDescription(raw: string): string {
-	const match = FRONTMATTER_REGEX.exec(raw);
-	if (!match?.[1]) return '';
-	// Look for `description:` — may span multiple lines with YAML folding
-	const descMatch = /^description:\s*(.+?)(?=\n\w|\n---)/ms.exec(match[1]);
-	return descMatch?.[1]?.replace(/\s+/g, ' ').trim() ?? '';
-}
-
-/**
- * Read all markdown files under `<skillDir>/content/` and return their
- * concatenated text.  Returns an empty string when the directory does not
- * exist or contains no markdown files.
- */
-async function readContentFiles(skillDir: string): Promise<string> {
-	const contentDir = join(skillDir, 'content');
-	if (!(await dirExists(contentDir))) return '';
-
-	let entries: string[];
-	try {
-		const raw = await readdir(contentDir, { withFileTypes: true });
-		entries = raw
-			.filter((e) => e.isFile() && e.name.endsWith('.md'))
-			.map((e) => e.name)
-			.sort(); // deterministic order
-	} catch {
-		return '';
-	}
-
-	const parts: string[] = [];
-	for (const entry of entries) {
-		try {
-			parts.push(await readFile(join(contentDir, entry), 'utf8'));
-		} catch {
-			// skip unreadable files
-		}
-	}
-	return parts.join('\n');
-}
-
-/**
  * Load one skill's textual content for comparison.
  */
 async function loadSkillContent(skillName: string): Promise<SkillContent> {
 	const skillDir = join(SKILLS_DIR, skillName);
-	const skillMdPath = join(skillDir, 'SKILL.md');
-
-	let raw = '';
-	try {
-		raw = await readFile(skillMdPath, 'utf8');
-	} catch {
-		// fall through — body will be empty
-	}
+	const raw = await readRawSkillMd(skillDir);
 
 	const description = extractDescription(raw);
 	const skillMdBody = stripFrontmatter(raw);
-	const contentBody = await readContentFiles(skillDir);
+	const contentBody = await readAllMarkdown(join(skillDir, 'content'));
 
 	return {
 		name: skillName,

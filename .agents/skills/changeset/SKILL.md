@@ -8,11 +8,11 @@ compatibility: hr-skills monorepo
 
 ## Purpose
 
-Use this skill whenever a pull request introduces **user-visible changes*- that should be included in the next release of the `hr-skills` repository.
+Use this skill whenever a pull request introduces **user-visible changes** that should be included in the next release of the `hr-skills` repository.
 
 A changeset records release notes, determines semantic version bumps, and drives `CHANGELOG.md` generation through Changesets.
 
-Do **not*- create a changeset for internal-only work that has no effect on repository users.
+Do **not** create a changeset for internal-only work that has no effect on repository users.
 
 ---
 
@@ -35,9 +35,9 @@ Create a changeset for changes such as:
 - User-visible documentation improvements that change repository capabilities.
 - Any change that should appear in release notes.
 
-### A changeset is usually **not*- required
+### A changeset is usually **not** required
 
-Do **not*- create a changeset for work such as:
+Do **not** create a changeset for work such as:
 
 - Typo fixes.
 - Markdown formatting.
@@ -133,7 +133,7 @@ Examples:
 
 ## Writing Guidelines
 
-A good changeset explains **what changed*- and **why it matters**, not how it was implemented.
+A good changeset explains **what changed** and **why it matters**, not how it was implemented.
 
 ### General Rules
 

@@ -44,6 +44,8 @@ This file stays intentionally short. Everything below is a **workflow**, not a o
 | Security review of skill content | [`.agents/skills/skill-vetter/SKILL.md`](.agents/skills/skill-vetter/SKILL.md) |
 | Whether a change needs a changeset | [`.agents/skills/changeset/SKILL.md`](.agents/skills/changeset/SKILL.md) |
 | TypeScript, Biome, and Valibot conventions in `packages/*` | [`.agents/skills/typescript/SKILL.md`](.agents/skills/typescript/SKILL.md), [`.agents/skills/biome/SKILL.md`](.agents/skills/biome/SKILL.md), [`.agents/skills/valibot/SKILL.md`](.agents/skills/valibot/SKILL.md) |
+| CLI output patterns (`@clack/prompts`) in `src/cli/*.ts` | [`.agents/skills/clack/SKILL.md`](.agents/skills/clack/SKILL.md) |
+| Detecting and refactoring copy-paste duplication in `packages/*` | [`.agents/skills/jscpd/SKILL.md`](.agents/skills/jscpd/SKILL.md), [`.agents/skills/dry-refactoring/SKILL.md`](.agents/skills/dry-refactoring/SKILL.md) |
 | Everything above, indexed in one place | [`.agents/AGENTS.md`](.agents/AGENTS.md) |
 
 When you add a new skill directory (for example `skills/hr-new-skill/SKILL.md`), run `bun run sync` first — it auto-discovers `hr-*` skill directories from `skills/` and updates `.claude-plugin/marketplace.json`. No manual edits needed.

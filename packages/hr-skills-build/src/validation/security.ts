@@ -13,6 +13,7 @@
  */
 
 import type { SkillValidationIssue } from '../shared/types.js';
+import { checkPatternList, pushIssue } from './issue-helpers.js';
 
 // ---------------------------------------------------------------------------
 // 1. Dangerous shell command patterns
@@ -60,14 +61,14 @@ export function validateSecurityCommands(
 	const blocks = [...content.matchAll(codeBlockRegex)].map((m) => m[1] ?? '');
 
 	for (const block of blocks) {
-		for (const { pattern, label } of DANGEROUS_COMMANDS) {
-			if (pattern.test(block)) {
-				errors.push({
-					skill: skillName,
-					message: `Security: dangerous shell pattern detected in code block — ${label}`,
-				});
-			}
-		}
+		checkPatternList(
+			errors,
+			skillName,
+			block,
+			DANGEROUS_COMMANDS,
+			(label) =>
+				`Security: dangerous shell pattern detected in code block — ${label}`,
+		);
 	}
 }
 
@@ -96,14 +97,13 @@ export function validateSensitivePaths(
 
 	if (!codeOnly) return;
 
-	for (const { pattern, label } of SENSITIVE_PATHS) {
-		if (pattern.test(codeOnly)) {
-			errors.push({
-				skill: skillName,
-				message: `Security: sensitive path write detected in code block — ${label}`,
-			});
-		}
-	}
+	checkPatternList(
+		errors,
+		skillName,
+		codeOnly,
+		SENSITIVE_PATHS,
+		(label) => `Security: sensitive path write detected in code block — ${label}`,
+	);
 }
 
 // ---------------------------------------------------------------------------
@@ -178,13 +178,13 @@ export function validateSuspiciousUrls(
 				continue;
 			}
 
-			errors.push({
-				skill: skillName,
-				message:
-					suspicious === 'raw IP address'
-						? 'Security: raw IP address URL found'
-						: `Security: suspicious external host detected — "${suspicious}"`,
-			});
+			pushIssue(
+				errors,
+				skillName,
+				suspicious === 'raw IP address'
+					? 'Security: raw IP address URL found'
+					: `Security: suspicious external host detected — "${suspicious}"`,
+			);
 		} catch {
 			// Ignore malformed URLs.
 		}
@@ -192,10 +192,11 @@ export function validateSuspiciousUrls(
 
 	// requestbin is commonly referenced as plain text instead of a hostname.
 	if (/\brequestbin\b/i.test(content)) {
-		errors.push({
-			skill: skillName,
-			message: 'Security: suspicious external host detected — "requestbin"',
-		});
+		pushIssue(
+			errors,
+			skillName,
+			'Security: suspicious external host detected — "requestbin"',
+		);
 	}
 }
 
@@ -235,14 +236,13 @@ export function validateCredentialLeaks(
 	content: string,
 	errors: SkillValidationIssue[],
 ): void {
-	for (const { pattern, label } of CREDENTIAL_PATTERNS) {
-		if (pattern.test(content)) {
-			errors.push({
-				skill: skillName,
-				message: `Security: ${label} detected — remove or replace with a placeholder`,
-			});
-		}
-	}
+	checkPatternList(
+		errors,
+		skillName,
+		content,
+		CREDENTIAL_PATTERNS,
+		(label) => `Security: ${label} detected — remove or replace with a placeholder`,
+	);
 }
 
 // ---------------------------------------------------------------------------
@@ -268,11 +268,11 @@ export function validateHiddenUnicode(
 ): void {
 	for (const pattern of HIDDEN_UNICODE_RANGES) {
 		if (pattern.test(content)) {
-			errors.push({
-				skill: skillName,
-				message:
-					'Security: hidden Unicode character detected — potential prompt injection or encoding attack',
-			});
+			pushIssue(
+				errors,
+				skillName,
+				'Security: hidden Unicode character detected — potential prompt injection or encoding attack',
+			);
 			// Report once per skill, not once per character type
 			return;
 		}

@@ -22,6 +22,7 @@ import { generateExecutionPlan } from '../planner/planner.js';
 import { buildRegistry } from '../registry/registry.js';
 import { executeWorkflow } from '../runtime/runtime.js';
 import type { ExecutionStep, RuntimeContext } from '../shared/types.js';
+import { printUsageAndExit, runCli } from './cli-bootstrap.js';
 
 /**
  * A stub step executor for CLI demonstration purposes. Real integrations
@@ -40,12 +41,10 @@ async function main() {
 	const intent = process.argv[2];
 
 	if (!intent) {
-		p.log.error('Usage: bun src/execute-plan.ts "<user intent>"');
-		p.log.info('Example:');
-		p.log.message(
+		printUsageAndExit(
+			'Usage: bun src/execute-plan.ts "<user intent>"',
 			'  bun src/execute-plan.ts "Create interview questions for a senior manager"',
 		);
-		process.exit(1);
 	}
 
 	p.intro('Workflow Runtime');
@@ -106,7 +105,4 @@ async function main() {
 	process.exit(result.status === 'completed' ? 0 : 1);
 }
 
-main().catch((err) => {
-	p.log.error(`Error: ${err.message}`);
-	process.exit(1);
-});
+runCli(main);
