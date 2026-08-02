@@ -54,11 +54,15 @@ export function analyzeIntent(intent: string): string[] {
 		return [];
 	}
 
-	const normalized = intent.toLowerCase().trim();
+	const normalized = intent.toLowerCase().trim().replace(/\s+/g, ' ');
 
-	// Split on common delimiters
+	// Split on common delimiters. Whitespace was already collapsed to single
+	// spaces above, so the delimiters below use literal ' ' rather than '\s+'
+	// — a polynomial-time regex (CodeQL js/polynomial-redos) previously here
+	// let '\s+' before the and|or|then alternation backtrack over every
+	// possible split of a run of spaces before failing.
 	const parts = normalized
-		.split(/[,;]|(?:\s+(?:and|or|then)\s+)/i)
+		.split(/ ?[,;] ?| (?:and|or|then) /i)
 		.map((part) => part.trim())
 		.filter(Boolean);
 
