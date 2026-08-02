@@ -22,6 +22,7 @@ import {
 } from '../evaluation/evaluation-datasets.js';
 import { buildRegistry } from '../registry/registry.js';
 import type { EvaluationReport } from '../shared/types.js';
+import { runCli } from './cli-bootstrap.js';
 
 async function main() {
 	const updateGolden = process.argv.includes('--update-golden');
@@ -105,7 +106,4 @@ async function main() {
 	process.exit(0);
 }
 
-main().catch((err) => {
-	p.log.error(`Error: ${err.message}`);
-	process.exit(1);
-});
+runCli(main);

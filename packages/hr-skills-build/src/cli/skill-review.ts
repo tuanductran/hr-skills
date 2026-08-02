@@ -21,7 +21,7 @@
  */
 
 import { readFile } from 'node:fs/promises';
-
+import { GITHUB_BLOB_BASE_URL } from '../shared/constants.js';
 import { readSkillContent } from '../shared/helpers.js';
 import type { SkillValidationIssue } from '../shared/types.js';
 import { type SkillQualityScore, scoreSkills } from '../validation/quality-scoring.js';
@@ -83,7 +83,7 @@ function renderReport(
 	lines.push('### 🔎 Deterministic skill review (skill-vetter + quality scoring)');
 	lines.push('');
 	lines.push(
-		'This is an automated, non-blocking report — a review aid, not a merge gate. See [`docs/quality-scoring.md`](../docs/quality-scoring.md) and [`.agents/skills/skill-vetter/SKILL.md`](../.agents/skills/skill-vetter/SKILL.md).',
+		`This is an automated, non-blocking report — a review aid, not a merge gate. See [\`docs/quality-scoring.md\`](${GITHUB_BLOB_BASE_URL}/docs/quality-scoring.md) and [\`.agents/skills/skill-vetter/SKILL.md\`](${GITHUB_BLOB_BASE_URL}/.agents/skills/skill-vetter/SKILL.md).`,
 	);
 	lines.push('');
 	lines.push('| Skill | Security | Quality |');

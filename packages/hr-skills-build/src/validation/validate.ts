@@ -28,6 +28,7 @@ import {
 import { parseSkillFrontmatter } from '../shared/parser.js';
 import type { SkillValidationIssue } from '../shared/types.js';
 import { detectDuplicates } from './detect-duplicates.js';
+import { pushIssue } from './issue-helpers.js';
 import {
 	validateCredentialLeaks,
 	validateHiddenUnicode,
@@ -52,10 +53,7 @@ function validateCore(
 	const refErrors = validateRef(skillDir);
 
 	for (const error of refErrors) {
-		errors.push({
-			skill: skillName,
-			message: `Core validation error: ${error}`,
-		});
+		pushIssue(errors, skillName, `Core validation error: ${error}`);
 	}
 }
 
@@ -70,36 +68,29 @@ export function validateFrontmatter(
 	const frontmatter = parseSkillFrontmatter(content);
 
 	if (!frontmatter.name) {
-		errors.push({
-			skill: skillName,
-			message: 'Missing frontmatter: name',
-		});
+		pushIssue(errors, skillName, 'Missing frontmatter: name');
 	} else if (frontmatter.name !== skillName) {
-		errors.push({
-			skill: skillName,
-			message: `Frontmatter name mismatch: expected "${skillName}", received "${frontmatter.name}"`,
-		});
+		pushIssue(
+			errors,
+			skillName,
+			`Frontmatter name mismatch: expected "${skillName}", received "${frontmatter.name}"`,
+		);
 	}
 
 	if (!frontmatter.description) {
-		errors.push({
-			skill: skillName,
-			message: 'Missing frontmatter: description',
-		});
+		pushIssue(errors, skillName, 'Missing frontmatter: description');
 	} else if (frontmatter.description.length < MIN_DESCRIPTION_LENGTH) {
-		errors.push({
-			skill: skillName,
-			message: `Description is too short (minimum ${MIN_DESCRIPTION_LENGTH} characters)`,
-		});
+		pushIssue(
+			errors,
+			skillName,
+			`Description is too short (minimum ${MIN_DESCRIPTION_LENGTH} characters)`,
+		);
 	}
 
 	validateAuthor(skillName, frontmatter.metadata?.author, errors);
 
 	if (!frontmatter.metadata?.version) {
-		errors.push({
-			skill: skillName,
-			message: 'Missing metadata.version',
-		});
+		pushIssue(errors, skillName, 'Missing metadata.version');
 	}
 }
 
@@ -113,10 +104,7 @@ export function validateRequiredSections(
 ): void {
 	for (const section of REQUIRED_SECTIONS) {
 		if (!content.includes(section)) {
-			errors.push({
-				skill: skillName,
-				message: `Missing required section: ${section}`,
-			});
+			pushIssue(errors, skillName, `Missing required section: ${section}`);
 		}
 	}
 }
@@ -130,10 +118,11 @@ export function validateContentLength(
 	errors: SkillValidationIssue[],
 ): void {
 	if (content.length < MIN_CONTENT_LENGTH) {
-		errors.push({
-			skill: skillName,
-			message: `SKILL.md is too short (minimum ${MIN_CONTENT_LENGTH} characters)`,
-		});
+		pushIssue(
+			errors,
+			skillName,
+			`SKILL.md is too short (minimum ${MIN_CONTENT_LENGTH} characters)`,
+		);
 	}
 }
 
@@ -148,10 +137,11 @@ export function validateLineCount(
 	const lines = content.split(/\r?\n/);
 
 	if (lines.length > 500) {
-		errors.push({
-			skill: skillName,
-			message: `SKILL.md body is too long (${lines.length} lines, maximum 500 lines allowed)`,
-		});
+		pushIssue(
+			errors,
+			skillName,
+			`SKILL.md body is too long (${lines.length} lines, maximum 500 lines allowed)`,
+		);
 	}
 }
 
@@ -170,10 +160,11 @@ export function validateSupportedTasks(
 		.filter((line) => line.trim().startsWith('- '));
 
 	if (tasks.length < 8 || tasks.length > 12) {
-		errors.push({
-			skill: skillName,
-			message: `Supported tasks section has ${tasks.length} tasks (expected 8-12 tasks)`,
-		});
+		pushIssue(
+			errors,
+			skillName,
+			`Supported tasks section has ${tasks.length} tasks (expected 8-12 tasks)`,
+		);
 	}
 }
 
@@ -190,10 +181,11 @@ export function validateTips(
 	const tips = tipsBlock.split(/\r?\n/).filter((line) => line.trim().startsWith('- '));
 
 	if (tips.length < 4 || tips.length > 6) {
-		errors.push({
-			skill: skillName,
-			message: `Tips section has ${tips.length} tips (expected 4-6 tips)`,
-		});
+		pushIssue(
+			errors,
+			skillName,
+			`Tips section has ${tips.length} tips (expected 4-6 tips)`,
+		);
 	}
 }
 
@@ -226,10 +218,11 @@ export function validateBlankLines(
 				trimmedNextLine.startsWith('* ') ||
 				/^\d+\.\s/.test(trimmedNextLine)
 			) {
-				errors.push({
-					skill: skillName,
-					message: `Missing blank line after heading/label "${trimmedCurrentLine}" on line ${i + 1} before the list on line ${i + 2}`,
-				});
+				pushIssue(
+					errors,
+					skillName,
+					`Missing blank line after heading/label "${trimmedCurrentLine}" on line ${i + 1} before the list on line ${i + 2}`,
+				);
 			}
 		}
 	}
@@ -244,20 +237,18 @@ export function validateAuthor(
 	errors: SkillValidationIssue[],
 ): void {
 	if (!author?.trim()) {
-		errors.push({
-			skill: skillName,
-			message: 'Missing metadata.author',
-		});
+		pushIssue(errors, skillName, 'Missing metadata.author');
 		return;
 	}
 
 	const normalized = normalizeAuthorName(author);
 
 	if (author !== normalized) {
-		errors.push({
-			skill: skillName,
-			message: `metadata.author must use Title Case (expected "${normalized}", received "${author}")`,
-		});
+		pushIssue(
+			errors,
+			skillName,
+			`metadata.author must use Title Case (expected "${normalized}", received "${author}")`,
+		);
 	}
 }
 
@@ -280,10 +271,11 @@ export function validatePromptStructure(
 		.filter(Boolean);
 
 	if (subtopicBlocks.length < 3 || subtopicBlocks.length > 6) {
-		errors.push({
-			skill: skillName,
-			message: `Key prompts section has ${subtopicBlocks.length} subtopic(s) — expected 3-6`,
-		});
+		pushIssue(
+			errors,
+			skillName,
+			`Key prompts section has ${subtopicBlocks.length} subtopic(s) — expected 3-6`,
+		);
 	}
 
 	for (const block of subtopicBlocks) {
@@ -292,10 +284,11 @@ export function validatePromptStructure(
 		const prompts = [...block.matchAll(QUOTED_PROMPT_REGEX)];
 
 		if (prompts.length < 4 || prompts.length > 7) {
-			errors.push({
-				skill: skillName,
-				message: `Key prompts subtopic "${subtopicName}" has ${prompts.length} prompt(s) — expected 4-7`,
-			});
+			pushIssue(
+				errors,
+				skillName,
+				`Key prompts subtopic "${subtopicName}" has ${prompts.length} prompt(s) — expected 4-7`,
+			);
 		}
 	}
 }
@@ -319,11 +312,11 @@ export async function validateRouterConsistency(
 		const json = JSON.parse(raw) as { plugins?: Array<{ name?: string }> };
 		marketplaceNames = (json.plugins ?? []).map((p) => p.name ?? '').filter(Boolean);
 	} catch {
-		errors.push({
-			skill: '(consistency)',
-			message:
-				'Could not read .claude-plugin/marketplace.json for consistency check',
-		});
+		pushIssue(
+			errors,
+			'(consistency)',
+			'Could not read .claude-plugin/marketplace.json for consistency check',
+		);
 		return;
 	}
 
@@ -338,10 +331,11 @@ export async function validateRouterConsistency(
 			if (match[1]) routerNames.push(match[1]);
 		}
 	} catch {
-		errors.push({
-			skill: '(consistency)',
-			message: 'Could not read root SKILL.md for consistency check',
-		});
+		pushIssue(
+			errors,
+			'(consistency)',
+			'Could not read root SKILL.md for consistency check',
+		);
 		return;
 	}
 
@@ -352,40 +346,44 @@ export async function validateRouterConsistency(
 	// Filesystem → marketplace
 	for (const name of fsSet) {
 		if (!marketplaceSet.has(name)) {
-			errors.push({
-				skill: name,
-				message: `In skills/ directory but missing from marketplace.json — run "bun run sync"`,
-			});
+			pushIssue(
+				errors,
+				name,
+				`In skills/ directory but missing from marketplace.json — run "bun run sync"`,
+			);
 		}
 	}
 
 	// Marketplace → filesystem
 	for (const name of marketplaceSet) {
 		if (!fsSet.has(name)) {
-			errors.push({
-				skill: name,
-				message: `In marketplace.json but missing from skills/ directory`,
-			});
+			pushIssue(
+				errors,
+				name,
+				`In marketplace.json but missing from skills/ directory`,
+			);
 		}
 	}
 
 	// Filesystem → router
 	for (const name of fsSet) {
 		if (!routerSet.has(name)) {
-			errors.push({
-				skill: name,
-				message: `In skills/ directory but missing from root SKILL.md router — update the router`,
-			});
+			pushIssue(
+				errors,
+				name,
+				`In skills/ directory but missing from root SKILL.md router — update the router`,
+			);
 		}
 	}
 
 	// Router → filesystem
 	for (const name of routerSet) {
 		if (!fsSet.has(name)) {
-			errors.push({
-				skill: name,
-				message: `In root SKILL.md router but missing from skills/ directory — dead link in router`,
-			});
+			pushIssue(
+				errors,
+				name,
+				`In root SKILL.md router but missing from skills/ directory — dead link in router`,
+			);
 		}
 	}
 }
@@ -403,10 +401,11 @@ export async function validateSubdirectoryContents(
 		if (await dirExists(subPath)) {
 			const fileCount = await countFiles(subPath);
 			if (fileCount === 0) {
-				errors.push({
-					skill: skillName,
-					message: `Empty subdirectory "${subDir}/" is not allowed — must contain at least one .md file`,
-				});
+				pushIssue(
+					errors,
+					skillName,
+					`Empty subdirectory "${subDir}/" is not allowed — must contain at least one .md file`,
+				);
 			}
 		}
 	}

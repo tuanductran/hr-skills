@@ -6,3 +6,4 @@ dist/
 execution-plan.json
 execution-result.json
 eval-report.json
+duplicate-report/

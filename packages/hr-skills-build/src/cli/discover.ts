@@ -20,6 +20,7 @@ import type { SkillCategory } from '../registry/classifier.js';
 import { InvalidSearchQueryError, searchSkills } from '../search/search.js';
 import { ROOT_DIR } from '../shared/constants.js';
 import type { Registry, SkillSearchQuery } from '../shared/types.js';
+import { printUsageAndExit, runCli } from './cli-bootstrap.js';
 
 const REGISTRY_PATH = join(ROOT_DIR, 'registry', 'skills.json');
 
@@ -37,12 +38,10 @@ async function main() {
 	const text = process.argv[2];
 
 	if (!text || text.startsWith('--')) {
-		p.log.error(
+		printUsageAndExit(
 			'Usage: bun src/discover.ts "<query>" [--domain <domain>] [--limit N] [--no-fuzzy]',
+			'  bun src/discover.ts "onboard new hires"',
 		);
-		p.log.info('Example:');
-		p.log.message('  bun src/discover.ts "onboard new hires"');
-		process.exit(1);
 	}
 
 	const domain = parseFlag('domain') as SkillCategory | undefined;
@@ -92,7 +91,4 @@ async function main() {
 	}
 }
 
-main().catch((err) => {
-	p.log.error(`Error: ${err.message}`);
-	process.exit(1);
-});
+runCli(main);

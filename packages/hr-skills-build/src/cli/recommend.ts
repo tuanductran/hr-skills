@@ -11,15 +11,16 @@
 import * as p from '@clack/prompts';
 import { buildRegistry, loadRelevanceSignalTable } from '../registry/registry.js';
 import { getRecommendations, UnknownSkillError } from '../search/recommendations.js';
+import { printUsageAndExit, runCli } from './cli-bootstrap.js';
 
 async function main() {
 	const skillId = process.argv[2];
 
 	if (!skillId) {
-		p.log.error('Usage: bun src/recommend.ts <skill-id> [--limit N]');
-		p.log.info('Example:');
-		p.log.message('  bun src/recommend.ts hr-onboarding');
-		process.exit(1);
+		printUsageAndExit(
+			'Usage: bun src/recommend.ts <skill-id> [--limit N]',
+			'  bun src/recommend.ts hr-onboarding',
+		);
 	}
 
 	const limitFlagIndex = process.argv.indexOf('--limit');
@@ -69,7 +70,4 @@ async function main() {
 	}
 }
 
-main().catch((err) => {
-	p.log.error(`Error: ${err.message}`);
-	process.exit(1);
-});
+runCli(main);

@@ -14,10 +14,7 @@ See [`docs/format.md`](../docs/format.md) for the full specification.
 ```markdown
 ---
 name: <full-name>
-description: >
-  A concise description of at least 50 characters that explains what this skill
-  covers and when to use it. Include HR trigger phrases such as "write a [task]",
-  "create a [deliverable]", or "analyze [topic]".
+description: "A concise description of at least 50 characters that explains what this skill covers and when to use it. Include HR trigger phrases such as write a [task], create a [deliverable], or analyze [topic]."
 metadata:
   author: Tuan Duc Tran
   version: "1.0.0"

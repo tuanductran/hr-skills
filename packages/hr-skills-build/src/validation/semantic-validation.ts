@@ -68,10 +68,15 @@
  * files already read from disk.
  */
 
-import { readdir, readFile, stat } from 'node:fs/promises';
 import { join } from 'node:path';
 import type { SkillValidationIssue } from '../shared/types.js';
 import { jaccardSimilarity, tokenise } from './detect-duplicates.js';
+import {
+	extractDescription,
+	readAllMarkdown,
+	readRawSkillMd,
+	stripFrontmatter,
+} from './skill-content-loading.js';
 
 // ---------------------------------------------------------------------------
 // Configuration — thresholds
@@ -148,56 +153,6 @@ export interface SkillSemanticContent {
 	hasExamples: boolean;
 }
 
-async function dirExists(path: string): Promise<boolean> {
-	try {
-		return (await stat(path)).isDirectory();
-	} catch {
-		return false;
-	}
-}
-
-/**
- * Read and concatenate all `.md` files directly inside `dir`, in
- * alphabetical filename order. Returns an empty string when the directory
- * does not exist or contains no markdown files.
- */
-async function readAllMarkdown(dir: string): Promise<string> {
-	if (!(await dirExists(dir))) return '';
-
-	let entries: string[];
-	try {
-		entries = (await readdir(dir, { withFileTypes: true }))
-			.filter((e) => e.isFile() && e.name.endsWith('.md'))
-			.map((e) => e.name)
-			.sort();
-	} catch {
-		return '';
-	}
-
-	const parts: string[] = [];
-	for (const entry of entries) {
-		try {
-			parts.push(await readFile(join(dir, entry), 'utf8'));
-		} catch {
-			// skip unreadable files
-		}
-	}
-	return parts.join('\n');
-}
-
-/** Extract the frontmatter `description` field from raw SKILL.md content. */
-function extractDescription(raw: string): string {
-	const frontmatterMatch = /^---\r?\n([\s\S]*?)\r?\n---/.exec(raw);
-	if (!frontmatterMatch?.[1]) return '';
-	const descMatch = /^description:\s*(.+?)(?=\n\w|\n---)/ms.exec(frontmatterMatch[1]);
-	return descMatch?.[1]?.replace(/\s+/g, ' ').trim() ?? '';
-}
-
-/** Strip YAML frontmatter from a markdown string. */
-function stripFrontmatter(raw: string): string {
-	return raw.replace(/^---\r?\n[\s\S]*?\r?\n---/, '').trim();
-}
-
 /**
  * Load one skill's semantic content: purpose/prompts/examples token sets.
  *
@@ -209,14 +164,7 @@ export async function loadSkillSemanticContent(
 	skillName: string,
 ): Promise<SkillSemanticContent> {
 	const skillDir = join(skillsDir, skillName);
-	const skillMdPath = join(skillDir, 'SKILL.md');
-
-	let raw = '';
-	try {
-		raw = await readFile(skillMdPath, 'utf8');
-	} catch {
-		// fall through — everything stays empty
-	}
+	const raw = await readRawSkillMd(skillDir);
 
 	const description = extractDescription(raw);
 	const body = stripFrontmatter(raw);
