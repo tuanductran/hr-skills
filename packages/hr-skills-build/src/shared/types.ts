@@ -1,4 +1,30 @@
-import type { SkillCategory } from '../registry/classifier.js';
+// ---------------------------------------------------------------------------
+// Skill category (routing/classification)
+// ---------------------------------------------------------------------------
+
+/**
+ * The routing-table section a skill belongs to in the generated root
+ * `SKILL.md`. Assigned by `registry/classifier.ts#classifySkill()`.
+ *
+ * Lives here (not in `classifier.ts`) because it's a foundational domain
+ * type referenced by `SkillMetadata`/`Registry` below, `search/`, and
+ * `build/router.ts` — `classifier.ts` imports it back from here rather than
+ * the other way around, so `shared/` stays the dependency-free base layer.
+ */
+export type SkillCategory =
+	| 'talent-acquisition'
+	| 'onboarding-offboarding'
+	| 'performance-talent'
+	| 'compensation-rewards'
+	| 'learning-development'
+	| 'org-design-change'
+	| 'workforce-analytics'
+	| 'hr-technology-ai'
+	| 'compliance-risk'
+	| 'culture-experience'
+	| 'global-project'
+	| 'technical-hiring'
+	| 'uncategorized';
 
 // ---------------------------------------------------------------------------
 // Skill matrix types
