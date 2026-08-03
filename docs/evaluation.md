@@ -134,13 +134,13 @@ Because the Planner and Runtime are both pure/deterministic (no wall-clock times
 bun run evaluate
 ```
 
-This builds the Skill Registry, loads every dataset in `eval/datasets/`, runs each case, diffs it against the matching `eval/golden/*.golden.json` fixture, prints per-case results and the aggregated quality metrics, and writes the full report to `eval-report.json`. Exit code is `0` when every case is regression-free and every plan is valid, `1` otherwise.
+This builds the Skill Registry, loads every dataset in `eval/datasets/`, runs each case, diffs it against the matching `eval/golden/*.golden.json` fixture, prints per-case results and the aggregated quality metrics, and writes the full report to `packages/hr-skills-build/eval-report.json`. Exit code is `0` when every case is regression-free and every plan is valid, `1` otherwise.
 
 To regenerate golden fixtures after an intentional change to the Planner, Runtime, or skill content (a new skill, a renamed capability, and so on), run the script directly from `packages/hr-skills-build` (the `bun run evaluate` root alias does not forward flags through Turborepo):
 
 ```bash
 cd packages/hr-skills-build
-bun src/run-evaluation.ts --update-golden
+bun run evaluate -- --update-golden
 ```
 
 Review the diff on `eval/golden/*.golden.json` in the resulting commit like any other code change — a `skillIds` change there is exactly the signal that a golden fixture would otherwise catch as a regression, so it deserves the same scrutiny.

@@ -148,7 +148,7 @@ signal values.
 ```bash
 bun run signals
 # or, from packages/hr-skills-build:
-bun src/generate-relevance-signals.ts
+bun run signals
 ```
 
 Regenerate whenever golden fixtures change (after `bun run evaluate

@@ -155,7 +155,7 @@ every other validator in `validate.ts`.
 ## Build integration
 
 - `packages/hr-skills-build/package.json` — `registry` script
-  (`bun src/generate-registry.ts`)
+  (`bun run registry`)
 - root `package.json` — `registry` script (`turbo run registry --filter=hr-skills-build`)
 - `turbo.jsonc` — `registry` task (uncached, output `registry/skills.json`)
 - `.github/workflows/matrix.yml` — regenerates and commits

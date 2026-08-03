@@ -8,7 +8,7 @@ metadata:
 
 # clack
 
-Repository guidance for [`@clack/prompts`](https://github.com/bombshell-dev/clack) (`^1.7.0`, see `package.json`) as used across `packages/hr-skills-build/src/cli/*.ts` and `src/build/sync.ts`.
+Repository guidance for [`@clack/prompts`](https://github.com/bombshell-dev/clack) (`^1.7.0`, see `package.json`) as used across `packages/hr-skills-build/src/cli/*.ts` and `packages/hr-skills-build/src/build/packages/hr-skills-build/src/build/sync.ts`.
 
 > **This repo's clack usage is narrow and deliberate.** Every CLI here (`discover`, `recommend`, `execute-plan`, `generate-plan`, `run-evaluation`, `sync`, `validate`) is a single-shot, non-interactive script driven by `process.argv` — none of them collect input via clack's interactive prompts. Full upstream docs: [Getting Started](https://bomb.sh/docs/clack/basics/getting-started/), [Prompts](https://bomb.sh/docs/clack/packages/prompts/), [Best Practices](https://bomb.sh/docs/clack/guides/best-practices/).
 
@@ -22,7 +22,7 @@ Only five clack APIs appear anywhere in this codebase — confirmed by grepping 
 | `p.outro(message)` | Announce completion at end | Every `cli/*.ts` entry point |
 | `p.spinner()` / `.start()` / `.stop()` | Show progress during `buildRegistry()`, plan generation, etc. | `execute-plan.ts`, `generate-plan.ts`, `recommend.ts` |
 | `p.note(message, title?)` | Print a multi-line info block (search results, recommendations) | `discover.ts`, `recommend.ts` |
-| `p.log.{info,error,warn,success,message}` | Single-line status/error output | All `cli/*.ts`, routed through `cli/cli-bootstrap.ts` |
+| `p.log.{info,error,warn,success,message}` | Single-line status/error output | All `cli/*.ts`, routed through `packages/hr-skills-build/src/cli/packages/hr-skills-build/src/cli/cli-bootstrap.ts` |
 
 ## What this repo does NOT use — do not introduce it
 
@@ -34,7 +34,7 @@ If a future CLI genuinely needs interactive input, that's a deliberate scope cha
 
 ## Repository pattern
 
-Every CLI entry point in `src/cli/*.ts` follows this shape (see `cli/cli-bootstrap.ts`):
+Every CLI entry point in `src/cli/*.ts` follows this shape (see `packages/hr-skills-build/src/cli/packages/hr-skills-build/src/cli/cli-bootstrap.ts`):
 
 ```typescript
 import * as p from '@clack/prompts';
@@ -44,8 +44,8 @@ async function main() {
 	const intent = process.argv[2];
 	if (!intent) {
 		printUsageAndExit(
-			'Usage: bun src/my-command.ts "<argument>"',
-			'  bun src/my-command.ts "example"',
+			'Usage: bun run my-command "<argument>"',
+			'  bun run my-command "example"',
 		);
 	}
 

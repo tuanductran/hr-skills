@@ -4,8 +4,8 @@
  * CLI: Run the evaluation framework against every dataset in `eval/datasets/`.
  *
  * Usage:
- *   bun src/run-evaluation.ts               # run and report regressions
- *   bun src/run-evaluation.ts --update-golden  # regenerate golden fixtures
+ *   bun run evaluate               # run and report regressions
+ *   bun run evaluate -- --update-golden  # regenerate golden fixtures
  *
  * Exit code is 0 when every dataset has zero regressions and zero invalid
  * plans, 1 otherwise — suitable for CI.

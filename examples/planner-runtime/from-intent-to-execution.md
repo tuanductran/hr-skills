@@ -17,7 +17,7 @@ skills to load and *in what order*, rather than a person manually choosing
 ## Step 1 — Generate a plan from intent
 
 ```bash
-bun src/generate-plan.ts "hire a senior backend engineer: write the job description, run interviews, and prepare an offer"
+bun run plan "hire a senior backend engineer: write the job description, run interviews, and prepare an offer"
 ```
 
 The Planner (`packages/hr-skills-build/src/planner/planner.ts`) splits this intent
@@ -78,7 +78,7 @@ dependency violations) before you act on it.
 ## Step 2 — Execute the plan
 
 ```bash
-bun src/execute-plan.ts "hire a senior backend engineer: write the job description, run interviews, and prepare an offer"
+bun run execute "hire a senior backend engineer: write the job description, run interviews, and prepare an offer"
 ```
 
 `execute-plan.ts` regenerates the same plan and runs it through

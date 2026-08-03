@@ -138,7 +138,7 @@ describe('buildRegistry()', () => {
 		// even the top static item's (1)*(0.7) = 0.7... actually the static
 		// top item still wins on raw score, so just assert presence, not rank,
 		// to avoid over-asserting the exact blend formula here (that's
-		// relevance-signals.test.ts's job).
+		// packages/hr-skills-build/test/search/relevance-signals.test.ts's job).
 		expect(blendedSource?.relatedSkills).toContain(target.id);
 	});
 

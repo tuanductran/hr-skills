@@ -51,7 +51,7 @@ N clones · X% duplication
 
 | Option | Value here | Why |
 |--------|------------|-----|
-| `--format typescript` | scoped to `.ts` | `skills/**/*.md` content duplication is handled by `detect-duplicates.ts`, not jscpd |
+| `--format typescript` | scoped to `.ts` | `skills/**/*.md` content duplication is handled by `packages/hr-skills-build/src/validation/detect-duplicates.ts`, not jscpd |
 | `--mode strict` | exact-match clones | avoids false positives from formatting-only similarity (Biome already normalizes formatting) |
 | `--min-lines 3` / `--min-tokens 20` | low thresholds | this is a small, young codebase; catch clones early before they compound |
 | `--ignore` | `node_modules`, `dist`, `*.md` | matches `.gitignore` / build output conventions |

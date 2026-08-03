@@ -42,7 +42,7 @@ Checks every `skills/hr-*/SKILL.md` for:
 - Required sections: `## Supported tasks`, `## Key prompts`, `## Tips`
 - Minimum content length of 1 000 characters
 - `SKILL.md` body length under 500 lines
-- `metadata.author` exactly set to `Tuan Duc Tran`
+- `metadata.author` present and uses Title Case (validator normalizes and enforces Title Case)
 - 8-12 supported task items
 - 4-6 tip items
 - Blank lines before lists for MD032 compliance
@@ -66,8 +66,10 @@ Discovers all `skills/hr-*` directories and rebuilds generated references in `.c
 
 | File | Purpose |
 |------|---------|
-| `src/config.ts` | `SKILLS_DIR` path, `hr-` prefix, and skill discovery helper |
-| `src/validate.ts` | Validates frontmatter and required sections |
+| `src/validation/validate.ts` | Core skill validation (per-skill checks and global consistency) |
+| `src/build/sync.ts` | Generates `.claude-plugin/marketplace.json` and updates root `SKILL.md` router |
+| `src/build/router.ts` | Build and splice the root `SKILL.md` routing table |
+| `src/shared/constants.ts` | Validation constants (MIN_CONTENT_LENGTH, REQUIRED_SECTIONS, regexes) |
 
 ## Requirements
 
