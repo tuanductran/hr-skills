@@ -70,9 +70,6 @@
       ],
     },
   ],
-  enabledManagers: [
-    'bun',
-  ],
   baseBranchPatterns: [
     'main',
   ],
