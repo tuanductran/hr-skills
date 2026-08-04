@@ -21,21 +21,8 @@ import * as p from '@clack/prompts';
 import { generateExecutionPlan } from '../planner/planner.js';
 import { buildRegistry } from '../registry/registry.js';
 import { executeWorkflow } from '../runtime/runtime.js';
-import type { ExecutionStep, RuntimeContext } from '../shared/types.js';
+import { stubStepExecutor } from '../shared/helpers.js';
 import { printUsageAndExit, runCli } from './cli-bootstrap.js';
-
-/**
- * A stub step executor for CLI demonstration purposes. Real integrations
- * should replace this with logic that actually invokes the skill (for
- * example, loading its SKILL.md and prompting a model).
- */
-const stubStepExecutor = (step: ExecutionStep, context: RuntimeContext): unknown => {
-	return {
-		skillId: step.skillId,
-		note: `Stub output for ${step.skillId}`,
-		precedingSteps: Object.keys(context.toObject()),
-	};
-};
 
 async function main() {
 	const intent = process.argv[2];

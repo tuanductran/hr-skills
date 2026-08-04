@@ -73,8 +73,12 @@ here (`check`, `lint`, `format`, `knip`, `changeset`, `release`) are plain Bun s
 Turborepo task of their own; `.agents/skills/bun/SKILL.md` covers those.
 
 **[Existing]** CI (`.github/workflows/`) runs `knip.yml`, `lint.yml`, `matrix.yml`,
-`release.yml`, `test.yml`, `typecheck.yml`, and `validate.yml` as separate jobs.
-CONTRIBUTING.md's pre-submit checklist already matches this list (see below).
+`publish.yml`, `release.yml`, `skill-review.yml`, `test.yml`, `typecheck.yml`, and
+`validate.yml` as separate jobs.
+CONTRIBUTING.md's pre-submit checklist covers the local-command equivalents of these
+(`bun run typecheck`, `test`, `validate`, `lint:md`, `knip`); it doesn't enumerate every
+CI workflow filename, since `publish.yml`/`release.yml`/`skill-review.yml` run
+automatically on merge and aren't something a contributor triggers locally.
 
 ## Existing behavior — testing and validation
 

@@ -4,7 +4,12 @@ import { join } from 'node:path';
 import { HR_SKILL_PREFIX, SKILLS_DIR } from './constants.js';
 import { parseSkillFrontmatter } from './parser.js';
 import type { SkillFrontmatter } from './schema.js';
-import type { SkillValidationIssue, Tier } from './types.js';
+import type {
+	ExecutionStep,
+	RuntimeContext,
+	SkillValidationIssue,
+	Tier,
+} from './types.js';
 
 /**
  * Extract and trim the first capture group from a regex match against `content`.
@@ -23,6 +28,17 @@ export function extractMatch(regex: RegExp, content: string): string | null {
  * Only directories whose names start with `HR_SKILL_PREFIX` (`"hr-"`) are returned.
  *
  * @returns A promise that resolves to a sorted array of skill directory names.
+ */
+/**
+ * Discover all `hr-*` skill directory names under `skills/`, sorted.
+ *
+ * Does not verify `SKILL.md` exists in each directory — callers that need
+ * that guarantee (e.g. filtering out incomplete/in-progress skill folders)
+ * should use `registry/discovery.ts#getHrSkills()` instead, which checks
+ * for `SKILL.md` via `fs.access` and supports a configurable prefix. This
+ * function is the lighter-weight default used by most of `validation/`,
+ * `build/`, and `search/`, which read (and error-handle) `SKILL.md`
+ * themselves immediately after.
  */
 export async function discoverSkills(): Promise<string[]> {
 	const entries = await readdir(SKILLS_DIR, {
@@ -160,8 +176,8 @@ export async function countFiles(dirPath: string): Promise<number> {
  * - `'partial'` — one or two subdirectories are present.
  *
  * This is the single source of truth for tier classification — used by both
- * `generate-skill-matrix.ts` and `generate-registry.ts` so the matrix and the
- * registry can never disagree about a skill's tier.
+ * `build/generate-skill-matrix.ts` and `registry/registry.ts` so the matrix
+ * and the registry can never disagree about a skill's tier.
  *
  * @param hasContent - Whether the `content/` subdirectory exists and is non-empty.
  * @param hasPrompts - Whether the `prompts/` subdirectory exists and is non-empty.
@@ -243,4 +259,22 @@ export function makeKeyPromptsContent(subtopics: number, promptsEach: number): s
 		'',
 		'- Tip',
 	].join('\n');
+}
+
+/**
+ * A stub `StepExecutorFn` that returns a deterministic placeholder output
+ * instead of actually invoking a skill. Shared by `cli/execute-plan.ts` (CLI
+ * demonstration) and `evaluation/evaluate.ts` (so evaluation results
+ * characterize the Planner/Runtime's sequencing and validation behavior, not
+ * a divergent stand-in) — previously duplicated independently in both files.
+ *
+ * Real integrations should supply their own `StepExecutorFn` that actually
+ * invokes the skill (for example, loading its SKILL.md and prompting a model).
+ */
+export function stubStepExecutor(step: ExecutionStep, context: RuntimeContext): unknown {
+	return {
+		skillId: step.skillId,
+		note: `Stub output for ${step.skillId}`,
+		precedingSteps: Object.keys(context.toObject()),
+	};
 }

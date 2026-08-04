@@ -50,7 +50,10 @@ function extractUseWhen(description: string): string {
 	if (idx !== -1) {
 		// Everything after "Use when "
 		const raw = description.slice(idx).replace(USE_WHEN_RE, '').trim();
-		// Take up to the first period or 120 chars
+		// Take up to the first period (no length cap here — descriptions are
+		// expected to state the trigger in one sentence; the 120-char cap
+		// below only guards the fallback path, where we take an arbitrary
+		// first sentence that might run long).
 		const sentence = raw.split('.')[0] ?? raw;
 		return sentence.trim().replace(/\.$/, '');
 	}
@@ -110,9 +113,9 @@ function renderRoutingTables(
 
 	// Uncategorized — only rendered if non-empty (signals new skills need classifier entry)
 	if (uncategorized.length > 0) {
-		lines.push('### Uncategorized (add to classifier.ts)', '');
+		lines.push('### Uncategorized (add to registry/classifier.ts)', '');
 		lines.push(
-			'> ⚠️  These skills were not matched by the classifier. Add them to `src/classifier.ts`.',
+			'> ⚠️  These skills were not matched by the classifier. Add them to `src/registry/classifier.ts`.',
 			'',
 		);
 		lines.push('| Skill | Use when the task involves... |');

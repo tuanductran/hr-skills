@@ -1,6 +1,6 @@
 ---
 name: changeset
-description: Use when determining whether a pull request requires a changeset, selecting the appropriate version bump (patch, minor, or major), or writing a `.changeset/*.md` entry for the hr-skills repository.
+description: "Use when determining whether a pull request requires a changeset, selecting the appropriate version bump (patch, minor, or major), or writing a `.changeset/*.md` entry for the hr-skills repository."
 compatibility: hr-skills monorepo
 ---
 

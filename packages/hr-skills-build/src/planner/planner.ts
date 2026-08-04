@@ -30,7 +30,7 @@ import type {
 // Execution Plan Model
 // ============================================================================
 
-// Planner types have been moved to src/types.ts to centralize shared
+// Planner types have been moved to src/shared/types.ts to centralize shared
 // interfaces and avoid duplication. See that file for the canonical
 // definitions used across planner, validator, and tests.
 

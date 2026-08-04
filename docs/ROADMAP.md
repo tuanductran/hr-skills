@@ -562,15 +562,17 @@ bun run validate
 
 ### Current Workflows
 
-| Workflow      | Purpose                        |
-| ------------- | ------------------------------ |
-| lint.yml      | Code and documentation quality |
-| test.yml      | Automated testing              |
-| typecheck.yml | Type validation                |
-| validate.yml  | Skill quality validation       |
-| knip.yml      | Dead code detection            |
-| matrix.yml    | Skill maturity generation      |
-| release.yml   | Changesets release automation  |
+| Workflow          | Purpose                        |
+| ----------------- | ------------------------------ |
+| lint.yml          | Code and documentation quality |
+| test.yml          | Automated testing              |
+| typecheck.yml     | Type validation                |
+| validate.yml      | Skill quality validation       |
+| knip.yml          | Dead code detection            |
+| matrix.yml        | Skill maturity generation      |
+| release.yml       | Changesets release automation  |
+| publish.yml       | Tag-triggered npm/dist publish |
+| skill-review.yml  | Automated PR skill review      |
 
 ---
 

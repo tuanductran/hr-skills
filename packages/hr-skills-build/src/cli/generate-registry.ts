@@ -3,8 +3,9 @@
  * is the single source of truth for skill discovery, routing, capability
  * lookup, aliases, domains, and relationships at runtime.
  *
- * Run via `bun run registry`, or automatically as a pre-release step in CI
- * (matrix.yml workflow, alongside docs/skill-matrix.md).
+ * Run via `bun run registry`, or automatically on every push to `main`
+ * (matrix.yml workflow, alongside docs/skill-matrix.md — see
+ * .github/workflows/matrix.yml).
  *
  * See docs/registry.md for the full architecture writeup.
  */

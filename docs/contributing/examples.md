@@ -82,7 +82,7 @@ git push origin fix/hr-analytics-turnover-formula
 ```bash
 git checkout -b docs/clarify-skill-tiers
 
-# Edit docs/format.md (or docs/contributing/*.md once added)
+# Edit docs/format.md (or another file under docs/contributing/)
 
 bun run lint:md
 bun run lint:links
@@ -97,16 +97,15 @@ Applies to all of the above:
 1. Base branch: `dev` (never `main`).
 2. Fill in `.github/pull_request_template.md`:
    - **What changed** — one or two sentences
-   - **Content type** — check the box(es) that apply (skill definition, competency
-     framework, interview questions, assessment criteria, recruiting workflow, AI prompt,
-     documentation, tooling/configuration)
+   - **Content type** — check the box(es) that apply (new skill, skill tier
+     upgrade, content fix, documentation, tooling/configuration)
    - **Why** — the problem being solved or value added
    - **Related issue** — `Closes #NN` if applicable
    - **Validation** — confirm content reviewed, no duplicate information, links verified,
      formatting follows repository standards, CI checks pass
    - **Commit convention** — confirm commits follow Conventional Commits
 3. Wait for CI (`.github/workflows/`: `knip`, `lint`, `matrix`, `test`, `typecheck`,
-   `validate`) to pass.
+   `validate`, plus `skill-review` for PRs touching `skills/hr-*/**`) to pass.
 4. A maintainer reviews and merges.
 
 ## Best practices

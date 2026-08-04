@@ -90,14 +90,18 @@ async function main() {
 	p.log.success(`Evaluation report saved to: ${outputPath}`);
 
 	const hasRegressions = reports.some((r) => r.regressedCaseIds.length > 0);
-	const hasInvalidPlans = reports.some((r) => r.failedCases > 0);
+	// failedCases counts every case that isn't a clean pass (regression and/or
+	// an invalid plan) — broader than "invalid plans" alone, so this check
+	// can catch failures hasRegressions alone would miss (e.g. an invalid
+	// plan with no golden fixture to regress against yet).
+	const hasFailedCases = reports.some((r) => r.failedCases > 0);
 
 	if (updateGolden) {
 		p.outro('Golden fixtures updated');
 		process.exit(0);
 	}
 
-	if (hasRegressions || hasInvalidPlans) {
+	if (hasRegressions || hasFailedCases) {
 		p.outro('Completed with regressions or failures');
 		process.exit(1);
 	}

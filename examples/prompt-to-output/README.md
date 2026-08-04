@@ -4,7 +4,7 @@ Every skill ships its own `examples/` directory with realistic HR scenarios,
 sample prompts, and the output an agent should produce — see
 [`docs/format.md`](../../docs/format.md) for the authoring format. This page
 is a discoverability index into those, organized by workflow stage, so you
-don't have to browse 150+ skill folders to find a relevant one.
+don't have to browse 146 skill folders to find a relevant one.
 
 For examples that chain *multiple* skills together, see
 [`../end-to-end/`](../end-to-end) instead — this page is single-skill,

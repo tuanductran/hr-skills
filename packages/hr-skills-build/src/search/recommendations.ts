@@ -2,14 +2,15 @@
  * Skill Recommendation Layer — Phase 6.1
  *
  * Exposes the `relatedSkills` graph that already lives in
- * `registry/skills.json` (computed by `rankRelatedSkills()` in registry.ts)
- * as a reusable, user-facing "skills you might also need" API — instead of
- * leaving it as internal Planner input only.
+ * `registry/skills.json` (computed by `rankRelatedSkills()`, then usually
+ * re-ranked with usage-informed signals by `reRankRelatedSkills()` — see
+ * registry.ts) as a reusable, user-facing "skills you might also need" API
+ * — instead of leaving it as internal Planner input only.
  *
  * This module is intentionally thin: it reads a `Registry` object and looks
  * up an already-ranked, already-capped list. It does not re-rank, re-score,
- * or introduce any new signal (no AI ranking, no embeddings, no heuristics).
- * The only source of truth is `RegistryEntry.relatedSkills`.
+ * or introduce any new signal (no AI ranking, no embeddings, no heuristics
+ * of its own). The only source of truth is `RegistryEntry.relatedSkills`.
  *
  * Consumes only `Registry` / `RegistryEntry` (as produced from
  * `registry/skills.json`) — never parses `SKILL.md` files directly.
@@ -36,10 +37,12 @@ export class UnknownSkillError extends Error {
  * Get the top related skills for a given skill ID.
  *
  * Ranking rule: preserves the order already computed for
- * `RegistryEntry.relatedSkills` (same-domain skills ranked by shared-tag
- * overlap, ties broken alphabetically — see `rankRelatedSkills()` in
- * registry.ts). This function does not alter that order; it only looks up,
- * caps, and formats it.
+ * `RegistryEntry.relatedSkills` — same-domain skills ranked by shared-tag
+ * overlap via `rankRelatedSkills()`, then (when a relevance signal table was
+ * available at registry-build time, which is the default `bun run registry`
+ * path) re-ranked by `reRankRelatedSkills()` to blend in observed
+ * co-selection evidence — see registry.ts. This function does not alter
+ * that order itself; it only looks up, caps, and formats it.
  *
  * Deterministic: for a fixed registry and skill ID, the same input always
  * produces the same output, in the same order.

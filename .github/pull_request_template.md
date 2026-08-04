@@ -4,14 +4,11 @@ Briefly describe the changes introduced in this pull request.
 
 ## Content Type
 
-- [ ] Skill definition
-- [ ] Competency framework
-- [ ] Interview questions
-- [ ] Assessment criteria
-- [ ] Recruiting workflow
-- [ ] AI prompt
-- [ ] Documentation
-- [ ] Tooling / Configuration
+- [ ] New skill (`skills/hr-*/`)
+- [ ] Skill tier upgrade (Bare/Partial → Full)
+- [ ] Content fix (existing skill)
+- [ ] Documentation (`docs/`, `README.md`, `GOVERNANCE.md`, etc.)
+- [ ] Tooling / Configuration (`packages/*`, `.github/workflows/`)
 
 ## Why?
 
