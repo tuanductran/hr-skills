@@ -7,7 +7,7 @@
 import { writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
-import { ROOT_DIR, SKILLS_DIR } from '../shared/constants.js';
+import { ROOT_DIR, SKILLS_DIR } from 'skills-ref';
 import {
 	computeTier,
 	countFiles,

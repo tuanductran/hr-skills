@@ -6,9 +6,8 @@
 			"dependsOn": ["^build"],
 			"outputs": ["dist/**"]
 		},
-		"hr-skills-build#build": {
-			"dependsOn": ["^build"],
-			"outputs": []
+		"build-skills": {
+			"cache": false
 		},
 		"dev": {
 			"persistent": true,
