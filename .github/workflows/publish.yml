@@ -44,6 +44,14 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-bun-
 
+      - name: Cache turbo build setup
+        uses: actions/cache@v6
+        with:
+          path: .turbo
+          key: ${{ runner.os }}-turbo-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-turbo-
+
       - name: Install dependencies
         run: bun ci
 
@@ -51,24 +59,7 @@ jobs:
         run: bun run validate
 
       - name: Build distribution artifacts
-        # Root `bun run build` (`turbo run build --filter=!hr-skills`) builds
-        # every package except hr-skills — that's everything BUT what we
-        # want to target here, not a way to select hr-skills-build. It also
-        # runs skills-ref's build for no reason in this context.
-        # `bun run build -- --skill` is not valid syntax: bun forwards
-        # `--skill` to the root script (`turbo run build ...`), and turbo
-        # has no such flag — it fails with "unexpected argument '--skill'".
-        # The correct, filtered command targets hr-skills-build directly;
-        # its own "build" script already runs build-zip && build-skill, so
-        # one invocation produces both dist/hr-skills.zip and
-        # dist/hr-skills.skill.
-        # --force bypasses Turborepo's cache: the task's declared outputs
-        # (dist/**, resolved relative to the package) don't match where
-        # build-skills.ts actually writes (the repo-root dist/), so a cache
-        # hit replays the logged "OK" lines without restoring the real
-        # files — verified locally, a warm cache leaves dist/ empty even
-        # though the step reports success.
-        run: bunx turbo run build --filter=hr-skills-build --force
+        run: bun run build-skills
 
       - name: Extract changelog section for this version
         id: changelog

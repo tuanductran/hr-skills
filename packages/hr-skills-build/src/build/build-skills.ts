@@ -3,13 +3,15 @@
  *
  * Flags
  * -----
- * default   Build dist/hr-skills.zip   (when no flag is given)
- * --skill   Build dist/hr-skills.skill
+ * default   Build both dist/hr-skills.zip and dist/hr-skills.skill
+ * --zip     Build dist/hr-skills.zip only
+ * --skill   Build dist/hr-skills.skill only
  *
  * Examples
  * --------
- * bun run build-skills                  # zip build
- * bun run build-skills -- --skill       # .skill build
+ * bun run build-skills
+ * bun run build-skills -- --zip
+ * bun run build-skills -- --skill
  *
  * Formats
  * -------
@@ -28,59 +30,95 @@
  * Ported from soulmap-ai/src/soulmap/devtools/packaging/build_skill.py
  */
 
-import { existsSync } from 'node:fs';
-import { mkdir, readdir, readFile, stat, unlink } from 'node:fs/promises';
+import { mkdir, readdir, readFile, stat } from 'node:fs/promises';
 import { join, relative } from 'node:path';
+import { parseArgs } from 'node:util';
 import { deflateRawSync } from 'node:zlib';
 
-import { ROOT_DIR } from '../shared/constants.js';
+import { ROOT_DIR } from 'skills-ref';
 
-// ---------------------------------------------------------------------------
-// Minimal ZIP writer — no external deps, uses Node built-in zlib
-// ---------------------------------------------------------------------------
-
+/**
+ * File entry to include in the generated ZIP archive.
+ */
 interface ZipEntry {
+	/** Archive-relative path using forward slashes. */
 	arcname: string;
+	/** Uncompressed file contents. */
 	data: Buffer;
+	/** Last modification time. */
 	mtime: Date;
 }
 
-/** CRC-32 table (polynomial 0xEDB88320, as required by the ZIP spec). */
-let _crc32Table: Uint32Array | null = null;
+/**
+ * MS-DOS timestamp fields stored in ZIP file headers.
+ *
+ * ZIP stores modification times as two 16-bit values:
+ * - `time`: hours, minutes, and seconds (2-second resolution)
+ * - `date`: year (relative to 1980), month, and day
+ */
+interface DosTimestamp {
+	/** Packed MS-DOS time field. */
+	time: number;
+	/** Packed MS-DOS date field. */
+	date: number;
+}
+
+/** CRC-32 lookup table (polynomial 0xEDB88320, per the ZIP specification). */
+let crc32Table: Uint32Array | undefined;
 
 function makeCrc32Table(): Uint32Array {
-	if (_crc32Table) return _crc32Table;
-	const table = new Uint32Array(256);
-	for (let i = 0; i < 256; i++) {
-		let c = i;
-		for (let j = 0; j < 8; j++) {
-			c = c & 1 ? 0xedb88320 ^ (c >>> 1) : c >>> 1;
-		}
-		table[i] = c;
+	if (crc32Table) {
+		return crc32Table;
 	}
-	_crc32Table = table;
+
+	const table = new Uint32Array(256);
+
+	for (let i = 0; i < 256; i++) {
+		let crc = i;
+
+		for (let j = 0; j < 8; j++) {
+			crc = crc & 1 ? 0xedb88320 ^ (crc >>> 1) : crc >>> 1;
+		}
+
+		table[i] = crc;
+	}
+
+	crc32Table = table;
+
 	return table;
 }
 
-function crc32(buf: Buffer): number {
+/**
+ * Compute the CRC-32 checksum of a buffer.
+ */
+function crc32(buffer: Buffer): number {
 	const table = makeCrc32Table();
+
 	let crc = 0xffffffff;
-	for (let i = 0; i < buf.length; i++) {
-		crc = (crc >>> 8) ^ (table[(crc ^ (buf[i] ?? 0)) & 0xff] ?? 0);
+
+	for (let i = 0; i < buffer.length; i++) {
+		crc = (crc >>> 8) ^ (table[(crc ^ (buffer[i] ?? 0)) & 0xff] ?? 0);
 	}
+
 	return (crc ^ 0xffffffff) >>> 0;
 }
 
-function writeUInt16LE(buf: Buffer, value: number, offset: number): void {
-	buf[offset] = value & 0xff;
-	buf[offset + 1] = (value >>> 8) & 0xff;
+/**
+ * Write a 16-bit unsigned integer in little-endian byte order.
+ */
+function writeUInt16LE(buffer: Buffer, value: number, offset: number): void {
+	buffer[offset] = value & 0xff;
+	buffer[offset + 1] = (value >>> 8) & 0xff;
 }
 
-function writeUInt32LE(buf: Buffer, value: number, offset: number): void {
-	buf[offset] = value & 0xff;
-	buf[offset + 1] = (value >>> 8) & 0xff;
-	buf[offset + 2] = (value >>> 16) & 0xff;
-	buf[offset + 3] = (value >>> 24) & 0xff;
+/**
+ * Write a 32-bit unsigned integer in little-endian byte order.
+ */
+function writeUInt32LE(buffer: Buffer, value: number, offset: number): void {
+	buffer[offset] = value & 0xff;
+	buffer[offset + 1] = (value >>> 8) & 0xff;
+	buffer[offset + 2] = (value >>> 16) & 0xff;
+	buffer[offset + 3] = (value >>> 24) & 0xff;
 }
 
 /**
@@ -95,20 +133,27 @@ function writeUInt32LE(buf: Buffer, value: number, offset: number): void {
  * earliest representable value (1980-01-01 00:00:00) instead of wrapping
  * into another invalid bit pattern.
  */
-function dateToDos(date: Date): { time: number; date: number } {
+function dateToDos(date: Date): DosTimestamp {
 	const year = date.getFullYear();
 
 	if (year < 1980 || year > 2107) {
-		return { time: 0, date: 0x21 };
+		return {
+			time: 0,
+			date: 0x21,
+		};
 	}
 
 	const dosDate = ((year - 1980) << 9) | ((date.getMonth() + 1) << 5) | date.getDate();
+
 	const dosTime =
 		(date.getHours() << 11) |
 		(date.getMinutes() << 5) |
 		Math.floor(date.getSeconds() / 2);
 
-	return { time: dosTime, date: dosDate };
+	return {
+		time: dosTime,
+		date: dosDate,
+	};
 }
 
 /**
@@ -119,7 +164,7 @@ function buildZipBuffer(entries: ZipEntry[]): Buffer {
 	const localParts: Buffer[] = [];
 	const centralDir: Buffer[] = [];
 	const offsets: number[] = [];
-	let currentOffset = 0;
+	const currentOffset = 0;
 
 	for (const entry of entries) {
 		const nameBytes = Buffer.from(entry.arcname, 'utf8');
@@ -127,6 +172,7 @@ function buildZipBuffer(entries: ZipEntry[]): Buffer {
 		const compressed = deflateRawSync(raw, { level: 6 });
 		const checksum = crc32(raw);
 		const { time: dosTime, date: dosDate } = dateToDos(entry.mtime);
+		const localHeaderOffset = currentOffset;
 
 		// Local file header: 30 bytes + filename
 		const local = Buffer.alloc(30 + nameBytes.length);
@@ -145,7 +191,6 @@ function buildZipBuffer(entries: ZipEntry[]): Buffer {
 
 		offsets.push(currentOffset);
 		localParts.push(local, compressed);
-		currentOffset += local.length + compressed.length;
 
 		// Central directory file header: 46 bytes + filename
 		const central = Buffer.alloc(46 + nameBytes.length);
@@ -165,7 +210,7 @@ function buildZipBuffer(entries: ZipEntry[]): Buffer {
 		writeUInt16LE(central, 0, 34); // disk number start
 		writeUInt16LE(central, 0, 36); // internal attributes
 		writeUInt32LE(central, 0, 38); // external attributes
-		writeUInt32LE(central, offsets[offsets.length - 1] ?? 0, 42); // local header offset
+		writeUInt32LE(central, localHeaderOffset, 42); // local header offset
 		nameBytes.copy(central, 46);
 
 		centralDir.push(central);
@@ -192,13 +237,18 @@ function buildZipBuffer(entries: ZipEntry[]): Buffer {
 // ---------------------------------------------------------------------------
 
 async function loadDistignore(repoRoot: string): Promise<string[]> {
-	const path = join(repoRoot, '.distignore');
-	if (!existsSync(path)) return [];
-	const text = await readFile(path, 'utf8');
+	const file = Bun.file(join(repoRoot, '.distignore'));
+
+	if (!(await file.exists())) {
+		return [];
+	}
+
+	const text = await file.text();
+
 	return text
 		.split('\n')
-		.map((l) => l.trim())
-		.filter((l) => l.length > 0 && !l.startsWith('#'));
+		.map((line) => line.trim())
+		.filter((line) => line.length > 0 && !line.startsWith('#'));
 }
 
 function isIgnored(rel: string, patterns: string[]): boolean {
@@ -231,15 +281,26 @@ async function iterInputs(repoRoot: string): Promise<string[]> {
 
 	for (const name of ['LICENSE', 'SKILL.md']) {
 		const candidate = join(repoRoot, name);
-		if (existsSync(candidate)) paths.push(candidate);
+
+		if (await Bun.file(candidate).exists()) {
+			paths.push(candidate);
+		}
 	}
 
 	const usageGuide = join(repoRoot, 'docs', 'usage-guide.md');
-	if (existsSync(usageGuide)) paths.push(usageGuide);
+
+	if (await Bun.file(usageGuide).exists()) {
+		paths.push(usageGuide);
+	}
 
 	const skillsDir = join(repoRoot, 'skills');
-	if (existsSync(skillsDir)) {
-		paths.push(...(await walkFiles(skillsDir)));
+
+	try {
+		if ((await stat(skillsDir)).isDirectory()) {
+			paths.push(...(await walkFiles(skillsDir)));
+		}
+	} catch {
+		// skills/ does not exist
 	}
 
 	return [...new Set(paths)].sort();
@@ -252,9 +313,18 @@ async function iterInputs(repoRoot: string): Promise<string[]> {
  */
 async function iterClaudePluginInputs(repoRoot: string): Promise<string[]> {
 	const base = join(repoRoot, '.claude-plugin');
-	if (!existsSync(base)) return [];
+
+	try {
+		if (!(await stat(base)).isDirectory()) {
+			return [];
+		}
+	} catch {
+		return [];
+	}
+
 	const all = await walkFiles(base);
-	return all.filter((p) => p.endsWith('.json')).sort();
+
+	return all.filter((path) => path.endsWith('.json')).sort();
 }
 
 // ---------------------------------------------------------------------------
@@ -279,7 +349,11 @@ async function buildArchive(
 		inputs = [...new Set([...inputs, ...pluginFiles])].sort();
 	}
 
-	if (existsSync(outPath)) await unlink(outPath);
+	try {
+		await Bun.file(outPath).delete();
+	} catch {
+		// Output file does not exist.
+	}
 
 	const entries: ZipEntry[] = [];
 	for (const absPath of inputs) {
@@ -319,13 +393,36 @@ export async function buildSkill(repoRoot: string): Promise<string> {
 // CLI entrypoint
 // ---------------------------------------------------------------------------
 
-if (import.meta.main) {
-	const isSkill = process.argv.includes('--skill');
-	console.log(`Building HR Skills distribution (${isSkill ? '.skill' : 'zip'})...`);
+const {
+	values: { zip, skill },
+} = parseArgs({
+	args: Bun.argv,
+	options: {
+		zip: {
+			type: 'boolean',
+		},
+		skill: {
+			type: 'boolean',
+		},
+	},
+	strict: true,
+	allowPositionals: true,
+});
 
-	if (isSkill) {
+if (import.meta.main) {
+	if (zip && skill) {
+		throw new Error('Cannot specify both --zip and --skill.');
+	}
+
+	if (zip) {
+		console.log('Building HR Skills distribution (.zip)...');
+		await buildZip(ROOT_DIR);
+	} else if (skill) {
+		console.log('Building HR Skills distribution (.skill)...');
 		await buildSkill(ROOT_DIR);
 	} else {
-		await buildZip(ROOT_DIR);
+		console.log('Building HR Skills distribution (.zip + .skill)...');
+
+		await Promise.all([buildZip(ROOT_DIR), buildSkill(ROOT_DIR)]);
 	}
 }

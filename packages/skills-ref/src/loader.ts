@@ -66,17 +66,26 @@ export function readProperties(skillDir: string): SkillProperties {
 	const content = readFileSync(skillMd, 'utf8');
 	const [frontmatter] = parseFrontmatter(content);
 
+	const {
+		name,
+		description,
+		license,
+		compatibility,
+		metadata,
+		['allowed-tools']: allowedTools,
+	} = frontmatter;
+
 	const result = v.safeParse(SkillPropertiesSchema, {
-		name: frontmatter['name'],
-		description: frontmatter['description'],
-		license: toStringOrUndefined(frontmatter['license']),
-		compatibility: toStringOrUndefined(frontmatter['compatibility']),
-		allowedTools: toStringOrUndefined(frontmatter['allowed-tools']),
-		metadata: toStringRecord(frontmatter['metadata']),
+		name,
+		description,
+		license: toStringOrUndefined(license),
+		compatibility: toStringOrUndefined(compatibility),
+		allowedTools: toStringOrUndefined(allowedTools),
+		metadata: toStringRecord(metadata),
 	});
 
 	if (!result.success) {
-		throw new ValidationError(v.summarize(result.issues));
+		throw new ValidationError(v.summarize(result.issues), result.issues);
 	}
 
 	return result.output;

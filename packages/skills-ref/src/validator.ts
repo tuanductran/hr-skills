@@ -123,9 +123,11 @@ export function validate(skillDir: string): string[] {
 	try {
 		[metadata] = parseFrontmatter(content);
 	} catch (error) {
-		if (error instanceof ParseError) return [error.message];
+		if (error instanceof ParseError) {
+			return [error.message];
+		}
 
-		return [`Failed to parse SKILL.md: ${String(error)}`];
+		throw error;
 	}
 
 	const errors: string[] = [];

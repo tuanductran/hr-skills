@@ -20,10 +20,22 @@
 		"llm",
 		"agents"
 	],
+	"main": "./dist/index.mjs",
+	"module": "./dist/index.mjs",
+	"exports": {
+		".": {
+			"default": "./dist/index.mjs"
+		}
+	},
+	"files": [
+		"dist"
+	],
 	"scripts": {
-		"build": "bun run build-zip && bun run build-skill",
-		"build-zip": "bun src/build/build-skills.ts",
-		"build-skill": "bun src/build/build-skills.ts --skill",
+		"build": "tsdown",
+		"build-skills": "bun src/build/build-skills.ts",
+		"dev": "tsdown --watch",
+		"test": "bun test",
+		"typecheck": "tsc --noEmit",
 		"validate": "bun src/validation/validate.ts",
 		"sync": "bun src/build/sync.ts",
 		"matrix": "bun src/build/generate-skill-matrix.ts",
@@ -34,15 +46,13 @@
 		"recommend": "bun src/cli/recommend.ts",
 		"execute": "bun src/cli/execute-plan.ts",
 		"evaluate": "bun src/cli/run-evaluation.ts",
-		"skill-review": "bun src/cli/skill-review.ts",
-		"test": "bun test",
-		"dev": "bun --watch src/validation/validate.ts",
-		"typecheck": "tsc --noEmit"
+		"skill-review": "bun src/cli/skill-review.ts"
 	},
 	"dependencies": {
 		"@clack/prompts": "catalog:",
 		"valibot": "catalog:",
 		"skills-ref": "workspace:*",
-		"yaml": "catalog:"
+		"yaml": "catalog:",
+		"tsdown": "catalog:"
 	}
 }

@@ -104,4 +104,24 @@ description: desc
 			rmSync(tmp, { recursive: true, force: true });
 		}
 	});
+
+	it('returns parse errors for invalid frontmatter', () => {
+		const tmp = makeTempSkill(`---
+		name:
+  -
+		---`);
+
+		try {
+			const errors = validate(tmp);
+
+			expect(errors).toHaveLength(1);
+			expect(typeof errors[0]).toBe('string');
+			expect(errors[0]).not.toBe('');
+		} finally {
+			rmSync(tmp, {
+				recursive: true,
+				force: true,
+			});
+		}
+	});
 });

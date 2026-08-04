@@ -18,7 +18,6 @@ import {
 	REGISTRY_SCHEMA_VERSION,
 	RELEVANCE_SIGNALS_PATH,
 	SKILL_LINK_REGEX,
-	SKILLS_DIR,
 } from '../shared/constants.js';
 import {
 	computeTier,
@@ -34,6 +33,7 @@ import {
 	reRankRelatedSkills,
 } from '../search/relevance-signals.js';
 import type { Registry, RegistryEntry, RelevanceSignalTable } from '../shared/types.js';
+import { SKILLS_DIR } from 'skills-ref';
 
 const HR_PREFIX_REGEX = /^hr-/;
 

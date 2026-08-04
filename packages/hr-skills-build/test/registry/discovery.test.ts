@@ -2,7 +2,8 @@ import { describe, expect, it } from 'bun:test';
 import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { getHrSkills } from '../../src/registry/discovery.js';
-import { HR_SKILL_PREFIX, SKILLS_DIR } from '../../src/shared/constants.js';
+import { HR_SKILL_PREFIX } from '../../src/shared/constants.js';
+import { SKILLS_DIR } from 'skills-ref'
 
 describe('getHrSkills()', () => {
 	it('returns at least one skill', async () => {

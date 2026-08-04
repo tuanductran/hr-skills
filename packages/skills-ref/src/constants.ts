@@ -1,8 +1,7 @@
-import { dirname, join } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { join } from 'node:path';
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const ROOT_DIR = join(__dirname, '../../..');
+/** Absolute path to the repository root. */
+export const ROOT_DIR = join(import.meta.dirname, '../../..');
 
 /** Absolute path to the `skills/` directory at the repository root. */
 export const SKILLS_DIR = join(ROOT_DIR, 'skills');
@@ -12,12 +11,6 @@ export const SKILLS_DIR = join(ROOT_DIR, 'skills');
  * Maps to the `allowedTools` property in {@link SkillProperties}.
  */
 export const ALLOWED_TOOLS_KEY = 'allowed-tools';
-
-/**
- * Matches any non-whitespace character.
- * Used when scanning YAML lines for their indentation level.
- */
-export const NON_WHITESPACE_REGEX = /\S/u;
 
 /** The delimiter string that opens and closes a YAML frontmatter block in `SKILL.md`. */
 export const FRONTMATTER_DELIMITER = '---';
