@@ -16,10 +16,9 @@ import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import * as p from '@clack/prompts';
 
-import type { SkillCategory } from '../registry/classifier.js';
 import { InvalidSearchQueryError, searchSkills } from '../search/search.js';
 import { ROOT_DIR } from '../shared/constants.js';
-import type { Registry, SkillSearchQuery } from '../shared/types.js';
+import type { Registry, SkillCategory, SkillSearchQuery } from '../shared/types.js';
 import { printUsageAndExit, runCli } from './cli-bootstrap.js';
 
 const REGISTRY_PATH = join(ROOT_DIR, 'registry', 'skills.json');

@@ -43,7 +43,7 @@ export type SkillFrontmatter = v.InferOutput<typeof SkillFrontmatterSchema>;
 
 /**
  * All valid domain category slugs for a skill entry.
- * Must stay in sync with `SkillCategory` in classifier.ts.
+ * Must stay in sync with `SkillCategory` in `shared/types.ts`.
  */
 const SKILL_CATEGORIES = [
 	'talent-acquisition',

@@ -4,7 +4,7 @@
 	"private": true,
 	"description": "Reference library for Agent Skills — validate, read, and generate prompts from SKILL.md files",
 	"type": "module",
-	"license": "Apache-2.0",
+	"license": "MIT",
 	"author": "Tuan Duc Tran",
 	"homepage": "https://github.com/tuanductran/hr-skills/tree/main/packages/skills-ref#readme",
 	"repository": {
