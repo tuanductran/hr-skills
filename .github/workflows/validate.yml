@@ -23,7 +23,7 @@ jobs:
           access_token: ${{ github.token }}
 
       - name: Check out code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Cache turbo build setup
         uses: actions/cache@v6
