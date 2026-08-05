@@ -111,7 +111,7 @@ function renderRoutingTables(
 	if (uncategorized.length > 0) {
 		lines.push('### Uncategorized (add to classifier.ts)', '');
 		lines.push(
-			'> ⚠️  These skills were not matched by the classifier. Add them to `src/classifier.ts`.',
+			'> ⚠️  These skills were not matched by the classifier. Add them to `src/registry/classifier.ts`.',
 			'',
 		);
 		lines.push('| Skill | Use when the task involves... |');
