@@ -13,33 +13,13 @@ import { findSkillMd, readProperties } from './loader.js';
  * @returns `true` if `value` is a plain object, `false` otherwise.
  */
 export function isPlainObject(value: unknown): value is Record<string, unknown> {
-	return (
-		value != null &&
-		typeof value === 'object' &&
-		Object.getPrototypeOf(value) === Object.prototype
-	);
-}
+	if (value === null || typeof value !== 'object') {
+		return false;
+	}
 
-/**
- * Strip surrounding single or double quotes from a string.
- * If the string is not quoted, it is returned unchanged.
- *
- * @param value - The string to unquote.
- * @returns The string with surrounding matching quotes removed, or the original string.
- *
- * @example
- * unquote('"hello"')  // => 'hello'
- * unquote("'world'")  // => 'world'
- * unquote('no-quotes') // => 'no-quotes'
- */
-export function unquote(value: string): string {
-	if (
-		(value.startsWith('"') && value.endsWith('"')) ||
-		(value.startsWith("'") && value.endsWith("'"))
-	)
-		return value.slice(1, -1);
+	const prototype = Object.getPrototypeOf(value);
 
-	return value;
+	return prototype === Object.prototype || prototype === null;
 }
 
 /**
@@ -125,4 +105,37 @@ export function makeTempSkill(content: string): string {
 	const tmp = mkdtempSync(join(tmpdir(), 'skill-test-'));
 	writeFileSync(join(tmp, 'SKILL.md'), content, 'utf8');
 	return tmp;
+}
+
+/**
+ * Recursively removes keys that could be used for prototype pollution from a
+ * parsed YAML value.
+ *
+ * Object keys named `__proto__`, `constructor`, and `prototype` are discarded.
+ * Arrays are sanitized recursively, while primitive values are returned
+ * unchanged.
+ *
+ * @param value - Parsed YAML value.
+ * @returns A sanitized copy of the input value.
+ */
+export function sanitizeYamlValue(value: unknown): unknown {
+	if (Array.isArray(value)) {
+		return value.map(sanitizeYamlValue);
+	}
+
+	if (value && typeof value === 'object') {
+		const output = Object.create(null) as Record<string, unknown>;
+
+		for (const [key, child] of Object.entries(value)) {
+			if (key === '__proto__' || key === 'constructor' || key === 'prototype') {
+				continue;
+			}
+
+			output[key] = sanitizeYamlValue(child);
+		}
+
+		return output;
+	}
+
+	return value;
 }

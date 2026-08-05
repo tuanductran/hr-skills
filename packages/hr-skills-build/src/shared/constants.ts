@@ -1,13 +1,5 @@
-import { dirname, join } from 'node:path';
-import { fileURLToPath } from 'node:url';
-
-const __dirname = dirname(fileURLToPath(import.meta.url));
-
-/** Absolute path to the repository root (four levels up from `src/shared/`). */
-export const ROOT_DIR = join(__dirname, '../../../..');
-
-/** Absolute path to the `skills/` directory at the repo root. */
-export const SKILLS_DIR = join(ROOT_DIR, 'skills');
+import { join } from 'node:path';
+import { ROOT_DIR } from 'skills-ref';
 
 /**
  * Base URL for linking to a file in this repo on GitHub, e.g. for use in

@@ -6,9 +6,8 @@
 			"dependsOn": ["^build"],
 			"outputs": ["dist/**"]
 		},
-		"hr-skills-build#build": {
-			"dependsOn": ["^build"],
-			"outputs": []
+		"build-skills": {
+			"cache": false
 		},
 		"dev": {
 			"persistent": true,
@@ -24,38 +23,46 @@
 			"dependsOn": ["^build"]
 		},
 		"sync": {
-			"cache": false
+			"cache": false,
+			"dependsOn": ["^build"]
 		},
 		"discover": {
-			"cache": false
+			"cache": false,
+			"dependsOn": ["^build"]
 		},
 		"recommend": {
-			"cache": false
+			"cache": false,
+			"dependsOn": ["^build"]
 		},
 		"execute": {
 			"cache": false,
-			"outputs": ["execution-result.json"]
+			"outputs": ["execution-result.json"],
+			"dependsOn": ["^build"]
 		},
 		"matrix": {
 			"cache": false,
-			"outputs": ["docs/skill-matrix.md"]
+			"outputs": ["docs/skill-matrix.md"],
+			"dependsOn": ["^build"]
 		},
 		"registry": {
 			"cache": false,
-			"outputs": ["registry/skills.json"]
+			"outputs": ["registry/skills.json"],
+			"dependsOn": ["^build"]
 		},
 		"signals": {
 			"cache": false,
 			"outputs": ["registry/relevance-signals.json"],
-			"dependsOn": ["evaluate"]
+			"dependsOn": ["^build", "evaluate"]
 		},
 		"plan": {
 			"cache": false,
-			"outputs": ["execution-plan.json"]
+			"outputs": ["execution-plan.json"],
+			"dependsOn": ["^build"]
 		},
 		"evaluate": {
 			"cache": false,
-			"outputs": ["eval-report.json"]
+			"outputs": ["eval-report.json"],
+			"dependsOn": ["^build"]
 		}
 	}
 }

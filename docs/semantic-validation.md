@@ -192,7 +192,7 @@ command, immediately after duplicate-content detection:
 ```bash
 bun run validate          # from repo root
 # or
-bun src/validate.ts       # from packages/hr-skills-build/
+bun run validate       # from packages/hr-skills-build/
 ```
 
 Warnings from duplicate detection and semantic validation are merged into

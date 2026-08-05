@@ -155,7 +155,7 @@ The `reason` field is crucial for explainability — it tells future developers 
 Generate a plan and save to `execution-plan.json`:
 
 ```bash
-bun src/generate-plan.ts "create interview questions for a senior manager"
+bun run plan "create interview questions for a senior manager"
 ```
 
 Output includes:

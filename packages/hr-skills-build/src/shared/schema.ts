@@ -1,51 +1,66 @@
 import * as v from 'valibot';
 
-/**
- * Valibot schema for `.claude-plugin/marketplace.json`.
- * Used by `sync.ts` to parse and validate the file before updating it.
- */
-export const MarketplaceJsonSchema = v.object({
-	name: v.string(),
-	description: v.string(),
-	plugins: v.array(
-		v.object({
-			name: v.string(),
-			source: v.string(),
-			description: v.string(),
-			skills: v.array(v.string()),
-		}),
-	),
+// ---------------------------------------------------------------------------
+// Common schemas
+// ---------------------------------------------------------------------------
+
+const TrimmedString = v.pipe(v.string(), v.trim());
+const NonEmptyString = v.pipe(TrimmedString, v.minLength(1));
+const EmailString = v.pipe(TrimmedString, v.email());
+
+// ---------------------------------------------------------------------------
+// Marketplace
+// ---------------------------------------------------------------------------
+
+const MarketplaceOwnerSchema = v.strictObject({
+	name: NonEmptyString,
+	email: EmailString,
+});
+
+const MarketplacePluginSchema = v.strictObject({
+	name: NonEmptyString,
+	source: v.literal('./'),
+	description: NonEmptyString,
+	skills: v.array(v.pipe(NonEmptyString, v.startsWith('./skills/'))),
 });
 
 /**
- * Valibot schema for the YAML frontmatter of a skill's `SKILL.md`.
- * All fields are optional — callers should treat a missing field as absent
- * rather than as an error at this layer (higher-level validation handles
- * required-field checks).
+ * Schema for `.claude-plugin/marketplace.json`.
  */
-export const SkillFrontmatterSchema = v.object({
-	name: v.optional(v.pipe(v.string(), v.trim())),
-	description: v.optional(v.pipe(v.string(), v.trim())),
-	metadata: v.optional(
-		v.object({
-			author: v.optional(v.pipe(v.string(), v.trim())),
-			version: v.optional(v.pipe(v.string(), v.trim())),
-		}),
-	),
+export const MarketplaceJsonSchema = v.strictObject({
+	$schema: v.literal('https://json.schemastore.org/claude-code-marketplace.json'),
+	name: NonEmptyString,
+	description: NonEmptyString,
+	owner: MarketplaceOwnerSchema,
+	plugins: v.array(MarketplacePluginSchema),
+});
+
+// ---------------------------------------------------------------------------
+// Skill frontmatter
+// ---------------------------------------------------------------------------
+
+const MetadataSchema = v.strictObject({
+	author: v.optional(NonEmptyString),
+	version: v.optional(NonEmptyString),
+});
+
+/**
+ * Schema for `SKILL.md` frontmatter.
+ */
+export const SkillFrontmatterSchema = v.strictObject({
+	name: v.optional(NonEmptyString),
+	description: v.optional(NonEmptyString),
+	metadata: v.optional(MetadataSchema),
 });
 
 /** TypeScript type inferred from {@link SkillFrontmatterSchema}. */
 export type SkillFrontmatter = v.InferOutput<typeof SkillFrontmatterSchema>;
 
 // ---------------------------------------------------------------------------
-// Skill registry schema
+// Registry
 // ---------------------------------------------------------------------------
 
-/**
- * All valid domain category slugs for a skill entry.
- * Must stay in sync with `SkillCategory` in `shared/types.ts`.
- */
-const SKILL_CATEGORIES = [
+const SkillCategories = [
 	'talent-acquisition',
 	'onboarding-offboarding',
 	'performance-talent',
@@ -61,38 +76,34 @@ const SKILL_CATEGORIES = [
 	'uncategorized',
 ] as const;
 
-/**
- * Valibot schema for a single entry in `registry/skills.json`.
- * Mirrors the `RegistryEntry` interface in types.ts.
- */
-const RegistryEntrySchema = v.object({
-	id: v.pipe(v.string(), v.minLength(1)),
-	name: v.pipe(v.string(), v.minLength(1)),
-	version: v.string(),
-	description: v.string(),
+const RegistryPathsSchema = v.strictObject({
+	content: v.boolean(),
+	prompts: v.boolean(),
+	examples: v.boolean(),
+});
+
+const RegistryEntrySchema = v.strictObject({
+	id: NonEmptyString,
+	name: NonEmptyString,
+	version: NonEmptyString,
+	description: NonEmptyString,
 	tier: v.picklist(['full', 'partial', 'bare']),
-	domain: v.picklist(SKILL_CATEGORIES),
-	tags: v.array(v.string()),
-	aliases: v.array(v.string()),
-	capabilities: v.array(v.string()),
-	triggerPhrases: v.array(v.string()),
-	paths: v.object({
-		content: v.boolean(),
-		prompts: v.boolean(),
-		examples: v.boolean(),
-	}),
-	dependencies: v.array(v.string()),
-	relatedSkills: v.array(v.string()),
+	domain: v.picklist(SkillCategories),
+	tags: v.array(NonEmptyString),
+	aliases: v.array(NonEmptyString),
+	capabilities: v.array(NonEmptyString),
+	triggerPhrases: v.array(NonEmptyString),
+	paths: RegistryPathsSchema,
+	dependencies: v.array(NonEmptyString),
+	relatedSkills: v.array(NonEmptyString),
 });
 
 /**
- * Valibot schema for the full `registry/skills.json` document.
- * Used by `validate-registry.ts` to confirm the committed file conforms to
- * the expected shape before checking staleness, duplicates, and graph integrity.
+ * Schema for `registry/skills.json`.
  */
-export const RegistrySchema = v.object({
-	schemaVersion: v.number(),
-	generatedAt: v.string(),
-	skillCount: v.number(),
+export const RegistrySchema = v.strictObject({
+	schemaVersion: v.pipe(v.number(), v.minValue(1)),
+	generatedAt: NonEmptyString,
+	skillCount: v.pipe(v.number(), v.minValue(0)),
 	skills: v.array(RegistryEntrySchema),
 });

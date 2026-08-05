@@ -148,7 +148,7 @@ signal values.
 ```bash
 bun run signals
 # or, from packages/hr-skills-build:
-bun src/generate-relevance-signals.ts
+bun run signals
 ```
 
 Regenerate whenever golden fixtures change (after `bun run evaluate
@@ -233,9 +233,9 @@ artifact.  No change to the default registry output.
 
 **Deliverables:**
 
-- `src/relevance-signals.ts` — pure signal functions and `RelevanceSignalTable`
+- `src/search/relevance-signals.ts` — pure signal functions and `RelevanceSignalTable`
   type.
-- `src/generate-relevance-signals.ts` — CLI entry point.
+- `src/cli/generate-relevance-signals.ts` — CLI entry point.
 - `evaluation-datasets.ts` — `loadAllGoldenFixtures()` added.
 - `constants.ts` — `RELEVANCE_SIGNALS_PATH` added.
 - `registry.ts` — `buildRegistry(signalTable?)` — optional signal integration,

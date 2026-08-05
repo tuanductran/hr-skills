@@ -1,28 +1,32 @@
+import type { BaseIssue } from 'valibot';
+
 /**
- * Base error for all skill-related failures.
+ * Base class for all skill-related errors.
  */
 export class SkillError extends Error {
 	constructor(message: string, options?: ErrorOptions) {
 		super(message, options);
+
 		this.name = new.target.name;
 	}
 }
 
 /**
- * Error thrown when a skill cannot be parsed.
+ * Thrown when a skill cannot be parsed.
  */
 export class ParseError extends SkillError {}
 
 /**
- * Error thrown when a skill fails validation.
+ * Thrown when skill validation fails.
  */
 export class ValidationError extends SkillError {
 	constructor(
 		message: string,
-		public readonly errors: readonly string[] = [message],
+		readonly issues: readonly BaseIssue<unknown>[],
 		options?: ErrorOptions,
 	) {
 		super(message, options);
-		Object.freeze(this.errors);
+
+		Object.freeze(this.issues);
 	}
 }

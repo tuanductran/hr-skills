@@ -16,8 +16,8 @@
  * report.
  *
  * Usage:
- *   bun src/cli/skill-review.ts hr-onboarding hr-recruiting
- *   bun src/cli/skill-review.ts --list-file changed-skills.txt
+ *   bun run skill-review hr-onboarding hr-recruiting
+ *   bun run skill-review --list-file changed-skills.txt
  */
 
 import { readFile } from 'node:fs/promises';

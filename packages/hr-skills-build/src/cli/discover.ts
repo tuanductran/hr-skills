@@ -7,17 +7,16 @@
  * (`bun run registry`) before this command is used.
  *
  * Usage:
- *   bun src/discover.ts "onboard new hires"
- *   bun src/discover.ts "onboarding" --domain onboarding-offboarding
- *   bun src/discover.ts "onbording" --limit 3 --no-fuzzy
+ *   bun run discover "onboard new hires"
+ *   bun run discover "onboarding" --domain onboarding-offboarding
+ *   bun run discover "onbording" --limit 3 --no-fuzzy
  */
 
 import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import * as p from '@clack/prompts';
-
+import { ROOT_DIR } from 'skills-ref';
 import { InvalidSearchQueryError, searchSkills } from '../search/search.js';
-import { ROOT_DIR } from '../shared/constants.js';
 import type { Registry, SkillCategory, SkillSearchQuery } from '../shared/types.js';
 import { printUsageAndExit, runCli } from './cli-bootstrap.js';
 
@@ -38,8 +37,8 @@ async function main() {
 
 	if (!text || text.startsWith('--')) {
 		printUsageAndExit(
-			'Usage: bun src/discover.ts "<query>" [--domain <domain>] [--limit N] [--no-fuzzy]',
-			'  bun src/discover.ts "onboard new hires"',
+			'Usage: bun run discover "<query>" [--domain <domain>] [--limit N] [--no-fuzzy]',
+			'  bun run discover "onboard new hires"',
 		);
 	}
 

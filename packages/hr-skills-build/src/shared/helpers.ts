@@ -1,7 +1,7 @@
 import { readdir, readFile, stat } from 'node:fs/promises';
 import { join } from 'node:path';
-
-import { HR_SKILL_PREFIX, SKILLS_DIR } from './constants.js';
+import { SKILLS_DIR } from 'skills-ref';
+import { HR_SKILL_PREFIX } from './constants.js';
 import { parseSkillFrontmatter } from './parser.js';
 import type { SkillFrontmatter } from './schema.js';
 import type {
