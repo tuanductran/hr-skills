@@ -4,8 +4,8 @@
  * CLI: Get "skills you might also need" recommendations for a given skill ID.
  *
  * Usage:
- *   bun src/recommend.ts hr-onboarding
- *   bun src/recommend.ts hr-onboarding --limit 3
+ *   bun src/cli/recommend.ts hr-onboarding
+ *   bun src/cli/recommend.ts hr-onboarding --limit 3
  */
 
 import * as p from '@clack/prompts';
@@ -18,8 +18,8 @@ async function main() {
 
 	if (!skillId) {
 		printUsageAndExit(
-			'Usage: bun src/recommend.ts <skill-id> [--limit N]',
-			'  bun src/recommend.ts hr-onboarding',
+			'Usage: bun src/cli/recommend.ts <skill-id> [--limit N]',
+			'  bun src/cli/recommend.ts hr-onboarding',
 		);
 	}
 

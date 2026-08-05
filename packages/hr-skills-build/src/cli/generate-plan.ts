@@ -4,8 +4,8 @@
  * CLI: Generate an execution plan for a given intent.
  *
  * Usage:
- *   bun src/generate-plan.ts "create an onboarding checklist"
- *   bun src/generate-plan.ts "help with succession planning and talent development"
+ *   bun src/cli/generate-plan.ts "create an onboarding checklist"
+ *   bun src/cli/generate-plan.ts "help with succession planning and talent development"
  */
 
 import { writeFileSync } from 'node:fs';
@@ -24,8 +24,8 @@ async function main() {
 
 	if (!intent) {
 		printUsageAndExit(
-			'Usage: bun src/generate-plan.ts "<user intent>"',
-			'  bun src/generate-plan.ts "Create interview questions for a senior manager"',
+			'Usage: bun src/cli/generate-plan.ts "<user intent>"',
+			'  bun src/cli/generate-plan.ts "Create interview questions for a senior manager"',
 		);
 	}
 

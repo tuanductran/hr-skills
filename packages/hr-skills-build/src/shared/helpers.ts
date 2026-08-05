@@ -160,7 +160,7 @@ export async function countFiles(dirPath: string): Promise<number> {
  * - `'partial'` — one or two subdirectories are present.
  *
  * This is the single source of truth for tier classification — used by both
- * `generate-skill-matrix.ts` and `generate-registry.ts` so the matrix and the
+ * `generate-skill-matrix.ts` and `registry/registry.ts` so the matrix and the
  * registry can never disagree about a skill's tier.
  *
  * @param hasContent - Whether the `content/` subdirectory exists and is non-empty.
