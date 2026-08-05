@@ -129,6 +129,15 @@ metadata:
 - Generate release notes from grouped Conventional Commits.
 - Follow Conventional Commits 1.0.0 whenever possible.
 
+### Temporary files
+
+- Never create temporary patch or diff files (for example `*.patch` or `*.diff`) unless the user explicitly requests them.
+- Prefer piping output directly to Git or the terminal instead of writing temporary files.
+- If a temporary file is required during execution, treat it as ephemeral:
+  - Before creating a temporary file, verify whether it is ignored by Git (`.gitignore`); if not, avoid creating it or remove it before completing the task.
+  - Remove the file before completing the task.
+  - Never leave temporary artifacts behind or include them in commits.
+
 ## Conventional Commit types
 
 - **feat** — Introduce a new feature
