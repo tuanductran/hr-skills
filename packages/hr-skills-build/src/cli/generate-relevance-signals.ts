@@ -6,7 +6,7 @@
  * `registry/relevance-signals.json`.
  *
  * Usage:
- *   bun src/generate-relevance-signals.ts
+ *   bun src/cli/generate-relevance-signals.ts
  *
  * Equivalent root alias:
  *   bun run signals

@@ -7,9 +7,9 @@
  * (`bun run registry`) before this command is used.
  *
  * Usage:
- *   bun src/discover.ts "onboard new hires"
- *   bun src/discover.ts "onboarding" --domain onboarding-offboarding
- *   bun src/discover.ts "onbording" --limit 3 --no-fuzzy
+ *   bun src/cli/discover.ts "onboard new hires"
+ *   bun src/cli/discover.ts "onboarding" --domain onboarding-offboarding
+ *   bun src/cli/discover.ts "onbording" --limit 3 --no-fuzzy
  */
 
 import { readFile } from 'node:fs/promises';
@@ -37,8 +37,8 @@ async function main() {
 
 	if (!text || text.startsWith('--')) {
 		printUsageAndExit(
-			'Usage: bun src/discover.ts "<query>" [--domain <domain>] [--limit N] [--no-fuzzy]',
-			'  bun src/discover.ts "onboard new hires"',
+			'Usage: bun src/cli/discover.ts "<query>" [--domain <domain>] [--limit N] [--no-fuzzy]',
+			'  bun src/cli/discover.ts "onboard new hires"',
 		);
 	}
 
