@@ -32,7 +32,7 @@
  *
  * ## Stop-word / common-HR-term filtering
  *
- * A built-in list of ~70 HR domain stop-words ("employee", "manager",
+ * A built-in list of ~150 HR domain stop-words ("employee", "manager",
  * "process", "team", …) is subtracted before similarity is measured.  This
  * prevents high vocabulary overlap caused by domain terminology alone from
  * triggering false-positive warnings.

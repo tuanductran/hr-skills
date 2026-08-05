@@ -53,10 +53,11 @@ skills/hr-your-skill/
      ever activates the skill
    - `metadata.author`, `metadata.version` (start new skills at `"1.0.0"`)
 4. Write the required body sections:
-   - **Supported tasks** — a bullet list, recommended 8–12 items
-   - **Key prompts** — 3–6 subtopics, each with 4–7 numbered prompts using `[placeholders]`
-     for variable inputs
-   - **Tips** — 4–6 bullets of practical, professional guidance
+   - **Supported tasks** — a bullet list, **8–12 items required** (`bun run validate`
+     fails outside this range, it isn't just a suggestion)
+   - **Key prompts** — **3–6 subtopics required**, each with **4–7 numbered prompts
+     required**, using `[placeholders]` for variable inputs
+   - **Tips** — **4–6 bullets required** of practical, professional guidance
 5. (Recommended for Full tier) Add `content/*.md`, `prompts/*.md`, `examples/*.md`:
    - `content/*.md` — explains concepts in depth (Overview / Main topics / Practical guidance
      is a typical, not mandatory, shape)

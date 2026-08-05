@@ -11,6 +11,12 @@ import type { SkillDirectoryOptions } from '../shared/types.js';
  *  1. It starts with the configured `prefix` (default: `"hr-"`).
  *  2. It contains a `SKILL.md` file at its root (checked via `fs.access`).
  *
+ * Currently used only by `build/sync.ts`, which needs that `SKILL.md`
+ * guarantee before generating marketplace.json entries. Most other callers
+ * use the lighter `shared/helpers.ts#discoverSkills()` instead (no
+ * existence check, no options) since they read `SKILL.md` themselves right
+ * after and handle a missing file there.
+ *
  * @param options - Filtering and sorting options.
  * @param options.prefix - Directory-name prefix to filter by. Defaults to `"hr-"`.
  * @param options.sort - Whether to return names in lexicographic order. Defaults to `true`.

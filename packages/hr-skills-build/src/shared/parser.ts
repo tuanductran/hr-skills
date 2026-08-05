@@ -16,7 +16,12 @@ import { SkillFrontmatterSchema } from './schema.js';
 import type { SkillMeta } from './types.js';
 
 /**
- * Parse YAML frontmatter from a markdown document.
+ * Parse and validate a markdown document's YAML frontmatter against
+ * {@link SkillFrontmatterSchema}.
+ *
+ * Never throws: missing frontmatter, invalid YAML, and schema validation
+ * failures all resolve to `{}` rather than raising an error, so callers can
+ * treat every field as optional.
  */
 export function parseSkillFrontmatter(content: string): SkillFrontmatter {
 	const frontmatter = extractMatch(FRONTMATTER_REGEX, content);
@@ -37,7 +42,12 @@ export function parseSkillFrontmatter(content: string): SkillFrontmatter {
 }
 
 /**
- * Parse skill metadata from a markdown document.
+ * Read a skill's `SKILL.md` and derive display metadata from it: the
+ * description split at "Use when" into `coverage`/`scopeSentence`, the
+ * `## Supported tasks` list, and up to 5 quoted example prompts from
+ * `## Key prompts` as `triggerPhrases`.
+ *
+ * @throws If `SKILL.md` cannot be read from the filesystem (see `readSkill`).
  */
 export async function parseSkillMeta(skillName: string): Promise<SkillMeta> {
 	const { content, frontmatter } = await readSkill(skillName);

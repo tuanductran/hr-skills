@@ -86,6 +86,8 @@ Repository configuration includes:
 - maximum line length disabled
 - duplicate headings allowed in different sections
 - multiple H1 headings permitted
+- blank lines around lists not enforced by markdownlint itself (`MD032: false`)
+  — see "Blank line before lists" below for the separate rule that does cover this
 - fenced code blocks required
 - table column alignment not enforced
 

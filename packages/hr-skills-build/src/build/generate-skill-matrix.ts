@@ -1,7 +1,7 @@
 /**
  * Generates docs/skill-matrix.md — a snapshot of every skill's maturity tier,
- * content depth, and validation status. Run via `bun run matrix` or automatically
- * as a pre-release step in CI (matrix.yml workflow).
+ * content depth, and validation status. Run via `bun run matrix`, or
+ * automatically on every push to `main` (see .github/workflows/matrix.yml).
  */
 
 import { writeFile } from 'node:fs/promises';

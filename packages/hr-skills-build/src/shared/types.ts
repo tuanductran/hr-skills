@@ -120,8 +120,12 @@ export interface RegistryEntry {
 	 */
 	dependencies: string[];
 	/**
-	 * Other skill IDs in the same domain, ranked by shared-tag overlap and
-	 * capped — a lightweight, fully deterministic recommendation graph.
+	 * Other skill IDs in the same domain, ranked by shared-tag overlap. When
+	 * `bun run registry` (the default path) finds a committed relevance
+	 * signal table, this static ranking is then blended with observed
+	 * co-selection rates via `reRankRelatedSkills` — which can also surface
+	 * cross-domain pairs the tag overlap alone missed. Still fully
+	 * deterministic (no randomness), just not purely tag-based in practice.
 	 */
 	relatedSkills: string[];
 }
@@ -264,12 +268,38 @@ export interface Registry {
 // Planner and validation types
 // ---------------------------------------------------------------------------
 
+/**
+ * Why a skill was included in an execution plan. Read together with
+ * `ExecutionStep.rationale` for a human-readable explanation.
+ *
+ * Note the two that are easy to conflate: `'related-skill'` is a *capability*
+ * match (the skill's declared capabilities partially/fuzzily overlap the
+ * requested one — see `matchCapabilityAgainstRegistry()` in planner.ts),
+ * while `'recommended-pairing'` comes from the *registry* `relatedSkills`
+ * graph (a different skill was already selected, and this one is commonly
+ * used alongside it). Despite the name, `'related-skill'` has nothing to do
+ * with `RegistryEntry.relatedSkills`.
+ */
 export type SelectionReason =
+	/** Exact substring match against one of the skill's declared capabilities. */
 	| 'direct-capability-match'
+	/**
+	 * Reserved — not currently assigned anywhere in `planner.ts`. Intended
+	 * for a future alias/alternate-name match, distinct from a capability
+	 * match, but no such matcher exists yet.
+	 */
 	| 'alias-match'
+	/**
+	 * Reserved — not currently assigned anywhere in `planner.ts`. Intended
+	 * for a future "best single skill for this whole domain" selection, but
+	 * no such matcher exists yet.
+	 */
 	| 'domain-expert'
+	/** Pulled in because a selected skill declares it as a dependency. */
 	| 'dependency-requirement'
+	/** Pulled in via `RegistryEntry.relatedSkills` of an already-selected skill. */
 	| 'recommended-pairing'
+	/** Partial/fuzzy capability-overlap match (see the note above). */
 	| 'related-skill';
 
 export interface ExecutionStep {

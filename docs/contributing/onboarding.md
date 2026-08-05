@@ -9,7 +9,7 @@ where things live and why" before writing any code or content.
 
 HR Skills **[Existing]** is a Bun + Turborepo monorepo. Three kinds of things live in it:
 
-1. **The product** — `skills/hr-*/`, 140+ domain-specific Agent Skill packages.
+1. **The product** — `skills/hr-*/`, 146 domain-specific Agent Skill packages.
 2. **The tooling** — `packages/hr-skills-build/` (validation, matrix/registry generation,
    planner, evaluation CLI) and `packages/skills-ref/` (TypeScript library for reading,
    validating, and generating prompts from skill files).
@@ -19,9 +19,10 @@ HR Skills **[Existing]** is a Bun + Turborepo monorepo. Three kinds of things li
    Claude Code is expected to follow when helping maintain the repo, and are a fast way to
    understand "how things are done here."
 
-`docs/` **[Existing]** holds two kinds of files: specifications you can read and are expected
-to follow (`docs/format.md`, `docs/evaluation.md`, `docs/planner.md`, `docs/runtime.md`,
-`docs/registry.md`), and **generated reports** you should never hand-edit
+`docs/` **[Existing]** holds 16 files: 15 hand-written specifications and reference docs
+(`docs/format.md`, `docs/registry.md`, `docs/evaluation.md`, `docs/planner.md`,
+`docs/runtime.md`, `docs/search.md`, and others covering each subsystem — see the directory
+listing for the full set), plus one **generated report** you should never hand-edit
 (`docs/skill-matrix.md`).
 
 ## Existing behavior — directory reference

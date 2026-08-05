@@ -261,7 +261,10 @@ bun run build
 
 Use Turborepo caching to avoid rebuilding unchanged packages.
 
-Tasks such as `validate`, `sync`, and `matrix` intentionally disable caching because they always operate on the latest repository state.
+Tasks such as `sync` and `matrix` intentionally disable caching because they
+always operate on the latest repository state and write files as a side
+effect. `validate` is cacheable (it only depends on `^build`) — a repeat run
+with no source changes replays cached results instead of re-validating.
 
 ## Tips
 

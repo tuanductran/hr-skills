@@ -1,11 +1,6 @@
 ---
 name: valibot
-description: >
-  Repository guidance for using Valibot as the schema validation library within
-  the hr-skills monorepo. Use when writing or modifying schemas in
-  packages/skills-ref/src/schema.ts or packages/hr-skills-build/src/shared/schema.ts,
-  when validating parsed YAML frontmatter, when handling safeParse results, or
-  when inferring types from schemas.
+description: "Repository guidance for using Valibot as the schema validation library within the hr-skills monorepo. Use when writing or modifying schemas in packages/skills-ref/src/schema.ts or packages/hr-skills-build/src/shared/schema.ts, when validating parsed YAML frontmatter, when handling safeParse results, or when inferring types from schemas."
 metadata:
   author: Tuan Duc Tran
   version: "1.0.0"
@@ -25,8 +20,10 @@ Two files define schemas; all other packages consume them:
 - `packages/skills-ref/src/schema.ts` — `SkillPropertiesSchema`, the generic
   Agent Skills shape used by `readProperties()` in `loader.ts`
 - `packages/hr-skills-build/src/shared/schema.ts` — `MarketplaceJsonSchema` (validates
-  `.claude-plugin/marketplace.json`) and `SkillFrontmatterSchema` (used by
-  `parseSkillFrontmatter()` in `parser.ts`)
+  `.claude-plugin/marketplace.json`), `SkillFrontmatterSchema` (used by
+  `parseSkillFrontmatter()` in `parser.ts`), and `RegistrySchema` (used by
+  `validateRegistryConsistency()` in `validate-registry.ts` to check
+  `registry/skills.json` against its schema)
 
 Import pattern used throughout the repo:
 
@@ -89,10 +86,15 @@ wildcard `* as v` is the established convention here.
 
 ## Tips
 
-- Always use `v.safeParse` in this repo, not `v.parse` — `parser.ts` returns an
-  empty object on failure, and `loader.ts` throws a typed `ValidationError` using
-  `v.summarize(result.issues)`. Throwing directly from `v.parse` bypasses that
-  error handling pattern.
+- Prefer `v.safeParse` for anything derived from user-authored content
+  (`parser.ts`'s `parseSkillFrontmatter`, `loader.ts`) — `parser.ts` returns an
+  empty object on failure, and `loader.ts` throws a typed `ValidationError`
+  using `v.summarize(result.issues)`. Throwing directly from `v.parse` bypasses
+  that error handling pattern.
+  One deliberate exception: `build/sync.ts#syncMarketplace()` uses `v.parse`
+  directly against `MarketplaceJsonSchema`, since `.claude-plugin/marketplace.json`
+  is a repo-committed file expected to always be valid — an unhandled throw
+  there is the intended fail-fast behavior, not a bug to fix.
 - Apply `v.pipe(v.string(), v.trim())` to every string field that comes from
   user-authored YAML — frontmatter values frequently have trailing whitespace or
   newlines that would silently fail downstream string comparisons.
@@ -112,9 +114,11 @@ wildcard `* as v` is the established convention here.
 
 - Using Zod-style chaining such as `v.string().trim().email()` — Valibot has no
   method chaining. Use `v.pipe(v.string(), v.trim(), v.email())` instead.
-- Calling `v.parse(Schema, data)` instead of `v.safeParse` — this throws a raw
-  `ValiError` that bypasses the typed error hierarchy in `errors.ts`. Use
-  `v.safeParse` and handle `result.success` explicitly.
+- Calling `v.parse(Schema, data)` on user-authored content (SKILL.md
+  frontmatter, etc.) instead of `v.safeParse` — this throws a raw `ValiError`
+  that bypasses the typed error hierarchy in `errors.ts`. Use `v.safeParse`
+  and handle `result.success` explicitly. (`sync.ts`'s `v.parse` against a
+  repo-committed marketplace.json is the one intentional exception — see Tips.)
 - Forgetting `v.trim()` in the pipeline for string fields parsed from YAML —
   without it, fields with trailing newlines or spaces will pass validation but
   cause subtle mismatch bugs in downstream string comparisons like author name

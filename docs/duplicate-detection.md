@@ -86,7 +86,7 @@ composite ≥ 0.55   (default DUPLICATE_THRESHOLD)
 
 ## HR domain stop-words
 
-Approximately 70 common HR terms and English function words are filtered out before similarity is measured.  This prevents high vocabulary overlap caused by domain terminology alone from triggering false-positive warnings.
+Approximately 150 common HR terms and English function words are filtered out before similarity is measured.  This prevents high vocabulary overlap caused by domain terminology alone from triggering false-positive warnings.
 
 Examples of filtered terms:
 

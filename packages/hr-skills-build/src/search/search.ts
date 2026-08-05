@@ -322,8 +322,9 @@ function buildExplanation(matches: SkillFieldMatch[]): string {
  *     stronger discoverability signal than one big match.
  *  3. A skill with at least one *exact* match gets a flat confidence bonus,
  *     so exact matches reliably outrank fuzzy-only matches.
- *  4. Ties are broken by skill ID, ascending — so identical registry
- *     content always produces identical ordering, run after run.
+ *  4. Ties are broken by number of distinct fields matched (more wins),
+ *     then by skill ID ascending — so identical registry content always
+ *     produces identical ordering, run after run.
  *
  * @param query - The search query. `query.text` is required unless
  *   `query.domain` is set (a domain-only browse is a valid query).

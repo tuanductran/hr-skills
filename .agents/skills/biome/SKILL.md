@@ -62,7 +62,8 @@ These conventions are enforced automatically by Biome.
 
 ## Linting
 
-The repository enables the recommended Biome rule set.
+The repository enables the recommended Biome rule set, with one override:
+`complexity/useLiteralKeys` is turned off (see `biome.jsonc`).
 
 Linting focuses on:
 

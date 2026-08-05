@@ -13,6 +13,8 @@ metadata:
 - Validate SKILL.md frontmatter and required sections
 - Check for dangerous shell commands or wide file write permissions
 - Detect suspicious external URLs and credential leaks in content
+- Detect hidden Unicode (zero-width characters, homoglyphs) used to hide
+  injected instructions or spoof visible text
 - Verify metadata.author and licensing sections
 - Summarize permission scopes (read/write/commands) and risk level
 - Produce remediation suggestions for failing checks
@@ -27,6 +29,7 @@ metadata:
 - "Scan for bash commands that write to sensitive paths and list risky lines."
 - "Check permission scope strings for overly broad write access: [permissions]."
 - "Extract URLs from the skill and flag external hosts not on allowlist."
+- "Scan this content for zero-width characters or homoglyphs that could hide instructions."
 
 ### Remediation
 

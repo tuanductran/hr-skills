@@ -13,33 +13,18 @@
 
 import { generateExecutionPlan } from '../planner/planner.js';
 import { executeWorkflow } from '../runtime/runtime.js';
+import { stubStepExecutor } from '../shared/helpers.js';
 import type {
 	EvaluationCase,
 	EvaluationCaseResult,
 	EvaluationDataset,
 	EvaluationReport,
-	ExecutionStep,
 	GoldenCaseResult,
 	GoldenFixture,
 	QualityMetrics,
 	Registry,
-	RuntimeContext,
 } from '../shared/types.js';
 import { validateExecutionPlan } from '../validation/validate-planner.js';
-
-/**
- * The same stub step executor used by `execute-plan.ts`. Reused here (rather
- * than redefined) so that evaluation results characterize the Planner and
- * Runtime's sequencing/validation behavior, not a divergent stand-in.
- */
-const evaluationStepExecutor = (
-	step: ExecutionStep,
-	context: RuntimeContext,
-): unknown => ({
-	skillId: step.skillId,
-	note: `Stub output for ${step.skillId}`,
-	precedingSteps: Object.keys(context.toObject()),
-});
 
 /** Run a single evaluation case against the given registry, deterministically. */
 export async function runCase(
@@ -54,7 +39,7 @@ export async function runCase(
 	const workflow =
 		plan.steps.length === 0
 			? { status: 'completed' as const }
-			: await executeWorkflow(plan, evaluationStepExecutor);
+			: await executeWorkflow(plan, stubStepExecutor);
 
 	return {
 		caseId: evalCase.id,

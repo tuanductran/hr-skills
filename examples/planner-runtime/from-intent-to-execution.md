@@ -17,7 +17,7 @@ skills to load and *in what order*, rather than a person manually choosing
 ## Step 1 — Generate a plan from intent
 
 ```bash
-bun src/generate-plan.ts "hire a senior backend engineer: write the job description, run interviews, and prepare an offer"
+bun run plan "hire a senior backend engineer: write the job description, run interviews, and prepare an offer"
 ```
 
 The Planner (`packages/hr-skills-build/src/planner/planner.ts`) splits this intent
@@ -46,8 +46,8 @@ sort. The shape of the result — illustrating the documented
     {
       "skillId": "hr-recruiting",
       "order": 2,
-      "reason": "domain-expert",
-      "rationale": "Recruiting workflow expertise for sourcing and screening ahead of interviews",
+      "reason": "recommended-pairing",
+      "rationale": "Pulled in via hr-job-description's relatedSkills entry — sourcing and screening naturally follow writing the job description",
       "dependencies": []
     },
     {
@@ -78,7 +78,7 @@ dependency violations) before you act on it.
 ## Step 2 — Execute the plan
 
 ```bash
-bun src/execute-plan.ts "hire a senior backend engineer: write the job description, run interviews, and prepare an offer"
+bun run execute "hire a senior backend engineer: write the job description, run interviews, and prepare an offer"
 ```
 
 `execute-plan.ts` regenerates the same plan and runs it through
@@ -89,9 +89,9 @@ actually loads each skill's `SKILL.md`, builds a prompt from
 `context.toObject()` (the outputs of earlier steps), and calls a model:
 
 ```typescript
-import { executeWorkflow } from './runtime.js';
-import { generateExecutionPlan } from './planner.js';
-import { buildRegistry } from './registry.js';
+import { executeWorkflow } from './runtime/runtime.js';
+import { generateExecutionPlan } from './planner/planner.js';
+import { buildRegistry } from './registry/registry.js';
 
 const registry = await buildRegistry();
 const plan = generateExecutionPlan(

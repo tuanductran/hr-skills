@@ -2,11 +2,13 @@
  * Planner validation — checks execution plans for soundness.
  *
  * Validates:
- *  - No circular skill dependencies
- *  - No dangling skill references
- *  - Capability coverage (at least one match per requested capability)
- *  - Execution order respects dependencies
  *  - No duplicate steps
+ *  - No dangling skill references (including missing dependency references)
+ *  - Execution order respects dependencies
+ *  - No circular skill dependencies
+ *  - Capability coverage (at least one match per requested capability)
+ *  - Empty plan (warning — a plan with zero steps is not itself an error)
+ *  - Step `order` fields form a consistent 0..N-1 sequence
  *
  * All validations are deterministic and produce clear, actionable diagnostics.
  */
