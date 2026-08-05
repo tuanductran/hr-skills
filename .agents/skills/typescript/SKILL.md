@@ -64,7 +64,7 @@ test/
 tsconfig.json
 ```
 
-Packages may extend the shared repository configuration while adding package-specific files such as build configuration.
+Packages extend the shared repository TypeScript configuration while keeping package-specific configuration minimal.
 
 ## Code organization
 
@@ -140,6 +140,15 @@ bun run build
 - "Recommend a cleaner public API."
 - "Validate this package structure."
 
+## Configuration philosophy
+
+Repository configuration should remain as simple as possible.
+
+- Prefer tool defaults over explicit configuration.
+- Extend shared repository configuration instead of duplicating settings.
+- Add package-specific configuration only when the defaults are insufficient.
+- Keep build and compiler configuration easy to understand and maintain.
+
 ### Refactoring
 
 - "Simplify this TypeScript implementation."
@@ -162,17 +171,12 @@ Run repository type checking.
 bun run typecheck
 ```
 
-Package configuration — both `packages/hr-skills-build` and `packages/skills-ref` use this
-exact shape (both build with tsdown as of the tsdown migration).
+Package `tsconfig.json` files extend the shared repository configuration and include only the package sources.
 
 ```json
 {
   "extends": "../../tsconfig.json",
-  "include": [
-    "src",
-    "test",
-    "tsdown.config.ts"
-  ]
+  "include": ["src", "test"]
 }
 ```
 
@@ -183,7 +187,7 @@ exact shape (both build with tsdown as of the tsdown migration).
 - Keep implementations simpler than their type definitions.
 - Use `unknown` instead of `any` whenever possible.
 - Validate changes with `bun run typecheck`.
-- Keep package-specific configuration minimal.
+- Keep package-specific TypeScript configuration minimal and rely on shared defaults whenever possible.
 
 ## Common issues
 
