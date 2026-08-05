@@ -140,7 +140,7 @@ To regenerate golden fixtures after an intentional change to the Planner, Runtim
 
 ```bash
 cd packages/hr-skills-build
-bun src/run-evaluation.ts --update-golden
+bun run evaluate --update-golden
 ```
 
 Review the diff on `eval/golden/*.golden.json` in the resulting commit like any other code change — a `skillIds` change there is exactly the signal that a golden fixture would otherwise catch as a regression, so it deserves the same scrutiny.

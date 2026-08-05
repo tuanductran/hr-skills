@@ -42,7 +42,7 @@ replace `SKILL.md` content, they orchestrate it.
 
 | Example | What it demonstrates |
 | --- | --- |
-| [`planner-runtime/from-intent-to-execution.md`](planner-runtime/from-intent-to-execution.md) | Turning one of the scenarios above into an `ExecutionPlan` with `bun src/generate-plan.ts`, then running it with `bun src/execute-plan.ts`, reading the resulting trace |
+| [`planner-runtime/from-intent-to-execution.md`](planner-runtime/from-intent-to-execution.md) | Turning one of the scenarios above into an `ExecutionPlan` with `bun run plan`, then running it with `bun run execute`, reading the resulting trace |
 
 ## Conventions used across these examples
 

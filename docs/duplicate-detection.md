@@ -165,7 +165,7 @@ Duplicate detection runs automatically as part of the standard validation comman
 ```bash
 bun run validate          # from repo root
 # or
-bun src/validate.ts       # from packages/hr-skills-build/
+bun run validate       # from packages/hr-skills-build/
 ```
 
 Warnings are printed after per-skill validation results and before the final pass/fail summary.

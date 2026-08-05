@@ -11,8 +11,8 @@
  * in an actual agent should supply their own `StepExecutorFn`.
  *
  * Usage:
- *   bun src/execute-plan.ts "create an onboarding checklist"
- *   bun src/execute-plan.ts "help with succession planning and talent development"
+ *   bun run execute "create an onboarding checklist"
+ *   bun run execute "help with succession planning and talent development"
  */
 
 import { writeFileSync } from 'node:fs';
@@ -42,8 +42,8 @@ async function main() {
 
 	if (!intent) {
 		printUsageAndExit(
-			'Usage: bun src/execute-plan.ts "<user intent>"',
-			'  bun src/execute-plan.ts "Create interview questions for a senior manager"',
+			'Usage: bun run execute "<user intent>"',
+			'  bun run execute "Create interview questions for a senior manager"',
 		);
 	}
 

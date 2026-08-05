@@ -11,13 +11,19 @@ bun run validate
 # Sync generated references
 bun run sync
 
+# Build the TypeScript package (tsdown)
+bun run build
+
+# Build distribution artifacts (dist/hr-skills.zip, dist/hr-skills.skill)
+bun run build-skills
+
 # Run tests for the package tooling
 bun run test
 
 # Type-check package source
 bun run typecheck
 
-# Watch mode — re-validates on file changes
+# Watch mode — rebuilds on file changes (tsdown --watch)
 bun run dev
 ```
 
@@ -40,7 +46,7 @@ Checks every `skills/hr-*/SKILL.md` for:
 - `name` matches directory name
 - `description` is at least 50 characters
 - Required sections: `## Supported tasks`, `## Key prompts`, `## Tips`
-- Minimum content length of 1 000 characters
+- Minimum content length of 1000 characters
 - `SKILL.md` body length under 500 lines
 - `metadata.author` exactly set to `Tuan Duc Tran`
 - 8-12 supported task items
@@ -64,11 +70,18 @@ Discovers all `skills/hr-*` directories and rebuilds generated references in `.c
 
 ## Source
 
-| File | Purpose |
-|------|---------|
-| `src/config.ts` | `SKILLS_DIR` path, `hr-` prefix, and skill discovery helper |
-| `src/validate.ts` | Validates frontmatter and required sections |
+| Folder | Purpose |
+|--------|---------|
+| `src/shared/` | Constants, frontmatter parser, and discovery/read helpers used across the package |
+| `src/validation/` | Frontmatter/content/security validators, semantic duplicate detection |
+| `src/registry/` | Builds the skill registry from `skills/hr-*` |
+| `src/build/` | Zip packaging, marketplace sync, skill-matrix generation |
+| `src/search/` | Skill search and recommendations |
+| `src/planner/` | Intent-to-execution-plan generation |
+| `src/runtime/` | Executes a generated plan against the registry |
+| `src/evaluation/` | Scenario-based evaluation harness |
+| `src/cli/` | All `bun run <script>` entry points — see `package.json` for the full list |
 
 ## Requirements
 
-Runs with [Bun](https://bun.sh) — no extra dependencies needed.
+Runs with [Bun](https://bun.sh). Runtime dependencies (`@clack/prompts`, `valibot`, `yaml`, and the workspace's own `skills-ref`) are installed via `bun install` at the repo root — see `package.json` for versions. Builds with [tsdown](https://tsdown.dev).
