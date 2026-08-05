@@ -44,8 +44,8 @@ async function main() {
 	const intent = process.argv[2];
 	if (!intent) {
 		printUsageAndExit(
-			'Usage: bun src/my-command.ts "<argument>"',
-			'  bun src/my-command.ts "example"',
+			'Usage: bun run my-command "<argument>"',
+			'  bun run my-command "example"',
 		);
 	}
 

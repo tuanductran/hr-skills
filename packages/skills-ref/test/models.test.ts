@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'bun:test';
+import { ALLOWED_TOOLS_KEY } from '../src/constants.js';
 import { toDict } from '../src/models.js';
 
 describe('toDict', () => {
@@ -29,7 +30,7 @@ describe('toDict', () => {
 
 		expect(result['license']).toBe('MIT');
 		expect(result['compatibility']).toBe('claude-3');
-		expect(result['allowed-tools']).toBe('bash');
+		expect(result[ALLOWED_TOOLS_KEY]).toBe('bash');
 		expect(result['metadata']).toEqual({
 			author: 'Alice',
 			version: '1.0',
@@ -44,7 +45,7 @@ describe('toDict', () => {
 
 		expect(result['license']).toBeUndefined();
 		expect(result['compatibility']).toBeUndefined();
-		expect(result['allowed-tools']).toBeUndefined();
+		expect(result[ALLOWED_TOOLS_KEY]).toBeUndefined();
 		expect(result['metadata']).toBeUndefined();
 	});
 

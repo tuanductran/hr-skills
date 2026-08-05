@@ -51,7 +51,7 @@
  */
 
 import { join } from 'node:path';
-import { SKILLS_DIR } from '../shared/constants.js';
+import { SKILLS_DIR } from 'skills-ref';
 import type { SkillValidationIssue } from '../shared/types.js';
 import {
 	extractDescription,

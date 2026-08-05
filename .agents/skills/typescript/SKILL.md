@@ -162,16 +162,8 @@ Run repository type checking.
 bun run typecheck
 ```
 
-Package configuration.
-
-```json
-{
-  "extends": "../../tsconfig.json",
-  "include": ["src", "test"]
-}
-```
-
-Package with additional build configuration.
+Package configuration — both `packages/hr-skills-build` and `packages/skills-ref` use this
+exact shape (both build with tsdown as of the tsdown migration).
 
 ```json
 {

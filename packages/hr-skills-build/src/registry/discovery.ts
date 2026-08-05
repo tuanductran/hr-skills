@@ -1,8 +1,9 @@
 import { access, readdir } from 'node:fs/promises';
 import { join } from 'node:path';
 
-import { HR_SKILL_PREFIX, SKILLS_DIR } from '../shared/constants.js';
+import { HR_SKILL_PREFIX } from '../shared/constants.js';
 import type { SkillDirectoryOptions } from '../shared/types.js';
+import { SKILLS_DIR } from 'skills-ref';
 
 /**
  * Discover all HR skill directory names in `skills/` that satisfy the given options.

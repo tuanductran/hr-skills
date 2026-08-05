@@ -2,7 +2,7 @@ import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import process from 'node:process';
 import * as p from '@clack/prompts';
-import { validate as validateRef } from 'skills-ref';
+import { ROOT_DIR, SKILLS_DIR, validate as validateRef } from 'skills-ref';
 import { buildRegistry, loadRelevanceSignalTable } from '../registry/registry.js';
 import {
 	HR_SKILL_PREFIX,
@@ -11,9 +11,7 @@ import {
 	MIN_DESCRIPTION_LENGTH,
 	QUOTED_PROMPT_REGEX,
 	REQUIRED_SECTIONS,
-	ROOT_DIR,
 	SKILL_LINK_REGEX,
-	SKILLS_DIR,
 	TASKS_REGEX,
 	TIPS_REGEX,
 } from '../shared/constants.js';

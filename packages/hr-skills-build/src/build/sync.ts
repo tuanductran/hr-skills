@@ -1,10 +1,9 @@
 import { readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import * as p from '@clack/prompts';
+import { ROOT_DIR } from 'skills-ref';
 import * as v from 'valibot';
-
 import { getHrSkills } from '../registry/discovery.js';
-import { ROOT_DIR } from '../shared/constants.js';
 import { parseSkillMeta } from '../shared/parser.js';
 import { MarketplaceJsonSchema } from '../shared/schema.js';
 import type { SkillMeta } from '../shared/types.js';

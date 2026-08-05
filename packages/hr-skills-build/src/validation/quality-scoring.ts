@@ -38,13 +38,12 @@
 
 import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
-
+import { SKILLS_DIR } from 'skills-ref';
 import {
 	KEY_PROMPTS_REGEX,
 	MIN_CONTENT_LENGTH,
 	MIN_DESCRIPTION_LENGTH,
 	QUOTED_PROMPT_REGEX,
-	SKILLS_DIR,
 	TASKS_REGEX,
 	TIPS_REGEX,
 	USE_WHEN_REGEX,

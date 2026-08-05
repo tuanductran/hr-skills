@@ -46,14 +46,14 @@ eval/datasets/*.json (intents)
 
 | Component | File | Responsibility |
 |---|---|---|
-| `EvaluationDataset` loader | `src/evaluation-datasets.ts` | Discovers and loads dataset JSON files, and loads/saves golden fixtures. |
-| `runCase` / `runDataset` | `src/evaluate.ts` | Runs one case (or a whole dataset) through the Planner and Runtime and captures a `GoldenCaseResult`. |
-| `diffAgainstGolden` | `src/evaluate.ts` | Compares an actual result against its golden fixture entry and returns the list of differing fields. |
-| `computeQualityMetrics` | `src/evaluate.ts` | Aggregates per-case results into the five `QualityMetrics` ratios. |
-| `runEvaluation` / `toGoldenFixture` | `src/evaluate.ts` | Orchestrates a full dataset run into an `EvaluationReport`, and converts a report into a fixture for `--update-golden`. |
-| CLI (`bun run evaluate`) | `src/run-evaluation.ts` | Runs every dataset, prints a report, writes `eval-report.json`, and exits non-zero on regressions or invalid plans. |
+| `EvaluationDataset` loader | `src/evaluation/evaluation-datasets.ts` | Discovers and loads dataset JSON files, and loads/saves golden fixtures. |
+| `runCase` / `runDataset` | `src/evaluation/evaluate.ts` | Runs one case (or a whole dataset) through the Planner and Runtime and captures a `GoldenCaseResult`. |
+| `diffAgainstGolden` | `src/evaluation/evaluate.ts` | Compares an actual result against its golden fixture entry and returns the list of differing fields. |
+| `computeQualityMetrics` | `src/evaluation/evaluate.ts` | Aggregates per-case results into the five `QualityMetrics` ratios. |
+| `runEvaluation` / `toGoldenFixture` | `src/evaluation/evaluate.ts` | Orchestrates a full dataset run into an `EvaluationReport`, and converts a report into a fixture for `--update-golden`. |
+| CLI (`bun run evaluate`) | `src/cli/run-evaluation.ts` | Runs every dataset, prints a report, writes `eval-report.json`, and exits non-zero on regressions or invalid plans. |
 
-All shared type definitions (`EvaluationCase`, `EvaluationDataset`, `GoldenCaseResult`, `GoldenFixture`, `EvaluationCaseResult`, `QualityMetrics`, `EvaluationReport`) live in `src/types.ts`, alongside the Planner's and Runtime's types.
+All shared type definitions (`EvaluationCase`, `EvaluationDataset`, `GoldenCaseResult`, `GoldenFixture`, `EvaluationCaseResult`, `QualityMetrics`, `EvaluationReport`) live in `src/shared/types.ts`, alongside the Planner's and Runtime's types.
 
 ## Dataset format
 
@@ -140,7 +140,7 @@ To regenerate golden fixtures after an intentional change to the Planner, Runtim
 
 ```bash
 cd packages/hr-skills-build
-bun src/run-evaluation.ts --update-golden
+bun run evaluate --update-golden
 ```
 
 Review the diff on `eval/golden/*.golden.json` in the resulting commit like any other code change — a `skillIds` change there is exactly the signal that a golden fixture would otherwise catch as a regression, so it deserves the same scrutiny.

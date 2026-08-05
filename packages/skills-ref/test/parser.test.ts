@@ -134,6 +134,16 @@ metadata:
 
 		try {
 			expect(() => readProperties(tmp)).toThrow(ValidationError);
+
+			try {
+				readProperties(tmp);
+			} catch (error) {
+				expect(error).toBeInstanceOf(ValidationError);
+
+				if (error instanceof ValidationError) {
+					expect(error.issues.length).toBeGreaterThan(0);
+				}
+			}
 		} finally {
 			rmSync(tmp, {
 				recursive: true,
@@ -149,6 +159,16 @@ metadata:
 
 		try {
 			expect(() => readProperties(tmp)).toThrow(ValidationError);
+
+			try {
+				readProperties(tmp);
+			} catch (error) {
+				expect(error).toBeInstanceOf(ValidationError);
+
+				if (error instanceof ValidationError) {
+					expect(error.issues.length).toBeGreaterThan(0);
+				}
+			}
 		} finally {
 			rmSync(tmp, {
 				recursive: true,
@@ -173,6 +193,16 @@ description:
 
 		try {
 			expect(() => readProperties(tmp)).toThrow(ValidationError);
+
+			try {
+				readProperties(tmp);
+			} catch (error) {
+				expect(error).toBeInstanceOf(ValidationError);
+
+				if (error instanceof ValidationError) {
+					expect(error.issues.length).toBeGreaterThan(0);
+				}
+			}
 		} finally {
 			rmSync(tmp, {
 				recursive: true,

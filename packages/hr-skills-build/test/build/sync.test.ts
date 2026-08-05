@@ -18,8 +18,13 @@ describe('syncMarketplace()', () => {
 		tempMarketplacePath = join(tempDir, 'marketplace.json');
 
 		const initialJson = {
+			$schema: 'https://json.schemastore.org/claude-code-marketplace.json',
 			name: 'Test Plugin',
 			description: 'A test plugin.',
+			owner: {
+				name: 'Test Owner',
+				email: 'test@example.com',
+			},
 			plugins: [],
 		};
 
@@ -52,6 +57,15 @@ describe('syncMarketplace()', () => {
 		const updatedContent = await readFile(tempMarketplacePath, 'utf8');
 
 		const updatedJson = JSON.parse(updatedContent);
+
+		expect(updatedJson.$schema).toBe(
+			'https://json.schemastore.org/claude-code-marketplace.json',
+		);
+
+		expect(updatedJson.owner).toEqual({
+			name: 'Test Owner',
+			email: 'test@example.com',
+		});
 
 		expect(updatedJson.plugins).toHaveLength(1);
 
@@ -86,6 +100,10 @@ describe('syncMarketplace()', () => {
 		const invalidJson = {
 			name: 'Test Plugin',
 			description: 'A test plugin.',
+			owner: {
+				name: 'Test Owner',
+				email: 'not-an-email',
+			},
 			plugins: 'invalid',
 		};
 
@@ -102,5 +120,21 @@ describe('syncMarketplace()', () => {
 		const metas: SkillMeta[] = [];
 
 		expect(syncMarketplace(metas, tempMarketplacePath)).rejects.toThrow();
+	});
+
+	it('preserves marketplace metadata', async () => {
+		await syncMarketplace([], tempMarketplacePath);
+
+		const json = JSON.parse(await readFile(tempMarketplacePath, 'utf8'));
+
+		expect(json).toMatchObject({
+			$schema: 'https://json.schemastore.org/claude-code-marketplace.json',
+			name: 'Test Plugin',
+			description: 'A test plugin.',
+			owner: {
+				name: 'Test Owner',
+				email: 'test@example.com',
+			},
+		});
 	});
 });

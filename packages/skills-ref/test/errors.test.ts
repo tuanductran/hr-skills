@@ -1,4 +1,6 @@
 import { describe, expect, it } from 'bun:test';
+import type { BaseIssue } from 'valibot';
+
 import { ParseError, SkillError, ValidationError } from '../src/errors.js';
 
 describe('SkillError', () => {
@@ -11,8 +13,15 @@ describe('SkillError', () => {
 		expect(err.name).toBe('SkillError');
 		expect(err.message).toBe('msg');
 
-		// correct prototype chain check
 		expect(Object.getPrototypeOf(err)).toBe(SkillError.prototype);
+	});
+
+	it('supports ErrorOptions.cause', () => {
+		const cause = new Error('root cause');
+
+		const err = new SkillError('msg', { cause });
+
+		expect(err.cause).toBe(cause);
 	});
 });
 
@@ -27,38 +36,56 @@ describe('ParseError', () => {
 		expect(err.name).toBe('ParseError');
 		expect(err.message).toBe('parse fail');
 
-		// correct prototype chain check
 		expect(Object.getPrototypeOf(err)).toBe(ParseError.prototype);
+	});
+
+	it('supports ErrorOptions.cause', () => {
+		const cause = new Error('yaml error');
+
+		const err = new ParseError('parse fail', { cause });
+
+		expect(err.cause).toBe(cause);
 	});
 });
 
 describe('ValidationError', () => {
-	it('defaults errors to [message]', () => {
-		const err = new ValidationError('invalid');
+	it('stores validation issues', () => {
+		const issues = [
+			{
+				kind: 'schema',
+				type: 'string',
+				input: 123,
+				expected: 'string',
+				message: 'Expected string',
+			},
+		] as unknown as readonly BaseIssue<unknown>[];
+
+		const err = new ValidationError('validation failed', issues);
 
 		expect(err).toBeInstanceOf(Error);
 		expect(err).toBeInstanceOf(SkillError);
 		expect(err).toBeInstanceOf(ValidationError);
 
 		expect(err.name).toBe('ValidationError');
-		expect(err.message).toBe('invalid');
+		expect(err.message).toBe('validation failed');
 
-		expect(err.errors).toEqual(['invalid']);
+		expect(err.issues).toBe(issues);
 	});
 
-	it('accepts explicit errors list', () => {
-		const err = new ValidationError('many errors', ['err1', 'err2']);
+	it('freezes the issues array', () => {
+		const issues = [] as unknown as readonly BaseIssue<unknown>[];
 
-		expect(err.errors).toEqual(['err1', 'err2']);
-		expect(err.message).toBe('many errors');
+		const err = new ValidationError('validation failed', issues);
+
+		expect(Array.isArray(err.issues)).toBe(true);
+		expect(Object.isFrozen(err.issues)).toBe(true);
 	});
 
-	it('always exposes readonly errors array', () => {
-		const err = new ValidationError('x');
+	it('supports ErrorOptions.cause', () => {
+		const cause = new Error('validation cause');
 
-		expect(Array.isArray(err.errors)).toBe(true);
+		const err = new ValidationError('validation failed', [], { cause });
 
-		// ensure immutability
-		expect(Object.isFrozen(err.errors)).toBe(true);
+		expect(err.cause).toBe(cause);
 	});
 });
