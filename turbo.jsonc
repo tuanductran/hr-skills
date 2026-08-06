@@ -63,6 +63,16 @@
 			"cache": false,
 			"outputs": ["eval-report.json"],
 			"dependsOn": ["^build"]
+		},
+		"api-docs": {
+			"cache": false,
+			"dependsOn": ["^build"],
+			"outputs": ["docs/api.md"]
+		},
+		"api-docs:check": {
+			"cache": false,
+			"dependsOn": ["^build"],
+			"outputs": ["docs/api.md"]
 		}
 	}
 }
