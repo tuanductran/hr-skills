@@ -48,7 +48,9 @@
 		"recommend": "bun src/cli/recommend.ts",
 		"execute": "bun src/cli/execute-plan.ts",
 		"evaluate": "bun src/cli/run-evaluation.ts",
-		"skill-review": "bun src/cli/skill-review.ts"
+		"skill-review": "bun src/cli/skill-review.ts",
+		"api-docs": "bun src/build/generate-api-docs.ts",
+		"api-docs:check": "bun src/build/generate-api-docs.ts --check"
 	},
 	"dependencies": {
 		"@clack/prompts": "catalog:",
@@ -56,5 +58,8 @@
 		"skills-ref": "workspace:*",
 		"yaml": "catalog:",
 		"tsdown": "catalog:"
+	},
+	"devDependencies": {
+		"ts-morph": "catalog:"
 	}
 }
