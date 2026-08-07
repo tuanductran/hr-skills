@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.4.0
+
+### Minor Changes
+
+- b1e9f67: Added three repository agent skills — `.agents/skills/clack`, `.agents/skills/jscpd`, and `.agents/skills/dry-refactoring` — documenting this repo's actual `@clack/prompts` usage and duplicate-detection/refactoring conventions. Fixed generated PR review comments (`skill-review` CLI) linking to relative paths that don't resolve inside a GitHub PR comment body; they now use absolute GitHub blob URLs. Fixed the `description` field format in `.github/skill-template.md` and `.claude/commands/new-skill.md`, which used a YAML folded block scalar inconsistent with `docs/format.md` and every existing skill.
+
+### Patch Changes
+
+- b1e9f67: Added `docs/api.md`, an API reference documenting the public functions and types exported from `hr-skills-build`.
+- b1e9f67: Rewrote `skills-ref` `SKILL.md` frontmatter parser to use the `yaml` package instead of manual string splitting, fixing edge cases in frontmatter detection and making `SkillPropertiesSchema` a strict schema (unknown frontmatter keys are now rejected). Fixed `.claude-plugin/marketplace.json` to include the required `$schema` and `owner` fields. Fixed the release workflow (`publish.yml`) building distribution artifacts with an invalid Turborepo filter/flag combination that could fail or silently skip the build.
+- cbe30bb: Enhanced prose clarity, structure, and domain accuracy for `hr-vietnam-context`, `hr-talent-acquisition`, and `hr-performance-management` skills.
+- b1e9f67: Fixed a polynomial-time regular expression denial-of-service (ReDoS) vulnerability in `analyzeIntent` delimiter parsing (CodeQL alert `js/polynomial-redos`, CWE-1333/400/730). The affected regex is reachable from user-controlled CLI input (`plan`/`execute` intent argv).
+
 ## 1.3.0
 
 ### Minor Changes
