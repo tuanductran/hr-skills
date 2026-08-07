@@ -6,25 +6,101 @@
 			"Bash(bun run validate)",
 			"Bash(bun run sync)",
 			"Bash(bun run build)",
+			"Bash(bun run build-skills)",
 			"Bash(bun run test)",
 			"Bash(bun run typecheck)",
 			"Bash(bun run lint)",
 			"Bash(bun run lint:md)",
 			"Bash(bun run lint:md:fix)",
+			"Bash(bun run lint:links)",
 			"Bash(bun run check)",
 			"Bash(bun run format)",
-			"Bash(bun run lint:links)",
 			"Bash(bun run matrix)",
 			"Bash(bun run knip)",
 			"Bash(bun run registry)",
 			"Bash(bun run signals)",
-			"Bash(bun run discover:*)",
-			"Bash(bun run recommend:*)",
-			"Bash(bun run plan:*)",
-			"Bash(bun run execute:*)",
+			"Bash(bun run api-docs)",
+			"Bash(bun run api-docs:check)",
+			"Bash(bun run discover)",
+			"Bash(bun run recommend)",
+			"Bash(bun run plan)",
+			"Bash(bun run execute)",
 			"Bash(bun run evaluate)",
+			"Bash(bun run changeset)",
+			"Bash(bun run release)",
+			"Bash(bun run commitlint)",
+			"Bash(bun test *)",
+			"Bash(git status)",
+			"Bash(git log *)",
+			"Bash(git diff *)",
+			"Bash(git branch *)",
+			"Bash(git checkout *)",
+			"Bash(git add *)",
+			"Bash(git commit *)",
+			"Bash(git push origin !main)",
 			"Read(**)"
 		],
-		"deny": ["Write(node_modules/**)", "Write(dist/**)", "Write(.turbo/**)"]
+		"deny": [
+			"Bash(git push origin main)",
+			"Bash(git push --force*)",
+			"Write(node_modules/**)",
+			"Write(dist/**)",
+			"Write(.turbo/**)",
+			"Write(docs/skill-matrix.md)",
+			"Write(registry/skills.json)",
+			"Write(.claude-plugin/marketplace.json)"
+		]
+	},
+	"hooks": {
+		"SessionStart": [
+			{
+				"hooks": [
+					{
+						"type": "command",
+						"command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/session-start.sh",
+						"timeout": 10
+					}
+				]
+			}
+		],
+		"PreToolUse": [
+			{
+				"matcher": "Bash",
+				"hooks": [
+					{
+						"type": "command",
+						"command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/block-push-to-main.sh",
+						"timeout": 10
+					}
+				]
+			}
+		],
+		"PostToolUse": [
+			{
+				"matcher": "Write|Edit|MultiEdit",
+				"hooks": [
+					{
+						"type": "command",
+						"command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/post-edit-markdown.sh",
+						"timeout": 30
+					},
+					{
+						"type": "command",
+						"command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/post-edit-typescript.sh",
+						"timeout": 30
+					},
+					{
+						"type": "command",
+						"command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/post-edit-evals.sh",
+						"timeout": 60
+					},
+					{
+						"type": "command",
+						"command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/post-edit-tests.sh",
+						"timeout": 60
+					}
+				]
+			}
+		]
 	}
 }
