@@ -25,13 +25,7 @@ import { GITHUB_BLOB_BASE_URL } from '../shared/constants.js';
 import { readSkillContent } from '../shared/helpers.js';
 import type { SkillValidationIssue } from '../shared/types.js';
 import { type SkillQualityScore, scoreSkills } from '../validation/quality-scoring.js';
-import {
-	validateCredentialLeaks,
-	validateHiddenUnicode,
-	validateSecurityCommands,
-	validateSensitivePaths,
-	validateSuspiciousUrls,
-} from '../validation/security.js';
+import { validateSecurityChecks } from '../validation/security.js';
 
 async function resolveSkillNames(argv: string[]): Promise<string[]> {
 	const listFileFlagIndex = argv.indexOf('--list-file');
@@ -54,11 +48,7 @@ async function collectSecurityFindings(
 	const content = await readSkillContent(skillName, errors);
 	if (content === null) return errors;
 
-	validateSecurityCommands(skillName, content, errors);
-	validateSensitivePaths(skillName, content, errors);
-	validateSuspiciousUrls(skillName, content, errors);
-	validateCredentialLeaks(skillName, content, errors);
-	validateHiddenUnicode(skillName, content, errors);
+	validateSecurityChecks(skillName, content, errors);
 
 	return errors;
 }

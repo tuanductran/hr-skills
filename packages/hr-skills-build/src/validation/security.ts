@@ -278,3 +278,18 @@ export function validateHiddenUnicode(
 		}
 	}
 }
+
+/**
+ * Run all security validators on skill content.
+ */
+export function validateSecurityChecks(
+	skillName: string,
+	content: string,
+	errors: SkillValidationIssue[],
+): void {
+	validateSecurityCommands(skillName, content, errors);
+	validateSensitivePaths(skillName, content, errors);
+	validateSuspiciousUrls(skillName, content, errors);
+	validateCredentialLeaks(skillName, content, errors);
+	validateHiddenUnicode(skillName, content, errors);
+}

@@ -27,13 +27,7 @@ import { parseSkillFrontmatter } from '../shared/parser.js';
 import type { SkillValidationIssue } from '../shared/types.js';
 import { detectDuplicates } from './detect-duplicates.js';
 import { pushIssue } from './issue-helpers.js';
-import {
-	validateCredentialLeaks,
-	validateHiddenUnicode,
-	validateSecurityCommands,
-	validateSensitivePaths,
-	validateSuspiciousUrls,
-} from './security.js';
+import { validateSecurityChecks } from './security.js';
 import { validateSemanticConsistency } from './semantic-validation.js';
 import {
 	validateRegistryConsistency,
@@ -435,11 +429,7 @@ async function validateSkill(skillName: string): Promise<SkillValidationIssue[]>
 	await validateSubdirectoryContents(skillName, skillDir, errors);
 
 	// Security checks (from skill-vetter)
-	validateSecurityCommands(skillName, content, errors);
-	validateSensitivePaths(skillName, content, errors);
-	validateSuspiciousUrls(skillName, content, errors);
-	validateCredentialLeaks(skillName, content, errors);
-	validateHiddenUnicode(skillName, content, errors);
+	validateSecurityChecks(skillName, content, errors);
 
 	return errors;
 }
