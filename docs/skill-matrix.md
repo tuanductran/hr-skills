@@ -1,6 +1,6 @@
 # HR Skills — Skill Matrix
 
-> Auto-generated on 2026-08-05 by `bun run matrix`. Do not edit manually.
+> Auto-generated on 2026-08-07 by `bun run matrix`. Do not edit manually.
 
 ## Summary
 
@@ -107,7 +107,7 @@
 | `hr-people-budgeting` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.1 |
 | `hr-people-leadership` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.1 |
 | `hr-people-operations` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.1 |
-| `hr-performance-management` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.1 |
+| `hr-performance-management` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.2 |
 | `hr-performance-review` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.1 |
 | `hr-policy-management` | 🟢 Full | ✅ | ✅ | ✅ | 2 | 1.0.1 |
 | `hr-post-merger-integration` | 🟢 Full | ✅ | ✅ | ✅ | 2 | 1.0.1 |
@@ -139,7 +139,7 @@
 | `hr-succession-planning` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.1 |
 | `hr-system-design` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.1 |
 | `hr-system-integration` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.1 |
-| `hr-talent-acquisition` | 🟢 Full | ✅ | ✅ | ✅ | 3 | 1.0.1 |
+| `hr-talent-acquisition` | 🟢 Full | ✅ | ✅ | ✅ | 3 | 1.0.2 |
 | `hr-talent-crm` | 🟢 Full | ✅ | ✅ | ✅ | 2 | 1.0.1 |
 | `hr-talent-intelligence` | 🟢 Full | ✅ | ✅ | ✅ | 2 | 1.0.1 |
 | `hr-talent-management` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.1 |
@@ -151,7 +151,7 @@
 | `hr-training-development` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.1 |
 | `hr-uiux` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.1 |
 | `hr-vendor-management` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.1 |
-| `hr-vietnam-context` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.1 |
+| `hr-vietnam-context` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.2 |
 | `hr-wellbeing` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.1 |
 | `hr-workforce-capability` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.1 |
 | `hr-workforce-economics` | 🟢 Full | ✅ | ✅ | ✅ | 2 | 1.0.1 |
