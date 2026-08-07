@@ -1,9 +1,9 @@
 ---
 name: hr-talent-acquisition
-description: "Help talent acquisition leaders, TA managers, and recruiting teams build and run a strategic talent acquisition function. Use when asked to build a TA strategy, design a talent pipeline, improve time-to-hire, set up ATS workflows, measure recruiting effectiveness, build sourcing channels, or align hiring with business demand, or build or improve the TA function itself."
+description: "Help talent acquisition leaders, TA managers, and recruiting teams build and run a strategic talent acquisition function. Use when asked to build a TA strategy, design talent pipelines, improve time-to-hire, set up ATS workflows, measure recruiting effectiveness, build sourcing channels, align hiring with business demand, or evaluate the TA operating model."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.1"
+  version: "1.0.2"
 ---
 
 # Talent acquisition strategy and operations
@@ -12,18 +12,18 @@ Strategic talent acquisition support — from designing the TA function and buil
 
 ## Supported tasks
 
-- Designing end-to-end talent acquisition strategy
-- Building structured sourcing channel plans
-- Setting up ATS workflows and requisition management
-- Defining TA team roles, capacity, and operating model
-- Creating recruiting metrics dashboards and SLA frameworks
-- Aligning hiring plans with workforce demand signals
-- Developing talent pipeline and talent pool programs
-- Designing recruiter and hiring manager partnership models
-- Building diversity sourcing and inclusive hiring programs
-- Running TA health checks and process audits
-- Crafting TA technology and vendor evaluation frameworks
-- Managing agency and RPO relationships
+- Design an end-to-end talent acquisition strategy
+- Build structured sourcing channel plans
+- Set up ATS workflows and requisition management
+- Define TA team roles, capacity, and operating models
+- Create recruiting metrics dashboards and SLA frameworks
+- Align hiring plans with workforce demand signals
+- Develop talent pipeline and talent pool programs
+- Design recruiter and hiring manager partnership models
+- Build diversity sourcing and inclusive hiring programs
+- Conduct TA health checks and process audits
+- Evaluate TA technology and vendor frameworks
+- Manage agency and RPO relationships
 
 ## Key prompts
 
@@ -40,10 +40,10 @@ Strategic talent acquisition support — from designing the TA function and buil
 
 1. "Build a sourcing channel strategy for [role type] talent in [market or location]."
 2. "What active and passive sourcing approaches work best for [hard-to-fill role]?"
-3. "Design a talent pool program for [engineering / sales / leadership] roles."
+3. "Design a talent pool program for [engineering, sales, or leadership] roles."
 4. "How do we build a proactive pipeline for [critical role] before the position opens?"
 5. "What outreach sequences are most effective for passive candidates in [industry]?"
-6. "How should we track and nurture silver-medal candidates for future openings?"
+6. "How should we track and nurture silver-medalist candidates for future openings?"
 
 ### ATS and process design
 
@@ -60,20 +60,20 @@ Strategic talent acquisition support — from designing the TA function and buil
 3. "Build a recruiting dashboard for [executive audience] that shows pipeline health and hiring velocity."
 4. "How do we diagnose the root cause when time-to-fill is increasing in [department]?"
 5. "What conversion benchmarks should we use to evaluate sourcing channel effectiveness?"
-6. "How should we report offer acceptance rate trends to [leadership / board]?"
+6. "How should we report offer acceptance rate trends to [leadership or board]?"
 
 ### Diversity and inclusive hiring
 
 1. "Design a diversity sourcing strategy for [underrepresented group] in [department or level]."
-2. "What inclusive hiring practices reduce bias at the [screening / interview / offer] stage?"
+2. "What inclusive hiring practices reduce bias at the [screening, interview, or offer] stage?"
 3. "How do we audit our hiring funnel for drop-off patterns that signal bias?"
 4. "What interview process changes improve diverse candidate experience and conversion?"
 5. "Write a diversity hiring commitment statement for our careers page targeting [candidate audience]."
 
 ## Tips
 
-- Treat talent acquisition as a supply chain: track demand signals, pipeline inventory, and conversion rates at every stage.
-- Hiring manager capability is one of the biggest levers in TA effectiveness — invest in intake meeting quality and decision-making speed.
-- Distinguish between recruiter capacity (number of reqs per recruiter) and recruiter effectiveness (quality of hire, offer acceptance) when diagnosing TA problems.
-- Passive sourcing requires nurture sequences over weeks, not single outreach messages — build cadences and track response rates by channel.
-- Always tie TA metrics to business outcomes (revenue per hire, ramp time) rather than reporting activity metrics alone.
+- **Treat TA as a talent supply chain.** Track demand signals, pipeline inventory, and conversion rates across every stage of the recruitment funnel.
+- **Maintain structured scorecards to eliminate bias.** Evaluate candidates against consistent competency criteria across all interview loops rather than relying on unstructured gut feelings.
+- **Balance active sourcing with employer branding.** Combine targeted outbound passive candidate outreach with compelling employer branding and recruitment marketing campaigns.
+- **Optimize velocity and candidate experience.** Streamline intake meetings, decision-making speed, and offer approval workflows to reduce time-to-fill for high-demand roles.
+- **Align TA metrics with business outcomes.** Measure quality of hire, offer acceptance rates, and time-to-productivity alongside traditional cost and speed metrics.

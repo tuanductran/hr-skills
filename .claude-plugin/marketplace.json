@@ -746,7 +746,7 @@
     {
       "name": "hr-performance-management",
       "source": "./",
-      "description": "Help HR managers with performance management processes. Use when asked to design a performance management process or write review frameworks, create a PIP, design performance appraisal forms, set employee goals, conduct 360-degree feedback, develop performance metrics, or any other performance management task, or design or improve the performance management system.",
+      "description": "Help HR managers design, execute, and refine performance management systems. Use when asked to write performance reviews, create PIPs, design appraisal forms, set employee goals or OKRs, conduct 360-degree feedback, or build recognition and succession frameworks.",
       "skills": [
         "./skills/hr-performance-management"
       ]
@@ -1002,7 +1002,7 @@
     {
       "name": "hr-talent-acquisition",
       "source": "./",
-      "description": "Help talent acquisition leaders, TA managers, and recruiting teams build and run a strategic talent acquisition function. Use when asked to build a TA strategy, design a talent pipeline, improve time-to-hire, set up ATS workflows, measure recruiting effectiveness, build sourcing channels, or align hiring with business demand, or build or improve the TA function itself.",
+      "description": "Help talent acquisition leaders, TA managers, and recruiting teams build and run a strategic talent acquisition function. Use when asked to build a TA strategy, design talent pipelines, improve time-to-hire, set up ATS workflows, measure recruiting effectiveness, build sourcing channels, align hiring with business demand, or evaluate the TA operating model.",
       "skills": [
         "./skills/hr-talent-acquisition"
       ]
@@ -1098,7 +1098,7 @@
     {
       "name": "hr-vietnam-context",
       "source": "./",
-      "description": "Vietnam-specific HR guidance covering the Labor Code, Social Insurance Law, personal income tax registration, work permits for foreign workers, trade union obligations, and cultural norms for managing teams in Vietnam. Use when you need to navigate Vietnam employment law, onboard foreign staff, handle disciplinary procedures under Vietnamese law, or adapt global HR practices for the Vietnam market.",
+      "description": "Vietnam-specific HR guidance covering Labor Code 2019 compliance, Social Insurance (SI/HI/UI) enrollment, PIT registration, work permit and visa management for foreign employees, 2% trade union contributions, and Vietnamese workplace culture. Use when setting up employment contracts, handling labor discipline or termination, calculating statutory leave and severance, or managing teams in Vietnam.",
       "skills": [
         "./skills/hr-vietnam-context"
       ]
