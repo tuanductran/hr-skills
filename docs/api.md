@@ -1270,6 +1270,26 @@ function validateHiddenUnicode(skillName: string, content: string, errors: Skill
 
 ---
 
+### `validateSecurityChecks`
+
+```ts
+import { validateSecurityChecks } from 'hr-skills-build'
+```
+
+Run all security validators on skill content.
+
+```ts
+function validateSecurityChecks(skillName: string, content: string, errors: SkillValidationIssue[]): void
+```
+
+#### Parameters
+
+- `skillName`
+- `content`
+- `errors`
+
+---
+
 ## Semantic Validation
 
 ### `PROMPT_DRIFT_THRESHOLD`
