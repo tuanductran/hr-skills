@@ -26,7 +26,13 @@ import type {
 } from '../shared/types.js';
 import { validateExecutionPlan } from '../validation/validate-planner.js';
 
-/** Run a single evaluation case against the given registry, deterministically. */
+/**
+ * Run a single evaluation case against the given registry, deterministically.
+ *
+ * @param evalCase - The intent and metadata for this case.
+ * @param registry - Registry to plan/execute against.
+ * @returns The same shape stored in a golden fixture, for direct comparison.
+ */
 export async function runCase(
 	evalCase: EvaluationCase,
 	registry: Registry,
@@ -53,8 +59,10 @@ export async function runCase(
 
 /**
  * Compare an actual case result against its golden fixture entry.
- * Returns the list of field names that differ (empty when they match, or
- * when there is no golden entry to compare against yet).
+ *
+ * @param actual - Result from a fresh {@link runCase} run.
+ * @param golden - The previously committed result for the same case, if any.
+ * @returns Field names that differ (empty when they match, or when there is no golden entry to compare against yet).
  */
 export function diffAgainstGolden(
 	actual: GoldenCaseResult,
@@ -111,6 +119,9 @@ async function runDataset(
  * Compute deterministic 0.0-1.0 quality metrics across a set of case
  * results. A case "passes" quality checks when it has zero regressions
  * against the golden fixture (or has no golden fixture yet).
+ *
+ * @param results - Per-case results, typically from `runDataset`.
+ * @returns Aggregated 0.0-1.0 accuracy/success-rate metrics.
  */
 export function computeQualityMetrics(results: EvaluationCaseResult[]): QualityMetrics {
 	const ratio = (numerator: number, denominator: number): number =>
@@ -155,7 +166,14 @@ export function computeQualityMetrics(results: EvaluationCaseResult[]): QualityM
 	};
 }
 
-/** Run a full evaluation of one dataset and produce the aggregated report. */
+/**
+ * Run a full evaluation of one dataset and produce the aggregated report.
+ *
+ * @param dataset - Cases to evaluate.
+ * @param registry - Registry to plan/execute against.
+ * @param golden - Previously committed results to diff against, if any.
+ * @returns The full evaluation report, including per-case results and aggregated metrics.
+ */
 export async function runEvaluation(
 	dataset: EvaluationDataset,
 	registry: Registry,
@@ -184,7 +202,13 @@ export async function runEvaluation(
 	};
 }
 
-/** Build a golden fixture from a fresh run — used by `--update-golden`. */
+/**
+ * Build a golden fixture from a fresh run — used by `--update-golden`.
+ *
+ * @param dataset - The dataset that was evaluated.
+ * @param report - The evaluation report to convert.
+ * @returns A fixture ready to be written with `saveGoldenFixture`.
+ */
 export function toGoldenFixture(
 	dataset: EvaluationDataset,
 	report: EvaluationReport,

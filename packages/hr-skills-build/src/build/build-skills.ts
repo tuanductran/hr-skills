@@ -377,12 +377,26 @@ async function buildArchive(
 // Public API
 // ---------------------------------------------------------------------------
 
+/**
+ * Packages the repo's distributable skill files into `dist/hr-skills.zip`
+ * (respects `.distignore`, excludes the Claude plugin manifest).
+ *
+ * @param repoRoot - Absolute path to the repository root.
+ * @returns Absolute path to the written zip archive.
+ */
 export async function buildZip(repoRoot: string): Promise<string> {
 	return buildArchive(repoRoot, 'hr-skills.zip', 'zip', {
 		includeClaudePlugin: false,
 	});
 }
 
+/**
+ * Packages the repo into `dist/hr-skills.skill`, a Claude Code plugin bundle
+ * that additionally includes the Claude plugin manifest and command files.
+ *
+ * @param repoRoot - Absolute path to the repository root.
+ * @returns Absolute path to the written `.skill` archive.
+ */
 export async function buildSkill(repoRoot: string): Promise<string> {
 	return buildArchive(repoRoot, 'hr-skills.skill', 'skill', {
 		includeClaudePlugin: true,

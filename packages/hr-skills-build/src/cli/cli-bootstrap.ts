@@ -15,6 +15,8 @@ import * as p from '@clack/prompts';
  * Run a CLI `main()` function, logging uncaught errors through `@clack/prompts`
  * and exiting with status 1. Every `cli/*.ts` entry point should end with
  * `runCli(main);` instead of hand-rolling its own `.catch(...)`.
+ *
+ * @param main - The CLI's entry point.
  */
 export function runCli(main: () => Promise<void>): void {
 	main().catch((err: unknown) => {
@@ -29,6 +31,10 @@ export function runCli(main: () => Promise<void>): void {
  * example invocation) and exit with status 1. Call this when `value` is
  * falsy; callers keep control of the exact wording since each CLI's usage
  * differs, only the three-line shape is shared.
+ *
+ * @param usageLine - One-line usage summary, e.g. `Usage: bun run plan <intent>`.
+ * @param exampleLine - One example invocation shown under "Example:".
+ * @returns Never returns — always exits the process.
  */
 export function printUsageAndExit(usageLine: string, exampleLine: string): never {
 	p.log.error(usageLine);

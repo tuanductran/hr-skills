@@ -72,6 +72,9 @@ function hasCycleFrom(
  * Mirrors the pattern already used for marketplace.json / router consistency
  * in validate.ts — recompute the expected artifact in memory and compare,
  * rather than trusting the committed file blindly.
+ *
+ * @param errors - Issue list to push findings onto (mutated in place).
+ * @returns Resolves once every check has run; findings are pushed onto `errors`.
  */
 export async function validateRegistryConsistency(
 	errors: SkillValidationIssue[],

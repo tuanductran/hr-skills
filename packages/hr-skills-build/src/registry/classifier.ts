@@ -26,6 +26,7 @@
 
 import type { SkillCategory } from '../shared/types.js';
 
+/** Result of running a skill's name/description through {@link classifySkill}. */
 export interface SkillClassification {
 	category: SkillCategory;
 	tags: string[];
@@ -404,6 +405,9 @@ const KEYWORD_RULES: ReadonlyArray<KeywordRule> = [
  *  1. EXPLICIT override map (exact match)
  *  2. KEYWORD_RULES (substring scan, first match wins)
  *  3. 'uncategorized' fallback
+ *
+ * @param skillName - Skill directory name to classify.
+ * @returns The resolved category and any associated tags.
  */
 export function classifySkill(skillName: string): SkillClassification {
 	// 1. Explicit override
@@ -429,6 +433,7 @@ export function classifySkill(skillName: string): SkillClassification {
 // when generating the routing table in root SKILL.md
 // ---------------------------------------------------------------------------
 
+/** Display metadata for one {@link SkillCategory}, used when rendering the root `SKILL.md` routing table. */
 export interface CategoryMeta {
 	heading: string;
 	description?: string;

@@ -11,6 +11,7 @@
 
 import type { RuntimeEvent, RuntimeEventType } from '../shared/types.js';
 
+/** Records runtime events in emission order and assigns each a logical-clock `order`. */
 export class EventDispatcher {
 	private readonly events: RuntimeEvent[] = [];
 	private nextOrder = 0;

@@ -265,6 +265,9 @@ function stripMarkdown(text: string): string {
 /**
  * Tokenise a normalised string: split on whitespace, remove stop-words and
  * tokens shorter than 3 characters.  Returns a sorted array for determinism.
+ *
+ * @param text - Normalised (lowercase, whitespace-collapsed) input text.
+ * @returns Sorted, filtered tokens.
  */
 export function tokenise(text: string): string[] {
 	return stripMarkdown(text)
@@ -277,6 +280,9 @@ export function tokenise(text: string): string[] {
  * Build bigrams (consecutive token pairs) from a token list.
  * The list must be in its natural (unsorted) order before calling this;
  * the returned bigrams are sorted for determinism.
+ *
+ * @param tokens - Tokens in their natural (unsorted) order.
+ * @returns Sorted `"tokenA|tokenB"` bigrams.
  */
 export function buildBigrams(tokens: string[]): string[] {
 	const bigrams: string[] = [];
@@ -296,6 +302,10 @@ export function buildBigrams(tokens: string[]): string[] {
  * |A ∩ B| / |A ∪ B| — both computed from the frequency-aware intersection
  * so a token appearing twice in A but once in B only contributes 1 to the
  * intersection.  Returns 0 when both arrays are empty.
+ *
+ * @param a - First token multiset.
+ * @param b - Second token multiset.
+ * @returns Jaccard similarity in `[0, 1]`.
  */
 export function jaccardSimilarity(a: string[], b: string[]): number {
 	if (a.length === 0 && b.length === 0) return 0;
@@ -424,6 +434,9 @@ function buildWarning(
 /**
  * Compute the composite duplicate score for a pair of pre-loaded skills.
  *
+ * @param a - First skill's loaded content.
+ * @param b - Second skill's loaded content.
+ * @param threshold - Minimum composite score to report as a duplicate.
  * @returns A `DuplicateWarning` when `score >= threshold`, or `null`.
  */
 export function comparePair(
@@ -489,6 +502,7 @@ function round(n: number): number {
  * @param skillNames - Alphabetically-sorted list of skill directory names.
  * @param warnings   - Mutable array to append warnings into.
  * @param threshold  - Override the default similarity threshold.
+ * @returns Resolves once every pair has been compared; findings are pushed onto `warnings`.
  */
 export async function detectDuplicates(
 	skillNames: string[],

@@ -43,6 +43,10 @@ async function loadRelevanceSignalTable(path?: string): Promise<RelevanceSignalT
   against a temp file, matching `loadSkillSemanticContent()`'s pattern in
   semantic-validation.ts and `scoreSkillQuality()`'s in quality-scoring.ts.
 
+#### Returns
+
+The parsed signal table, or `undefined` if the file doesn't exist yet.
+
 ---
 
 ### `buildRegistry`
@@ -64,6 +68,10 @@ async function buildRegistry(signalTable?: RelevanceSignalTable | undefined): Pr
   tag-overlap `relatedSkills` ranking is blended with observed co-selection
   rates.  When absent (the default), the registry is built exactly as before
   — static ranking only — preserving full backwards compatibility.
+
+#### Returns
+
+The full registry, including every skill's classification, capabilities, and related skills.
 
 ---
 
@@ -107,6 +115,8 @@ A promise that resolves to an array of skill directory names (not full paths).
 import { SkillClassification } from 'hr-skills-build'
 ```
 
+Result of running a skill's name/description through classifySkill.
+
 ```ts
 interface SkillClassification {
  category: SkillCategory;
@@ -135,7 +145,11 @@ function classifySkill(skillName: string): SkillClassification
 
 #### Parameters
 
-- `skillName`
+- `skillName` — Skill directory name to classify.
+
+#### Returns
+
+The resolved category and any associated tags.
 
 ---
 
@@ -144,6 +158,8 @@ function classifySkill(skillName: string): SkillClassification
 ```ts
 import { CategoryMeta } from 'hr-skills-build'
 ```
+
+Display metadata for one SkillCategory, used when rendering the root `SKILL.md` routing table.
 
 ```ts
 interface CategoryMeta {
@@ -245,6 +261,10 @@ function searchSkills(query: SkillSearchQuery, registry: Registry): SkillSearchR
   `query.domain` is set (a domain-only browse is a valid query).
 - `registry` — A `Registry` object, as produced from `registry/skills.json`.
 
+#### Returns
+
+Ranked, deduplicated skill matches with per-field score detail.
+
 #### Throws
 
 `InvalidSearchQueryError` — If the query has no text and no domain
@@ -302,6 +322,10 @@ function getRecommendations(skillId: string, registry: Registry, limit?: number)
 - `skillId` — The skill to get recommendations for, e.g. "hr-onboarding".
 - `registry` — A `Registry` object, as produced from `registry/skills.json`.
 - `limit` (optional) — Maximum number of recommendations to return (default 5).
+
+#### Returns
+
+Ranked related skills for `skillId`.
 
 #### Throws
 
@@ -404,7 +428,11 @@ function extractCoSelectionCounts(fixtures: readonly GoldenFixture[]): Map<strin
 
 #### Parameters
 
-- `fixtures`
+- `fixtures` — Committed golden fixtures to derive co-selection evidence from.
+
+#### Returns
+
+Bidirectional pair counts: `Map<sourceSkill, Map<targetSkill, count>>`.
 
 ---
 
@@ -424,7 +452,11 @@ function extractSkillObservationCounts(fixtures: readonly GoldenFixture[]): Map<
 
 #### Parameters
 
-- `fixtures`
+- `fixtures` — Committed golden fixtures to count observations from.
+
+#### Returns
+
+Number of times each skill ID appeared, keyed by skill ID.
 
 ---
 
@@ -449,8 +481,12 @@ function computeSignals(coSelectionCounts: ReadonlyMap<string, ReadonlyMap<strin
 
 #### Parameters
 
-- `coSelectionCounts`
-- `observationCounts`
+- `coSelectionCounts` — Output of `extractCoSelectionCounts`.
+- `observationCounts` — Output of `extractSkillObservationCounts`.
+
+#### Returns
+
+Sorted relevance signals, one per (source, target) pair with co-selection evidence.
 
 ---
 
@@ -475,6 +511,10 @@ function buildRelevanceSignalTable(fixtures: readonly GoldenFixture[], generated
 - `generatedAt` — ISO date string (YYYY-MM-DD) injected by the caller for
                     testability (avoids `new Date()` inside a pure function).
 
+#### Returns
+
+The full relevance signal table, ready to write to `registry/relevance-signals.json`.
+
 ---
 
 ### `indexSignalsBySource`
@@ -494,7 +534,11 @@ function indexSignalsBySource(table: RelevanceSignalTable): Map<string, Map<stri
 
 #### Parameters
 
-- `table`
+- `table` — Signal table to index, typically from `loadRelevanceSignalTable`.
+
+#### Returns
+
+Lookup index: `sourceSkill -> (targetSkill -> coSelectionRate)`.
 
 ---
 
@@ -528,6 +572,10 @@ function reRankRelatedSkills(skillId: string, staticRelated: readonly string[], 
 - `staticRelated` — The existing tag-overlap-ranked related skill IDs.
 - `signalIndex` — Output of `indexSignalsBySource`.
 - `limit` (optional) — Maximum number of IDs to return (matches static ranker default of 5).
+
+#### Returns
+
+Re-ranked related skill IDs, blending static tag-overlap with observed co-selection.
 
 ---
 
@@ -590,7 +638,11 @@ function analyzeIntent(intent: string): string[]
 
 #### Parameters
 
-- `intent`
+- `intent` — Free-text user intent.
+
+#### Returns
+
+Extracted capability phrases, normalized to lowercase.
 
 ---
 
@@ -611,8 +663,12 @@ function generateExecutionPlan(intent: string, registry: Registry): ExecutionPla
 
 #### Parameters
 
-- `intent`
-- `registry`
+- `intent` — Free-text user intent.
+- `registry` — Registry to match capabilities against.
+
+#### Returns
+
+The generated plan, including matched capabilities and ordered steps.
 
 ---
 
@@ -642,15 +698,23 @@ const WorkflowExecutor: WorkflowExecutor
 import { executeWorkflow } from 'hr-skills-build'
 ```
 
+Runs an ExecutionPlan step by step, in dependency order, calling
+`executeStep` for each one. On a step failure, downstream steps that
+depend on it (directly or transitively) are marked `skipped` rather than run.
+
 ```ts
 async function executeWorkflow(plan: ExecutionPlan, executeStep: StepExecutorFn, options?: RuntimeOptions | undefined): Promise<WorkflowResult>
 ```
 
 #### Parameters
 
-- `plan`
-- `executeStep`
-- `options` (optional)
+- `plan` — The plan to execute, typically from generateExecutionPlan.
+- `executeStep` — Callback invoked once per step to perform the actual work.
+- `options` (optional) — Retry policy and event/trace callbacks.
+
+#### Returns
+
+The overall workflow status plus a per-step result list.
 
 ---
 
@@ -750,6 +814,8 @@ A human-readable string describing the cause.
 import { EventDispatcher } from 'hr-skills-build'
 ```
 
+Records runtime events in emission order and assigns each a logical-clock `order`.
+
 ```ts
 const EventDispatcher: EventDispatcher
 ```
@@ -833,6 +899,8 @@ A RetryPolicy with exponential backoff delays.
 import { RuntimeStateTracker } from 'hr-skills-build'
 ```
 
+Tracks which lifecycle bucket (`pending`/`running`/`completed`/`failed`/`skipped`) each skill ID is currently in.
+
 ```ts
 const RuntimeStateTracker: RuntimeStateTracker
 ```
@@ -844,6 +912,8 @@ const RuntimeStateTracker: RuntimeStateTracker
 ```ts
 import { TraceCollector } from 'hr-skills-build'
 ```
+
+Builds a replayable `TraceEntry[]` — one entry per runtime event, each with a state snapshot.
 
 ```ts
 const TraceCollector: TraceCollector
@@ -859,7 +929,7 @@ const TraceCollector: TraceCollector
 import { validateFrontmatter } from 'hr-skills-build'
 ```
 
-Validate the frontmatter of a skill.
+Validate the frontmatter of a skill. *
 
 ```ts
 function validateFrontmatter(skillName: string, content: string, errors: SkillValidationIssue[]): void
@@ -867,9 +937,9 @@ function validateFrontmatter(skillName: string, content: string, errors: SkillVa
 
 #### Parameters
 
-- `skillName`
-- `content`
-- `errors`
+- `skillName` — Skill identifier, used to attribute any issues found.
+- `content` — Raw skill markdown to check.
+- `errors` — Issue list to push findings onto (mutated in place).
 
 ---
 
@@ -879,7 +949,7 @@ function validateFrontmatter(skillName: string, content: string, errors: SkillVa
 import { validateRequiredSections } from 'hr-skills-build'
 ```
 
-Validate the required sections of a skill.
+Validate the required sections of a skill. *
 
 ```ts
 function validateRequiredSections(skillName: string, content: string, errors: SkillValidationIssue[]): void
@@ -887,9 +957,9 @@ function validateRequiredSections(skillName: string, content: string, errors: Sk
 
 #### Parameters
 
-- `skillName`
-- `content`
-- `errors`
+- `skillName` — Skill identifier, used to attribute any issues found.
+- `content` — Raw skill markdown to check.
+- `errors` — Issue list to push findings onto (mutated in place).
 
 ---
 
@@ -899,7 +969,7 @@ function validateRequiredSections(skillName: string, content: string, errors: Sk
 import { validateContentLength } from 'hr-skills-build'
 ```
 
-Validate the content length of a skill.
+Validate the content length of a skill. *
 
 ```ts
 function validateContentLength(skillName: string, content: string, errors: SkillValidationIssue[]): void
@@ -907,9 +977,9 @@ function validateContentLength(skillName: string, content: string, errors: Skill
 
 #### Parameters
 
-- `skillName`
-- `content`
-- `errors`
+- `skillName` — Skill identifier, used to attribute any issues found.
+- `content` — Raw skill markdown to check.
+- `errors` — Issue list to push findings onto (mutated in place).
 
 ---
 
@@ -919,7 +989,7 @@ function validateContentLength(skillName: string, content: string, errors: Skill
 import { validateLineCount } from 'hr-skills-build'
 ```
 
-Validate the line count of a skill.
+Validate the line count of a skill. *
 
 ```ts
 function validateLineCount(skillName: string, content: string, errors: SkillValidationIssue[]): void
@@ -927,9 +997,9 @@ function validateLineCount(skillName: string, content: string, errors: SkillVali
 
 #### Parameters
 
-- `skillName`
-- `content`
-- `errors`
+- `skillName` — Skill identifier, used to attribute any issues found.
+- `content` — Raw skill markdown to check.
+- `errors` — Issue list to push findings onto (mutated in place).
 
 ---
 
@@ -939,7 +1009,7 @@ function validateLineCount(skillName: string, content: string, errors: SkillVali
 import { validateSupportedTasks } from 'hr-skills-build'
 ```
 
-Validate the supported tasks of a skill.
+Validate the supported tasks of a skill. *
 
 ```ts
 function validateSupportedTasks(skillName: string, content: string, errors: SkillValidationIssue[]): void
@@ -947,9 +1017,9 @@ function validateSupportedTasks(skillName: string, content: string, errors: Skil
 
 #### Parameters
 
-- `skillName`
-- `content`
-- `errors`
+- `skillName` — Skill identifier, used to attribute any issues found.
+- `content` — Raw skill markdown to check.
+- `errors` — Issue list to push findings onto (mutated in place).
 
 ---
 
@@ -959,7 +1029,7 @@ function validateSupportedTasks(skillName: string, content: string, errors: Skil
 import { validateTips } from 'hr-skills-build'
 ```
 
-Validate the tips of a skill.
+Validate the tips of a skill. *
 
 ```ts
 function validateTips(skillName: string, content: string, errors: SkillValidationIssue[]): void
@@ -967,9 +1037,9 @@ function validateTips(skillName: string, content: string, errors: SkillValidatio
 
 #### Parameters
 
-- `skillName`
-- `content`
-- `errors`
+- `skillName` — Skill identifier, used to attribute any issues found.
+- `content` — Raw skill markdown to check.
+- `errors` — Issue list to push findings onto (mutated in place).
 
 ---
 
@@ -979,7 +1049,7 @@ function validateTips(skillName: string, content: string, errors: SkillValidatio
 import { validateBlankLines } from 'hr-skills-build'
 ```
 
-Validate the blank lines of a skill.
+Validate the blank lines of a skill. *
 
 ```ts
 function validateBlankLines(skillName: string, content: string, errors: SkillValidationIssue[]): void
@@ -987,9 +1057,9 @@ function validateBlankLines(skillName: string, content: string, errors: SkillVal
 
 #### Parameters
 
-- `skillName`
-- `content`
-- `errors`
+- `skillName` — Skill identifier, used to attribute any issues found.
+- `content` — Raw skill markdown to check.
+- `errors` — Issue list to push findings onto (mutated in place).
 
 ---
 
@@ -1007,9 +1077,9 @@ function validateAuthor(skillName: string, author: string | undefined, errors: S
 
 #### Parameters
 
-- `skillName`
-- `author`
-- `errors`
+- `skillName` — Skill identifier, used to attribute any issues found.
+- `author` — The `metadata.author` frontmatter value, if present.
+- `errors` — Issue list to push findings onto (mutated in place).
 
 ---
 
@@ -1029,9 +1099,9 @@ function validatePromptStructure(skillName: string, content: string, errors: Ski
 
 #### Parameters
 
-- `skillName`
-- `content`
-- `errors`
+- `skillName` — Skill identifier, used to attribute any issues found.
+- `content` — Raw skill markdown to check.
+- `errors` — Issue list to push findings onto (mutated in place).
 
 ---
 
@@ -1052,8 +1122,12 @@ async function validateRouterConsistency(skillNames: string[], errors: SkillVali
 
 #### Parameters
 
-- `skillNames`
-- `errors`
+- `skillNames` — Skill directory names discovered on disk.
+- `errors` — Issue list to push findings onto (mutated in place).
+
+#### Returns
+
+Resolves once all three sources have been compared; findings are pushed onto `errors`.
 
 ---
 
@@ -1071,9 +1145,13 @@ async function validateSubdirectoryContents(skillName: string, skillDir: string,
 
 #### Parameters
 
-- `skillName`
-- `skillDir`
-- `errors`
+- `skillName` — Skill identifier, used to attribute any issues found.
+- `skillDir` — Absolute path to the skill's directory.
+- `errors` — Issue list to push findings onto (mutated in place).
+
+#### Returns
+
+Resolves once every subdirectory has been checked; findings are pushed onto `errors`.
 
 ---
 
@@ -1091,8 +1169,12 @@ function validateExecutionPlan(plan: ExecutionPlan, registry: Registry): PlanVal
 
 #### Parameters
 
-- `plan`
-- `registry`
+- `plan` — The plan to validate.
+- `registry` — Registry to check skill IDs and dependencies against.
+
+#### Returns
+
+Whether the plan is valid, plus any issues found.
 
 ---
 
@@ -1112,8 +1194,12 @@ function suggestPlanImprovements(plan: ExecutionPlan, _registry: Registry): stri
 
 #### Parameters
 
-- `plan`
-- `_registry`
+- `plan` — The plan to review.
+- `_registry` — Unused; kept for API symmetry with validateExecutionPlan.
+
+#### Returns
+
+Human-readable suggestions, empty when the plan looks fine.
 
 ---
 
@@ -1137,7 +1223,11 @@ async function validateRegistryConsistency(errors: SkillValidationIssue[]): Prom
 
 #### Parameters
 
-- `errors`
+- `errors` — Issue list to push findings onto (mutated in place).
+
+#### Returns
+
+Resolves once every check has run; findings are pushed onto `errors`.
 
 ---
 
@@ -1186,15 +1276,18 @@ function validateRelatedSkillsAgainstSignals(registry: { skills: readonly Pick<R
 import { validateSecurityCommands } from 'hr-skills-build'
 ```
 
+Scans fenced shell code blocks in a skill's content for destructive command
+patterns (raw device writes, `mkfs`, fork bombs, piped base64 decodes).
+
 ```ts
 function validateSecurityCommands(skillName: string, content: string, errors: SkillValidationIssue[]): void
 ```
 
 #### Parameters
 
-- `skillName`
-- `content`
-- `errors`
+- `skillName` — Skill ID, used to attribute reported issues.
+- `content` — Full skill content (e.g. `SKILL.md` body) to scan.
+- `errors` — Mutated in place with one SkillValidationIssue per match.
 
 ---
 
@@ -1204,15 +1297,19 @@ function validateSecurityCommands(skillName: string, content: string, errors: Sk
 import { validateSensitivePaths } from 'hr-skills-build'
 ```
 
+Scans fenced code blocks for writes to sensitive filesystem paths
+(`/etc/`, `/root/`, `~/.ssh/`, shell rc files, `/usr/local/bin/`, `/tmp/`
+executables).
+
 ```ts
 function validateSensitivePaths(skillName: string, content: string, errors: SkillValidationIssue[]): void
 ```
 
 #### Parameters
 
-- `skillName`
-- `content`
-- `errors`
+- `skillName` — Skill ID, used to attribute reported issues.
+- `content` — Full skill content to scan.
+- `errors` — Mutated in place with one SkillValidationIssue per match.
 
 ---
 
@@ -1222,15 +1319,18 @@ function validateSensitivePaths(skillName: string, content: string, errors: Skil
 import { validateSuspiciousUrls } from 'hr-skills-build'
 ```
 
+Flags URLs pointing at raw IP addresses, known suspicious hosts, or
+plain-text mentions of exfiltration services (e.g. requestbin).
+
 ```ts
 function validateSuspiciousUrls(skillName: string, content: string, errors: SkillValidationIssue[]): void
 ```
 
 #### Parameters
 
-- `skillName`
-- `content`
-- `errors`
+- `skillName` — Skill identifier, used to attribute any issues found.
+- `content` — Raw skill markdown to scan.
+- `errors` — Issue list to push findings onto (mutated in place).
 
 ---
 
@@ -1240,15 +1340,18 @@ function validateSuspiciousUrls(skillName: string, content: string, errors: Skil
 import { validateCredentialLeaks } from 'hr-skills-build'
 ```
 
+Flags content matching known credential/secret patterns (API keys,
+hardcoded passwords, GitHub/OpenAI/Slack/AWS token shapes).
+
 ```ts
 function validateCredentialLeaks(skillName: string, content: string, errors: SkillValidationIssue[]): void
 ```
 
 #### Parameters
 
-- `skillName`
-- `content`
-- `errors`
+- `skillName` — Skill identifier, used to attribute any issues found.
+- `content` — Raw skill markdown to scan.
+- `errors` — Issue list to push findings onto (mutated in place).
 
 ---
 
@@ -1258,15 +1361,19 @@ function validateCredentialLeaks(skillName: string, content: string, errors: Ski
 import { validateHiddenUnicode } from 'hr-skills-build'
 ```
 
+Flags zero-width, directional-override, and private-use-area Unicode
+characters — commonly used to hide injected instructions in text that
+looks clean when rendered.
+
 ```ts
 function validateHiddenUnicode(skillName: string, content: string, errors: SkillValidationIssue[]): void
 ```
 
 #### Parameters
 
-- `skillName`
-- `content`
-- `errors`
+- `skillName` — Skill identifier, used to attribute any issues found.
+- `content` — Raw skill markdown to scan.
+- `errors` — Issue list to push findings onto (mutated in place).
 
 ---
 
@@ -1284,9 +1391,9 @@ function validateSecurityChecks(skillName: string, content: string, errors: Skil
 
 #### Parameters
 
-- `skillName`
-- `content`
-- `errors`
+- `skillName` — Skill identifier, used to attribute any issues found.
+- `content` — Raw skill markdown to scan.
+- `errors` — Issue list to push findings onto (mutated in place).
 
 ---
 
@@ -1438,6 +1545,10 @@ async function loadSkillSemanticContent(skillsDir: string, skillName: string): P
 - `skillsDir` — Absolute path to the repository's `skills/` directory.
 - `skillName` — The skill's directory name (e.g. `"hr-onboarding"`).
 
+#### Returns
+
+The skill's purpose/prompt/example token sets and content flags.
+
 ---
 
 ### `topKeywords`
@@ -1455,8 +1566,12 @@ function topKeywords(description: string, count?: number): string[]
 
 #### Parameters
 
-- `description`
-- `count` (optional)
+- `description` — Skill's frontmatter description.
+- `count` (optional) — Maximum number of keywords to return.
+
+#### Returns
+
+Top tokens, most frequent first.
 
 ---
 
@@ -1501,7 +1616,11 @@ function checkDrift(skill: SkillSemanticContent): SemanticFinding[]
 
 #### Parameters
 
-- `skill`
+- `skill` — The skill's semantic content, from `loadSkillSemanticContent`.
+
+#### Returns
+
+Drift findings, empty when nothing is flagged.
 
 ---
 
@@ -1524,6 +1643,10 @@ function checkPossibleCopy(skill: SkillSemanticContent, allSkills: SkillSemantic
 - `allSkills` — All skills' semantic content, used to find the best
   cross-skill match. Must include `skill` itself (it is skipped).
 
+#### Returns
+
+Possible-copy findings, empty when nothing is flagged.
+
 ---
 
 ### `checkConceptCoverage`
@@ -1541,7 +1664,11 @@ function checkConceptCoverage(skill: SkillSemanticContent): SemanticFinding[]
 
 #### Parameters
 
-- `skill`
+- `skill` — The skill's semantic content, from `loadSkillSemanticContent`.
+
+#### Returns
+
+Concept-coverage findings, empty when nothing is flagged.
 
 ---
 
@@ -1573,6 +1700,10 @@ async function validateSemanticConsistency(skillsDir: string, skillNames: string
 - `skillsDir` — Absolute path to the repository's `skills/` directory.
 - `skillNames` — List of skill directory names to validate.
 - `warnings` — Mutable array to append warnings into.
+
+#### Returns
+
+Resolves once every skill has been checked; findings are pushed onto `warnings`.
 
 ---
 
@@ -1709,8 +1840,12 @@ function scoreClarity(description: string, content: string): QualityDimensionSco
 
 #### Parameters
 
-- `description`
-- `content`
+- `description` — Skill's frontmatter description.
+- `content` — Full skill markdown body.
+
+#### Returns
+
+Clarity dimension score with explanatory notes.
 
 ---
 
@@ -1730,7 +1865,11 @@ function scoreCompleteness(content: string): QualityDimensionScore
 
 #### Parameters
 
-- `content`
+- `content` — Full skill markdown body.
+
+#### Returns
+
+Completeness dimension score with explanatory notes.
 
 ---
 
@@ -1749,9 +1888,13 @@ async function scoreExampleCoverage(skillsDir: string, skillName: string, conten
 
 #### Parameters
 
-- `skillsDir`
-- `skillName`
-- `content`
+- `skillsDir` — Absolute path to the `skills/` directory.
+- `skillName` — Skill directory name.
+- `content` — Full skill markdown body.
+
+#### Returns
+
+Example-coverage dimension score with explanatory notes.
 
 ---
 
@@ -1916,7 +2059,11 @@ function tokenise(text: string): string[]
 
 #### Parameters
 
-- `text`
+- `text` — Normalised (lowercase, whitespace-collapsed) input text.
+
+#### Returns
+
+Sorted, filtered tokens.
 
 ---
 
@@ -1936,7 +2083,11 @@ function buildBigrams(tokens: string[]): string[]
 
 #### Parameters
 
-- `tokens`
+- `tokens` — Tokens in their natural (unsorted) order.
+
+#### Returns
+
+Sorted `"tokenA|tokenB"` bigrams.
 
 ---
 
@@ -1958,8 +2109,12 @@ function jaccardSimilarity(a: string[], b: string[]): number
 
 #### Parameters
 
-- `a`
-- `b`
+- `a` — First token multiset.
+- `b` — Second token multiset.
+
+#### Returns
+
+Jaccard similarity in `[0, 1]`.
 
 ---
 
@@ -2027,9 +2182,9 @@ function comparePair(a: SkillContent, b: SkillContent, threshold?: number): Dupl
 
 #### Parameters
 
-- `a`
-- `b`
-- `threshold` (optional)
+- `a` — First skill's loaded content.
+- `b` — Second skill's loaded content.
+- `threshold` (optional) — Minimum composite score to report as a duplicate.
 
 #### Returns
 
@@ -2060,6 +2215,10 @@ async function detectDuplicates(skillNames: string[], warnings: SkillValidationI
 - `warnings` — Mutable array to append warnings into.
 - `threshold` (optional) — Override the default similarity threshold.
 
+#### Returns
+
+Resolves once every pair has been compared; findings are pushed onto `warnings`.
+
 ---
 
 ## Evaluation
@@ -2078,8 +2237,12 @@ async function runCase(evalCase: EvaluationCase, registry: Registry): Promise<Go
 
 #### Parameters
 
-- `evalCase`
-- `registry`
+- `evalCase` — The intent and metadata for this case.
+- `registry` — Registry to plan/execute against.
+
+#### Returns
+
+The same shape stored in a golden fixture, for direct comparison.
 
 ---
 
@@ -2090,8 +2253,6 @@ import { diffAgainstGolden } from 'hr-skills-build'
 ```
 
 Compare an actual case result against its golden fixture entry.
-Returns the list of field names that differ (empty when they match, or
-when there is no golden entry to compare against yet).
 
 ```ts
 function diffAgainstGolden(actual: GoldenCaseResult, golden: GoldenCaseResult | undefined): string[]
@@ -2099,8 +2260,12 @@ function diffAgainstGolden(actual: GoldenCaseResult, golden: GoldenCaseResult | 
 
 #### Parameters
 
-- `actual`
-- `golden`
+- `actual` — Result from a fresh runCase run.
+- `golden` — The previously committed result for the same case, if any.
+
+#### Returns
+
+Field names that differ (empty when they match, or when there is no golden entry to compare against yet).
 
 ---
 
@@ -2120,7 +2285,11 @@ function computeQualityMetrics(results: EvaluationCaseResult[]): QualityMetrics
 
 #### Parameters
 
-- `results`
+- `results` — Per-case results, typically from `runDataset`.
+
+#### Returns
+
+Aggregated 0.0-1.0 accuracy/success-rate metrics.
 
 ---
 
@@ -2138,9 +2307,13 @@ async function runEvaluation(dataset: EvaluationDataset, registry: Registry, gol
 
 #### Parameters
 
-- `dataset`
-- `registry`
-- `golden`
+- `dataset` — Cases to evaluate.
+- `registry` — Registry to plan/execute against.
+- `golden` — Previously committed results to diff against, if any.
+
+#### Returns
+
+The full evaluation report, including per-case results and aggregated metrics.
 
 ---
 
@@ -2158,8 +2331,12 @@ function toGoldenFixture(dataset: EvaluationDataset, report: EvaluationReport): 
 
 #### Parameters
 
-- `dataset`
-- `report`
+- `dataset` — The dataset that was evaluated.
+- `report` — The evaluation report to convert.
+
+#### Returns
+
+A fixture ready to be written with `saveGoldenFixture`.
 
 ---
 
@@ -2179,7 +2356,11 @@ async function loadDataset(name: string): Promise<EvaluationDataset>
 
 #### Parameters
 
-- `name`
+- `name` — Dataset file's base name, e.g. `"planning-scenarios"`.
+
+#### Returns
+
+The parsed dataset.
 
 ---
 
@@ -2194,6 +2375,10 @@ Discover and load every dataset in `eval/datasets/`, sorted by file name.
 ```ts
 async function loadAllDatasets(): Promise<EvaluationDataset[]>
 ```
+
+#### Returns
+
+All datasets, sorted by file name.
 
 ---
 
@@ -2214,7 +2399,11 @@ async function loadGoldenFixture(datasetName: string): Promise<GoldenFixture | u
 
 #### Parameters
 
-- `datasetName`
+- `datasetName` — Dataset name, matching the `dataset` field in the fixture.
+
+#### Returns
+
+The parsed fixture, or `undefined` if none is committed yet.
 
 ---
 
@@ -2232,7 +2421,7 @@ async function saveGoldenFixture(fixture: GoldenFixture): Promise<void>
 
 #### Parameters
 
-- `fixture`
+- `fixture` — Fixture to persist; written to `eval/golden/<dataset>.golden.json`.
 
 ---
 
@@ -2247,6 +2436,10 @@ Discover the names of every committed golden fixture, sorted.
 ```ts
 async function listGoldenFixtureNames(): Promise<string[]>
 ```
+
+#### Returns
+
+Dataset names (without the `.golden.json` suffix), sorted.
 
 ---
 
@@ -2264,6 +2457,10 @@ without requiring the caller to enumerate dataset names manually.
 ```ts
 async function loadAllGoldenFixtures(): Promise<GoldenFixture[]>
 ```
+
+#### Returns
+
+All committed golden fixtures, sorted by dataset name.
 
 ---
 
@@ -2593,8 +2790,12 @@ function stubStepExecutor(step: ExecutionStep, context: RuntimeContext): unknown
 
 #### Parameters
 
-- `step`
-- `context`
+- `step` — The plan step being "executed".
+- `context` — Outputs recorded from prior steps in the same run.
+
+#### Returns
+
+A placeholder output object, never a rejected promise.
 
 ---
 
@@ -2617,7 +2818,11 @@ function parseSkillFrontmatter(content: string): { name?: string | undefined; de
 
 #### Parameters
 
-- `content`
+- `content` — Raw markdown document, frontmatter included.
+
+#### Returns
+
+Parsed frontmatter fields, or `{}` if none/invalid.
 
 ---
 
@@ -2638,7 +2843,11 @@ async function parseSkillMeta(skillName: string): Promise<SkillMeta>
 
 #### Parameters
 
-- `skillName`
+- `skillName` — Skill directory name to load.
+
+#### Returns
+
+Display metadata derived from the skill's frontmatter and body.
 
 #### Throws
 

@@ -4,6 +4,9 @@ import type { SkillProperties } from './schema.js';
 /**
  * Converts validated skill properties to a plain object suitable for
  * serialization.
+ *
+ * @param props - Validated frontmatter properties.
+ * @returns A plain object with only the fields that were present.
  */
 export function toDict(props: SkillProperties): Record<string, unknown> {
 	const result: Record<string, unknown> = {

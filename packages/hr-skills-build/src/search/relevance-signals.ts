@@ -101,6 +101,9 @@ export interface RelevanceSignalTable {
  *
  * Determinism: golden fixtures are processed in the order they are supplied;
  * callers are expected to sort fixture arrays before passing them in.
+ *
+ * @param fixtures - Committed golden fixtures to derive co-selection evidence from.
+ * @returns Bidirectional pair counts: `Map<sourceSkill, Map<targetSkill, count>>`.
  */
 export function extractCoSelectionCounts(
 	fixtures: ReadonlyArray<GoldenFixture>,
@@ -147,6 +150,9 @@ export function extractCoSelectionCounts(
  * Count the number of times each skill appears across all fixture results.
  *
  * Determinism: fixture order must be stable (same as `extractCoSelectionCounts`).
+ *
+ * @param fixtures - Committed golden fixtures to count observations from.
+ * @returns Number of times each skill ID appeared, keyed by skill ID.
  */
 export function extractSkillObservationCounts(
 	fixtures: ReadonlyArray<GoldenFixture>,
@@ -177,6 +183,10 @@ export function extractSkillObservationCounts(
  *
  * Output is sorted by `sourceSkill` (ascending), then `targetSkill`
  * (ascending) for a stable, human-readable artifact.
+ *
+ * @param coSelectionCounts - Output of `extractCoSelectionCounts`.
+ * @param observationCounts - Output of `extractSkillObservationCounts`.
+ * @returns Sorted relevance signals, one per (source, target) pair with co-selection evidence.
  */
 export function computeSignals(
 	coSelectionCounts: ReadonlyMap<string, ReadonlyMap<string, number>>,
@@ -222,6 +232,7 @@ export function computeSignals(
  * @param fixtures   Golden fixtures to derive evidence from.
  * @param generatedAt  ISO date string (YYYY-MM-DD) injected by the caller for
  *                     testability (avoids `new Date()` inside a pure function).
+ * @returns The full relevance signal table, ready to write to `registry/relevance-signals.json`.
  */
 export function buildRelevanceSignalTable(
 	fixtures: ReadonlyArray<GoldenFixture>,
@@ -260,6 +271,9 @@ export function buildRelevanceSignalTable(
  *
  * Used by `registry.ts` to merge observed weights into `relatedSkills`
  * without re-parsing the full signal list on every skill.
+ *
+ * @param table - Signal table to index, typically from `loadRelevanceSignalTable`.
+ * @returns Lookup index: `sourceSkill -> (targetSkill -> coSelectionRate)`.
  */
 export function indexSignalsBySource(
 	table: RelevanceSignalTable,
@@ -295,6 +309,7 @@ export function indexSignalsBySource(
  * @param staticRelated    The existing tag-overlap-ranked related skill IDs.
  * @param signalIndex      Output of `indexSignalsBySource`.
  * @param limit            Maximum number of IDs to return (matches static ranker default of 5).
+ * @returns Re-ranked related skill IDs, blending static tag-overlap with observed co-selection.
  */
 export function reRankRelatedSkills(
 	skillId: string,
