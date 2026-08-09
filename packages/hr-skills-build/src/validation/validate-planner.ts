@@ -22,6 +22,10 @@ import type {
 
 /**
  * Validate an execution plan against the registry and detect common issues.
+ *
+ * @param plan - The plan to validate.
+ * @param registry - Registry to check skill IDs and dependencies against.
+ * @returns Whether the plan is valid, plus any issues found.
  */
 export function validateExecutionPlan(
 	plan: ExecutionPlan,
@@ -225,6 +229,10 @@ function hasCycleDFS(
  * Suggest improvements to an execution plan.
  *
  * Non-binding suggestions for better organization or coverage.
+ *
+ * @param plan - The plan to review.
+ * @param _registry - Unused; kept for API symmetry with {@link validateExecutionPlan}.
+ * @returns Human-readable suggestions, empty when the plan looks fine.
  */
 export function suggestPlanImprovements(
 	plan: ExecutionPlan,

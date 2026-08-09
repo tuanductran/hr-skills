@@ -270,6 +270,10 @@ export function makeKeyPromptsContent(subtopics: number, promptsEach: number): s
  *
  * Real integrations should supply their own `StepExecutorFn` that actually
  * invokes the skill (for example, loading its SKILL.md and prompting a model).
+ *
+ * @param step - The plan step being "executed".
+ * @param context - Outputs recorded from prior steps in the same run.
+ * @returns A placeholder output object, never a rejected promise.
  */
 export function stubStepExecutor(step: ExecutionStep, context: RuntimeContext): unknown {
 	return {

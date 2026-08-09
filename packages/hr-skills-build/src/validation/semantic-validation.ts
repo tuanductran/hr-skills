@@ -158,6 +158,7 @@ export interface SkillSemanticContent {
  *
  * @param skillsDir - Absolute path to the repository's `skills/` directory.
  * @param skillName - The skill's directory name (e.g. `"hr-onboarding"`).
+ * @returns The skill's purpose/prompt/example token sets and content flags.
  */
 export async function loadSkillSemanticContent(
 	skillsDir: string,
@@ -193,6 +194,10 @@ export async function loadSkillSemanticContent(
 /**
  * Extract the top `count` most frequent normalised tokens from `description`.
  * Ties are broken alphabetically so the result is deterministic.
+ *
+ * @param description - Skill's frontmatter description.
+ * @param count - Maximum number of keywords to return.
+ * @returns Top tokens, most frequent first.
  */
 export function topKeywords(description: string, count = TOP_KEYWORD_COUNT): string[] {
 	const tokens = tokenise(description);
@@ -247,6 +252,9 @@ function pct(n: number): string {
  * Check `prompts/` and `examples/` for drift against a skill's own purpose
  * tokens (checks 1 and 2), skipping skills whose purpose vocabulary is too
  * small to compare against reliably.
+ *
+ * @param skill - The skill's semantic content, from `loadSkillSemanticContent`.
+ * @returns Drift findings, empty when nothing is flagged.
  */
 export function checkDrift(skill: SkillSemanticContent): SemanticFinding[] {
 	const findings: SemanticFinding[] = [];
@@ -294,6 +302,7 @@ export function checkDrift(skill: SkillSemanticContent): SemanticFinding[] {
  * @param skill - The skill whose supporting material is being checked.
  * @param allSkills - All skills' semantic content, used to find the best
  *   cross-skill match. Must include `skill` itself (it is skipped).
+ * @returns Possible-copy findings, empty when nothing is flagged.
  */
 export function checkPossibleCopy(
 	skill: SkillSemanticContent,
@@ -350,6 +359,9 @@ export function checkPossibleCopy(
 /**
  * Check that the skill's top description keywords are actually covered
  * somewhere in its supporting material (check 4).
+ *
+ * @param skill - The skill's semantic content, from `loadSkillSemanticContent`.
+ * @returns Concept-coverage findings, empty when nothing is flagged.
  */
 export function checkConceptCoverage(skill: SkillSemanticContent): SemanticFinding[] {
 	const keywords = topKeywords(skill.description);
@@ -403,6 +415,7 @@ export function checkConceptCoverage(skill: SkillSemanticContent): SemanticFindi
  * @param skillsDir - Absolute path to the repository's `skills/` directory.
  * @param skillNames - List of skill directory names to validate.
  * @param warnings - Mutable array to append warnings into.
+ * @returns Resolves once every skill has been checked; findings are pushed onto `warnings`.
  */
 export async function validateSemanticConsistency(
 	skillsDir: string,

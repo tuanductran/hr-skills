@@ -98,6 +98,9 @@ function validateFrontmatterFields(metadata: Record<string, unknown>): string[] 
 
 /**
  * Validates a skill directory.
+ *
+ * @param skillDir - Absolute path to the skill's directory.
+ * @returns Human-readable error messages; empty when the skill is valid.
  */
 export function validate(skillDir: string): string[] {
 	if (!existsSync(skillDir)) return [`Path does not exist: ${skillDir}`];

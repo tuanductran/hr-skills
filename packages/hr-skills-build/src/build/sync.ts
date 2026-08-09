@@ -11,6 +11,10 @@ import { syncRouter } from './router.js';
 
 /**
  * Sync the marketplace.json file.
+ *
+ * @param metas - Parsed metadata for every skill, used to rebuild the `plugins` list.
+ * @param filePath - Path to `marketplace.json`. Defaults to `${ROOT_DIR}/.claude-plugin/marketplace.json`.
+ * @returns Whether the file's contents changed.
  */
 export async function syncMarketplace(
 	metas: SkillMeta[],
@@ -49,7 +53,10 @@ export async function syncMarketplace(
 }
 
 /**
- * Sync the HR skills project.
+ * Sync the HR skills project: regenerates `marketplace.json` and the root
+ * `SKILL.md` routing table from the skills currently on disk.
+ *
+ * @returns Resolves once both files have been synced.
  */
 export async function sync(): Promise<void> {
 	p.intro('Syncing HR skills project...');

@@ -264,6 +264,16 @@ export class WorkflowExecutor {
 // Public API
 // ============================================================================
 
+/**
+ * Runs an {@link ExecutionPlan} step by step, in dependency order, calling
+ * `executeStep` for each one. On a step failure, downstream steps that
+ * depend on it (directly or transitively) are marked `skipped` rather than run.
+ *
+ * @param plan - The plan to execute, typically from {@link generateExecutionPlan}.
+ * @param executeStep - Callback invoked once per step to perform the actual work.
+ * @param options - Retry policy and event/trace callbacks.
+ * @returns The overall workflow status plus a per-step result list.
+ */
 export async function executeWorkflow(
 	plan: ExecutionPlan,
 	executeStep: StepExecutorFn,

@@ -50,7 +50,10 @@ function validateCore(
 }
 
 /**
- * Validate the frontmatter of a skill.
+ * Validate the frontmatter of a skill. *
+ * @param skillName - Skill identifier, used to attribute any issues found.
+ * @param content - Raw skill markdown to check.
+ * @param errors - Issue list to push findings onto (mutated in place).
  */
 export function validateFrontmatter(
 	skillName: string,
@@ -87,7 +90,10 @@ export function validateFrontmatter(
 }
 
 /**
- * Validate the required sections of a skill.
+ * Validate the required sections of a skill. *
+ * @param skillName - Skill identifier, used to attribute any issues found.
+ * @param content - Raw skill markdown to check.
+ * @param errors - Issue list to push findings onto (mutated in place).
  */
 export function validateRequiredSections(
 	skillName: string,
@@ -102,7 +108,10 @@ export function validateRequiredSections(
 }
 
 /**
- * Validate the content length of a skill.
+ * Validate the content length of a skill. *
+ * @param skillName - Skill identifier, used to attribute any issues found.
+ * @param content - Raw skill markdown to check.
+ * @param errors - Issue list to push findings onto (mutated in place).
  */
 export function validateContentLength(
 	skillName: string,
@@ -119,7 +128,10 @@ export function validateContentLength(
 }
 
 /**
- * Validate the line count of a skill.
+ * Validate the line count of a skill. *
+ * @param skillName - Skill identifier, used to attribute any issues found.
+ * @param content - Raw skill markdown to check.
+ * @param errors - Issue list to push findings onto (mutated in place).
  */
 export function validateLineCount(
 	skillName: string,
@@ -138,7 +150,10 @@ export function validateLineCount(
 }
 
 /**
- * Validate the supported tasks of a skill.
+ * Validate the supported tasks of a skill. *
+ * @param skillName - Skill identifier, used to attribute any issues found.
+ * @param content - Raw skill markdown to check.
+ * @param errors - Issue list to push findings onto (mutated in place).
  */
 export function validateSupportedTasks(
 	skillName: string,
@@ -161,7 +176,10 @@ export function validateSupportedTasks(
 }
 
 /**
- * Validate the tips of a skill.
+ * Validate the tips of a skill. *
+ * @param skillName - Skill identifier, used to attribute any issues found.
+ * @param content - Raw skill markdown to check.
+ * @param errors - Issue list to push findings onto (mutated in place).
  */
 export function validateTips(
 	skillName: string,
@@ -182,7 +200,10 @@ export function validateTips(
 }
 
 /**
- * Validate the blank lines of a skill.
+ * Validate the blank lines of a skill. *
+ * @param skillName - Skill identifier, used to attribute any issues found.
+ * @param content - Raw skill markdown to check.
+ * @param errors - Issue list to push findings onto (mutated in place).
  */
 export function validateBlankLines(
 	skillName: string,
@@ -222,6 +243,10 @@ export function validateBlankLines(
 
 /**
  * Validate the author of a skill.
+ *
+ * @param skillName - Skill identifier, used to attribute any issues found.
+ * @param author - The `metadata.author` frontmatter value, if present.
+ * @param errors - Issue list to push findings onto (mutated in place).
  */
 export function validateAuthor(
 	skillName: string,
@@ -248,6 +273,10 @@ export function validateAuthor(
  * Validate the structure of the ## Key prompts section.
  *
  * Per docs/format.md: 3-6 subtopics (H3 headings) and 4-7 quoted prompts per subtopic.
+ *
+ * @param skillName - Skill identifier, used to attribute any issues found.
+ * @param content - Raw skill markdown to check.
+ * @param errors - Issue list to push findings onto (mutated in place).
  */
 export function validatePromptStructure(
 	skillName: string,
@@ -290,6 +319,10 @@ export function validatePromptStructure(
  *
  * All three sources must agree on which skills exist. A mismatch means either a skill
  * was added without syncing, or the router wasn't updated after a rename/deletion.
+ *
+ * @param skillNames - Skill directory names discovered on disk.
+ * @param errors - Issue list to push findings onto (mutated in place).
+ * @returns Resolves once all three sources have been compared; findings are pushed onto `errors`.
  */
 export async function validateRouterConsistency(
 	skillNames: string[],
@@ -382,6 +415,11 @@ export async function validateRouterConsistency(
 
 /**
  * Validate that optional subdirectories (content, prompts, examples), if present, are non-empty.
+ *
+ * @param skillName - Skill identifier, used to attribute any issues found.
+ * @param skillDir - Absolute path to the skill's directory.
+ * @param errors - Issue list to push findings onto (mutated in place).
+ * @returns Resolves once every subdirectory has been checked; findings are pushed onto `errors`.
  */
 export async function validateSubdirectoryContents(
 	skillName: string,

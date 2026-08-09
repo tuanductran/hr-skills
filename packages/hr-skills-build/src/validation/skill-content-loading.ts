@@ -15,6 +15,9 @@ import { dirExists } from '../shared/helpers.js';
 /**
  * Extract the frontmatter `description` field from raw SKILL.md content.
  * Returns an empty string when the field or frontmatter block is absent.
+ *
+ * @param raw - Raw `SKILL.md` content, frontmatter included.
+ * @returns The description text, or `''` if absent.
  */
 export function extractDescription(raw: string): string {
 	const frontmatterMatch = FRONTMATTER_REGEX.exec(raw);
@@ -25,6 +28,9 @@ export function extractDescription(raw: string): string {
 
 /**
  * Strip YAML frontmatter from a markdown string.
+ *
+ * @param text - Markdown content, frontmatter included.
+ * @returns The content with the leading `---` frontmatter block removed.
  */
 export function stripFrontmatter(text: string): string {
 	return text.replace(FRONTMATTER_REGEX, '').trim();
@@ -34,6 +40,9 @@ export function stripFrontmatter(text: string): string {
  * Read and concatenate all `.md` files directly inside `dir`, in
  * alphabetical filename order. Returns an empty string when the directory
  * does not exist or contains no markdown files.
+ *
+ * @param dir - Directory to read `.md` files from.
+ * @returns Concatenated file contents, or `''` if none found.
  */
 export async function readAllMarkdown(dir: string): Promise<string> {
 	if (!(await dirExists(dir))) return '';
@@ -63,6 +72,9 @@ export async function readAllMarkdown(dir: string): Promise<string> {
  * Read a skill's raw `SKILL.md` file. Returns an empty string (rather than
  * throwing) when the file is missing or unreadable — callers treat that as
  * "everything derived from this skill stays empty" instead of failing.
+ *
+ * @param skillDir - Absolute path to the skill's directory.
+ * @returns The file's raw content, or `''` if missing/unreadable.
  */
 export async function readRawSkillMd(skillDir: string): Promise<string> {
 	try {

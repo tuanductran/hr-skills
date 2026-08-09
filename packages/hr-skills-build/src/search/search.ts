@@ -331,6 +331,7 @@ function buildExplanation(matches: SkillFieldMatch[]): string {
  * @param registry - A `Registry` object, as produced from `registry/skills.json`.
  * @throws {InvalidSearchQueryError} If the query has no text and no domain
  *   filter, or if `limit` is not a positive integer.
+ * @returns Ranked, deduplicated skill matches with per-field score detail.
  */
 export function searchSkills(
 	query: SkillSearchQuery,

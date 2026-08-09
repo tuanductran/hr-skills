@@ -51,6 +51,14 @@ const DANGEROUS_COMMANDS: ReadonlyArray<{ pattern: RegExp; label: string }> = [
 	},
 ];
 
+/**
+ * Scans fenced shell code blocks in a skill's content for destructive command
+ * patterns (raw device writes, `mkfs`, fork bombs, piped base64 decodes).
+ *
+ * @param skillName - Skill ID, used to attribute reported issues.
+ * @param content - Full skill content (e.g. `SKILL.md` body) to scan.
+ * @param errors - Mutated in place with one {@link SkillValidationIssue} per match.
+ */
 export function validateSecurityCommands(
 	skillName: string,
 	content: string,
@@ -87,6 +95,15 @@ const SENSITIVE_PATHS: ReadonlyArray<{ pattern: RegExp; label: string }> = [
 	{ pattern: />\s*\/tmp\/[^'"\s]*\.(sh|py|js|rb)/, label: 'write executable to /tmp/' },
 ];
 
+/**
+ * Scans fenced code blocks for writes to sensitive filesystem paths
+ * (`/etc/`, `/root/`, `~/.ssh/`, shell rc files, `/usr/local/bin/`, `/tmp/`
+ * executables).
+ *
+ * @param skillName - Skill ID, used to attribute reported issues.
+ * @param content - Full skill content to scan.
+ * @param errors - Mutated in place with one {@link SkillValidationIssue} per match.
+ */
 export function validateSensitivePaths(
 	skillName: string,
 	content: string,
@@ -163,6 +180,14 @@ function isSuspiciousHost(hostname: string): string | undefined {
 	return undefined;
 }
 
+/**
+ * Flags URLs pointing at raw IP addresses, known suspicious hosts, or
+ * plain-text mentions of exfiltration services (e.g. requestbin).
+ *
+ * @param skillName - Skill identifier, used to attribute any issues found.
+ * @param content - Raw skill markdown to scan.
+ * @param errors - Issue list to push findings onto (mutated in place).
+ */
 export function validateSuspiciousUrls(
 	skillName: string,
 	content: string,
@@ -231,6 +256,14 @@ const CREDENTIAL_PATTERNS: ReadonlyArray<{ pattern: RegExp; label: string }> = [
 	},
 ];
 
+/**
+ * Flags content matching known credential/secret patterns (API keys,
+ * hardcoded passwords, GitHub/OpenAI/Slack/AWS token shapes).
+ *
+ * @param skillName - Skill identifier, used to attribute any issues found.
+ * @param content - Raw skill markdown to scan.
+ * @param errors - Issue list to push findings onto (mutated in place).
+ */
 export function validateCredentialLeaks(
 	skillName: string,
 	content: string,
@@ -261,6 +294,15 @@ const HIDDEN_UNICODE_RANGES = [
 	/[\uE000-\uF8FF]/g, // private use area (unexpected in markdown)
 ];
 
+/**
+ * Flags zero-width, directional-override, and private-use-area Unicode
+ * characters — commonly used to hide injected instructions in text that
+ * looks clean when rendered.
+ *
+ * @param skillName - Skill identifier, used to attribute any issues found.
+ * @param content - Raw skill markdown to scan.
+ * @param errors - Issue list to push findings onto (mutated in place).
+ */
 export function validateHiddenUnicode(
 	skillName: string,
 	content: string,
@@ -281,6 +323,10 @@ export function validateHiddenUnicode(
 
 /**
  * Run all security validators on skill content.
+ *
+ * @param skillName - Skill identifier, used to attribute any issues found.
+ * @param content - Raw skill markdown to scan.
+ * @param errors - Issue list to push findings onto (mutated in place).
  */
 export function validateSecurityChecks(
 	skillName: string,
