@@ -54,10 +54,10 @@
 	},
 	"dependencies": {
 		"@clack/prompts": "catalog:",
-		"valibot": "catalog:",
 		"skills-ref": "workspace:*",
-		"yaml": "catalog:",
-		"tsdown": "catalog:"
+		"tsdown": "catalog:",
+		"valibot": "catalog:",
+		"yaml": "catalog:"
 	},
 	"devDependencies": {
 		"ts-morph": "catalog:"
