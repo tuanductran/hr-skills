@@ -1,5 +1,5 @@
 /**
- * Generates docs/skill-matrix.md — a snapshot of every skill's maturity tier,
+ * Generates docs/engineering/skill-matrix.md — a snapshot of every skill's maturity tier,
  * content depth, and validation status. Run via `bun run matrix`, or
  * automatically on every push to `main` (see .github/workflows/matrix.yml).
  */
@@ -100,7 +100,7 @@ async function generateSkillMatrix(): Promise<void> {
 	lines.push('');
 
 	const output = lines.join('\n');
-	const outputPath = join(ROOT_DIR, 'docs', 'skill-matrix.md');
+	const outputPath = join(ROOT_DIR, 'docs', 'engineering', 'skill-matrix.md');
 	await writeFile(outputPath, output, 'utf8');
 
 	console.log(

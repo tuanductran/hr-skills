@@ -1,6 +1,6 @@
 # Evaluation framework
 
-> Phase 4.4 of the [roadmap](ROADMAP.md) — deterministic quality evaluation for the Skill Planner and Workflow Runtime.
+> Phase 4.4 of the [roadmap](../ROADMAP.md) — deterministic quality evaluation for the Skill Planner and Workflow Runtime.
 
 ## What it is
 
@@ -126,7 +126,7 @@ For each case, `diffAgainstGolden` compares the current run's `GoldenCaseResult`
 
 `EvaluationReport.regressedCaseIds` lists every case with at least one regressed field. The CLI exits non-zero when any case regresses or fails validation, which makes `bun run evaluate` suitable as a CI gate.
 
-Because the Planner and Runtime are both pure/deterministic (no wall-clock timestamps, no randomness — see [`docs/planner.md`](planner.md) and [`docs/runtime.md`](runtime.md)), two runs against an unchanged registry always produce byte-identical `GoldenCaseResult`s. This is what makes golden-fixture comparison a reliable regression signal rather than a source of flaky failures.
+Because the Planner and Runtime are both pure/deterministic (no wall-clock timestamps, no randomness — see [`docs/engineering/planner.md`](planner.md) and [`docs/engineering/runtime.md`](runtime.md)), two runs against an unchanged registry always produce byte-identical `GoldenCaseResult`s. This is what makes golden-fixture comparison a reliable regression signal rather than a source of flaky failures.
 
 ## Benchmark execution
 

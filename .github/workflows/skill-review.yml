@@ -10,7 +10,7 @@ name: Skill Review
 #
 # Deliberately no AI/LLM calls and no third-party API keys: this workflow
 # runs `bun run skill-review` (security findings + Phase 6.2 quality
-# scores, see docs/quality-scoring.md) against only the skills a PR
+# scores, see docs/engineering/quality-scoring.md) against only the skills a PR
 # touches, then posts that report as-is via actions/github-script. Pure
 # regex/file-count arithmetic — same guarantee as detect-duplicates.ts
 # and semantic-validation.ts.

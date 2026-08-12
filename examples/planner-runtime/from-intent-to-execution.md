@@ -6,9 +6,9 @@
 walks the "hire a senior backend engineer" scenario turn by turn, as a
 person would run it in chat. This example shows the same scenario
 expressed programmatically: one natural-language intent goes into the
-[Skill Planner](../../docs/planner.md), which produces an explainable
+[Skill Planner](../../docs/engineering/planner.md), which produces an explainable
 `ExecutionPlan`, and that plan is executed by the
-[Workflow Runtime](../../docs/runtime.md).
+[Workflow Runtime](../../docs/engineering/runtime.md).
 
 This is the integration path for an agent that needs to decide *which*
 skills to load and *in what order*, rather than a person manually choosing
@@ -24,7 +24,7 @@ The Planner (`packages/hr-skills-build/src/planner/planner.ts`) splits this inte
 into capabilities, matches each one against `registry/skills.json` using
 Jaccard similarity, selects skills, and orders them with a topological
 sort. The shape of the result — illustrating the documented
-`ExecutionPlan` interface from [`docs/planner.md`](../../docs/planner.md)
+`ExecutionPlan` interface from [`docs/engineering/planner.md`](../../docs/engineering/planner.md)
 — looks like this:
 
 ```json
@@ -116,7 +116,7 @@ console.log(result.outputs);  // { 'hr-job-description': ..., 'hr-recruiting': .
 
 `result.trace` and `result.events` give a deterministic, replayable record
 of the run — illustrating the shape documented in
-[`docs/runtime.md`](../../docs/runtime.md):
+[`docs/engineering/runtime.md`](../../docs/engineering/runtime.md):
 
 ```json
 [
@@ -155,5 +155,5 @@ The JSON above illustrates the documented interfaces and is not a
 recorded run — actual `order` values, matched skills, and rationale text
 depend on the current `registry/skills.json` and the exact intent string.
 Run the commands above against your checkout to see the real output, and
-see [`docs/planner.md`](../../docs/planner.md) and
-[`docs/runtime.md`](../../docs/runtime.md) for the full type definitions.
+see [`docs/engineering/planner.md`](../../docs/engineering/planner.md) and
+[`docs/engineering/runtime.md`](../../docs/engineering/runtime.md) for the full type definitions.

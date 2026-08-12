@@ -2,7 +2,7 @@
 
 Every skill ships its own `examples/` directory with realistic HR scenarios,
 sample prompts, and the output an agent should produce — see
-[`docs/format.md`](../../docs/format.md) for the authoring format. This page
+[`docs/engineering/format.md`](../../docs/engineering/format.md) for the authoring format. This page
 is a discoverability index into those, organized by workflow stage, so you
 don't have to browse 146 skill folders to find a relevant one.
 
@@ -39,7 +39,7 @@ single-prompt starting points.
 Every skill's own `examples/` folder (`skills/<skill-name>/examples/`)
 follows the same **Context → Sample workflow → Follow-up prompts →
 Adaptation notes** structure. Check
-[`docs/skill-matrix.md`](../../docs/skill-matrix.md) for the full inventory
+[`docs/engineering/skill-matrix.md`](../../docs/engineering/skill-matrix.md) for the full inventory
 of skills and their maturity tier, or start from
 [`SKILL.md`](../../SKILL.md), the master router, if you're not sure which
 skill fits your scenario.

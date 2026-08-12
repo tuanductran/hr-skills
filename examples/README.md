@@ -2,7 +2,7 @@
 
 Practical, production-oriented examples of AI agents using HR Skills — from a
 single prompt against one skill up to a multi-skill workflow driven by the
-[Skill Planner](../docs/planner.md) and [Workflow Runtime](../docs/runtime.md).
+[Skill Planner](../docs/engineering/planner.md) and [Workflow Runtime](../docs/engineering/runtime.md).
 
 Use this directory to see what a real HR automation session looks like before
 you install skills or wire up the planner and runtime yourself.
@@ -60,7 +60,7 @@ replace `SKILL.md` content, they orchestrate it.
 ## Related docs
 
 - [`SKILL.md`](../SKILL.md) — master router across all skills
-- [`docs/skill-matrix.md`](../docs/skill-matrix.md) — full skill inventory and maturity
-- [`docs/planner.md`](../docs/planner.md) — Skill Planner architecture
-- [`docs/runtime.md`](../docs/runtime.md) — Workflow Runtime architecture
-- [`docs/format.md`](../docs/format.md) — `SKILL.md` authoring format
+- [`docs/engineering/skill-matrix.md`](../docs/engineering/skill-matrix.md) — full skill inventory and maturity
+- [`docs/engineering/planner.md`](../docs/engineering/planner.md) — Skill Planner architecture
+- [`docs/engineering/runtime.md`](../docs/engineering/runtime.md) — Workflow Runtime architecture
+- [`docs/engineering/format.md`](../docs/engineering/format.md) — `SKILL.md` authoring format

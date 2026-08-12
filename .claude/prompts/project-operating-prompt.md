@@ -28,7 +28,7 @@ If two layers conflict, preserve the higher layer and narrow or rewrite the lowe
 
 ## Non-negotiable principles
 
-- Never hand-edit generated artifacts: `docs/skill-matrix.md`, `registry/skills.json`, `.claude-plugin/marketplace.json` — regenerate with `bun run matrix`, `bun run registry`, `bun run sync`.
+- Never hand-edit generated artifacts: `docs/engineering/skill-matrix.md`, `registry/skills.json`, `.claude-plugin/marketplace.json` — regenerate with `bun run matrix`, `bun run registry`, `bun run sync`.
 - Never develop on `main` — all work branches from and merges into `dev`.
 - Keep one clear local workflow layer in `.claude/` and `.agents/`.
 - Keep TypeScript structure rooted in `packages/*`.

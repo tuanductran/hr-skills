@@ -1,10 +1,10 @@
 # Workflow Runtime
 
-> Phase 4.3 of the [roadmap](ROADMAP.md) — deterministic execution of plans produced by the [Skill Planner](planner.md).
+> Phase 4.3 of the [roadmap](../ROADMAP.md) — deterministic execution of plans produced by the [Skill Planner](planner.md).
 
 ## What it is
 
-The Workflow Runtime **executes** an `ExecutionPlan` (see [`docs/planner.md`](planner.md)) that the Planner already produced. It is responsible for:
+The Workflow Runtime **executes** an `ExecutionPlan` (see [`docs/engineering/planner.md`](planner.md)) that the Planner already produced. It is responsible for:
 
 - Running workflow steps in the order the Planner already computed
 - Propagating context (each step's output) to later steps
@@ -216,7 +216,7 @@ bun run execute "<user intent>"
 
 Generates a plan for the given intent via the Planner, runs it through the Runtime using a stub step executor (for demonstration — it does not call a model), prints step results and events, and writes the full `WorkflowResult` to `execution-result.json`.
 
-See [`examples/planner-runtime/from-intent-to-execution.md`](../examples/planner-runtime/from-intent-to-execution.md)
+See [`examples/planner-runtime/from-intent-to-execution.md`](../../examples/planner-runtime/from-intent-to-execution.md)
 for a full worked example, including sample trace output and how to swap
 the stub executor for a real one.
 

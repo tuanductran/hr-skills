@@ -21,7 +21,7 @@ mkdir -p skills/hr-payroll-tax-compliance/{content,prompts,examples}
 bun run sync         # regenerate .claude-plugin/marketplace.json
 # Update the root router per .agents/skills/hr-root-router-maintaining/SKILL.md
 bun run validate      # must pass with 0 errors
-bun run matrix         # regenerate docs/skill-matrix.md
+bun run matrix         # regenerate docs/engineering/skill-matrix.md
 bun run registry       # regenerate registry/skills.json
 
 git add .
@@ -82,7 +82,7 @@ git push origin fix/hr-analytics-turnover-formula
 ```bash
 git checkout -b docs/clarify-skill-tiers
 
-# Edit docs/format.md (or another file under docs/contributing/)
+# Edit docs/engineering/format.md (or another file under docs/engineering/contributing/)
 
 bun run lint:md
 bun run lint:links

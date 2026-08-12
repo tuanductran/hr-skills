@@ -1,6 +1,6 @@
 # Skill Planner
 
-> Phase 4.2 of the [roadmap](ROADMAP.md) — deterministic workflow planning from user intent.
+> Phase 4.2 of the [roadmap](../ROADMAP.md) — deterministic workflow planning from user intent.
 
 ## What it is
 
@@ -165,7 +165,7 @@ Output includes:
 - Validation results (any issues detected)
 - Suggestions (improvements the user might consider)
 
-See [`examples/planner-runtime/from-intent-to-execution.md`](../examples/planner-runtime/from-intent-to-execution.md)
+See [`examples/planner-runtime/from-intent-to-execution.md`](../../examples/planner-runtime/from-intent-to-execution.md)
 for a full worked example, including sample plan output for a real hiring
 intent.
 
@@ -296,7 +296,7 @@ Keep the output signature (`capability: string → CapabilityMatch`) stable.
 Run planner tests:
 
 ```bash
-bun test packages/hr-skills-build/test/planner.test.ts
+bun test packages/hr-skills-build/test/planner/planner.test.ts
 ```
 
 Tests cover:

@@ -6,7 +6,7 @@ import { ROOT_DIR } from 'skills-ref';
  * generated Markdown that's posted somewhere with no "current file" context
  * (a PR comment, a Slack message) where a relative link like `../docs/x.md`
  * cannot resolve. Append a repo-root-relative path, e.g.
- * `` `${GITHUB_BLOB_BASE_URL}/docs/quality-scoring.md` ``.
+ * `` `${GITHUB_BLOB_BASE_URL}/docs/engineering/quality-scoring.md` ``.
  */
 export const GITHUB_BLOB_BASE_URL = 'https://github.com/tuanductran/hr-skills/blob/main';
 

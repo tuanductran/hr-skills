@@ -2,7 +2,7 @@
 
 ## Project overview
 
-`hr-skills` is a Bun + Turborepo monorepo of domain-specific Agent Skills for HR and talent acquisition, distributed for Claude Code and claude.ai. Each skill lives at `skills/hr-*/SKILL.md`. Two internal TypeScript packages, `packages/hr-skills-build` and `packages/skills-ref`, validate, sync, and package the skills. Generated artifacts — `docs/skill-matrix.md`, `registry/skills.json`, `.claude-plugin/marketplace.json` — are derived from skill frontmatter and must never be hand-edited; regenerate them with the corresponding `bun run` command instead.
+`hr-skills` is a Bun + Turborepo monorepo of domain-specific Agent Skills for HR and talent acquisition, distributed for Claude Code and claude.ai. Each skill lives at `skills/hr-*/SKILL.md`. Two internal TypeScript packages, `packages/hr-skills-build` and `packages/skills-ref`, validate, sync, and package the skills. Generated artifacts — `docs/engineering/skill-matrix.md`, `registry/skills.json`, `.claude-plugin/marketplace.json` — are derived from skill frontmatter and must never be hand-edited; regenerate them with the corresponding `bun run` command instead.
 
 This file is the canonical, tool-agnostic entry point for both human contributors and AI agents. `CLAUDE.md` is a symlink to this file — edit `AGENTS.md` only. The detailed, day-to-day workflow guidance this file used to duplicate now lives in [`.agents/`](.agents/AGENTS.md) — see [Where things live](#where-things-live) below.
 
@@ -59,11 +59,11 @@ When you add a new skill directory (for example `skills/hr-new-skill/SKILL.md`),
 | `skills/hr-*/prompts/` | Optional reusable prompt libraries grouped by HR topic |
 | `skills/hr-*/examples/` | Optional practical end-to-end HR workflows and business scenarios |
 | `docs/` | Skill format specification and generated reports |
-| `docs/skill-matrix.md` | Generated skill maturity snapshot — do not edit manually, run `bun run matrix` |
-| `docs/evaluation.md` | Evaluation framework architecture, dataset format, and golden fixture workflow |
+| `docs/engineering/skill-matrix.md` | Generated skill maturity snapshot — do not edit manually, run `bun run matrix` |
+| `docs/engineering/evaluation.md` | Evaluation framework architecture, dataset format, and golden fixture workflow |
 | `packages/hr-skills-build/eval/datasets/` | Hand-authored evaluation datasets (planning scenarios) |
 | `packages/hr-skills-build/eval/golden/` | Committed golden fixtures — regenerate with `bun run evaluate -- --update-golden` from the repo root |
-| `docs/registry.md` | Skill Registry architecture, schema, and extension guide |
+| `docs/engineering/registry.md` | Skill Registry architecture, schema, and extension guide |
 | `registry/skills.json` | Generated machine-readable skill registry — do not edit manually, run `bun run registry` |
 | `.claude-plugin/marketplace.json` | Generated marketplace metadata synced from skill frontmatter |
 | `packages/hr-skills-build` | Build and maintenance tooling — validation, sync, registry/planner/runtime generation, and packaging |

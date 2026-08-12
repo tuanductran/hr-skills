@@ -41,13 +41,13 @@ bun install
 
 | Command | What it does |
 |---|---|
-| `bun run validate` | Validates every `SKILL.md` against the spec in `docs/format.md` (backed by `packages/hr-skills-build/src/validation/validate.ts`) |
+| `bun run validate` | Validates every `SKILL.md` against the spec in `docs/engineering/format.md` (backed by `packages/hr-skills-build/src/validation/validate.ts`) |
 | `bun run sync` | Regenerates `.claude-plugin/marketplace.json` from skill frontmatter |
-| `bun run matrix` | Regenerates `docs/skill-matrix.md` |
-| `bun run registry` | Regenerates `registry/skills.json` (see `docs/registry.md`) |
-| `bun run signals` | Regenerates `registry/relevance-signals.json` from evaluation golden fixtures (see `docs/usage-informed-relevance.md`) |
-| `bun run discover "<query>"` | Searches the generated registry by text/domain (see `docs/search.md`) |
-| `bun run recommend <skill-id>` | Related-skill recommendations from the registry (see `docs/recommendations.md`) |
+| `bun run matrix` | Regenerates `docs/engineering/skill-matrix.md` |
+| `bun run registry` | Regenerates `registry/skills.json` (see `docs/engineering/registry.md`) |
+| `bun run signals` | Regenerates `registry/relevance-signals.json` from evaluation golden fixtures (see `docs/engineering/usage-informed-relevance.md`) |
+| `bun run discover "<query>"` | Searches the generated registry by text/domain (see `docs/engineering/search.md`) |
+| `bun run recommend <skill-id>` | Related-skill recommendations from the registry (see `docs/engineering/recommendations.md`) |
 | `bun run check` | Biome check, no writes |
 | `bun run lint` | Biome check with auto-fix |
 | `bun run format` | Biome formatter |
@@ -58,14 +58,14 @@ bun install
 | `bun run build` | All workspace builds via Turborepo |
 | `bun run test` | Tests across workspace packages |
 | `bun run knip` | Detects unused files/dependencies |
-| `bun run plan "<intent>"` | Generates an execution plan for a user intent (see `docs/planner.md`) |
-| `bun run execute "<intent>"` | Generates a plan and runs it through the workflow runtime (see `docs/runtime.md`) |
-| `bun run evaluate` | Runs the evaluation framework (see `docs/evaluation.md`) |
+| `bun run plan "<intent>"` | Generates an execution plan for a user intent (see `docs/engineering/planner.md`) |
+| `bun run execute "<intent>"` | Generates a plan and runs it through the workflow runtime (see `docs/engineering/runtime.md`) |
+| `bun run evaluate` | Runs the evaluation framework (see `docs/engineering/evaluation.md`) |
 | `bun run changeset` / `bun run release` | Versioning/release |
 
 All of the above is **[Existing]**, taken directly from `package.json` scripts. `AGENTS.md`
 itself keeps only a two-command quick start and points to
-[`.agents/skills/turbo/SKILL.md`](../../.agents/skills/turbo/SKILL.md) for the full reference
+[`.agents/skills/turbo/SKILL.md`](../../../.agents/skills/turbo/SKILL.md) for the full reference
 of Turborepo-orchestrated tasks (`build`, `validate`, `sync`, `matrix`, `registry`, `signals`,
 `discover`, `recommend`, `plan`, `execute`, `evaluate`, `test`, `typecheck`,
 `dev`) — every one of those appears in this table too, verified by diff. The remaining rows
@@ -132,9 +132,9 @@ bun run knip           # no unused files/dependencies
 7. A maintainer reviews and merges. **[Existing]** `.github/CODEOWNERS` lists a single owner
    (`@tuanductran`) for the entire repository. **[Resolved, see `GOVERNANCE.md`]** review
    turnaround has a working target of 7 days (best-effort, not a guaranteed SLA) — see
-   [`GOVERNANCE.md`'s review and approval workflow](../../GOVERNANCE.md#review-and-approval-workflow).
+   [`GOVERNANCE.md`'s review and approval workflow](../../../GOVERNANCE.md#review-and-approval-workflow).
 8. Periodically, `dev` is released to `main` via the release process — see
-   [`docs/release.md`](../release.md) for the full five-stage lifecycle (changeset → merge →
+   [`docs/operations/release.md`](../../operations/release.md) for the full five-stage lifecycle (changeset → merge →
    automated release PR → merge → tag/publish). There is no fixed cadence; a release is cut
    when the maintainer decides `dev` is ready to ship.
 
@@ -143,7 +143,7 @@ bun run knip           # no unused files/dependencies
 - Keep PRs scoped to one skill or one concern — mirrors the commit scope convention and eases
   review given the single-owner review model.
 - After adding or removing a skill, run `bun run sync` and `bun run matrix` locally so the
-  diff to generated files (`.claude-plugin/marketplace.json`, `docs/skill-matrix.md`) is
+  diff to generated files (`.claude-plugin/marketplace.json`, `docs/engineering/skill-matrix.md`) is
   included in your PR rather than left for a maintainer to regenerate.
 
 ## Common mistakes
@@ -162,8 +162,8 @@ bun run knip           # no unused files/dependencies
 ## Unknown or ambiguous information
 
 - **[Resolved]** PR review turnaround target and ownership model — see
-  [`GOVERNANCE.md`](../../GOVERNANCE.md#review-and-approval-workflow). A backup-reviewer path
+  [`GOVERNANCE.md`](../../../GOVERNANCE.md#review-and-approval-workflow). A backup-reviewer path
   doesn't exist yet since there is a single maintainer; `GOVERNANCE.md` documents how that
   would extend via path-scoped `CODEOWNERS` entries if it's added later.
-- **[Resolved]** `dev` → `main` release cadence — see [`docs/release.md`](../release.md);
+- **[Resolved]** `dev` → `main` release cadence — see [`docs/operations/release.md`](../../operations/release.md);
   it's maintainer-triggered, not scheduled.

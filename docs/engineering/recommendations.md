@@ -1,6 +1,6 @@
 # Skill Recommendations
 
-> Phase 6.1 of the [roadmap](ROADMAP.md) — exposes the [Skill
+> Phase 6.1 of the [roadmap](../ROADMAP.md) — exposes the [Skill
 > Registry](registry.md)'s existing `relatedSkills` graph as a user-facing
 > "skills you might also need" API, instead of leaving it as internal
 > [Planner](planner.md) input only.
@@ -84,7 +84,7 @@ input), not a registry-consistency problem.
 
 - **Documentation / product surfaces** — a "skills you might also need"
   panel on a skill's detail page (see [Phase 7's web
-  platform](ROADMAP.md#phase-7--product--web-platform)).
+  platform](../ROADMAP.md#phase-7--product--web-platform)).
 - **CLI / scripts** — `bun run recommend <skill-id>` for a quick lookup
   during authoring or review.
 - **Downstream tools** — anything that already has (or can build) a
@@ -108,4 +108,4 @@ additive.
   `registry/skills.json` is regenerated (`bun run registry`), not in
   response to usage patterns. Usage-informed weighting is tracked
   separately as a future roadmap item (see [6.1 in the
-  roadmap](ROADMAP.md#61-skill-intelligence)).
+  roadmap](../ROADMAP.md#61-skill-intelligence)).

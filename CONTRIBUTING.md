@@ -2,7 +2,7 @@
 
 Contributions are welcome — new HR skills, improvements to existing skills, documentation updates, and enhancements to the build and tooling workflow.
 
-For a deeper walkthrough — repository architecture, the full contributor journey, and worked examples — see [`docs/contributing/`](./docs/contributing/onboarding.md). This file covers the minimum steps to get a pull request merged. For how contributions are reviewed, who owns what, and how community feedback reaches the roadmap, see [`GOVERNANCE.md`](./GOVERNANCE.md).
+For a deeper walkthrough — repository architecture, the full contributor journey, and worked examples — see [`docs/engineering/contributing/onboarding.md`](./docs/engineering/contributing/onboarding.md). This file covers the minimum steps to get a pull request merged. For how contributions are reviewed, who owns what, and how community feedback reaches the roadmap, see [`GOVERNANCE.md`](./GOVERNANCE.md).
 
 ## Prerequisites
 
@@ -50,7 +50,7 @@ Directory name rules: lowercase, hyphens only, must start with `hr-`.
 
 Use the canonical template in [`.github/skill-template.md`](../.github/skill-template.md).
 
-See [`docs/format.md`](./docs/format.md) for the full specification.
+See [`docs/engineering/format.md`](./docs/engineering/format.md) for the full specification.
 
 ### 3. Sync skill references
 

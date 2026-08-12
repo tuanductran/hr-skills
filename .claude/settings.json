@@ -46,7 +46,7 @@
 			"Write(node_modules/**)",
 			"Write(dist/**)",
 			"Write(.turbo/**)",
-			"Write(docs/skill-matrix.md)",
+			"Write(docs/engineering/skill-matrix.md)",
 			"Write(registry/skills.json)",
 			"Write(.claude-plugin/marketplace.json)"
 		]
