@@ -1,19 +1,24 @@
 import * as v from 'valibot';
 import { parse } from 'yaml';
 
-import {
-	FRONTMATTER_REGEX,
-	KEY_PROMPTS_REGEX,
-	PERIOD_REGEX,
-	QUOTED_PROMPT_REGEX,
-	TASK_ITEM_REGEX,
-	TASKS_REGEX,
-	USE_WHEN_REGEX,
-} from './constants.js';
-import { extractMatch, readSkill } from './helpers.js';
+import { FRONTMATTER_REGEX } from './constants.js';
 import type { SkillFrontmatter } from './schema.js';
 import { SkillFrontmatterSchema } from './schema.js';
-import type { SkillMeta } from './types.js';
+
+/**
+ * Extract and trim the first capture group from a regex match against `content`.
+ *
+ * Duplicated (not imported) from `helpers.ts` on purpose: this file is part
+ * of the browser-safe `client` surface and must not import `helpers.ts`,
+ * which pulls in `node:fs/promises` and `node:path`.
+ *
+ * @param regex - A regular expression with at least one capture group.
+ * @param content - The string to search.
+ * @returns The trimmed contents of capture group 1, or `null` if the regex did not match.
+ */
+export function extractMatch(regex: RegExp, content: string): string | null {
+	return regex.exec(content)?.[1]?.trim() ?? null;
+}
 
 /**
  * Parse and validate a markdown document's YAML frontmatter against
@@ -42,61 +47,4 @@ export function parseSkillFrontmatter(content: string): SkillFrontmatter {
 	} catch {
 		return {};
 	}
-}
-
-/**
- * Read a skill's `SKILL.md` and derive display metadata from it: the
- * description split at "Use when" into `coverage`/`scopeSentence`, the
- * `## Supported tasks` list, and up to 5 quoted example prompts from
- * `## Key prompts` as `triggerPhrases`.
- *
- * @throws If `SKILL.md` cannot be read from the filesystem (see `readSkill`).
- * @param skillName - Skill directory name to load.
- * @returns Display metadata derived from the skill's frontmatter and body.
- */
-export async function parseSkillMeta(skillName: string): Promise<SkillMeta> {
-	const { content, frontmatter } = await readSkill(skillName);
-
-	const name = frontmatter.name ?? skillName;
-	const description = frontmatter.description ?? '';
-
-	const useWhenIndex = description.search(USE_WHEN_REGEX);
-
-	const coverage =
-		useWhenIndex !== -1
-			? description.slice(0, useWhenIndex).trim().replace(PERIOD_REGEX, '')
-			: description.trim().replace(PERIOD_REGEX, '');
-
-	const tasksBlock = extractMatch(TASKS_REGEX, content) ?? '';
-
-	const supportedTasks = tasksBlock
-		.split('\n')
-		.filter((line) => TASK_ITEM_REGEX.test(line))
-		.map((line) => line.replace(TASK_ITEM_REGEX, '').trim())
-		.filter(Boolean);
-
-	const keyPromptsBlock = extractMatch(KEY_PROMPTS_REGEX, content) ?? '';
-
-	const triggerPhrases: string[] = [];
-
-	for (const match of keyPromptsBlock.matchAll(QUOTED_PROMPT_REGEX)) {
-		if (triggerPhrases.length >= 5) break;
-
-		const [, prompt] = match;
-
-		if (prompt) {
-			triggerPhrases.push(prompt);
-		}
-	}
-
-	const scopeSentence = `${coverage.charAt(0).toUpperCase()}${coverage.slice(1)}.`;
-
-	return {
-		name,
-		description,
-		coverage,
-		scopeSentence,
-		triggerPhrases,
-		supportedTasks,
-	};
 }

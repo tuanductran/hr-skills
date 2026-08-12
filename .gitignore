@@ -9,3 +9,5 @@ eval-report.json
 duplicate-report/
 *.patch
 *.diff
+.next/
+next-env.d.ts

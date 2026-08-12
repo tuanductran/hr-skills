@@ -48,8 +48,8 @@ import {
 	TIPS_REGEX,
 	USE_WHEN_REGEX,
 } from '../shared/constants.js';
-import { countFiles, discoverSkills, extractMatch } from '../shared/helpers.js';
-import { parseSkillFrontmatter } from '../shared/parser.js';
+import { countFiles, discoverSkills } from '../shared/helpers.js';
+import { extractMatch, parseSkillFrontmatter } from '../shared/parser.js';
 
 // ---------------------------------------------------------------------------
 // Configuration
