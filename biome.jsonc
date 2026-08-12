@@ -2,13 +2,15 @@
 	"$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
 	"files": {
 		"includes": [
-			"./**/*.ts",
+			"./**/*.{ts,tsx}",
 			"./**/*.{json,jsonc,yml}",
 			"!**/dist",
 			"!**/node_modules",
 			"!**/.turbo",
 			"!**/.claude-plugin",
-			"!**/registry"
+			"!**/registry",
+			"!**/.next",
+			"!**/next-env.d.ts"
 		]
 	},
 	"assist": {

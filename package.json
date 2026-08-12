@@ -30,7 +30,8 @@
 	"workspaces": {
 		"packages": [
 			".",
-			"packages/*"
+			"packages/*",
+			"playground/*"
 		],
 		"catalog": {
 			"@clack/prompts": "^1.7.0",

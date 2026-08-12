@@ -19,11 +19,10 @@ import {
 	countFiles,
 	dirExists,
 	discoverSkills,
-	extractMatch,
 	normalizeAuthorName,
 	readSkillContent,
 } from '../shared/helpers.js';
-import { parseSkillFrontmatter } from '../shared/parser.js';
+import { extractMatch, parseSkillFrontmatter } from '../shared/parser.js';
 import type { SkillValidationIssue } from '../shared/types.js';
 import { detectDuplicates } from './detect-duplicates.js';
 import { pushIssue } from './issue-helpers.js';

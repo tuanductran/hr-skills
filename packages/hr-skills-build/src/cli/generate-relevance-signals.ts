@@ -15,7 +15,7 @@
 import { writeFileSync } from 'node:fs';
 import { loadAllGoldenFixtures } from '../evaluation/evaluation-datasets.js';
 import { buildRelevanceSignalTable } from '../search/relevance-signals.js';
-import { RELEVANCE_SIGNALS_PATH } from '../shared/constants.js';
+import { RELEVANCE_SIGNALS_PATH } from '../shared/paths.js';
 
 const fixtures = await loadAllGoldenFixtures();
 

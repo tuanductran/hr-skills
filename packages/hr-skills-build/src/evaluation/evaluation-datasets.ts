@@ -12,7 +12,7 @@
 import { readdir, readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
-import { EVAL_DATASETS_DIR, EVAL_GOLDEN_DIR } from '../shared/constants.js';
+import { EVAL_DATASETS_DIR, EVAL_GOLDEN_DIR } from '../shared/paths.js';
 import type { EvaluationDataset, GoldenFixture } from '../shared/types.js';
 
 const JSON_EXTENSION_REGEX = /\.json$/;

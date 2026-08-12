@@ -4,7 +4,7 @@ import * as p from '@clack/prompts';
 import { ROOT_DIR } from 'skills-ref';
 import * as v from 'valibot';
 import { getHrSkills } from '../registry/discovery.js';
-import { parseSkillMeta } from '../shared/parser.js';
+import { parseSkillMeta } from '../shared/helpers.js';
 import { MarketplaceJsonSchema } from '../shared/schema.js';
 import type { SkillMeta } from '../shared/types.js';
 import { syncRouter } from './router.js';
