@@ -1,9 +1,9 @@
 # Automated content quality scoring (Phase 6.2)
 
 The repository validates structural correctness (`bun run validate`), flags
-duplicate content ([`docs/duplicate-detection.md`](duplicate-detection.md)),
+duplicate content ([`docs/engineering/duplicate-detection.md`](duplicate-detection.md)),
 and checks semantic consistency between a skill's stated purpose and its
-supporting material ([`docs/semantic-validation.md`](semantic-validation.md)).
+supporting material ([`docs/engineering/semantic-validation.md`](semantic-validation.md)).
 
 Phase 6.2 adds a fourth quality layer: a **repeatable 0-100 content quality
 score** per skill, across three dimensions — clarity, completeness, and

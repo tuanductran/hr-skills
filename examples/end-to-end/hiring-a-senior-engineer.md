@@ -12,7 +12,7 @@ different skill for each stage.
 **Skills used, in order:** `hr-job-description` → `hr-recruiting` →
 `hr-interviewing` → `hr-offer-management`
 
-This is the same shape of workflow the [Skill Planner](../../docs/planner.md)
+This is the same shape of workflow the [Skill Planner](../../docs/engineering/planner.md)
 produces automatically from a single intent like *"hire a senior backend
 engineer"* — see
 [`../planner-runtime/from-intent-to-execution.md`](../planner-runtime/from-intent-to-execution.md)

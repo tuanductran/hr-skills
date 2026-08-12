@@ -1,5 +1,5 @@
 /**
- * Generates `docs/api.md` from the JSDoc comments and type signatures of the
+ * Generates `docs/engineering/api.md` from the JSDoc comments and type signatures of the
  * public API surface exported by `src/index.ts`.
  *
  * This mirrors the approach used by Nextra's `nextra/tsdoc` module
@@ -9,7 +9,7 @@
  * Nextra renders that structured output as MDX at Next.js build time via a
  * `<TSDoc definition={...} />` component; this repo has no MDX/Next.js
  * pipeline, so the same structured extraction is rendered to plain Markdown
- * instead and written straight to `docs/api.md`.
+ * instead and written straight to `docs/engineering/api.md`.
  *
  * The JSDoc tag vocabulary this script understands (`@param`, `@returns`,
  * `@throws`, `@remarks`, `@example`) follows the TSDoc standard
@@ -30,13 +30,13 @@ import { Project, SyntaxKind, ts } from 'ts-morph';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PACKAGE_ROOT = path.resolve(__dirname, '../..');
 const REPO_ROOT = path.resolve(PACKAGE_ROOT, '../..');
-const OUT_FILE = path.join(REPO_ROOT, 'docs/api.md');
+const OUT_FILE = path.join(REPO_ROOT, 'docs/engineering/api.md');
 const PACKAGE_NAME = 'hr-skills-build';
 
 /**
  * Section grouping and ordering, keyed by the source file (relative to
  * `src/`) each exported symbol is declared in. Mirrors the curated structure
- * of the hand-written `docs/api.md` this script replaces, so the generated
+ * of the hand-written `docs/engineering/api.md` this script replaces, so the generated
  * doc stays organized by domain rather than by raw declaration order.
  */
 const SECTIONS: { title: string; files: string[] }[] = [

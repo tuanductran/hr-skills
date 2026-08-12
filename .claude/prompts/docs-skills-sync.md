@@ -4,7 +4,7 @@ Use this prompt when you need to verify that `docs/` and `skills/` still describ
 coherent hr-skills package.
 
 - Read `AGENTS.md` (root) and `.agents/AGENTS.md` first.
-- Read `docs/skill-matrix.md`, `docs/registry.md`, and `docs/evaluation.md`.
+- Read `docs/engineering/skill-matrix.md`, `docs/engineering/registry.md`, and `docs/engineering/evaluation.md`.
 - Read the relevant `SKILL.md` files under `skills/hr-*/`.
 - Audit for:
   - missing file references in `SKILL.md` routers or docs

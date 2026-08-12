@@ -243,7 +243,7 @@ Do not edit generated changelog files manually.
 
 - `AGENTS.md`
 - `README.md`
-- `docs/format.md`
+- `docs/engineering/format.md`
 - `.changeset/`
 - `CHANGELOG.md`
 - Changesets documentation: https://github.com/changesets/changesets/tree/main/docs

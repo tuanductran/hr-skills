@@ -10,7 +10,7 @@ another AI tool so you can start asking HR questions right away.
 | `SKILL.md` | The root skill router — an overview of every HR skill included |
 | `skills/hr-*/` | One folder per HR skill, each with its own `SKILL.md` and optional `content/`, `prompts/`, `examples/` files |
 | `LICENSE` | Usage license for the content |
-| `docs/usage-guide.md` | This file |
+| `docs/product/USER.md` | This file |
 | `.claude-plugin/marketplace.json` | Only present in `.skill` packages — a manifest Claude's marketplace tooling reads; not needed for manual upload |
 
 ## Using it with Claude

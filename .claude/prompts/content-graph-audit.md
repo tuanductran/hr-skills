@@ -3,7 +3,7 @@
 Use this prompt for a focused audit of `docs/`, `skills/`, and `registry/` as one
 connected knowledge graph.
 
-- Read `AGENTS.md` (root), `.agents/AGENTS.md`, and `docs/skill-matrix.md` first.
+- Read `AGENTS.md` (root), `.agents/AGENTS.md`, and `docs/engineering/skill-matrix.md` first.
 - Treat `skills/hr-*/SKILL.md` as the shipped source of truth.
 - Treat `docs/` as the explanation and specification layer around shipped skills.
 - Treat `registry/skills.json` and `.claude-plugin/marketplace.json` as generated — never edit them by hand; run `bun run registry` and `bun run sync` to regenerate.

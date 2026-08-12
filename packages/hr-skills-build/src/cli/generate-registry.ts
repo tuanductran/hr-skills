@@ -4,10 +4,10 @@
  * lookup, aliases, domains, and relationships at runtime.
  *
  * Run via `bun run registry`, or automatically on every push to `main`
- * (matrix.yml workflow, alongside docs/skill-matrix.md — see
+ * (matrix.yml workflow, alongside docs/engineering/skill-matrix.md — see
  * .github/workflows/matrix.yml).
  *
- * See docs/registry.md for the full architecture writeup.
+ * See docs/engineering/registry.md for the full architecture writeup.
  */
 
 import { writeFile } from 'node:fs/promises';

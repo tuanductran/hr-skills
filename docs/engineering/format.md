@@ -253,7 +253,7 @@ When relevant, link to related workflows.
 Example:
 
 ```markdown
-> Related example: [Senior AI Engineer hiring workflow](../examples/hiring-a-senior-ai-engineer.md).
+> Related example: [Senior AI Engineer hiring workflow](../../examples/hiring-a-senior-ai-engineer.md).
 ```
 
 ## prompts/*.md

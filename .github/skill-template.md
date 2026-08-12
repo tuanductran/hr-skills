@@ -9,7 +9,7 @@ This file is the single source of truth referenced by:
 
 **Don't edit the template in multiple places.** Edit this file and update references if the format evolves.
 
-See [`docs/format.md`](../docs/format.md) for the full specification.
+See [`docs/engineering/format.md`](../docs/engineering/format.md) for the full specification.
 
 ```markdown
 ---

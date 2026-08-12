@@ -4,14 +4,14 @@
 
 Help a contributor produce a structurally valid, discoverable skill on the first attempt,
 before running `bun run validate`. This page is a practical walkthrough; the authoritative
-specification remains [`docs/format.md`](../format.md) — if anything here and `docs/format.md`
-ever disagree, `docs/format.md` wins, and this page should be corrected to match.
+specification remains [`docs/engineering/format.md`](../format.md) — if anything here and `docs/engineering/format.md`
+ever disagree, `docs/engineering/format.md` wins, and this page should be corrected to match.
 
 ## Explanation
 
 Every HR skill lives in its own directory under `skills/`. A skill package consists of a
 required `SKILL.md` file and may include supporting material in `content/`, `prompts/`, and
-`examples/`. All of this is **[Existing]**, taken from `docs/format.md` and confirmed against
+`examples/`. All of this is **[Existing]**, taken from `docs/engineering/format.md` and confirmed against
 `.github/skill-template.md` and sampled skills such as `skills/hr-onboarding/`.
 
 ## Existing behavior — required structure
@@ -68,12 +68,12 @@ skills/hr-your-skill/
 6. Run `bun run sync` to regenerate `.claude-plugin/marketplace.json` from the new frontmatter.
 7. Update the root router so the skill is discoverable. **[Existing, CONTRIBUTING.md]** Follow
    the procedure in
-   [`.agents/skills/hr-root-router-maintaining/SKILL.md`](../../.agents/skills/hr-root-router-maintaining/SKILL.md),
+   [`.agents/skills/hr-root-router-maintaining/SKILL.md`](../../../.agents/skills/hr-root-router-maintaining/SKILL.md),
    which documents the canonical routing sections, exact table row format, and the rule to bump
    the router's patch version on every change.
 8. Run `bun run validate` — must pass with 0 errors before continuing.
 9. Run `bun run matrix` and `bun run registry` to refresh the generated reports.
-10. Open a pull request against `dev` (see `docs/contributing/workflow.md`).
+10. Open a pull request against `dev` (see `docs/engineering/contributing/workflow.md`).
 
 ## Existing behavior — naming conventions
 
@@ -88,10 +88,10 @@ skills/hr-your-skill/
   the rest of the file.
 - Keep `SKILL.md` focused on *what to do*; push deep explanation into `content/`, prompt
   collections into `prompts/`, and worked scenarios into `examples/`. Avoid duplicating the
-  same material across files — **[Existing, docs/format.md]** this is called out explicitly
+  same material across files — **[Existing, docs/engineering/format.md]** this is called out explicitly
   as something to avoid.
 - Avoid vendor marketing language and time-sensitive facts (specific compliance thresholds,
-  salary figures) that will go stale — **[Existing, docs/format.md]**.
+  salary figures) that will go stale — **[Existing, docs/engineering/format.md]**.
 
 ## Common mistakes
 
@@ -103,12 +103,12 @@ skills/hr-your-skill/
   the root `SKILL.md` entry point.
 - Mismatched `name` frontmatter vs. directory name.
 - Writing prompt libraries inside `content/*.md`, or long explanatory prose inside
-  `prompts/*.md` — **[Existing, docs/format.md]** each file type has a distinct purpose and
+  `prompts/*.md` — **[Existing, docs/engineering/format.md]** each file type has a distinct purpose and
   the spec explicitly lists these as things to avoid.
 
 ## Suggested improvements
 
-- **[Proposed]** `docs/format.md` already contains a "Quality checklist" at its end;
+- **[Proposed]** `docs/engineering/format.md` already contains a "Quality checklist" at its end;
   consider linking to it directly from `.github/pull_request_template.md`'s "Validation"
   section so contributors see it at PR-creation time, not just while reading docs.
 

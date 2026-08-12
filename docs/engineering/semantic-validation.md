@@ -169,7 +169,7 @@ passes regardless of how many semantic warnings are reported.
   different vocabulary will not be flagged, and two skills using similar
   wording for genuinely different purposes could be.
 - **No ML, embeddings, or external calls.** By design (see
-  [`docs/ROADMAP.md`](ROADMAP.md#62-quality-automation)), this stays
+  [`docs/ROADMAP.md`](../ROADMAP.md#62-quality-automation)), this stays
   fully local, dependency-free, and network-free.
 - **Small-sample noise.** Very short `description` or `prompts/`/`examples/`
   files produce coarse similarity scores; `MIN_PURPOSE_TOKENS` mitigates

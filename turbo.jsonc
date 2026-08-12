@@ -41,7 +41,7 @@
 		},
 		"matrix": {
 			"cache": false,
-			"outputs": ["docs/skill-matrix.md"],
+			"outputs": ["docs/engineering/skill-matrix.md"],
 			"dependsOn": ["^build"]
 		},
 		"registry": {
@@ -67,12 +67,12 @@
 		"api-docs": {
 			"cache": false,
 			"dependsOn": ["^build"],
-			"outputs": ["docs/api.md"]
+			"outputs": ["docs/engineering/api.md"]
 		},
 		"api-docs:check": {
 			"cache": false,
 			"dependsOn": ["^build"],
-			"outputs": ["docs/api.md"]
+			"outputs": ["docs/engineering/api.md"]
 		}
 	}
 }

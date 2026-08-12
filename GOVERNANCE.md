@@ -7,11 +7,11 @@
 This document is the authoritative reference for the project's governance
 model. It complements, and does not duplicate, the how-to content already
 in [`CONTRIBUTING.md`](CONTRIBUTING.md) and
-[`docs/contributing/`](docs/contributing/) — those explain *how* to make a
+[`docs/engineering/contributing/`](docs/engineering/contributing/) — those explain *how* to make a
 change; this explains *who decides*, *what "maintained" means*, and *how
 the process scales* as the project grows beyond a single maintainer.
 
-Like the rest of `docs/contributing/`, this file marks anything not yet
+Like the rest of `docs/engineering/contributing/`, this file marks anything not yet
 confirmed by the maintainer as **[Proposed]** rather than stating it as
 settled fact. That convention is inherited from an earlier contributor-docs
 proposal that flagged review-process and ownership questions as open
@@ -29,7 +29,7 @@ today. The maintainer:
 - Reviews and merges pull requests
 - Triages issues and discussions
 - Sets roadmap priority (see [`docs/ROADMAP.md`](docs/ROADMAP.md))
-- Owns release decisions (see [`docs/release.md`](docs/release.md))
+- Owns release decisions (see [`docs/operations/release.md`](docs/operations/release.md))
 - Can delegate ownership of a specific area (see
   [Ownership and maintenance](#ownership-and-maintenance) below) as the
   project grows
@@ -44,7 +44,7 @@ people in the maintainer role changes, not the process itself.
 
 Anyone opening an issue, discussion, or pull request. No membership,
 invitation, or prior contribution is required. See
-[`docs/contributing/onboarding.md`](docs/contributing/onboarding.md) for
+[`docs/engineering/contributing/onboarding.md`](docs/engineering/contributing/onboarding.md) for
 the first-timer path.
 
 ### Distinguishing the two roles
@@ -65,21 +65,21 @@ they govern, rather than being duplicated here:
 
 | Contribution type | Where the guideline lives |
 | --- | --- |
-| New or updated skill | [`docs/contributing/skill-authoring.md`](docs/contributing/skill-authoring.md), [`docs/format.md`](docs/format.md) |
-| Documentation | [`docs/contributing/workflow.md`](docs/contributing/workflow.md), this repository's Markdown/link-lint conventions |
+| New or updated skill | [`docs/engineering/contributing/skill-authoring.md`](docs/engineering/contributing/skill-authoring.md), [`docs/engineering/format.md`](docs/engineering/format.md) |
+| Documentation | [`docs/engineering/contributing/workflow.md`](docs/engineering/contributing/workflow.md), this repository's Markdown/link-lint conventions |
 | Tooling / tests (`packages/*`) | `CONTRIBUTING.md`'s "Improving the build tooling" section, `AGENTS.md`'s Project structure table |
 | Pull requests (general) | `.github/pull_request_template.md`, `AGENTS.md`'s branch and commit conventions |
 
 If you're unsure which applies, start at
-[`docs/contributing/onboarding.md`](docs/contributing/onboarding.md) — it
+[`docs/engineering/contributing/onboarding.md`](docs/engineering/contributing/onboarding.md) — it
 routes to the rest.
 
 ## Review and approval workflow
 
 This resolves the review-process question left open in an earlier
 contributor-docs proposal (item 3) and the `[Unknown]` review-SLA notes in
-[`docs/contributing/workflow.md`](docs/contributing/workflow.md) and
-[`docs/contributing/onboarding.md`](docs/contributing/onboarding.md).
+[`docs/engineering/contributing/workflow.md`](docs/engineering/contributing/workflow.md) and
+[`docs/engineering/contributing/onboarding.md`](docs/engineering/contributing/onboarding.md).
 
 ### 1. Automated gates (required, apply to every PR)
 
@@ -94,7 +94,7 @@ negotiable per-PR and is enforced by `.github/workflows/`:
 - `bun run knip`
 
 A PR failing any of these is not ready for human review — fix the failure
-first. See [`docs/contributing/workflow.md`](docs/contributing/workflow.md)
+first. See [`docs/engineering/contributing/workflow.md`](docs/engineering/contributing/workflow.md)
 for what each command checks.
 
 ### 2. Manual review criteria (by content type)
@@ -104,8 +104,8 @@ these review criteria:
 
 | Content type | A maintainer checks for |
 | --- | --- |
-| **New skill** | Matches the scope described in its `new_skill.yml` issue (if one exists); doesn't duplicate an existing skill's `description`/trigger phrases (`docs/format.md`); directory name matches `name` field; frontmatter complete |
-| **Skill tier upgrade** (Bare/Partial → Full) | `content/`, `prompts/`, `examples/` are non-empty and match the structure, tone, and quality of comparable Full-tier skills (`docs/contributing/skill-authoring.md`) |
+| **New skill** | Matches the scope described in its `new_skill.yml` issue (if one exists); doesn't duplicate an existing skill's `description`/trigger phrases (`docs/engineering/format.md`); directory name matches `name` field; frontmatter complete |
+| **Skill tier upgrade** (Bare/Partial → Full) | `content/`, `prompts/`, `examples/` are non-empty and match the structure, tone, and quality of comparable Full-tier skills (`docs/engineering/contributing/skill-authoring.md`) |
 | **Content fix** (existing skill) | Factually accurate; doesn't silently change the skill's scope or trigger phrases without discussion |
 | **Documentation** | Follows the file's existing structure/style; links resolve (`lint:links`); no report-style restructuring of unrelated sections |
 | **Tooling / configuration** (`packages/*`, workflows) | Doesn't break `bun run build`, `sync`, `validate`, or generated artifact staleness checks; has test coverage for new logic |
@@ -154,8 +154,8 @@ added first.
 | `skills/hr-*/` (content) | @tuanductran | Final say on scope, accuracy, and tier promotion; see [review criteria](#2-manual-review-criteria-by-content-type) |
 | `packages/hr-skills-build/`, `packages/skills-ref/` | @tuanductran | Keeps validation/build tooling working; breaking changes here block every other PR via CI, so reviewed with extra care |
 | `docs/` (specs: `format.md`, `registry.md`, `release.md`, `integrations.md`, this file) | @tuanductran | Source of truth for conventions; changes here should reflect settled decisions, not proposals — open an issue first for anything contentious |
-| `docs/skill-matrix.md`, `registry/skills.json`, `.claude-plugin/marketplace.json` | *(generated, no owner needed)* | Never hand-maintained — regenerated by `bun run matrix` / `registry` / `sync`; a stale generated file is a bug, not a review decision |
-| `.github/workflows/` | @tuanductran | CI/release pipeline; changes reviewed against `docs/release.md`'s validation checklist |
+| `docs/engineering/skill-matrix.md`, `registry/skills.json`, `.claude-plugin/marketplace.json` | *(generated, no owner needed)* | Never hand-maintained — regenerated by `bun run matrix` / `registry` / `sync`; a stale generated file is a bug, not a review decision |
+| `.github/workflows/` | @tuanductran | CI/release pipeline; changes reviewed against `docs/operations/release.md`'s validation checklist |
 | `.agents/skills/` (meta-skills) | @tuanductran | Encodes how Claude Code should help maintain this repo; treat as internal tooling, not contributor-facing content |
 
 **Support expectations:** the maintainer triages issues and reviews PRs on
@@ -227,10 +227,10 @@ signal for prioritization) — not needed yet.
 ## Related documents
 
 - [`CONTRIBUTING.md`](CONTRIBUTING.md) — minimum steps to get a PR merged
-- [`docs/contributing/`](docs/contributing/) — deeper contributor
+- [`docs/engineering/contributing/`](docs/engineering/contributing/) — deeper contributor
   walkthroughs (onboarding, workflow, skill authoring, examples)
 - [`docs/ROADMAP.md`](docs/ROADMAP.md) — project vision and phased goals
-- [`docs/release.md`](docs/release.md) — release lifecycle and versioning
-- [`docs/integrations.md`](docs/integrations.md) — supported platforms
+- [`docs/operations/release.md`](docs/operations/release.md) — release lifecycle and versioning
+- [`docs/integrations/README.md`](docs/integrations/README.md) — supported platforms
 - [`.github/CODEOWNERS`](.github/CODEOWNERS) — enforced review requirement
 - [`.agents/skills/skill-vetter/SKILL.md`](.agents/skills/skill-vetter/SKILL.md) — security review checklist for skill content

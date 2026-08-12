@@ -199,7 +199,7 @@ Current repository tasks include:
 | `typecheck` | Run TypeScript type checking |
 | `validate` | Validate HR skills and repository metadata |
 | `sync` | Synchronize generated repository artifacts |
-| `matrix` | Generate `docs/skill-matrix.md` skill maturity snapshot |
+| `matrix` | Generate `docs/engineering/skill-matrix.md` skill maturity snapshot |
 | `registry` | Generate the machine-readable skill registry (`registry/skills.json`) |
 | `signals` | Generate usage-informed relevance signals from evaluation golden fixtures |
 | `discover` | Search the generated registry by text or domain |

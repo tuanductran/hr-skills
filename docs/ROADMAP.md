@@ -11,7 +11,7 @@ HR Skills is a Bun/Turborepo monorepo containing domain-specific Agent Skills fo
 
 For the current skill maturity status, always refer to the generated matrix:
 
-* `docs/skill-matrix.md`
+* `docs/engineering/skill-matrix.md`
 
 For active implementation tasks, milestones, and execution tracking:
 
@@ -124,7 +124,8 @@ hr-skills/
 │
 └── docs/
     ├── ROADMAP.md
-    ├── skill-matrix.md
+    └── engineering/
+        └── skill-matrix.md
 ```
 
 ---
@@ -159,7 +160,7 @@ bun run matrix
 Output:
 
 ```text
-docs/skill-matrix.md
+docs/engineering/skill-matrix.md
 ```
 
 ---
@@ -212,7 +213,7 @@ Completed.
 
 Build the machine-readable foundation for the skill ecosystem.
 
-> Implemented — see [docs/registry.md](registry.md) for the architecture,
+> Implemented — see [docs/engineering/registry.md](engineering/registry.md) for the architecture,
 > schema, generation (`bun run registry`), and validation details.
 
 * Registry schema
@@ -243,13 +244,13 @@ Completed:
 * CLI tool (`bun run plan`) — generate and validate plans from user intent
 * Comprehensive documentation and tests
 
-See [`docs/planner.md`](planner.md) for detailed architecture and usage.
+See [`docs/engineering/planner.md`](engineering/planner.md) for detailed architecture and usage.
 
 #### 4.3 Workflow Runtime
 
 Build a deterministic runtime responsible for executing workflow plans.
 
-> Implemented — see [docs/runtime.md](runtime.md) for the architecture,
+> Implemented — see [docs/engineering/runtime.md](engineering/runtime.md) for the architecture,
 > execution lifecycle, and extension points.
 
 Completed:
@@ -277,7 +278,7 @@ Completed:
 
 Ensure the reliability and correctness of the skill ecosystem.
 
-> Implemented — see [docs/evaluation.md](evaluation.md) for the architecture,
+> Implemented — see [docs/engineering/evaluation.md](engineering/evaluation.md) for the architecture,
 > dataset format, golden fixtures, and how to add new evaluation cases.
 
 Completed:
@@ -303,15 +304,15 @@ Completed:
 * External contributors — see [`GOVERNANCE.md`](../GOVERNANCE.md) for roles, the
   review/approval workflow, ownership per area, and how roadmap feedback is collected
 * Better documentation — contributor onboarding, workflow, and skill-authoring guides in
-  [`docs/contributing/`](contributing/), plus [`docs/registry.md`](registry.md),
-  [`docs/release.md`](release.md), [`docs/integrations.md`](integrations.md), and
+  [`docs/engineering/contributing/`](engineering/contributing/), plus [`docs/engineering/registry.md`](engineering/registry.md),
+  [`docs/operations/release.md`](operations/release.md), [`docs/integrations/README.md`](integrations/README.md), and
   [`GOVERNANCE.md`](../GOVERNANCE.md)
 * Public examples — see [`examples/`](../examples/README.md) for end-to-end
   multi-skill workflows and planner/runtime integration examples
-* Ecosystem integrations — see [`docs/integrations.md`](integrations.md) for
+* Ecosystem integrations — see [`docs/integrations/README.md`](integrations/README.md) for
   the supported-platform matrix, installation/onboarding guides, integration
   testing strategy, and backward-compatibility requirements
-* Stable package releases — see [`docs/release.md`](release.md) for the
+* Stable package releases — see [`docs/operations/release.md`](operations/release.md) for the
   release lifecycle, versioning strategy, validation checklist, and
   release notes workflow
 
@@ -330,12 +331,12 @@ contributors, rather than leaving them as internal planner input only.
 * Recommendation engine — surface `registry/skills.json`'s existing
   `relatedSkills` graph as user-facing "skills you might also need"
   suggestions, instead of only consuming it internally in the Planner
-  (4.2). Delivered — see [`docs/recommendations.md`](recommendations.md)
+  (4.2). Delivered — see [`docs/engineering/recommendations.md`](engineering/recommendations.md)
   for the recommendation format, ranking rule, limitations, and intended
   consumer usage
 * Improved skill discovery — ranked/fuzzy search over the registry
   (capabilities, tags, aliases) beyond exact trigger-phrase matching.
-  Delivered — see [`docs/search.md`](search.md) for supported query
+  Delivered — see [`docs/engineering/search.md`](engineering/search.md) for supported query
   types, searchable fields, ranking strategy, determinism guarantees,
   the public API, and usage examples
 * Usage-informed relevance — once there's a way to observe which skills
@@ -343,7 +344,7 @@ contributors, rather than leaving them as internal planner input only.
   runs or planner telemetry), use that signal to refine
   `relatedSkills` weighting rather than relying on static classification
   alone. Delivered (Phase 6.1-A/B/C) — see
-  [`docs/usage-informed-relevance.md`](usage-informed-relevance.md) for
+  [`docs/engineering/usage-informed-relevance.md`](engineering/usage-informed-relevance.md) for
   the architecture, signal pipeline, and implementation roadmap. Signal
   infrastructure (6.1-A), signal-augmented registry generation with a
   non-blocking coverage warning (6.1-B), and the recommendation surface
@@ -361,17 +362,17 @@ Extend validation beyond the current structural/format checks
 * Duplicate content detection — flag skills with substantially
   overlapping `description`/`content/` before they're merged, not just
   overlapping directory names. Delivered — see
-  [`docs/duplicate-detection.md`](duplicate-detection.md)
+  [`docs/engineering/duplicate-detection.md`](engineering/duplicate-detection.md)
 * Semantic validation — check that a skill's `prompts/` and `examples/`
   are actually consistent with its `description` and `content/`, beyond
   today's non-empty-directory structural check. Delivered — see
-  [`docs/semantic-validation.md`](semantic-validation.md) for the
+  [`docs/engineering/semantic-validation.md`](engineering/semantic-validation.md) for the
   heuristics, calibrated thresholds, determinism guarantees, and
   maintainer guidance
 * Automated content quality scoring — a repeatable score (clarity,
   completeness, example coverage) usable as a review aid, not a merge
   gate, so a low score prompts a closer look rather than an automatic
-  rejection. Delivered — see [`docs/quality-scoring.md`](quality-scoring.md)
+  rejection. Delivered — see [`docs/engineering/quality-scoring.md`](engineering/quality-scoring.md)
   for the scoring dimensions, weights, bands, and public API
 * AI-assisted review workflows — apply
   [`.agents/skills/skill-vetter/SKILL.md`](../.agents/skills/skill-vetter/SKILL.md)'s
@@ -620,9 +621,9 @@ Potential directions:
 
 * Publish stable packages
 * Improve Agent Skills interoperability — tracked in
-  [`docs/integrations.md`](integrations.md)
+  [`docs/integrations/README.md`](integrations/README.md)
 * Support additional AI platforms — see the Supported platforms table in
-  [`docs/integrations.md`](integrations.md) for current 🟢/🟡 status
+  [`docs/integrations/README.md`](integrations/README.md) for current 🟢/🟡 status
 * Build HR AI tooling ecosystem
 
 ---

@@ -17,7 +17,7 @@
  * -------
  * hr-skills.zip
  *     Standard distribution zip for manual extraction and document-based tools.
- *     Includes root SKILL.md, LICENSE, docs/usage-guide.md, and the full
+ *     Includes root SKILL.md, LICENSE, docs/product/USER.md, and the full
  *     skills/ tree. Excludes .claude-plugin/ (internal tooling, not shipped
  *     in the zip).
  *
@@ -274,7 +274,7 @@ async function walkFiles(dir: string): Promise<string[]> {
 
 /**
  * Core knowledge files shared by both archive formats.
- * Includes SKILL.md, LICENSE, docs/usage-guide.md, and the full skills/ tree.
+ * Includes SKILL.md, LICENSE, docs/product/USER.md, and the full skills/ tree.
  */
 async function iterInputs(repoRoot: string): Promise<string[]> {
 	const paths: string[] = [];
@@ -287,7 +287,7 @@ async function iterInputs(repoRoot: string): Promise<string[]> {
 		}
 	}
 
-	const usageGuide = join(repoRoot, 'docs', 'usage-guide.md');
+	const usageGuide = join(repoRoot, 'docs', 'product', 'USER.md');
 
 	if (await Bun.file(usageGuide).exists()) {
 		paths.push(usageGuide);

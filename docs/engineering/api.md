@@ -239,7 +239,7 @@ import { searchSkills } from 'hr-skills-build'
 
 Search the generated Skill Registry by structured metadata.
 
-Ranking rule (see docs/search.md for the full explanation):
+Ranking rule (see docs/engineering/search.md for the full explanation):
  1. Each field match contributes `weight * similarity` to the skill's
     score (`similarity` is always 1 for exact matches).
  2. A skill matching on more than one distinct field gets a small flat
@@ -1091,7 +1091,7 @@ import { validatePromptStructure } from 'hr-skills-build'
 
 Validate the structure of the ## Key prompts section.
 
-Per docs/format.md: 3-6 subtopics (H3 headings) and 4-7 quoted prompts per subtopic.
+Per docs/engineering/format.md: 3-6 subtopics (H3 headings) and 4-7 quoted prompts per subtopic.
 
 ```ts
 function validatePromptStructure(skillName: string, content: string, errors: SkillValidationIssue[]): void
@@ -2867,7 +2867,7 @@ Base URL for linking to a file in this repo on GitHub, e.g. for use in
 generated Markdown that's posted somewhere with no "current file" context
 (a PR comment, a Slack message) where a relative link like `../docs/x.md`
 cannot resolve. Append a repo-root-relative path, e.g.
-`` `${GITHUB_BLOB_BASE_URL}/docs/quality-scoring.md` ``.
+`` `${GITHUB_BLOB_BASE_URL}/docs/engineering/quality-scoring.md` ``.
 
 ```ts
 const GITHUB_BLOB_BASE_URL: "https://github.com/tuanductran/hr-skills/blob/main"

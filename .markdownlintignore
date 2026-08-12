@@ -3,4 +3,4 @@ dist
 .changeset
 .turbo
 CHANGELOG.md
-skill-matrix.md
+docs/engineering/skill-matrix.md

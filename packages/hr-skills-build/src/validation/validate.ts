@@ -272,7 +272,7 @@ export function validateAuthor(
 /**
  * Validate the structure of the ## Key prompts section.
  *
- * Per docs/format.md: 3-6 subtopics (H3 headings) and 4-7 quoted prompts per subtopic.
+ * Per docs/engineering/format.md: 3-6 subtopics (H3 headings) and 4-7 quoted prompts per subtopic.
  *
  * @param skillName - Skill identifier, used to attribute any issues found.
  * @param content - Raw skill markdown to check.

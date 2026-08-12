@@ -1,6 +1,6 @@
 name: Publish
 
-# Stage 5 of docs/release.md — automates what was previously a fully manual
+# Stage 5 of docs/operations/release.md — automates what was previously a fully manual
 # step (see .changeset/README.md's "Releasing" section): once the maintainer
 # tags a release (git tag vX.Y.Z && git push --tags, after the Version
 # Packages PR from release.yml is merged), this workflow builds the

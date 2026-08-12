@@ -57,7 +57,7 @@
  *
  * All findings are reported as **warnings** (informational quality
  * signals), matching duplicate-content detection and the same rationale
- * given in `docs/duplicate-detection.md`: keyword/Jaccard heuristics are a
+ * given in `docs/engineering/duplicate-detection.md`: keyword/Jaccard heuristics are a
  * useful review aid but cannot reliably prove semantic drift beyond doubt,
  * so they should prompt a maintainer look rather than fail the build.
  *

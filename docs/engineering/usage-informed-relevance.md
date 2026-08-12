@@ -1,6 +1,6 @@
 # Usage-Informed Relevance
 
-> Phase 6.1 of the [roadmap](ROADMAP.md) — improving `relatedSkills` quality
+> Phase 6.1 of the [roadmap](../ROADMAP.md) — improving `relatedSkills` quality
 > by incorporating evidence from how skills are actually selected together in
 > practice.
 
@@ -133,7 +133,7 @@ appeared.  It is bounded to [0.0, 1.0] by construction.
 
 The aggregated signal table is written to `registry/relevance-signals.json`
 and **committed to the repository** — the same pattern used by
-`registry/skills.json` and `docs/skill-matrix.md`.  It is a static artifact,
+`registry/skills.json` and `docs/engineering/skill-matrix.md`.  It is a static artifact,
 not a database or runtime cache.
 
 ### Versioning
@@ -243,7 +243,7 @@ artifact.  No change to the default registry output.
 - `registry/relevance-signals.json` — initial generated artifact from the
   existing golden fixtures.
 - `test/relevance-signals.test.ts` — full unit-test coverage.
-- `docs/usage-informed-relevance.md` — this document.
+- `docs/engineering/usage-informed-relevance.md` — this document.
 - `package.json` / `turbo.jsonc` — `signals` script and Turborepo task.
 
 **Dependencies:** Phase 4.4 (Evaluation framework) — golden fixtures must

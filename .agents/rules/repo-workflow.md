@@ -11,7 +11,7 @@ Use these rules for repository-wide working discipline.
 
 - `AGENTS.md` (root) — canonical, tool-agnostic entry point for contributors and agents
 - `.agents/AGENTS.md` — routing index mapping tasks to the correct skill file
-- `docs/skill-matrix.md` — generated skill maturity snapshot; never hand-edit, run `bun run matrix`
+- `docs/engineering/skill-matrix.md` — generated skill maturity snapshot; never hand-edit, run `bun run matrix`
 - `registry/skills.json` — generated machine-readable skill registry; never hand-edit, run `bun run registry`
 - `.claude-plugin/marketplace.json` — generated marketplace metadata; never hand-edit, run `bun run sync`
 - `.agents/skills/hr-skills-maintaining/SKILL.md` — full SKILL.md structure, frontmatter rules, and pre-publish checklist
@@ -29,7 +29,7 @@ Use these rules for repository-wide working discipline.
 
 - Read the nearest source-of-truth skill file first (see `.agents/AGENTS.md` index).
 - For `skills/hr-*/SKILL.md` changes, load `.agents/skills/hr-skills-maintaining/SKILL.md` before proceeding.
-- Do not change generated artifacts (`docs/skill-matrix.md`, `registry/skills.json`, `.claude-plugin/marketplace.json`) by hand.
+- Do not change generated artifacts (`docs/engineering/skill-matrix.md`, `registry/skills.json`, `.claude-plugin/marketplace.json`) by hand.
 
 ## After editing
 

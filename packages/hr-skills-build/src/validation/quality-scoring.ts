@@ -3,7 +3,7 @@
  *
  * Produces a repeatable 0-100 quality score per skill across three
  * dimensions — clarity, completeness, and example coverage — as a
- * **review aid, not a merge gate** (see docs/quality-scoring.md and
+ * **review aid, not a merge gate** (see docs/engineering/quality-scoring.md and
  * ROADMAP.md §6.2). A low score should prompt a maintainer to take a
  * closer look, not fail CI.
  *

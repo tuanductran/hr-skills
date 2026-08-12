@@ -1,6 +1,6 @@
 # Skill Discovery (Search)
 
-> Phase 6.1 of the [roadmap](ROADMAP.md) — deterministic skill discovery over
+> Phase 6.1 of the [roadmap](../ROADMAP.md) — deterministic skill discovery over
 > [Skill Registry](registry.md) metadata, by structured fields instead of
 > exact trigger-phrase matching only.
 
@@ -231,7 +231,7 @@ for (const result of response.results) {
 
 ## Testing
 
-See `packages/hr-skills-build/test/search.test.ts`, which covers exact
+See `packages/hr-skills-build/test/search/search.test.ts`, which covers exact
 matches per field, fuzzy matches (typos and reordered phrases), field
 restriction, domain filtering and domain-only browsing, ranking and
 tie-breaking, match explanations, empty results, and invalid-query errors.

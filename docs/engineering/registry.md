@@ -1,6 +1,6 @@
 # Skill Registry
 
-> Phase 4.1 of the [roadmap](ROADMAP.md) — the machine-readable foundation for
+> Phase 4.1 of the [roadmap](../ROADMAP.md) — the machine-readable foundation for
 > deterministic AI agent routing over the skill catalog.
 
 ## What it is
@@ -37,7 +37,7 @@ Option 2 was chosen because:
   - Trigger phrases → the `## Key prompts` section, already parsed by
     `parseSkillMeta()`
   - Tier (full/partial/bare) → subdirectory presence, already computed for
-    `docs/skill-matrix.md`
+    `docs/engineering/skill-matrix.md`
 - Generating the registry from these existing sources means there is exactly
   one place each fact is authored — the registry can never drift from
   `SKILL.md` or the classifier the way hand-maintained duplicate metadata
@@ -52,7 +52,7 @@ registry/
 
 `registry/` sits at the repository root, as a sibling of `docs/`, `skills/`,
 and `packages/`. This matches the existing convention for other generated,
-committed artifacts (`docs/skill-matrix.md`, `.claude-plugin/marketplace.json`)
+committed artifacts (`docs/engineering/skill-matrix.md`, `.claude-plugin/marketplace.json`)
 rather than introducing a hidden `.generated/` directory — the registry is a
 first-class, browsable part of the repository, not build cache.
 
@@ -126,7 +126,7 @@ re-implementing the same logic.
 `skills/` content always produces the same `skills` array in the same order
 (sorted by `id`). The only field that changes run-to-run without a content
 change is `generatedAt` (today's date) — the same convention already used by
-`docs/skill-matrix.md`.
+`docs/engineering/skill-matrix.md`.
 
 Regenerate the registry any time skills are added, removed, or reclassified,
 and commit the result — the same workflow as `bun run matrix`.
@@ -160,7 +160,7 @@ every other validator in `validate.ts`.
 - `turbo.jsonc` — `registry` task (uncached, output `registry/skills.json`)
 - `.github/workflows/matrix.yml` — regenerates and commits
   `registry/skills.json` on every push to `main`, alongside
-  `docs/skill-matrix.md`
+  `docs/engineering/skill-matrix.md`
 - `bun run validate` — fails CI if the committed registry is stale or
   internally inconsistent (see above)
 

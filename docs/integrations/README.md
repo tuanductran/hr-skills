@@ -1,6 +1,6 @@
 # Ecosystem Integrations
 
-> Phase 5 of the [roadmap](ROADMAP.md) — extending HR Skills interoperability
+> Phase 5 of the [roadmap](../ROADMAP.md) — extending HR Skills interoperability
 > across AI agent platforms and marketplaces.
 
 ## What it is
@@ -15,8 +15,8 @@ authoritative reference for:
 - what a new platform integration must satisfy before it is added
 - how compatibility is verified and kept from regressing
 
-It complements `docs/registry.md` (machine-readable skill index) and
-`docs/format.md` (skill package structure) — those define the artifact,
+It complements `docs/engineering/registry.md` (machine-readable skill index) and
+`docs/engineering/format.md` (skill package structure) — those define the artifact,
 this defines where the artifact goes.
 
 ## Design principle: one format, many consumers
@@ -30,7 +30,7 @@ one of two things:
 2. **A generated adapter** — a build step that reads `registry/skills.json`
    or `SKILL.md` frontmatter and emits a platform-native manifest, committed
    alongside the generated artifacts the repo already produces
-   (`docs/skill-matrix.md`, `.claude-plugin/marketplace.json`).
+   (`docs/engineering/skill-matrix.md`, `.claude-plugin/marketplace.json`).
 
 If a platform requires content to be rewritten by hand to work, it is not
 a supported integration target — see
@@ -114,7 +114,7 @@ listed as 🟢 Supported in the table above:
    HR Skills doesn't already produce, add a generator under
    `packages/hr-skills-build/src/` that derives it from
    `buildRegistry()` — the same pattern used for
-   `.claude-plugin/marketplace.json` and `docs/skill-matrix.md` — rather
+   `.claude-plugin/marketplace.json` and `docs/engineering/skill-matrix.md` — rather
    than hand-writing platform-specific files.
 3. **Wire it into the existing pipeline**, not a parallel one:
    - a `bun run <name>` script in the new package and root `package.json`
@@ -168,7 +168,7 @@ layers pass.
   integration — new adapters are additive generation steps, not changes to
   `SKILL.md` or existing manifests.
 - `registry/skills.json` and `.claude-plugin/marketplace.json` schema
-  changes follow the existing versioning rule in `docs/registry.md`
+  changes follow the existing versioning rule in `docs/engineering/registry.md`
   (bump `schemaVersion` / regenerate + validate) — a new platform adapter
   must not force a breaking change to either.
 - Any platform-specific quirk that requires workaround content (e.g. a
@@ -208,7 +208,7 @@ integration patterns" principle this document follows.
 
 ## Related documents
 
-- [`docs/format.md`](format.md) — skill package structure and maturity tiers
-- [`docs/registry.md`](registry.md) — machine-readable skill index used by
+- [`docs/engineering/format.md`](../engineering/format.md) — skill package structure and maturity tiers
+- [`docs/engineering/registry.md`](../engineering/registry.md) — machine-readable skill index used by
   generated adapters
-- [`docs/ROADMAP.md`](ROADMAP.md) — Phase 5, Community & Distribution
+- [`docs/ROADMAP.md`](../ROADMAP.md) — Phase 5, Community & Distribution
