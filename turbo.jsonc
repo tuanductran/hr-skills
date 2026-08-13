@@ -64,6 +64,11 @@
 			"outputs": ["eval-report.json"],
 			"dependsOn": ["^build"]
 		},
+		"docs-data": {
+			"cache": false,
+			"dependsOn": ["^build"],
+			"outputs": ["playground/next-app/data/skills.json"]
+		},
 		"api-docs": {
 			"cache": false,
 			"dependsOn": ["^build"],

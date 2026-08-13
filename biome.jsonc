@@ -10,7 +10,8 @@
 			"!**/.claude-plugin",
 			"!**/registry",
 			"!**/.next",
-			"!**/next-env.d.ts"
+			"!**/next-env.d.ts",
+			"!playground/next-app/data/skills.json"
 		]
 	},
 	"assist": {

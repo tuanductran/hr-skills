@@ -54,7 +54,8 @@
 		"evaluate": "bun src/cli/run-evaluation.ts",
 		"skill-review": "bun src/cli/skill-review.ts",
 		"api-docs": "bun src/build/generate-api-docs.ts",
-		"api-docs:check": "bun src/build/generate-api-docs.ts --check"
+		"api-docs:check": "bun src/build/generate-api-docs.ts --check",
+		"docs-data": "bun src/build/generate-docs-data.ts"
 	},
 	"dependencies": {
 		"@clack/prompts": "catalog:",
