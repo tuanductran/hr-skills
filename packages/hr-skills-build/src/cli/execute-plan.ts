@@ -22,21 +22,27 @@ import { generateExecutionPlan } from '../planner/planner.js';
 import { buildRegistry } from '../registry/registry.js';
 import { executeWorkflow } from '../runtime/runtime.js';
 import { stubStepExecutor } from '../shared/helpers.js';
-import { printUsageAndExit, runCli } from './cli-bootstrap.js';
+import { type CliUsage, cliSpinner, printUsageAndExit, runCli } from './cli-bootstrap.js';
+
+const USAGE: CliUsage = {
+	title: 'Workflow Runtime',
+	usage: 'bun run execute "<user intent>"',
+	example: 'bun run execute "Create interview questions for a senior manager"',
+};
 
 async function main() {
 	const intent = process.argv[2];
 
-	if (!intent) {
-		printUsageAndExit(
-			'Usage: bun run execute "<user intent>"',
-			'  bun run execute "Create interview questions for a senior manager"',
-		);
+	// `startsWith('--')` matters as much as the empty check: without it,
+	// `bun run execute --help` built the registry and ran the runtime against
+	// the literal intent "--help".
+	if (!intent || intent.startsWith('--')) {
+		printUsageAndExit(USAGE);
 	}
 
-	p.intro('Workflow Runtime');
+	p.intro(USAGE.title);
 
-	const spinner = p.spinner();
+	const spinner = cliSpinner();
 
 	spinner.start('Building Skill Registry...');
 	const registry = await buildRegistry();
@@ -92,4 +98,4 @@ async function main() {
 	process.exit(result.status === 'completed' ? 0 : 1);
 }
 
-runCli(main);
+runCli(main, USAGE);

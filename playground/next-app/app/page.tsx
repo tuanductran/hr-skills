@@ -5,7 +5,9 @@ import { ClientWidget } from './client-widget';
 // issue: `skills-ref` computes `ROOT_DIR` via `import.meta.dirname` at
 // module load time, which Next's webpack server bundling does not evaluate
 // correctly for an externalized workspace package symlinked outside
-// `next-app/` (see `next.config.ts`). That's a Next.js/ESM interop wrinkle
+// `next-app/`. Nothing here works around it — there is deliberately no
+// `next.config.ts`, because the server path is out of scope for this
+// playground. That's a Next.js/ESM interop wrinkle
 // in `skills-ref`, not something the client/server split changed — the fs
 // path is already covered by `bun test` / `bun run validate` in
 // `packages/hr-skills-build`. What this playground exists to prove is the

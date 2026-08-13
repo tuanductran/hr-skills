@@ -18,11 +18,13 @@ Only five clack APIs appear anywhere in this codebase — confirmed by grepping 
 
 | API | Purpose | Used in |
 |---|---|---|
-| `p.intro(title)` | Announce the CLI at start | Every `cli/*.ts` entry point |
-| `p.outro(message)` | Announce completion at end | Every `cli/*.ts` entry point |
-| `p.spinner()` / `.start()` / `.stop()` | Show progress during `buildRegistry()`, plan generation, etc. | `execute-plan.ts`, `generate-plan.ts`, `recommend.ts` |
-| `p.note(message, title?)` | Print a multi-line info block (search results, recommendations) | `discover.ts`, `recommend.ts` |
+| `p.intro(title)` | Announce the CLI at start | Every `cli/*.ts` entry point, plus `build/sync.ts` and `validation/validate.ts` |
+| `p.outro(message)` | Announce completion at end — **including every failure path**, or the box is left unterminated | Same as `p.intro` |
+| `p.spinner()` / `.start()` / `.stop()` | Show progress during `buildRegistry()`, validation, plan generation, etc. | Created via `cliSpinner()` in `discover.ts`, `execute-plan.ts`, `generate-plan.ts`, `recommend.ts`, `run-evaluation.ts`, `validation/validate.ts` |
+| `p.note(message, title?)` | Print a multi-line info block (search results, recommendations, usage) | `discover.ts`, `recommend.ts`, `execute-plan.ts`, `generate-plan.ts`, `run-evaluation.ts`, `cli-bootstrap.ts` |
 | `p.log.{info,error,warn,success,message}` | Single-line status/error output | All `cli/*.ts`, routed through `cli/cli-bootstrap.ts` |
+
+`p.note` titles are SCREAMING CASE at every call site (`RESULTS FOR …`, `EXECUTION PLAN`, `USAGE`). Keep it that way.
 
 ## What this repo does NOT use — do not introduce it
 
@@ -38,20 +40,25 @@ Every CLI entry point in `src/cli/*.ts` follows this shape (see `cli/cli-bootstr
 
 ```typescript
 import * as p from '@clack/prompts';
-import { printUsageAndExit, runCli } from './cli-bootstrap.js';
+import { type CliUsage, cliSpinner, printUsageAndExit, runCli } from './cli-bootstrap.js';
+
+const USAGE: CliUsage = {
+	title: 'My Command',
+	usage: 'bun run my-command "<argument>"',
+	example: 'bun run my-command "example"',
+};
 
 async function main() {
 	const intent = process.argv[2];
-	if (!intent) {
-		printUsageAndExit(
-			'Usage: bun run my-command "<argument>"',
-			'  bun run my-command "example"',
-		);
+
+	// Reject a bare flag in the positional slot too, not just an empty one.
+	if (!intent || intent.startsWith('--')) {
+		printUsageAndExit(USAGE);
 	}
 
-	p.intro('My Command');
+	p.intro(USAGE.title);
 
-	const spinner = p.spinner();
+	const spinner = cliSpinner();
 	spinner.start('Building Skill Registry...');
 	const registry = await buildRegistry();
 	spinner.stop(`Registry ready (${registry.skillCount} skills)`);
@@ -61,12 +68,17 @@ async function main() {
 	p.outro('Done');
 }
 
-runCli(main);
+runCli(main, USAGE);
 ```
 
-- `printUsageAndExit` / `runCli` (from `cli/cli-bootstrap.ts`) standardize the "missing arg" and "uncaught error" paths — see [`cli-bootstrap`](../../../packages/hr-skills-build/src/cli/cli-bootstrap.ts). Don't hand-roll `p.log.error(...); process.exit(1);` again; that duplication is exactly what `cli-bootstrap.ts` was extracted to remove (see [`dry-refactoring`](../dry-refactoring/SKILL.md)).
-- `p.intro`/`p.outro` bookend the whole run — call each exactly once.
+- One `CliUsage` per command, shared by `printUsageAndExit`, `runCli`, and `p.intro(USAGE.title)`, so the `--help` screen and the bad-invocation error can't drift apart.
+- **Pass `USAGE` to `runCli`.** That is what implements `--help`/`-h`: it prints usage and exits 0 *before* `main()` runs. Omit it and the command treats `--help` as a positional argument — which is how `bun run evaluate --help` once ran the whole evaluation suite and `bun run plan --help` generated a plan for the literal intent `"--help"`.
+- **Use `cliSpinner()`, never `p.spinner()` directly.** A running spinner repaints every 80ms by erasing the lines beneath it, and clack's exit handler then stamps "Canceled" over the area — so an error thrown mid-spin is invisible. `cliSpinner()` registers the spinner so `runCli` can stop it with the real message.
+- `printUsageAndExit` / `runCli` standardize the bad-invocation and uncaught-error paths — see [`cli-bootstrap`](../../../packages/hr-skills-build/src/cli/cli-bootstrap.ts). Don't hand-roll `p.log.error(...); process.exit(1);` again; that duplication is exactly what `cli-bootstrap.ts` was extracted to remove (see [`dry-refactoring`](../dry-refactoring/SKILL.md)). Prefer letting a typed error propagate to `runCli` over catching it locally.
+- `p.intro`/`p.outro` bookend the whole run — call each exactly once, **on success and failure alike**. `p.log.*` output renders with clack's `│` gutter but no `┌` above and no `└` below, so an `exit(1)` with no outro leaves a visibly broken box.
+- Validate flag *values*, not just presence: `--limit 0` and `--limit abc` used to reach the search layer as `0`/`NaN` and produce "no results", blaming the query for a bad flag. Reject unknown flags too, rather than ignoring them.
 - `spinner.stop(message)` should report a concrete result (count, duration), not just "Done" — matches the existing `Registry ready (${registry.skillCount} skills)` style.
+- A CLI module that anything else imports (`validation/validate.ts` is imported by its own test) keeps its `if (import.meta.main)` guard around `runCli`, and parses `process.argv` *inside* it — otherwise a plain `import` runs the command or parses the host process's flags.
 
 ## Key prompts
 
