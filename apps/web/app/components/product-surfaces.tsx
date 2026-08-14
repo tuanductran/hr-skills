@@ -7,6 +7,7 @@ import type {
 	WorkflowResult,
 } from 'hr-skills-build/client';
 import Link from 'next/link';
+import { useMemo, useState } from 'react';
 
 interface GraphData {
 	readonly nodes: Array<{
@@ -25,12 +26,32 @@ interface GraphData {
 }
 
 export function SkillGraph({ data }: { readonly data: GraphData }) {
-	const topNodes = [...data.nodes]
-		.sort(
-			(a, b) =>
-				b.relatedSkills + b.dependencies - (a.relatedSkills + a.dependencies),
-		)
-		.slice(0, 24);
+	const [query, setQuery] = useState('');
+	const [domain, setDomain] = useState('');
+	const domains = useMemo(
+		() => [...new Set(data.nodes.map((node) => node.domain))].sort(),
+		[data.nodes],
+	);
+	const topNodes = useMemo(
+		() =>
+			data.nodes
+				.filter((node) => !domain || node.domain === domain)
+				.filter(
+					(node) =>
+						!query ||
+						`${node.id} ${node.name}`
+							.toLowerCase()
+							.includes(query.toLowerCase()),
+				)
+				.sort(
+					(a, b) =>
+						b.relatedSkills +
+						b.dependencies -
+						(a.relatedSkills + a.dependencies),
+				)
+				.slice(0, 24),
+		[data.nodes, domain, query],
+	);
 	return (
 		<section className='surface-stack'>
 			<div className='surface-intro'>
@@ -39,6 +60,42 @@ export function SkillGraph({ data }: { readonly data: GraphData }) {
 				<p>
 					Explore canonical relationships derived from the registry: related
 					skills and documented dependencies.
+				</p>
+			</div>
+			<div className='graph-controls'>
+				<label
+					className='field'
+					htmlFor='graph-search'>
+					<span>Find a skill</span>
+					<input
+						id='graph-search'
+						onChange={(event) => setQuery(event.target.value)}
+						placeholder='Search by skill name or ID'
+						type='search'
+						value={query}
+					/>
+				</label>
+				<label
+					className='field'
+					htmlFor='graph-domain'>
+					<span>Practice area</span>
+					<select
+						id='graph-domain'
+						onChange={(event) => setDomain(event.target.value)}
+						value={domain}>
+						<option value=''>All practice areas</option>
+						{domains.map((item) => (
+							<option
+								key={item}
+								value={item}>
+								{item.replaceAll('-', ' ')}
+							</option>
+						))}
+					</select>
+				</label>
+				<p className='graph-controls__hint'>
+					<strong>{topNodes.length}</strong> focus results · choose a skill to
+					follow its connections.
 				</p>
 			</div>
 			<div className='surface-metrics'>
@@ -55,37 +112,53 @@ export function SkillGraph({ data }: { readonly data: GraphData }) {
 					<span>registry date</span>
 				</div>
 			</div>
-			<div className='graph-grid'>
-				{topNodes.map((node) => (
-					<article
-						className='graph-card'
-						key={node.id}>
-						<div className='graph-card__meta'>
-							<span>{node.domain.replaceAll('-', ' ')}</span>
-							<span>{node.id}</span>
-						</div>
-						<h2>
-							<Link href={`/skills/${node.id}`}>{node.name}</Link>
-						</h2>
-						<p>
-							{node.relatedSkills} related skills · {node.dependencies}{' '}
-							dependencies
-						</p>
-						<div className='graph-card__links'>
-							{data.edges
-								.filter((edge) => edge.source === node.id)
-								.slice(0, 4)
-								.map((edge) => (
-									<Link
-										href={`/skills/${edge.target}`}
-										key={`${edge.kind}-${edge.target}`}>
-										{edge.target}
-									</Link>
-								))}
-						</div>
-					</article>
-				))}
-			</div>
+			{topNodes.length ? (
+				<div className='graph-grid'>
+					{topNodes.map((node) => (
+						<article
+							className='graph-card'
+							key={node.id}>
+							<div className='graph-card__meta'>
+								<span>{node.domain.replaceAll('-', ' ')}</span>
+								<span>{node.id}</span>
+							</div>
+							<h2>
+								<Link href={`/skills/${node.id}`}>{node.name}</Link>
+							</h2>
+							<p>
+								{node.relatedSkills} related skills · {node.dependencies}{' '}
+								dependencies
+							</p>
+							<div className='graph-card__links'>
+								{data.edges
+									.filter((edge) => edge.source === node.id)
+									.slice(0, 4)
+									.map((edge) => (
+										<Link
+											href={`/skills/${edge.target}`}
+											key={`${edge.kind}-${edge.target}`}>
+											{edge.target}
+										</Link>
+									))}
+							</div>
+						</article>
+					))}
+				</div>
+			) : (
+				<div className='empty-state'>
+					<h2>No connected skills found</h2>
+					<p>Try another name or reset the practice-area filter.</p>
+					<button
+						className='button'
+						onClick={() => {
+							setQuery('');
+							setDomain('');
+						}}
+						type='button'>
+						Reset graph
+					</button>
+				</div>
+			)}
 		</section>
 	);
 }

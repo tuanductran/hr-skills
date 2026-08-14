@@ -9,25 +9,58 @@ export default async function Page() {
 		<main>
 			<section className='hero'>
 				<div className='site-shell hero__inner'>
-					<p className='eyebrow'>A practical HR knowledge library</p>
-					<h1>Skills for thoughtful, operationally excellent people work.</h1>
-					<p>
-						Browse {data.skillCount} content-driven HR Skills across talent
-						acquisition, people operations, learning, rewards, and workforce
-						strategy.
-					</p>
-					<div className='hero__actions'>
-						<Link
-							className='button'
-							href='/skills'>
-							Explore skill catalog
-						</Link>
-						<a
-							className='button button--secondary'
-							href='https://github.com/tuanductran/hr-skills'>
-							View repository
-						</a>
+					<div className='hero__copy'>
+						<p className='eyebrow'>A practical HR knowledge library</p>
+						<h1>Move from HR question to confident next step.</h1>
+						<p>
+							Use a canonical library of {data.skillCount} HR Skills to
+							research, plan, govern, and improve people work.
+						</p>
+						<div className='hero__actions'>
+							<Link
+								className='button'
+								href='/skills'>
+								Find a skill <span aria-hidden='true'>→</span>
+							</Link>
+							<Link
+								className='button button--secondary'
+								href='/planner'>
+								Build a plan
+							</Link>
+						</div>
+						<div className='hero__trust'>
+							<span>
+								<strong>{data.skillCount}</strong> skills
+							</span>
+							<span>
+								<strong>{data.domains.length}</strong> practice areas
+							</span>
+							<span>
+								<strong>100%</strong> repository-backed
+							</span>
+						</div>
 					</div>
+					<section
+						aria-labelledby='hero-path-heading'
+						className='hero__path'>
+						<p
+							className='eyebrow'
+							id='hero-path-heading'>
+							Choose your starting point
+						</p>
+						<Link href='/skills'>
+							<strong>I need a practical guide</strong>
+							<span>
+								Browse skills by HR task, practice area or maturity.
+							</span>
+							<span aria-hidden='true'>→</span>
+						</Link>
+						<Link href='/planner'>
+							<strong>I have a complex HR task</strong>
+							<span>Turn an intent into an explainable skill plan.</span>
+							<span aria-hidden='true'>→</span>
+						</Link>
+					</section>
 				</div>
 			</section>
 
@@ -37,11 +70,13 @@ export default async function Page() {
 				<div className='section-heading'>
 					<div>
 						<p className='eyebrow'>Browse by practice area</p>
-						<h2 id='domains-heading'>
-							Built for the full HR operating system
-						</h2>
+						<h2 id='domains-heading'>Start with the part of HR you own.</h2>
 					</div>
-					<Link href='/skills'>View all skills</Link>
+					<Link
+						className='section-link'
+						href='/skills'>
+						View full catalog <span aria-hidden='true'>→</span>
+					</Link>
 				</div>
 				<ul className='domain-grid'>
 					{data.domains.slice(0, 8).map((domain) => (
@@ -49,6 +84,11 @@ export default async function Page() {
 							<Link href={`/skills?domain=${domain.id}`}>
 								<strong>{domain.label}</strong>
 								<span>{domain.skillCount} skills</span>
+								<span
+									className='domain-grid__arrow'
+									aria-hidden='true'>
+									→
+								</span>
 							</Link>
 						</li>
 					))}
@@ -56,13 +96,23 @@ export default async function Page() {
 			</section>
 
 			<section
-				className='site-shell home-section'
+				className='site-shell home-section home-section--soft'
 				aria-labelledby='featured-heading'>
 				<div className='section-heading'>
 					<div>
 						<p className='eyebrow'>Start here</p>
-						<h2 id='featured-heading'>Featured skill guides</h2>
+						<h2 id='featured-heading'>Guides people teams return to.</h2>
+						<p className='section-heading__description'>
+							A small selection from the canonical registry, ready to
+							explore.
+						</p>
 					</div>
+					<Link
+						className='section-link'
+						href='/skills'>
+						Browse all {data.skillCount} skills{' '}
+						<span aria-hidden='true'>→</span>
+					</Link>
 				</div>
 				<ul className='skill-grid'>
 					{featuredSkills.map((skill) => (
@@ -78,7 +128,9 @@ export default async function Page() {
 								</div>
 								<h3>{skill.displayName}</h3>
 								<p>{skill.description}</p>
-								<span className='skill-card__action'>Read skill</span>
+								<span className='skill-card__action'>
+									Read guide <span aria-hidden='true'>→</span>
+								</span>
 							</Link>
 						</li>
 					))}
