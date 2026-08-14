@@ -75,6 +75,114 @@ The full registry, including every skill's classification, capabilities, and rel
 
 ---
 
+## Documentation
+
+### `humanizeIdentifier`
+
+```ts
+import { humanizeIdentifier } from 'hr-skills-build'
+```
+
+Converts a repository identifier into an accessible display label.
+
+```ts
+function humanizeIdentifier(identifier: string): string
+```
+
+#### Parameters
+
+- `identifier`
+
+---
+
+### `buildDocumentationData`
+
+```ts
+import { buildDocumentationData } from 'hr-skills-build'
+```
+
+Builds a stable artifact consumed by the public documentation application.
+
+```ts
+async function buildDocumentationData(): Promise<DocumentationData>
+```
+
+---
+
+### `DocumentationSection`
+
+```ts
+import { DocumentationSection } from 'hr-skills-build'
+```
+
+A Markdown file associated with a skill, preserved in stable filename order.
+
+```ts
+interface DocumentationSection {
+    readonly fileName: string;
+    readonly markdown: string;
+}
+```
+
+---
+
+### `DocumentationSkill`
+
+```ts
+import { DocumentationSkill } from 'hr-skills-build'
+```
+
+A registry entry enriched with the source Markdown needed for the public site.
+
+```ts
+interface DocumentationSkill extends RegistryEntry {
+    readonly displayName: string;
+    readonly content: string;
+    readonly prompts: readonly DocumentationSection[];
+    readonly examples: readonly DocumentationSection[];
+}
+```
+
+---
+
+### `DocumentationDomain`
+
+```ts
+import { DocumentationDomain } from 'hr-skills-build'
+```
+
+A stable catalog grouping derived from the canonical registry domain.
+
+```ts
+interface DocumentationDomain {
+    readonly id: SkillCategory;
+    readonly label: string;
+    readonly skillCount: number;
+}
+```
+
+---
+
+### `DocumentationData`
+
+```ts
+import { DocumentationData } from 'hr-skills-build'
+```
+
+The generated, app-consumable public documentation artifact.
+
+```ts
+interface DocumentationData {
+    readonly schemaVersion: 1;
+    readonly generatedAt: string;
+    readonly skillCount: number;
+    readonly domains: readonly DocumentationDomain[];
+    readonly skills: readonly DocumentationSkill[];
+}
+```
+
+---
+
 ## Discovery
 
 ### `getHrSkills`
@@ -119,8 +227,8 @@ Result of running a skill's name/description through classifySkill.
 
 ```ts
 interface SkillClassification {
- category: SkillCategory;
- tags: string[];
+    category: SkillCategory;
+    tags: string[];
 }
 ```
 
@@ -163,10 +271,10 @@ Display metadata for one SkillCategory, used when rendering the root `SKILL.md` 
 
 ```ts
 interface CategoryMeta {
- heading: string;
- description?: string;
- /** If true, adds a preamble note below the table */
- preamble?: string;
+    heading: string;
+    description?: string;
+    /** If true, adds a preamble note below the table */
+    preamble?: string;
 }
 ```
 
@@ -240,7 +348,7 @@ import { searchSkills } from 'hr-skills-build'
 Search the generated Skill Registry by structured metadata.
 
 Ranking rule (see docs/engineering/search.md for the full explanation):
- 1. Each field match contributes `weight * similarity` to the skill's
+ 1. Each field match contributes `weight \* similarity` to the skill's
     score (`similarity` is always 1 for exact matches).
  2. A skill matching on more than one distinct field gets a small flat
     bonus per extra field (capped), since agreement across fields is a
@@ -349,19 +457,19 @@ they are deterministic given the same input fixtures.
 
 ```ts
 interface RelevanceSignal {
- /** The skill whose `relatedSkills` list this signal influences. */
- sourceSkill: string;
- /** The skill that co-appears with `sourceSkill`. */
- targetSkill: string;
- /**
-  * Fraction of all plans that contained `sourceSkill` in which `targetSkill`
-  * also appeared.  0.0 = never co-selected; 1.0 = always co-selected.
-  */
- coSelectionRate: number;
- /** Raw count of plans containing both skills. */
- coSelectionCount: number;
- /** Total plans containing `sourceSkill` (the denominator for coSelectionRate). */
- observedCount: number;
+    /** The skill whose `relatedSkills` list this signal influences. */
+    sourceSkill: string;
+    /** The skill that co-appears with `sourceSkill`. */
+    targetSkill: string;
+    /**
+     * Fraction of all plans that contained `sourceSkill` in which `targetSkill`
+     * also appeared.  0.0 = never co-selected; 1.0 = always co-selected.
+     */
+    coSelectionRate: number;
+    /** Raw count of plans containing both skills. */
+    coSelectionCount: number;
+    /** Total plans containing `sourceSkill` (the denominator for coSelectionRate). */
+    observedCount: number;
 }
 ```
 
@@ -380,25 +488,25 @@ tag-overlap `relatedSkills` ranking with observed co-selection evidence.
 
 ```ts
 interface RelevanceSignalTable {
- /**
-  * Schema version — increment for breaking shape changes (field rename,
-  * type change).  Additive optional fields do not require a bump.
-  */
- schemaVersion: number;
- /**
-  * ISO date (YYYY-MM-DD) the table was generated on.  Informational only —
-  * it does not affect determinism of the weight lookup.
-  */
- generatedAt: string;
- /**
-  * Names of the golden fixture datasets that contributed observations.
-  * Stored for auditability; does not affect signal values.
-  */
- sourceDatasets: string[];
- /** Total number of planning-scenario outcomes observed across all datasets. */
- totalObservations: number;
- /** All (source, target) relevance signals, sorted by sourceSkill then targetSkill. */
- signals: RelevanceSignal[];
+    /**
+     * Schema version — increment for breaking shape changes (field rename,
+     * type change).  Additive optional fields do not require a bump.
+     */
+    schemaVersion: number;
+    /**
+     * ISO date (YYYY-MM-DD) the table was generated on.  Informational only —
+     * it does not affect determinism of the weight lookup.
+     */
+    generatedAt: string;
+    /**
+     * Names of the golden fixture datasets that contributed observations.
+     * Stored for auditability; does not affect signal values.
+     */
+    sourceDatasets: string[];
+    /** Total number of planning-scenario outcomes observed across all datasets. */
+    totalObservations: number;
+    /** All (source, target) relevance signals, sorted by sourceSkill then targetSkill. */
+    signals: RelevanceSignal[];
 }
 ```
 
@@ -552,7 +660,7 @@ Re-rank a skill's `relatedSkills` list by blending the static tag-overlap
 score with an observed co-selection rate from the signal index.
 
 Blend formula (deterministic, no floating-point non-determinism):
-  blendedScore = staticScore *(1 - OBSERVED_WEIGHT) + observedRate* OBSERVED_WEIGHT
+  blendedScore = staticScore \* (1 - OBSERVED_WEIGHT) + observedRate \* OBSERVED_WEIGHT
 
 where `staticScore` is 1.0 for the first item in the static list, decaying
 by 1/N for each subsequent position (a simple rank-to-score mapping that
@@ -754,8 +862,8 @@ Machine-readable codes for runtime failures.
 
 ```ts
 type RuntimeErrorCode = | 'STEP_EXECUTION_FAILED'
- | 'STEP_DEPENDENCY_FAILED'
- | 'STEP_DEPENDENCY_SKIPPED'
+    | 'STEP_DEPENDENCY_FAILED'
+    | 'STEP_DEPENDENCY_SKIPPED'
 ```
 
 ---
@@ -874,7 +982,7 @@ import { exponentialRetryPolicy } from 'hr-skills-build'
 ```
 
 Create a retry policy that uses exponential backoff:
-`delay = baseDelayMs * 2^(attempt - 1)`, capped at `maxDelayMs`.
+`delay = baseDelayMs \* 2^(attempt - 1)`, capped at `maxDelayMs`.
 
 Example with `baseDelayMs: 100`: attempt 1 → 100 ms, attempt 2 → 200 ms,
 attempt 3 → 400 ms, and so on.
@@ -1507,22 +1615,22 @@ One skill's token sets and raw description, used for semantic checks.
 
 ```ts
 interface SkillSemanticContent {
- /** Skill directory name, e.g. "hr-onboarding". */
- name: string;
- /** Raw frontmatter description string (pre-tokenisation). */
- description: string;
- /** Normalised tokens from description + SKILL.md body + content/. */
- purposeTokens: string[];
- /** Normalised tokens from prompts/*.md. Empty when prompts/ is absent. */
- promptsTokens: string[];
- /** Normalised tokens from examples/*.md. Empty when examples/ is absent. */
- examplesTokens: string[];
- /** Normalised tokens from content/*.md alone. Empty when content/ is absent. */
- contentTokens: string[];
- /** Whether prompts/ exists and contains at least one .md file. */
- hasPrompts: boolean;
- /** Whether examples/ exists and contains at least one .md file. */
- hasExamples: boolean;
+    /** Skill directory name, e.g. "hr-onboarding". */
+    name: string;
+    /** Raw frontmatter description string (pre-tokenisation). */
+    description: string;
+    /** Normalised tokens from description + SKILL.md body + content/. */
+    purposeTokens: string[];
+    /** Normalised tokens from prompts/*.md. Empty when prompts/ is absent. */
+    promptsTokens: string[];
+    /** Normalised tokens from examples/*.md. Empty when examples/ is absent. */
+    examplesTokens: string[];
+    /** Normalised tokens from content/*.md alone. Empty when content/ is absent. */
+    contentTokens: string[];
+    /** Whether prompts/ exists and contains at least one .md file. */
+    hasPrompts: boolean;
+    /** Whether examples/ exists and contains at least one .md file. */
+    hasExamples: boolean;
 }
 ```
 
@@ -1585,16 +1693,16 @@ A single semantic-consistency finding for one skill.
 
 ```ts
 interface SemanticFinding {
- /** Affected skill's directory name. */
- skill: string;
- /** Affected subdirectory/file, e.g. "prompts/", "examples/". */
- file: string;
- /** Which heuristic triggered this finding. */
- heuristic: SemanticHeuristic;
- /** Deterministic confidence score in [0, 1] — higher means more confident. */
- confidence: number;
- /** Human-readable explanation, including the heuristic and suggested action. */
- explanation: string;
+    /** Affected skill's directory name. */
+    skill: string;
+    /** Affected subdirectory/file, e.g. "prompts/", "examples/". */
+    file: string;
+    /** Which heuristic triggered this finding. */
+    heuristic: SemanticHeuristic;
+    /** Deterministic confidence score in [0, 1] — higher means more confident. */
+    confidence: number;
+    /** Human-readable explanation, including the heuristic and suggested action. */
+    explanation: string;
 }
 ```
 
@@ -1789,10 +1897,10 @@ Score and supporting notes for a single quality dimension.
 
 ```ts
 interface QualityDimensionScore {
- /** 0-100 score for this dimension. */
- score: number;
- /** Human-readable observations explaining the score (empty if perfect). */
- notes: string[];
+    /** 0-100 score for this dimension. */
+    score: number;
+    /** Human-readable observations explaining the score (empty if perfect). */
+    notes: string[];
 }
 ```
 
@@ -1808,18 +1916,18 @@ Full quality-score report for one skill.
 
 ```ts
 interface SkillQualityScore {
- /** Affected skill's directory name. */
- skill: string;
- /** How clear and well-triggered the skill's description/body is. */
- clarity: QualityDimensionScore;
- /** How complete the skill's sections are relative to the ideal band. */
- completeness: QualityDimensionScore;
- /** How well supported tasks are backed by prompts and example material. */
- exampleCoverage: QualityDimensionScore;
- /** Weighted overall score in [0, 100]. */
- overall: number;
- /** Human-readable band derived from {@link overall}. */
- band: QualityBand;
+    /** Affected skill's directory name. */
+    skill: string;
+    /** How clear and well-triggered the skill's description/body is. */
+    clarity: QualityDimensionScore;
+    /** How complete the skill's sections are relative to the ideal band. */
+    completeness: QualityDimensionScore;
+    /** How well supported tasks are backed by prompts and example material. */
+    exampleCoverage: QualityDimensionScore;
+    /** Weighted overall score in [0, 100]. */
+    overall: number;
+    /** Human-readable band derived from {@link overall}. */
+    band: QualityBand;
 }
 ```
 
@@ -2128,12 +2236,12 @@ Parsed representation of a single skill used by the detector.
 
 ```ts
 interface SkillContent {
- /** Skill directory name, e.g. "hr-onboarding". */
- name: string;
- /** Raw frontmatter description string. */
- description: string;
- /** Concatenated body text extracted from SKILL.md + content/ files. */
- body: string;
+    /** Skill directory name, e.g. "hr-onboarding". */
+    name: string;
+    /** Raw frontmatter description string. */
+    description: string;
+    /** Concatenated body text extracted from SKILL.md + content/ files. */
+    body: string;
 }
 ```
 
@@ -2149,20 +2257,20 @@ A single duplicate-detection finding for one pair of skills.
 
 ```ts
 interface DuplicateWarning {
- /** First skill ID (lexicographically smaller). */
- skillA: string;
- /** Second skill ID. */
- skillB: string;
- /** Weighted composite similarity score (0–1). */
- score: number;
- /** Jaccard similarity of the description tokens alone. */
- descriptionSimilarity: number;
- /** Jaccard similarity of the content tokens alone. */
- contentSimilarity: number;
- /** Jaccard similarity of the content bigrams alone. */
- bigramSimilarity: number;
- /** Human-readable explanation of what drove the score. */
- explanation: string;
+    /** First skill ID (lexicographically smaller). */
+    skillA: string;
+    /** Second skill ID. */
+    skillB: string;
+    /** Weighted composite similarity score (0–1). */
+    score: number;
+    /** Jaccard similarity of the description tokens alone. */
+    descriptionSimilarity: number;
+    /** Jaccard similarity of the content tokens alone. */
+    contentSimilarity: number;
+    /** Jaccard similarity of the content bigrams alone. */
+    bigramSimilarity: number;
+    /** Human-readable explanation of what drove the score. */
+    explanation: string;
 }
 ```
 

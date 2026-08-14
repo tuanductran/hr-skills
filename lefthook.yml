@@ -34,5 +34,6 @@ post-merge:
       glob:
         - package.json
         - bun.lock
+        - apps/*/package.json
         - packages/*/package.json
       run: bun install
