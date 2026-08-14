@@ -11,3 +11,5 @@ duplicate-report/
 *.diff
 .next/
 next-env.d.ts
+apps/web/data/skills.json
+apps/web/tsconfig.tsbuildinfo

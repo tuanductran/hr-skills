@@ -23,6 +23,7 @@
  * pure parts of `shared` — see `./index.client.ts`.
  */
 
+export * from './docs/index.js';
 export * from './evaluation/index.js';
 export * from './planner/index.js';
 export * from './registry/index.js';

@@ -30,6 +30,7 @@
 	"workspaces": {
 		"packages": [
 			".",
+			"apps/*",
 			"packages/*",
 			"playground/*"
 		],
@@ -42,6 +43,7 @@
 			"tsdown": "^0.22.14",
 			"turbo": "^2.10.9",
 			"typescript": "^6.0.3",
+			"unrun": "^0.3.1",
 			"yaml": "^2.9.0"
 		},
 		"catalogs": {
@@ -81,6 +83,7 @@
 		"registry": "turbo run registry --filter=hr-skills-build",
 		"api-docs": "turbo run api-docs --filter=hr-skills-build",
 		"api-docs:check": "turbo run api-docs:check --filter=hr-skills-build",
+		"docs-data": "turbo run docs-data --filter=hr-skills-build",
 		"signals": "turbo run signals --filter=hr-skills-build",
 		"plan": "turbo run plan --filter=hr-skills-build --",
 		"discover": "turbo run discover --filter=hr-skills-build --",
@@ -106,6 +109,7 @@
 		"markdown-link-check": "catalog:markdown",
 		"markdownlint-cli": "catalog:markdown",
 		"turbo": "catalog:",
-		"typescript": "catalog:"
+		"typescript": "catalog:",
+		"unrun": "catalog:"
 	}
 }
