@@ -23,6 +23,10 @@
 		"test": {
 			"dependsOn": ["^build"]
 		},
+		"test:e2e": {
+			"cache": false,
+			"dependsOn": ["^build"]
+		},
 		"validate": {
 			"dependsOn": ["^build"]
 		},
