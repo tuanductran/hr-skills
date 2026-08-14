@@ -2466,29 +2466,6 @@ All committed golden fixtures, sorted by dataset name.
 
 ## Shared Utilities
 
-### `extractMatch`
-
-```ts
-import { extractMatch } from 'hr-skills-build'
-```
-
-Extract and trim the first capture group from a regex match against `content`.
-
-```ts
-function extractMatch(regex: RegExp, content: string): string | null
-```
-
-#### Parameters
-
-- `regex` — A regular expression with at least one capture group.
-- `content` — The string to search.
-
-#### Returns
-
-The trimmed contents of capture group 1, or `null` if the regex did not match.
-
----
-
 ### `discoverSkills`
 
 ```ts
@@ -2535,6 +2512,41 @@ string and the parsed `frontmatter` record.
 #### Throws
 
 If `SKILL.md` cannot be read from the filesystem.
+
+---
+
+### `parseSkillMeta`
+
+```ts
+import { parseSkillMeta } from 'hr-skills-build'
+```
+
+Read a skill's `SKILL.md` and derive display metadata from it: the
+description split at "Use when" into `coverage`/`scopeSentence`, the
+`## Supported tasks` list, and up to 5 quoted example prompts from
+`## Key prompts` as `triggerPhrases`.
+
+Lives here (not in `parser.ts`) because it calls `readSkill`, which reads
+from the filesystem — `parser.ts` is part of the browser-safe `client`
+surface and must stay pure. If a caller already has `SKILL.md` content in
+hand (e.g. fetched over HTTP in a browser context), parse it directly with
+the pure helpers in `parser.ts`/`constants.ts` instead of this function.
+
+```ts
+async function parseSkillMeta(skillName: string): Promise<SkillMeta>
+```
+
+#### Parameters
+
+- `skillName` — Skill directory name to load.
+
+#### Returns
+
+Display metadata derived from the skill's frontmatter and body.
+
+#### Throws
+
+If `SKILL.md` cannot be read from the filesystem (see `readSkill`).
 
 ---
 
@@ -2799,6 +2811,33 @@ A placeholder output object, never a rejected promise.
 
 ---
 
+### `extractMatch`
+
+```ts
+import { extractMatch } from 'hr-skills-build'
+```
+
+Extract and trim the first capture group from a regex match against `content`.
+
+Duplicated (not imported) from `helpers.ts` on purpose: this file is part
+of the browser-safe `client` surface and must not import `helpers.ts`,
+which pulls in `node:fs/promises` and `node:path`.
+
+```ts
+function extractMatch(regex: RegExp, content: string): string | null
+```
+
+#### Parameters
+
+- `regex` — A regular expression with at least one capture group.
+- `content` — The string to search.
+
+#### Returns
+
+The trimmed contents of capture group 1, or `null` if the regex did not match.
+
+---
+
 ### `parseSkillFrontmatter`
 
 ```ts
@@ -2823,35 +2862,6 @@ function parseSkillFrontmatter(content: string): { name?: string | undefined; de
 #### Returns
 
 Parsed frontmatter fields, or `{}` if none/invalid.
-
----
-
-### `parseSkillMeta`
-
-```ts
-import { parseSkillMeta } from 'hr-skills-build'
-```
-
-Read a skill's `SKILL.md` and derive display metadata from it: the
-description split at "Use when" into `coverage`/`scopeSentence`, the
-`## Supported tasks` list, and up to 5 quoted example prompts from
-`## Key prompts` as `triggerPhrases`.
-
-```ts
-async function parseSkillMeta(skillName: string): Promise<SkillMeta>
-```
-
-#### Parameters
-
-- `skillName` — Skill directory name to load.
-
-#### Returns
-
-Display metadata derived from the skill's frontmatter and body.
-
-#### Throws
-
-If `SKILL.md` cannot be read from the filesystem (see `readSkill`).
 
 ---
 
@@ -3082,48 +3092,6 @@ Increment this when the shape of RegistryEntry  changes in a breaking way.
 
 ```ts
 const REGISTRY_SCHEMA_VERSION: 1
-```
-
----
-
-### `EVAL_DATASETS_DIR`
-
-```ts
-import { EVAL_DATASETS_DIR } from 'hr-skills-build'
-```
-
-Absolute path to the `eval/datasets/` directory containing hand-authored evaluation cases.
-
-```ts
-const EVAL_DATASETS_DIR: string
-```
-
----
-
-### `EVAL_GOLDEN_DIR`
-
-```ts
-import { EVAL_GOLDEN_DIR } from 'hr-skills-build'
-```
-
-Absolute path to the `eval/golden/` directory containing committed golden fixtures.
-
-```ts
-const EVAL_GOLDEN_DIR: string
-```
-
----
-
-### `RELEVANCE_SIGNALS_PATH`
-
-```ts
-import { RELEVANCE_SIGNALS_PATH } from 'hr-skills-build'
-```
-
-Absolute path to the generated relevance-signals artifact at the repo root.
-
-```ts
-const RELEVANCE_SIGNALS_PATH: string
 ```
 
 ---
