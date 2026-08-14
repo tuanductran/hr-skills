@@ -16,11 +16,17 @@ import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import * as p from '@clack/prompts';
 import { ROOT_DIR } from 'skills-ref';
-import { InvalidSearchQueryError, searchSkills } from '../search/search.js';
+import { searchSkills } from '../search/search.js';
 import type { Registry, SkillCategory, SkillSearchQuery } from '../shared/types.js';
-import { printUsageAndExit, runCli } from './cli-bootstrap.js';
+import { type CliUsage, cliSpinner, printUsageAndExit, runCli } from './cli-bootstrap.js';
 
 const REGISTRY_PATH = join(ROOT_DIR, 'registry', 'skills.json');
+
+const USAGE: CliUsage = {
+	title: 'Skill Search',
+	usage: 'bun run discover "<query>" [--domain <domain>] [--limit N] [--no-fuzzy]',
+	example: 'bun run discover "onboard new hires"',
+};
 
 function parseFlag(name: string): string | undefined {
 	const index = process.argv.indexOf(`--${name}`);
@@ -36,10 +42,7 @@ async function main() {
 	const text = process.argv[2];
 
 	if (!text || text.startsWith('--')) {
-		printUsageAndExit(
-			'Usage: bun run discover "<query>" [--domain <domain>] [--limit N] [--no-fuzzy]',
-			'  bun run discover "onboard new hires"',
-		);
+		printUsageAndExit(USAGE);
 	}
 
 	const domain = parseFlag('domain') as SkillCategory | undefined;
@@ -47,9 +50,9 @@ async function main() {
 	const limit = limitFlag ? Number(limitFlag) : undefined;
 	const fuzzy = !hasFlag('no-fuzzy');
 
-	p.intro('Skill Search');
+	p.intro(USAGE.title);
 
-	const spinner = p.spinner();
+	const spinner = cliSpinner();
 	spinner.start('Loading Skill Registry...');
 	const raw = await readFile(REGISTRY_PATH, 'utf8');
 	const registry = JSON.parse(raw) as Registry;
@@ -62,31 +65,26 @@ async function main() {
 		...(limit && { limit }),
 	};
 
-	try {
-		const response = searchSkills(query, registry);
+	// An InvalidSearchQueryError propagates to runCli, which reports it and
+	// closes the clack box — the local catch that used to live here logged the
+	// message and exited without an outro, leaving the box unterminated.
+	const response = searchSkills(query, registry);
 
-		if (response.results.length === 0) {
-			p.log.warn(`No skills matched "${text}"`);
-		} else {
-			p.note(
-				response.results
-					.map(
-						(r) =>
-							`${r.skillId} — score ${r.score} (${r.domain})\n   ${r.explanation}`,
-					)
-					.join('\n\n'),
-				`RESULTS FOR "${response.query}" (${response.resultCount})`,
-			);
-		}
-
-		p.outro('Done');
-	} catch (error) {
-		if (error instanceof InvalidSearchQueryError) {
-			p.log.error(error.message);
-			process.exit(1);
-		}
-		throw error;
+	if (response.results.length === 0) {
+		p.log.warn(`No skills matched "${text}"`);
+	} else {
+		p.note(
+			response.results
+				.map(
+					(r) =>
+						`${r.skillId} — score ${r.score} (${r.domain})\n   ${r.explanation}`,
+				)
+				.join('\n\n'),
+			`RESULTS FOR "${response.query}" (${response.resultCount})`,
+		);
 	}
+
+	p.outro('Done');
 }
 
-runCli(main);
+runCli(main, USAGE);

@@ -14,19 +14,16 @@ import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
 import { CATEGORY_META, classifySkill } from './classifier.js';
-import {
-	REGISTRY_SCHEMA_VERSION,
-	RELEVANCE_SIGNALS_PATH,
-	SKILL_LINK_REGEX,
-} from '../shared/constants.js';
+import { REGISTRY_SCHEMA_VERSION, SKILL_LINK_REGEX } from '../shared/constants.js';
+import { RELEVANCE_SIGNALS_PATH } from '../shared/paths.js';
 import {
 	computeTier,
 	countFiles,
 	dirExists,
 	discoverSkills,
+	parseSkillMeta,
 	readSkill,
 } from '../shared/helpers.js';
-import { parseSkillMeta } from '../shared/parser.js';
 import {
 	indexSignalsBySource,
 	RELEVANCE_SIGNAL_SCHEMA_VERSION,
@@ -54,6 +51,7 @@ const HR_PREFIX_REGEX = /^hr-/;
  *   than hardcoding the constant internally — keeps this function testable
  *   against a temp file, matching `loadSkillSemanticContent()`'s pattern in
  *   semantic-validation.ts and `scoreSkillQuality()`'s in quality-scoring.ts.
+ * @returns The parsed signal table, or `undefined` if the file doesn't exist yet.
  */
 export async function loadRelevanceSignalTable(
 	path: string = RELEVANCE_SIGNALS_PATH,
@@ -147,6 +145,7 @@ function rankRelatedSkills(
  *   tag-overlap `relatedSkills` ranking is blended with observed co-selection
  *   rates.  When absent (the default), the registry is built exactly as before
  *   — static ranking only — preserving full backwards compatibility.
+ * @returns The full registry, including every skill's classification, capabilities, and related skills.
  */
 export async function buildRegistry(
 	signalTable?: RelevanceSignalTable,

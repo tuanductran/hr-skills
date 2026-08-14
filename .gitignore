@@ -9,3 +9,7 @@ eval-report.json
 duplicate-report/
 *.patch
 *.diff
+.next/
+next-env.d.ts
+apps/web/data/skills.json
+apps/web/tsconfig.tsbuildinfo

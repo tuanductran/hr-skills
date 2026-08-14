@@ -169,12 +169,23 @@ function spliceRoutingTables(existingContent: string, newRoutingSection: string)
 // Public API
 // ---------------------------------------------------------------------------
 
+/** Outcome of {@link syncRouter}. */
 export interface SyncRouterResult {
+	/** Whether the root `SKILL.md`'s routing section changed on disk. */
 	changed: boolean;
+	/** Total number of skills discovered. */
 	skillCount: number;
+	/** How many of those skills didn't classify into a known category. */
 	uncategorizedCount: number;
 }
 
+/**
+ * Regenerates the routing table section of the root `SKILL.md` from the
+ * current set of skills on disk, grouped by classifier category.
+ *
+ * @param rootSkillPath - Path to the root `SKILL.md` to update. Defaults to `${ROOT_DIR}/SKILL.md`.
+ * @returns Whether the file changed, and counts of skills seen/uncategorized.
+ */
 export async function syncRouter(rootSkillPath?: string): Promise<SyncRouterResult> {
 	const skillMdPath = rootSkillPath ?? join(ROOT_DIR, 'SKILL.md');
 

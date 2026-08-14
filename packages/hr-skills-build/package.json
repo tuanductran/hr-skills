@@ -27,6 +27,10 @@
 		".": {
 			"types": "./dist/index.d.mts",
 			"default": "./dist/index.mjs"
+		},
+		"./client": {
+			"types": "./dist/index.client.d.mts",
+			"default": "./dist/index.client.mjs"
 		}
 	},
 	"files": [
@@ -50,14 +54,15 @@
 		"evaluate": "bun src/cli/run-evaluation.ts",
 		"skill-review": "bun src/cli/skill-review.ts",
 		"api-docs": "bun src/build/generate-api-docs.ts",
-		"api-docs:check": "bun src/build/generate-api-docs.ts --check"
+		"api-docs:check": "bun src/build/generate-api-docs.ts --check",
+		"docs-data": "bun src/build/generate-docs-data.ts"
 	},
 	"dependencies": {
 		"@clack/prompts": "catalog:",
-		"valibot": "catalog:",
 		"skills-ref": "workspace:*",
-		"yaml": "catalog:",
-		"tsdown": "catalog:"
+		"tsdown": "catalog:",
+		"valibot": "catalog:",
+		"yaml": "catalog:"
 	},
 	"devDependencies": {
 		"ts-morph": "catalog:"

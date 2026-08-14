@@ -12,20 +12,29 @@
 import { readdir, readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
-import { EVAL_DATASETS_DIR, EVAL_GOLDEN_DIR } from '../shared/constants.js';
+import { EVAL_DATASETS_DIR, EVAL_GOLDEN_DIR } from '../shared/paths.js';
 import type { EvaluationDataset, GoldenFixture } from '../shared/types.js';
 
 const JSON_EXTENSION_REGEX = /\.json$/;
 const GOLDEN_SUFFIX_REGEX = /\.golden\.json$/;
 
-/** Load a single dataset by name (the JSON file's base name, without extension). */
+/**
+ * Load a single dataset by name (the JSON file's base name, without extension).
+ *
+ * @param name - Dataset file's base name, e.g. `"planning-scenarios"`.
+ * @returns The parsed dataset.
+ */
 export async function loadDataset(name: string): Promise<EvaluationDataset> {
 	const path = join(EVAL_DATASETS_DIR, `${name}.json`);
 	const raw = await readFile(path, 'utf-8');
 	return JSON.parse(raw) as EvaluationDataset;
 }
 
-/** Discover and load every dataset in `eval/datasets/`, sorted by file name. */
+/**
+ * Discover and load every dataset in `eval/datasets/`, sorted by file name.
+ *
+ * @returns All datasets, sorted by file name.
+ */
 export async function loadAllDatasets(): Promise<EvaluationDataset[]> {
 	const entries = await readdir(EVAL_DATASETS_DIR, { withFileTypes: true });
 	const names = entries
@@ -41,6 +50,9 @@ export async function loadAllDatasets(): Promise<EvaluationDataset[]> {
  * Returns `undefined` for a brand-new dataset that has no baseline —
  * callers should treat this as "no regressions possible yet" rather than
  * an error.
+ *
+ * @param datasetName - Dataset name, matching the `dataset` field in the fixture.
+ * @returns The parsed fixture, or `undefined` if none is committed yet.
  */
 export async function loadGoldenFixture(
 	datasetName: string,
@@ -55,13 +67,21 @@ export async function loadGoldenFixture(
 	}
 }
 
-/** Write (or overwrite) the golden fixture for a dataset. */
+/**
+ * Write (or overwrite) the golden fixture for a dataset.
+ *
+ * @param fixture - Fixture to persist; written to `eval/golden/<dataset>.golden.json`.
+ */
 export async function saveGoldenFixture(fixture: GoldenFixture): Promise<void> {
 	const path = join(EVAL_GOLDEN_DIR, `${fixture.dataset}.golden.json`);
 	await writeFile(path, `${JSON.stringify(fixture, null, 2)}\n`, 'utf-8');
 }
 
-/** Discover the names of every committed golden fixture, sorted. */
+/**
+ * Discover the names of every committed golden fixture, sorted.
+ *
+ * @returns Dataset names (without the `.golden.json` suffix), sorted.
+ */
 export async function listGoldenFixtureNames(): Promise<string[]> {
 	const entries = await readdir(EVAL_GOLDEN_DIR, { withFileTypes: true });
 	return entries
@@ -75,6 +95,8 @@ export async function listGoldenFixtureNames(): Promise<string[]> {
  *
  * Used by the relevance-signal generator to collect all available evidence
  * without requiring the caller to enumerate dataset names manually.
+ *
+ * @returns All committed golden fixtures, sorted by dataset name.
  */
 export async function loadAllGoldenFixtures(): Promise<GoldenFixture[]> {
 	const names = await listGoldenFixtureNames();

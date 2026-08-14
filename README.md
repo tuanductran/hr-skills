@@ -55,7 +55,7 @@ HR Skills covers the complete employee lifecycle together with strategic HR, wor
 - Technical Recruiting
 - Vietnam HR & Labor Law
 
-> **Skill maturity is continuously generated.** See [`docs/skill-matrix.md`](docs/skill-matrix.md) for the latest inventory and maturity status.
+> **Skill maturity is continuously generated.** See [`docs/engineering/skill-matrix.md`](docs/engineering/skill-matrix.md) for the latest inventory and maturity status.
 
 ## Quick Start
 
@@ -92,7 +92,7 @@ Multiple skills can be combined to support more complex HR workflows.
 ### Downloaded a package?
 
 If you have `hr-skills.zip` or `hr-skills.skill` instead of a clone of this
-repository, see [`docs/usage-guide.md`](docs/usage-guide.md) — it covers
+repository, see [`docs/product/USER.md`](docs/product/USER.md) — it covers
 loading the package into Claude, ChatGPT, and other AI tools.
 
 ### Examples
@@ -100,8 +100,8 @@ loading the package into Claude, ChatGPT, and other AI tools.
 See [`examples/`](examples/README.md) for practical, end-to-end usage:
 single-skill prompt → expected output examples, multi-skill HR workflows
 (hiring, onboarding, succession), and how to drive the same workflows
-programmatically with the [Skill Planner](docs/planner.md) and
-[Workflow Runtime](docs/runtime.md).
+programmatically with the [Skill Planner](docs/engineering/planner.md) and
+[Workflow Runtime](docs/engineering/runtime.md).
 
 ## Available Skills
 
@@ -110,10 +110,10 @@ The repository contains a broad collection of HR Agent Skills organized by funct
 Key navigation documents:
 
 - **Router:** [`SKILL.md`](SKILL.md) — Master routing guide for all skills
-- **Skill Matrix:** [`docs/skill-matrix.md`](docs/skill-matrix.md) — Generated inventory and maturity status
+- **Skill Matrix:** [`docs/engineering/skill-matrix.md`](docs/engineering/skill-matrix.md) — Generated inventory and maturity status
 - **Roadmap:** [`docs/ROADMAP.md`](docs/ROADMAP.md) — Project vision, architecture, and future direction
-- **Ecosystem Integrations:** [`docs/integrations.md`](docs/integrations.md) — Supported platforms, installation guides, and compatibility testing strategy
-- **Release Process:** [`docs/release.md`](docs/release.md) — Release lifecycle, versioning strategy, validation checklist, and release notes workflow
+- **Ecosystem Integrations:** [`docs/integrations/README.md`](docs/integrations/README.md) — Supported platforms, installation guides, and compatibility testing strategy
+- **Release Process:** [`docs/operations/release.md`](docs/operations/release.md) — Release lifecycle, versioning strategy, validation checklist, and release notes workflow
 - **Governance:** [`GOVERNANCE.md`](GOVERNANCE.md) — Roles, review and approval workflow, ownership, and roadmap feedback process
 
 The Skill Matrix is the authoritative source for repository coverage and maturity.

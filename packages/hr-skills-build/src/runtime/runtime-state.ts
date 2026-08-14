@@ -14,6 +14,7 @@
 
 import type { RuntimeStateSnapshot, StepStatus } from '../shared/types.js';
 
+/** Tracks which lifecycle bucket (`pending`/`running`/`completed`/`failed`/`skipped`) each skill ID is currently in. */
 export class RuntimeStateTracker {
 	private readonly pending = new Set<string>();
 	private readonly running = new Set<string>();

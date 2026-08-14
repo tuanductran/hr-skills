@@ -41,3 +41,10 @@ jobs:
 
       - name: Run tests
         run: bun run test
+
+      # The playground apps are bundler smoke tests: they only fail when
+      # `hr-skills-build/client` stops being browser-safe. They have no `test`
+      # script, so `bun run test` never builds them — this step is what makes
+      # them assert anything in CI.
+      - name: Build (playground client-bundle smoke tests)
+        run: bun run build

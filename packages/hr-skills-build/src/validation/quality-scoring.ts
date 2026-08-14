@@ -3,7 +3,7 @@
  *
  * Produces a repeatable 0-100 quality score per skill across three
  * dimensions — clarity, completeness, and example coverage — as a
- * **review aid, not a merge gate** (see docs/quality-scoring.md and
+ * **review aid, not a merge gate** (see docs/engineering/quality-scoring.md and
  * ROADMAP.md §6.2). A low score should prompt a maintainer to take a
  * closer look, not fail CI.
  *
@@ -48,8 +48,8 @@ import {
 	TIPS_REGEX,
 	USE_WHEN_REGEX,
 } from '../shared/constants.js';
-import { countFiles, discoverSkills, extractMatch } from '../shared/helpers.js';
-import { parseSkillFrontmatter } from '../shared/parser.js';
+import { countFiles, discoverSkills } from '../shared/helpers.js';
+import { extractMatch, parseSkillFrontmatter } from '../shared/parser.js';
 
 // ---------------------------------------------------------------------------
 // Configuration
@@ -204,6 +204,10 @@ function countQuotedPrompts(content: string): number {
 /**
  * Score description length and "Use when" trigger presence, plus body
  * readability (average words per sentence).
+ *
+ * @param description - Skill's frontmatter description.
+ * @param content - Full skill markdown body.
+ * @returns Clarity dimension score with explanatory notes.
  */
 export function scoreClarity(
 	description: string,
@@ -247,6 +251,9 @@ export function scoreClarity(
  * Score how close the skill's tasks/tips/prompt-subtopic counts and body
  * length are to the ideal (center-weighted) band, not just inside the hard
  * pass/fail range.
+ *
+ * @param content - Full skill markdown body.
+ * @returns Completeness dimension score with explanatory notes.
  */
 export function scoreCompleteness(content: string): QualityDimensionScore {
 	const notes: string[] = [];
@@ -295,6 +302,11 @@ export function scoreCompleteness(content: string): QualityDimensionScore {
 /**
  * Score whether the skill has `content/`/`examples/` material and whether
  * supported tasks are proportionally backed by quoted example prompts.
+ *
+ * @param skillsDir - Absolute path to the `skills/` directory.
+ * @param skillName - Skill directory name.
+ * @param content - Full skill markdown body.
+ * @returns Example-coverage dimension score with explanatory notes.
  */
 export async function scoreExampleCoverage(
 	skillsDir: string,

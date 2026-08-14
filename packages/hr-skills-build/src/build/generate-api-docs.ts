@@ -1,5 +1,5 @@
 /**
- * Generates `docs/api.md` from the JSDoc comments and type signatures of the
+ * Generates `docs/engineering/api.md` from the JSDoc comments and type signatures of the
  * public API surface exported by `src/index.ts`.
  *
  * This mirrors the approach used by Nextra's `nextra/tsdoc` module
@@ -9,7 +9,7 @@
  * Nextra renders that structured output as MDX at Next.js build time via a
  * `<TSDoc definition={...} />` component; this repo has no MDX/Next.js
  * pipeline, so the same structured extraction is rendered to plain Markdown
- * instead and written straight to `docs/api.md`.
+ * instead and written straight to `docs/engineering/api.md`.
  *
  * The JSDoc tag vocabulary this script understands (`@param`, `@returns`,
  * `@throws`, `@remarks`, `@example`) follows the TSDoc standard
@@ -30,17 +30,18 @@ import { Project, SyntaxKind, ts } from 'ts-morph';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PACKAGE_ROOT = path.resolve(__dirname, '../..');
 const REPO_ROOT = path.resolve(PACKAGE_ROOT, '../..');
-const OUT_FILE = path.join(REPO_ROOT, 'docs/api.md');
+const OUT_FILE = path.join(REPO_ROOT, 'docs/engineering/api.md');
 const PACKAGE_NAME = 'hr-skills-build';
 
 /**
  * Section grouping and ordering, keyed by the source file (relative to
  * `src/`) each exported symbol is declared in. Mirrors the curated structure
- * of the hand-written `docs/api.md` this script replaces, so the generated
+ * of the hand-written `docs/engineering/api.md` this script replaces, so the generated
  * doc stays organized by domain rather than by raw declaration order.
  */
 const SECTIONS: { title: string; files: string[] }[] = [
 	{ title: 'Registry', files: ['registry/registry.ts'] },
+	{ title: 'Documentation', files: ['docs/loader.ts', 'docs/types.ts'] },
 	{ title: 'Discovery', files: ['registry/discovery.ts', 'registry/classifier.ts'] },
 	{ title: 'Search', files: ['search/search.ts'] },
 	{ title: 'Recommendations', files: ['search/recommendations.ts'] },
@@ -121,6 +122,12 @@ function stripJsDocLineMarkers(raw: string): string {
 		.trim();
 }
 
+function renderMarkdownProse(raw: string): string {
+	return replaceJsDocLinks(stripJsDocLineMarkers(raw))
+		.replaceAll(/\n[ \t]+(?=[*-]\s)/g, '\n')
+		.replaceAll(' * ', ' \\* ');
+}
+
 function getFormattedType(t: Type): string {
 	return t.getText(undefined, ts.TypeFormatFlags.UseAliasDefinedOutsideCurrentScope);
 }
@@ -161,7 +168,7 @@ function buildEntry(
 ): DocEntry | undefined {
 	const symbol = declaration.getSymbolOrThrow();
 	const comment = symbol.compilerSymbol.getDocumentationComment(compilerObject);
-	const description = replaceJsDocLinks(ts.displayPartsToString(comment));
+	const description = renderMarkdownProse(ts.displayPartsToString(comment));
 	const tags = getTags(symbol);
 
 	const filePath = path
@@ -204,7 +211,7 @@ function buildEntry(
 					if (paramName) {
 						paramDescByName.set(
 							paramName.trim(),
-							replaceJsDocLinks((desc ?? '').trim()),
+							renderMarkdownProse(desc ?? ''),
 						);
 					}
 				}
@@ -261,12 +268,9 @@ function buildEntry(
 		isFunction,
 		signature,
 		params,
-		returns: replaceJsDocLinks(stripJsDocLineMarkers(tags['returns'] ?? '')),
-		throws: replaceJsDocLinks(
-			stripJsDocLineMarkers(tags['throws'] ?? '').replace(
-				/^\{(?<err>[^}]+)\}\s*/,
-				'`$<err>` — ',
-			),
+		returns: renderMarkdownProse(tags['returns'] ?? ''),
+		throws: renderMarkdownProse(
+			(tags['throws'] ?? '').replace(/^\{(?<err>[^}]+)\}\s*/, '`$<err>` — '),
 		),
 	};
 }
@@ -359,6 +363,7 @@ async function main() {
 
 	const content = `${out
 		.join('\n')
+		.replaceAll('\t', '    ')
 		.replace(/\n{3,}/g, '\n\n')
 		.trimEnd()}\n`;
 	const relOutFile = path.relative(REPO_ROOT, OUT_FILE);

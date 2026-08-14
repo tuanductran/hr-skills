@@ -1,12 +1,9 @@
-import { join } from 'node:path';
-import { ROOT_DIR } from 'skills-ref';
-
 /**
  * Base URL for linking to a file in this repo on GitHub, e.g. for use in
  * generated Markdown that's posted somewhere with no "current file" context
  * (a PR comment, a Slack message) where a relative link like `../docs/x.md`
  * cannot resolve. Append a repo-root-relative path, e.g.
- * `` `${GITHUB_BLOB_BASE_URL}/docs/quality-scoring.md` ``.
+ * `` `${GITHUB_BLOB_BASE_URL}/docs/engineering/quality-scoring.md` ``.
  */
 export const GITHUB_BLOB_BASE_URL = 'https://github.com/tuanductran/hr-skills/blob/main';
 
@@ -86,18 +83,8 @@ export const SKILL_LINK_REGEX = /\[hr-[a-z0-9-]+\]\(skills\/(hr-[a-z0-9-]+)\)/g;
  */
 export const REGISTRY_SCHEMA_VERSION = 1;
 
-/** Absolute path to the `eval/` directory inside `hr-skills-build`. */
-const EVAL_DIR = join(__dirname, '..', '..', 'eval');
-
-/** Absolute path to the `eval/datasets/` directory containing hand-authored evaluation cases. */
-export const EVAL_DATASETS_DIR = join(EVAL_DIR, 'datasets');
-
-/** Absolute path to the `eval/golden/` directory containing committed golden fixtures. */
-export const EVAL_GOLDEN_DIR = join(EVAL_DIR, 'golden');
-
-/** Absolute path to the generated relevance-signals artifact at the repo root. */
-export const RELEVANCE_SIGNALS_PATH = join(
-	ROOT_DIR,
-	'registry',
-	'relevance-signals.json',
-);
+// Node-only filesystem path constants (EVAL_DATASETS_DIR, EVAL_GOLDEN_DIR,
+// RELEVANCE_SIGNALS_PATH) intentionally do NOT live in this file — this
+// module is part of the browser-safe `client` surface (see `../index.client.ts`)
+// and must never import `node:path` or other Node builtins. Server-only path
+// constants live in `./paths.js`.

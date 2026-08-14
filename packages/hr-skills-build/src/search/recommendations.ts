@@ -56,6 +56,7 @@ export class UnknownSkillError extends Error {
  * @param registry - A `Registry` object, as produced from `registry/skills.json`.
  * @param limit - Maximum number of recommendations to return (default 5).
  * @throws {UnknownSkillError} If `skillId` is not present in `registry`.
+ * @returns Ranked related skills for `skillId`.
  */
 export function getRecommendations(
 	skillId: string,

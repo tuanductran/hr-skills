@@ -16,6 +16,10 @@ import type { SkillValidationIssue } from '../shared/types.js';
  * Kept intentionally trivial — this is not a place for extra logic
  * (formatting, dedupe, etc.). Callers stay responsible for deciding
  * *whether* to report; this only standardizes *how*.
+ *
+ * @param errors - Issue list to push onto (mutated in place).
+ * @param skillName - Skill identifier to attribute the issue to.
+ * @param message - Human-readable issue description.
  */
 export function pushIssue(
 	errors: SkillValidationIssue[],
@@ -40,6 +44,12 @@ export interface LabeledPattern {
  * (`validateSecurityCommands`, `validateSensitivePaths`,
  * `validateCredentialLeaks`) — jscpd flagged each pair. Each caller keeps its
  * own list and message wording; only the iterate-and-report shape is shared.
+ *
+ * @param errors - Issue list to push onto (mutated in place).
+ * @param skillName - Skill identifier to attribute issues to.
+ * @param text - Text to test each pattern against.
+ * @param patterns - Named patterns to check.
+ * @param messageFor - Builds the issue message from a matched pattern's label.
  */
 export function checkPatternList(
 	errors: SkillValidationIssue[],

@@ -4,12 +4,16 @@
 	"tasks": {
 		"build": {
 			"dependsOn": ["^build"],
-			"outputs": ["dist/**"]
+			"outputs": ["dist/**", ".next/**"]
 		},
 		"build-skills": {
 			"cache": false
 		},
 		"dev": {
+			// The playground dev servers resolve `hr-skills-build/client` to
+			// `dist/index.client.mjs`, which does not exist on a clean clone until
+			// tsdown emits it — without this they race the watcher and fail.
+			"dependsOn": ["^build"],
 			"persistent": true,
 			"cache": false
 		},
@@ -41,7 +45,7 @@
 		},
 		"matrix": {
 			"cache": false,
-			"outputs": ["docs/skill-matrix.md"],
+			"outputs": ["docs/engineering/skill-matrix.md"],
 			"dependsOn": ["^build"]
 		},
 		"registry": {
@@ -64,15 +68,20 @@
 			"outputs": ["eval-report.json"],
 			"dependsOn": ["^build"]
 		},
+		"docs-data": {
+			"cache": false,
+			"dependsOn": ["^build"],
+			"outputs": ["apps/web/data/skills.json"]
+		},
 		"api-docs": {
 			"cache": false,
 			"dependsOn": ["^build"],
-			"outputs": ["docs/api.md"]
+			"outputs": ["docs/engineering/api.md"]
 		},
 		"api-docs:check": {
 			"cache": false,
 			"dependsOn": ["^build"],
-			"outputs": ["docs/api.md"]
+			"outputs": ["docs/engineering/api.md"]
 		}
 	}
 }

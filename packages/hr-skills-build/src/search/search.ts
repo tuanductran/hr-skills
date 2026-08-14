@@ -9,7 +9,7 @@
  * scans or parses `SKILL.md` files, and it does not select, order, or
  * execute skills — that remains the Planner's job (planner.ts).
  *
- * Design goals (see docs/search.md for the full write-up):
+ * Design goals (see docs/engineering/search.md for the full write-up):
  *  - Deterministic: identical registry + identical query always produce
  *    identical, identically-ordered output.
  *  - Transparent: every result carries the field matches and weights that
@@ -32,7 +32,7 @@ import type {
 } from '../shared/types.js';
 
 // ============================================================================
-// Tuning constants — documented in docs/search.md
+// Tuning constants — documented in docs/engineering/search.md
 // ============================================================================
 
 /** Base relevance weight per field, applied before match-strength scaling. */
@@ -314,7 +314,7 @@ function buildExplanation(matches: SkillFieldMatch[]): string {
 /**
  * Search the generated Skill Registry by structured metadata.
  *
- * Ranking rule (see docs/search.md for the full explanation):
+ * Ranking rule (see docs/engineering/search.md for the full explanation):
  *  1. Each field match contributes `weight * similarity` to the skill's
  *     score (`similarity` is always 1 for exact matches).
  *  2. A skill matching on more than one distinct field gets a small flat
@@ -331,6 +331,7 @@ function buildExplanation(matches: SkillFieldMatch[]): string {
  * @param registry - A `Registry` object, as produced from `registry/skills.json`.
  * @throws {InvalidSearchQueryError} If the query has no text and no domain
  *   filter, or if `limit` is not a positive integer.
+ * @returns Ranked, deduplicated skill matches with per-field score detail.
  */
 export function searchSkills(
 	query: SkillSearchQuery,

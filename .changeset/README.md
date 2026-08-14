@@ -43,5 +43,5 @@ git push --tags
 ```
 
 > No npm publish step — this repo is not published to npm. See
-> [`docs/release.md`](../docs/release.md) for the full lifecycle,
+> [`docs/operations/release.md`](../docs/operations/release.md) for the full lifecycle,
 > validation checklist, and rollback guidance.

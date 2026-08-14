@@ -39,7 +39,7 @@ bun run evaluate -- --update-golden      # regenerate golden fixtures after inte
 When adding a new eval dataset:
 
 1. Place the JSON file in `packages/hr-skills-build/eval/datasets/`
-2. Follow the existing dataset schema — check `docs/evaluation.md` for the format specification
+2. Follow the existing dataset schema — check `docs/engineering/evaluation.md` for the format specification
 3. Run `bun run evaluate` to validate the new cases pass
 4. Commit the updated golden fixtures if you ran `--update-golden`
 
@@ -58,7 +58,7 @@ Common issues when editing eval dataset JSON:
 |---|---|
 | JSON syntax error | Check for missing commas, unclosed braces, or trailing commas |
 | Golden mismatch | Run `bun run evaluate -- --update-golden` if the change was intentional |
-| Missing required field | Consult `docs/evaluation.md` for the dataset schema |
+| Missing required field | Consult `docs/engineering/evaluation.md` for the dataset schema |
 
 ## After editing
 

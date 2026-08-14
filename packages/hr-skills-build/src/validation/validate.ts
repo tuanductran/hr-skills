@@ -3,6 +3,7 @@ import { join } from 'node:path';
 import process from 'node:process';
 import * as p from '@clack/prompts';
 import { ROOT_DIR, SKILLS_DIR, validate as validateRef } from 'skills-ref';
+import { type CliUsage, cliSpinner, runCli } from '../cli/cli-bootstrap.js';
 import { buildRegistry, loadRelevanceSignalTable } from '../registry/registry.js';
 import {
 	HR_SKILL_PREFIX,
@@ -19,11 +20,10 @@ import {
 	countFiles,
 	dirExists,
 	discoverSkills,
-	extractMatch,
 	normalizeAuthorName,
 	readSkillContent,
 } from '../shared/helpers.js';
-import { parseSkillFrontmatter } from '../shared/parser.js';
+import { extractMatch, parseSkillFrontmatter } from '../shared/parser.js';
 import type { SkillValidationIssue } from '../shared/types.js';
 import { detectDuplicates } from './detect-duplicates.js';
 import { pushIssue } from './issue-helpers.js';
@@ -50,7 +50,10 @@ function validateCore(
 }
 
 /**
- * Validate the frontmatter of a skill.
+ * Validate the frontmatter of a skill. *
+ * @param skillName - Skill identifier, used to attribute any issues found.
+ * @param content - Raw skill markdown to check.
+ * @param errors - Issue list to push findings onto (mutated in place).
  */
 export function validateFrontmatter(
 	skillName: string,
@@ -87,7 +90,10 @@ export function validateFrontmatter(
 }
 
 /**
- * Validate the required sections of a skill.
+ * Validate the required sections of a skill. *
+ * @param skillName - Skill identifier, used to attribute any issues found.
+ * @param content - Raw skill markdown to check.
+ * @param errors - Issue list to push findings onto (mutated in place).
  */
 export function validateRequiredSections(
 	skillName: string,
@@ -102,7 +108,10 @@ export function validateRequiredSections(
 }
 
 /**
- * Validate the content length of a skill.
+ * Validate the content length of a skill. *
+ * @param skillName - Skill identifier, used to attribute any issues found.
+ * @param content - Raw skill markdown to check.
+ * @param errors - Issue list to push findings onto (mutated in place).
  */
 export function validateContentLength(
 	skillName: string,
@@ -119,7 +128,10 @@ export function validateContentLength(
 }
 
 /**
- * Validate the line count of a skill.
+ * Validate the line count of a skill. *
+ * @param skillName - Skill identifier, used to attribute any issues found.
+ * @param content - Raw skill markdown to check.
+ * @param errors - Issue list to push findings onto (mutated in place).
  */
 export function validateLineCount(
 	skillName: string,
@@ -138,7 +150,10 @@ export function validateLineCount(
 }
 
 /**
- * Validate the supported tasks of a skill.
+ * Validate the supported tasks of a skill. *
+ * @param skillName - Skill identifier, used to attribute any issues found.
+ * @param content - Raw skill markdown to check.
+ * @param errors - Issue list to push findings onto (mutated in place).
  */
 export function validateSupportedTasks(
 	skillName: string,
@@ -161,7 +176,10 @@ export function validateSupportedTasks(
 }
 
 /**
- * Validate the tips of a skill.
+ * Validate the tips of a skill. *
+ * @param skillName - Skill identifier, used to attribute any issues found.
+ * @param content - Raw skill markdown to check.
+ * @param errors - Issue list to push findings onto (mutated in place).
  */
 export function validateTips(
 	skillName: string,
@@ -182,7 +200,10 @@ export function validateTips(
 }
 
 /**
- * Validate the blank lines of a skill.
+ * Validate the blank lines of a skill. *
+ * @param skillName - Skill identifier, used to attribute any issues found.
+ * @param content - Raw skill markdown to check.
+ * @param errors - Issue list to push findings onto (mutated in place).
  */
 export function validateBlankLines(
 	skillName: string,
@@ -222,6 +243,10 @@ export function validateBlankLines(
 
 /**
  * Validate the author of a skill.
+ *
+ * @param skillName - Skill identifier, used to attribute any issues found.
+ * @param author - The `metadata.author` frontmatter value, if present.
+ * @param errors - Issue list to push findings onto (mutated in place).
  */
 export function validateAuthor(
 	skillName: string,
@@ -247,7 +272,11 @@ export function validateAuthor(
 /**
  * Validate the structure of the ## Key prompts section.
  *
- * Per docs/format.md: 3-6 subtopics (H3 headings) and 4-7 quoted prompts per subtopic.
+ * Per docs/engineering/format.md: 3-6 subtopics (H3 headings) and 4-7 quoted prompts per subtopic.
+ *
+ * @param skillName - Skill identifier, used to attribute any issues found.
+ * @param content - Raw skill markdown to check.
+ * @param errors - Issue list to push findings onto (mutated in place).
  */
 export function validatePromptStructure(
 	skillName: string,
@@ -290,6 +319,10 @@ export function validatePromptStructure(
  *
  * All three sources must agree on which skills exist. A mismatch means either a skill
  * was added without syncing, or the router wasn't updated after a rename/deletion.
+ *
+ * @param skillNames - Skill directory names discovered on disk.
+ * @param errors - Issue list to push findings onto (mutated in place).
+ * @returns Resolves once all three sources have been compared; findings are pushed onto `errors`.
  */
 export async function validateRouterConsistency(
 	skillNames: string[],
@@ -382,6 +415,11 @@ export async function validateRouterConsistency(
 
 /**
  * Validate that optional subdirectories (content, prompts, examples), if present, are non-empty.
+ *
+ * @param skillName - Skill identifier, used to attribute any issues found.
+ * @param skillDir - Absolute path to the skill's directory.
+ * @param errors - Issue list to push findings onto (mutated in place).
+ * @returns Resolves once every subdirectory has been checked; findings are pushed onto `errors`.
  */
 export async function validateSubdirectoryContents(
 	skillName: string,
@@ -434,6 +472,12 @@ async function validateSkill(skillName: string): Promise<SkillValidationIssue[]>
 	return errors;
 }
 
+const USAGE: CliUsage = {
+	title: 'Validate HR Skills',
+	usage: 'bun run validate',
+	example: 'bun run validate',
+};
+
 /**
  * Validate all HR skills.
  *
@@ -443,12 +487,14 @@ async function validateSkill(skillName: string): Promise<SkillValidationIssue[]>
  * run in parallel with the per-skill phase via a second `Promise.all`.
  */
 async function validate(): Promise<void> {
-	p.intro('Validating HR skills...');
+	p.intro(USAGE.title);
 
 	const skillNames = await discoverSkills();
 
 	if (skillNames.length === 0) {
-		p.log.warn(`No skills found with prefix "${HR_SKILL_PREFIX}"`);
+		// Fatal, so an error glyph — this used to warn in yellow and then exit 1.
+		p.log.error(`No skills found with prefix "${HR_SKILL_PREFIX}"`);
+		p.outro('Validation failed');
 		process.exit(1);
 	}
 
@@ -457,7 +503,10 @@ async function validate(): Promise<void> {
 	const allErrors: SkillValidationIssue[] = [];
 	const allWarnings: SkillValidationIssue[] = [];
 
+	const spinner = cliSpinner();
+
 	// Run per-skill validation and global consistency checks concurrently.
+	spinner.start(`Validating ${skillNames.length} skills...`);
 	const [perSkillResults] = await Promise.all([
 		// Per-skill: all 146 skills validated in parallel
 		Promise.all(skillNames.map((name) => validateSkill(name))),
@@ -466,19 +515,20 @@ async function validate(): Promise<void> {
 		validateRegistryConsistency(allErrors),
 	]);
 
-	// Collect per-skill errors and log any failing skill names
-	for (let i = 0; i < perSkillResults.length; i++) {
-		const errors = perSkillResults[i];
-		if (!errors || errors.length === 0) continue;
-		allErrors.push(...errors);
-		const skillName = skillNames[i];
-		if (skillName) p.log.error(skillName);
+	// Collect per-skill errors. Each one is reported with its message further
+	// down; this loop used to also log the bare failing skill name, so every
+	// failure appeared twice and the first copy carried no explanation.
+	for (const errors of perSkillResults) {
+		if (errors && errors.length > 0) allErrors.push(...errors);
 	}
+
+	spinner.stop(`${skillNames.length} skills checked — ${allErrors.length} error(s)`);
 
 	// Phase 6.1-B — warn when a high-evidence usage signal isn't reflected
 	// in relatedSkills, and Phase 6.2 — duplicate-content detection and
 	// semantic validation. All three run concurrently since none depends
 	// on another's output.
+	spinner.start('Checking duplicates, signals, and semantic consistency...');
 	const signalTable = await loadRelevanceSignalTable();
 	await Promise.all([
 		buildRegistry(signalTable).then((registry) =>
@@ -487,6 +537,16 @@ async function validate(): Promise<void> {
 		detectDuplicates(skillNames, allWarnings),
 		validateSemanticConsistency(SKILLS_DIR, skillNames, allWarnings),
 	]);
+	spinner.stop(`Quality checks complete — ${allWarnings.length} warning(s)`);
+
+	// Both phases above fill allErrors/allWarnings from concurrent tasks, so
+	// insertion order tracks I/O timing rather than the tree. Sort so two runs
+	// over an unchanged repo emit byte-identical logs and CI diffs stay usable.
+	const bySkillThenMessage = (a: SkillValidationIssue, b: SkillValidationIssue) =>
+		a.skill.localeCompare(b.skill) || a.message.localeCompare(b.message);
+
+	allErrors.sort(bySkillThenMessage);
+	allWarnings.sort(bySkillThenMessage);
 
 	// Report warnings (informational — do not affect exit code)
 	if (allWarnings.length > 0) {
@@ -499,16 +559,17 @@ async function validate(): Promise<void> {
 
 	// Report errors (fatal)
 	if (allErrors.length > 0) {
-		p.log.error('Validation failed');
-
 		for (const error of allErrors) p.log.error(`${error.skill}: ${error.message}`);
 
+		// Closes the clack box, which an outro-less exit(1) left unterminated.
+		p.outro(`Validation failed — ${allErrors.length} error(s)`);
 		process.exit(1);
 	}
 
-	p.log.success(`All ${skillNames.length} HR skills are valid`);
-	if (allWarnings.length === 0) p.log.info('No quality warnings.');
-	p.outro('Done');
+	if (allWarnings.length === 0) p.log.info('No quality warnings');
+	p.outro(`All ${skillNames.length} HR skills are valid`);
 }
 
-if (import.meta.main) await validate();
+// The guard stays: test/validation/validate.test.ts imports this module, and
+// without it a plain import would kick off a full 146-skill validation run.
+if (import.meta.main) runCli(validate, USAGE);

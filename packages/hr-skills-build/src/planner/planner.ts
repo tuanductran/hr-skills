@@ -48,6 +48,9 @@ import type {
  *
  * This is intentionally simple and deterministic — not powered by ML.
  * Future extensions could replace this with semantic analysis if needed.
+ *
+ * @param intent - Free-text user intent.
+ * @returns Extracted capability phrases, normalized to lowercase.
  */
 export function analyzeIntent(intent: string): string[] {
 	if (!intent || intent.trim().length === 0) {
@@ -359,6 +362,10 @@ function buildExecutionSteps(
  *
  * Pure function — no side effects, deterministic output for a given input
  * and registry state.
+ *
+ * @param intent - Free-text user intent.
+ * @param registry - Registry to match capabilities against.
+ * @returns The generated plan, including matched capabilities and ordered steps.
  */
 export function generateExecutionPlan(intent: string, registry: Registry): ExecutionPlan {
 	if (!intent || intent.trim().length === 0) {

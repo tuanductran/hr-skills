@@ -13,8 +13,17 @@
  * are process-entry scripts (parse argv, print to stdout, call
  * `process.exit`) rather than importable library functions. Domain logic
  * they depend on lives in the modules below.
+ *
+ * This is the **server** surface: it transitively imports `node:fs`,
+ * `node:path`, etc. (via `shared/helpers.js`, `shared/paths.js`,
+ * `registry/*`, `validation/*`, `evaluation/evaluation-datasets.js`) and
+ * will fail to bundle in a browser. For browser-safe consumers (Phase 7
+ * web UI, or any client bundle), import from `hr-skills-build/client`
+ * instead, which re-exports only `planner`, `runtime`, `search`, and the
+ * pure parts of `shared` — see `./index.client.ts`.
  */
 
+export * from './docs/index.js';
 export * from './evaluation/index.js';
 export * from './planner/index.js';
 export * from './registry/index.js';

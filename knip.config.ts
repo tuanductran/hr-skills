@@ -1,7 +1,13 @@
 import type { KnipConfig } from 'knip';
 
 const config = {
+	// tsdown resolves this optional peer while building workspace packages.
+	ignoreDependencies: ['unrun'],
 	workspaces: {
+		'apps/web': {
+			project: ['app/**/*.{ts,tsx}'],
+			next: true,
+		},
 		'packages/hr-skills-build': {
 			project: ['src/**/*.ts'],
 		},
