@@ -394,9 +394,11 @@ Extend validation beyond the current structural/format checks
 
 Build the user-facing layer that turns the repository into a browsable product rather than only a repository of skills and infrastructure.
 
-Completed.
+Current delivery status: **7.1 Web UI foundation is complete**. Sections 7.2 and 7.3 remain planned follow-up work.
 
 #### 7.1 Web UI foundation
+
+Completed.
 
 * Public documentation site
 * Responsive skill catalog UI
