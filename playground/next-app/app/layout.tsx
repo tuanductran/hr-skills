@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import { SiteFooter } from './components/site-footer';
 import { SiteHeader } from './components/site-header';
@@ -10,6 +10,10 @@ export const metadata: Metadata = {
 		default: 'HR Skills',
 		template: '%s | HR Skills',
 	},
+};
+
+export const viewport: Viewport = {
+	colorScheme: 'light',
 };
 
 interface RootLayoutProps {

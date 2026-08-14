@@ -22,14 +22,36 @@ import {
 } from '../evaluation/evaluation-datasets.js';
 import { buildRegistry } from '../registry/registry.js';
 import type { EvaluationReport } from '../shared/types.js';
-import { runCli } from './cli-bootstrap.js';
+import { type CliUsage, cliSpinner, printUsageAndExit, runCli } from './cli-bootstrap.js';
+
+const USAGE: CliUsage = {
+	title: 'Evaluation Framework',
+	usage: 'bun run evaluate [--update-golden]',
+	example: 'bun run evaluate',
+};
+
+const KNOWN_FLAGS = new Set(['--update-golden']);
 
 async function main() {
+	// Without this, a typo'd `--update-goldens` was silently ignored: the run did
+	// a plain reporting pass and exited 1, which reads as a test failure rather
+	// than a bad flag.
+	const unknownFlags = process.argv
+		.slice(2)
+		.filter((arg) => arg.startsWith('--') && !KNOWN_FLAGS.has(arg));
+
+	if (unknownFlags.length > 0) {
+		printUsageAndExit({
+			...USAGE,
+			usage: `Unknown flag(s): ${unknownFlags.join(', ')}`,
+		});
+	}
+
 	const updateGolden = process.argv.includes('--update-golden');
 
-	p.intro('Evaluation Framework');
+	p.intro(USAGE.title);
 
-	const spinner = p.spinner();
+	const spinner = cliSpinner();
 
 	spinner.start('Building Skill Registry...');
 	const registry = await buildRegistry();
@@ -97,6 +119,15 @@ async function main() {
 	const hasFailedCases = reports.some((r) => r.failedCases > 0);
 
 	if (updateGolden) {
+		// Re-baselining clears regressions by definition, but an invalid plan is
+		// still broken after the fixture is rewritten. Exiting 0 here froze those
+		// failures into the fixtures and reported success.
+		if (hasFailedCases) {
+			const failed = reports.reduce((sum, r) => sum + r.failedCases, 0);
+			p.outro(`Golden fixtures updated — ${failed} case(s) still failing`);
+			process.exit(1);
+		}
+
 		p.outro('Golden fixtures updated');
 		process.exit(0);
 	}
@@ -110,4 +141,4 @@ async function main() {
 	process.exit(0);
 }
 
-runCli(main);
+runCli(main, USAGE);

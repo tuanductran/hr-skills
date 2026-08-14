@@ -1,6 +1,10 @@
 import Link from 'next/link';
+import { ClientWidget } from './client-widget';
 import { getDocumentationData } from './lib/docs';
 
+// Keep the browser-safe client entrypoint in the Next.js build graph. The
+// component is hidden because the public catalog is the playground's visible
+// interface, while this import remains a client-bundle smoke check.
 export default function Page() {
 	const data = getDocumentationData();
 	const featuredSkills = data.skills.slice(0, 6);
@@ -84,6 +88,9 @@ export default function Page() {
 					))}
 				</ul>
 			</section>
+			<div hidden>
+				<ClientWidget />
+			</div>
 		</main>
 	);
 }
