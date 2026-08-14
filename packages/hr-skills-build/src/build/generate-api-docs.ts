@@ -41,6 +41,7 @@ const PACKAGE_NAME = 'hr-skills-build';
  */
 const SECTIONS: { title: string; files: string[] }[] = [
 	{ title: 'Registry', files: ['registry/registry.ts'] },
+	{ title: 'Documentation', files: ['docs/loader.ts', 'docs/types.ts'] },
 	{ title: 'Discovery', files: ['registry/discovery.ts', 'registry/classifier.ts'] },
 	{ title: 'Search', files: ['search/search.ts'] },
 	{ title: 'Recommendations', files: ['search/recommendations.ts'] },
@@ -121,6 +122,12 @@ function stripJsDocLineMarkers(raw: string): string {
 		.trim();
 }
 
+function renderMarkdownProse(raw: string): string {
+	return replaceJsDocLinks(stripJsDocLineMarkers(raw))
+		.replaceAll(/\n[ \t]+(?=[*-]\s)/g, '\n')
+		.replaceAll(' * ', ' \\* ');
+}
+
 function getFormattedType(t: Type): string {
 	return t.getText(undefined, ts.TypeFormatFlags.UseAliasDefinedOutsideCurrentScope);
 }
@@ -161,7 +168,7 @@ function buildEntry(
 ): DocEntry | undefined {
 	const symbol = declaration.getSymbolOrThrow();
 	const comment = symbol.compilerSymbol.getDocumentationComment(compilerObject);
-	const description = replaceJsDocLinks(ts.displayPartsToString(comment));
+	const description = renderMarkdownProse(ts.displayPartsToString(comment));
 	const tags = getTags(symbol);
 
 	const filePath = path
@@ -204,7 +211,7 @@ function buildEntry(
 					if (paramName) {
 						paramDescByName.set(
 							paramName.trim(),
-							replaceJsDocLinks((desc ?? '').trim()),
+							renderMarkdownProse(desc ?? ''),
 						);
 					}
 				}
@@ -261,12 +268,9 @@ function buildEntry(
 		isFunction,
 		signature,
 		params,
-		returns: replaceJsDocLinks(stripJsDocLineMarkers(tags['returns'] ?? '')),
-		throws: replaceJsDocLinks(
-			stripJsDocLineMarkers(tags['throws'] ?? '').replace(
-				/^\{(?<err>[^}]+)\}\s*/,
-				'`$<err>` — ',
-			),
+		returns: renderMarkdownProse(tags['returns'] ?? ''),
+		throws: renderMarkdownProse(
+			(tags['throws'] ?? '').replace(/^\{(?<err>[^}]+)\}\s*/, '`$<err>` — '),
 		),
 	};
 }
@@ -359,6 +363,7 @@ async function main() {
 
 	const content = `${out
 		.join('\n')
+		.replaceAll('\t', '    ')
 		.replace(/\n{3,}/g, '\n\n')
 		.trimEnd()}\n`;
 	const relOutFile = path.relative(REPO_ROOT, OUT_FILE);
