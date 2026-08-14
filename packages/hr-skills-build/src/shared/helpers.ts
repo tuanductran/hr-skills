@@ -62,7 +62,7 @@ export async function readSkill(skillName: string): Promise<{
 	frontmatter: SkillFrontmatter;
 }> {
 	const skillPath = join(SKILLS_DIR, skillName, 'SKILL.md');
-	const content = await Bun.file(skillPath).text();
+	const content = await readFile(skillPath, 'utf8');
 
 	return {
 		content,

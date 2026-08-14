@@ -1,35 +1,18 @@
 'use client';
 
 import type { DocumentationData } from 'hr-skills-build';
+import { type Registry, type SkillCategory, searchSkills } from 'hr-skills-build/client';
 import Link from 'next/link';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useMemo } from 'react';
 
 interface SkillCatalogProps {
 	readonly data: DocumentationData;
+	readonly registry: Registry;
 }
 
-function normalize(value: string): string {
-	return value.toLocaleLowerCase();
-}
-
-function skillSearchText(skill: DocumentationData['skills'][number]): string {
-	return normalize(
-		[
-			skill.displayName,
-			skill.id,
-			skill.description,
-			skill.domain,
-			...skill.aliases,
-			...skill.capabilities,
-			...skill.tags,
-			...skill.triggerPhrases,
-		].join(' '),
-	);
-}
-
-/** Searchable, URL-addressable catalog over the generated documentation artifact. */
-export function SkillCatalog({ data }: SkillCatalogProps) {
+/** Searchable catalog delegated to canonical package APIs and docs data. */
+export function SkillCatalog({ data, registry }: SkillCatalogProps) {
 	const pathname = usePathname();
 	const router = useRouter();
 	const searchParams = useSearchParams();
@@ -38,17 +21,29 @@ export function SkillCatalog({ data }: SkillCatalogProps) {
 	const tier = searchParams.get('tier') ?? '';
 
 	const skills = useMemo(() => {
-		const normalizedQuery = normalize(query.trim());
+		const matches =
+			query.trim() || domain
+				? searchSkills(
+						{
+							text: query,
+							fuzzy: false,
+							domain: (domain || undefined) as SkillCategory | undefined,
+							limit: data.skillCount,
+						},
+						registry,
+					)
+						.results.map((result) =>
+							data.skills.find((skill) => skill.id === result.skillId),
+						)
+						.filter((skill): skill is DocumentationData['skills'][number] =>
+							Boolean(skill),
+						)
+				: data.skills;
 
-		return data.skills
-			.filter((skill) => !domain || skill.domain === domain)
+		return matches
 			.filter((skill) => !tier || skill.tier === tier)
-			.filter(
-				(skill) =>
-					!normalizedQuery || skillSearchText(skill).includes(normalizedQuery),
-			)
 			.toSorted((a, b) => a.displayName.localeCompare(b.displayName));
-	}, [data.skills, domain, query, tier]);
+	}, [data, domain, query, registry, tier]);
 
 	function replaceParam(name: 'q' | 'domain' | 'tier', value: string) {
 		const params = new URLSearchParams(searchParams.toString());
@@ -73,7 +68,7 @@ export function SkillCatalog({ data }: SkillCatalogProps) {
 					<p className='eyebrow'>Discover</p>
 					<h1 id='catalog-filters-title'>Skill catalog</h1>
 					<p>
-						Search the repository’s generated skill metadata and browse by
+						Search the repository’s canonical registry metadata and browse by
 						domain or maturity.
 					</p>
 				</div>

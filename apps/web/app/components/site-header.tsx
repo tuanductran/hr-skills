@@ -19,6 +19,7 @@ export function SiteHeader() {
 					className='site-nav'>
 					<Link href='/'>Home</Link>
 					<Link href='/skills'>Skill catalog</Link>
+					<Link href='/planner'>Planner</Link>
 					<a href='https://github.com/tuanductran/hr-skills'>Repository</a>
 				</nav>
 			</div>
