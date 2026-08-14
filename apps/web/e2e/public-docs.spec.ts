@@ -60,3 +60,110 @@ test.describe('public documentation', () => {
 		await expect(page.getByRole('link', { name: 'Browse skills' })).toBeVisible();
 	});
 });
+
+test.describe('public documentation interactions', () => {
+	test('updates URL state through user input and clears all filters', async ({
+		page,
+	}) => {
+		await page.goto('/skills');
+
+		const search = page.getByRole('searchbox', { name: 'Search skills' });
+		await search.fill('HRIS');
+		await expect(page).toHaveURL(/\/skills\?q=HRIS/);
+
+		await page.getByLabel('Domain').selectOption('hr-technology-ai');
+		await expect(page).toHaveURL(/q=HRIS&domain=hr-technology-ai/);
+		await page.getByLabel('Tier').selectOption('full');
+		await expect(page).toHaveURL(/q=HRIS&domain=hr-technology-ai&tier=full/);
+		await expect(page.getByText(/\d+ of 146 skills/)).toBeVisible();
+
+		await page.getByRole('button', { name: 'Clear filters' }).click();
+		await expect(page).toHaveURL(/\/skills$/);
+		await expect(search).toHaveValue('');
+		await expect(page.getByLabel('Domain')).toHaveValue('');
+		await expect(page.getByLabel('Tier')).toHaveValue('');
+		await expect(page.getByText('146 of 146 skills')).toBeVisible();
+		await expect(page.getByRole('button', { name: 'Clear filters' })).toHaveCount(0);
+	});
+
+	test('shows an empty state and recovers through reset catalog', async ({ page }) => {
+		await page.goto('/skills?q=term-that-does-not-exist');
+
+		await expect(
+			page.getByRole('heading', { name: 'No matching skills' }),
+		).toBeVisible();
+		await expect(
+			page.getByText(
+				'Try a broader search term or remove one of the active filters.',
+			),
+		).toBeVisible();
+		await page.getByRole('button', { name: 'Reset catalog' }).click();
+		await expect(page).toHaveURL(/\/skills$/);
+		await expect(page.getByText('146 of 146 skills')).toBeVisible();
+	});
+
+	test('navigates from a homepage domain card to a filtered catalog', async ({
+		page,
+	}) => {
+		await page.goto('/');
+
+		await page.getByRole('link', { name: /HR technology & AI 16 skills/ }).click();
+		await expect(page).toHaveURL(/\/skills\?domain=hr-technology-ai/);
+		await expect(page.getByLabel('Domain')).toHaveValue('hr-technology-ai');
+		await expect(page.getByText('16 of 146 skills')).toBeVisible();
+	});
+
+	test('toggles prompt details and follows a related skill', async ({ page }) => {
+		await page.goto('/skills/hr-ai');
+
+		const prompts = page.locator('section[aria-labelledby="skill-prompts-heading"]');
+		const firstPrompt = prompts.locator('details').first();
+		const summary = firstPrompt.locator('summary');
+		await expect(summary).toBeVisible();
+		await expect(firstPrompt).toHaveAttribute('open', '');
+		await summary.click();
+		await expect(firstPrompt).not.toHaveAttribute('open', '');
+		await summary.click();
+		await expect(firstPrompt).toHaveAttribute('open', '');
+
+		const relatedLink = page
+			.locator('aside[aria-label="Skill metadata"]')
+			.getByRole('link')
+			.first();
+		await expect(relatedLink).toBeVisible();
+		const relatedHref = await relatedLink.getAttribute('href');
+		if (!relatedHref) throw new Error('Expected a related skill href');
+		await relatedLink.click();
+		await expect(page).toHaveURL(
+			new RegExp(`${relatedHref.replaceAll('/', '\\/')}$`),
+		);
+	});
+
+	test('supports keyboard navigation through the primary links', async ({ page }) => {
+		await page.goto('/');
+
+		await page.keyboard.press('Tab');
+		await expect(page.getByRole('link', { name: 'HR Skills' })).toBeFocused();
+		await page.keyboard.press('Tab');
+		await expect(page.getByRole('link', { name: 'Home' })).toBeFocused();
+		await page.keyboard.press('Tab');
+		await expect(
+			page.getByRole('link', { name: 'Skill catalog' }).first(),
+		).toBeFocused();
+		await page.keyboard.press('Enter');
+		await expect(page).toHaveURL(/\/skills$/);
+	});
+
+	test('does not create horizontal overflow at the active viewport', async ({
+		page,
+	}) => {
+		await page.goto('/skills');
+
+		const hasHorizontalOverflow = await page.evaluate(
+			() =>
+				document.documentElement.scrollWidth >
+				document.documentElement.clientWidth,
+		);
+		await expect(hasHorizontalOverflow).toBe(false);
+	});
+});
