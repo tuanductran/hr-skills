@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import { getDocumentationData } from './lib/docs';
 
-export default function Page() {
-	const data = getDocumentationData();
+export default async function Page() {
+	const data = await getDocumentationData();
 	const featuredSkills = data.skills.slice(0, 6);
 
 	return (

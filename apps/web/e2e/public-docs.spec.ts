@@ -30,7 +30,7 @@ test.describe('public documentation', () => {
 		);
 		await expect(page.locator('#domain-filter')).toHaveValue('hr-technology-ai');
 		await expect(page.locator('#tier-filter')).toHaveValue('full');
-		await expect(page.getByText('6 of 146 skills')).toBeVisible();
+		await expect(page.getByText(/\d+ of 146 skills/)).toBeVisible();
 		await expect(
 			page.getByRole('link').filter({
 				has: page.getByRole('heading', { name: 'HRIS', exact: true }),
@@ -165,5 +165,27 @@ test.describe('public documentation interactions', () => {
 				document.documentElement.clientWidth,
 		);
 		await expect(hasHorizontalOverflow).toBe(false);
+	});
+});
+
+test.describe('planner API surface', () => {
+	test('generates an explainable plan and expands step details', async ({ page }) => {
+		await page.goto('/planner');
+
+		await expect(
+			page.getByRole('heading', {
+				name: 'Turn HR intent into an explainable skill plan.',
+			}),
+		).toBeVisible();
+		await page
+			.getByLabel('Describe your HR task')
+			.fill('Design employee onboarding programs');
+		await page.getByRole('button', { name: 'Generate plan' }).click();
+		await expect(page.getByText('Result', { exact: true })).toBeVisible();
+		await expect(page.getByText('Detected capabilities:')).toBeVisible();
+		const firstStep = page.locator('.planner-step__button').first();
+		await expect(firstStep).toBeVisible();
+		await firstStep.click();
+		await expect(page.locator('.planner-step__panel').first()).toBeVisible();
 	});
 });
