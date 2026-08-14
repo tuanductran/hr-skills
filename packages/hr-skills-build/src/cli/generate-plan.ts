@@ -17,21 +17,27 @@ import {
 	suggestPlanImprovements,
 	validateExecutionPlan,
 } from '../validation/validate-planner.js';
-import { printUsageAndExit, runCli } from './cli-bootstrap.js';
+import { type CliUsage, cliSpinner, printUsageAndExit, runCli } from './cli-bootstrap.js';
+
+const USAGE: CliUsage = {
+	title: 'Execution Plan Generator',
+	usage: 'bun run plan "<user intent>"',
+	example: 'bun run plan "Create interview questions for a senior manager"',
+};
 
 async function main() {
 	const intent = process.argv[2];
 
-	if (!intent) {
-		printUsageAndExit(
-			'Usage: bun run plan "<user intent>"',
-			'  bun run plan "Create interview questions for a senior manager"',
-		);
+	// `startsWith('--')` matters as much as the empty check: without it,
+	// `bun run plan --help` built the registry and generated a plan for the
+	// literal intent "--help".
+	if (!intent || intent.startsWith('--')) {
+		printUsageAndExit(USAGE);
 	}
 
-	p.intro('Execution Plan Generator');
+	p.intro(USAGE.title);
 
-	const spinner = p.spinner();
+	const spinner = cliSpinner();
 
 	spinner.start('Building Skill Registry...');
 	const registry = await buildRegistry();
@@ -127,4 +133,4 @@ ${plan.notes && plan.notes.length > 0 ? `Notes:\n${plan.notes.map((note) => `  â
 	process.exit(validation.isValid ? 0 : 1);
 }
 
-runCli(main);
+runCli(main, USAGE);

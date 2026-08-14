@@ -160,11 +160,14 @@ function dateToDos(date: Date): DosTimestamp {
  * Assemble a ZIP archive from entries and return it as a Buffer.
  * Uses DEFLATE compression (method 8), matching Python's ZIP_DEFLATED.
  */
-function buildZipBuffer(entries: ZipEntry[]): Buffer {
+export function buildZipBuffer(entries: ZipEntry[]): Buffer {
 	const localParts: Buffer[] = [];
 	const centralDir: Buffer[] = [];
-	const offsets: number[] = [];
-	const currentOffset = 0;
+	// Running byte offset into the concatenated local-header section. Every
+	// central-directory entry stores the offset of its own local header here,
+	// and the EOCD stores the offset where the central directory itself begins,
+	// so this must advance by each entry's on-disk size as we go.
+	let currentOffset = 0;
 
 	for (const entry of entries) {
 		const nameBytes = Buffer.from(entry.arcname, 'utf8');
@@ -189,8 +192,8 @@ function buildZipBuffer(entries: ZipEntry[]): Buffer {
 		writeUInt16LE(local, 0, 28); // extra field length
 		nameBytes.copy(local, 30);
 
-		offsets.push(currentOffset);
 		localParts.push(local, compressed);
+		currentOffset += local.length + compressed.length;
 
 		// Central directory file header: 46 bytes + filename
 		const central = Buffer.alloc(46 + nameBytes.length);
@@ -407,23 +410,26 @@ export async function buildSkill(repoRoot: string): Promise<string> {
 // CLI entrypoint
 // ---------------------------------------------------------------------------
 
-const {
-	values: { zip, skill },
-} = parseArgs({
-	args: Bun.argv,
-	options: {
-		zip: {
-			type: 'boolean',
-		},
-		skill: {
-			type: 'boolean',
-		},
-	},
-	strict: true,
-	allowPositionals: true,
-});
-
 if (import.meta.main) {
+	// Kept inside the `import.meta.main` guard: `strict: true` over `Bun.argv`
+	// means running this at module scope makes a plain `import` of this file
+	// parse the *host* process's flags and throw on any it doesn't know.
+	const {
+		values: { zip, skill },
+	} = parseArgs({
+		args: Bun.argv,
+		options: {
+			zip: {
+				type: 'boolean',
+			},
+			skill: {
+				type: 'boolean',
+			},
+		},
+		strict: true,
+		allowPositionals: true,
+	});
+
 	if (zip && skill) {
 		throw new Error('Cannot specify both --zip and --skill.');
 	}
