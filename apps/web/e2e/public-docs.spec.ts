@@ -189,3 +189,53 @@ test.describe('planner API surface', () => {
 		await expect(page.locator('.planner-step__panel').first()).toBeVisible();
 	});
 });
+
+test.describe('Phase 7 product surfaces', () => {
+	test('explores the registry graph and follows a skill edge', async ({ page }) => {
+		await page.goto('/graph');
+		await expect(
+			page.getByRole('heading', { name: 'See how HR skills connect.' }),
+		).toBeVisible();
+		await expect(page.getByText('skills', { exact: true }).first()).toBeVisible();
+		await expect(page.locator('.graph-card').first()).toBeVisible();
+		await expect(page.locator('.graph-card__links a').first()).toHaveAttribute(
+			'href',
+			/\/skills\//,
+		);
+	});
+
+	test('replays and expands runtime trace entries', async ({ page }) => {
+		await page.goto('/runtime');
+		await expect(
+			page.getByRole('heading', { name: 'Replay a deterministic workflow trace.' }),
+		).toBeVisible();
+		await expect(page.getByText('simulated')).toBeVisible();
+		const entry = page.locator('.trace-entry').first();
+		await expect(entry).toBeVisible();
+		await entry.getByRole('button').click();
+		await expect(entry.locator('pre')).toBeVisible();
+	});
+
+	test('renders evaluation metrics and expandable cases', async ({ page }) => {
+		await page.goto('/evaluation');
+		await expect(
+			page.getByRole('heading', {
+				name: 'Evaluate planner behavior against golden cases.',
+			}),
+		).toBeVisible();
+		await expect(page.getByText('cases passing')).toBeVisible();
+		const caseCard = page.locator('.evaluation-card').first();
+		await expect(caseCard).toBeVisible();
+		await caseCard.getByRole('button').click();
+		await expect(caseCard.locator('.evaluation-card__panel')).toBeVisible();
+	});
+
+	test('renders release metadata from pending changesets', async ({ page }) => {
+		await page.goto('/changelog');
+		await expect(
+			page.getByRole('heading', { name: 'Follow what changed in the platform.' }),
+		).toBeVisible();
+		await expect(page.locator('.release-card').first()).toBeVisible();
+		await expect(page.locator('.badge').first()).toBeVisible();
+	});
+});

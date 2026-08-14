@@ -717,3 +717,44 @@ h4 {
 		gap: 1.35rem;
 	}
 }
+
+.surface-stack {
+	display: grid;
+	gap: 1.5rem;
+}
+
+.surface-intro { max-width: 760px; }
+.surface-intro h1 { margin: 0.3rem 0 0.8rem; font-size: clamp(2rem, 5vw, 4.2rem); letter-spacing: -0.05em; }
+
+.surface-metrics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+.surface-metrics--wide { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.surface-metrics > div, .graph-card, .trace-entry, .evaluation-card, .release-card { border: 1px solid var(--line); border-radius: 1rem; background: var(--surface); box-shadow: var(--shadow); }
+.surface-metrics > div { display: grid; gap: 0.25rem; padding: 1rem; }
+.surface-metrics strong { font-size: 1.5rem; }
+.surface-metrics span, .graph-card__meta, .trace-entry__button span, .evaluation-card__button span, .release-card__topline { color: var(--muted); font-size: 0.82rem; }
+.graph-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+.graph-card, .release-card { padding: 1.15rem; }
+.graph-card__meta, .release-card__topline { display: flex; justify-content: space-between; gap: 0.7rem; }
+.graph-card h2 { margin: 0.7rem 0 0.35rem; font-size: 1.1rem; }
+.graph-card p, .release-card p { margin: 0; color: var(--muted); }
+.graph-card__links { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1rem; }
+.graph-card__links a, .badge { padding: 0.28rem 0.5rem; border-radius: 999px; background: var(--soft-brand); color: var(--brand-dark); font-size: 0.75rem; }
+.trace-summary { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; padding: 1rem 1.15rem; border-radius: 1rem; background: var(--ink); color: var(--surface); }
+.trace-list, .evaluation-list, .release-list { display: grid; gap: 0.75rem; }
+.trace-entry__button, .evaluation-card__button { display: grid; grid-template-columns: auto 1fr auto auto; gap: 0.75rem; align-items: center; width: 100%; padding: 1rem 1.15rem; border: 0; background: transparent; color: inherit; text-align: left; cursor: pointer; }
+.trace-entry__order { display: grid; place-items: center; width: 1.8rem; height: 1.8rem; border-radius: 50%; background: var(--soft-brand); color: var(--brand-dark) !important; }
+.trace-entry__panel, .evaluation-card__panel { padding: 0 1.15rem 1.15rem; }
+.trace-entry__panel pre { max-width: 100%; margin: 0; padding: 1rem; overflow: auto; border-radius: 0.75rem; background: var(--ink); color: var(--surface); font-size: 0.78rem; }
+.status { font-weight: 700; }
+.status--pass { color: var(--full); }
+.status--fail { color: var(--bare); }
+
+@media (max-width: 860px) {
+	.surface-metrics, .surface-metrics--wide, .graph-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 620px) {
+	.surface-metrics, .surface-metrics--wide, .graph-grid { grid-template-columns: 1fr; }
+	.trace-entry__button, .evaluation-card__button { grid-template-columns: auto 1fr auto; }
+	.trace-entry__button > span:last-child, .evaluation-card__button > span:last-child { grid-column: 2 / -1; }
+}
