@@ -11,9 +11,3 @@ export function getDocumentationData(): DocumentationData {
 export function getDocumentationSkill(skillId: string): DocumentationSkill | undefined {
 	return skillsById.get(skillId);
 }
-
-export function requireDocumentationSkill(skillId: string): DocumentationSkill {
-	const skill = getDocumentationSkill(skillId);
-	if (!skill) throw new Error(`Unknown documentation skill: ${skillId}`);
-	return skill;
-}
