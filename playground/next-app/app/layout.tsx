@@ -1,33 +1,21 @@
 import type { Metadata, Viewport } from 'next';
-import './globals.css';
-import { SiteFooter } from './components/site-footer';
-import { SiteHeader } from './components/site-header';
 
 export const metadata: Metadata = {
+	title: 'hr-skills-build playground (Next.js)',
 	description:
-		'Browse practical HR Skills for modern human resources and talent acquisition work.',
-	title: {
-		default: 'HR Skills',
-		template: '%s | HR Skills',
-	},
+		'Browser smoke test proving hr-skills-build/client bundles without node: builtins.',
 };
 
+// `colorScheme` lets the UA supply a dark background and readable text in dark
+// mode without this playground shipping a stylesheet.
 export const viewport: Viewport = {
-	colorScheme: 'light',
+	colorScheme: 'light dark',
 };
 
-interface RootLayoutProps {
-	readonly children: React.ReactNode;
-}
-
-export default function RootLayout({ children }: RootLayoutProps) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
 	return (
 		<html lang='en'>
-			<body>
-				<SiteHeader />
-				{children}
-				<SiteFooter />
-			</body>
+			<body>{children}</body>
 		</html>
 	);
 }

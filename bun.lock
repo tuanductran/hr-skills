@@ -21,6 +21,24 @@
         "unrun": "^0.3.1",
       },
     },
+    "apps/web": {
+      "name": "hr-skills-web",
+      "version": "0.0.0",
+      "dependencies": {
+        "hr-skills-build": "workspace:*",
+        "marked": "^18.0.9",
+        "next": "^15.5.0",
+        "react": "^19.2.0",
+        "react-dom": "^19.2.0",
+        "sanitize-html": "^2.17.7",
+      },
+      "devDependencies": {
+        "@types/node": "^20.17.6",
+        "@types/react": "^19.2.0",
+        "@types/react-dom": "^19.2.0",
+        "@types/sanitize-html": "^2.16.1",
+      },
+    },
     "packages/hr-skills-build": {
       "name": "hr-skills-build",
       "version": "0.0.0",
@@ -51,17 +69,14 @@
       "version": "0.0.0",
       "dependencies": {
         "hr-skills-build": "workspace:*",
-        "marked": "^18.0.9",
         "next": "^15.5.0",
         "react": "^19.2.0",
         "react-dom": "^19.2.0",
-        "sanitize-html": "^2.17.7",
       },
       "devDependencies": {
         "@types/node": "^20.17.6",
         "@types/react": "^19.2.0",
         "@types/react-dom": "^19.2.0",
-        "@types/sanitize-html": "^2.16.1",
       },
     },
     "playground/vite-app": {
@@ -872,6 +887,8 @@
     "hookable": ["hookable@6.1.1", "", {}, "sha512-U9LYDy1CwhMCnprUfeAZWZGByVbhd54hwepegYTK7Pi5NvqEj63ifz5z+xukznehT7i6NIZRu89Ay1AZmRsLEQ=="],
 
     "hr-skills-build": ["hr-skills-build@workspace:packages/hr-skills-build"],
+
+    "hr-skills-web": ["hr-skills-web@workspace:apps/web"],
 
     "html-link-extractor": ["html-link-extractor@1.0.5", "", { "dependencies": { "cheerio": "^1.0.0-rc.10" } }, "sha512-ADd49pudM157uWHwHQPUSX4ssMsvR/yHIswOR5CUfBdK9g9ZYGMhVSE6KZVHJ6kCkR0gH4htsfzU6zECDNVwyw=="],
 

@@ -4,7 +4,7 @@ import * as p from '@clack/prompts';
 import { ROOT_DIR } from 'skills-ref';
 import { buildDocumentationData } from '../docs/loader.js';
 
-const DATA_DIRECTORY = join(ROOT_DIR, 'playground', 'next-app', 'data');
+const DATA_DIRECTORY = join(ROOT_DIR, 'apps', 'web', 'data');
 const DATA_PATH = join(DATA_DIRECTORY, 'skills.json');
 
 /** Generates the deterministic data artifact consumed by the public documentation app. */
@@ -31,9 +31,7 @@ if (import.meta.main) {
 	p.intro('Generating public documentation data...');
 	const changed = await generateDocumentationData();
 	p.log[changed ? 'success' : 'info'](
-		changed
-			? 'Updated playground/next-app/data/skills.json'
-			: 'Documentation data is current',
+		changed ? 'Updated apps/web/data/skills.json' : 'Documentation data is current',
 	);
 	p.outro('Done');
 }

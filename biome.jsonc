@@ -11,7 +11,7 @@
 			"!**/registry",
 			"!**/.next",
 			"!**/next-env.d.ts",
-			"!playground/next-app/data/skills.json"
+			"!apps/web/data/skills.json"
 		]
 	},
 	"assist": {

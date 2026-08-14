@@ -71,7 +71,7 @@
 		"docs-data": {
 			"cache": false,
 			"dependsOn": ["^build"],
-			"outputs": ["playground/next-app/data/skills.json"]
+			"outputs": ["apps/web/data/skills.json"]
 		},
 		"api-docs": {
 			"cache": false,

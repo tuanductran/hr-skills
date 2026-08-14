@@ -1,96 +1,27 @@
-import Link from 'next/link';
 import { ClientWidget } from './client-widget';
-import { getDocumentationData } from './lib/docs';
 
-// Keep the browser-safe client entrypoint in the Next.js build graph. The
-// component is hidden because the public catalog is the playground's visible
-// interface, while this import remains a client-bundle smoke check.
+// Note: a Server Component calling a full fs-backed export like
+// `buildRegistry()` from 'hr-skills-build' hits an unrelated, pre-existing
+// issue: `skills-ref` computes `ROOT_DIR` via `import.meta.dirname` at
+// module load time, which Next's webpack server bundling does not evaluate
+// correctly for an externalized workspace package symlinked outside
+// `next-app/`. Nothing here works around it — there is deliberately no
+// `next.config.ts`, because the server path is out of scope for this
+// playground. That's a Next.js/ESM interop wrinkle
+// in `skills-ref`, not something the client/server split changed — the fs
+// path is already covered by `bun test` / `bun run validate` in
+// `packages/hr-skills-build`. What this playground exists to prove is the
+// part that's actually new and risky: that `hr-skills-build/client` bundles
+// cleanly for the browser. See `client-widget.tsx`.
 export default function Page() {
-	const data = getDocumentationData();
-	const featuredSkills = data.skills.slice(0, 6);
-
 	return (
-		<main>
-			<section className='hero'>
-				<div className='site-shell hero__inner'>
-					<p className='eyebrow'>A practical HR knowledge library</p>
-					<h1>Skills for thoughtful, operationally excellent people work.</h1>
-					<p>
-						Browse {data.skillCount} content-driven HR Skills across talent
-						acquisition, people operations, learning, rewards, and workforce
-						strategy.
-					</p>
-					<div className='hero__actions'>
-						<Link
-							className='button'
-							href='/skills'>
-							Explore skill catalog
-						</Link>
-						<a
-							className='button button--secondary'
-							href='https://github.com/tuanductran/hr-skills'>
-							View repository
-						</a>
-					</div>
-				</div>
-			</section>
+		<main style={{ fontFamily: 'monospace', padding: 24 }}>
+			<h1>hr-skills-build playground (Next.js)</h1>
 
-			<section
-				className='site-shell home-section'
-				aria-labelledby='domains-heading'>
-				<div className='section-heading'>
-					<div>
-						<p className='eyebrow'>Browse by practice area</p>
-						<h2 id='domains-heading'>
-							Built for the full HR operating system
-						</h2>
-					</div>
-					<Link href='/skills'>View all skills</Link>
-				</div>
-				<ul className='domain-grid'>
-					{data.domains.slice(0, 8).map((domain) => (
-						<li key={domain.id}>
-							<Link href={`/skills?domain=${domain.id}`}>
-								<strong>{domain.label}</strong>
-								<span>{domain.skillCount} skills</span>
-							</Link>
-						</li>
-					))}
-				</ul>
-			</section>
-
-			<section
-				className='site-shell home-section'
-				aria-labelledby='featured-heading'>
-				<div className='section-heading'>
-					<div>
-						<p className='eyebrow'>Start here</p>
-						<h2 id='featured-heading'>Featured skill guides</h2>
-					</div>
-				</div>
-				<ul className='skill-grid'>
-					{featuredSkills.map((skill) => (
-						<li key={skill.id}>
-							<Link
-								className='skill-card'
-								href={`/skills/${skill.id}`}>
-								<div className='skill-card__topline'>
-									<span>{skill.domain.replaceAll('-', ' ')}</span>
-									<span className={`tier tier--${skill.tier}`}>
-										{skill.tier}
-									</span>
-								</div>
-								<h3>{skill.displayName}</h3>
-								<p>{skill.description}</p>
-								<span className='skill-card__action'>Read skill</span>
-							</Link>
-						</li>
-					))}
-				</ul>
-			</section>
-			<div hidden>
+			<section>
+				<h2>Client: parseSkillFrontmatter() via hr-skills-build/client</h2>
 				<ClientWidget />
-			</div>
+			</section>
 		</main>
 	);
 }
