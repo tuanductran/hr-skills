@@ -13,9 +13,9 @@
  */
 
 import { writeFileSync } from 'node:fs';
-import { loadAllGoldenFixtures } from '../evaluation/evaluation-datasets.js';
-import { buildRelevanceSignalTable } from '../search/relevance-signals.js';
-import { RELEVANCE_SIGNALS_PATH } from '../shared/paths.js';
+import { loadAllGoldenFixtures } from '../../../hr-skills-build/src/evaluation/evaluation-datasets.js';
+import { buildRelevanceSignalTable } from '../../../hr-skills-build/src/search/relevance-signals.js';
+import { RELEVANCE_SIGNALS_PATH } from '../../../hr-skills-build/src/shared/paths.js';
 
 const fixtures = await loadAllGoldenFixtures();
 

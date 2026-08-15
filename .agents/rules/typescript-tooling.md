@@ -19,4 +19,4 @@ Use the repo's TypeScript tooling contract when changing code or developer workf
 - prefer shared helpers already in `packages/skills-ref/src/` and `packages/hr-skills-build/src/shared/` over duplicating logic
 - do not create a new helper when a call site has a materially different contract or would become less clear than local explicit code
 - prefer Valibot for schema definition and validation (see `.agents/skills/valibot/SKILL.md`)
-- prefer `@clack/prompts` for CLI output in `packages/hr-skills-build/src/cli/*` (see `.agents/skills/clack/SKILL.md`)
+- prefer `@clack/prompts` for CLI output in `packages/cli/src/cli/*` (see `.agents/skills/clack/SKILL.md`)

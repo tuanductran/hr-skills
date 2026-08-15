@@ -116,7 +116,7 @@ breaking change to the shape of an entry.
 bun run registry
 ```
 
-This runs `packages/hr-skills-build/src/cli/generate-registry.ts`, which calls
+This runs `packages/cli/src/cli/generate-registry.ts`, which calls
 the pure function `buildRegistry()` (`packages/hr-skills-build/src/registry/registry.ts`)
 and writes the result to `registry/skills.json`. `buildRegistry()` has no
 side effects, which is what lets validation reuse it (see below) instead of

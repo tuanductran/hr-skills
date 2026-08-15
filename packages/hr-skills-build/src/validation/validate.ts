@@ -3,7 +3,7 @@ import { join } from 'node:path';
 import process from 'node:process';
 import * as p from '@clack/prompts';
 import { ROOT_DIR, SKILLS_DIR, validate as validateRef } from 'skills-ref';
-import { type CliUsage, cliSpinner, runCli } from '../cli/cli-bootstrap.js';
+import { type CliUsage, cliSpinner, runCli } from '../build/cli-bootstrap.js';
 import { buildRegistry, loadRelevanceSignalTable } from '../registry/registry.js';
 import {
 	HR_SKILL_PREFIX,

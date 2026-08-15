@@ -21,11 +21,14 @@
  */
 
 import { readFile } from 'node:fs/promises';
-import { GITHUB_BLOB_BASE_URL } from '../shared/constants.js';
-import { readSkillContent } from '../shared/helpers.js';
-import type { SkillValidationIssue } from '../shared/types.js';
-import { type SkillQualityScore, scoreSkills } from '../validation/quality-scoring.js';
-import { validateSecurityChecks } from '../validation/security.js';
+import { GITHUB_BLOB_BASE_URL } from '../../../hr-skills-build/src/shared/constants.js';
+import { readSkillContent } from '../../../hr-skills-build/src/shared/helpers.js';
+import type { SkillValidationIssue } from '../../../hr-skills-build/src/shared/types.js';
+import {
+	type SkillQualityScore,
+	scoreSkills,
+} from '../../../hr-skills-build/src/validation/quality-scoring.js';
+import { validateSecurityChecks } from '../../../hr-skills-build/src/validation/security.js';
 
 async function resolveSkillNames(argv: string[]): Promise<string[]> {
 	const listFileFlagIndex = argv.indexOf('--list-file');

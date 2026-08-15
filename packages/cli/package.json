@@ -1,0 +1,51 @@
+{
+	"name": "cli",
+	"version": "0.0.0",
+	"private": true,
+	"description": "Command-line tools for discovering, validating, planning, evaluating, and executing HR Skills",
+	"type": "module",
+	"license": "MIT",
+	"author": "Tuan Duc Tran",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/tuanductran/hr-skills.git",
+		"directory": "packages/cli"
+	},
+	"keywords": [
+		"hr",
+		"human-resources",
+		"skills",
+		"ai-skills",
+		"agents",
+		"cli"
+	],
+	"files": [
+		"dist"
+	],
+	"scripts": {
+		"build": "tsdown",
+		"dev": "tsdown --watch",
+		"typecheck": "tsc --noEmit",
+		"discover": "bun src/cli/discover.ts",
+		"find": "bun src/cli/discover.ts",
+		"list": "bun src/cli/list.ts",
+		"init": "bun src/cli/init.ts",
+		"recommend": "bun src/cli/recommend.ts",
+		"plan": "bun src/cli/generate-plan.ts",
+		"execute": "bun src/cli/execute-plan.ts",
+		"evaluate": "bun src/cli/run-evaluation.ts",
+		"skill-review": "bun src/cli/skill-review.ts",
+		"registry": "bun src/cli/generate-registry.ts",
+		"signals": "bun src/cli/generate-relevance-signals.ts"
+	},
+	"dependencies": {
+		"@clack/prompts": "catalog:",
+		"hr-skills-build": "workspace:*",
+		"skills-ref": "workspace:*",
+		"valibot": "catalog:"
+	},
+	"devDependencies": {
+		"tsdown": "catalog:",
+		"typescript": "catalog:"
+	}
+}

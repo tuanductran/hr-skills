@@ -9,8 +9,11 @@
  */
 
 import * as p from '@clack/prompts';
-import { buildRegistry, loadRelevanceSignalTable } from '../registry/registry.js';
-import { getRecommendations } from '../search/recommendations.js';
+import {
+	buildRegistry,
+	loadRelevanceSignalTable,
+} from '../../../hr-skills-build/src/registry/registry.js';
+import { getRecommendations } from '../../../hr-skills-build/src/search/recommendations.js';
 import { type CliUsage, cliSpinner, printUsageAndExit, runCli } from './cli-bootstrap.js';
 
 const USAGE: CliUsage = {

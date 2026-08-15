@@ -80,8 +80,8 @@ Discovers all `skills/hr-*` directories and rebuilds generated references in `.c
 | `src/planner/` | Intent-to-execution-plan generation |
 | `src/runtime/` | Executes a generated plan against the registry |
 | `src/evaluation/` | Scenario-based evaluation harness |
-| `src/cli/` | All `bun run <script>` entry points — see `package.json` for the full list |
+| `packages/cli/` | Interactive command-line entry points for discovery, recommendation, planning, execution, evaluation, and skill review |
 
 ## Requirements
 
-Runs with [Bun](https://bun.sh). Runtime dependencies (`@clack/prompts`, `valibot`, `yaml`, and the workspace's own `skills-ref`) are installed via `bun install` at the repo root — see `package.json` for versions. Builds with [tsdown](https://tsdown.dev).
+Runs with [Bun](https://bun.sh). Runtime dependencies (`valibot`, `yaml`, and the workspace's own `skills-ref`) are installed via `bun install` at the repo root — see `package.json` for versions. Builds with [tsdown](https://tsdown.dev). Interactive command-line workflows live in the separate [`cli`](../cli) workspace package.

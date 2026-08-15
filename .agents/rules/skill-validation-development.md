@@ -35,7 +35,7 @@ export function validate(input: unknown): MyType {
 **Rules:**
 
 - use Valibot for schema definition and validation (see `.agents/skills/valibot/SKILL.md`)
-- use `@clack/prompts` for CLI output in `packages/hr-skills-build/src/cli/*` (see `.agents/skills/clack/SKILL.md`)
+- use `@clack/prompts` for CLI output in `packages/cli/src/cli/*` (see `.agents/skills/clack/SKILL.md`)
 - prefer shared helpers in `packages/skills-ref/src/` for skill reading and validation
 - prefer shared helpers in `packages/hr-skills-build/src/shared/` for build utilities
 - keep modules focused — one responsibility per file

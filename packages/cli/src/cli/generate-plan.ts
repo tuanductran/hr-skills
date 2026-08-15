@@ -11,12 +11,12 @@
 import { writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import * as p from '@clack/prompts';
-import { generateExecutionPlan } from '../planner/planner.js';
-import { buildRegistry } from '../registry/registry.js';
+import { generateExecutionPlan } from '../../../hr-skills-build/src/planner/planner.js';
+import { buildRegistry } from '../../../hr-skills-build/src/registry/registry.js';
 import {
 	suggestPlanImprovements,
 	validateExecutionPlan,
-} from '../validation/validate-planner.js';
+} from '../../../hr-skills-build/src/validation/validate-planner.js';
 import { type CliUsage, cliSpinner, printUsageAndExit, runCli } from './cli-bootstrap.js';
 
 const USAGE: CliUsage = {

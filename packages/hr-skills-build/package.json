@@ -2,7 +2,7 @@
 	"name": "hr-skills-build",
 	"version": "0.0.0",
 	"private": true,
-	"description": "Build tooling for HR Skills — validates, syncs, and packages HR skill definitions",
+	"description": "Build tooling for HR Skills \u2014 validates, syncs, and packages HR skill definitions",
 	"type": "module",
 	"license": "MIT",
 	"author": "Tuan Duc Tran",
@@ -45,24 +45,16 @@
 		"validate": "bun src/validation/validate.ts",
 		"sync": "bun src/build/sync.ts",
 		"matrix": "bun src/build/generate-skill-matrix.ts",
-		"registry": "bun src/cli/generate-registry.ts",
-		"discover": "bun src/cli/discover.ts",
-		"signals": "bun src/cli/generate-relevance-signals.ts",
-		"plan": "bun src/cli/generate-plan.ts",
-		"recommend": "bun src/cli/recommend.ts",
-		"execute": "bun src/cli/execute-plan.ts",
-		"evaluate": "bun src/cli/run-evaluation.ts",
-		"skill-review": "bun src/cli/skill-review.ts",
 		"api-docs": "bun src/build/generate-api-docs.ts",
 		"api-docs:check": "bun src/build/generate-api-docs.ts --check",
 		"docs-data": "bun src/build/generate-docs-data.ts"
 	},
 	"dependencies": {
-		"@clack/prompts": "catalog:",
 		"skills-ref": "workspace:*",
 		"tsdown": "catalog:",
 		"valibot": "catalog:",
-		"yaml": "catalog:"
+		"yaml": "catalog:",
+		"@clack/prompts": "catalog:"
 	},
 	"devDependencies": {
 		"ts-morph": "catalog:"

@@ -206,7 +206,7 @@ Because entries are keyed off the same logical clock as events, and because `Set
 - **New retry strategies** — implement the `RetryPolicy` interface (`runtime-retry.ts`) and pass it via `RuntimeOptions.retryPolicy`. No changes to `runtime.ts` are needed.
 - **New state buckets** — add a bucket to `RuntimeStateTracker` (`runtime-state.ts`) and a transition method; `RuntimeStateSnapshot` in `types.ts` would need the matching field.
 - **New event/trace consumers** — subscribe via `RuntimeOptions.onEvent`, or post-process `WorkflowResult.trace`/`.events` after a run. Both are plain data, so they work equally well for logging, persistence, or replay tooling.
-- **Real step execution** — implement a `StepExecutorFn` that loads a skill's `SKILL.md`, builds a prompt from `context`, calls a model, and returns its output. `src/cli/execute-plan.ts` ships a stub executor as a CLI demonstration; production integrations should replace it.
+- **Real step execution** — implement a `StepExecutorFn` that loads a skill's `SKILL.md`, builds a prompt from `context`, calls a model, and returns its output. `packages/cli/src/cli/execute-plan.ts` ships a stub executor as a CLI demonstration; production integrations should replace it.
 
 ## CLI
 

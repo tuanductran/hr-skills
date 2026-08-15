@@ -1,6 +1,6 @@
 ---
 name: clack
-description: "Repository guidance for @clack/prompts usage in packages/hr-skills-build/src/cli/* and src/build/*. Covers the intro/spinner/note/outro/log CLI-output pattern this repo actually uses — not clack's interactive text/select/confirm prompts, which this repo does not use."
+description: "Repository guidance for @clack/prompts usage in packages/cli/src/cli/* and src/build/*. Covers the intro/spinner/note/outro/log CLI-output pattern this repo actually uses — not clack's interactive text/select/confirm prompts, which this repo does not use."
 metadata:
   author: Tuan Duc Tran
   version: "1.0.0"
@@ -8,7 +8,7 @@ metadata:
 
 # clack
 
-Repository guidance for [`@clack/prompts`](https://github.com/bombshell-dev/clack) (`^1.7.0`, see `package.json`) as used across `packages/hr-skills-build/src/cli/*.ts` and `src/build/sync.ts`.
+Repository guidance for [`@clack/prompts`](https://github.com/bombshell-dev/clack) (`^1.7.0`, see `package.json`) as used across `packages/cli/src/cli/*.ts` and `src/build/sync.ts`.
 
 > **This repo's clack usage is narrow and deliberate.** Every CLI here (`discover`, `recommend`, `execute-plan`, `generate-plan`, `run-evaluation`, `sync`, `validate`) is a single-shot, non-interactive script driven by `process.argv` — none of them collect input via clack's interactive prompts. Full upstream docs: [Getting Started](https://bomb.sh/docs/clack/basics/getting-started/), [Prompts](https://bomb.sh/docs/clack/packages/prompts/), [Best Practices](https://bomb.sh/docs/clack/guides/best-practices/).
 
@@ -74,7 +74,7 @@ runCli(main, USAGE);
 - One `CliUsage` per command, shared by `printUsageAndExit`, `runCli`, and `p.intro(USAGE.title)`, so the `--help` screen and the bad-invocation error can't drift apart.
 - **Pass `USAGE` to `runCli`.** That is what implements `--help`/`-h`: it prints usage and exits 0 *before* `main()` runs. Omit it and the command treats `--help` as a positional argument — which is how `bun run evaluate --help` once ran the whole evaluation suite and `bun run plan --help` generated a plan for the literal intent `"--help"`.
 - **Use `cliSpinner()`, never `p.spinner()` directly.** A running spinner repaints every 80ms by erasing the lines beneath it, and clack's exit handler then stamps "Canceled" over the area — so an error thrown mid-spin is invisible. `cliSpinner()` registers the spinner so `runCli` can stop it with the real message.
-- `printUsageAndExit` / `runCli` standardize the bad-invocation and uncaught-error paths — see [`cli-bootstrap`](../../../packages/hr-skills-build/src/cli/cli-bootstrap.ts). Don't hand-roll `p.log.error(...); process.exit(1);` again; that duplication is exactly what `cli-bootstrap.ts` was extracted to remove (see [`dry-refactoring`](../dry-refactoring/SKILL.md)). Prefer letting a typed error propagate to `runCli` over catching it locally.
+- `printUsageAndExit` / `runCli` standardize the bad-invocation and uncaught-error paths — see [`cli-bootstrap`](../../../packages/cli/src/cli/cli-bootstrap.ts). Don't hand-roll `p.log.error(...); process.exit(1);` again; that duplication is exactly what `cli-bootstrap.ts` was extracted to remove (see [`dry-refactoring`](../dry-refactoring/SKILL.md)). Prefer letting a typed error propagate to `runCli` over catching it locally.
 - `p.intro`/`p.outro` bookend the whole run — call each exactly once, **on success and failure alike**. `p.log.*` output renders with clack's `│` gutter but no `┌` above and no `└` below, so an `exit(1)` with no outro leaves a visibly broken box.
 - Validate flag *values*, not just presence: `--limit 0` and `--limit abc` used to reach the search layer as `0`/`NaN` and produce "no results", blaming the query for a bad flag. Reject unknown flags too, rather than ignoring them.
 - `spinner.stop(message)` should report a concrete result (count, duration), not just "Done" — matches the existing `Registry ready (${registry.skillCount} skills)` style.
