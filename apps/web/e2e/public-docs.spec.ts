@@ -7,16 +7,17 @@ test.describe('public documentation', () => {
 		await expect(page).toHaveTitle(/HR Skills/);
 		await expect(
 			page.getByRole('heading', {
-				name: 'Skills for thoughtful, operationally excellent people work.',
+				name: 'Move from HR question to confident next step.',
 			}),
 		).toBeVisible();
-		await expect(page.getByText('Browse 146 content-driven HR Skills')).toBeVisible();
 		await expect(
-			page.getByRole('link', { name: 'Skill catalog' }).first(),
+			page.getByText('Use a canonical library of 146 HR Skills'),
 		).toBeVisible();
-		await expect(
-			page.getByRole('link', { name: 'Repository' }).first(),
-		).toHaveAttribute('href', 'https://github.com/tuanductran/hr-skills');
+		await expect(page.getByRole('link', { name: 'Catalog' }).first()).toBeVisible();
+		await expect(page.getByRole('link', { name: /GitHub/ }).first()).toHaveAttribute(
+			'href',
+			'https://github.com/tuanductran/hr-skills',
+		);
 	});
 
 	test('filters the catalog and persists URL state', async ({ page }) => {
@@ -36,7 +37,7 @@ test.describe('public documentation', () => {
 				has: page.getByRole('heading', { name: 'HRIS', exact: true }),
 			}),
 		).toBeVisible();
-		await expect(page.getByRole('button', { name: 'Clear filters' })).toBeVisible();
+		await expect(page.getByRole('button', { name: 'Clear all' })).toBeVisible();
 	});
 
 	test('renders a static skill detail page', async ({ page }) => {
@@ -71,19 +72,19 @@ test.describe('public documentation interactions', () => {
 		await search.fill('HRIS');
 		await expect(page).toHaveURL(/\/skills\?q=HRIS/);
 
-		await page.getByLabel('Domain').selectOption('hr-technology-ai');
+		await page.locator('#domain-filter').selectOption('hr-technology-ai');
 		await expect(page).toHaveURL(/q=HRIS&domain=hr-technology-ai/);
-		await page.getByLabel('Tier').selectOption('full');
+		await page.locator('#tier-filter').selectOption('full');
 		await expect(page).toHaveURL(/q=HRIS&domain=hr-technology-ai&tier=full/);
 		await expect(page.getByText(/\d+ of 146 skills/)).toBeVisible();
 
-		await page.getByRole('button', { name: 'Clear filters' }).click();
+		await page.getByRole('button', { name: 'Clear all' }).click();
 		await expect(page).toHaveURL(/\/skills$/);
 		await expect(search).toHaveValue('');
-		await expect(page.getByLabel('Domain')).toHaveValue('');
-		await expect(page.getByLabel('Tier')).toHaveValue('');
+		await expect(page.locator('#domain-filter')).toHaveValue('');
+		await expect(page.locator('#tier-filter')).toHaveValue('');
 		await expect(page.getByText('146 of 146 skills')).toBeVisible();
-		await expect(page.getByRole('button', { name: 'Clear filters' })).toHaveCount(0);
+		await expect(page.getByRole('button', { name: 'Clear all' })).toHaveCount(0);
 	});
 
 	test('shows an empty state and recovers through reset catalog', async ({ page }) => {
@@ -93,9 +94,7 @@ test.describe('public documentation interactions', () => {
 			page.getByRole('heading', { name: 'No matching skills' }),
 		).toBeVisible();
 		await expect(
-			page.getByText(
-				'Try a broader search term or remove one of the active filters.',
-			),
+			page.getByText('Try a broader task or remove one of the active filters.'),
 		).toBeVisible();
 		await page.getByRole('button', { name: 'Reset catalog' }).click();
 		await expect(page).toHaveURL(/\/skills$/);
@@ -109,7 +108,7 @@ test.describe('public documentation interactions', () => {
 
 		await page.getByRole('link', { name: /HR technology & AI 16 skills/ }).click();
 		await expect(page).toHaveURL(/\/skills\?domain=hr-technology-ai/);
-		await expect(page.getByLabel('Domain')).toHaveValue('hr-technology-ai');
+		await expect(page.locator('#domain-filter')).toHaveValue('hr-technology-ai');
 		await expect(page.getByText('16 of 146 skills')).toBeVisible();
 	});
 
@@ -147,9 +146,7 @@ test.describe('public documentation interactions', () => {
 		await page.keyboard.press('Tab');
 		await expect(page.getByRole('link', { name: 'Home' })).toBeFocused();
 		await page.keyboard.press('Tab');
-		await expect(
-			page.getByRole('link', { name: 'Skill catalog' }).first(),
-		).toBeFocused();
+		await expect(page.getByRole('link', { name: 'Catalog' }).first()).toBeFocused();
 		await page.keyboard.press('Enter');
 		await expect(page).toHaveURL(/\/skills$/);
 	});
@@ -174,18 +171,113 @@ test.describe('planner API surface', () => {
 
 		await expect(
 			page.getByRole('heading', {
-				name: 'Turn HR intent into an explainable skill plan.',
+				name: 'Turn an HR question into an explainable plan.',
 			}),
 		).toBeVisible();
 		await page
 			.getByLabel('Describe your HR task')
 			.fill('Design employee onboarding programs');
 		await page.getByRole('button', { name: 'Generate plan' }).click();
-		await expect(page.getByText('Result', { exact: true })).toBeVisible();
-		await expect(page.getByText('Detected capabilities:')).toBeVisible();
+		await expect(page.getByText('Explainable result', { exact: true })).toBeVisible();
+		await expect(
+			page.getByText('Detected capabilities', { exact: true }),
+		).toBeVisible();
 		const firstStep = page.locator('.planner-step__button').first();
 		await expect(firstStep).toBeVisible();
 		await firstStep.click();
 		await expect(page.locator('.planner-step__panel').first()).toBeVisible();
+	});
+});
+
+test.describe('Phase 7 product surfaces', () => {
+	test('explores the registry graph and follows a skill edge', async ({ page }) => {
+		await page.goto('/graph');
+		await expect(
+			page.getByRole('heading', { name: 'See how HR skills connect.' }),
+		).toBeVisible();
+		await expect(page.getByText('skills', { exact: true }).first()).toBeVisible();
+		await expect(page.locator('.graph-card').first()).toBeVisible();
+		await expect(page.locator('.graph-card__links a').first()).toHaveAttribute(
+			'href',
+			/\/skills\//,
+		);
+	});
+
+	test('replays and expands runtime trace entries', async ({ page }) => {
+		await page.goto('/runtime');
+		await expect(
+			page.getByRole('heading', { name: 'Replay a deterministic workflow trace.' }),
+		).toBeVisible();
+		await expect(page.getByText('simulated')).toBeVisible();
+		const entry = page.locator('.trace-entry').first();
+		await expect(entry).toBeVisible();
+		await entry.getByRole('button').click();
+		await expect(entry.locator('pre')).toBeVisible();
+	});
+
+	test('renders evaluation metrics and expandable cases', async ({ page }) => {
+		await page.goto('/evaluation');
+		await expect(
+			page.getByRole('heading', {
+				name: 'Evaluate planner behavior against golden cases.',
+			}),
+		).toBeVisible();
+		await expect(page.getByText('cases passing')).toBeVisible();
+		const caseCard = page.locator('.evaluation-card').first();
+		await expect(caseCard).toBeVisible();
+		await caseCard.getByRole('button').click();
+		await expect(caseCard.locator('.evaluation-card__panel')).toBeVisible();
+	});
+
+	test('renders release metadata from pending changesets', async ({ page }) => {
+		await page.goto('/changelog');
+		await expect(
+			page.getByRole('heading', { name: 'Follow what changed in the platform.' }),
+		).toBeVisible();
+		await expect(page.locator('.release-card').first()).toBeVisible();
+		await expect(page.locator('.badge').first()).toBeVisible();
+	});
+});
+
+test.describe('UX redesign flows', () => {
+	test('offers two clear homepage starting paths', async ({ page }) => {
+		await page.goto('/');
+		await expect(page.getByRole('link', { name: /Find a skill/ })).toHaveAttribute(
+			'href',
+			'/skills',
+		);
+		await expect(page.getByRole('link', { name: /Build a plan/ })).toHaveAttribute(
+			'href',
+			'/planner',
+		);
+		await expect(
+			page.getByRole('link', { name: /I need a practical guide/ }),
+		).toBeVisible();
+	});
+
+	test('opens the compact explore navigation', async ({ page }) => {
+		await page.goto('/');
+		await page.getByText('Explore', { exact: true }).click();
+		await expect(page.getByRole('link', { name: 'Skill graph' })).toBeVisible();
+		await expect(page.getByRole('link', { name: 'Evaluation' })).toBeVisible();
+	});
+
+	test('removes one active filter without losing the others', async ({ page }) => {
+		await page.goto('/skills?q=onboarding&domain=onboarding-offboarding&tier=full');
+		await page
+			.getByRole('button', { name: /Area: Onboarding & offboarding/ })
+			.click();
+		await expect(page).toHaveURL(/q=onboarding&tier=full/);
+		await expect(page.getByRole('button', { name: /Maturity: full/ })).toBeVisible();
+		await expect(page.getByRole('button', { name: /Area: Onboarding/ })).toHaveCount(
+			0,
+		);
+	});
+
+	test('persists catalog sorting in URL state', async ({ page }) => {
+		await page.goto('/skills');
+		await page.getByLabel('Sort by').selectOption('tier');
+		await expect(page).toHaveURL(/\/skills\?sort=tier/);
+		await expect(page.getByLabel('Sort by')).toHaveValue('tier');
 	});
 });

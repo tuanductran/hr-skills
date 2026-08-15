@@ -394,7 +394,7 @@ Extend validation beyond the current structural/format checks
 
 Build the user-facing layer that turns the repository into a browsable product rather than only a repository of skills and infrastructure.
 
-Current delivery status: **7.1 Web UI foundation, the registry explorer/catalog, the planner playground, and the 7.3 developer-experience foundation are complete**. Runtime trace, evaluation, and release/changelog surfaces remain planned follow-up work.
+Current delivery status: **Phase 7 is complete**. The public documentation foundation, registry explorer, planner playground, skill graph, runtime trace viewer, evaluation dashboard, release/changelog viewer, and developer-experience foundation are implemented and validated.
 
 #### 7.1 Web UI foundation
 
@@ -413,12 +413,12 @@ Completed:
 * Registry explorer through the searchable catalog and canonical registry-backed filters
 * Planner playground backed by the browser-safe planner APIs
 
-Planned follow-up work:
+Completed:
 
-* Skill graph visualization
-* Runtime trace viewer
-* Evaluation dashboard
-* Release and changelog viewer
+* Skill graph visualization backed by canonical registry relationships
+* Runtime trace viewer backed by deterministic `executeWorkflow()` trace data
+* Evaluation dashboard backed by the planning dataset and golden fixture
+* Release and changelog viewer backed by repository Changeset metadata
 
 #### 7.3 Developer experience
 
