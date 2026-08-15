@@ -20,8 +20,8 @@ import { SkillPropertiesSchema } from './schema.js';
  */
 export function findSkillMd(skillDir: string): string | null {
 	for (const filename of SKILL_MD_FILENAMES) {
-		const filepath = join(skillDir, filename);
-		if (existsSync(filepath)) return filepath;
+		const filepath = join(/* turbopackIgnore: true */ skillDir, filename);
+		if (existsSync(/* turbopackIgnore: true */ filepath)) return filepath;
 	}
 	return null;
 }
@@ -63,7 +63,7 @@ export function readProperties(skillDir: string): SkillProperties {
 		throw new ParseError(`SKILL.md not found in ${skillDir}`);
 	}
 
-	const content = readFileSync(skillMd, 'utf8');
+	const content = readFileSync(/* turbopackIgnore: true */ skillMd, 'utf8');
 	const [frontmatter] = parseFrontmatter(content);
 
 	const {

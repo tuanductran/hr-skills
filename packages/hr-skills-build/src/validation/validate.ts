@@ -427,7 +427,7 @@ export async function validateSubdirectoryContents(
 	errors: SkillValidationIssue[],
 ): Promise<void> {
 	for (const subDir of ['content', 'prompts', 'examples']) {
-		const subPath = join(skillDir, subDir);
+		const subPath = join(/* turbopackIgnore: true */ skillDir, subDir);
 		if (await dirExists(subPath)) {
 			const fileCount = await countFiles(subPath);
 			if (fileCount === 0) {

@@ -174,14 +174,13 @@ test.describe('planner API surface', () => {
 				name: 'Turn an HR question into an explainable plan.',
 			}),
 		).toBeVisible();
-		await page
-			.getByLabel('Describe your HR task')
-			.fill('Design employee onboarding programs');
+		await page.locator('#planner-intent').fill('Plan onboarding for new employees');
 		await page.getByRole('button', { name: 'Generate plan' }).click();
 		await expect(page.getByText('Explainable result', { exact: true })).toBeVisible();
-		await expect(
-			page.getByText('Detected capabilities', { exact: true }),
-		).toBeVisible();
+		await expect(page.locator('.planner-capabilities')).toContainText(
+			'Detected capabilities',
+		);
+
 		const firstStep = page.locator('.planner-step__button').first();
 		await expect(firstStep).toBeVisible();
 		await firstStep.click();

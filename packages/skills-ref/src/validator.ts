@@ -116,7 +116,7 @@ export function validate(skillDir: string): string[] {
 	let content: string;
 
 	try {
-		content = readFileSync(skillMdPath, 'utf8');
+		content = readFileSync(/* turbopackIgnore: true */ skillMdPath, 'utf8');
 	} catch (error) {
 		return [`Failed to read SKILL.md: ${String(error)}`];
 	}

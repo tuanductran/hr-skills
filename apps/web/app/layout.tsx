@@ -22,7 +22,8 @@ export default function RootLayout({ children }: RootLayoutProps) {
 	return (
 		<html
 			lang='en'
-			className={inter.variable}>
+			className={inter.variable}
+			data-scroll-behavior='smooth'>
 			<body>
 				<SiteHeader />
 				{children}

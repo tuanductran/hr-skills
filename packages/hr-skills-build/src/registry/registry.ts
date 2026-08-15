@@ -165,19 +165,28 @@ export async function buildRegistry(
 			const classification = classifySkill(id);
 			const version = frontmatter.metadata?.version ?? '0.0.0';
 
-			const hasContent = await dirExists(join(skillDir, 'content'));
-			const hasPrompts = await dirExists(join(skillDir, 'prompts'));
-			const hasExamples = await dirExists(join(skillDir, 'examples'));
+				const hasContent = await dirExists(
+					join(/* turbopackIgnore: true */ skillDir, 'content'),
+				);
+				const hasPrompts = await dirExists(
+					join(/* turbopackIgnore: true */ skillDir, 'prompts'),
+				);
+				const hasExamples = await dirExists(
+					join(/* turbopackIgnore: true */ skillDir, 'examples'),
+				);
 
 			// A subdirectory only "counts" toward tier if it also has files —
 			// consistent with computeTier's use elsewhere (skill-matrix.md) and
 			// with validateSubdirectoryContents, which forbids empty subdirs.
 			const contentReady =
-				hasContent && (await countFiles(join(skillDir, 'content'))) > 0;
+					hasContent &&
+					(await countFiles(join(/* turbopackIgnore: true */ skillDir, 'content'))) > 0;
 			const promptsReady =
-				hasPrompts && (await countFiles(join(skillDir, 'prompts'))) > 0;
+					hasPrompts &&
+					(await countFiles(join(/* turbopackIgnore: true */ skillDir, 'prompts'))) > 0;
 			const examplesReady =
-				hasExamples && (await countFiles(join(skillDir, 'examples'))) > 0;
+					hasExamples &&
+					(await countFiles(join(/* turbopackIgnore: true */ skillDir, 'examples'))) > 0;
 
 			return {
 				id,

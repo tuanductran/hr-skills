@@ -27,7 +27,10 @@ export function PlannerPlayground({ registry }: PlannerPlaygroundProps) {
 
 	function submit(event: React.FormEvent<HTMLFormElement>) {
 		event.preventDefault();
-		if (intent.trim()) setPlan(generateExecutionPlan(intent, registry));
+		const submittedIntent = String(new FormData(event.currentTarget).get('intent') ?? '');
+		if (!submittedIntent.trim()) return;
+		setIntent(submittedIntent);
+		setPlan(generateExecutionPlan(submittedIntent, registry));
 	}
 
 	return (
@@ -36,8 +39,8 @@ export function PlannerPlayground({ registry }: PlannerPlaygroundProps) {
 				<p className='eyebrow'>Planner playground</p>
 				<h1>Turn an HR question into an explainable plan.</h1>
 				<p>
-					Describe the outcome you need. The deterministic planner will suggest
-					a sequence of canonical skills and explain why each belongs.
+					Describe the outcome you need. The deterministic planner will suggest a sequence
+					of canonical skills and explain why each belongs.
 				</p>
 			</header>
 			<fieldset className='planner-examples'>
@@ -64,13 +67,13 @@ export function PlannerPlayground({ registry }: PlannerPlaygroundProps) {
 					<textarea
 						aria-describedby='planner-help'
 						id='planner-intent'
+						name='intent'
 						onChange={(event) => setIntent(event.target.value)}
 						placeholder='For example: improve our candidate experience for global hiring'
 						value={intent}
 					/>
 					<small id='planner-help'>
-						Be specific about the people outcome, process or decision you want
-						to improve.
+						Be specific about the people outcome, process or decision you want to improve.
 					</small>
 				</label>
 				<div className='planner-form__actions'>
@@ -93,9 +96,7 @@ export function PlannerPlayground({ registry }: PlannerPlaygroundProps) {
 			<div
 				className='planner-capabilities'
 				aria-live='polite'>
-				<strong>
-					{capabilities.length ? 'Detected capabilities' : 'Add more detail'}
-				</strong>
+				<strong>{capabilities.length ? 'Detected capabilities' : 'Add more detail'}</strong>
 				<span>
 					{capabilities.join(' · ') ||
 						'The planner needs a little more context to make a useful suggestion.'}
@@ -133,10 +134,7 @@ export function PlannerPlayground({ registry }: PlannerPlaygroundProps) {
 												'Selected by the deterministic planner.'}
 										</p>
 										{step.dependencies.length > 0 && (
-											<p>
-												Dependencies:{' '}
-												{step.dependencies.join(', ')}
-											</p>
+											<p>Dependencies: {step.dependencies.join(', ')}</p>
 										)}
 									</DisclosurePanel>
 								</Disclosure>

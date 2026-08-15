@@ -2,7 +2,7 @@
 	"compilerOptions": {
 		"target": "ES2022",
 		"lib": ["dom", "esnext"],
-		"jsx": "preserve",
+		"jsx": "react-jsx",
 		"module": "esnext",
 		"moduleResolution": "bundler",
 		"strict": true,
@@ -19,6 +19,12 @@
 		"resolveJsonModule": true,
 		"isolatedModules": true
 	},
-	"include": ["**/*.ts", "**/*.tsx", "next-env.d.ts", ".next/types/**/*.ts"],
+	"include": [
+		"**/*.ts",
+		"**/*.tsx",
+		"next-env.d.ts",
+		".next/types/**/*.ts",
+		".next/dev/types/**/*.ts"
+	],
 	"exclude": ["node_modules"]
 }

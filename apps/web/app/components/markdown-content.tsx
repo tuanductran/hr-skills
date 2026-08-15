@@ -55,7 +55,6 @@ export function MarkdownContent({ content }: MarkdownContentProps) {
 	return (
 		<div
 			className='markdown-content'
-			// biome-ignore lint/security/noDangerouslySetInnerHtml: Markdown is parsed and allowlist-sanitized immediately above.
 			dangerouslySetInnerHTML={{ __html: html }}
 		/>
 	);
