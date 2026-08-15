@@ -21,7 +21,7 @@
 		"@headlessui/react": "^2.2.10",
 		"@playwright/test": "catalog:testing",
 		"@tailwindcss/postcss": "^4.3.3",
-		"@types/node": "^20.17.6",
+		"@types/node": "^26.0.0",
 		"@types/react": "^19.2.0",
 		"@types/react-dom": "^19.2.0",
 		"@types/sanitize-html": "^2.16.1",

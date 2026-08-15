@@ -1,6 +1,6 @@
 # HR Skills — Skill Matrix
 
-> Auto-generated on 2026-08-14 by `bun run matrix`. Do not edit manually.
+> Auto-generated on 2026-08-15 by `bun run matrix`. Do not edit manually.
 
 ## Summary
 
