@@ -1,5 +1,34 @@
 # Changelog
 
+## 1.4.0
+
+### Minor Changes
+
+- 4ac7aae: Complete the remaining Phase 7 product surfaces in `apps/web`: add canonical registry graph exploration, deterministic runtime trace replay, evaluation metrics from the committed planning dataset and golden fixture, and a Changeset-backed release/changelog viewer. These routes use server-only `hr-skills-build` APIs, client-safe Headless UI disclosures, semantic CSS classes, responsive layouts, and Playwright coverage across desktop and mobile Chromium.
+- a65f4c5: Added a production public documentation application with a searchable HR skill catalog and static skill pages generated from the canonical registry and source content.
+- b1e9f67: Added three repository agent skills — `.agents/skills/clack`, `.agents/skills/jscpd`, and `.agents/skills/dry-refactoring` — documenting this repo's actual `@clack/prompts` usage and duplicate-detection/refactoring conventions. Fixed generated PR review comments (`skill-review` CLI) linking to relative paths that don't resolve inside a GitHub PR comment body; they now use absolute GitHub blob URLs. Fixed the `description` field format in `.github/skill-template.md` and `.claude/commands/new-skill.md`, which used a YAML folded block scalar inconsistent with `docs/engineering/format.md` and every existing skill.
+- 622d2ea: Extended the Phase 7 public documentation experience with canonical `hr-skills-build` server/client API integration, a planner playground backed by the browser-safe planning APIs, related-skill recommendations, TailwindCSS v4 styling infrastructure, accessible Headless UI disclosure controls, and Inter font optimization through `next/font`. Updated filesystem compatibility in the server API dependency graph so the web app can build under Next.js runtime environments.
+- 8dfd5a3: Improve the `apps/web` discovery experience with a compact responsive navigation, clearer homepage starting paths, catalog active-filter chips and sorting, stronger empty-state guidance, and consistent semantic styling. Add Playwright coverage for the redesigned navigation and catalog interactions across desktop and mobile Chromium.
+
+### Patch Changes
+
+- b1e9f67: Added `docs/engineering/api.md`, an API reference documenting the public functions and types exported from `hr-skills-build`.
+- b0901a9: Fixed `dist/hr-skills.zip` and `dist/hr-skills.skill` being written as structurally invalid archives. `buildZipBuffer` declared its running byte position as `const currentOffset = 0`, so every central-directory entry and the end-of-central-directory record recorded offset `0`. Readers still listed the entries (they self-heal the central-directory offset), but extracting anything past the first file failed with "Bad magic number for file header" — and `build-skills` reported `OK (zip)` regardless. Both archives now round-trip all 823+ entries.
+
+  Added `--help` / `-h` to every CLI, handled in `runCli` before any work runs. `--help` previously fell through as a positional argument: `bun run evaluate --help` ran the entire evaluation suite, `bun run plan --help` and `bun run execute --help` built the registry and generated a plan for the literal intent `"--help"`, and `bun run recommend --help` built all 146 skills before failing with `Unknown skill ID: "--help"`. Help now exits 0 without doing any work.
+
+  Fixed errors thrown while a spinner was running being erased from the terminal. A live `@clack/prompts` spinner repaints by erasing the lines beneath it and its exit handler stamps "Canceled" over the area, so the real message never appeared — a missing `registry/skills.json` reported only "Canceled". CLI spinners are now created through `cliSpinner()`, which lets `runCli` stop the spinner with the actual error.
+
+  Fixed `bun run evaluate --update-golden` exiting 0 even when cases failed, which silently baselined those failures into the golden fixtures. It now exits 1 and reports the failing count. Unknown flags are rejected instead of ignored, so a typo'd `--update-goldens` no longer performs a plain reporting pass.
+
+  Fixed `bun run recommend <skill> --limit 0` (and a non-numeric `--limit`) reporting "No recommendations available" — blaming the skill for a bad flag. `--limit` is now validated as a positive integer, and a flag in the positional slot prints usage instead of spending a full registry build to report `Unknown skill ID: "--limit"`.
+
+  Improved `bun run validate` output: it now shows progress for the two slowest phases instead of running silently, reports each failing skill once with its message rather than twice (the first time as a bare name), sorts issues so repeat runs over an unchanged tree emit identical logs, uses an error glyph rather than a warning for the fatal "no skills found" case, and closes the output box on failure paths instead of leaving it unterminated.
+
+- b1e9f67: Rewrote `skills-ref` `SKILL.md` frontmatter parser to use the `yaml` package instead of manual string splitting, fixing edge cases in frontmatter detection and making `SkillPropertiesSchema` a strict schema (unknown frontmatter keys are now rejected). Fixed `.claude-plugin/marketplace.json` to include the required `$schema` and `owner` fields. Fixed the release workflow (`publish.yml`) building distribution artifacts with an invalid Turborepo filter/flag combination that could fail or silently skip the build.
+- cbe30bb: Enhanced prose clarity, structure, and domain accuracy for `hr-vietnam-context`, `hr-talent-acquisition`, and `hr-performance-management` skills.
+- b1e9f67: Fixed a polynomial-time regular expression denial-of-service (ReDoS) vulnerability in `analyzeIntent` delimiter parsing (CodeQL alert `js/polynomial-redos`, CWE-1333/400/730). The affected regex is reachable from user-controlled CLI input (`plan`/`execute` intent argv).
+
 ## 1.3.0
 
 ### Minor Changes
