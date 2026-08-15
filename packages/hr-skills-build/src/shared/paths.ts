@@ -13,7 +13,7 @@ import { ROOT_DIR } from 'skills-ref';
  */
 
 /** Absolute path to the `eval/` directory inside `hr-skills-build`. */
-const EVAL_DIR = join(__dirname, '..', '..', 'eval');
+const EVAL_DIR = join(ROOT_DIR, 'packages', 'hr-skills-build', 'eval');
 
 /** Absolute path to the `eval/datasets/` directory containing hand-authored evaluation cases. */
 export const EVAL_DATASETS_DIR = join(EVAL_DIR, 'datasets');

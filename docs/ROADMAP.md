@@ -394,7 +394,11 @@ Extend validation beyond the current structural/format checks
 
 Build the user-facing layer that turns the repository into a browsable product rather than only a repository of skills and infrastructure.
 
+Current delivery status: **Phase 7 is complete**. The public documentation foundation, registry explorer, planner playground, skill graph, runtime trace viewer, evaluation dashboard, release/changelog viewer, and developer-experience foundation are implemented and validated.
+
 #### 7.1 Web UI foundation
+
+Completed.
 
 * Public documentation site
 * Responsive skill catalog UI
@@ -404,19 +408,26 @@ Build the user-facing layer that turns the repository into a browsable product r
 
 #### 7.2 Interactive product surfaces
 
-* Registry explorer
-* Skill graph visualization
-* Planner playground
-* Runtime trace viewer
-* Evaluation dashboard
-* Release and changelog viewer
+Completed:
+
+* Registry explorer through the searchable catalog and canonical registry-backed filters
+* Planner playground backed by the browser-safe planner APIs
+
+Completed:
+
+* Skill graph visualization backed by canonical registry relationships
+* Runtime trace viewer backed by deterministic `executeWorkflow()` trace data
+* Evaluation dashboard backed by the planning dataset and golden fixture
+* Release and changelog viewer backed by repository Changeset metadata
 
 #### 7.3 Developer experience
 
-* Local preview workflow
-* Static generation or hybrid rendering strategy
-* Reusable UI components for skill cards, filters, and results
-* Accessibility and mobile-first layout requirements
+Completed:
+
+* Local preview workflow with Next.js development server and Playwright webServer configuration
+* Static generation for skill detail routes with server-side canonical data loading
+* Reusable UI components for skill cards, filters, results, navigation, Markdown content, and planner steps
+* Accessibility and mobile-first layout requirements, including keyboard navigation and responsive E2E coverage
 
 ---
 

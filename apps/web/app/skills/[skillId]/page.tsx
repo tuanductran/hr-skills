@@ -2,7 +2,11 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { MarkdownContent } from '../../components/markdown-content';
-import { getDocumentationData, getDocumentationSkill } from '../../lib/docs';
+import {
+	getDocumentationData,
+	getDocumentationSkill,
+	getSkillRecommendations,
+} from '../../lib/docs';
 
 interface SkillPageProps {
 	readonly params: Promise<{ skillId: string }>;
@@ -12,30 +16,24 @@ function sourceLabel(fileName: string): string {
 	return fileName.replace(/\.md$/, '').replaceAll('-', ' ');
 }
 
-export function generateStaticParams() {
-	return getDocumentationData().skills.map((skill) => ({ skillId: skill.id }));
+export async function generateStaticParams() {
+	const data = await getDocumentationData();
+	return data.skills.map((skill) => ({ skillId: skill.id }));
 }
 
 export async function generateMetadata({ params }: SkillPageProps): Promise<Metadata> {
 	const { skillId } = await params;
-	const skill = getDocumentationSkill(skillId);
-
+	const skill = await getDocumentationSkill(skillId);
 	if (!skill) return { title: 'Skill not found | HR Skills' };
-
-	return {
-		description: skill.description,
-		title: `${skill.displayName} | HR Skills`,
-	};
+	return { description: skill.description, title: `${skill.displayName} | HR Skills` };
 }
 
 export default async function SkillPage({ params }: SkillPageProps) {
 	const { skillId } = await params;
-	const skill = getDocumentationSkill(skillId);
+	const skill = await getDocumentationSkill(skillId);
 	if (!skill) notFound();
 
-	const relatedSkills = skill.relatedSkills
-		.map((relatedId) => getDocumentationSkill(relatedId))
-		.filter((related): related is NonNullable<typeof related> => Boolean(related));
+	const recommendations = await getSkillRecommendations(skill.id);
 
 	return (
 		<main className='site-shell page-content skill-page'>
@@ -48,7 +46,6 @@ export default async function SkillPage({ params }: SkillPageProps) {
 				<span aria-hidden='true'>/</span>
 				<span>{skill.displayName}</span>
 			</nav>
-
 			<header className='skill-hero'>
 				<p className='eyebrow'>{skill.domain.replaceAll('-', ' ')}</p>
 				<h1>{skill.displayName}</h1>
@@ -58,14 +55,12 @@ export default async function SkillPage({ params }: SkillPageProps) {
 					<span>Version {skill.version}</span>
 				</div>
 			</header>
-
 			<div className='skill-layout'>
 				<article className='skill-article'>
 					<section aria-labelledby='skill-content-heading'>
 						<h2 id='skill-content-heading'>Skill guide</h2>
 						<MarkdownContent content={skill.content} />
 					</section>
-
 					{skill.prompts.length > 0 && (
 						<section
 							aria-labelledby='skill-prompts-heading'
@@ -81,7 +76,6 @@ export default async function SkillPage({ params }: SkillPageProps) {
 							))}
 						</section>
 					)}
-
 					{skill.examples.length > 0 && (
 						<section
 							aria-labelledby='skill-examples-heading'
@@ -98,7 +92,6 @@ export default async function SkillPage({ params }: SkillPageProps) {
 						</section>
 					)}
 				</article>
-
 				<aside
 					aria-label='Skill metadata'
 					className='skill-aside'>
@@ -119,15 +112,14 @@ export default async function SkillPage({ params }: SkillPageProps) {
 							</div>
 						</dl>
 					</section>
-
-					{relatedSkills.length > 0 && (
+					{recommendations.length > 0 && (
 						<section>
 							<h2>Related skills</h2>
 							<ul className='related-list'>
-								{relatedSkills.map((related) => (
+								{recommendations.map((related) => (
 									<li key={related.id}>
 										<Link href={`/skills/${related.id}`}>
-											{related.displayName}
+											{related.name}
 										</Link>
 									</li>
 								))}
