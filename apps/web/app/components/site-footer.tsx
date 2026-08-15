@@ -6,7 +6,7 @@ export function SiteFooter() {
 			<div className='site-shell site-footer__inner'>
 				<p>Documentation generated from the HR Skills repository source.</p>
 				<div>
-					<Link href='/skills'>Browse skills</Link>
+					<Link href='/skills'>Skill catalog</Link>
 					<a href='https://github.com/tuanductran/hr-skills'>View source</a>
 				</div>
 			</div>

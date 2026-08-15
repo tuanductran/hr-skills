@@ -291,27 +291,42 @@ export function ReleaseViewer({ entries }: { readonly entries: ReleaseData[] }) 
 					metadata.
 				</p>
 			</div>
-			<div className='release-list'>
-				{entries.map((entry) => (
-					<article
-						className='release-card'
-						key={entry.id}>
-						<div className='release-card__topline'>
-							<strong>{entry.id}</strong>
-							<div>
-								{entry.packages.map((pkg) => (
-									<span
-										className='badge'
-										key={pkg.name}>
-										{pkg.name} · {pkg.bump}
-									</span>
-								))}
+			{entries.length ? (
+				<div className='release-list'>
+					{entries.map((entry) => (
+						<article
+							className='release-card'
+							key={entry.id}>
+							<div className='release-card__topline'>
+								<strong>{entry.id}</strong>
+								<div>
+									{entry.packages.map((pkg) => (
+										<span
+											className='badge'
+											key={pkg.name}>
+											{pkg.name} · {pkg.bump}
+										</span>
+									))}
+								</div>
 							</div>
-						</div>
-						<p>{entry.summary}</p>
-					</article>
-				))}
-			</div>
+							<p>{entry.summary}</p>
+						</article>
+					))}
+				</div>
+			) : (
+				<div className='empty-state release-empty'>
+					<span
+						aria-hidden='true'
+						className='empty-state__icon'>
+						✓
+					</span>
+					<h2>No pending changesets</h2>
+					<p>
+						The release queue is clear. New release notes will appear here
+						when a changeset is added.
+					</p>
+				</div>
+			)}
 		</section>
 	);
 }

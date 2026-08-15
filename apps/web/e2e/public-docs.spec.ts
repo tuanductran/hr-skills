@@ -234,8 +234,15 @@ test.describe('Phase 7 product surfaces', () => {
 		await expect(
 			page.getByRole('heading', { name: 'Follow what changed in the platform.' }),
 		).toBeVisible();
-		await expect(page.locator('.release-card').first()).toBeVisible();
-		await expect(page.locator('.badge').first()).toBeVisible();
+		const releaseCards = page.locator('.release-card');
+		if ((await releaseCards.count()) > 0) {
+			await expect(releaseCards.first()).toBeVisible();
+			await expect(page.locator('.badge').first()).toBeVisible();
+		} else {
+			await expect(
+				page.getByRole('heading', { name: 'No pending changesets' }),
+			).toBeVisible();
+		}
 	});
 });
 

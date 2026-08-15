@@ -19,7 +19,7 @@ const examples = [
 ];
 
 export function PlannerPlayground({ registry }: PlannerPlaygroundProps) {
-	const [intent, setIntent] = useState(examples[0]);
+	const [intent, setIntent] = useState('');
 	const [plan, setPlan] = useState<ReturnType<typeof generateExecutionPlan> | null>(
 		null,
 	);
