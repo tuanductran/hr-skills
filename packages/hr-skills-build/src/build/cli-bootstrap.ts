@@ -122,20 +122,3 @@ export function runCli(main: () => Promise<void>, usage?: CliUsage): void {
 		process.exit(1);
 	});
 }
-
-/**
- * Print a usage message for a bad invocation and exit with status 1. Call this
- * when a required argument is missing — or is a flag, since a bare flag in the
- * positional slot means the argument was never supplied — and also for an
- * out-of-range flag value or an unrecognized flag, overriding
- * {@link CliUsage.usage} with the specific complaint.
- *
- * @param usage - The same {@link CliUsage} passed to {@link runCli}, so the
- *   error and the `--help` screen stay identical.
- * @returns Never returns — always exits the process.
- */
-export function printUsageAndExit(usage: CliUsage): never {
-	printUsage(usage);
-	p.outro('Invalid arguments');
-	process.exit(1);
-}

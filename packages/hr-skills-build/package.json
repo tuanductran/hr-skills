@@ -57,8 +57,5 @@
 		"valibot": "catalog:",
 		"yaml": "catalog:",
 		"@clack/prompts": "catalog:"
-	},
-	"devDependencies": {
-		"ts-morph": "catalog:"
 	}
 }

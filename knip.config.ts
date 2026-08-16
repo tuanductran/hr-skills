@@ -13,7 +13,7 @@ const config = {
 		'packages/hr-skills-build': {
 			project: ['src/**/*.ts'],
 		},
-		'packages/skills-ref': {
+		'packages/hr-skills-ref': {
 			project: ['src/**/*.ts'],
 		},
 	},
