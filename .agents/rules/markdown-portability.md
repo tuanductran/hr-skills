@@ -18,7 +18,7 @@ Keep Markdown compatible across AI tools, OS editors, and the markdownlint rules
 - do not use TypeScript constant names, module paths, or code identifiers in prose
   inside `skills/hr-*/` files — write in plain language instead
 
-## Markdownlint compliance (`.markdownlint.yml`)
+## MarkdownLint compliance (`.markdownlint.yml`)
 
 All Markdown files in this repository must adhere to the rules in `.markdownlint.yml`.
 When editing or generating Markdown:

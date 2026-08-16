@@ -178,6 +178,6 @@ every other validator in `validate.ts`.
   `validate-registry.ts`, following the existing pattern of pushing
   `{ skill, message }` issues rather than throwing.
 - **Consuming the registry from other packages:** import
-  `buildRegistry()` from `hr-skills-build` (workspace package) rather than
-  reading and re-parsing `registry/skills.json` by hand, the same way
+  `buildRegistry()` from `hr-skills-build/server` rather than reading and
+  re-parsing `registry/skills.json` by hand, the same way
   `sync.ts` and `validate.ts` already do.

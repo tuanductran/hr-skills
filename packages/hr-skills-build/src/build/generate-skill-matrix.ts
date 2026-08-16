@@ -7,7 +7,7 @@
 import { writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
-import { ROOT_DIR, SKILLS_DIR } from 'hr-skills-ref';
+import { ROOT_DIR, SKILLS_DIR } from 'hr-skills-ref/server';
 import {
 	computeTier,
 	countFiles,

@@ -348,7 +348,7 @@ _Released: 2026-02-27_
 
 - Technical recruiting and HR AI skills covering modern engineering, hiring, compliance, analytics, onboarding, and workforce management domains
 - `packages/hr-skills-build` — build tooling (validate + catalog) using Bun
-- `packages/skills-ref` — TypeScript library & CLI for reading and validating skills
+- `packages/hr-skills-ref` (formerly `packages/skills-ref`) — TypeScript library & CLI for reading and validating skills
 - `.claude-plugin/marketplace.json` — Claude marketplace plugin manifest
 - Bun monorepo workspace setup
 - GitHub Actions CI workflow with validate, test, lint, and typecheck jobs

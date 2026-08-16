@@ -14,7 +14,7 @@
 import { writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import * as p from '@clack/prompts';
-import type { EvaluationReport } from 'hr-skills-build';
+import type { EvaluationReport } from 'hr-skills-build/server';
 import {
 	buildRegistry,
 	loadAllDatasets,
@@ -22,7 +22,7 @@ import {
 	runEvaluation,
 	saveGoldenFixture,
 	toGoldenFixture,
-} from 'hr-skills-build';
+} from 'hr-skills-build/server';
 import { type CliUsage, cliSpinner, printUsageAndExit, runCli } from './cli-bootstrap.js';
 
 const USAGE: CliUsage = {

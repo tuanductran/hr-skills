@@ -59,7 +59,9 @@ When you add a new skill directory (for example `skills/hr-new-skill/SKILL.md`),
 | `skills/hr-*/content/` | Optional human-readable companion guidance for each HR skill domain |
 | `skills/hr-*/prompts/` | Optional reusable prompt libraries grouped by HR topic |
 | `skills/hr-*/examples/` | Optional practical end-to-end HR workflows and business scenarios |
-| `docs/` | Skill format specification and generated reports |
+| `apps/web/` | Public Next.js documentation and product surfaces |
+| `playground/` | Experimental Next.js/Vite integration and smoke-test apps |
+| `docs/` | Skill format specification, architecture guidance, generated reports, and archived research |
 | `docs/engineering/skill-matrix.md` | Generated skill maturity snapshot — do not edit manually, run `bun run matrix` |
 | `docs/engineering/evaluation.md` | Evaluation framework architecture, dataset format, and golden fixture workflow |
 | `packages/hr-skills-build/eval/datasets/` | Hand-authored evaluation datasets (planning scenarios) |
@@ -71,5 +73,7 @@ When you add a new skill directory (for example `skills/hr-new-skill/SKILL.md`),
 | `packages/hr-skills-build` | Build and maintenance tooling — validation, sync, registry/planner/runtime generation, and packaging |
 | `packages/hr-skills-ref` | TypeScript library with explicit `client` and Bun/Node `server` surfaces for reading and validating skill files |
 | `packages/hr-skills-tsdoc` | TSDoc-compatible API generator for all public package surfaces |
+| `docs/engineering/package-architecture.md` | Canonical client/server package boundaries and import rules |
+| `.claude/rules/package-architecture.md` | Path-scoped enforcement guidance for client/server imports |
 
 This repository uses Bun workspaces with Turborepo task orchestration; the packages above live under `packages/*`, and their build outputs are cached through Turborepo based on `turbo.jsonc`.

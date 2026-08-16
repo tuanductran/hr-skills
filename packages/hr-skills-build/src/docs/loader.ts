@@ -1,6 +1,6 @@
 import { readdir, readFile } from 'node:fs/promises';
 import { join } from 'node:path';
-import { SKILLS_DIR } from 'hr-skills-ref';
+import { SKILLS_DIR } from 'hr-skills-ref/server';
 import { buildRegistry } from '../registry/registry.js';
 import { readSkill } from '../shared/helpers.js';
 import type { SkillCategory } from '../shared/types.js';

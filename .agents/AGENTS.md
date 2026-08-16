@@ -25,6 +25,7 @@ Never develop on `main` — branch from and open pull requests against `dev`.
 | Detect copy-paste duplication in `packages/*` TypeScript source | [`skills/jscpd/SKILL.md`](skills/jscpd/SKILL.md) |
 | Refactor duplicated code found by jscpd (extract function/module/constant/type) | [`skills/dry-refactoring/SKILL.md`](skills/dry-refactoring/SKILL.md) |
 | Define or validate a schema with Valibot | [`skills/valibot/SKILL.md`](skills/valibot/SKILL.md) |
+| Review package/client-server boundaries or app imports | [`../docs/engineering/package-architecture.md`](../docs/engineering/package-architecture.md) and [`.claude/rules/package-architecture.md`](../.claude/rules/package-architecture.md) |
 | Rewrite AI-sounding prose to read more naturally | [`skills/humanizer/SKILL.md`](skills/humanizer/SKILL.md) |
 | Generate or fill a PDF | [`skills/pdf/SKILL.md`](skills/pdf/SKILL.md) |
 
@@ -35,6 +36,13 @@ Never develop on `main` — branch from and open pull requests against `dev`.
 3. Run `bun run validate`
 
 For the full required structure, frontmatter rules, and pre-publish checklist, load `skills/hr-skills-maintaining/SKILL.md` — don't guess, and don't duplicate its content here.
+
+## Repository architecture
+
+- `apps/web` — public Next.js documentation and product surfaces; Client Components use explicit `/client` package entrypoints and server data loaders use explicit `/server` entrypoints.
+- `playground` — experimental Next.js/Vite smoke-test applications; keep client bundle checks separate from production source.
+- `docs/engineering/package-architecture.md` — canonical client/server boundary and import rules.
+- `docs/archive` — historical research and audit notes; not current requirements or timeline milestones.
 
 ## Workspace packages
 

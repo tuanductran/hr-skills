@@ -1,6 +1,6 @@
 import { readdir, readFile, stat } from 'node:fs/promises';
 import { join } from 'node:path';
-import { SKILLS_DIR } from 'hr-skills-ref';
+import { SKILLS_DIR } from 'hr-skills-ref/server';
 import {
 	HR_SKILL_PREFIX,
 	KEY_PROMPTS_REGEX,

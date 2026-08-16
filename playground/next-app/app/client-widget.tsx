@@ -1,8 +1,8 @@
 'use client';
 
 // Smoke test: this is a Client Component, so anything imported here goes
-// through the browser bundler. Import from 'hr-skills-build' (the server
-// root) here instead of '/client' and the Next build should fail with an
+// through the browser bundler. Import from 'hr-skills-build/server' (the
+// server surface) here instead of '/client' and the Next build should fail with an
 // unresolved node:fs/node:path error — that's the case this file guards
 // against.
 import { parseSkillFrontmatter } from 'hr-skills-build/client';

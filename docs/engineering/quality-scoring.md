@@ -140,7 +140,7 @@ import {
   scoreClarity,
   scoreCompleteness,
   scoreExampleCoverage,
-} from 'hr-skills-build';
+} from 'hr-skills-build/server';
 ```
 
 - `scoreSkillQuality(skillsDir, skillName)` — full report for one skill.
@@ -173,7 +173,7 @@ Unlike structural validation, quality scoring is not (yet) wired into
    `scoreAllSkills()` directly from a script, e.g.:
 
    ```ts
-   import { scoreAllSkills } from 'hr-skills-build';
+   import { scoreAllSkills } from 'hr-skills-build/server';
 
    const scores = await scoreAllSkills();
    const needsReview = scores.filter((s) => s.overall < 70);

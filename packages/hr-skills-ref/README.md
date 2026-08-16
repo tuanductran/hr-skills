@@ -13,7 +13,7 @@ bun run build
 
 The package builds three ESM surfaces from `src/index.ts`, `src/client/index.ts`, and `src/server/index.ts`, emitting corresponding TypeScript declaration files alongside the compiled output.
 
-The published package contents are limited to `dist/`. The package does not expose a command-line interface. The root export is the Bun/Node server surface; browser-safe consumers must import `hr-skills-ref/client`.
+The published package contents are limited to `dist/`. The package does not expose a command-line interface. The root export remains a Bun/Node compatibility alias; new server consumers should import `hr-skills-ref/server`, while browser-safe consumers must import `hr-skills-ref/client`.
 
 ## Import surfaces
 
@@ -39,7 +39,7 @@ The client surface never imports `node:fs`, `node:path`, `node:os`, or process-d
 ## Programmatic API
 
 ```typescript
-import { readProperties, toPrompt, validate } from 'hr-skills-ref';
+import { readProperties, toPrompt, validate } from 'hr-skills-ref/server';
 
 // Validate a skill directory
 const errors = validate("skills/hr-recruiting");

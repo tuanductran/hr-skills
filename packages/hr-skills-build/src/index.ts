@@ -4,7 +4,7 @@
  * This barrel exists so downstream consumers (Phase 7 web UI / API layer,
  * or any future service) can do:
  *
- *   import { buildRegistry, searchSkills, executeWorkflow } from 'hr-skills-build';
+ *   import { buildRegistry, searchSkills, executeWorkflow } from 'hr-skills-build/server';
  *
  * instead of reaching into individual `src/**\/*.ts` files or shelling out to
  * the CLI scripts under `src/cli/` and `src/build/`.

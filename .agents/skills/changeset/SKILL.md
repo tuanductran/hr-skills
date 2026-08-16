@@ -246,5 +246,5 @@ Do not edit generated changelog files manually.
 - `docs/engineering/format.md`
 - `.changeset/`
 - `CHANGELOG.md`
-- Changesets documentation: https://github.com/changesets/changesets/tree/main/docs
-- Conventional Commits: https://www.conventionalcommits.org/
+- Changesets documentation: <https://github.com/changesets/changesets/tree/main/docs>
+- Conventional Commits: <https://www.conventionalcommits.org/>

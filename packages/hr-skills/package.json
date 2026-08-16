@@ -35,6 +35,7 @@
 	],
 	"scripts": {
 		"build": "tsdown",
+		"test": "bun test",
 		"dev": "tsdown --watch",
 		"typecheck": "tsc --noEmit",
 		"prepublishOnly": "bun run build",

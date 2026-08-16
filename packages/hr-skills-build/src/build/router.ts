@@ -16,7 +16,7 @@
 
 import { readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
-import { ROOT_DIR, SKILLS_DIR } from 'hr-skills-ref';
+import { ROOT_DIR, SKILLS_DIR } from 'hr-skills-ref/server';
 import { CATEGORY_META, classifySkill } from '../registry/classifier.js';
 import { discoverSkills } from '../shared/helpers.js';
 import { parseSkillFrontmatter } from '../shared/parser.js';

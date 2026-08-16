@@ -15,9 +15,9 @@
 import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import * as p from '@clack/prompts';
-import type { Registry, SkillCategory, SkillSearchQuery } from 'hr-skills-build';
-import { searchSkills } from 'hr-skills-build';
-import { ROOT_DIR } from 'hr-skills-ref';
+import type { Registry, SkillCategory, SkillSearchQuery } from 'hr-skills-build/server';
+import { searchSkills } from 'hr-skills-build/server';
+import { ROOT_DIR } from 'hr-skills-ref/server';
 import { type CliUsage, cliSpinner, printUsageAndExit, runCli } from './cli-bootstrap.js';
 
 const REGISTRY_PATH = join(ROOT_DIR, 'registry', 'skills.json');

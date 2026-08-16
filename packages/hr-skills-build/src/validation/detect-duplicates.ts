@@ -51,7 +51,7 @@
  */
 
 import { join } from 'node:path';
-import { SKILLS_DIR } from 'hr-skills-ref';
+import { SKILLS_DIR } from 'hr-skills-ref/server';
 import type { SkillValidationIssue } from '../shared/types.js';
 import {
 	extractDescription,

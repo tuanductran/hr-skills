@@ -1,9 +1,9 @@
 import { ClientWidget } from './client-widget';
 
 // Note: a Server Component calling a full fs-backed export like
-// `buildRegistry()` from 'hr-skills-build' hits an unrelated, pre-existing
-// issue: `hr-skills-ref` computes `ROOT_DIR` via `import.meta.dirname` at
-// module load time, which Next's webpack server bundling does not evaluate
+// `buildRegistry()` from 'hr-skills-build/server' hits an unrelated,
+// pre-existing issue: `hr-skills-ref` resolves `ROOT_DIR` from `process.cwd()`
+// at module load time, which Next's webpack server bundling does not evaluate
 // correctly for an externalized workspace package symlinked outside
 // `next-app/`. Nothing here works around it — there is deliberately no
 // `next.config.ts`, because the server path is out of scope for this

@@ -21,14 +21,14 @@
  */
 
 import { readFile } from 'node:fs/promises';
-import type { SkillValidationIssue } from 'hr-skills-build';
+import type { SkillValidationIssue } from 'hr-skills-build/server';
 import {
 	GITHUB_BLOB_BASE_URL,
 	readSkillContent,
 	type SkillQualityScore,
 	scoreSkills,
 	validateSecurityChecks,
-} from 'hr-skills-build';
+} from 'hr-skills-build/server';
 
 async function resolveSkillNames(argv: string[]): Promise<string[]> {
 	const listFileFlagIndex = argv.indexOf('--list-file');

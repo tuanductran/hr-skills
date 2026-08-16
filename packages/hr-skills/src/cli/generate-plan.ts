@@ -16,7 +16,7 @@ import {
 	generateExecutionPlan,
 	suggestPlanImprovements,
 	validateExecutionPlan,
-} from 'hr-skills-build';
+} from 'hr-skills-build/server';
 import { type CliUsage, cliSpinner, printUsageAndExit, runCli } from './cli-bootstrap.js';
 
 const USAGE: CliUsage = {

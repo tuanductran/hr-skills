@@ -1,7 +1,11 @@
 'use client';
 
-import type { DocumentationData } from 'hr-skills-build';
-import { type Registry, type SkillCategory, searchSkills } from 'hr-skills-build/client';
+import {
+	type DocumentationData,
+	type Registry,
+	type SkillCategory,
+	searchSkills,
+} from 'hr-skills-build/client';
 import Link from 'next/link';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useMemo } from 'react';

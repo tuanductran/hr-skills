@@ -2,7 +2,7 @@ import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import process from 'node:process';
 import * as p from '@clack/prompts';
-import { ROOT_DIR, SKILLS_DIR, validate as validateRef } from 'hr-skills-ref';
+import { ROOT_DIR, SKILLS_DIR, validate as validateRef } from 'hr-skills-ref/server';
 import { type CliUsage, cliSpinner, runCli } from '../build/cli-bootstrap.js';
 import { buildRegistry, loadRelevanceSignalTable } from '../registry/registry.js';
 import {

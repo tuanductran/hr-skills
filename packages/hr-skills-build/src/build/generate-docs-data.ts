@@ -1,7 +1,7 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import * as p from '@clack/prompts';
-import { ROOT_DIR } from 'hr-skills-ref';
+import { ROOT_DIR } from 'hr-skills-ref/server';
 import { buildDocumentationData } from '../docs/loader.js';
 
 const DATA_DIRECTORY = join(ROOT_DIR, 'apps', 'web', 'data');

@@ -13,7 +13,7 @@ import {
 	type RecommendationResult,
 	type Registry,
 	runEvaluation,
-} from 'hr-skills-build';
+} from 'hr-skills-build/server';
 
 let documentationDataPromise: Promise<DocumentationData> | undefined;
 let registryPromise: Promise<Registry> | undefined;

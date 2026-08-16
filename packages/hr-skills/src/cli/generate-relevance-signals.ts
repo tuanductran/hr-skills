@@ -17,7 +17,7 @@ import {
 	buildRelevanceSignalTable,
 	loadAllGoldenFixtures,
 	RELEVANCE_SIGNALS_PATH,
-} from 'hr-skills-build';
+} from 'hr-skills-build/server';
 
 const fixtures = await loadAllGoldenFixtures();
 

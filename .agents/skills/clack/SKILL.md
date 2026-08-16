@@ -43,29 +43,29 @@ import * as p from '@clack/prompts';
 import { type CliUsage, cliSpinner, printUsageAndExit, runCli } from './cli-bootstrap.js';
 
 const USAGE: CliUsage = {
-	title: 'My Command',
-	usage: 'bun run my-command "<argument>"',
-	example: 'bun run my-command "example"',
+  title: 'My Command',
+  usage: 'bun run my-command "<argument>"',
+  example: 'bun run my-command "example"',
 };
 
 async function main() {
-	const intent = process.argv[2];
+  const intent = process.argv[2];
 
-	// Reject a bare flag in the positional slot too, not just an empty one.
-	if (!intent || intent.startsWith('--')) {
-		printUsageAndExit(USAGE);
-	}
+  // Reject a bare flag in the positional slot too, not just an empty one.
+  if (!intent || intent.startsWith('--')) {
+    printUsageAndExit(USAGE);
+  }
 
-	p.intro(USAGE.title);
+  p.intro(USAGE.title);
 
-	const spinner = cliSpinner();
-	spinner.start('Building Skill Registry...');
-	const registry = await buildRegistry();
-	spinner.stop(`Registry ready (${registry.skillCount} skills)`);
+  const spinner = cliSpinner();
+  spinner.start('Building Skill Registry...');
+  const registry = await buildRegistry();
+  spinner.stop(`Registry ready (${registry.skillCount} skills)`);
 
-	// ... do the work, p.note(...) for structured output ...
+  // ... do the work, p.note(...) for structured output ...
 
-	p.outro('Done');
+  p.outro('Done');
 }
 
 runCli(main, USAGE);

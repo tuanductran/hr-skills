@@ -38,7 +38,7 @@
 
 import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
-import { SKILLS_DIR } from 'hr-skills-ref';
+import { SKILLS_DIR } from 'hr-skills-ref/server';
 import {
 	KEY_PROMPTS_REGEX,
 	MIN_CONTENT_LENGTH,

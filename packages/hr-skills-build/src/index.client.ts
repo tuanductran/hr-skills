@@ -16,6 +16,7 @@
  *   - build/*, cli/*                      (process-entry scripts)
  */
 
+export type * from './docs/types.js';
 export * from './planner/index.js';
 export * from './runtime/index.js';
 export * from './search/index.js';

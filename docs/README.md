@@ -20,7 +20,8 @@ Use this folder as the entry point for repository documentation.
 ### Engineering
 
 - [`engineering/format.md`](engineering/format.md): `SKILL.md` authoring format and skill package structure
-- [`engineering/api.md`](engineering/api.md): public functions and types exported from `hr-skills-build`
+- [`engineering/api.md`](engineering/api.md): public functions and types exported from the workspace packages
+- [`engineering/package-architecture.md`](engineering/package-architecture.md): canonical client/server package boundaries and import rules
 - [`engineering/registry.md`](engineering/registry.md): Skill Registry architecture and schema
 - [`engineering/planner.md`](engineering/planner.md): Skill Planner architecture
 - [`engineering/runtime.md`](engineering/runtime.md): Workflow Runtime architecture
@@ -54,3 +55,4 @@ Use this folder as the entry point for repository documentation.
 - [`product/USER.md`](product/USER.md): what HR Skills is and how to use it
 
 - [`ROADMAP.md`](ROADMAP.md): development phases, what shipped, and open future work
+- [`archive/README.md`](archive/README.md): historical research and audit notes that are not canonical requirements

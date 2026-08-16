@@ -35,7 +35,7 @@ import { join, relative } from 'node:path';
 import { parseArgs } from 'node:util';
 import { deflateRawSync } from 'node:zlib';
 
-import { ROOT_DIR } from 'hr-skills-ref';
+import { ROOT_DIR } from 'hr-skills-ref/server';
 
 /**
  * File entry to include in the generated ZIP archive.

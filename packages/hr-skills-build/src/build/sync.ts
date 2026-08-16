@@ -1,7 +1,7 @@
 import { readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import * as p from '@clack/prompts';
-import { ROOT_DIR } from 'hr-skills-ref';
+import { ROOT_DIR } from 'hr-skills-ref/server';
 import * as v from 'valibot';
 import { getHrSkills } from '../registry/discovery.js';
 import { parseSkillMeta } from '../shared/helpers.js';
