@@ -1,5 +1,5 @@
-import { buildRegistry } from '../../../hr-skills-build/src/registry/registry.js';
-import type { RegistryEntry } from '../../../hr-skills-build/src/shared/types.js';
+import type { RegistryEntry } from 'hr-skills-build';
+import { buildRegistry } from 'hr-skills-build';
 import { runCli } from './cli-bootstrap.js';
 
 function printSkill(entry: RegistryEntry): void {

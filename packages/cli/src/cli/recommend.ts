@@ -11,9 +11,9 @@
 import * as p from '@clack/prompts';
 import {
 	buildRegistry,
+	getRecommendations,
 	loadRelevanceSignalTable,
-} from '../../../hr-skills-build/src/registry/registry.js';
-import { getRecommendations } from '../../../hr-skills-build/src/search/recommendations.js';
+} from 'hr-skills-build';
 import { type CliUsage, cliSpinner, printUsageAndExit, runCli } from './cli-bootstrap.js';
 
 const USAGE: CliUsage = {

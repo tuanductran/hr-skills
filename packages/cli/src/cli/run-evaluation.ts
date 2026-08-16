@@ -14,17 +14,15 @@
 import { writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import * as p from '@clack/prompts';
+import type { EvaluationReport } from 'hr-skills-build';
 import {
-	runEvaluation,
-	toGoldenFixture,
-} from '../../../hr-skills-build/src/evaluation/evaluate.js';
-import {
+	buildRegistry,
 	loadAllDatasets,
 	loadGoldenFixture,
+	runEvaluation,
 	saveGoldenFixture,
-} from '../../../hr-skills-build/src/evaluation/evaluation-datasets.js';
-import { buildRegistry } from '../../../hr-skills-build/src/registry/registry.js';
-import type { EvaluationReport } from '../../../hr-skills-build/src/shared/types.js';
+	toGoldenFixture,
+} from 'hr-skills-build';
 import { type CliUsage, cliSpinner, printUsageAndExit, runCli } from './cli-bootstrap.js';
 
 const USAGE: CliUsage = {

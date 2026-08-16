@@ -41,8 +41,7 @@
 	"dependencies": {
 		"@clack/prompts": "catalog:",
 		"hr-skills-build": "workspace:*",
-		"skills-ref": "workspace:*",
-		"valibot": "catalog:"
+		"skills-ref": "workspace:*"
 	},
 	"devDependencies": {
 		"tsdown": "catalog:",

@@ -16,6 +16,7 @@ export default defineConfig({
 		signals: 'src/cli/generate-relevance-signals.ts',
 	},
 	format: ['esm'],
+	external: ['hr-skills-build', 'skills-ref', '@clack/prompts'],
 	dts: true,
 	clean: true,
 });

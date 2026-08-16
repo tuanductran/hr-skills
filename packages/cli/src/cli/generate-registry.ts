@@ -12,11 +12,8 @@
 
 import { writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
+import { buildRegistry, loadRelevanceSignalTable } from 'hr-skills-build';
 import { ROOT_DIR } from 'skills-ref';
-import {
-	buildRegistry,
-	loadRelevanceSignalTable,
-} from '../../../hr-skills-build/src/registry/registry.js';
 
 async function generateRegistry(): Promise<void> {
 	const signalTable = await loadRelevanceSignalTable();
