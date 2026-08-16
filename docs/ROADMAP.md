@@ -101,16 +101,28 @@ Skills follow the Agent Skills open format and are distributed through:
 ```text
 hr-skills/
 │
-├── packages/
-│   ├── hr-skills-build/
-│   │   └── Validation, generation, CLI tooling
-│   │
-│   └── hr-skills-ref/
-│       └── Generic Agent Skills library
+├── apps/
+│   └── web/
+│       └── Public Next.js documentation and product surfaces
 │
+├── packages/
+│   ├── hr-skills/
+│   │   └── Publishable CLI executable for npx/bunx and local workflows
+│   ├── hr-skills-build/
+│   │   └── Validation, generation, registry, planner, runtime, evaluation, and build tooling
+│   ├── hr-skills-ref/
+│   │   └── Core Agent Skills library with client-safe and Bun/Node server surfaces
+│   └── hr-skills-tsdoc/
+│       └── TSDoc-compatible API documentation generator for public package surfaces
+
 ├── skills/
 │   └── hr-*/
 │       └── Domain-specific HR skills
+│
+├── playground/
+│   ├── next-app/
+│   └── vite-app/
+│       └── Experimental integration and smoke-test applications
 │
 ├── .agents/
 │   └── skills/
@@ -124,9 +136,12 @@ hr-skills/
 │
 └── docs/
     ├── ROADMAP.md
+    ├── api.md
     └── engineering/
         └── skill-matrix.md
 ```
+
+The root workspace is named `hr-skills-monorepo`. Package boundaries are intentional: browser-safe imports use `client` entrypoints, while Bun/Node filesystem and runtime integrations use `server` entrypoints. Generated API documentation is maintained by `hr-skills-tsdoc` and must be refreshed with `bun run api-docs` rather than edited manually.
 
 ---
 
@@ -394,7 +409,7 @@ Extend validation beyond the current structural/format checks
 
 Build the user-facing layer that turns the repository into a browsable product rather than only a repository of skills and infrastructure.
 
-Current delivery status: **Phase 7 is complete**. The public documentation foundation, registry explorer, planner playground, skill graph, runtime trace viewer, evaluation dashboard, release/changelog viewer, and developer-experience foundation are implemented and validated.
+Current delivery status: **Phase 7 is complete and hardened**. The public documentation foundation, registry explorer, planner playground, skill graph, runtime trace viewer, evaluation dashboard, release/changelog viewer, and developer-experience foundation are implemented and validated. The subsequent package architecture refactor, client/server boundary hardening, TSDoc generation, Tailwind semantic styling, URL-state fixes, not-found semantics, and expanded Playwright coverage are completion hardening for this phase, not a new product phase.
 
 #### 7.1 Web UI foundation
 
@@ -428,10 +443,20 @@ Completed:
 * Static generation for skill detail routes with server-side canonical data loading
 * Reusable UI components for skill cards, filters, results, navigation, Markdown content, and planner steps
 * Accessibility and mobile-first layout requirements, including keyboard navigation and responsive E2E coverage
+* TailwindCSS v4 semantic styling architecture with shared CSS layers rather than scattered custom styles
+* Stable browser-safe imports from the `client` surfaces of the build and reference packages
+* Automated TSDoc API generation and check coverage through `hr-skills-tsdoc`
+* CLI packaging and smoke-tested command surfaces for `hr-skills`, including npx/bunx-compatible bin metadata
+
+#### 7.4 Completion boundary
+
+Phase 7 provides a public web product and browser-safe library integration, but it does not provide a hosted HTTP service. The existence of `client` and `server` package exports, CLI commands, or Next.js server-side data loading must not be interpreted as completion of Phase 8. API contracts, route handlers, authentication, rate limiting, observability, and deployment concerns remain Phase 8 scope.
 
 ---
 
 ### Phase 8 — API & Services
+
+**Status: Not started as a service layer.** The repository already provides the underlying library implementations and stable package surfaces; this phase begins when those capabilities are exposed through versioned service interfaces.
 
 Expose the core registry, planner, runtime, and evaluation capabilities through stable service interfaces.
 
@@ -461,6 +486,8 @@ Expose the core registry, planner, runtime, and evaluation capabilities through 
 
 ### Phase 9 — Intelligent Agent Platform
 
+**Status: Not started.** This phase should follow Phase 8 so orchestration, approvals, audit trails, and policy enforcement can rely on stable service contracts.
+
 Turn HR Skills into an agentic platform for composing, running, and inspecting HR workflows.
 
 #### 9.1 Agent orchestration
@@ -487,6 +514,8 @@ Turn HR Skills into an agentic platform for composing, running, and inspecting H
 ---
 
 ### Phase 10 — Ecosystem & Community
+
+**Status: Not started.** Existing governance, integrations, and release automation are the foundation for this phase, not completion of its hosted ecosystem goals.
 
 Expand HR Skills from a single repository into a sustainable ecosystem with community contributions, interoperability, and long-term governance.
 
@@ -636,6 +665,7 @@ Potential directions:
 * Support additional AI platforms — see the Supported platforms table in
   [`docs/integrations/README.md`](integrations/README.md) for current 🟢/🟡 status
 * Build HR AI tooling ecosystem
+* Explore an HR/TA CV Builder that composes role- and locale-specific JSON templates from the existing skill ecosystem; this is a proposed product initiative, not part of Phase 7 or Phase 8 until separately scoped
 
 ---
 
@@ -669,4 +699,4 @@ Potential directions:
 
 ---
 
-Last updated: July 29, 2026
+Last updated: August 16, 2026
