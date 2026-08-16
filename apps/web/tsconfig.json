@@ -2,7 +2,7 @@
 	"compilerOptions": {
 		"target": "ES2022",
 		"lib": ["dom", "esnext"],
-		"jsx": "react-jsx",
+		"jsx": "preserve",
 		"module": "esnext",
 		"moduleResolution": "bundler",
 		"strict": true,

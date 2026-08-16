@@ -14,7 +14,7 @@ body:
       options:
         - Skill content (SKILL.md)
         - Validation tooling (hr-skills-build)
-        - skills-ref library
+        - hr-skills-ref library
         - CI / GitHub Actions
         - Documentation
     validations:

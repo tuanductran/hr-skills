@@ -92,6 +92,8 @@ function renderProse(raw: string): string {
 		.map((line) => line.replace(/^\s*\*\s?/, ''))
 		.join('\n')
 		.replaceAll(/\{@link\s+([^}]+)\}/g, '$1')
+		.replace(/^ +-/gm, '-')
+		.replaceAll('*', '\\*')
 		.trim();
 }
 

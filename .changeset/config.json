@@ -7,5 +7,5 @@
 	"access": "public",
 	"baseBranch": "main",
 	"updateInternalDependencies": "patch",
-	"ignore": ["hr-skills-build", "skills-ref"]
+	"ignore": ["hr-skills-web", "playground-next", "playground-vite"]
 }

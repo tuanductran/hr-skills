@@ -63,8 +63,8 @@ jobs:
       - name: Install dependencies
         run: bun ci
 
-      - name: Build skills-ref
-        run: bun run build --filter=skills-ref
+      - name: Build hr-skills-ref
+        run: bun run build --filter=hr-skills-ref
 
       - name: Determine changed skills
         id: changed

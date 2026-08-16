@@ -731,7 +731,7 @@ import { exponentialRetryPolicy } from 'hr-skills-build/server'
 ```
 
 Create a retry policy that uses exponential backoff:
-`delay = baseDelayMs * 2^(attempt - 1)`, capped at `maxDelayMs`.
+`delay = baseDelayMs \* 2^(attempt - 1)`, capped at `maxDelayMs`.
 
 Example with `baseDelayMs: 100`: attempt 1 → 100 ms, attempt 2 → 200 ms,
 attempt 3 → 400 ms, and so on.
@@ -1097,7 +1097,7 @@ Re-rank a skill's `relatedSkills` list by blending the static tag-overlap
 score with an observed co-selection rate from the signal index.
 
 Blend formula (deterministic, no floating-point non-determinism):
-  blendedScore = staticScore *(1 - OBSERVED_WEIGHT) + observedRate* OBSERVED_WEIGHT
+  blendedScore = staticScore \* (1 - OBSERVED_WEIGHT) + observedRate \* OBSERVED_WEIGHT
 
 where `staticScore` is 1.0 for the first item in the static list, decaying
 by 1/N for each subsequent position (a simple rank-to-score mapping that
@@ -1213,12 +1213,12 @@ import { searchSkills } from 'hr-skills-build/server'
 Search the generated Skill Registry by structured metadata.
 
 Ranking rule (see docs/engineering/search.md for the full explanation):
- 1. Each field match contributes `weight * similarity` to the skill's
+ 1. Each field match contributes `weight \* similarity` to the skill's
     score (`similarity` is always 1 for exact matches).
  2. A skill matching on more than one distinct field gets a small flat
     bonus per extra field (capped), since agreement across fields is a
     stronger discoverability signal than one big match.
- 3. A skill with at least one *exact* match gets a flat confidence bonus,
+ 3. A skill with at least one \*exact\* match gets a flat confidence bonus,
     so exact matches reliably outrank fuzzy-only matches.
  4. Ties are broken by number of distinct fields matched (more wins),
     then by skill ID ascending — so identical registry content always
@@ -1479,7 +1479,7 @@ const REGISTRY_SCHEMA_VERSION: 1
 import { discoverSkills } from 'hr-skills-build/server'
 ```
 
-Discover all `hr-*` skill directory names under `skills/`, sorted.
+Discover all `hr-\*` skill directory names under `skills/`, sorted.
 
 Does not verify `SKILL.md` exists in each directory — callers that need
 that guarantee (e.g. filtering out incomplete/in-progress skill folders)
@@ -2247,7 +2247,7 @@ import { SkillFieldMatch } from 'hr-skills-build/server'
 ```
 
 One matched field value for one skill, with enough detail to explain
-why* the skill matched — the raw ingredients of the result's score.
+why\* the skill matched — the raw ingredients of the result's score.
 
 ```ts
 interface SkillFieldMatch {
@@ -2376,10 +2376,10 @@ import { SelectionReason } from 'hr-skills-build/server'
 Why a skill was included in an execution plan. Read together with
 `ExecutionStep.rationale` for a human-readable explanation.
 
-Note the two that are easy to conflate: `'related-skill'` is a *capability*
+Note the two that are easy to conflate: `'related-skill'` is a \*capability\*
 match (the skill's declared capabilities partially/fuzzily overlap the
 requested one — see `matchCapabilityAgainstRegistry()` in planner.ts),
-while `'recommended-pairing'` comes from the *registry* `relatedSkills`
+while `'recommended-pairing'` comes from the \*registry\* `relatedSkills`
 graph (a different skill was already selected, and this one is commonly
 used alongside it). Despite the name, `'related-skill'` has nothing to do
 with `RegistryEntry.relatedSkills`.
@@ -2623,7 +2623,7 @@ import { StepExecutorFn } from 'hr-skills-build/server'
 
 A function that performs the actual work for a single execution step.
 
-The Runtime is deliberately agnostic about *what* a step does — invoking a
+The Runtime is deliberately agnostic about \*what\* a step does — invoking a
 skill, calling a model, running a tool, and so on are all the caller's
 responsibility. The Runtime only sequences calls to this function,
 threads context between them, and manages state/retries/events/tracing.
@@ -2822,7 +2822,7 @@ import { EvaluationCase } from 'hr-skills-build/server'
 A single evaluation dataset entry — a representative planning scenario the
 Planner and Runtime are expected to handle correctly.
 
-Datasets store the *input* (`intent`) only. The *expected output* is a
+Datasets store the \*input\* (`intent`) only. The \*expected output\* is a
 golden fixture (see `GoldenCaseResult`), generated once from an actual run
 against the real Skill Registry and committed to `eval/golden/`. This
 keeps the dataset human-authored and small, while expected outputs stay
@@ -3676,7 +3676,7 @@ const COPY_MARGIN: 0.06
 import { COPY_MIN_OTHER_SCORE } from 'hr-skills-build/server'
 ```
 
-Minimum absolute similarity to the *other* skill's purpose tokens
+Minimum absolute similarity to the \*other\* skill's purpose tokens
 required before a possible-copy finding is reported, so two skills that
 both score near-zero against everything don't trigger on margin alone.
 
@@ -4044,7 +4044,7 @@ function validateRelatedSkillsAgainstSignals(registry: { skills: readonly Pick<R
 import { validateFrontmatter } from 'hr-skills-build/server'
 ```
 
-Validate the frontmatter of a skill. *
+Validate the frontmatter of a skill. \*
 
 ```ts
 function validateFrontmatter(skillName: string, content: string, errors: SkillValidationIssue[]): void
@@ -4064,7 +4064,7 @@ function validateFrontmatter(skillName: string, content: string, errors: SkillVa
 import { validateRequiredSections } from 'hr-skills-build/server'
 ```
 
-Validate the required sections of a skill. *
+Validate the required sections of a skill. \*
 
 ```ts
 function validateRequiredSections(skillName: string, content: string, errors: SkillValidationIssue[]): void
@@ -4084,7 +4084,7 @@ function validateRequiredSections(skillName: string, content: string, errors: Sk
 import { validateContentLength } from 'hr-skills-build/server'
 ```
 
-Validate the content length of a skill. *
+Validate the content length of a skill. \*
 
 ```ts
 function validateContentLength(skillName: string, content: string, errors: SkillValidationIssue[]): void
@@ -4104,7 +4104,7 @@ function validateContentLength(skillName: string, content: string, errors: Skill
 import { validateLineCount } from 'hr-skills-build/server'
 ```
 
-Validate the line count of a skill. *
+Validate the line count of a skill. \*
 
 ```ts
 function validateLineCount(skillName: string, content: string, errors: SkillValidationIssue[]): void
@@ -4124,7 +4124,7 @@ function validateLineCount(skillName: string, content: string, errors: SkillVali
 import { validateSupportedTasks } from 'hr-skills-build/server'
 ```
 
-Validate the supported tasks of a skill. *
+Validate the supported tasks of a skill. \*
 
 ```ts
 function validateSupportedTasks(skillName: string, content: string, errors: SkillValidationIssue[]): void
@@ -4144,7 +4144,7 @@ function validateSupportedTasks(skillName: string, content: string, errors: Skil
 import { validateTips } from 'hr-skills-build/server'
 ```
 
-Validate the tips of a skill. *
+Validate the tips of a skill. \*
 
 ```ts
 function validateTips(skillName: string, content: string, errors: SkillValidationIssue[]): void
@@ -4164,7 +4164,7 @@ function validateTips(skillName: string, content: string, errors: SkillValidatio
 import { validateBlankLines } from 'hr-skills-build/server'
 ```
 
-Validate the blank lines of a skill. *
+Validate the blank lines of a skill. \*
 
 ```ts
 function validateBlankLines(skillName: string, content: string, errors: SkillValidationIssue[]): void
@@ -4486,7 +4486,7 @@ import { exponentialRetryPolicy } from 'hr-skills-build/client'
 ```
 
 Create a retry policy that uses exponential backoff:
-`delay = baseDelayMs * 2^(attempt - 1)`, capped at `maxDelayMs`.
+`delay = baseDelayMs \* 2^(attempt - 1)`, capped at `maxDelayMs`.
 
 Example with `baseDelayMs: 100`: attempt 1 → 100 ms, attempt 2 → 200 ms,
 attempt 3 → 400 ms, and so on.
@@ -4852,7 +4852,7 @@ Re-rank a skill's `relatedSkills` list by blending the static tag-overlap
 score with an observed co-selection rate from the signal index.
 
 Blend formula (deterministic, no floating-point non-determinism):
-  blendedScore = staticScore *(1 - OBSERVED_WEIGHT) + observedRate* OBSERVED_WEIGHT
+  blendedScore = staticScore \* (1 - OBSERVED_WEIGHT) + observedRate \* OBSERVED_WEIGHT
 
 where `staticScore` is 1.0 for the first item in the static list, decaying
 by 1/N for each subsequent position (a simple rank-to-score mapping that
@@ -4968,12 +4968,12 @@ import { searchSkills } from 'hr-skills-build/client'
 Search the generated Skill Registry by structured metadata.
 
 Ranking rule (see docs/engineering/search.md for the full explanation):
- 1. Each field match contributes `weight * similarity` to the skill's
+ 1. Each field match contributes `weight \* similarity` to the skill's
     score (`similarity` is always 1 for exact matches).
  2. A skill matching on more than one distinct field gets a small flat
     bonus per extra field (capped), since agreement across fields is a
     stronger discoverability signal than one big match.
- 3. A skill with at least one *exact* match gets a flat confidence bonus,
+ 3. A skill with at least one \*exact\* match gets a flat confidence bonus,
     so exact matches reliably outrank fuzzy-only matches.
  4. Ties are broken by number of distinct fields matched (more wins),
     then by skill ID ascending — so identical registry content always
@@ -5616,7 +5616,7 @@ import { SkillFieldMatch } from 'hr-skills-build/client'
 ```
 
 One matched field value for one skill, with enough detail to explain
-why* the skill matched — the raw ingredients of the result's score.
+why\* the skill matched — the raw ingredients of the result's score.
 
 ```ts
 interface SkillFieldMatch {
@@ -5745,10 +5745,10 @@ import { SelectionReason } from 'hr-skills-build/client'
 Why a skill was included in an execution plan. Read together with
 `ExecutionStep.rationale` for a human-readable explanation.
 
-Note the two that are easy to conflate: `'related-skill'` is a *capability*
+Note the two that are easy to conflate: `'related-skill'` is a \*capability\*
 match (the skill's declared capabilities partially/fuzzily overlap the
 requested one — see `matchCapabilityAgainstRegistry()` in planner.ts),
-while `'recommended-pairing'` comes from the *registry* `relatedSkills`
+while `'recommended-pairing'` comes from the \*registry\* `relatedSkills`
 graph (a different skill was already selected, and this one is commonly
 used alongside it). Despite the name, `'related-skill'` has nothing to do
 with `RegistryEntry.relatedSkills`.
@@ -5992,7 +5992,7 @@ import { StepExecutorFn } from 'hr-skills-build/client'
 
 A function that performs the actual work for a single execution step.
 
-The Runtime is deliberately agnostic about *what* a step does — invoking a
+The Runtime is deliberately agnostic about \*what\* a step does — invoking a
 skill, calling a model, running a tool, and so on are all the caller's
 responsibility. The Runtime only sequences calls to this function,
 threads context between them, and manages state/retries/events/tracing.
@@ -6191,7 +6191,7 @@ import { EvaluationCase } from 'hr-skills-build/client'
 A single evaluation dataset entry — a representative planning scenario the
 Planner and Runtime are expected to handle correctly.
 
-Datasets store the *input* (`intent`) only. The *expected output* is a
+Datasets store the \*input\* (`intent`) only. The \*expected output\* is a
 golden fixture (see `GoldenCaseResult`), generated once from an actual run
 against the real Skill Registry and committed to `eval/golden/`. This
 keeps the dataset human-authored and small, while expected outputs stay
@@ -6601,7 +6601,7 @@ import { discoverSkillNames } from 'hr-skills-ref/server'
 Discover all HR skill directory names in the `skills/` folder, sorted
 lexicographically. Only directories whose names begin with `"hr-"` are returned.
 
-This is hr-skills-ref's own copy of the same "discover hr-* directories"
+This is hr-skills-ref's own copy of the same "discover hr-\* directories"
 logic that also exists as `hr-skills-build`'s
 `shared/helpers.ts#discoverSkills()` and `registry/discovery.ts#getHrSkills()`.
 Kept separate deliberately — hr-skills-ref must not depend on

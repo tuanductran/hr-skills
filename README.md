@@ -146,8 +146,10 @@ hr-skills/
 │   ├── hr-performance-management/
 │   └── ...
 ├── packages/
-│   ├── hr-skills-build/             # Validation, generation & CLI tooling
-│   └── skills-ref/                  # TypeScript Agent Skills library
+│   ├── hr-skills/                   # Publishable CLI for npx/bunx
+│   ├── hr-skills-build/             # Validation, generation & runtime tooling
+│   ├── hr-skills-ref/               # Client-safe and Bun/Node Agent Skills library
+│   └── hr-skills-tsdoc/             # Multi-package TSDoc API generator
 ├── docs/
 │   ├── skill-matrix.md
 │   ├── ROADMAP.md
@@ -190,8 +192,10 @@ For additional scripts, see [`package.json`](package.json).
 
 | Package           | Purpose                                                                  |
 | ----------------- | ------------------------------------------------------------------------ |
-| `hr-skills-build` | Validation, matrix generation, metadata synchronization, and CLI tooling |
-| `skills-ref`      | TypeScript library for reading, parsing, and validating Agent Skills     |
+| `hr-skills`       | Publishable `npx hr-skills` / `bunx hr-skills` command-line package       |
+| `hr-skills-build` | Validation, matrix generation, metadata synchronization, and runtime tooling |
+| `hr-skills-ref`   | TypeScript library with explicit client and Bun/Node server surfaces     |
+| `hr-skills-tsdoc` | TSDoc-compatible API documentation generator for all public packages    |
 
 ## Contributing
 

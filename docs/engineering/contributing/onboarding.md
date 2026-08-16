@@ -10,9 +10,7 @@ where things live and why" before writing any code or content.
 HR Skills **[Existing]** is a Bun + Turborepo monorepo. Three kinds of things live in it:
 
 1. **The product** — `skills/hr-*/`, 146 domain-specific Agent Skill packages.
-2. **The tooling** — `packages/hr-skills-build/` (validation, matrix/registry generation,
-   planner, evaluation CLI) and `packages/hr-skills-ref/` (TypeScript library for reading,
-   validating, and generating prompts from skill files).
+2. **The tooling** — `packages/hr-skills/` (publishable CLI), `packages/hr-skills-build/` (validation, matrix/registry generation, planner, runtime, and evaluation), `packages/hr-skills-ref/` (client-safe and Bun/Node library for reading, validating, and generating prompts), and `packages/hr-skills-tsdoc/` (generated API documentation).
 3. **The meta layer** — `.agents/skills/`, a set of skills that describe how to maintain the
    repository itself (for example `hr-root-router-maintaining`, `hr-skills-maintaining`,
    `skill-vetter`). These are worth reading before your first PR since they encode conventions
@@ -37,8 +35,10 @@ listing for the full set), plus one **generated report** you should never hand-e
 | `docs/engineering/skill-matrix.md` | Generated — run `bun run matrix` | No, never hand-edit |
 | `registry/skills.json` | Generated — run `bun run registry` | No, never hand-edit |
 | `.claude-plugin/marketplace.json` | Generated — run `bun run sync` | No, never hand-edit |
-| `packages/hr-skills-build/` | Validation/CLI tooling source | Yes, via PR |
-| `packages/hr-skills-ref/` | Library source | Yes, via PR |
+| `packages/hr-skills/` | Publishable CLI source | Yes, via PR |
+| `packages/hr-skills-build/` | Validation/build/runtime tooling source | Yes, via PR |
+| `packages/hr-skills-ref/` | Client/server library source | Yes, via PR |
+| `packages/hr-skills-tsdoc/` | TSDoc API generator | Yes, via PR |
 | `.agents/skills/` | Meta-skills for maintaining the repo | Yes, read before contributing |
 
 All of the above is **[Existing]**, cross-checked against AGENTS.md's own project-structure
@@ -64,8 +64,7 @@ table and confirmed by inspecting the files on disk.
   or `examples/` directory — same validation rules as a new skill, no router change needed
   since the skill already exists in the routing table.
 - **Fix a factual or formatting error in an existing skill** — smallest, lowest-risk PR type.
-- **Improve tooling** in `packages/hr-skills-build` or `packages/hr-skills-ref` — requires
-  TypeScript and Bun familiarity; see AGENTS.md's "Project structure" table.
+- **Improve tooling** in `packages/hr-skills`, `packages/hr-skills-build`, `packages/hr-skills-ref`, or `packages/hr-skills-tsdoc` — requires TypeScript and Bun familiarity; read the package boundary and client/server guidance in AGENTS.md before editing.
 - **Improve documentation** — see `docs/engineering/contributing/workflow.md` for documentation
   maintenance conventions.
 

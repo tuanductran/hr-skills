@@ -64,7 +64,7 @@
       ],
     },
     {
-      groupName: 'skills-ref-devdeps',
+      groupName: 'hr-skills-ref-devdeps',
       matchPackageNames: [
         'tsdown',
       ],

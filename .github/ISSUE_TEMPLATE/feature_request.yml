@@ -15,7 +15,7 @@ body:
       options:
         - Existing skill content
         - Validation tooling (hr-skills-build)
-        - skills-ref library
+        - hr-skills-ref library
         - CI / GitHub Actions
         - Documentation
     validations:
