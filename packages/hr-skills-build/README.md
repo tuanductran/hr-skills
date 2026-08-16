@@ -80,7 +80,7 @@ Discovers all `skills/hr-*` directories and rebuilds generated references in `.c
 | `src/planner/` | Intent-to-execution-plan generation |
 | `src/runtime/` | Executes a generated plan against the registry |
 | `src/evaluation/` | Scenario-based evaluation harness |
-| `packages/cli/` | Interactive command-line entry points for discovery, recommendation, planning, execution, evaluation, and skill review |
+| `packages/hr-skills/` | Interactive command-line entry points for discovery, recommendation, planning, execution, evaluation, and skill review |
 
 ## Requirements
 

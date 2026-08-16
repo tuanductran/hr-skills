@@ -1,7 +1,6 @@
 import { constants } from 'node:fs';
 import { access, mkdir, writeFile } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
-import { ROOT_DIR } from 'skills-ref';
 import { type CliUsage, printUsageAndExit, runCli } from './cli-bootstrap.js';
 
 const USAGE: CliUsage = {
@@ -62,7 +61,7 @@ async function main(): Promise<void> {
 	if (!rawName || rawName.startsWith('-')) printUsageAndExit(USAGE);
 	const name = normalizeName(rawName);
 	if (!name) throw new Error('Skill name must contain at least one letter or number.');
-	const targetDir = resolve(ROOT_DIR, 'skills', name);
+	const targetDir = resolve(process.cwd(), 'skills', name);
 	const targetFile = join(targetDir, 'SKILL.md');
 	try {
 		await access(targetFile, constants.F_OK);

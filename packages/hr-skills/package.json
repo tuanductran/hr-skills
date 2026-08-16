@@ -1,15 +1,29 @@
 {
-	"name": "cli",
+	"name": "hr-skills",
 	"version": "0.0.0",
-	"private": true,
 	"description": "Command-line tools for discovering, validating, planning, evaluating, and executing HR Skills",
 	"type": "module",
+	"bin": {
+		"hr-skills": "./dist/bin/hr-skills.mjs"
+	},
+	"files": [
+		"dist",
+		"README.md",
+		"registry",
+		"skills"
+	],
+	"publishConfig": {
+		"access": "public"
+	},
+	"engines": {
+		"node": ">=20.19.0"
+	},
 	"license": "MIT",
 	"author": "Tuan Duc Tran",
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/tuanductran/hr-skills.git",
-		"directory": "packages/cli"
+		"directory": "packages/hr-skills"
 	},
 	"keywords": [
 		"hr",
@@ -19,13 +33,13 @@
 		"agents",
 		"cli"
 	],
-	"files": [
-		"dist"
-	],
 	"scripts": {
 		"build": "tsdown",
 		"dev": "tsdown --watch",
 		"typecheck": "tsc --noEmit",
+		"prepublishOnly": "bun run build",
+		"prepack": "bun scripts/prepare-package.ts",
+		"postpack": "bun scripts/prepare-package.ts --clean",
 		"discover": "bun src/cli/discover.ts",
 		"find": "bun src/cli/discover.ts",
 		"list": "bun src/cli/list.ts",
@@ -38,12 +52,11 @@
 		"registry": "bun src/cli/generate-registry.ts",
 		"signals": "bun src/cli/generate-relevance-signals.ts"
 	},
-	"dependencies": {
+	"dependencies": {},
+	"devDependencies": {
 		"@clack/prompts": "catalog:",
 		"hr-skills-build": "workspace:*",
-		"skills-ref": "workspace:*"
-	},
-	"devDependencies": {
+		"skills-ref": "workspace:*",
 		"tsdown": "catalog:",
 		"typescript": "catalog:"
 	}

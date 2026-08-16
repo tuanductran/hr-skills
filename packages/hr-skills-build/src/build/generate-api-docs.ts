@@ -343,7 +343,7 @@ async function main() {
 		'',
 	);
 	out.push(
-		'CLI entry points (`packages/cli`) and build entry points (`src/build/`) are process-entry scripts — they are not importable and are not covered here.',
+		'CLI entry points (`packages/hr-skills`) and build entry points (`src/build/`) are process-entry scripts — they are not importable and are not covered here.',
 		'',
 	);
 	out.push(

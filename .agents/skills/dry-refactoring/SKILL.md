@@ -31,7 +31,7 @@ bunx jscpd@5 packages --reporters ai --format typescript
 
 ## Where extracted code goes in this repo
 
-This repo already separates code by domain under `packages/hr-skills-build/src/{shared,validation,cli,planner,runtime,registry,search,build,evaluation}/` and `packages/skills-ref/src/`. Follow that structure — don't dump extracted helpers into whichever file happens to be open:
+This repo already separates code by domain under `packages/hr-skills/src/cli and packages/hr-skills-build/src/{shared,validation,planner,runtime,registry,search,build,evaluation}/` and `packages/skills-ref/src/`. Follow that structure — don't dump extracted helpers into whichever file happens to be open:
 
 - **Duplicated logic used by 2+ files in the same domain folder** (e.g. two files under `src/validation/`) → new file in that same folder, e.g. `src/validation/security-helpers.ts`, imported by both.
 - **Duplicated logic used across domain folders** (e.g. `src/cli/*` and `src/evaluation/*`) → `src/shared/`, alongside the existing `shared/constants.ts`, `shared/helpers.ts`, `shared/schema.ts`, `shared/types.ts`.

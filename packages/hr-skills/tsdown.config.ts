@@ -2,6 +2,7 @@ import { defineConfig } from 'tsdown';
 
 export default defineConfig({
 	entry: {
+		'bin/hr-skills': 'src/bin/hr-skills.ts',
 		'cli-bootstrap': 'src/cli/cli-bootstrap.ts',
 		discover: 'src/cli/discover.ts',
 		find: 'src/cli/discover.ts',
@@ -16,7 +17,6 @@ export default defineConfig({
 		signals: 'src/cli/generate-relevance-signals.ts',
 	},
 	format: ['esm'],
-	external: ['hr-skills-build', 'skills-ref', '@clack/prompts'],
 	dts: true,
 	clean: true,
 });

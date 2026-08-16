@@ -2,7 +2,7 @@
 
 > This is the routing index for agent workflows in this repository. The canonical, human-facing entry point is [`/AGENTS.md`](../AGENTS.md) at the repository root — keep that short; every workflow below lives in exactly one skill file here, not restated in either place.
 
-This repository is a Bun + Turborepo monorepo hosting HR AI skills for Claude Code and claude.ai. Each skill lives in `skills/hr-*/SKILL.md`.
+This repository is the `hr-skills-monorepo` Bun + Turborepo monorepo hosting HR AI skills for Claude Code and claude.ai. The publishable `hr-skills` package exposes the `hr-skills` npm executable; each source skill lives in `skills/hr-*/SKILL.md`.
 
 ## Critical rule
 
@@ -21,7 +21,7 @@ Never develop on `main` — branch from and open pull requests against `dev`.
 | Decide if a PR needs a changeset, or write one | [`skills/changeset/SKILL.md`](skills/changeset/SKILL.md) |
 | Write or review TypeScript in `packages/*` | [`skills/typescript/SKILL.md`](skills/typescript/SKILL.md) |
 | Configure or debug Biome lint/format rules | [`skills/biome/SKILL.md`](skills/biome/SKILL.md) |
-| Add/review CLI output (intro/spinner/note/outro) in `cli/*.ts` | [`skills/clack/SKILL.md`](skills/clack/SKILL.md) |
+| Add/review CLI output (intro/spinner/note/outro) in `packages/hr-skills/src/cli/*.ts` | [`skills/clack/SKILL.md`](skills/clack/SKILL.md) |
 | Detect copy-paste duplication in `packages/*` TypeScript source | [`skills/jscpd/SKILL.md`](skills/jscpd/SKILL.md) |
 | Refactor duplicated code found by jscpd (extract function/module/constant/type) | [`skills/dry-refactoring/SKILL.md`](skills/dry-refactoring/SKILL.md) |
 | Define or validate a schema with Valibot | [`skills/valibot/SKILL.md`](skills/valibot/SKILL.md) |
@@ -38,5 +38,6 @@ For the full required structure, frontmatter rules, and pre-publish checklist, l
 
 ## Workspace packages
 
+- `packages/hr-skills` — publishable `hr-skills` binary for `npx hr-skills` and `bunx hr-skills`
 - `packages/hr-skills-build` — validation, sync, registry/planner/runtime generation, and packaging tooling
 - `packages/skills-ref` — TypeScript library for reading and validating skill files

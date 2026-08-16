@@ -2,7 +2,7 @@
 
 ## Project overview
 
-`hr-skills` is a Bun + Turborepo monorepo of domain-specific Agent Skills for HR and talent acquisition, distributed for Claude Code and claude.ai. Each skill lives at `skills/hr-*/SKILL.md`. Two internal TypeScript packages, `packages/hr-skills-build` and `packages/skills-ref`, validate, sync, and package the skills. Generated artifacts — `docs/engineering/skill-matrix.md`, `registry/skills.json`, `.claude-plugin/marketplace.json` — are derived from skill frontmatter and must never be hand-edited; regenerate them with the corresponding `bun run` command instead.
+`hr-skills-monorepo` is a Bun + Turborepo monorepo of domain-specific Agent Skills for HR and talent acquisition, distributed for Claude Code and claude.ai. Each skill lives at `skills/hr-*/SKILL.md`. The publishable `hr-skills` package provides the `hr-skills` npm executable; `packages/hr-skills-build` and `packages/skills-ref` provide the internal TypeScript library and tooling layers. Generated artifacts — `docs/engineering/skill-matrix.md`, `registry/skills.json`, `.claude-plugin/marketplace.json` — are derived from skill frontmatter and must never be hand-edited; regenerate them with the corresponding `bun run` command instead.
 
 This file is the canonical, tool-agnostic entry point for both human contributors and AI agents. `CLAUDE.md` is a symlink to this file — edit `AGENTS.md` only. The detailed, day-to-day workflow guidance this file used to duplicate now lives in [`.agents/`](.agents/AGENTS.md) — see [Where things live](#where-things-live) below.
 
@@ -17,13 +17,14 @@ This file is the canonical, tool-agnostic entry point for both human contributor
 
 | Branch | Purpose | Direct commits |
 |--------|---------|----------------|
-| `main` | Publishing (`npx skills add tuanductran/hr-skills`) | Forbidden |
+| `main` | Publishing (`npx hr-skills --help`) | Forbidden |
 | `dev` | Development, tests, experiments | Via PR only |
 
 ## Quick start
 
 ```bash
 bun install          # Install all dependencies (run once, or after package changes)
+npx hr-skills --help # Run the published CLI without a global install
 bun run validate      # Validate all skill SKILL.md files
 bun run test          # Run tests across workspace packages
 ```
@@ -44,7 +45,7 @@ This file stays intentionally short. Everything below is a **workflow**, not a o
 | Security review of skill content | [`.agents/skills/skill-vetter/SKILL.md`](.agents/skills/skill-vetter/SKILL.md) |
 | Whether a change needs a changeset | [`.agents/skills/changeset/SKILL.md`](.agents/skills/changeset/SKILL.md) |
 | TypeScript, Biome, and Valibot conventions in `packages/*` | [`.agents/skills/typescript/SKILL.md`](.agents/skills/typescript/SKILL.md), [`.agents/skills/biome/SKILL.md`](.agents/skills/biome/SKILL.md), [`.agents/skills/valibot/SKILL.md`](.agents/skills/valibot/SKILL.md) |
-| CLI output patterns (`@clack/prompts`) in `src/cli/*.ts` | [`.agents/skills/clack/SKILL.md`](.agents/skills/clack/SKILL.md) |
+| CLI output patterns (`@clack/prompts`) in `packages/hr-skills/src/cli/*.ts` | [`.agents/skills/clack/SKILL.md`](.agents/skills/clack/SKILL.md) |
 | Detecting and refactoring copy-paste duplication in `packages/*` | [`.agents/skills/jscpd/SKILL.md`](.agents/skills/jscpd/SKILL.md), [`.agents/skills/dry-refactoring/SKILL.md`](.agents/skills/dry-refactoring/SKILL.md) |
 | Everything above, indexed in one place | [`.agents/AGENTS.md`](.agents/AGENTS.md) |
 
@@ -66,7 +67,8 @@ When you add a new skill directory (for example `skills/hr-new-skill/SKILL.md`),
 | `docs/engineering/registry.md` | Skill Registry architecture, schema, and extension guide |
 | `registry/skills.json` | Generated machine-readable skill registry — do not edit manually, run `bun run registry` |
 | `.claude-plugin/marketplace.json` | Generated marketplace metadata synced from skill frontmatter |
+| `packages/hr-skills` | Publishable `hr-skills` executable package for npx/bunx and local CLI workflows |
 | `packages/hr-skills-build` | Build and maintenance tooling — validation, sync, registry/planner/runtime generation, and packaging |
 | `packages/skills-ref` | TypeScript library for reading, validating, and generating prompts from skill files |
 
-This repository uses Bun workspaces with Turborepo task orchestration; both packages above live under `packages/*`, and their build outputs are cached through Turborepo based on `turbo.jsonc`.
+This repository uses Bun workspaces with Turborepo task orchestration; the packages above live under `packages/*`, and their build outputs are cached through Turborepo based on `turbo.jsonc`.

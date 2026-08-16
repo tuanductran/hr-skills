@@ -235,7 +235,7 @@ artifact.  No change to the default registry output.
 
 - `src/search/relevance-signals.ts` — pure signal functions and `RelevanceSignalTable`
   type.
-- `packages/cli/src/cli/generate-relevance-signals.ts` — CLI entry point.
+- `packages/hr-skills/src/cli/generate-relevance-signals.ts` — CLI entry point.
 - `evaluation-datasets.ts` — `loadAllGoldenFixtures()` added.
 - `constants.ts` — `RELEVANCE_SIGNALS_PATH` added.
 - `registry.ts` — `buildRegistry(signalTable?)` — optional signal integration,

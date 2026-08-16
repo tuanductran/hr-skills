@@ -43,15 +43,16 @@
         "tailwindcss": "^4.3.3",
       },
     },
-    "packages/cli": {
-      "name": "cli",
+    "packages/hr-skills": {
+      "name": "hr-skills",
       "version": "0.0.0",
-      "dependencies": {
+      "bin": {
+        "hr-skills": "./dist/bin/hr-skills.mjs",
+      },
+      "devDependencies": {
         "@clack/prompts": "catalog:",
         "hr-skills-build": "workspace:*",
         "skills-ref": "workspace:*",
-      },
-      "devDependencies": {
         "tsdown": "catalog:",
         "typescript": "catalog:",
       },
@@ -825,8 +826,6 @@
 
     "cheerio-select": ["cheerio-select@2.1.0", "", { "dependencies": { "boolbase": "^1.0.0", "css-select": "^5.1.0", "css-what": "^6.1.0", "domelementtype": "^2.3.0", "domhandler": "^5.0.3", "domutils": "^3.0.1" } }, "sha512-9v9kG0LvzrlcungtnJtpGNxY+fzECQKhK4EGJX2vByejiMX84MFNQw4UxPJl3bFbTMw+Dfs37XaIkCwTZfLh4g=="],
 
-    "cli": ["cli@workspace:packages/cli"],
-
     "client-only": ["client-only@0.0.1", "", {}, "sha512-IV3Ou0jSMzZrd3pZ48nLkT9DA7Ag1pnPzaiQhpW7c3RbcqqzvzzVu+L8gfqMp/8IM2MQtSiqaCxrrcfu8I8rMA=="],
 
     "cliui": ["cliui@9.0.1", "", { "dependencies": { "string-width": "^7.2.0", "strip-ansi": "^7.1.0", "wrap-ansi": "^9.0.0" } }, "sha512-k7ndgKhwoQveBL+/1tqGJYNz097I7WOvwbmmU2AR5+magtbjPWQTS1C5vzGkBC8Ym8UWRzfKUzUUqFLypY4Q+w=="],
@@ -976,6 +975,8 @@
     "graceful-fs": ["graceful-fs@4.2.11", "", {}, "sha512-RbJ5/jmFcNNCcDV5o9eTnBLJ/HszWV0P73bc+Ff4nS/rJj+YaS6IGyiOL0VoBYX+l1Wrl3k63h/KrH+nhJ0XvQ=="],
 
     "hookable": ["hookable@6.1.1", "", {}, "sha512-U9LYDy1CwhMCnprUfeAZWZGByVbhd54hwepegYTK7Pi5NvqEj63ifz5z+xukznehT7i6NIZRu89Ay1AZmRsLEQ=="],
+
+    "hr-skills": ["hr-skills@workspace:packages/hr-skills"],
 
     "hr-skills-build": ["hr-skills-build@workspace:packages/hr-skills-build"],
 
