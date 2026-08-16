@@ -1,4 +1,4 @@
-import { ALLOWED_TOOLS_KEY } from './constants.js';
+import { ALLOWED_TOOLS_KEY } from './client/constants.js';
 import type { SkillProperties } from './schema.js';
 
 /**

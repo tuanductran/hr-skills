@@ -13,7 +13,7 @@
 import { writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { buildRegistry, loadRelevanceSignalTable } from 'hr-skills-build';
-import { ROOT_DIR } from 'skills-ref';
+import { ROOT_DIR } from 'hr-skills-ref';
 
 async function generateRegistry(): Promise<void> {
 	const signalTable = await loadRelevanceSignalTable();

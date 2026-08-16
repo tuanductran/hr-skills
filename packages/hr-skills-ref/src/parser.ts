@@ -1,8 +1,8 @@
 import { parseDocument } from 'yaml';
 
-import { FRONTMATTER_DELIMITER } from './constants.js';
+import { FRONTMATTER_DELIMITER } from './client/constants.js';
+import { sanitizeYamlValue } from './client/helpers.js';
 import { ParseError } from './errors.js';
-import { sanitizeYamlValue } from './helpers.js';
 
 /**
  * Parse the YAML frontmatter block from a `SKILL.md` file.

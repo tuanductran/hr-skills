@@ -1,0 +1,37 @@
+{
+	"name": "hr-skills-tsdoc",
+	"version": "0.0.0",
+	"private": true,
+	"description": "TSDoc-compatible API documentation generator for the HR Skills workspace",
+	"type": "module",
+	"license": "MIT",
+	"author": "Tuan Duc Tran",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/tuanductran/hr-skills.git",
+		"directory": "packages/hr-skills-tsdoc"
+	},
+	"exports": {
+		".": {
+			"types": "./dist/generate-api-docs.d.mts",
+			"default": "./dist/generate-api-docs.mjs"
+		}
+	},
+	"files": [
+		"dist"
+	],
+	"scripts": {
+		"build": "tsdown",
+		"dev": "tsdown --watch",
+		"api-docs": "bun src/generate-api-docs.ts",
+		"api-docs:check": "bun src/generate-api-docs.ts --check",
+		"typecheck": "tsc --noEmit"
+	},
+	"dependencies": {
+		"ts-morph": "catalog:"
+	},
+	"devDependencies": {
+		"tsdown": "catalog:",
+		"typescript": "catalog:"
+	}
+}

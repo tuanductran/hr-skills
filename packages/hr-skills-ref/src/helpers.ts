@@ -75,10 +75,10 @@ export function createSkillBlock(skillDir: string): string {
  * Discover all HR skill directory names in the `skills/` folder, sorted
  * lexicographically. Only directories whose names begin with `"hr-"` are returned.
  *
- * This is skills-ref's own copy of the same "discover hr-* directories"
+ * This is hr-skills-ref's own copy of the same "discover hr-* directories"
  * logic that also exists as `hr-skills-build`'s
  * `shared/helpers.ts#discoverSkills()` and `registry/discovery.ts#getHrSkills()`.
- * Kept separate deliberately — skills-ref must not depend on
+ * Kept separate deliberately — hr-skills-ref must not depend on
  * hr-skills-build (it's the lower-level package the other one builds on)
  * — not an accidental duplication to merge.
  *

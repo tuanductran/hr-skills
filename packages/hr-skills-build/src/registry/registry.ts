@@ -30,7 +30,7 @@ import {
 	reRankRelatedSkills,
 } from '../search/relevance-signals.js';
 import type { Registry, RegistryEntry, RelevanceSignalTable } from '../shared/types.js';
-import { SKILLS_DIR } from 'skills-ref';
+import { SKILLS_DIR } from 'hr-skills-ref';
 
 const HR_PREFIX_REGEX = /^hr-/;
 

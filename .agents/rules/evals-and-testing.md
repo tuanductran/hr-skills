@@ -13,7 +13,7 @@ Use these conventions when working with the evaluation suite and test files.
 
 Keep `packages/*/test/` focused on TypeScript behavior.
 
-- prefer tests that exercise `packages/hr-skills-build/src/` and `packages/skills-ref/src/` — parsing helpers, validation logic, registry generation, planner/runtime logic
+- prefer tests that exercise `packages/hr-skills-build/src/` and `packages/hr-skills-ref/src/` — parsing helpers, validation logic, registry generation, planner/runtime logic
 - do not add test files whose only purpose is to lock Markdown wording, README text, or skill metadata phrasing
 - prefer eval datasets for validating skill content quality; add a thin TypeScript test only when the content directly supports executable behavior
 - if a check does not need TypeScript execution to prove value, it should become an eval dataset entry, not a standalone test file

@@ -1,6 +1,6 @@
 ---
 name: jscpd
-description: "Copy-paste detector for the hr-skills TypeScript packages (packages/hr-skills-build, packages/skills-ref). Run jscpd to detect duplicated code and measure duplication percentages before refactoring."
+description: "Copy-paste detector for the hr-skills TypeScript packages (packages/hr-skills-build, packages/hr-skills-ref). Run jscpd to detect duplicated code and measure duplication percentages before refactoring."
 metadata:
   author: Tuan Duc Tran
   version: "1.0.0"
@@ -60,7 +60,7 @@ Full option reference: `bunx jscpd@5 --help`, or the [upstream configuration doc
 
 ## When to run
 
-- Before opening a PR that adds or edits code under `packages/hr-skills-build/src/**` or `packages/skills-ref/src/**`
+- Before opening a PR that adds or edits code under `packages/hr-skills-build/src/**` or `packages/hr-skills-ref/src/**`
 - After a large refactor, to confirm clones were actually eliminated (re-run, don't assume)
 - Optionally wired into `lefthook.yml` as a pre-push (not pre-commit — it's slower than `biome`) step; see [CI and hooks](https://jscpd.dev/ci-and-hooks) for the pattern this repo's `lefthook.yml` follows for other tools
 

@@ -1,4 +1,4 @@
-# skills-ref
+# hr-skills-ref
 
 Reference library for Agent Skills — validate, read, and generate prompts from `SKILL.md` files.
 
@@ -11,9 +11,21 @@ bun run build
 
 ## Package outputs
 
-The package builds an ESM library from `src/index.ts` and emits the corresponding TypeScript declaration files alongside the compiled output.
+The package builds three ESM surfaces from `src/index.ts`, `src/client/index.ts`, and `src/server/index.ts`, emitting corresponding TypeScript declaration files alongside the compiled output.
 
-The published package contents are limited to `dist/`. The package doesn't expose a command-line interface.
+The published package contents are limited to `dist/`. The package does not expose a command-line interface. The root export is the Bun/Node server surface; browser-safe consumers must import `hr-skills-ref/client`.
+
+## Import surfaces
+
+```typescript
+// Bun/Node: filesystem-backed APIs
+import { readProperties, toPrompt, validate } from 'hr-skills-ref/server';
+
+// Browser-safe: parsing, schemas, models, and pure transforms
+import { parseFrontmatter, SkillPropertiesSchema, toDict } from 'hr-skills-ref/client';
+```
+
+The client surface never imports `node:fs`, `node:path`, `node:os`, or process-derived workspace paths. The server surface uses standard `node:` APIs supported by Bun.
 
 ## Scripts
 
@@ -27,7 +39,7 @@ The published package contents are limited to `dist/`. The package doesn't expos
 ## Programmatic API
 
 ```typescript
-import { readProperties, toPrompt, validate } from "skills-ref";
+import { readProperties, toPrompt, validate } from 'hr-skills-ref';
 
 // Validate a skill directory
 const errors = validate("skills/hr-recruiting");

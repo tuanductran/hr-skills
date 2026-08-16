@@ -2,7 +2,7 @@
 
 ## Project overview
 
-`hr-skills-monorepo` is a Bun + Turborepo monorepo of domain-specific Agent Skills for HR and talent acquisition, distributed for Claude Code and claude.ai. Each skill lives at `skills/hr-*/SKILL.md`. The publishable `hr-skills` package provides the `hr-skills` npm executable; `packages/hr-skills-build` and `packages/skills-ref` provide the internal TypeScript library and tooling layers. Generated artifacts — `docs/engineering/skill-matrix.md`, `registry/skills.json`, `.claude-plugin/marketplace.json` — are derived from skill frontmatter and must never be hand-edited; regenerate them with the corresponding `bun run` command instead.
+`hr-skills-monorepo` is a Bun + Turborepo monorepo of domain-specific Agent Skills for HR and talent acquisition, distributed for Claude Code and claude.ai. Each skill lives at `skills/hr-*/SKILL.md`. The publishable `hr-skills` package provides the `hr-skills` npm executable; `packages/hr-skills-build` and `packages/hr-skills-ref` provide the TypeScript library surfaces, while `packages/hr-skills-tsdoc` owns multi-package TSDoc API generation. Generated artifacts — `docs/engineering/skill-matrix.md`, `registry/skills.json`, `.claude-plugin/marketplace.json` — are derived from skill frontmatter and must never be hand-edited; regenerate them with the corresponding `bun run` command instead.
 
 This file is the canonical, tool-agnostic entry point for both human contributors and AI agents. `CLAUDE.md` is a symlink to this file — edit `AGENTS.md` only. The detailed, day-to-day workflow guidance this file used to duplicate now lives in [`.agents/`](.agents/AGENTS.md) — see [Where things live](#where-things-live) below.
 
@@ -69,6 +69,7 @@ When you add a new skill directory (for example `skills/hr-new-skill/SKILL.md`),
 | `.claude-plugin/marketplace.json` | Generated marketplace metadata synced from skill frontmatter |
 | `packages/hr-skills` | Publishable `hr-skills` executable package for npx/bunx and local CLI workflows |
 | `packages/hr-skills-build` | Build and maintenance tooling — validation, sync, registry/planner/runtime generation, and packaging |
-| `packages/skills-ref` | TypeScript library for reading, validating, and generating prompts from skill files |
+| `packages/hr-skills-ref` | TypeScript library with explicit `client` and Bun/Node `server` surfaces for reading and validating skill files |
+| `packages/hr-skills-tsdoc` | TSDoc-compatible API generator for all public package surfaces |
 
 This repository uses Bun workspaces with Turborepo task orchestration; the packages above live under `packages/*`, and their build outputs are cached through Turborepo based on `turbo.jsonc`.

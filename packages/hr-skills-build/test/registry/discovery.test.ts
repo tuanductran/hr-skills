@@ -3,7 +3,7 @@ import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { getHrSkills } from '../../src/registry/discovery.js';
 import { HR_SKILL_PREFIX } from '../../src/shared/constants.js';
-import { SKILLS_DIR } from 'skills-ref'
+import { SKILLS_DIR } from 'hr-skills-ref'
 
 describe('getHrSkills()', () => {
 	it('returns at least one skill', async () => {

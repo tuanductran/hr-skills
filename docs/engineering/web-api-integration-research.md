@@ -35,6 +35,6 @@
 
 ## Compatibility fixes discovered during implementation
 
-- `skills-ref` previously used `import.meta.dirname` for `ROOT_DIR`; Next's server bundle supplied undefined. It now derives the repository root from `process.cwd()` and the presence of `skills/`.
+- `hr-skills-ref` previously used `import.meta.dirname` for `ROOT_DIR`; Next's server bundle supplied undefined. It now derives the repository root from `process.cwd()` and the presence of `skills/`.
 - `hr-skills-build` previously used `import.meta.dirname` in `shared/paths.ts`; it now derives evaluation paths from `ROOT_DIR`.
 - `hr-skills-build` `readSkill()` previously called `Bun.file(...).text()`, which failed when Next collected server page data under Node. It now uses `node:fs/promises` `readFile`, preserving Bun compatibility and making the server API usable by Next.

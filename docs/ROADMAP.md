@@ -105,7 +105,7 @@ hr-skills/
 │   ├── hr-skills-build/
 │   │   └── Validation, generation, CLI tooling
 │   │
-│   └── skills-ref/
+│   └── hr-skills-ref/
 │       └── Generic Agent Skills library
 │
 ├── skills/
@@ -522,7 +522,7 @@ HR Skills uses a multi-layer validation architecture.
 Provided by:
 
 ```text
-skills-ref
+hr-skills-ref
 ```
 
 Responsibilities:

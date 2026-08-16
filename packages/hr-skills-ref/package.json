@@ -1,16 +1,15 @@
 {
-	"name": "skills-ref",
+	"name": "hr-skills-ref",
 	"version": "0.0.0",
-	"private": true,
 	"description": "Reference library for Agent Skills — validate, read, and generate prompts from SKILL.md files",
 	"type": "module",
 	"license": "MIT",
 	"author": "Tuan Duc Tran",
-	"homepage": "https://github.com/tuanductran/hr-skills/tree/main/packages/skills-ref#readme",
+	"homepage": "https://github.com/tuanductran/hr-skills/tree/main/packages/hr-skills-ref#readme",
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/tuanductran/hr-skills.git",
-		"directory": "packages/skills-ref"
+		"directory": "packages/hr-skills-ref"
 	},
 	"bugs": {
 		"url": "https://github.com/tuanductran/hr-skills/issues"
@@ -32,6 +31,14 @@
 		".": {
 			"types": "./dist/index.d.mts",
 			"default": "./dist/index.mjs"
+		},
+		"./client": {
+			"types": "./dist/client/index.d.mts",
+			"default": "./dist/client/index.mjs"
+		},
+		"./server": {
+			"types": "./dist/server/index.d.mts",
+			"default": "./dist/server/index.mjs"
 		}
 	},
 	"files": [

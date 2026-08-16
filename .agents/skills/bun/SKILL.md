@@ -101,7 +101,7 @@ Repository tooling responsible for:
 - synchronizing repository metadata
 - maintaining repository conventions
 
-### skills-ref
+### hr-skills-ref
 
 Reusable library responsible for:
 

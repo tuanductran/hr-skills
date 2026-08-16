@@ -1,13 +1,13 @@
 ---
 paths:
   - packages/hr-skills-build/src/**/*.ts
-  - packages/skills-ref/src/**/*.ts
+  - packages/hr-skills-ref/src/**/*.ts
 ---
 
 # Skill validation development rules
 
 Use these conventions when writing or extending skill validation logic in
-`packages/hr-skills-build/src/` and `packages/skills-ref/src/`.
+`packages/hr-skills-build/src/` and `packages/hr-skills-ref/src/`.
 
 ## Module structure
 
@@ -36,7 +36,7 @@ export function validate(input: unknown): MyType {
 
 - use Valibot for schema definition and validation (see `.agents/skills/valibot/SKILL.md`)
 - use `@clack/prompts` for CLI output in `packages/hr-skills/src/cli/*` (see `.agents/skills/clack/SKILL.md`)
-- prefer shared helpers in `packages/skills-ref/src/` for skill reading and validation
+- prefer shared helpers in `packages/hr-skills-ref/src/` for skill reading and validation
 - prefer shared helpers in `packages/hr-skills-build/src/shared/` for build utilities
 - keep modules focused — one responsibility per file
 

@@ -23,11 +23,4 @@
  * pure parts of `shared` — see `./index.client.ts`.
  */
 
-export * from './docs/index.js';
-export * from './evaluation/index.js';
-export * from './planner/index.js';
-export * from './registry/index.js';
-export * from './runtime/index.js';
-export * from './search/index.js';
-export * from './shared/index.js';
-export * from './validation/index.js';
+export * from './server/index.js';

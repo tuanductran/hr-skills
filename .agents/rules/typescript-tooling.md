@@ -16,7 +16,7 @@ Use the repo's TypeScript tooling contract when changing code or developer workf
 - run `bun run format` (Biome format with write) to auto-fix formatting only
 - prefer typed changes that continue to pass `bun run typecheck`
 - update tests in `packages/*/test/**/*.test.ts` when a tooling or contract change affects observable behavior
-- prefer shared helpers already in `packages/skills-ref/src/` and `packages/hr-skills-build/src/shared/` over duplicating logic
+- prefer shared helpers already in `packages/hr-skills-ref/src/` and `packages/hr-skills-build/src/shared/` over duplicating logic
 - do not create a new helper when a call site has a materially different contract or would become less clear than local explicit code
 - prefer Valibot for schema definition and validation (see `.agents/skills/valibot/SKILL.md`)
 - prefer `@clack/prompts` for CLI output in `packages/hr-skills/src/cli/*` (see `.agents/skills/clack/SKILL.md`)

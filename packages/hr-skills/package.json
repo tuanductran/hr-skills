@@ -56,7 +56,7 @@
 	"devDependencies": {
 		"@clack/prompts": "catalog:",
 		"hr-skills-build": "workspace:*",
-		"skills-ref": "workspace:*",
+		"hr-skills-ref": "workspace:*",
 		"tsdown": "catalog:",
 		"typescript": "catalog:"
 	}

@@ -52,7 +52,7 @@
       "devDependencies": {
         "@clack/prompts": "catalog:",
         "hr-skills-build": "workspace:*",
-        "skills-ref": "workspace:*",
+        "hr-skills-ref": "workspace:*",
         "tsdown": "catalog:",
         "typescript": "catalog:",
       },
@@ -62,7 +62,7 @@
       "version": "0.0.0",
       "dependencies": {
         "@clack/prompts": "catalog:",
-        "skills-ref": "workspace:*",
+        "hr-skills-ref": "workspace:*",
         "tsdown": "catalog:",
         "valibot": "catalog:",
         "yaml": "catalog:",
@@ -71,8 +71,8 @@
         "ts-morph": "catalog:",
       },
     },
-    "packages/skills-ref": {
-      "name": "skills-ref",
+    "packages/hr-skills-ref": {
+      "name": "hr-skills-ref",
       "version": "0.0.0",
       "dependencies": {
         "valibot": "catalog:",
@@ -80,6 +80,17 @@
       },
       "devDependencies": {
         "tsdown": "catalog:",
+      },
+    },
+    "packages/hr-skills-tsdoc": {
+      "name": "hr-skills-tsdoc",
+      "version": "0.0.0",
+      "dependencies": {
+        "ts-morph": "catalog:",
+      },
+      "devDependencies": {
+        "tsdown": "catalog:",
+        "typescript": "catalog:",
       },
     },
     "playground/next-app": {
@@ -980,6 +991,10 @@
 
     "hr-skills-build": ["hr-skills-build@workspace:packages/hr-skills-build"],
 
+    "hr-skills-ref": ["hr-skills-ref@workspace:packages/hr-skills-ref"],
+
+    "hr-skills-tsdoc": ["hr-skills-tsdoc@workspace:packages/hr-skills-tsdoc"],
+
     "hr-skills-web": ["hr-skills-web@workspace:apps/web"],
 
     "html-link-extractor": ["html-link-extractor@1.0.5", "", { "dependencies": { "cheerio": "^1.0.0-rc.10" } }, "sha512-ADd49pudM157uWHwHQPUSX4ssMsvR/yHIswOR5CUfBdK9g9ZYGMhVSE6KZVHJ6kCkR0gH4htsfzU6zECDNVwyw=="],
@@ -1341,8 +1356,6 @@
     "signal-exit": ["signal-exit@4.1.0", "", {}, "sha512-bzyZ1e88w9O1iNJbKnOlvYTrWPDl46O1bG0D3XInv+9tkPrxrN8jUUTiFlDkkmKWgn1M6CfIA13SuGqOa9Korw=="],
 
     "sisteransi": ["sisteransi@1.0.5", "", {}, "sha512-bLGGlR1QxBcynn2d5YmDX4MGjlZvy2MRBDRNHLJ8VI6l6+9FUiyTFNJ0IveOSP0bcXgVDPRcfGqA0pjaqUpfVg=="],
-
-    "skills-ref": ["skills-ref@workspace:packages/skills-ref"],
 
     "slash": ["slash@3.0.0", "", {}, "sha512-g9Q1haeby36OSStwb4ntCGGGaKsaVSjQ68fBxoQcutl5fS1vuY18H3wSt3jFyFtrkx+Kz0V1G85A4MyAdDMi2Q=="],
 

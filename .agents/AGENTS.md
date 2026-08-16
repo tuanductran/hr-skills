@@ -40,4 +40,5 @@ For the full required structure, frontmatter rules, and pre-publish checklist, l
 
 - `packages/hr-skills` — publishable `hr-skills` binary for `npx hr-skills` and `bunx hr-skills`
 - `packages/hr-skills-build` — validation, sync, registry/planner/runtime generation, and packaging tooling
-- `packages/skills-ref` — TypeScript library for reading and validating skill files
+- `packages/hr-skills-ref` — client-safe parsing plus Bun/Node server APIs for reading and validating skill files
+- `packages/hr-skills-tsdoc` — TSDoc-compatible API documentation generator for all public package surfaces

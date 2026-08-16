@@ -32,7 +32,7 @@ Optimize for maintainable workflow speed, not theoretical micro-optimizations.
 
 - rely on Turborepo caching — avoid bypassing `turbo run` with direct `bun run` calls unless you need cache-busting
 - avoid duplicate repo walks when a shared helper can provide the file list once
-- prefer shared helpers in `packages/skills-ref/src/` for skill reading/validation and in `packages/hr-skills-build/src/shared/` for build utilities
+- prefer shared helpers in `packages/hr-skills-ref/src/` for skill reading/validation and in `packages/hr-skills-build/src/shared/` for build utilities
 - keep shell wrappers thin so TypeScript remains the single source of behavior
 - prefer targeted `bun test <file>` runs before full `bun run test` while iterating
 - keep eval datasets focused; each new case should earn its runtime cost

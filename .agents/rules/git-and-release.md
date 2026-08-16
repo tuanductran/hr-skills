@@ -105,5 +105,5 @@ See `.agents/skills/changeset/SKILL.md` for guidance on when and how.
 | Fix validation bug | `fix/validate-frontmatter` |
 | Update CHANGELOG | `docs/changelog-update` |
 | Add CI workflow step | `ci/validate-on-push` |
-| Add test coverage | `test/skills-ref-schema` |
+| Add test coverage | `test/hr-skills-ref-schema` |
 | Bump dev dependencies | `chore/bump-dev-deps` |

@@ -1,6 +1,6 @@
 import { join } from 'node:path';
 
-import { ROOT_DIR } from 'skills-ref';
+import { ROOT_DIR } from 'hr-skills-ref';
 
 /**
  * Node-only filesystem path constants.

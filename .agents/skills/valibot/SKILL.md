@@ -1,6 +1,6 @@
 ---
 name: valibot
-description: "Repository guidance for using Valibot as the schema validation library within the hr-skills monorepo. Use when writing or modifying schemas in packages/skills-ref/src/schema.ts or packages/hr-skills-build/src/shared/schema.ts, when validating parsed YAML frontmatter, when handling safeParse results, or when inferring types from schemas."
+description: "Repository guidance for using Valibot as the schema validation library within the hr-skills monorepo. Use when writing or modifying schemas in packages/hr-skills-ref/src/schema.ts or packages/hr-skills-build/src/shared/schema.ts, when validating parsed YAML frontmatter, when handling safeParse results, or when inferring types from schemas."
 metadata:
   author: Tuan Duc Tran
   version: "1.0.0"
@@ -17,7 +17,7 @@ appear in this codebase.
 
 Two files define schemas; all other packages consume them:
 
-- `packages/skills-ref/src/schema.ts` — `SkillPropertiesSchema`, the generic
+- `packages/hr-skills-ref/src/schema.ts` — `SkillPropertiesSchema`, the generic
   Agent Skills shape used by `readProperties()` in `loader.ts`
 - `packages/hr-skills-build/src/shared/schema.ts` — `MarketplaceJsonSchema` (validates
   `.claude-plugin/marketplace.json`), `SkillFrontmatterSchema` (used by

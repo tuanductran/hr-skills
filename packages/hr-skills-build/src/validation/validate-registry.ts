@@ -1,6 +1,6 @@
 import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
-import { ROOT_DIR } from 'skills-ref';
+import { ROOT_DIR } from 'hr-skills-ref';
 import * as v from 'valibot';
 import { buildRegistry, loadRelevanceSignalTable } from '../registry/registry.js';
 import type { RelevanceSignalTable } from '../search/relevance-signals.js';

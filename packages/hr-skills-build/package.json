@@ -31,6 +31,10 @@
 		"./client": {
 			"types": "./dist/index.client.d.mts",
 			"default": "./dist/index.client.mjs"
+		},
+		"./server": {
+			"types": "./dist/server/index.d.mts",
+			"default": "./dist/server/index.mjs"
 		}
 	},
 	"files": [
@@ -45,12 +49,10 @@
 		"validate": "bun src/validation/validate.ts",
 		"sync": "bun src/build/sync.ts",
 		"matrix": "bun src/build/generate-skill-matrix.ts",
-		"api-docs": "bun src/build/generate-api-docs.ts",
-		"api-docs:check": "bun src/build/generate-api-docs.ts --check",
 		"docs-data": "bun src/build/generate-docs-data.ts"
 	},
 	"dependencies": {
-		"skills-ref": "workspace:*",
+		"hr-skills-ref": "workspace:*",
 		"tsdown": "catalog:",
 		"valibot": "catalog:",
 		"yaml": "catalog:",

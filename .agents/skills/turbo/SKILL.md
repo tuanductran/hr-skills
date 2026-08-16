@@ -49,7 +49,7 @@ Workspace packages define their own scripts.
 Examples include:
 
 - `packages/hr-skills-build`
-- `packages/skills-ref`
+- `packages/hr-skills-ref`
 
 Turborepo automatically coordinates task execution, dependency ordering, and caching across these packages.
 
@@ -148,7 +148,7 @@ turbo run build
 Run a task for a single package.
 
 ```bash
-turbo run build --filter=skills-ref
+turbo run build --filter=hr-skills-ref
 ```
 
 Run validation for the build package only.
@@ -237,7 +237,7 @@ bun run matrix
 Build only one package.
 
 ```bash
-turbo run build --filter=skills-ref
+turbo run build --filter=hr-skills-ref
 ```
 
 Run validation only for the build package.

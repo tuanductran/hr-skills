@@ -27,7 +27,7 @@ It complements, and does not replace:
   today. It is `private` (not published to npm) — its version number
   tracks the state of the skill library and generated artifacts, and its
   git tags and GitHub Releases are the release record.
-- **`packages/hr-skills-build`** and **`packages/skills-ref`** are
+- **`packages/hr-skills-build`** and **`packages/hr-skills-ref`** are
   `"version": "0.0.0"`, `"private": true`, and listed in
   `.changeset/config.json`'s `ignore` array. They are internal tooling
   consumed via Bun workspaces (`workspace:*`), not independently released.
@@ -140,7 +140,7 @@ Notes specific to this repository:
   the registry directly.
 - **`updateInternalDependencies: "patch"`** in `.changeset/config.json`
   means if an internal workspace dependency changes, dependents get at
-  least a patch bump — relevant if `hr-skills-build` or `skills-ref` are
+  least a patch bump — relevant if `hr-skills-build` or `hr-skills-ref` are
   ever un-ignored.
 - Changesets determines the final bump as the **highest** bump across all
   pending changesets for a release — one `major` changeset is enough to

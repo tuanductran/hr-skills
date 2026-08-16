@@ -1,6 +1,6 @@
 ---
 name: dry-refactoring
-description: "Guided workflow to eliminate copy-paste duplication in packages/hr-skills-build and packages/skills-ref, detected by jscpd. Extract shared functions, constants, and types into their own files instead of growing an existing one."
+description: "Guided workflow to eliminate copy-paste duplication in packages/hr-skills-build and packages/hr-skills-ref, detected by jscpd. Extract shared functions, constants, and types into their own files instead of growing an existing one."
 metadata:
   author: Tuan Duc Tran
   version: "1.0.0"
@@ -31,11 +31,11 @@ bunx jscpd@5 packages --reporters ai --format typescript
 
 ## Where extracted code goes in this repo
 
-This repo already separates code by domain under `packages/hr-skills/src/cli and packages/hr-skills-build/src/{shared,validation,planner,runtime,registry,search,build,evaluation}/` and `packages/skills-ref/src/`. Follow that structure — don't dump extracted helpers into whichever file happens to be open:
+This repo already separates code by domain under `packages/hr-skills/src/cli and packages/hr-skills-build/src/{shared,validation,planner,runtime,registry,search,build,evaluation}/` and `packages/hr-skills-ref/src/`. Follow that structure — don't dump extracted helpers into whichever file happens to be open:
 
 - **Duplicated logic used by 2+ files in the same domain folder** (e.g. two files under `src/validation/`) → new file in that same folder, e.g. `src/validation/security-helpers.ts`, imported by both.
 - **Duplicated logic used across domain folders** (e.g. `src/cli/*` and `src/evaluation/*`) → `src/shared/`, alongside the existing `shared/constants.ts`, `shared/helpers.ts`, `shared/schema.ts`, `shared/types.ts`.
-- **Duplicated logic across packages** (`hr-skills-build` and `skills-ref` both define it) → do **not** create a third copy in either package. Prefer keeping a single canonical definition in the package it conceptually belongs to (`skills-ref` for skill-file parsing primitives, `hr-skills-build` for build/registry/CLI concerns) and importing it from the other, or promote it to a small shared internal package if both genuinely need to own it independently. Never resolve this by copy-pasting into a third location.
+- **Duplicated logic across packages** (`hr-skills-build` and `hr-skills-ref` both define it) → do **not** create a third copy in either package. Prefer keeping a single canonical definition in the package it conceptually belongs to (`hr-skills-ref` for skill-file parsing primitives, `hr-skills-build` for build/registry/CLI concerns) and importing it from the other, or promote it to a small shared internal package if both genuinely need to own it independently. Never resolve this by copy-pasting into a third location.
 - **Constants** → their own `constants.ts` in the relevant folder; don't fold them into a file that already holds functions or types.
 - **Types/interfaces** → their own `types.ts` (or `*.types.ts` if `types.ts` already exists and would grow unrelated concerns) in the relevant folder — never appended to a functions file "for now."
 
@@ -63,5 +63,5 @@ Avoid the **template/base class** strategy in this codebase unless a real inheri
 - All call sites updated, not just the two jscpd reported — `grep` for other near-identical blocks jscpd's thresholds may have missed.
 - Tests still pass after refactoring (`bun run test`), and `bun run typecheck` is clean.
 - The extracted abstraction has a clear, descriptive name — see naming collisions above.
-- If the duplication is between `packages/hr-skills-build` and `packages/skills-ref`, check whether a changeset is needed — see [`changeset`](../changeset/SKILL.md).
+- If the duplication is between `packages/hr-skills-build` and `packages/hr-skills-ref`, check whether a changeset is needed — see [`changeset`](../changeset/SKILL.md).
 - Format with Biome after refactoring (`bun run format` or let `lefthook` catch it on commit) — see [`biome`](../biome/SKILL.md).

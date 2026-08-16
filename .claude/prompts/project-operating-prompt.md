@@ -19,7 +19,7 @@ When files appear to overlap, resolve them in this order:
 2. `.agents/AGENTS.md` — routing index mapping tasks to skill files
 3. `skills/hr-*/SKILL.md` — shipped skill definitions (source of truth for HR knowledge)
 4. `docs/` — generated reports and specification docs (never hand-edit generated files)
-5. `packages/hr-skills-build/src/` and `packages/skills-ref/src/` — executable build and validation behavior
+5. `packages/hr-skills-build/src/` and `packages/hr-skills-ref/src/` — executable build and validation behavior
 6. `.claude/rules/` — repo-local working rules
 7. `.agents/skills/` — repeatable maintainer workflow skills
 8. `.claude/prompts/` — reusable maintenance prompts (this directory)
