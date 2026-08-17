@@ -13,7 +13,6 @@
 		"react-dom": "^19.2.0"
 	},
 	"devDependencies": {
-		"@headlessui/react": "catalog:ui",
 		"@tailwindcss/typography": "catalog:ui",
 		"@tailwindcss/vite": "catalog:ui",
 		"@types/react": "^19.2.0",
