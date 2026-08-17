@@ -4,11 +4,11 @@
 @theme {
 	--font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 	--color-ink: #15233b;
-	--color-muted: #60708c;
-	--color-subtle: #8a98ad;
+	--color-muted: #56677f;
+	--color-subtle: #60708c;
 	--color-canvas: #f6f8fb;
 	--color-surface: #ffffff;
-	--color-line: #dce3ed;
+	--color-line: #778ba8;
 	--color-brand: #1c5cff;
 	--color-brand-strong: #1748c7;
 	--color-brand-soft: #e8efff;
@@ -17,6 +17,19 @@
 	--color-danger: #b42318;
 	--shadow-soft: 0 18px 50px rgb(21 35 59 / 0.08);
 	--shadow-card: 0 8px 24px rgb(21 35 59 / 0.06);
+}
+
+@utility site-shell {
+	margin-inline: auto;
+	width: min(1180px, calc(100% - 2rem));
+}
+
+@utility page-content {
+	padding-block: 2.5rem;
+
+	@media (min-width: 640px) {
+		padding-block: 4rem;
+	}
 }
 
 :root {
@@ -48,7 +61,7 @@ body {
 }
 
 :focus-visible {
-	outline: 3px solid color-mix(in srgb, var(--color-brand) 40%, transparent);
+	outline: 3px solid var(--color-brand-strong);
 	outline-offset: 3px;
 }
 

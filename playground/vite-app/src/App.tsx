@@ -17,10 +17,7 @@ const registry = [
 export function App() {
 	const parsed = parseSkillFrontmatter(sample);
 	const results = searchSkills({ text: 'candidate', limit: 5 }, registry as never);
-	const runtime = createRuntimeContext({
-		cwd: '/playground',
-		env: { mode: 'browser' },
-	});
+	const runtime = createRuntimeContext('Improve candidate experience');
 	return (
 		<main className='min-h-dvh bg-canvas text-ink'>
 			<div className='mx-auto grid w-[min(1120px,calc(100%-2rem))] gap-10 py-12 sm:py-20'>
