@@ -665,7 +665,20 @@ Potential directions:
 * Support additional AI platforms — see the Supported platforms table in
   [`docs/integrations/README.md`](integrations/README.md) for current 🟢/🟡 status
 * Build HR AI tooling ecosystem
-* Explore an HR/TA CV Builder that composes role- and locale-specific JSON templates from the existing skill ecosystem; this is a proposed product initiative, not part of Phase 7 or Phase 8 until separately scoped
+
+### HR/TA Product Initiatives
+
+These initiatives are proposed product tracks that reuse the existing HR Skills ecosystem. They are intentionally separate from the completed Phase 7 web experience and the future Phase 8 API & Services scope until their requirements, ownership, data model, and delivery plan are formally approved.
+
+#### HR/TA CV Builder
+
+Explore an HR/TA CV Builder that composes role- and locale-specific JSON templates from the existing skill ecosystem. The product should support role presets such as Talent Acquisition, Talent Acquisition Specialist, Recruiter, HR Business Partner, and related HR/TA positions, while allowing country, language, seniority, industry, and job-description alignment to influence the generated CV structure. The initial template contract should remain JSON-first so it can be validated with TypeScript and Valibot, rendered in the web application, previewed, and exported without coupling templates to presentation components.
+
+#### HR/TA JD Builder
+
+Build a companion HR/TA JD Builder that composes structured, role- and locale-specific job descriptions from the same skill ecosystem and template registry. It should support position presets, department and reporting-line context, seniority, employment type, work arrangement, country and language, compensation transparency, legally sensitive wording review, inclusive-language checks, required and preferred qualifications, responsibilities, success metrics, interview-process content, and configurable employer-brand sections. The builder should provide a JSON-first template contract validated with TypeScript and Valibot, a guided editor with preview and revision history, reusable section-level templates, localization-aware output, and export formats suitable for ATS, career sites, internal approvals, and recruiter handoff.
+
+The CV Builder and JD Builder should share a common role taxonomy, locale and language model, skills-to-role mapping, validation layer, template versioning, and preview/export primitives. They must not silently invent legal or compensation requirements; region-specific guidance should be explicit, reviewable, and configurable. The preferred delivery order is discovery and domain modeling first, followed by shared template infrastructure, then CV/JD builder verticals, and finally API/service integration when Phase 8 is ready. These initiatives are not part of Phase 7 or Phase 8 until separately scoped.
 
 ---
 
@@ -699,4 +712,4 @@ Potential directions:
 
 ---
 
-Last updated: August 16, 2026
+Last updated: August 17, 2026
