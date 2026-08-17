@@ -12,9 +12,9 @@ interface PlannerPlaygroundProps {
 	readonly registry: Registry;
 }
 const examples = [
-	'Create an onboarding plan for a growing team',
+	'Write a job description for a Senior Product Manager',
 	'Design a structured interview process for technical hiring',
-	'Build an HR AI governance and evaluation approach',
+	'AI governance',
 ];
 
 export function PlannerPlayground({ registry }: PlannerPlaygroundProps) {

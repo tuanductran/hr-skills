@@ -198,6 +198,26 @@ test.describe('planner API surface', () => {
 		await firstStep.click();
 		await expect(page.locator('.planner-step__panel').first()).toBeVisible();
 	});
+
+	test('keeps built-in planner examples backed by canonical skills', async ({
+		page,
+	}) => {
+		await page.goto('/planner');
+		const examples = [
+			'Write a job description for a Senior Product Manager',
+			'Design a structured interview process for technical hiring',
+			'AI governance',
+		];
+		for (const example of examples) {
+			await page.getByRole('button', { name: example, exact: true }).click();
+			await page.getByRole('button', { name: 'Generate plan' }).click();
+			await expect(
+				page.getByText('Explainable result', { exact: true }),
+			).toBeVisible();
+			await expect(page.locator('.planner-step__button').first()).toBeVisible();
+			await page.getByRole('button', { name: 'Clear result' }).click();
+		}
+	});
 });
 
 test.describe('Phase 7 product surfaces', () => {
