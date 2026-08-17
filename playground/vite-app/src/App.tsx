@@ -1,122 +1,82 @@
-// Smoke test: everything imported here comes from `hr-skills-build/client`.
-// If this file ever imports the package root `hr-skills-build` instead, the
-// Vite build should fail (node:fs/node:path unresolved) — that's the
-// regression this playground exists to catch.
 import {
 	createRuntimeContext,
 	parseSkillFrontmatter,
-	type Registry,
 	searchSkills,
 } from 'hr-skills-build/client';
 
-const SAMPLE_SKILL_MD = `---
-name: hr-onboarding
-description: Helps design onboarding programs. Use when planning new-hire ramp-up.
-metadata:
-  author: Tuan Duc Tran
-  version: "1.0.0"
----
-
-## Supported tasks
-
-- Draft onboarding checklists
-`;
-
-const SAMPLE_REGISTRY = {
-	schemaVersion: 1,
-	generatedAt: '2026-08-12',
-	skillCount: 2,
-	skills: [
-		{
-			id: 'hr-onboarding',
-			name: 'hr-onboarding',
-			version: '1.0.0',
-			description: 'New-hire onboarding programs',
-			tier: 'full',
-			domain: 'onboarding-offboarding',
-			tags: ['onboarding'],
-			aliases: ['onboarding'],
-			capabilities: ['Draft onboarding checklists'],
-			triggerPhrases: ['onboarding'],
-			paths: {
-				content: true,
-				prompts: true,
-				examples: true,
-			},
-			dependencies: [],
-			relatedSkills: [],
-		},
-		{
-			id: 'hr-offboarding',
-			name: 'hr-offboarding',
-			version: '1.0.0',
-			description: 'Employee offboarding process',
-			tier: 'full',
-			domain: 'onboarding-offboarding',
-			tags: ['offboarding'],
-			aliases: ['offboarding'],
-			capabilities: ['Employee offboarding process'],
-			triggerPhrases: ['offboarding'],
-			paths: {
-				content: true,
-				prompts: true,
-				examples: true,
-			},
-			dependencies: [],
-			relatedSkills: [],
-		},
-	],
-} satisfies Registry;
+const sample = `---\nname: candidate-experience\ndescription: Improve candidate experience\ntags: [candidate, experience]\n---\n\n# Candidate experience`;
+const registry = [
+	{
+		id: 'candidate-experience',
+		name: 'Candidate experience',
+		description: 'Improve candidate experience',
+		tags: ['candidate', 'experience'],
+	},
+];
 
 export function App() {
-	const frontmatter = parseSkillFrontmatter(SAMPLE_SKILL_MD);
-	const results = searchSkills(
-		{
-			text: 'onboarding',
-		},
-		SAMPLE_REGISTRY,
-	);
-	const ctx = createRuntimeContext('test onboarding a new hire');
-
+	const parsed = parseSkillFrontmatter(sample);
+	const results = searchSkills({ text: 'candidate', limit: 5 }, registry as never);
+	const runtime = createRuntimeContext({
+		cwd: '/playground',
+		env: { mode: 'browser' },
+	});
 	return (
-		<main style={{ fontFamily: 'monospace', padding: 24 }}>
-			<h1>hr-skills-build/client playground</h1>
-
-			<section>
-				<h2>parseSkillFrontmatter()</h2>
-				<pre
-					style={{
-						whiteSpace: 'pre-wrap',
-						maxWidth: '100%',
-						overflowX: 'auto',
-					}}>
-					{JSON.stringify(frontmatter, null, 2)}
-				</pre>
-			</section>
-
-			<section>
-				<h2>searchSkills()</h2>
-				<pre
-					style={{
-						whiteSpace: 'pre-wrap',
-						maxWidth: '100%',
-						overflowX: 'auto',
-					}}>
-					{JSON.stringify(results, null, 2)}
-				</pre>
-			</section>
-
-			<section>
-				<h2>createRuntimeContext()</h2>
-				<pre
-					style={{
-						whiteSpace: 'pre-wrap',
-						maxWidth: '100%',
-						overflowX: 'auto',
-					}}>
-					{JSON.stringify(ctx.toObject(), null, 2)}
-				</pre>
-			</section>
+		<main className='min-h-dvh bg-canvas text-ink'>
+			<div className='mx-auto grid w-[min(1120px,calc(100%-2rem))] gap-10 py-12 sm:py-20'>
+				<header className='max-w-3xl'>
+					<p className='mb-3 text-xs font-black uppercase tracking-[0.17em] text-brand'>
+						Playground · Vite
+					</p>
+					<h1 className='text-balance text-5xl font-medium tracking-[-0.07em] sm:text-7xl'>
+						Browser-safe package experiments.
+					</h1>
+					<p className='mt-5 text-pretty text-lg leading-8 text-muted'>
+						A TailwindCSS surface for validating parser, search and runtime
+						context APIs from the client entrypoint.
+					</p>
+				</header>
+				<section
+					aria-label='API outputs'
+					className='grid gap-4 md:grid-cols-3'>
+					<article className='rounded-3xl border border-line bg-surface p-5 shadow-card sm:p-6'>
+						<p className='text-xs font-black uppercase tracking-[0.14em] text-brand'>
+							Frontmatter
+						</p>
+						<h2 className='mt-3 text-xl font-semibold'>Parsed skill</h2>
+						<pre className='mt-4 max-w-full overflow-x-auto rounded-2xl bg-ink p-4 font-mono text-xs leading-6 text-white'>
+							{JSON.stringify(parsed, null, 2)}
+						</pre>
+					</article>
+					<article className='rounded-3xl border border-line bg-surface p-5 shadow-card sm:p-6'>
+						<p className='text-xs font-black uppercase tracking-[0.14em] text-brand'>
+							Search
+						</p>
+						<h2 className='mt-3 text-xl font-semibold'>
+							{results.results.length} matching result
+							{results.results.length === 1 ? '' : 's'}
+						</h2>
+						<ul className='mt-4 grid gap-2'>
+							{results.results.map((result) => (
+								<li
+									className='rounded-xl bg-brand-soft px-3 py-2 text-sm font-semibold text-brand-strong'
+									key={result.skillId}>
+									{result.skillId}
+								</li>
+							))}
+						</ul>
+					</article>
+					<article className='rounded-3xl border border-line bg-surface p-5 shadow-card sm:p-6'>
+						<p className='text-xs font-black uppercase tracking-[0.14em] text-brand'>
+							Runtime
+						</p>
+						<h2 className='mt-3 text-xl font-semibold'>Client context</h2>
+						<pre className='mt-4 max-w-full overflow-x-auto rounded-2xl bg-ink p-4 font-mono text-xs leading-6 text-white'>
+							{JSON.stringify(runtime, null, 2)}
+						</pre>
+					</article>
+				</section>
+			</div>
 		</main>
 	);
 }

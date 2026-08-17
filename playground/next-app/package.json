@@ -13,8 +13,12 @@
 		"react-dom": "^19.2.0"
 	},
 	"devDependencies": {
+		"@headlessui/react": "catalog:ui",
+		"@tailwindcss/postcss": "catalog:ui",
+		"@tailwindcss/typography": "catalog:ui",
 		"@types/node": "^20.17.6",
 		"@types/react": "^19.2.0",
-		"@types/react-dom": "^19.2.0"
+		"@types/react-dom": "^19.2.0",
+		"tailwindcss": "catalog:ui"
 	}
 }
