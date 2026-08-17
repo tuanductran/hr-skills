@@ -72,7 +72,7 @@ export function SkillCatalog({ data, registry }: SkillCatalogProps) {
 		'min-h-12 w-full rounded-xl border border-line bg-canvas px-4 py-3 text-sm font-medium text-ink outline-none transition focus:border-brand focus:bg-surface';
 
 	return (
-		<main className='mx-auto grid w-[min(1180px,calc(100%-2rem))] gap-8 py-10 sm:py-16'>
+		<div className='mx-auto grid w-[min(1180px,calc(100%-2rem))] gap-8 py-10 sm:py-16'>
 			<section
 				aria-labelledby='catalog-filters-title'
 				className='grid gap-7 rounded-3xl border border-line bg-surface p-5 shadow-card sm:p-8 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)]'>
@@ -285,6 +285,6 @@ export function SkillCatalog({ data, registry }: SkillCatalogProps) {
 					</div>
 				)}
 			</section>
-		</main>
+		</div>
 	);
 }
