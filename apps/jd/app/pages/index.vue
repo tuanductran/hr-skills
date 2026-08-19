@@ -24,11 +24,12 @@ const activeSection = ref('role')
 const savedAt = ref<Date | null>(null)
 const submitted = ref(false)
 const showJson = ref(false)
+const showHelp = ref(false)
 const persistence = useJdPersistence()
 const route = useRoute()
 const isSaving = computed(() => persistence.saving.value)
 const persistenceError = computed(() => persistence.persistenceError.value)
-const autosaveLabel = computed(() => isSaving.value ? 'Saving…' : savedAt.value ? `Saved ${savedAt.value.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}` : 'Not saved yet')
+const autosaveLabel = computed(() => isSaving.value ? 'Saving…' : savedAt.value ? `Saved ${savedAt.value.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}` : 'Ready to save')
 let autosaveTimer: ReturnType<typeof setTimeout> | undefined
 let editorReady = false
 
@@ -141,219 +142,178 @@ async function downloadDocx() {
 }
 
 function vSafeParse() {
-  return vSafeParseSchema(jdSchema, draft)
+  return v.safeParse(jdSchema, draft)
 }
-
-function vSafeParseSchema(schema: typeof jdSchema, value: JdDraft) {
-  return v.safeParse(schema, value)
-}
-
 </script>
 
 <template>
-  <div class="min-h-screen bg-slate-50 text-slate-950">
-    <header class="no-print border-b border-slate-200 bg-white/90 backdrop-blur">
-      <div class="mx-auto flex max-w-[1440px] items-center justify-between px-5 py-4 sm:px-8">
-        <div class="flex items-center gap-3">
-          <div class="flex size-9 items-center justify-center rounded-xl bg-blue-600 text-sm font-bold text-white shadow-sm">JD</div>
-          <div>
-            <p class="text-sm font-semibold tracking-tight text-slate-950">JD Studio</p>
-            <p class="text-xs text-slate-500">HR Skills workspace</p>
-          </div>
+  <div class="min-h-screen bg-default text-default">
+    <header class="no-print sticky top-0 z-20 border-b border-default bg-default/95 backdrop-blur">
+      <UContainer class="flex min-h-16 items-center justify-between gap-3 py-3">
+        <NuxtLink to="/" class="flex min-w-0 items-center gap-3 rounded-md focus-visible:outline-2 focus-visible:outline-primary">
+          <UBadge color="primary" variant="solid" size="lg" class="shrink-0">JD</UBadge>
+          <span class="min-w-0">
+            <span class="block truncate text-sm font-semibold text-highlighted">JD Studio</span>
+            <span class="block truncate text-xs text-muted">HR Skills workspace</span>
+          </span>
+        </NuxtLink>
+
+        <div class="flex items-center justify-end gap-1 sm:gap-2">
+          <span class="max-w-20 truncate text-[11px] text-muted sm:max-w-none sm:text-xs" aria-live="polite">{{ autosaveLabel }}</span>
+          <UPopover v-model:open="showHelp">
+            <UButton color="neutral" variant="ghost" icon="i-lucide-circle-help" aria-label="Open help" title="Help" />
+            <template #content>
+              <div class="w-72 space-y-3 p-4">
+                <div>
+                  <p class="font-semibold text-highlighted">How this workspace works</p>
+                  <p class="mt-1 text-sm leading-6 text-muted">Your drafts stay in this browser. Autosave runs while you edit, and JSON backup lets you move work to another device.</p>
+                </div>
+                <UButton color="primary" variant="soft" block @click="showHelp = false">Got it</UButton>
+              </div>
+            </template>
+          </UPopover>
+          <UButton to="/drafts" color="neutral" variant="ghost" icon="i-lucide-folder-open" aria-label="My drafts"><span class="hidden sm:inline">My drafts</span></UButton>
+          <UButton color="neutral" variant="soft" icon="i-lucide-file-text" :aria-label="'Markdown'" @click="downloadMarkdown">
+            <span class="hidden sm:inline">Markdown</span>
+          </UButton>
+          <UButton color="neutral" variant="soft" icon="i-lucide-file-down" :aria-label="'DOCX'" @click="downloadDocx">
+            <span class="hidden sm:inline">DOCX</span>
+          </UButton>
+          <UButton color="primary" variant="soft" icon="i-lucide-download" :aria-label="'JSON'" @click="downloadJson">
+            <span class="hidden sm:inline">JSON</span>
+          </UButton>
         </div>
-        <div class="flex items-center gap-3">
-          <span class="hidden text-xs text-slate-500 sm:inline">{{ autosaveLabel }}</span>
-          <UButton color="neutral" variant="ghost" icon="i-lucide-circle-help" aria-label="Help" />
-          <span class="hidden text-xs text-slate-500 sm:inline">Saved on this device</span>
-          <NuxtLink to="/drafts" class="hidden text-sm font-medium text-slate-600 hover:text-blue-700 sm:inline">My drafts</NuxtLink>
-          <UButton color="neutral" variant="soft" icon="i-lucide-file-text" @click="downloadMarkdown">Markdown</UButton>
-          <UButton color="neutral" variant="soft" icon="i-lucide-file-down" @click="downloadDocx">DOCX</UButton>
-          <UButton color="primary" variant="soft" icon="i-lucide-download" @click="downloadJson">JSON</UButton>
-        </div>
-      </div>
+      </UContainer>
     </header>
 
-    <main class="jd-grid min-h-[calc(100vh-73px)]">
-      <div class="mx-auto max-w-[1440px] px-5 py-8 sm:px-8 lg:py-12">
+    <main>
+      <UContainer class="py-8 sm:py-10 lg:py-14">
         <div class="mb-8 flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
           <div class="max-w-3xl">
-            <p class="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-blue-700">Create / Job description</p>
-            <h1 class="text-3xl font-semibold tracking-tight text-slate-950 sm:text-5xl">Make the role clear before you make it public.</h1>
-            <p class="mt-4 max-w-2xl text-base leading-7 text-slate-600">Shape a structured job description that helps candidates understand the work, the expectations and the signals of success.</p>
+            <UBadge color="primary" variant="subtle">Create / Job description</UBadge>
+            <h1 class="mt-4 text-3xl font-semibold tracking-tight text-highlighted sm:text-5xl">Make the role clear before you make it public.</h1>
+            <p class="mt-4 max-w-2xl text-base leading-7 text-muted">Shape a structured job description that helps candidates understand the work, the expectations and the signals of success.</p>
           </div>
-          <div class="w-full max-w-xs rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-            <div class="mb-2 flex items-center justify-between text-xs font-medium text-slate-500">
-              <span>Draft readiness</span><span class="text-slate-900">{{ progress }}%</span>
+          <UCard class="w-full lg:max-w-xs">
+            <div class="flex items-center justify-between text-sm font-medium text-muted">
+              <span>Draft readiness</span>
+              <span class="text-highlighted">{{ progress }}%</span>
             </div>
-            <UProgress :model-value="progress" color="primary" />
-            <p class="mt-2 text-xs leading-5 text-slate-500">Complete the essentials, then review the language before sharing.</p>
-          </div>
+            <UProgress :model-value="progress" color="primary" class="mt-3" />
+            <p class="mt-3 text-xs leading-5 text-muted">Complete the essentials, then review the language before sharing.</p>
+          </UCard>
         </div>
 
-        <div class="grid gap-6 xl:grid-cols-[minmax(0,1fr)_460px]">
-          <section class="jd-panel rounded-3xl p-5 sm:p-8">
-            <div class="mb-8 flex flex-col gap-4 border-b border-slate-200 pb-6 sm:flex-row sm:items-center sm:justify-between">
+        <div class="grid gap-6 xl:grid-cols-[minmax(0,1fr)_28rem]">
+          <UCard class="min-w-0" :ui="{ body: 'p-4 sm:p-6 lg:p-8' }">
+            <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
               <div>
-                <p class="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Guided editor</p>
-                <h2 class="mt-1 text-xl font-semibold text-slate-950">Build the role profile</h2>
+                <p class="text-xs font-semibold uppercase tracking-wide text-muted">Guided editor</p>
+                <h2 class="mt-1 text-xl font-semibold text-highlighted">Build the role profile</h2>
               </div>
               <UButton color="neutral" variant="outline" icon="i-lucide-save" :loading="isSaving" @click="saveDraft()">Save draft</UButton>
             </div>
+            <USeparator class="my-6" />
 
-            <div class="mb-8 grid gap-2 sm:grid-cols-3">
-              <button v-for="section in sections" :key="section.id" type="button" class="rounded-2xl border p-4 text-left transition" :class="activeSection === section.id ? 'border-blue-300 bg-blue-50' : 'border-slate-200 bg-white hover:border-slate-300'" @click="activeSection = section.id">
-                <span class="text-xs font-semibold text-blue-700">{{ section.eyebrow }}</span>
-                <span class="mt-2 block text-sm font-semibold text-slate-950">{{ section.label }}</span>
-                <span class="mt-1 block text-xs leading-5" :class="activeSection === section.id ? 'text-slate-600' : 'text-slate-500'">{{ section.description }}</span>
-              </button>
+            <div class="mb-8 grid gap-2 sm:grid-cols-3" role="tablist" aria-label="Job description sections">
+              <UButton v-for="section in sections" :key="section.id" :color="activeSection === section.id ? 'primary' : 'neutral'" :variant="activeSection === section.id ? 'soft' : 'ghost'" class="h-auto justify-start whitespace-normal text-left" role="tab" :aria-selected="activeSection === section.id" @click="activeSection = section.id">
+                <span class="min-w-0">
+                  <span class="block text-xs font-semibold">{{ section.eyebrow }}</span>
+                  <span class="mt-1 block text-sm font-semibold">{{ section.label }}</span>
+                  <span class="mt-1 block text-xs font-normal leading-5 text-toned">{{ section.description }}</span>
+                </span>
+              </UButton>
             </div>
 
             <UForm :schema="jdSchema" :state="draft" class="space-y-8" @submit="onSubmit">
               <div v-show="activeSection === 'role'" class="space-y-6">
                 <div class="grid gap-5 sm:grid-cols-2">
-                  <UFormField label="Job title" name="title" required>
-                    <UInput v-model="draft.title" size="lg" class="w-full" placeholder="e.g. Senior People Operations Partner" />
-                  </UFormField>
-                  <UFormField label="Department" name="department" required>
-                    <UInput v-model="draft.department" size="lg" class="w-full" placeholder="e.g. People & Culture" />
-                  </UFormField>
-                  <UFormField label="Location" name="location" required>
-                    <UInput v-model="draft.location" class="w-full" placeholder="e.g. Ho Chi Minh City" />
-                  </UFormField>
-                  <UFormField label="Seniority" name="seniority" required>
-                    <USelect v-model="draft.seniority" :items="[...seniorities]" class="w-full" />
-                  </UFormField>
-                  <UFormField label="Employment type" name="employmentType" required>
-                    <USelect v-model="draft.employmentType" :items="[...employmentTypes]" class="w-full" />
-                  </UFormField>
-                  <UFormField label="Work arrangement" name="workArrangement" required>
-                    <USelect v-model="draft.workArrangement" :items="[...workArrangements]" class="w-full" />
-                  </UFormField>
+                  <UFormField label="Job title" name="title" required><UInput v-model="draft.title" size="lg" class="w-full" placeholder="e.g. Senior People Operations Partner" /></UFormField>
+                  <UFormField label="Department" name="department" required><UInput v-model="draft.department" size="lg" class="w-full" placeholder="e.g. People & Culture" /></UFormField>
+                  <UFormField label="Location" name="location" required><UInput v-model="draft.location" class="w-full" placeholder="e.g. Ho Chi Minh City" /></UFormField>
+                  <UFormField label="Seniority" name="seniority" required><USelect v-model="draft.seniority" :items="[...seniorities]" class="w-full" /></UFormField>
+                  <UFormField label="Employment type" name="employmentType" required><USelect v-model="draft.employmentType" :items="[...employmentTypes]" class="w-full" /></UFormField>
+                  <UFormField label="Work arrangement" name="workArrangement" required><USelect v-model="draft.workArrangement" :items="[...workArrangements]" class="w-full" /></UFormField>
                 </div>
-                <UFormField label="Role summary" name="summary" description="Write for the person who may join, not only the internal org chart." required>
-                  <UTextarea v-model="draft.summary" :rows="5" autoresize class="w-full" placeholder="What will this person own and why does it matter?" />
-                </UFormField>
+                <UFormField label="Role summary" name="summary" description="Write for the person who may join, not only the internal org chart." required><UTextarea v-model="draft.summary" :rows="5" autoresize class="w-full" placeholder="What will this person own and why does it matter?" /></UFormField>
               </div>
 
               <div v-show="activeSection === 'scope'" class="space-y-7">
                 <div v-for="key in (['responsibilities', 'requiredSkills', 'preferredSkills'] as const)" :key="key" class="space-y-3">
                   <div class="flex items-end justify-between gap-4">
-                    <div>
-                      <h3 class="text-base font-semibold text-slate-950">{{ key === 'responsibilities' ? 'Responsibilities' : key === 'requiredSkills' ? 'Required skills' : 'Preferred skills' }}</h3>
-                      <p class="mt-1 text-sm text-slate-500">{{ key === 'responsibilities' ? 'Describe outcomes and ownership with clear verbs.' : 'Keep this list specific, observable and assessable.' }}</p>
-                    </div>
+                    <div><h3 class="text-base font-semibold text-highlighted">{{ key === 'responsibilities' ? 'Responsibilities' : key === 'requiredSkills' ? 'Required skills' : 'Preferred skills' }}</h3><p class="mt-1 text-sm text-muted">{{ key === 'responsibilities' ? 'Describe outcomes and ownership with clear verbs.' : 'Keep this list specific, observable and assessable.' }}</p></div>
                     <UButton size="sm" color="primary" variant="soft" icon="i-lucide-plus" @click="addItem(key)">Add</UButton>
                   </div>
                   <div class="space-y-2">
-                    <div v-for="(_, index) in draft[key]" :key="`${key}-${index}`" class="flex items-center gap-2">
-                      <div class="flex min-w-0 flex-1 gap-2">
-                        <UButton size="xs" color="neutral" variant="ghost" icon="i-lucide-grip-vertical" aria-label="Reorder item" class="cursor-grab" />
-                        <UInput v-model="draft[key][index]" class="w-full" :placeholder="key === 'responsibilities' ? 'Own...' : 'e.g. Stakeholder communication'" />
-                      </div>
-                      <div class="flex shrink-0">
-                        <UButton size="xs" color="neutral" variant="ghost" icon="i-lucide-chevron-up" aria-label="Move item up" :disabled="index === 0" @click="moveItem(key, index, -1)" />
-                        <UButton size="xs" color="neutral" variant="ghost" icon="i-lucide-chevron-down" aria-label="Move item down" :disabled="index === draft[key].length - 1" @click="moveItem(key, index, 1)" />
-                        <UButton size="xs" color="neutral" variant="ghost" icon="i-lucide-x" aria-label="Remove item" :disabled="draft[key].length === 1 && key !== 'preferredSkills'" @click="removeItem(key, index)" />
-                      </div>
+                    <div v-for="(_, index) in draft[key]" :key="`${key}-${index}`" class="flex items-center gap-1.5">
+                      <UInput v-model="draft[key][index]" class="min-w-0 flex-1" :placeholder="key === 'responsibilities' ? 'Own...' : 'e.g. Stakeholder communication'" />
+                      <UButton size="xs" color="neutral" variant="ghost" icon="i-lucide-chevron-up" aria-label="Move item up" :disabled="index === 0" @click="moveItem(key, index, -1)" />
+                      <UButton size="xs" color="neutral" variant="ghost" icon="i-lucide-chevron-down" aria-label="Move item down" :disabled="index === draft[key].length - 1" @click="moveItem(key, index, 1)" />
+                      <UButton size="xs" color="error" variant="ghost" icon="i-lucide-x" aria-label="Remove item" :disabled="draft[key].length === 1 && key !== 'preferredSkills'" @click="removeItem(key, index)" />
                     </div>
                   </div>
                 </div>
               </div>
 
               <div v-show="activeSection === 'signals'" class="space-y-7">
-                <div>
-                  <h3 class="text-base font-semibold text-slate-950">Success signals</h3>
-                  <p class="mt-1 text-sm text-slate-500">What should be measurably different after this person succeeds?</p>
-                </div>
+                <div><h3 class="text-base font-semibold text-highlighted">Success signals</h3><p class="mt-1 text-sm text-muted">What should be measurably different after this person succeeds?</p></div>
                 <div class="space-y-2">
-                  <div v-for="(_, index) in draft.successMetrics" :key="`metric-${index}`" class="flex items-center gap-2">
-                    <UButton size="xs" color="neutral" variant="ghost" icon="i-lucide-grip-vertical" aria-label="Reorder metric" class="cursor-grab" />
-                    <UInput v-model="draft.successMetrics[index]" class="w-full" placeholder="e.g. 90% program adoption in the first two quarters" />
-                    <div class="flex shrink-0">
-                      <UButton size="xs" color="neutral" variant="ghost" icon="i-lucide-chevron-up" aria-label="Move metric up" :disabled="index === 0" @click="moveItem('successMetrics', index, -1)" />
-                      <UButton size="xs" color="neutral" variant="ghost" icon="i-lucide-chevron-down" aria-label="Move metric down" :disabled="index === draft.successMetrics.length - 1" @click="moveItem('successMetrics', index, 1)" />
-                      <UButton size="xs" color="neutral" variant="ghost" icon="i-lucide-x" aria-label="Remove success metric" :disabled="draft.successMetrics.length === 1" @click="removeItem('successMetrics', index)" />
-                    </div>
+                  <div v-for="(_, index) in draft.successMetrics" :key="`metric-${index}`" class="flex items-center gap-1.5">
+                    <UInput v-model="draft.successMetrics[index]" class="min-w-0 flex-1" placeholder="e.g. 90% program adoption in the first two quarters" />
+                    <UButton size="xs" color="neutral" variant="ghost" icon="i-lucide-chevron-up" aria-label="Move metric up" :disabled="index === 0" @click="moveItem('successMetrics', index, -1)" />
+                    <UButton size="xs" color="neutral" variant="ghost" icon="i-lucide-chevron-down" aria-label="Move metric down" :disabled="index === draft.successMetrics.length - 1" @click="moveItem('successMetrics', index, 1)" />
+                    <UButton size="xs" color="error" variant="ghost" icon="i-lucide-x" aria-label="Remove success metric" :disabled="draft.successMetrics.length === 1" @click="removeItem('successMetrics', index)" />
                   </div>
                 </div>
                 <UButton color="primary" variant="soft" icon="i-lucide-plus" @click="addItem('successMetrics')">Add success metric</UButton>
-
-                <div class="rounded-2xl border border-blue-200 bg-blue-50 p-5">
-                  <div class="flex gap-3">
-                    <UIcon name="i-lucide-scan-search" class="mt-0.5 size-5 text-blue-700" />
-                    <div>
-                      <p class="font-semibold text-blue-950">Review before publishing</p>
-                      <p class="mt-1 text-sm leading-6 text-blue-900/70">A good JD makes the evaluation criteria visible. Keep requirements focused and connect them to the work.</p>
-                    </div>
-                  </div>
-                </div>
+                <UAlert color="neutral" variant="outline" icon="i-lucide-scan-search" title="Review before publishing">A good JD makes the evaluation criteria visible. Keep requirements focused and connect them to the work.</UAlert>
               </div>
 
-              <div class="flex flex-col-reverse gap-3 border-t border-slate-200 pt-6 sm:flex-row sm:items-center sm:justify-between">
-                <p class="text-xs text-slate-500">{{ submitted ? 'Ready for review. You can still keep editing.' : 'Your draft stays in this workspace until you are ready.' }}</p>
-                <div class="flex gap-2">
+              <div class="flex flex-col-reverse gap-3 border-t border-default pt-6 sm:flex-row sm:items-center sm:justify-between">
+                <p class="text-xs text-muted" aria-live="polite">{{ submitted ? 'Ready for review. You can still keep editing.' : 'Your draft stays in this workspace until you are ready.' }}</p>
+                <div class="flex justify-end gap-2">
                   <UButton v-if="activeSection !== 'role'" color="neutral" variant="ghost" @click="activeSection = activeSection === 'signals' ? 'scope' : 'role'">Back</UButton>
                   <UButton v-if="activeSection !== 'signals'" color="primary" variant="soft" @click="activeSection = activeSection === 'role' ? 'scope' : 'signals'">Continue</UButton>
                   <UButton v-else type="submit" color="primary" icon="i-lucide-check" :loading="isSaving">Mark ready for review</UButton>
                 </div>
               </div>
             </UForm>
-          </section>
+          </UCard>
 
-          <aside class="space-y-6">
-            <section class="jd-panel print-page rounded-3xl p-6 sm:p-8">
-              <div class="mb-7 flex items-start justify-between gap-4 border-b border-slate-200 pb-6">
-                <div>
-                  <p class="text-xs font-semibold uppercase tracking-[0.16em] text-blue-700">Live preview</p>
-                  <h2 class="mt-2 text-2xl font-semibold tracking-tight text-slate-950">{{ draft.title || 'Untitled role' }}</h2>
-                  <p class="mt-2 text-sm text-slate-500">{{ draft.department || 'Department' }} · {{ draft.location || 'Location' }}</p>
-                </div>
-                <UBadge color="primary" variant="soft">{{ draft.seniority }}</UBadge>
+          <aside class="min-w-0 space-y-6">
+            <UCard class="print-page" :ui="{ body: 'p-5 sm:p-6 lg:p-8' }">
+              <div class="flex items-start justify-between gap-4">
+                <div class="min-w-0"><p class="text-xs font-semibold uppercase tracking-wide text-primary">Live preview</p><h2 class="mt-2 break-words text-2xl font-semibold tracking-tight text-highlighted">{{ draft.title || 'Untitled role' }}</h2><p class="mt-2 text-sm text-muted">{{ draft.department || 'Department' }} · {{ draft.location || 'Location' }}</p></div>
+                <UBadge color="primary" variant="soft" class="shrink-0">{{ draft.seniority }}</UBadge>
               </div>
-
-              <div class="space-y-7 jd-prose">
-                <div>
-                  <p class="text-sm">{{ draft.summary || 'Your role summary will appear here.' }}</p>
-                </div>
-                <div>
-                  <h3 class="mb-3 text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">At a glance</h3>
-                  <div class="grid grid-cols-2 gap-2 text-xs">
-                    <div class="rounded-xl bg-slate-50 p-3"><span class="block text-slate-500">Type</span><span class="mt-1 block font-medium text-slate-800">{{ draft.employmentType }}</span></div>
-                    <div class="rounded-xl bg-slate-50 p-3"><span class="block text-slate-500">Arrangement</span><span class="mt-1 block font-medium text-slate-800">{{ draft.workArrangement }}</span></div>
-                  </div>
-                </div>
-                <div>
-                  <h3 class="mb-3 text-sm font-semibold text-slate-950">What you will own</h3>
-                  <ul class="space-y-2 text-sm text-slate-600"><li v-for="item in draft.responsibilities" :key="item" class="flex gap-2"><span class="mt-2 size-1.5 shrink-0 rounded-full bg-blue-600" />{{ item || 'Responsibility' }}</li></ul>
-                </div>
-                <div>
-                  <h3 class="mb-3 text-sm font-semibold text-slate-950">What you bring</h3>
-                  <div class="flex flex-wrap gap-2"><UBadge v-for="skill in [...draft.requiredSkills, ...draft.preferredSkills]" :key="skill" color="neutral" variant="outline">{{ skill || 'Skill' }}</UBadge></div>
-                </div>
-                <div>
-                  <h3 class="mb-3 text-sm font-semibold text-slate-950">Success looks like</h3>
-                  <ul class="space-y-2 text-sm text-slate-600"><li v-for="metric in draft.successMetrics" :key="metric" class="flex gap-2"><UIcon name="i-lucide-arrow-up-right" class="mt-0.5 size-4 text-blue-600" />{{ metric || 'Success metric' }}</li></ul>
-                </div>
+              <USeparator class="my-6" />
+              <div class="space-y-7">
+                <p class="text-sm leading-7 text-toned">{{ draft.summary || 'Your role summary will appear here.' }}</p>
+                <div><h3 class="mb-3 text-xs font-semibold uppercase tracking-wide text-muted">At a glance</h3><div class="grid grid-cols-2 gap-2"><UCard :ui="{ body: 'p-3' }"><span class="block text-xs text-muted">Type</span><span class="mt-1 block text-sm font-medium text-highlighted">{{ draft.employmentType }}</span></UCard><UCard :ui="{ body: 'p-3' }"><span class="block text-xs text-muted">Arrangement</span><span class="mt-1 block text-sm font-medium text-highlighted">{{ draft.workArrangement }}</span></UCard></div></div>
+                <div><h3 class="mb-3 text-sm font-semibold text-highlighted">What you will own</h3><ul class="space-y-2 text-sm text-toned"><li v-for="item in draft.responsibilities" :key="item" class="flex gap-2"><UIcon name="i-lucide-check" class="mt-0.5 size-4 shrink-0 text-primary" />{{ item || 'Responsibility' }}</li></ul></div>
+                <div><h3 class="mb-3 text-sm font-semibold text-highlighted">What you bring</h3><div class="flex flex-wrap gap-2"><UBadge v-for="skill in [...draft.requiredSkills, ...draft.preferredSkills]" :key="skill" color="neutral" variant="outline">{{ skill || 'Skill' }}</UBadge></div></div>
+                <div><h3 class="mb-3 text-sm font-semibold text-highlighted">Success looks like</h3><ul class="space-y-2 text-sm text-toned"><li v-for="metric in draft.successMetrics" :key="metric" class="flex gap-2"><UIcon name="i-lucide-arrow-up-right" class="mt-0.5 size-4 shrink-0 text-primary" />{{ metric || 'Success metric' }}</li></ul></div>
               </div>
-            </section>
+            </UCard>
 
-            <section class="no-print rounded-3xl border border-slate-200 bg-slate-900 p-6 text-white shadow-xl shadow-slate-900/10">
-              <div class="flex items-center justify-between"><div><p class="text-xs font-semibold uppercase tracking-[0.16em] text-blue-300">Language review</p><h2 class="mt-2 text-lg font-semibold">Make the signal stronger.</h2></div><UIcon name="i-lucide-sparkles" class="size-5 text-blue-300" /></div>
-              <div v-if="persistenceError" class="mb-4 rounded-2xl border border-blue-300/20 bg-blue-400/10 p-4 text-sm leading-6 text-blue-100">{{ persistenceError }}</div>
-              <div class="mt-5 space-y-3">
-                <div v-if="flags.length === 0" class="rounded-2xl border border-white/10 bg-white/5 p-4 text-sm leading-6 text-slate-300">No review flags yet. Keep the language specific and grounded in the work.</div>
-                <div v-for="flag in flags" :key="flag.title" class="rounded-2xl border border-white/10 bg-white/5 p-4"><p class="text-sm font-semibold text-white">{{ flag.title }}</p><p class="mt-1 text-xs leading-5 text-slate-300">{{ flag.detail }}</p></div>
-              </div>
-            </section>
+            <UAlert class="no-print" color="primary" variant="outline" icon="i-lucide-sparkles" title="Make the signal stronger.">
+              <template #description>
+                <div class="space-y-3">
+                  <UAlert v-if="persistenceError" color="error" variant="subtle" :title="persistenceError" />
+                  <UAlert v-if="flags.length === 0" color="primary" variant="outline" title="No review flags yet.">Keep the language specific and grounded in the work.</UAlert>
+                  <UAlert v-for="flag in flags" :key="flag.title" color="neutral" variant="outline" :title="flag.title">{{ flag.detail }}</UAlert>
+                </div>
+              </template>
+            </UAlert>
 
-            <section class="no-print rounded-3xl border border-slate-200 bg-white p-6">
-              <div class="flex items-center justify-between"><div><p class="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Developer view</p><h2 class="mt-1 text-base font-semibold text-slate-950">Structured output</h2></div><UButton size="xs" color="neutral" variant="ghost" @click="showJson = !showJson">{{ showJson ? 'Hide' : 'Show' }}</UButton></div>
-              <pre v-if="showJson" class="mt-4 max-h-72 overflow-auto rounded-xl bg-slate-950 p-4 text-xs leading-5 text-blue-100">{{ JSON.stringify(draft, null, 2) }}</pre>
-              <p v-else class="mt-3 text-sm leading-6 text-slate-500">The editor is JSON-first, so this document can later power preview, API, scoring and export without parsing rendered text.</p>
-            </section>
+            <UCard class="no-print">
+              <div class="flex items-center justify-between gap-4"><div><p class="text-xs font-semibold uppercase tracking-wide text-muted">Developer view</p><h2 class="mt-1 text-base font-semibold text-highlighted">Structured output</h2></div><UButton size="xs" color="neutral" variant="ghost" :aria-expanded="showJson" @click="showJson = !showJson">{{ showJson ? 'Hide' : 'Show' }}</UButton></div>
+              <pre v-if="showJson" class="mt-4 max-h-72 overflow-auto rounded-md bg-inverted p-4 text-xs leading-5 text-inverted">{{ JSON.stringify(draft, null, 2) }}</pre>
+              <p v-else class="mt-3 text-sm leading-6 text-muted">The editor is JSON-first, so this document can later power preview, scoring and export without parsing rendered text.</p>
+            </UCard>
           </aside>
         </div>
-      </div>
+      </UContainer>
     </main>
   </div>
 </template>

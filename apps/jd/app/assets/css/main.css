@@ -1,46 +1,33 @@
 @import 'tailwindcss';
 @import '@nuxt/ui';
 
-:root {
-  --ui-primary: 37 99 235;
-  --ui-neutral: 71 85 105;
+@theme {
+  --font-sans: ui-sans-serif, system-ui, sans-serif;
 }
 
-@theme {
-  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+:root {
+  --ui-primary: var(--ui-color-primary-600);
+  --ui-secondary: var(--ui-color-secondary-600);
+  --ui-neutral: var(--ui-color-neutral-600);
+}
+
+.dark {
+  --ui-primary: var(--ui-color-primary-400);
+  --ui-secondary: var(--ui-color-secondary-400);
+  --ui-neutral: var(--ui-color-neutral-400);
 }
 
 html {
-  background: #f8fafc;
+  background: var(--ui-bg);
 }
 
 body {
   min-width: 320px;
-  background: #f8fafc;
-  color: #0f172a;
-  font-family: var(--font-sans);
 }
 
 ::selection {
-  background: #bfdbfe;
-  color: #1e3a8a;
-}
-
-.jd-grid {
-  background-image: linear-gradient(to right, rgba(148, 163, 184, 0.12) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(148, 163, 184, 0.12) 1px, transparent 1px);
-  background-size: 32px 32px;
-}
-
-.jd-panel {
-  border: 1px solid #e2e8f0;
-  background: rgba(255, 255, 255, 0.92);
-  box-shadow: 0 18px 48px rgba(15, 23, 42, 0.06);
-}
-
-.jd-prose p {
-  color: #475569;
-  line-height: 1.7;
+  background: var(--ui-color-primary-200);
+  color: var(--ui-color-primary-900);
 }
 
 @media print {

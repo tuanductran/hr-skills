@@ -37,7 +37,7 @@ test.describe('JD Builder local-first workspace', () => {
 		await page.getByLabel('Include archived').check();
 		await expect(page.getByText('Archived')).toBeVisible();
 		await page.getByRole('button', { name: 'Restore' }).click();
-		await expect(page.getByRole('button', { name: 'Open draft' })).toBeVisible();
+		await expect(page.getByRole('link', { name: 'Open draft' })).toBeVisible();
 	});
 
 	test('exports document formats without an account', async ({ page }) => {

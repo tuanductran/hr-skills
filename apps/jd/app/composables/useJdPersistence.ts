@@ -1,5 +1,6 @@
 import { type JdDraft, type JdDraftEnvelope, jdSchema } from 'hr-jd';
 import * as v from 'valibot';
+import { toRaw } from 'vue';
 
 const DB_NAME = 'hr-skills-jd';
 const DB_VERSION = 1;
@@ -140,7 +141,7 @@ export function useJdPersistence() {
 				title: data.title,
 				status,
 				version: (existing?.version ?? 0) + 1,
-				data: structuredClone(data),
+				data: structuredClone(toRaw(data)),
 				createdAt: existing?.createdAt ?? now,
 				updatedAt: now,
 				archivedAt: existing?.archivedAt ?? null,
@@ -202,7 +203,7 @@ export function useJdPersistence() {
 						? record.status
 						: 'draft',
 				version: typeof record.version === 'number' ? record.version : 1,
-				data: structuredClone(data),
+				data: structuredClone(toRaw(data)),
 				createdAt: typeof record.createdAt === 'string' ? record.createdAt : now,
 				updatedAt: now,
 				archivedAt: null,
