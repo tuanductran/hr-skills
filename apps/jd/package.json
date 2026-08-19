@@ -1,0 +1,34 @@
+{
+	"name": "hr-skills-jd",
+	"version": "0.1.0",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"dev": "nuxt dev",
+		"build": "nuxt build",
+		"generate": "nuxt generate",
+		"preview": "nuxt preview",
+		"typecheck": "nuxt typecheck",
+		"test": "nuxt typecheck",
+		"test:unit": "bun test tests/unit",
+		"test:e2e": "playwright test",
+		"test:e2e:server": "bun run build && PLAYWRIGHT_WEBSERVER=1 playwright test",
+		"test:e2e:ui": "playwright test --ui"
+	},
+	"dependencies": {
+		"@iconify-json/lucide": "catalog:web-nuxt",
+		"@nuxt/ui": "catalog:web-nuxt",
+		"@sentry/nuxt": "catalog:observability",
+		"docx": "catalog:documents",
+		"hr-jd": "workspace:*",
+		"nuxt": "catalog:web-nuxt",
+		"tailwindcss": "catalog:web-ui",
+		"valibot": "catalog:core"
+	},
+	"devDependencies": {
+		"@axe-core/playwright": "catalog:testing",
+		"@playwright/test": "catalog:testing",
+		"typescript": "catalog:core",
+		"vue-tsc": "catalog:web-nuxt"
+	}
+}

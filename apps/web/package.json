@@ -11,9 +11,9 @@
 	},
 	"dependencies": {
 		"hr-skills-build": "workspace:*",
-		"next": "^15.5.0",
-		"react": "^19.2.0",
-		"react-dom": "^19.2.0",
+		"next": "catalog:web-react",
+		"react": "catalog:web-react",
+		"react-dom": "catalog:web-react",
 		"rehype-sanitize": "catalog:content",
 		"rehype-stringify": "catalog:content",
 		"remark-gfm": "catalog:content",
@@ -22,13 +22,13 @@
 		"unified": "catalog:content"
 	},
 	"devDependencies": {
-		"@headlessui/react": "catalog:ui",
+		"@headlessui/react": "catalog:web-ui",
 		"@playwright/test": "catalog:testing",
-		"@tailwindcss/postcss": "catalog:ui",
-		"@tailwindcss/typography": "catalog:ui",
-		"@types/node": "^20.17.6",
-		"@types/react": "^19.2.0",
-		"@types/react-dom": "^19.2.0",
-		"tailwindcss": "catalog:ui"
+		"@tailwindcss/postcss": "catalog:web-ui",
+		"@tailwindcss/typography": "catalog:web-ui",
+		"@types/node": "catalog:web-react",
+		"@types/react": "catalog:web-react",
+		"@types/react-dom": "catalog:web-react",
+		"tailwindcss": "catalog:web-ui"
 	}
 }

@@ -1,0 +1,57 @@
+name: JD production safety
+
+on:
+  pull_request:
+    paths:
+      - 'apps/jd/**'
+      - 'packages/hr-jd/**'
+      - 'bun.lock'
+      - '.github/workflows/jd-production-safety.yml'
+  push:
+    branches: [main, dev]
+    paths:
+      - 'apps/jd/**'
+      - 'packages/hr-jd/**'
+      - 'bun.lock'
+      - '.github/workflows/jd-production-safety.yml'
+  schedule:
+    - cron: '17 3 * * 1'
+
+permissions:
+  contents: read
+
+jobs:
+  jd-safety:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: '1.3.14'
+      - run: bun install --frozen-lockfile
+      - run: bun run --cwd apps/jd typecheck
+      - run: bun run --cwd apps/jd test:unit
+      - run: bun run --cwd apps/jd build
+      - name: Install Playwright Chromium
+        run: bunx playwright install --with-deps chromium
+      - name: Run local-first Playwright E2E
+        env:
+          CI: true
+          PLAYWRIGHT_WEBSERVER: '1'
+        run: bun run --cwd apps/jd test:e2e:server
+      - name: Dependency audit
+        shell: bash
+        run: |
+          set +e
+          bun audit --json > jd-bun-audit.json 2>&1
+          status=$?
+          echo "bun audit exit code: ${status}"
+          exit 0
+      - name: Upload dependency audit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: jd-dependency-audit
+          path: jd-bun-audit.json
+          if-no-files-found: warn

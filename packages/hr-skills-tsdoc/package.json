@@ -28,10 +28,10 @@
 		"typecheck": "tsc --noEmit"
 	},
 	"dependencies": {
-		"ts-morph": "catalog:"
+		"ts-morph": "catalog:build"
 	},
 	"devDependencies": {
-		"tsdown": "catalog:",
-		"typescript": "catalog:"
+		"tsdown": "catalog:build",
+		"typescript": "catalog:core"
 	}
 }
