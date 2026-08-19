@@ -23,6 +23,7 @@
 		"hr-jd": "workspace:*",
 		"nuxt": "catalog:web-nuxt",
 		"tailwindcss": "catalog:web-ui",
+		"vue": "catalog:web-nuxt",
 		"valibot": "catalog:core"
 	},
 	"devDependencies": {
