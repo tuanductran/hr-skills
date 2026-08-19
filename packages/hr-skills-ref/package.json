@@ -51,10 +51,10 @@
 		"typecheck": "tsc --noEmit"
 	},
 	"dependencies": {
-		"valibot": "catalog:",
-		"yaml": "catalog:"
+		"valibot": "catalog:core",
+		"yaml": "catalog:core"
 	},
 	"devDependencies": {
-		"tsdown": "catalog:"
+		"tsdown": "catalog:build"
 	}
 }

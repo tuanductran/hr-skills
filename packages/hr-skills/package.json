@@ -55,10 +55,10 @@
 	},
 	"dependencies": {},
 	"devDependencies": {
-		"@clack/prompts": "catalog:",
+		"@clack/prompts": "catalog:tooling",
 		"hr-skills-build": "workspace:*",
 		"hr-skills-ref": "workspace:*",
-		"tsdown": "catalog:",
-		"typescript": "catalog:"
+		"tsdown": "catalog:build",
+		"typescript": "catalog:core"
 	}
 }
