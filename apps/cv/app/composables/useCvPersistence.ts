@@ -1,18 +1,18 @@
-import { type JdDraft, type JdDraftEnvelope, jdSchema } from 'hr-jd';
+import { type CvDraft, type CvDraftEnvelope, cvSchema } from 'hr-cv';
 import * as v from 'valibot';
 import { toRaw } from 'vue';
 
-const DB_NAME = 'hr-skills-jd';
+const DB_NAME = 'hr-skills-cv';
 const DB_VERSION = 2;
 const STORE_NAME = 'drafts';
-const CURRENT_DRAFT_KEY = 'hr-skills-jd.current-draft';
-const CHANGE_EVENT = 'hr-skills-jd.changed';
+const CURRENT_DRAFT_KEY = 'hr-skills-cv.current-draft';
+const CHANGE_EVENT = 'hr-skills-cv.changed';
 
-type LocalDraft = JdDraftEnvelope;
+type LocalDraft = CvDraftEnvelope;
 
 type DraftFilters = {
 	q?: string;
-	status?: 'all' | JdDraftEnvelope['status'];
+	status?: 'all' | CvDraftEnvelope['status'];
 	includeArchived?: boolean;
 };
 
@@ -141,11 +141,11 @@ function newDraftId() {
 	return crypto.randomUUID();
 }
 
-export function useJdPersistence() {
-	const id = useState<string | null>('jd-id', () => null);
-	const version = useState<number>('jd-version', () => 0);
-	const saving = useState<boolean>('jd-saving', () => false);
-	const persistenceError = useState<string | null>('jd-persistence-error', () => null);
+export function useCvPersistence() {
+	const id = useState<string | null>('cv-id', () => null);
+	const version = useState<number>('cv-version', () => 0);
+	const saving = useState<boolean>('cv-saving', () => false);
+	const persistenceError = useState<string | null>('cv-persistence-error', () => null);
 
 	ensureChannel();
 
@@ -200,10 +200,7 @@ export function useJdPersistence() {
 		return getAllDrafts();
 	}
 
-	async function save(
-		data: JdDraft,
-		status: 'draft' | 'ready_for_review' | 'approved' | 'published' = 'draft',
-	) {
+	async function save(data: CvDraft, status: 'draft' | 'ready_for_review' = 'draft') {
 		saving.value = true;
 		persistenceError.value = null;
 		const operation = writeQueue.then(async () => {
@@ -211,7 +208,7 @@ export function useJdPersistence() {
 			const existing = id.value ? await getDraft(id.value) : undefined;
 			const draft: LocalDraft = {
 				id: existing?.id ?? newDraftId(),
-				title: data.title,
+				title: data.fullName,
 				status,
 				version: (existing?.version ?? 0) + 1,
 				data: structuredClone(toRaw(data)),
@@ -321,16 +318,15 @@ export function useJdPersistence() {
 				if (!candidate || typeof candidate !== 'object' || !('data' in candidate))
 					continue;
 				const record = candidate as Partial<LocalDraft>;
-				const parsed = v.safeParse(jdSchema, record.data);
+				const parsed = v.safeParse(cvSchema, record.data);
 				if (!parsed.success) continue;
-				const data = parsed.output as JdDraft;
+				const data = parsed.output as CvDraft;
 				const now = new Date().toISOString();
 				const draft: LocalDraft = {
 					id: newDraftId(),
-					title: data.title,
+					title: data.fullName,
 					status:
 						record.status === 'ready_for_review' ||
-						record.status === 'approved' ||
 						record.status === 'published'
 							? record.status
 							: 'draft',

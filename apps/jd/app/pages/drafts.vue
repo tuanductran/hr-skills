@@ -9,7 +9,9 @@ useSeoMeta({
 
 const persistence = useJdPersistence();
 const search = ref("");
-const status = ref<"all" | "draft" | "ready_for_review" | "published">("all");
+const status = ref<
+	"all" | "draft" | "ready_for_review" | "approved" | "published"
+>("all");
 const includeArchived = ref(false);
 const drafts = ref<JdDraftEnvelope[]>([]);
 const loading = ref(true);
@@ -22,13 +24,16 @@ const statusItems = [
 	{ label: "All statuses", value: "all" },
 	{ label: "Draft", value: "draft" },
 	{ label: "Ready for review", value: "ready_for_review" },
-	{ label: "Published", value: "published" },
+	{ label: "Approved", value: "approved" },
+	{ label: "Published locally", value: "published" },
 ];
 
 const statusLabel = (value: JdDraftEnvelope["status"]) =>
-	value === "ready_for_review"
-		? "Ready for review"
-		: value.charAt(0).toUpperCase() + value.slice(1);
+value === "ready_for_review"
+			? "Ready for review"
+			: value === "published"
+				? "Published locally"
+				: value.charAt(0).toUpperCase() + value.slice(1);
 
 function formatDate(value: string) {
 	return new Intl.DateTimeFormat(undefined, {
@@ -138,18 +143,10 @@ onBeforeUnmount(() => unsubscribe?.());
 <template>
   <div class="min-h-screen bg-default text-default">
     <header class="border-b border-default bg-default/95 backdrop-blur">
-      <UContainer class="flex min-h-16 flex-wrap items-center justify-between gap-3 py-3">
-        <NuxtLink to="/" class="min-w-0 rounded-md focus-visible:outline-2 focus-visible:outline-primary">
-          <span class="block text-xs font-semibold uppercase tracking-wide text-primary">JD Studio</span>
-          <span class="mt-1 block truncate text-xl font-semibold tracking-tight text-highlighted">My drafts</span>
+      <UContainer class="flex min-h-16 items-center py-3">
+        <NuxtLink to="/" class="rounded-md focus-visible:outline-2 focus-visible:outline-primary" aria-label="JD Studio home">
+          <UBadge color="primary" variant="solid" size="lg">JD</UBadge>
         </NuxtLink>
-        <div class="flex flex-wrap items-center justify-end gap-1.5 sm:gap-2">
-          <UButton to="/" color="neutral" variant="ghost" icon="i-lucide-arrow-left" aria-label="Open editor"><span class="hidden sm:inline">Open editor</span></UButton>
-          <UButton color="neutral" variant="soft" icon="i-lucide-upload" aria-label="Import backup" @click="openImport"><span class="hidden sm:inline">Import backup</span></UButton>
-          <UButton color="neutral" variant="soft" icon="i-lucide-download" aria-label="Export backup" :disabled="!drafts.length" @click="exportAll"><span class="hidden sm:inline">Export backup</span></UButton>
-          <UButton to="/?new=1" color="primary" icon="i-lucide-plus" aria-label="New draft" @click="persistence.resetCurrent()"><span class="hidden sm:inline">New draft</span></UButton>
-          <input ref="importInput" type="file" accept="application/json,.json" aria-label="Choose backup file" class="sr-only" @change="importBackup">
-        </div>
       </UContainer>
     </header>
 
@@ -159,6 +156,15 @@ onBeforeUnmount(() => unsubscribe?.());
           <UBadge color="primary" variant="subtle">This device</UBadge>
           <h1 class="mt-4 text-3xl font-semibold tracking-tight text-highlighted sm:text-4xl">Resume the work that matters.</h1>
           <p class="mt-3 text-base leading-7 text-muted">Drafts are stored privately in this browser. Export a backup before moving to another device.</p>
+          <UCard class="mt-6 no-print" :ui="{ body: 'p-3 sm:p-4' }">
+            <div class="flex flex-wrap items-center gap-2">
+              <UButton to="/" color="neutral" variant="soft" icon="i-lucide-arrow-left">Open editor</UButton>
+              <UButton color="neutral" variant="soft" icon="i-lucide-upload" @click="openImport">Import backup</UButton>
+              <UButton color="neutral" variant="soft" icon="i-lucide-download" :disabled="!drafts.length" @click="exportAll">Export backup</UButton>
+              <UButton to="/?new=1" color="primary" icon="i-lucide-plus" @click="persistence.resetCurrent">New draft</UButton>
+              <input ref="importInput" type="file" accept="application/json,.json" aria-label="Choose backup file" class="sr-only" @change="importBackup">
+            </div>
+          </UCard>
         </div>
 
         <UCard class="mb-6" :ui="{ body: 'p-4 sm:p-5' }">
@@ -190,6 +196,7 @@ onBeforeUnmount(() => unsubscribe?.());
               <UBadge :color="draft.archivedAt ? 'neutral' : 'primary'" variant="soft" class="shrink-0">{{ draft.archivedAt ? 'Archived' : statusLabel(draft.status) }}</UBadge>
             </div>
             <p class="mt-5 line-clamp-2 text-sm leading-6 text-toned">{{ draft.data.summary }}</p>
+            <p v-if="draft.status === 'published'" class="mt-3 text-xs leading-5 text-muted">Published locally in this browser; no public URL or network publishing is created.</p>
             <div class="mt-5 flex flex-wrap items-center gap-2">
               <UButton v-if="!draft.archivedAt" :to="{ path: '/', query: { id: draft.id } }" color="primary" variant="soft" size="sm">Open draft</UButton>
               <UButton v-if="!draft.archivedAt" color="neutral" variant="ghost" size="sm" icon="i-lucide-copy" @click="duplicateDraft(draft)">Duplicate</UButton>

@@ -19,3 +19,8 @@ apps/web/playwright-report/
 apps/jd/.env
 apps/jd/test-results/
 apps/jd/playwright-report/
+# Nuxt and Playwright generated output
+apps/*/.nuxt/
+apps/*/.output/
+apps/*/test-results/
+apps/*/playwright-report/
