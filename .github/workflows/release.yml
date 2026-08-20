@@ -40,7 +40,7 @@ jobs:
         run: bun run validate
 
       - name: Create Release PR or publish version
-        uses: changesets/action@v1.9.0
+        uses: changesets/action@v2.1.1
         with:
           version: bun run release
           commit: "chore(release): version packages"
