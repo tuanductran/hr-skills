@@ -26,7 +26,7 @@
 		"@playwright/test": "catalog:testing",
 		"@tailwindcss/postcss": "catalog:ui",
 		"@tailwindcss/typography": "catalog:ui",
-		"@types/node": "^20.17.6",
+		"@types/node": "^26.0.0",
 		"@types/react": "^19.2.0",
 		"@types/react-dom": "^19.2.0",
 		"tailwindcss": "catalog:ui"
