@@ -1,18 +1,18 @@
-import { type JdDraft, type JdDraftEnvelope, jdSchema } from "hr-jd";
-import * as v from "valibot";
-import { toRaw } from "vue";
+import { type JdDraft, type JdDraftEnvelope, jdSchema } from 'hr-jd';
+import * as v from 'valibot';
+import { toRaw } from 'vue';
 
-const DB_NAME = "hr-skills-jd";
+const DB_NAME = 'hr-skills-jd';
 const DB_VERSION = 2;
-const STORE_NAME = "drafts";
-const CURRENT_DRAFT_KEY = "hr-skills-jd.current-draft";
-const CHANGE_EVENT = "hr-skills-jd.changed";
+const STORE_NAME = 'drafts';
+const CURRENT_DRAFT_KEY = 'hr-skills-jd.current-draft';
+const CHANGE_EVENT = 'hr-skills-jd.changed';
 
 type LocalDraft = JdDraftEnvelope;
 
 type DraftFilters = {
 	q?: string;
-	status?: "all" | JdDraftEnvelope["status"];
+	status?: 'all' | JdDraftEnvelope['status'];
 	includeArchived?: boolean;
 };
 
@@ -21,14 +21,14 @@ let changeChannel: BroadcastChannel | null = null;
 const changeListeners = new Set<() => void>();
 
 function browserStorageAvailable() {
-	return import.meta.client && typeof indexedDB !== "undefined";
+	return import.meta.client && typeof indexedDB !== 'undefined';
 }
 
 function requestResult<T>(request: IDBRequest<T>) {
 	return new Promise<T>((resolve, reject) => {
 		request.onsuccess = () => resolve(request.result);
 		request.onerror = () =>
-			reject(request.error ?? new Error("IndexedDB request failed"));
+			reject(request.error ?? new Error('IndexedDB request failed'));
 	});
 }
 
@@ -36,22 +36,22 @@ function transactionComplete(transaction: IDBTransaction) {
 	return new Promise<void>((resolve, reject) => {
 		transaction.oncomplete = () => resolve();
 		transaction.onerror = () =>
-			reject(transaction.error ?? new Error("IndexedDB transaction failed"));
+			reject(transaction.error ?? new Error('IndexedDB transaction failed'));
 		transaction.onabort = () =>
-			reject(transaction.error ?? new Error("IndexedDB transaction aborted"));
+			reject(transaction.error ?? new Error('IndexedDB transaction aborted'));
 	});
 }
 
 function notifyChange() {
 	for (const listener of changeListeners) listener();
-	if (import.meta.client && typeof BroadcastChannel !== "undefined") {
+	if (import.meta.client && typeof BroadcastChannel !== 'undefined') {
 		changeChannel ??= new BroadcastChannel(CHANGE_EVENT);
 		changeChannel.postMessage({ changedAt: Date.now() });
 	}
 }
 
 function ensureChannel() {
-	if (!import.meta.client || typeof BroadcastChannel === "undefined") return;
+	if (!import.meta.client || typeof BroadcastChannel === 'undefined') return;
 	changeChannel ??= new BroadcastChannel(CHANGE_EVENT);
 	changeChannel.onmessage = () => {
 		for (const listener of changeListeners) listener();
@@ -59,8 +59,7 @@ function ensureChannel() {
 }
 
 async function openDatabase() {
-	if (!browserStorageAvailable())
-		throw new Error("Browser storage is unavailable.");
+	if (!browserStorageAvailable()) throw new Error('Browser storage is unavailable.');
 	return new Promise<IDBDatabase>((resolve, reject) => {
 		const request = indexedDB.open(DB_NAME, DB_VERSION);
 		request.onupgradeneeded = (event) => {
@@ -68,31 +67,31 @@ async function openDatabase() {
 			const oldVersion = (event as IDBVersionChangeEvent).oldVersion;
 			const store = database.objectStoreNames.contains(STORE_NAME)
 				? request.transaction?.objectStore(STORE_NAME)
-				: database.createObjectStore(STORE_NAME, { keyPath: "id" });
+				: database.createObjectStore(STORE_NAME, { keyPath: 'id' });
 			// Version 2 adds query indexes without rewriting existing draft records.
 			// Future schema changes should use the same oldVersion guard and remain additive.
 			if (oldVersion < 2) {
-				if (store && !store.indexNames.contains("updatedAt"))
-					store.createIndex("updatedAt", "updatedAt");
-				if (store && !store.indexNames.contains("archivedAt"))
-					store.createIndex("archivedAt", "archivedAt");
+				if (store && !store.indexNames.contains('updatedAt'))
+					store.createIndex('updatedAt', 'updatedAt');
+				if (store && !store.indexNames.contains('archivedAt'))
+					store.createIndex('archivedAt', 'archivedAt');
 			}
 		};
 		request.onblocked = () =>
-			reject(new Error("Browser storage is blocked by another open tab."));
+			reject(new Error('Browser storage is blocked by another open tab.'));
 		request.onsuccess = () => resolve(request.result);
 		request.onerror = () =>
-			reject(request.error ?? new Error("Could not open browser storage."));
+			reject(request.error ?? new Error('Could not open browser storage.'));
 	});
 }
 
 async function getDraft(targetId: string) {
 	const database = await openDatabase();
 	try {
-		const transaction = database.transaction(STORE_NAME, "readonly");
-		return (await requestResult(
-			transaction.objectStore(STORE_NAME).get(targetId),
-		)) as LocalDraft | undefined;
+		const transaction = database.transaction(STORE_NAME, 'readonly');
+		return (await requestResult(transaction.objectStore(STORE_NAME).get(targetId))) as
+			| LocalDraft
+			| undefined;
 	} finally {
 		database.close();
 	}
@@ -101,7 +100,7 @@ async function getDraft(targetId: string) {
 async function getAllDrafts() {
 	const database = await openDatabase();
 	try {
-		const transaction = database.transaction(STORE_NAME, "readonly");
+		const transaction = database.transaction(STORE_NAME, 'readonly');
 		return (await requestResult(
 			transaction.objectStore(STORE_NAME).getAll(),
 		)) as LocalDraft[];
@@ -113,7 +112,7 @@ async function getAllDrafts() {
 async function putDraft(draft: LocalDraft) {
 	const database = await openDatabase();
 	try {
-		const transaction = database.transaction(STORE_NAME, "readwrite");
+		const transaction = database.transaction(STORE_NAME, 'readwrite');
 		transaction.objectStore(STORE_NAME).put(draft);
 		await transactionComplete(transaction);
 	} finally {
@@ -125,7 +124,7 @@ async function putDraft(draft: LocalDraft) {
 async function deleteDraft(targetId: string) {
 	const database = await openDatabase();
 	try {
-		const transaction = database.transaction(STORE_NAME, "readwrite");
+		const transaction = database.transaction(STORE_NAME, 'readwrite');
 		transaction.objectStore(STORE_NAME).delete(targetId);
 		await transactionComplete(transaction);
 	} finally {
@@ -143,13 +142,10 @@ function newDraftId() {
 }
 
 export function useJdPersistence() {
-	const id = useState<string | null>("jd-id", () => null);
-	const version = useState<number>("jd-version", () => 0);
-	const saving = useState<boolean>("jd-saving", () => false);
-	const persistenceError = useState<string | null>(
-		"jd-persistence-error",
-		() => null,
-	);
+	const id = useState<string | null>('jd-id', () => null);
+	const version = useState<number>('jd-version', () => 0);
+	const saving = useState<boolean>('jd-saving', () => false);
+	const persistenceError = useState<string | null>('jd-persistence-error', () => null);
 
 	ensureChannel();
 
@@ -172,12 +168,10 @@ export function useJdPersistence() {
 			if (!response) return null;
 			id.value = response.id;
 			version.value = response.version;
-			if (import.meta.client)
-				localStorage.setItem(CURRENT_DRAFT_KEY, response.id);
+			if (import.meta.client) localStorage.setItem(CURRENT_DRAFT_KEY, response.id);
 			return response;
 		} catch {
-			persistenceError.value =
-				"Could not load this draft from browser storage.";
+			persistenceError.value = 'Could not load this draft from browser storage.';
 			return null;
 		}
 	}
@@ -188,7 +182,7 @@ export function useJdPersistence() {
 			let drafts = await getAllDrafts();
 			if (!filters.includeArchived)
 				drafts = drafts.filter((draft) => !draft.archivedAt);
-			if (filters.status && filters.status !== "all")
+			if (filters.status && filters.status !== 'all')
 				drafts = drafts.filter((draft) => draft.status === filters.status);
 			const query = filters.q?.trim().toLocaleLowerCase();
 			if (query)
@@ -197,7 +191,7 @@ export function useJdPersistence() {
 				);
 			return sortDrafts(drafts);
 		} catch {
-			persistenceError.value = "Could not read drafts from browser storage.";
+			persistenceError.value = 'Could not read drafts from browser storage.';
 			return [];
 		}
 	}
@@ -206,10 +200,7 @@ export function useJdPersistence() {
 		return getAllDrafts();
 	}
 
-	async function save(
-		data: JdDraft,
-		status: "draft" | "ready_for_review" = "draft",
-	) {
+	async function save(data: JdDraft, status: 'draft' | 'ready_for_review' = 'draft') {
 		saving.value = true;
 		persistenceError.value = null;
 		const operation = writeQueue.then(async () => {
@@ -239,7 +230,7 @@ export function useJdPersistence() {
 			return await operation;
 		} catch {
 			persistenceError.value =
-				"Could not save this draft in browser storage. Export a backup and check available storage.";
+				'Could not save this draft in browser storage. Export a backup and check available storage.';
 			return null;
 		} finally {
 			saving.value = false;
@@ -260,7 +251,7 @@ export function useJdPersistence() {
 			if (id.value === targetId) id.value = null;
 			return true;
 		} catch {
-			persistenceError.value = "Could not archive this draft.";
+			persistenceError.value = 'Could not archive this draft.';
 			return false;
 		}
 	}
@@ -277,7 +268,7 @@ export function useJdPersistence() {
 			await putDraft(restored);
 			return restored;
 		} catch {
-			persistenceError.value = "Could not restore this draft.";
+			persistenceError.value = 'Could not restore this draft.';
 			return null;
 		}
 	}
@@ -290,8 +281,8 @@ export function useJdPersistence() {
 			const duplicateDraft: LocalDraft = {
 				...existing,
 				id: newDraftId(),
-				title: `${existing.title || "Untitled role"} (copy)`,
-				status: "draft",
+				title: `${existing.title || 'Untitled role'} (copy)`,
+				status: 'draft',
 				version: 1,
 				createdAt: now,
 				updatedAt: now,
@@ -301,7 +292,7 @@ export function useJdPersistence() {
 			await putDraft(duplicateDraft);
 			return duplicateDraft;
 		} catch {
-			persistenceError.value = "Could not duplicate this draft.";
+			persistenceError.value = 'Could not duplicate this draft.';
 			return null;
 		}
 	}
@@ -314,7 +305,7 @@ export function useJdPersistence() {
 			if (id.value === targetId) id.value = null;
 			return true;
 		} catch {
-			persistenceError.value = "Could not permanently delete this draft.";
+			persistenceError.value = 'Could not permanently delete this draft.';
 			return false;
 		}
 	}
@@ -324,11 +315,7 @@ export function useJdPersistence() {
 		const imported: LocalDraft[] = [];
 		try {
 			for (const candidate of candidates) {
-				if (
-					!candidate ||
-					typeof candidate !== "object" ||
-					!("data" in candidate)
-				)
+				if (!candidate || typeof candidate !== 'object' || !('data' in candidate))
 					continue;
 				const record = candidate as Partial<LocalDraft>;
 				const parsed = v.safeParse(jdSchema, record.data);
@@ -339,10 +326,10 @@ export function useJdPersistence() {
 					id: newDraftId(),
 					title: data.title,
 					status:
-						record.status === "ready_for_review" ||
-						record.status === "published"
+						record.status === 'ready_for_review' ||
+						record.status === 'published'
 							? record.status
-							: "draft",
+							: 'draft',
 					version: 1,
 					data: structuredClone(toRaw(data)),
 					createdAt: now,
@@ -355,7 +342,7 @@ export function useJdPersistence() {
 			return imported;
 		} catch (error) {
 			persistenceError.value =
-				"Could not import the backup because browser storage is unavailable or full.";
+				'Could not import the backup because browser storage is unavailable or full.';
 			throw error;
 		}
 	}
