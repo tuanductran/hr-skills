@@ -19,7 +19,6 @@
 		"@iconify-json/lucide": "catalog:web-nuxt",
 		"@nuxt/ui": "catalog:web-nuxt",
 		"@sentry/nuxt": "catalog:observability",
-		"docx": "catalog:documents",
 		"hr-cv": "workspace:*",
 		"nuxt": "catalog:web-nuxt",
 		"tailwindcss": "catalog:web-ui",
