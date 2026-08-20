@@ -1,0 +1,50 @@
+@import 'tailwindcss';
+@import '@nuxt/ui';
+
+@theme {
+  --font-sans: ui-sans-serif, system-ui, sans-serif;
+}
+
+:root {
+  --ui-primary: var(--ui-color-primary-700);
+  --ui-secondary: var(--ui-color-secondary-700);
+  --ui-neutral: var(--ui-color-neutral-700);
+  --ui-success: var(--ui-color-success-800);
+  --ui-info: var(--ui-color-info-800);
+  --ui-warning: var(--ui-color-warning-800);
+  --ui-error: var(--ui-color-error-800);
+}
+
+.dark {
+  --ui-primary: var(--ui-color-primary-300);
+  --ui-secondary: var(--ui-color-secondary-300);
+  --ui-neutral: var(--ui-color-neutral-300);
+  --ui-success: var(--ui-color-success-200);
+  --ui-info: var(--ui-color-info-200);
+  --ui-warning: var(--ui-color-warning-200);
+  --ui-error: var(--ui-color-error-200);
+}
+
+html {
+  background: var(--ui-bg);
+}
+
+body {
+  min-width: 320px;
+}
+
+::selection {
+  background: var(--ui-color-primary-200);
+  color: var(--ui-color-primary-900);
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  .print-page {
+    box-shadow: none !important;
+    border: 0 !important;
+  }
+}

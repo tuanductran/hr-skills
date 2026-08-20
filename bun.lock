@@ -21,6 +21,27 @@
         "unrun": "catalog:tooling",
       },
     },
+    "apps/cv": {
+      "name": "hr-skills-cv",
+      "version": "0.1.0",
+      "dependencies": {
+        "@iconify-json/lucide": "catalog:web-nuxt",
+        "@nuxt/ui": "catalog:web-nuxt",
+        "@sentry/nuxt": "catalog:observability",
+        "docx": "catalog:documents",
+        "hr-cv": "workspace:*",
+        "nuxt": "catalog:web-nuxt",
+        "tailwindcss": "catalog:web-ui",
+        "valibot": "catalog:core",
+        "vue": "catalog:web-nuxt",
+      },
+      "devDependencies": {
+        "@axe-core/playwright": "catalog:testing",
+        "@playwright/test": "catalog:testing",
+        "typescript": "catalog:core",
+        "vue-tsc": "catalog:web-nuxt",
+      },
+    },
     "apps/jd": {
       "name": "hr-skills-jd",
       "version": "0.1.0",
@@ -66,6 +87,17 @@
         "@types/react": "catalog:web-react",
         "@types/react-dom": "catalog:web-react",
         "tailwindcss": "catalog:web-ui",
+      },
+    },
+    "packages/hr-cv": {
+      "name": "hr-cv",
+      "version": "0.1.0",
+      "dependencies": {
+        "valibot": "catalog:core",
+      },
+      "devDependencies": {
+        "tsdown": "catalog:build",
+        "typescript": "catalog:core",
       },
     },
     "packages/hr-jd": {
@@ -1674,11 +1706,15 @@
 
     "hookable": ["hookable@6.1.1", "", {}, "sha512-U9LYDy1CwhMCnprUfeAZWZGByVbhd54hwepegYTK7Pi5NvqEj63ifz5z+xukznehT7i6NIZRu89Ay1AZmRsLEQ=="],
 
+    "hr-cv": ["hr-cv@workspace:packages/hr-cv"],
+
     "hr-jd": ["hr-jd@workspace:packages/hr-jd"],
 
     "hr-skills": ["hr-skills@workspace:packages/hr-skills"],
 
     "hr-skills-build": ["hr-skills-build@workspace:packages/hr-skills-build"],
+
+    "hr-skills-cv": ["hr-skills-cv@workspace:apps/cv"],
 
     "hr-skills-jd": ["hr-skills-jd@workspace:apps/jd"],
 
