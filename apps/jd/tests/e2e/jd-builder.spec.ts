@@ -52,6 +52,42 @@ test.describe('JD Builder local-first workspace', () => {
 		expect(seriousViolations(results.violations)).toEqual([]);
 	});
 
+	test('keeps the mobile shell compact without horizontal overflow', async ({
+		page,
+	}) => {
+		await page.goto('/?new=1');
+		await expect(page.getByRole('link', { name: 'JD Studio home' })).toBeVisible();
+		expect(await page.locator('header button').count()).toBe(0);
+		expect(
+			await page.evaluate(() => document.documentElement.scrollWidth),
+		).toBeLessThanOrEqual(
+			await page.evaluate(() => document.documentElement.clientWidth),
+		);
+		await page.goto('/drafts');
+		expect(await page.locator('header button').count()).toBe(0);
+	});
+
+	test('does not show a misleading candidate-context flag for the default draft', async ({
+		page,
+	}) => {
+		await page.goto('/?new=1');
+		await expect(page.getByText('Editorial checks')).toBeVisible();
+		expect(
+			await page.getByText('Add candidate context', { exact: true }).count(),
+		).toBe(0);
+	});
+
+	test('supports the complete local editorial status workflow', async ({ page }) => {
+		await page.goto('/?new=1');
+		await page.getByRole('tab', { name: /Success signals/ }).click();
+		await page.getByRole('button', { name: 'Mark ready for review' }).click();
+		await expect(page.getByText('Ready for review', { exact: true })).toBeVisible();
+		await page.getByRole('button', { name: 'Approve locally' }).click();
+		await expect(page.getByText('Approved', { exact: true })).toBeVisible();
+		await page.getByRole('button', { name: 'Mark published locally' }).click();
+		await expect(page.getByText('Published locally', { exact: true })).toBeVisible();
+	});
+
 	test('autosaves locally and resumes after reload', async ({ page }) => {
 		await page.goto('/?new=1');
 		await page.getByLabel('Job title').fill('Local-first People Partner');

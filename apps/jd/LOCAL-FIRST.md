@@ -6,13 +6,13 @@
 
 Draft documents are stored in the browser's IndexedDB database `hr-skills-jd`. The current draft ID is stored in localStorage only as a small pointer. Job description content is never placed in cookies because cookies are sent with requests and have a very small size limit.
 
-Each saved draft contains the structured `hr-jd` document, status, version, created timestamp, updated timestamp and archive timestamp. Autosave is debounced in the editor. The `/drafts` page reads the same local store and supports title search, status filtering, archive, restore, duplicate, permanent delete and resume. A `BroadcastChannel` refreshes open workspace views when another tab changes the store.
+Each saved draft contains the structured `hr-jd` document, editorial status, version, created timestamp, updated timestamp and archive timestamp. The editorial status flow is `Draft` → `Ready for review` → `Approved` → `Published locally`. The final state is intentionally local-only: it records that the document is approved/published in this browser, but it does not create a public URL, send a network request or publish to an external job board. Autosave is debounced in the editor. The `/drafts` page reads the same local store and supports title search, status filtering, archive, restore, duplicate, permanent delete and resume. A `BroadcastChannel` refreshes open workspace views when another tab changes the store.
 
 ## Backup and device changes
 
 Use **Export backup** on `/drafts` before changing browsers or devices. The resulting JSON file can be imported with **Import backup**; every imported record receives a new local ID so a backup cannot overwrite an existing draft. The workspace also supports a full local-workspace backup, while JSON, Markdown and DOCX exports are available from the editor. Invalid JSON/schema files are rejected without writing records. Storage failures, including unavailable or full browser storage, are surfaced as actionable UI errors.
 
-A local browser store is not synchronization. If the browser profile is cleared, the drafts are lost unless a backup exists. The product should communicate this limitation clearly instead of pretending that a cookie is a multi-device backup.
+A local browser store is not synchronization or public publishing. If the browser profile is cleared, the drafts are lost unless a backup exists. The product should communicate this limitation clearly instead of pretending that a cookie is a multi-device backup.
 
 ## Schema migrations and integrity
 

@@ -6,9 +6,12 @@
 }
 
 :root {
-  --ui-primary: var(--ui-color-primary-600);
-  --ui-secondary: var(--ui-color-secondary-600);
-  --ui-neutral: var(--ui-color-neutral-600);
+  /* Keep semantic blue/slate tokens readable on white surfaces (WCAG AA). */
+  --ui-primary: var(--ui-color-primary-700);
+  --ui-secondary: var(--ui-color-secondary-700);
+  --ui-neutral: var(--ui-color-neutral-700);
+  --ui-text-muted: var(--ui-color-neutral-600);
+  --ui-text-toned: var(--ui-color-neutral-700);
 }
 
 .dark {

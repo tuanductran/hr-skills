@@ -34,11 +34,23 @@ export default defineConfig({
 			use: { ...devices['Desktop Chrome'] },
 		},
 		{
-			name: 'mobile',
+			name: 'android',
 			use: { ...devices['Pixel 5'] },
 		},
 		{
-			name: 'tablet',
+			name: 'iphone',
+			use: { ...devices['iPhone 13'] },
+		},
+		{
+			name: 'ipad',
+			use: { ...devices['iPad Mini'] },
+		},
+		{
+			name: 'ios-webkit',
+			use: { ...devices['iPhone 13'], browserName: 'webkit' },
+		},
+		{
+			name: 'android-tablet',
 			use: { ...devices['Galaxy Tab S4'] },
 		},
 	],

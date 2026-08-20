@@ -114,7 +114,7 @@ export function reviewFlags(draft: JdDraft): ReviewFlag[] {
 		});
 	}
 
-	if (!draft.summary.toLowerCase().includes('you')) {
+	if (!/\b(you|your|will|own|impact|work)\b/i.test(fullText)) {
 		flags.push({
 			code: 'missing-candidate-context',
 			tone: 'info',
@@ -130,7 +130,7 @@ export function reviewFlags(draft: JdDraft): ReviewFlag[] {
 export type JdDraftEnvelope = {
 	id: string;
 	title: string;
-	status: 'draft' | 'ready_for_review' | 'published';
+	status: 'draft' | 'ready_for_review' | 'approved' | 'published';
 	version: number;
 	data: JdDraft;
 	createdAt: string;

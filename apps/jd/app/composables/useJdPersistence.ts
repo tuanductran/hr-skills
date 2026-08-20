@@ -200,7 +200,10 @@ export function useJdPersistence() {
 		return getAllDrafts();
 	}
 
-	async function save(data: JdDraft, status: 'draft' | 'ready_for_review' = 'draft') {
+	async function save(
+		data: JdDraft,
+		status: 'draft' | 'ready_for_review' | 'approved' | 'published' = 'draft',
+	) {
 		saving.value = true;
 		persistenceError.value = null;
 		const operation = writeQueue.then(async () => {
@@ -327,6 +330,7 @@ export function useJdPersistence() {
 					title: data.title,
 					status:
 						record.status === 'ready_for_review' ||
+						record.status === 'approved' ||
 						record.status === 'published'
 							? record.status
 							: 'draft',

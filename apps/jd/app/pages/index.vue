@@ -24,12 +24,13 @@ const activeSection = ref("role");
 const savedAt = ref<Date | null>(null);
 const submitted = ref(false);
 const showJson = ref(false);
-const showHelp = ref(false);
 const persistence = useJdPersistence();
 const route = useRoute();
 const isSaving = computed(() => persistence.saving.value);
 const persistenceError = computed(() => persistence.persistenceError.value);
-const draftStatus = ref<"draft" | "ready_for_review" | "published">("draft");
+const draftStatus = ref<
+	"draft" | "ready_for_review" | "approved" | "published"
+>("draft");
 const autosaveLabel = computed(() =>
 	isSaving.value
 		? "Saving…"
@@ -113,7 +114,9 @@ function moveItem(
 	draft[key].splice(nextIndex, 0, item);
 }
 
-async function saveDraft(status: "draft" | "ready_for_review" = "draft") {
+async function saveDraft(
+	status: "draft" | "ready_for_review" | "approved" | "published" = "draft",
+) {
 	const response = await persistence.save(draft, status);
 	if (response) savedAt.value = new Date();
 	return response;
@@ -124,6 +127,25 @@ async function onSubmit(event: FormSubmitEvent<JdDocument>) {
 	draftStatus.value = "ready_for_review";
 	await saveDraft("ready_for_review");
 	console.info("JD document ready", event.data);
+}
+
+async function transitionStatus(
+	status: "approved" | "published",
+) {
+	if (status === "approved" && draftStatus.value !== "ready_for_review") return;
+	if (status === "published" && draftStatus.value !== "approved") return;
+	draftStatus.value = status;
+	submitted.value = true;
+	await saveDraft(status);
+}
+
+function statusLabel(status: typeof draftStatus.value) {
+	return {
+		draft: "Draft",
+		ready_for_review: "Ready for review",
+		approved: "Approved",
+		published: "Published locally",
+	}[status];
 }
 
 watch(
@@ -144,7 +166,7 @@ onMounted(async () => {
 	if (response) {
 		Object.assign(draft, structuredClone(response.data));
 		submitted.value =
-			response.status === "ready_for_review" || response.status === "published";
+			response.status !== "draft";
 		draftStatus.value = response.status;
 		savedAt.value = new Date(response.updatedAt);
 	}
@@ -257,40 +279,9 @@ function vSafeParse() {
   <div class="min-h-screen bg-default text-default">
     <header class="no-print sticky top-0 z-20 border-b border-default bg-default/95 backdrop-blur">
       <UContainer class="flex min-h-16 items-center justify-between gap-3 py-3">
-        <NuxtLink to="/" class="flex min-w-0 items-center gap-3 rounded-md focus-visible:outline-2 focus-visible:outline-primary">
+        <NuxtLink to="/" class="rounded-md focus-visible:outline-2 focus-visible:outline-primary" aria-label="JD Studio home">
           <UBadge color="primary" variant="solid" size="lg" class="shrink-0">JD</UBadge>
-          <span class="min-w-0">
-            <span class="block truncate text-sm font-semibold text-highlighted">JD Studio</span>
-            <span class="block truncate text-xs text-muted">HR Skills workspace</span>
-          </span>
         </NuxtLink>
-
-        <div class="flex items-center justify-end gap-1 sm:gap-2">
-          <span class="max-w-20 truncate text-[11px] text-muted sm:max-w-none sm:text-xs" aria-live="polite">{{ autosaveLabel }}</span>
-          <UPopover v-model:open="showHelp">
-            <UButton color="neutral" variant="ghost" icon="i-lucide-circle-help" aria-label="Open help" title="Help" />
-            <template #content>
-              <div class="w-72 space-y-3 p-4">
-                <div>
-                  <p class="font-semibold text-highlighted">How this workspace works</p>
-                  <p class="mt-1 text-sm leading-6 text-muted">Your drafts stay in this browser. Autosave runs while you edit, and JSON backup lets you move work to another device.</p>
-                </div>
-                <UButton color="primary" variant="soft" block @click="showHelp = false">Got it</UButton>
-              </div>
-            </template>
-          </UPopover>
-          <UButton to="/?new=1" color="neutral" variant="ghost" icon="i-lucide-plus" aria-label="New draft" @click="persistence.resetCurrent()"><span class="hidden sm:inline">New draft</span></UButton>
-          <UButton to="/drafts" color="neutral" variant="ghost" icon="i-lucide-folder-open" aria-label="My drafts"><span class="hidden sm:inline">My drafts</span></UButton>
-          <UButton color="neutral" variant="soft" icon="i-lucide-file-text" :aria-label="'Markdown'" @click="downloadMarkdown">
-            <span class="hidden sm:inline">Markdown</span>
-          </UButton>
-          <UButton color="neutral" variant="soft" icon="i-lucide-file-down" :aria-label="'DOCX'" @click="downloadDocx">
-            <span class="hidden sm:inline">DOCX</span>
-          </UButton>
-          <UButton color="primary" variant="soft" icon="i-lucide-download" :aria-label="'JSON'" @click="downloadJson">
-            <span class="hidden sm:inline">JSON</span>
-          </UButton>
-        </div>
       </UContainer>
     </header>
 
@@ -299,8 +290,16 @@ function vSafeParse() {
         <div class="mb-8 flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
           <div class="max-w-3xl">
             <UBadge color="primary" variant="subtle">Create / Job description</UBadge>
-            <h1 class="mt-4 text-3xl font-semibold tracking-tight text-highlighted sm:text-5xl">Make the role clear before you make it public.</h1>
+            <h1 class="mt-4 text-3xl font-semibold tracking-tight text-highlighted sm:text-5xl">Make the role clear before you share it.</h1>
             <p class="mt-4 max-w-2xl text-base leading-7 text-muted">Shape a structured job description that helps candidates understand the work, the expectations and the signals of success.</p>
+          <UCard class="mt-6 no-print" :ui="{ body: 'p-3 sm:p-4' }">
+            <div class="flex flex-wrap items-center gap-2">
+              <UButton to="/drafts" color="neutral" variant="soft" icon="i-lucide-folder-open">My drafts</UButton>
+              <UButton color="neutral" variant="soft" icon="i-lucide-file-text" @click="downloadMarkdown">Markdown</UButton>
+              <UButton color="neutral" variant="soft" icon="i-lucide-file-down" @click="downloadDocx">DOCX</UButton>
+              <UButton color="primary" variant="soft" icon="i-lucide-download" @click="downloadJson">JSON</UButton>
+            </div>
+          </UCard>
           </div>
           <UCard class="w-full lg:max-w-xs">
             <div class="flex items-center justify-between text-sm font-medium text-muted">
@@ -317,9 +316,12 @@ function vSafeParse() {
             <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
               <div>
                 <p class="text-xs font-semibold uppercase tracking-wide text-muted">Guided editor</p>
-                <div class="mt-1 flex flex-wrap items-center gap-2"><h2 class="text-xl font-semibold text-highlighted">Build the role profile</h2><UBadge color="neutral" variant="soft">{{ draftStatus === 'ready_for_review' ? 'Ready for review' : draftStatus }}</UBadge></div>
+                <div class="mt-1 flex flex-wrap items-center gap-2"><h2 class="text-xl font-semibold text-highlighted">Build the role profile</h2><UBadge color="neutral" variant="soft">{{ statusLabel(draftStatus) }}</UBadge></div>
               </div>
-              <UButton color="neutral" variant="outline" icon="i-lucide-save" :loading="isSaving" @click="saveDraft()">Save draft</UButton>
+              <div class="flex flex-wrap items-center gap-3">
+                <span class="text-xs text-muted" aria-live="polite">{{ autosaveLabel }}</span>
+                <UButton color="neutral" variant="outline" icon="i-lucide-save" :loading="isSaving" @click="saveDraft()">Save draft</UButton>
+              </div>
             </div>
             <USeparator class="my-6" />
 
@@ -353,7 +355,7 @@ function vSafeParse() {
                     <UButton size="sm" color="primary" variant="soft" icon="i-lucide-plus" @click="addItem(key)">Add</UButton>
                   </div>
                   <div class="space-y-2">
-                    <div v-for="(_, index) in draft[key]" :key="`${key}-${index}`" class="flex items-center gap-1.5">
+                    <div v-for="(_, index) in draft[key]" :key="`${key}-${index}`" class="grid min-w-0 grid-cols-[minmax(0,1fr)_auto_auto_auto] items-center gap-1.5">
                       <UInput v-model="draft[key][index]" class="min-w-0 flex-1" :placeholder="key === 'responsibilities' ? 'Own...' : 'e.g. Stakeholder communication'" />
                       <UButton size="xs" color="neutral" variant="ghost" icon="i-lucide-chevron-up" aria-label="Move item up" :disabled="index === 0" @click="moveItem(key, index, -1)" />
                       <UButton size="xs" color="neutral" variant="ghost" icon="i-lucide-chevron-down" aria-label="Move item down" :disabled="index === draft[key].length - 1" @click="moveItem(key, index, 1)" />
@@ -366,7 +368,7 @@ function vSafeParse() {
               <div v-show="activeSection === 'signals'" class="space-y-7">
                 <div><h3 class="text-base font-semibold text-highlighted">Success signals</h3><p class="mt-1 text-sm text-muted">What should be measurably different after this person succeeds?</p></div>
                 <div class="space-y-2">
-                  <div v-for="(_, index) in draft.successMetrics" :key="`metric-${index}`" class="flex items-center gap-1.5">
+                  <div v-for="(_, index) in draft.successMetrics" :key="`metric-${index}`" class="grid min-w-0 grid-cols-[minmax(0,1fr)_auto_auto_auto] items-center gap-1.5">
                     <UInput v-model="draft.successMetrics[index]" class="min-w-0 flex-1" placeholder="e.g. 90% program adoption in the first two quarters" />
                     <UButton size="xs" color="neutral" variant="ghost" icon="i-lucide-chevron-up" aria-label="Move metric up" :disabled="index === 0" @click="moveItem('successMetrics', index, -1)" />
                     <UButton size="xs" color="neutral" variant="ghost" icon="i-lucide-chevron-down" aria-label="Move metric down" :disabled="index === draft.successMetrics.length - 1" @click="moveItem('successMetrics', index, 1)" />
@@ -374,15 +376,18 @@ function vSafeParse() {
                   </div>
                 </div>
                 <UButton color="primary" variant="soft" icon="i-lucide-plus" @click="addItem('successMetrics')">Add success metric</UButton>
-                <UAlert color="neutral" variant="outline" icon="i-lucide-scan-search" title="Review before publishing">A good JD makes the evaluation criteria visible. Keep requirements focused and connect them to the work.</UAlert>
+                <UAlert color="neutral" variant="outline" icon="i-lucide-scan-search" title="Review before sharing">A good JD makes the evaluation criteria visible. Keep requirements focused and connect them to the work.</UAlert>
               </div>
 
               <div class="flex flex-col-reverse gap-3 border-t border-default pt-6 sm:flex-row sm:items-center sm:justify-between">
                 <p class="text-xs text-muted" aria-live="polite">{{ submitted ? 'Ready for review. You can still keep editing.' : 'Your draft stays in this workspace until you are ready.' }}</p>
-                <div class="flex justify-end gap-2">
+                <div class="flex flex-wrap justify-end gap-2">
                   <UButton v-if="activeSection !== 'role'" color="neutral" variant="ghost" @click="activeSection = activeSection === 'signals' ? 'scope' : 'role'">Back</UButton>
                   <UButton v-if="activeSection !== 'signals'" color="primary" variant="soft" @click="activeSection = activeSection === 'role' ? 'scope' : 'signals'">Continue</UButton>
-                  <UButton v-else type="submit" color="primary" icon="i-lucide-check" :loading="isSaving">Mark ready for review</UButton>
+                  <UButton v-if="draftStatus === 'draft'" type="submit" color="primary" icon="i-lucide-check" :loading="isSaving">Mark ready for review</UButton>
+                  <UButton v-if="draftStatus === 'ready_for_review'" type="submit" color="primary" variant="soft" icon="i-lucide-save" :loading="isSaving">Save review state</UButton>
+                  <UButton v-if="activeSection === 'signals' && draftStatus === 'ready_for_review'" type="button" color="success" variant="soft" icon="i-lucide-badge-check" :loading="isSaving" @click="transitionStatus('approved')">Approve locally</UButton>
+                  <UButton v-if="activeSection === 'signals' && draftStatus === 'approved'" type="button" color="primary" icon="i-lucide-send" :loading="isSaving" @click="transitionStatus('published')">Mark published locally</UButton>
                 </div>
               </div>
             </UForm>
@@ -404,9 +409,10 @@ function vSafeParse() {
               </div>
             </UCard>
 
-            <UAlert class="no-print" color="primary" variant="outline" icon="i-lucide-sparkles" title="Make the signal stronger.">
+            <UAlert class="no-print" color="primary" variant="outline" icon="i-lucide-sparkles" title="Editorial checks">
               <template #description>
                 <div class="space-y-3">
+                  <p class="text-sm leading-6 text-muted">These lightweight checks help you make the role clearer and more candidate-focused. They do not publish or score the JD.</p>
                   <UAlert v-if="persistenceError" color="error" variant="subtle" :title="persistenceError" />
                   <UAlert v-if="flags.length === 0" color="primary" variant="outline" title="No review flags yet.">Keep the language specific and grounded in the work.</UAlert>
                   <UAlert v-for="flag in flags" :key="flag.title" color="neutral" variant="outline" :title="flag.title">{{ flag.detail }}</UAlert>
