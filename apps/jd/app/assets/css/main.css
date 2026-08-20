@@ -1,0 +1,42 @@
+@import 'tailwindcss';
+@import '@nuxt/ui';
+
+@theme {
+  --font-sans: ui-sans-serif, system-ui, sans-serif;
+}
+
+:root {
+  --ui-primary: var(--ui-color-primary-600);
+  --ui-secondary: var(--ui-color-secondary-600);
+  --ui-neutral: var(--ui-color-neutral-600);
+}
+
+.dark {
+  --ui-primary: var(--ui-color-primary-400);
+  --ui-secondary: var(--ui-color-secondary-400);
+  --ui-neutral: var(--ui-color-neutral-400);
+}
+
+html {
+  background: var(--ui-bg);
+}
+
+body {
+  min-width: 320px;
+}
+
+::selection {
+  background: var(--ui-color-primary-200);
+  color: var(--ui-color-primary-900);
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  .print-page {
+    box-shadow: none !important;
+    border: 0 !important;
+  }
+}

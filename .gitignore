@@ -15,3 +15,7 @@ apps/web/data/skills.json
 apps/web/tsconfig.tsbuildinfo
 apps/web/test-results/
 apps/web/playwright-report/
+
+apps/jd/.env
+apps/jd/test-results/
+apps/jd/playwright-report/

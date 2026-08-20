@@ -9,16 +9,16 @@
 	},
 	"dependencies": {
 		"hr-skills-build": "workspace:*",
-		"react": "^19.2.0",
-		"react-dom": "^19.2.0"
+		"react": "catalog:web-react",
+		"react-dom": "catalog:web-react"
 	},
 	"devDependencies": {
-		"@tailwindcss/typography": "catalog:ui",
-		"@tailwindcss/vite": "catalog:ui",
-		"@types/react": "^19.2.0",
-		"@types/react-dom": "^19.2.0",
-		"@vitejs/plugin-react": "^5.0.0",
-		"tailwindcss": "catalog:ui",
-		"vite": "^7.1.0"
+		"@tailwindcss/typography": "catalog:web-ui",
+		"@tailwindcss/vite": "catalog:web-ui",
+		"@types/react": "catalog:web-react",
+		"@types/react-dom": "catalog:web-react",
+		"@vitejs/plugin-react": "catalog:web-react",
+		"tailwindcss": "catalog:web-ui",
+		"vite": "catalog:web-react"
 	}
 }
