@@ -1,14 +1,14 @@
 @import 'tailwindcss';
 
 :root {
-  --ink: #132238;
-  --muted: #64748b;
-  --paper: #f6f4ee;
-  --white: #fffdf8;
+  --ink: #0f172a;
+  --muted: #475569;
+  --paper: #f8fafc;
+  --white: #ffffff;
   --blue: #2563eb;
-  --blue-deep: #173f8a;
-  --coral: #f0715a;
-  --line: rgb(19 34 56 / 0.13);
+  --blue-deep: #1d4ed8;
+  --blue-soft: #dbeafe;
+  --line: rgb(15 23 42 / 0.13);
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
 }
 
@@ -42,8 +42,8 @@ a { color: inherit; text-decoration: none; }
 button, a { -webkit-tap-highlight-color: transparent; }
 a, button { touch-action: manipulation; }
 button:active, a:active { transform: scale(0.97); }
-::selection { background: #fbbf24; color: var(--ink); }
-:focus-visible { outline: 3px solid #f59e0b; outline-offset: 4px; }
+::selection { background: #bfdbfe; color: var(--ink); }
+:focus-visible { outline: 3px solid #1d4ed8; outline-offset: 4px; }
 .landing-shell { overflow: hidden; }
 .landing-container { width: min(1180px, calc(100% - 40px)); margin: 0 auto; }
 .display-font { font-family: Georgia, 'Times New Roman', serif; letter-spacing: -0.06em; }

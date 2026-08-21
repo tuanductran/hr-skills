@@ -13,17 +13,19 @@
 	},
 	"dependencies": {
 		"hr-skills-build": "workspace:*",
-		"next": "^15.5.0",
-		"react": "^19.2.0",
-		"react-dom": "^19.2.0"
+		"lucide-react": "catalog:frontend",
+		"server-only": "catalog:frontend",
+		"next": "catalog:frontend",
+		"react": "catalog:frontend",
+		"react-dom": "catalog:frontend"
 	},
 	"devDependencies": {
 		"@playwright/test": "catalog:testing",
-		"@tailwindcss/postcss": "^4.3.3",
+		"@tailwindcss/postcss": "catalog:frontend",
 		"@types/node": "catalog:",
-		"@types/react": "^19.2.0",
-		"@types/react-dom": "^19.2.0",
-		"tailwindcss": "^4.3.3",
+		"@types/react": "catalog:frontend",
+		"@types/react-dom": "catalog:frontend",
+		"tailwindcss": "catalog:frontend",
 		"typescript": "catalog:"
 	}
 }

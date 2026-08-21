@@ -1,3 +1,5 @@
+import 'server-only';
+
 import type { Registry } from 'hr-skills-build/client';
 import { buildRegistry } from 'hr-skills-build/server';
 

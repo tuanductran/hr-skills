@@ -45,10 +45,33 @@ test.describe('HR Skills landing page', () => {
 		await expect(
 			page.getByRole('dialog', { name: 'Mobile navigation' }),
 		).toBeVisible();
+		const dialog = page.getByRole('dialog', { name: 'Mobile navigation' });
+		await expect(dialog).toBeVisible();
 		await expect(page.getByRole('link', { name: 'How it works' })).toBeVisible();
+		await expect(dialog.locator('a').first()).toBeFocused();
+		await expect(page.locator('body')).toHaveCSS('overflow', 'hidden');
+		await expect(
+			page.getByRole('button', { name: 'Close mobile navigation' }),
+		).toBeVisible();
+		await page.keyboard.press('Shift+Tab');
+		await expect(dialog.locator('a').last()).toBeFocused();
+		await page.keyboard.press('Tab');
+		await expect(dialog.locator('a').first()).toBeFocused();
 		await page.keyboard.press('Escape');
 		await expect(page.getByRole('dialog', { name: 'Mobile navigation' })).toHaveCount(
 			0,
+		);
+		await expect(menu).toBeFocused();
+		await expect(page.locator('body')).not.toHaveCSS('overflow', 'hidden');
+	});
+
+	test('publishes production security headers', async ({ request }) => {
+		const response = await request.get('/');
+		expect(response.ok()).toBe(true);
+		expect(response.headers()['x-content-type-options']).toBe('nosniff');
+		expect(response.headers()['x-frame-options']).toBe('DENY');
+		expect(response.headers()['referrer-policy']).toBe(
+			'strict-origin-when-cross-origin',
 		);
 	});
 

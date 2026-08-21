@@ -1,3 +1,4 @@
+import { ArrowUpRight } from 'lucide-react';
 import Link from 'next/link';
 
 export default function NotFound() {
@@ -40,7 +41,12 @@ export default function NotFound() {
 							target='_blank'
 							rel='noreferrer'
 							className='inline-flex min-h-12 items-center rounded-full border border-[var(--line)] bg-[var(--white)] px-6 py-3 text-sm font-bold text-[var(--ink)] transition hover:border-[var(--blue)] hover:text-[var(--blue)] active:scale-[0.97]'>
-							Browse repository <span aria-hidden='true'>&nbsp;↗</span>
+							Browse repository{' '}
+							<ArrowUpRight
+								aria-hidden='true'
+								size={17}
+								strokeWidth={2.5}
+							/>
 						</a>
 					</div>
 				</section>

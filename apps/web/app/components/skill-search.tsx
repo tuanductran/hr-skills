@@ -2,6 +2,7 @@
 
 import type { Registry, SkillSearchResult } from 'hr-skills-build/client';
 import { searchSkills } from 'hr-skills-build/client';
+import { ArrowUpRight, Search } from 'lucide-react';
 import { useState } from 'react';
 
 interface SkillSearchProps {
@@ -84,7 +85,12 @@ export default function SkillSearch({ registry }: SkillSearchProps) {
 						type='submit'
 						onClick={() => setSubmittedQuery(query.trim())}
 						className='min-h-12 rounded-full bg-[var(--blue)] px-6 text-sm font-bold text-white transition hover:bg-[var(--blue-deep)] active:scale-[0.97]'>
-						Search registry
+						<Search
+							aria-hidden='true'
+							size={17}
+							strokeWidth={2.5}
+						/>
+						<span>Search registry</span>
 					</button>
 				</form>
 			</search>
@@ -111,7 +117,12 @@ export default function SkillSearch({ registry }: SkillSearchProps) {
 											{result.description}
 										</span>
 										<span className='mt-3 block text-sm font-bold text-[var(--blue)] group-hover:translate-x-1'>
-											Open skill ↗
+											Open skill{' '}
+											<ArrowUpRight
+												aria-hidden='true'
+												size={16}
+												strokeWidth={2.5}
+											/>
 										</span>
 									</a>
 								</li>

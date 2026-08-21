@@ -8,13 +8,13 @@
 	},
 	"dependencies": {
 		"hr-skills-build": "workspace:*",
-		"next": "^15.5.0",
-		"react": "^19.2.0",
-		"react-dom": "^19.2.0"
+		"next": "catalog:frontend",
+		"react": "catalog:frontend",
+		"react-dom": "catalog:frontend"
 	},
 	"devDependencies": {
-		"@types/node": "^20.17.6",
-		"@types/react": "^19.2.0",
-		"@types/react-dom": "^19.2.0"
+		"@types/node": "catalog:",
+		"@types/react": "catalog:frontend",
+		"@types/react-dom": "catalog:frontend"
 	}
 }

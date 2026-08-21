@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from 'next';
+import { siteUrl } from './lib/site-url';
 import './globals.css';
-
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://hr-skills.dev';
 
 export const metadata: Metadata = {
 	metadataBase: new URL(siteUrl),
@@ -31,13 +30,14 @@ export const metadata: Metadata = {
 			'A practical, evidence-shaped library for the people work behind better teams.',
 	},
 	robots: { index: true, follow: true },
+	referrer: 'origin-when-cross-origin',
 };
 
 export const viewport: Viewport = {
 	colorScheme: 'light',
 	themeColor: [
-		{ media: '(prefers-color-scheme: light)', color: '#f6f4ee' },
-		{ media: '(prefers-color-scheme: dark)', color: '#132238' },
+		{ media: '(prefers-color-scheme: light)', color: '#f8fafc' },
+		{ media: '(prefers-color-scheme: dark)', color: '#0f172a' },
 	],
 };
 

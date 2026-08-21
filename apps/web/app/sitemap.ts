@@ -1,7 +1,8 @@
 import type { MetadataRoute } from 'next';
+import { siteUrl } from './lib/site-url';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-	const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://hr-skills.dev';
+	const baseUrl = siteUrl;
 	return [
 		{
 			url: baseUrl,

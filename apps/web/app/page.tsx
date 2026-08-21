@@ -1,3 +1,4 @@
+import { ArrowUpRight, Sparkles } from 'lucide-react';
 import Link from 'next/link';
 import MobileNav from './components/mobile-nav';
 import SkillSearch from './components/skill-search';
@@ -102,7 +103,12 @@ export default async function HomePage() {
 						target='_blank'
 						rel='noreferrer'
 						className='hidden rounded-full border border-[var(--ink)] px-4 py-2 text-sm font-bold transition hover:bg-[var(--ink)] hover:text-white md:inline-flex'>
-						View on GitHub <span aria-hidden='true'>&nbsp;↗</span>
+						View on GitHub{' '}
+						<ArrowUpRight
+							aria-hidden='true'
+							size={17}
+							strokeWidth={2.5}
+						/>
 					</a>
 					<MobileNav />
 				</header>
@@ -122,7 +128,12 @@ export default async function HomePage() {
 							<Link
 								href='#library'
 								className='inline-flex min-h-12 items-center gap-3 rounded-full bg-[var(--blue)] px-6 py-3 text-sm font-bold text-white shadow-[0_12px_30px_rgb(37_99_235_/_0.2)] transition duration-200 hover:-translate-y-1 hover:bg-[var(--blue-deep)] active:scale-[0.97]'>
-								Explore the library <span aria-hidden='true'>↗</span>
+								Explore the library{' '}
+								<ArrowUpRight
+									aria-hidden='true'
+									size={17}
+									strokeWidth={2.5}
+								/>
 							</Link>
 							<Link
 								href='#method'
@@ -133,9 +144,13 @@ export default async function HomePage() {
 					</div>
 					<div className='relative min-h-[380px] rounded-[2.5rem] bg-[var(--blue)] p-5 text-white shadow-[0_26px_70px_rgb(37_99_235_/_0.2)] sm:min-h-[470px] sm:p-8'>
 						<div className='absolute right-8 top-8 grid size-16 place-items-center rounded-full border border-white/30 text-2xl'>
-							✦
+							<Sparkles
+								aria-hidden='true'
+								size={25}
+								strokeWidth={1.8}
+							/>
 						</div>
-						<div className='absolute -bottom-5 -left-5 hidden size-28 rounded-full bg-[var(--coral)] sm:block' />
+						<div className='absolute -bottom-5 -left-5 hidden size-28 rounded-full bg-[var(--blue-deep)] sm:block' />
 						<div className='relative flex h-full flex-col justify-between'>
 							<p className='max-w-xs text-sm font-bold uppercase tracking-[0.14em] text-blue-100'>
 								The useful middle ground
@@ -210,8 +225,12 @@ export default async function HomePage() {
 													0}
 											</span>
 										</span>
-										<span className='text-xl transition-transform group-hover:translate-x-1'>
-											↗
+										<span className='transition-transform group-hover:translate-x-1'>
+											<ArrowUpRight
+												aria-hidden='true'
+												size={19}
+												strokeWidth={2.25}
+											/>
 										</span>
 									</Link>
 								))}
@@ -240,7 +259,7 @@ export default async function HomePage() {
 							{tracks.map((track) => (
 								<article
 									key={track.number}
-									className={`min-h-[330px] rounded-[2rem] p-7 ${track.tone === 'blue' ? 'bg-[var(--blue)]' : track.tone === 'coral' ? 'bg-[var(--coral)]' : 'bg-[#f1ede2] text-[var(--ink)]'}`}>
+									className={`min-h-[330px] rounded-[2rem] p-7 ${track.tone === 'blue' ? 'bg-[var(--blue)]' : track.tone === 'coral' ? 'bg-[var(--blue-deep)]' : 'bg-slate-200 text-[var(--ink)]'}`}>
 									<span
 										className={`text-sm font-black ${track.tone === 'cream' ? 'text-slate-500' : 'text-white/70'}`}>
 										{track.number}
@@ -264,7 +283,7 @@ export default async function HomePage() {
 					id='products'
 					className='landing-container scroll-mt-8 py-24 sm:py-32'>
 					<div className='grid gap-8 lg:grid-cols-[1fr_1.2fr]'>
-						<div className='rounded-[2rem] bg-[#dce9ff] p-8 sm:p-12'>
+						<div className='rounded-[2rem] bg-[var(--blue-soft)] p-8 sm:p-12'>
 							<p className='eyebrow'>Coming into focus</p>
 							<h2 className='display-font mt-5 max-w-md text-5xl leading-[0.94]'>
 								One ecosystem. Several useful surfaces.
@@ -291,10 +310,15 @@ export default async function HomePage() {
 									context to export.
 								</p>
 								<span className='mt-8 inline-block font-bold text-[var(--blue)] transition-transform group-hover:translate-x-1'>
-									Open the track ↗
+									Open the track{' '}
+									<ArrowUpRight
+										aria-hidden='true'
+										size={17}
+										strokeWidth={2.5}
+									/>
 								</span>
 							</Link>
-							<div className='rounded-[2rem] bg-[var(--coral)] p-8 text-white'>
+							<div className='rounded-[2rem] bg-[var(--blue-deep)] p-8 text-white'>
 								<span className='text-xs font-black uppercase tracking-[0.14em] text-white/70'>
 									On the horizon
 								</span>
@@ -314,8 +338,8 @@ export default async function HomePage() {
 				</section>
 
 				<section className='landing-container pb-24 sm:pb-32'>
-					<div className='relative overflow-hidden rounded-[2.5rem] bg-[#f0d36d] px-7 py-14 sm:px-14 sm:py-20'>
-						<div className='absolute -right-10 -top-20 size-64 rounded-full border-[36px] border-[#f6f4ee]/40' />
+					<div className='relative overflow-hidden rounded-[2.5rem] bg-[var(--blue-soft)] px-7 py-14 sm:px-14 sm:py-20'>
+						<div className='absolute -right-10 -top-20 size-64 rounded-full border-[36px] border-white/60' />
 						<p className='eyebrow'>Start somewhere real</p>
 						<h2 className='display-font mt-5 max-w-2xl text-5xl leading-[0.92] sm:text-7xl'>
 							The next clear step is usually closer than it looks.
@@ -329,7 +353,12 @@ export default async function HomePage() {
 							target='_blank'
 							rel='noreferrer'
 							className='mt-8 inline-flex rounded-full bg-[var(--ink)] px-6 py-3 text-sm font-bold text-white transition hover:bg-[var(--blue-deep)]'>
-							Explore the repository ↗
+							Explore the repository{' '}
+							<ArrowUpRight
+								aria-hidden='true'
+								size={17}
+								strokeWidth={2.5}
+							/>
 						</Link>
 					</div>
 				</section>
