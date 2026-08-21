@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-14",
+  "generatedAt": "2026-08-21",
   "skillCount": 146,
   "skills": [
     {
@@ -153,7 +153,7 @@
     {
       "id": "hr-ai-adoption",
       "name": "hr-ai-adoption",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "description": "Help HR leaders drive practical, sustained adoption of AI tools among HR teams and the broader employee population, beyond initial rollout. Use when asked to drive AI adoption in HR, get our team to actually use this AI tool, build an AI adoption strategy for employees, measure AI tool usage and impact, or overcome resistance to AI tools in HR.",
       "tier": "full",
       "domain": "hr-technology-ai",
@@ -174,8 +174,8 @@
         "Addressing job security and role-change concerns tied to AI adoption",
         "Designing feedback loops to improve AI tools based on real usage",
         "Building manager enablement to support their teams through AI adoption",
-        "Comparing adoption approaches for different AI tool types (chatbot, analytics, copilot)",
-        "Sustaining adoption momentum after the initial rollout period fades"
+        "Connecting AI adoption to internal mobility, skills visibility, and employee experience",
+        "Building a use-case canvas and staged pilot with explicit expand, pause, or redesign criteria"
       ],
       "triggerPhrases": [
         "Design an AI adoption strategy for [HR team / broader employee population] rolling out [AI tool].",
@@ -345,7 +345,7 @@
     {
       "id": "hr-ai-governance",
       "name": "hr-ai-governance",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "description": "Help HR and compliance teams govern the responsible use of AI in HR processes, including hiring algorithms, monitoring tools, and policy design. Use when asked to design an AI governance policy for HR, assess bias risk in a hiring algorithm, write an AI use policy for HR, audit an HR AI tool, or similar HR AI governance tasks.",
       "tier": "full",
       "domain": "hr-technology-ai",
@@ -364,10 +364,10 @@
         "Designing human-in-the-loop review requirements for AI-assisted decisions",
         "Building an AI vendor due-diligence checklist for HR tools",
         "Drafting data privacy guidance for AI tools processing employee data",
-        "Creating training for HR staff on responsible AI use",
         "Auditing existing HR AI tools against governance standards",
         "Designing escalation processes for AI-related employee complaints",
-        "Drafting documentation standards for AI-assisted employment decisions"
+        "Classifying HR AI use cases by decision impact and required oversight",
+        "Designing data-flow, retention, correction, and appeal controls for HR AI systems"
       ],
       "triggerPhrases": [
         "Draft an AI use policy governing how HR may use AI tools in hiring and performance decisions.",

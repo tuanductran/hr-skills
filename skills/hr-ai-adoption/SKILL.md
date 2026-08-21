@@ -3,7 +3,7 @@ name: hr-ai-adoption
 description: "Help HR leaders drive practical, sustained adoption of AI tools among HR teams and the broader employee population, beyond initial rollout. Use when asked to drive AI adoption in HR, get our team to actually use this AI tool, build an AI adoption strategy for employees, measure AI tool usage and impact, or overcome resistance to AI tools in HR."
 metadata:
   author: Tuan Duc Tran
-  version: "1.0.1"
+  version: "1.0.2"
 ---
 
 # AI adoption in HR
@@ -22,8 +22,8 @@ Drive practical, sustained adoption of AI tools — among HR teams and the broad
 - Addressing job security and role-change concerns tied to AI adoption
 - Designing feedback loops to improve AI tools based on real usage
 - Building manager enablement to support their teams through AI adoption
-- Comparing adoption approaches for different AI tool types (chatbot, analytics, copilot)
-- Sustaining adoption momentum after the initial rollout period fades
+- Connecting AI adoption to internal mobility, skills visibility, and employee experience
+- Building a use-case canvas and staged pilot with explicit expand, pause, or redesign criteria
 
 ## Key prompts
 
@@ -48,6 +48,13 @@ Drive practical, sustained adoption of AI tools — among HR teams and the broad
 3. "How do we respond to skepticism from experienced HR practitioners who don't see the value of [AI tool] in their workflow?"
 4. "What should we do when a vocal team member actively discourages peers from adopting [AI tool]?"
 
+### Use-case and rollout design
+
+1. "Map the current [HR workflow] and identify the smallest AI use case that could improve [outcome] without removing human accountability."
+2. "Design a staged pilot for [AI tool] with baseline measures, representative users, support, feedback, stop conditions, and expansion criteria."
+3. "Create a use-case canvas for [AI initiative] covering user problem, data readiness, prohibited uses, owner, reviewer, and evidence of value."
+4. "Connect [AI adoption initiative] to internal mobility, skills visibility, and employee experience without overstating what the tool can infer."
+
 ### Measuring and sustaining
 
 1. "Design a way to measure actual usage and productivity impact of [AI tool], not just initial adoption numbers."
@@ -62,3 +69,4 @@ Drive practical, sustained adoption of AI tools — among HR teams and the broad
 - Use early wins and visible champions to build peer credibility — adoption spreads faster through trusted colleagues than top-down mandates.
 - Measure usage and outcomes, not just initial training attendance; adoption that fades after a launch event isn't real adoption.
 - Keep collecting feedback after rollout; tools that don't improve based on real usage patterns lose credibility and get quietly abandoned.
+- Measure repeated use, rework, quality, confidence, and safe-use adherence rather than treating account activation or training attendance as adoption.
