@@ -22,6 +22,18 @@ export default defineConfig({
 			name: 'mobile-chromium',
 			use: { ...devices['Pixel 5'] },
 		},
+		{
+			name: 'firefox',
+			use: { ...devices['Desktop Firefox'] },
+		},
+		{
+			name: 'webkit',
+			use: { ...devices['Desktop Safari'] },
+		},
+		{
+			name: 'mobile-webkit',
+			use: { ...devices['iPhone 13'] },
+		},
 	],
 	webServer: {
 		command: 'bun run dev -- --port 3010',

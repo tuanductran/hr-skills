@@ -1,0 +1,42 @@
+@import 'tailwindcss';
+@import '@nuxt/ui';
+
+:root {
+  --ui-primary: #2563eb;
+  --ui-bg: #f8fafc;
+  --ui-text: #0f172a;
+}
+
+html {
+  background: var(--ui-bg);
+  color-scheme: light;
+}
+
+body {
+  min-width: 320px;
+  background:
+    radial-gradient(circle at 10% 0%, rgb(219 234 254 / 0.72), transparent 30rem),
+    var(--ui-bg);
+  color: var(--ui-text);
+  font-family: ui-sans-serif, system-ui, sans-serif;
+}
+
+::selection {
+  background: rgb(37 99 235 / 0.18);
+}
+
+:focus-visible {
+  outline: 3px solid rgb(37 99 235 / 0.45);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

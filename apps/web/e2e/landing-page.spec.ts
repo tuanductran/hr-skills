@@ -1,0 +1,35 @@
+import { expect, test } from '@playwright/test';
+
+test.describe('HR Skills landing page', () => {
+	test('presents the product story and primary navigation', async ({ page }) => {
+		await page.goto('/');
+
+		await expect(page).toHaveTitle(/HR Skills/i);
+		await expect(page.getByRole('heading', { level: 1 })).toContainText(
+			'Make the next people decision clearer.',
+		);
+		await expect(page.locator('nav[aria-label="Main navigation"]')).toHaveCount(1);
+		await expect(
+			page.getByRole('link', { name: 'Explore the repository' }),
+		).toHaveAttribute('href', /github\.com\/tuanductran\/hr-skills/);
+		await expect(page.getByRole('heading', { name: 'JD Builder' })).toBeVisible();
+	});
+
+	test('does not create horizontal overflow on the current viewport', async ({
+		page,
+	}) => {
+		await page.goto('/');
+		const overflow = await page.evaluate(
+			() =>
+				document.documentElement.scrollWidth >
+				document.documentElement.clientWidth,
+		);
+		expect(overflow).toBe(false);
+	});
+
+	test('keeps interactive controls keyboard reachable', async ({ page }) => {
+		await page.goto('/');
+		await page.keyboard.press('Tab');
+		await expect(page.locator(':focus')).toBeVisible();
+	});
+});

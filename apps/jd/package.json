@@ -1,0 +1,36 @@
+{
+	"name": "hr-skills-jd",
+	"version": "0.1.0",
+	"private": true,
+	"type": "module",
+	"description": "Structured HR and talent acquisition job description builder.",
+	"scripts": {
+		"dev": "nuxt dev",
+		"build": "nuxt build",
+		"generate": "nuxt generate",
+		"typecheck": "nuxt typecheck",
+		"test": "vitest run",
+		"test:e2e": "playwright test"
+	},
+	"dependencies": {
+		"@iconify-json/lucide": "catalog:frontend",
+		"@nuxt/ui": "catalog:frontend",
+		"@vueuse/nuxt": "catalog:frontend",
+		"nuxt": "catalog:frontend",
+		"tailwindcss": "catalog:frontend",
+		"valibot": "catalog:",
+		"vue": "catalog:frontend",
+		"vue-router": "catalog:frontend"
+	},
+	"devDependencies": {
+		"@nuxt/test-utils": "catalog:frontend",
+		"@playwright/test": "catalog:testing",
+		"@types/node": "catalog:",
+		"typescript": "catalog:",
+		"vitest": "catalog:frontend",
+		"vue-tsc": "catalog:frontend"
+	},
+	"engines": {
+		"node": ">=22"
+	}
+}

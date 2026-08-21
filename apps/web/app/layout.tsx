@@ -1,33 +1,26 @@
 import type { Metadata, Viewport } from 'next';
-import { Inter } from 'next/font/google';
 import './globals.css';
-import { SiteFooter } from './components/site-footer';
-import { SiteHeader } from './components/site-header';
-
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 
 export const metadata: Metadata = {
+	title: {
+		default: 'HR Skills — Make people work clearer',
+		template: '%s | HR Skills',
+	},
 	description:
-		'Browse practical HR Skills for modern human resources and talent acquisition work.',
-	title: { default: 'HR Skills', template: '%s | HR Skills' },
+		'A practical, evidence-shaped library for the people work behind better teams.',
 };
 
-export const viewport: Viewport = { colorScheme: 'light' };
+export const viewport: Viewport = {
+	colorScheme: 'light',
+	themeColor: '#f6f4ee',
+};
 
-interface RootLayoutProps {
-	readonly children: React.ReactNode;
-}
-
-export default function RootLayout({ children }: RootLayoutProps) {
+export default function RootLayout({
+	children,
+}: Readonly<{ children: React.ReactNode }>) {
 	return (
-		<html
-			lang='en'
-			className={inter.variable}>
-			<body>
-				<SiteHeader />
-				{children}
-				<SiteFooter />
-			</body>
+		<html lang='en'>
+			<body>{children}</body>
 		</html>
 	);
 }

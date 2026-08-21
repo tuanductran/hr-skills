@@ -44,9 +44,22 @@
 			"turbo": "^2.10.9",
 			"typescript": "^6.0.3",
 			"unrun": "^0.3.1",
-			"yaml": "^2.9.0"
+			"yaml": "^2.9.0",
+			"@types/node": "^22.15.0"
 		},
 		"catalogs": {
+			"frontend": {
+				"@nuxt/test-utils": "^3.19.2",
+				"@iconify-json/lucide": "^1.2.124",
+				"@nuxt/ui": "^4.10.0",
+				"@vueuse/nuxt": "^14.4.0",
+				"nuxt": "^4.5.2",
+				"tailwindcss": "^4.3.3",
+				"vitest": "^4.0.15",
+				"vue": "^3.5.41",
+				"vue-router": "^5.2.0",
+				"vue-tsc": "^3.3.10"
+			},
 			"biome": {
 				"@biomejs/biome": "^2.5.7"
 			},
