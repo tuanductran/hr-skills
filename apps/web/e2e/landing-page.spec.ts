@@ -60,4 +60,14 @@ test.describe('HR Skills landing page', () => {
 		expect(await robots.text()).toContain('Sitemap:');
 		expect(await sitemap.text()).toContain('<loc>');
 	});
+
+	test('uses the internal registry search package in the browser', async ({ page }) => {
+		await page.goto('/');
+		await page.getByLabel('Search HR skills').fill('hr-analytics');
+		await page.getByRole('button', { name: 'Search registry' }).click();
+		await expect(page.getByText('Searches capabilities, aliases')).toBeVisible();
+		await expect(
+			page.getByRole('link', { name: /Open skill/ }).first(),
+		).toBeVisible();
+	});
 });

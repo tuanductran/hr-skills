@@ -47,6 +47,7 @@
       "name": "hr-skills-web",
       "version": "0.2.0",
       "dependencies": {
+        "hr-skills-build": "workspace:*",
         "next": "^15.5.0",
         "react": "^19.2.0",
         "react-dom": "^19.2.0",

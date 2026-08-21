@@ -1,11 +1,9 @@
 import Link from 'next/link';
 import MobileNav from './components/mobile-nav';
+import SkillSearch from './components/skill-search';
+import { getCatalogData } from './lib/catalog';
 
-const signals = [
-	['200+', 'HR skills'],
-	['12', 'practice areas'],
-	['1', 'canonical registry'],
-];
+const signalLabels = ['HR skills indexed', 'practice areas', 'canonical registry'];
 
 const tracks = [
 	{
@@ -29,15 +27,38 @@ const tracks = [
 ];
 
 const domains = [
-	{ label: 'Talent acquisition', slug: 'hr-talent-acquisition' },
-	{ label: 'People operations', slug: 'hr-people-operations' },
-	{ label: 'HR analytics', slug: 'hr-analytics' },
-	{ label: 'Learning & development', slug: 'hr-learning-development' },
-	{ label: 'Compensation & benefits', slug: 'hr-compensation-benefits' },
-	{ label: 'HR technology', slug: 'hr-hris' },
+	{
+		label: 'Talent acquisition',
+		slug: 'hr-talent-acquisition',
+		category: 'talent-acquisition',
+	},
+	{
+		label: 'People operations',
+		slug: 'hr-people-operations',
+		category: 'onboarding-offboarding',
+	},
+	{ label: 'HR analytics', slug: 'hr-analytics', category: 'workforce-analytics' },
+	{
+		label: 'Learning & development',
+		slug: 'hr-learning-development',
+		category: 'learning-development',
+	},
+	{
+		label: 'Compensation & benefits',
+		slug: 'hr-compensation-benefits',
+		category: 'compensation-rewards',
+	},
+	{ label: 'HR technology', slug: 'hr-hris', category: 'hr-technology-ai' },
 ];
 
-export default function HomePage() {
+export default async function HomePage() {
+	const catalog = await getCatalogData();
+	const signals = [
+		[String(catalog.skillCount), signalLabels[0]],
+		[String(catalog.domainCount), signalLabels[1]],
+		['1', signalLabels[2]],
+	];
+
 	return (
 		<>
 			<a
@@ -164,6 +185,7 @@ export default function HomePage() {
 							</h2>
 						</div>
 						<div>
+							<SkillSearch registry={catalog.registry} />
 							<p className='max-w-2xl text-xl leading-8 text-slate-600'>
 								People work rarely arrives as a neat category. It arrives
 								as a messy question with a deadline. HR Skills makes the
@@ -183,6 +205,10 @@ export default function HomePage() {
 												0{index + 1}
 											</span>
 											{domain.label}
+											<span className='ml-2 text-sm font-medium text-slate-400'>
+												{catalog.domainCounts[domain.category] ??
+													0}
+											</span>
 										</span>
 										<span className='text-xl transition-transform group-hover:translate-x-1'>
 											↗
