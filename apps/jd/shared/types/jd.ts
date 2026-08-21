@@ -132,7 +132,8 @@ export const rolePresets: RolePreset[] = [
 
 export function createEmptyDocument(presetId = 'recruiter'): JobDescriptionDocument {
 	const now = new Date().toISOString();
-	const preset = rolePresets.find((item) => item.id === presetId) ?? rolePresets[0]!;
+	const preset = rolePresets.find((item) => item.id === presetId) ?? rolePresets[0];
+	if (!preset) throw new Error('At least one role preset is required.');
 	const responsibilities = preset.suggestedResponsibilities.map((text, index) => ({
 		id: `responsibility-${index + 1}`,
 		text,

@@ -4,10 +4,10 @@ const baseURL = process.env.PLAYWRIGHT_BASE_URL ?? 'http://127.0.0.1:3010';
 
 export default defineConfig({
 	testDir: './e2e',
-	fullyParallel: true,
+	fullyParallel: false,
 	forbidOnly: Boolean(process.env.CI),
 	retries: process.env.CI ? 2 : 0,
-	workers: process.env.CI ? 1 : undefined,
+	workers: 1,
 	reporter: [['list'], ['html', { open: 'never' }]],
 	use: {
 		baseURL,

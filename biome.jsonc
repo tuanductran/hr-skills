@@ -10,6 +10,10 @@
 			"!**/.claude-plugin",
 			"!**/registry",
 			"!**/.next",
+			"!**/.nuxt",
+			"!**/.output",
+			"!**/playwright-report",
+			"!**/test-results",
 			"!**/next-env.d.ts",
 			"!apps/web/data/skills.json",
 			"!packages/hr-skills-build/eval-report.json"
