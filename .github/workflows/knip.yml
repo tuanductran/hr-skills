@@ -12,6 +12,8 @@ jobs:
   knip:
     name: Knip
     runs-on: ubuntu-latest
+    env:
+      KNIP_DISABLE_RAW_TRANSFER: "1"
 
     steps:
       - name: Cancel Previous Runs
