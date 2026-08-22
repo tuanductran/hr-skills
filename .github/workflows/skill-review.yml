@@ -63,6 +63,9 @@ jobs:
       - name: Install dependencies
         run: bun ci
 
+      - name: Build skill review dependencies
+        run: bunx turbo run build --filter=hr-skills...
+
       - name: Build hr-skills-ref
         run: bun run build --filter=hr-skills-ref
 
@@ -86,8 +89,8 @@ jobs:
       - name: Generate deterministic report
         if: steps.changed.outputs.count != '0'
         run: |
-          cd packages/hr-skills-build
           echo "${{ steps.changed.outputs.list }}" > /tmp/changed-skills.txt
+          cd packages/hr-skills
           bun run skill-review -- --list-file /tmp/changed-skills.txt > /tmp/skill-review-report.md
           cat /tmp/skill-review-report.md
 
