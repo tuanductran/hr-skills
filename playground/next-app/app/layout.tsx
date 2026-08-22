@@ -1,3 +1,4 @@
+import './globals.css';
 import type { Metadata, Viewport } from 'next';
 
 export const metadata: Metadata = {
@@ -6,10 +7,9 @@ export const metadata: Metadata = {
 		'Browser smoke test proving hr-skills-build/client bundles without node: builtins.',
 };
 
-// `colorScheme` lets the UA supply a dark background and readable text in dark
-// mode without this playground shipping a stylesheet.
+// Keep the playground aligned with the shared light Design System tokens.
 export const viewport: Viewport = {
-	colorScheme: 'light dark',
+	colorScheme: 'light',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
