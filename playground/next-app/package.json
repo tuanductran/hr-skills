@@ -8,13 +8,15 @@
 	},
 	"dependencies": {
 		"hr-skills-build": "workspace:*",
-		"next": "^15.5.0",
+		"next": "^16.0.0",
 		"react": "^19.2.0",
 		"react-dom": "^19.2.0"
 	},
 	"devDependencies": {
+		"@tailwindcss/typography": "catalog:ui",
 		"@types/node": "^20.17.6",
 		"@types/react": "^19.2.0",
-		"@types/react-dom": "^19.2.0"
+		"@types/react-dom": "^19.2.0",
+		"tailwindcss": "catalog:ui"
 	}
 }

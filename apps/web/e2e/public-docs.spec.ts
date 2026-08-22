@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test';
 
 test.describe('public documentation', () => {
-	test('renders the homepage and primary navigation', async ({ page }) => {
+	test('renders the homepage and primary navigation', async ({ page }, testInfo) => {
 		await page.goto('/');
 
 		await expect(page).toHaveTitle(/HR Skills/);
@@ -14,6 +14,9 @@ test.describe('public documentation', () => {
 			page.getByText('Use a canonical library of 146 HR Skills'),
 		).toBeVisible();
 		await expect(page.getByRole('link', { name: 'Catalog' }).first()).toBeVisible();
+		if (testInfo.project.name === 'mobile-chromium') {
+			await page.getByRole('button', { name: 'Open navigation menu' }).click();
+		}
 		await expect(page.getByRole('link', { name: /GitHub/ }).first()).toHaveAttribute(
 			'href',
 			'https://github.com/tuanductran/hr-skills',
@@ -138,7 +141,15 @@ test.describe('public documentation interactions', () => {
 		);
 	});
 
-	test('supports keyboard navigation through the primary links', async ({ page }) => {
+	test('supports keyboard navigation through the primary links', async ({
+		page,
+	}, testInfo) => {
+		if (testInfo.project.name === 'mobile-chromium') {
+			test.skip(
+				true,
+				'Mobile navigation is covered by the Headless UI Dialog interaction test.',
+			);
+		}
 		await page.goto('/');
 
 		await page.keyboard.press('Tab');
@@ -186,6 +197,26 @@ test.describe('planner API surface', () => {
 		await expect(firstStep).toBeVisible();
 		await firstStep.click();
 		await expect(page.locator('.planner-step__panel').first()).toBeVisible();
+	});
+
+	test('keeps built-in planner examples backed by canonical skills', async ({
+		page,
+	}) => {
+		await page.goto('/planner');
+		const examples = [
+			'Write a job description for a Senior Product Manager',
+			'Design a structured interview process for technical hiring',
+			'AI governance',
+		];
+		for (const example of examples) {
+			await page.getByRole('button', { name: example, exact: true }).click();
+			await page.getByRole('button', { name: 'Generate plan' }).click();
+			await expect(
+				page.getByText('Explainable result', { exact: true }),
+			).toBeVisible();
+			await expect(page.locator('.planner-step__button').first()).toBeVisible();
+			await page.getByRole('button', { name: 'Clear result' }).click();
+		}
 	});
 });
 
@@ -253,18 +284,21 @@ test.describe('UX redesign flows', () => {
 			'href',
 			'/skills',
 		);
-		await expect(page.getByRole('link', { name: /Build a plan/ })).toHaveAttribute(
-			'href',
-			'/planner',
-		);
+		await expect(
+			page.getByRole('main').getByRole('link', { name: /Build a plan/ }),
+		).toHaveAttribute('href', '/planner');
 		await expect(
 			page.getByRole('link', { name: /I need a practical guide/ }),
 		).toBeVisible();
 	});
 
-	test('opens the compact explore navigation', async ({ page }) => {
+	test('opens the compact explore navigation', async ({ page }, testInfo) => {
 		await page.goto('/');
-		await page.getByText('Explore', { exact: true }).click();
+		if (testInfo.project.name === 'mobile-chromium') {
+			await page.getByRole('button', { name: 'Open navigation menu' }).click();
+		} else {
+			await page.locator('summary').filter({ hasText: 'Explore' }).click();
+		}
 		await expect(page.getByRole('link', { name: 'Skill graph' })).toBeVisible();
 		await expect(page.getByRole('link', { name: 'Evaluation' })).toBeVisible();
 	});
