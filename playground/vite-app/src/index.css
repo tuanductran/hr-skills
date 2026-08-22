@@ -1,0 +1,19 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+	--font-sans: ui-sans-serif, system-ui, sans-serif;
+	--color-ink: #15233b;
+	--color-muted: #56677f;
+	--color-subtle: #60708c;
+	--color-canvas: #f6f8fb;
+	--color-surface: #ffffff;
+	--color-line: #778ba8;
+	--color-brand: #1c5cff;
+	--color-brand-soft: #e8efff;
+	--shadow-card: 0 8px 24px rgb(21 35 59 / 0.06);
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; min-width: 320px; font-family: var(--font-sans); }
+:focus-visible { outline: 3px solid #1748c7; outline-offset: 3px; }
