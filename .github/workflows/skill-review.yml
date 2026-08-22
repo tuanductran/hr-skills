@@ -87,6 +87,7 @@ jobs:
         if: steps.changed.outputs.count != '0'
         run: |
           echo "${{ steps.changed.outputs.list }}" > /tmp/changed-skills.txt
+          cd packages/hr-skills
           bun run skill-review -- --list-file /tmp/changed-skills.txt > /tmp/skill-review-report.md
           cat /tmp/skill-review-report.md
 
