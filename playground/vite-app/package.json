@@ -13,9 +13,12 @@
 		"react-dom": "^19.2.0"
 	},
 	"devDependencies": {
-		"@vitejs/plugin-react": "^5.0.0",
+		"@tailwindcss/typography": "catalog:ui",
+		"@tailwindcss/vite": "catalog:ui",
 		"@types/react": "^19.2.0",
 		"@types/react-dom": "^19.2.0",
+		"@vitejs/plugin-react": "^5.0.0",
+		"tailwindcss": "catalog:ui",
 		"vite": "^7.1.0"
 	}
 }

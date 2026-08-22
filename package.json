@@ -64,6 +64,21 @@
 			},
 			"testing": {
 				"@playwright/test": "^1.62.1"
+			},
+			"ui": {
+				"@headlessui/react": "^2.2.10",
+				"@tailwindcss/postcss": "^4.3.3",
+				"@tailwindcss/typography": "^0.5.20",
+				"@tailwindcss/vite": "^4.3.3",
+				"tailwindcss": "^4.3.3"
+			},
+			"content": {
+				"rehype-sanitize": "^6.0.0",
+				"rehype-stringify": "^10.0.1",
+				"remark-gfm": "^4.0.1",
+				"remark-parse": "^11.0.0",
+				"remark-rehype": "^11.1.2",
+				"unified": "^11.0.5"
 			}
 		}
 	},

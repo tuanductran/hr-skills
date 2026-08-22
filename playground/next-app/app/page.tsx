@@ -1,27 +1,24 @@
 import { ClientWidget } from './client-widget';
 
-// Note: a Server Component calling a full fs-backed export like
-// `buildRegistry()` from 'hr-skills-build/server' hits an unrelated,
-// pre-existing issue: `hr-skills-ref` resolves `ROOT_DIR` from `process.cwd()`
-// at module load time, which Next's webpack server bundling does not evaluate
-// correctly for an externalized workspace package symlinked outside
-// `next-app/`. Nothing here works around it — there is deliberately no
-// `next.config.ts`, because the server path is out of scope for this
-// playground. That's a Next.js/ESM interop wrinkle
-// in `hr-skills-ref`, not something the client/server split changed — the fs
-// path is already covered by `bun test` / `bun run validate` in
-// `packages/hr-skills-build`. What this playground exists to prove is the
-// part that's actually new and risky: that `hr-skills-build/client` bundles
-// cleanly for the browser. See `client-widget.tsx`.
 export default function Page() {
 	return (
-		<main style={{ fontFamily: 'monospace', padding: 24 }}>
-			<h1>hr-skills-build playground (Next.js)</h1>
-
-			<section>
-				<h2>Client: parseSkillFrontmatter() via hr-skills-build/client</h2>
-				<ClientWidget />
-			</section>
+		<main className='mx-auto grid min-h-dvh w-[min(960px,calc(100%-2rem))] content-start gap-8 py-12 sm:py-20'>
+			<header className='max-w-3xl'>
+				<p className='mb-3 text-xs font-black uppercase tracking-[0.17em] text-brand'>
+					Playground · Next.js
+				</p>
+				<h1 className='text-balance text-5xl font-medium tracking-[-0.07em] sm:text-7xl'>
+					Client-safe HR Skills APIs.
+				</h1>
+				<p className='mt-5 text-pretty text-lg leading-8 text-muted'>
+					A focused sandbox for verifying browser-safe imports from{' '}
+					<code className='rounded bg-brand-soft px-1.5 py-0.5 text-sm text-brand-strong'>
+						hr-skills-build/client
+					</code>
+					.
+				</p>
+			</header>
+			<ClientWidget />
 		</main>
 	);
 }
