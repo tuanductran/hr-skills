@@ -11,20 +11,24 @@
 	},
 	"dependencies": {
 		"hr-skills-build": "workspace:*",
-		"marked": "^18.0.9",
 		"next": "^15.5.0",
 		"react": "^19.2.0",
 		"react-dom": "^19.2.0",
-		"sanitize-html": "^2.17.7"
+		"rehype-sanitize": "catalog:content",
+		"rehype-stringify": "catalog:content",
+		"remark-gfm": "catalog:content",
+		"remark-parse": "catalog:content",
+		"remark-rehype": "catalog:content",
+		"unified": "catalog:content"
 	},
 	"devDependencies": {
-		"@headlessui/react": "^2.2.10",
+		"@headlessui/react": "catalog:ui",
 		"@playwright/test": "catalog:testing",
-		"@tailwindcss/postcss": "^4.3.3",
+		"@tailwindcss/postcss": "catalog:ui",
+		"@tailwindcss/typography": "catalog:ui",
 		"@types/node": "^20.17.6",
 		"@types/react": "^19.2.0",
 		"@types/react-dom": "^19.2.0",
-		"@types/sanitize-html": "^2.16.1",
-		"tailwindcss": "^4.3.3"
+		"tailwindcss": "catalog:ui"
 	}
 }
