@@ -3,17 +3,6 @@ import 'server-only';
 import type { Registry } from 'hr-skills-build/client';
 import { buildRegistry } from 'hr-skills-build/server';
 
-const domainLabels = {
-	'talent-acquisition': 'Talent acquisition',
-	'onboarding-offboarding': 'People operations',
-	'workforce-analytics': 'HR analytics',
-	'learning-development': 'Learning & development',
-	'compensation-rewards': 'Compensation & benefits',
-	'hr-technology-ai': 'HR technology',
-} as const;
-
-export type CatalogDomain = keyof typeof domainLabels;
-
 export interface CatalogData {
 	readonly registry: Registry;
 	readonly skillCount: number;
@@ -35,8 +24,4 @@ export async function getCatalogData(): Promise<CatalogData> {
 		domainCount: new Set(registry.skills.map((skill) => skill.domain)).size,
 		domainCounts,
 	};
-}
-
-export function getDomainLabel(domain: CatalogDomain): string {
-	return domainLabels[domain];
 }

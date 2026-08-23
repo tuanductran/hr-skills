@@ -10,6 +10,9 @@ const config = {
 			project: ['app/**/*.{ts,tsx}'],
 			next: true,
 		},
+		'apps/jd': {
+			ignoreDependencies: ['@iconify-json/lucide', '@nuxt/test-utils', 'vue-tsc'],
+		},
 		'packages/hr-skills-build': {
 			project: ['src/**/*.ts'],
 		},

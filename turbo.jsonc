@@ -86,6 +86,10 @@
 			"cache": false,
 			"dependsOn": ["^build"],
 			"outputs": ["docs/engineering/api.md"]
+		},
+		"skill-review": {
+			"cache": false,
+			"dependsOn": ["^build"]
 		}
 	}
 }

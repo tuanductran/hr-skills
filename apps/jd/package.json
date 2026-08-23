@@ -9,7 +9,7 @@
 		"build": "nuxt build",
 		"generate": "nuxt generate",
 		"typecheck": "nuxt typecheck",
-		"test": "vitest run --passWithNoTests --exclude e2e/**",
+		"test": "vitest run --passWithNoTests --exclude e2e/jd-builder.spec.ts",
 		"test:e2e": "playwright test"
 	},
 	"dependencies": {
