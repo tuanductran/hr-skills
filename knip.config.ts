@@ -10,6 +10,7 @@ const config = {
 			project: ['app/**/*.{ts,tsx}'],
 			next: true,
 		},
+		'apps/jd': {},
 		'packages/hr-skills-build': {
 			project: ['src/**/*.ts'],
 		},

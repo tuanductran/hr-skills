@@ -9,11 +9,10 @@
 		"build": "nuxt build",
 		"generate": "nuxt generate",
 		"typecheck": "nuxt typecheck",
-		"test": "vitest run --passWithNoTests --exclude e2e/**",
+		"test": "vitest run --passWithNoTests --exclude e2e/jd-builder.spec.ts",
 		"test:e2e": "playwright test"
 	},
 	"dependencies": {
-		"@iconify-json/lucide": "catalog:frontend",
 		"@nuxt/ui": "catalog:frontend",
 		"@vueuse/nuxt": "catalog:frontend",
 		"nuxt": "catalog:frontend",
@@ -23,12 +22,10 @@
 		"vue-router": "catalog:frontend"
 	},
 	"devDependencies": {
-		"@nuxt/test-utils": "catalog:frontend",
 		"@playwright/test": "catalog:testing",
 		"@types/node": "catalog:",
 		"typescript": "catalog:",
-		"vitest": "catalog:frontend",
-		"vue-tsc": "catalog:frontend"
+		"vitest": "catalog:frontend"
 	},
 	"engines": {
 		"node": ">=22"

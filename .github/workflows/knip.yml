@@ -30,5 +30,8 @@ jobs:
       - name: Install dependencies
         run: bun ci
 
+      - name: Build Nuxt workspace for Knip
+        run: bunx turbo run build --filter=hr-skills-jd
+
       - name: Run knip (unused detection)
         run: bun run knip
