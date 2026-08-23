@@ -1,6 +1,6 @@
 ---
 name: hr-backend
-description: "Help HR managers, recruiters, and talent acquisition teams understand Backend Engineering concepts, hiring requirements, backend ecosystems, candidate evaluation, APIs, databases, scalability, cloud-adjacent backend infrastructure, and modern server-side workflows. Use when asked to explain backend development, screen backend candidates, understand APIs and databases, compare backend frameworks, evaluate backend skills, create backend interview questions, understand microservices, understand cloud backend systems, or any backend hiring and recruiting task."
+description: "Help HR managers, recruiters, and talent acquisition teams evaluate backend engineering roles, APIs, databases, scalability, and server-side systems. Use when screening backend candidates, comparing frameworks, writing interview questions or job descriptions, assessing microservices and cloud-backend skills, or supporting backend hiring decisions."
 metadata:
   author: Tuan Duc Tran
   version: "1.0.1"
