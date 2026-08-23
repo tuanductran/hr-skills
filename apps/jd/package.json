@@ -13,6 +13,7 @@
 		"test:e2e": "playwright test"
 	},
 	"dependencies": {
+		"@iconify-json/lucide": "catalog:frontend",
 		"@nuxt/ui": "catalog:frontend",
 		"@vueuse/nuxt": "catalog:frontend",
 		"nuxt": "catalog:frontend",
@@ -22,10 +23,12 @@
 		"vue-router": "catalog:frontend"
 	},
 	"devDependencies": {
+		"@nuxt/test-utils": "catalog:frontend",
 		"@playwright/test": "catalog:testing",
 		"@types/node": "catalog:",
 		"typescript": "catalog:",
-		"vitest": "catalog:frontend"
+		"vitest": "catalog:frontend",
+		"vue-tsc": "catalog:frontend"
 	},
 	"engines": {
 		"node": ">=22"

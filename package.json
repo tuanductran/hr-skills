@@ -48,6 +48,8 @@
 		},
 		"catalogs": {
 			"frontend": {
+				"@nuxt/test-utils": "^3.19.2",
+				"@iconify-json/lucide": "^1.2.124",
 				"@tailwindcss/postcss": "^4.3.3",
 				"@vitejs/plugin-react": "^5.0.0",
 				"@nuxt/ui": "^4.10.0",
@@ -64,7 +66,8 @@
 				"vite": "^7.1.0",
 				"vitest": "^4.0.15",
 				"vue": "^3.5.41",
-				"vue-router": "^5.2.0"
+				"vue-router": "^5.2.0",
+				"vue-tsc": "^3.3.10"
 			},
 			"biome": {
 				"@biomejs/biome": "^2.5.7"
