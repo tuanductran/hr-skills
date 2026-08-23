@@ -1,6 +1,6 @@
 ---
 name: hr-learning-development
-description: "Help HR business partners, L&D managers, and people development leaders understand, design, and run learning and development programs, skills gap analyses, career development frameworks, leadership development tracks, onboarding programs, and learning culture initiatives. Use when asked to design a learning program, run a skills gap analysis for learning program design, build a career development framework, design a leadership development track, build an onboarding program, respond to a capability gap crisis, measure L&D effectiveness, design a learning culture strategy, or any employee learning, skills development, or talent capability task, or design an L&D strategy or program."
+description: "Help HR business partners, L&D managers, and people development leaders design and evaluate learning programs, skills-gap analyses, career frameworks, leadership development and onboarding. Use when building an L&D strategy, diagnosing capability gaps, measuring learning impact, planning reskilling, or supporting employee development decisions."
 metadata:
   author: Tuan Duc Tran
   version: "1.0.1"
