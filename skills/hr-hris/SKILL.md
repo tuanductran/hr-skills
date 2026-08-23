@@ -1,6 +1,6 @@
 ---
 name: hr-hris
-description: "Help HR managers, HR operations teams, and recruiters understand HRIS (Human Resource Information Systems), including HRIS platforms, implementation and migration, system integrations, employee data management, HR automation, and HRIS-related hiring. Use when asked to explain HRIS, choose an HRIS platform, implement or migrate an HRIS, screen HRIS analysts or managers, understand HR system integrations, configure HRIS to automate HR workflows, evaluate HRIS vendors, or any HR technology and systems task."
+description: "Help HR managers, HR operations teams, and recruiters evaluate HRIS platforms, implementations, migrations, integrations, data governance and automation. Use when selecting or configuring HRIS, screening people-systems talent, assessing vendors, planning integrations, or improving HR technology workflows."
 metadata:
   author: Tuan Duc Tran
   version: "1.0.1"
