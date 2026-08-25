@@ -1,0 +1,62 @@
+# HR Skills Workspace implementation checklist
+
+- [x] Kiểm tra trang skill detail trên desktop: header, metadata, CTA, prose và supporting material.
+- [x] Kiểm tra cùng route ở mobile: breakpoint, nhịp chữ, nút và overflow markdown.
+- [x] Hiệu chỉnh CSS detail nếu có điểm làm lệch reference editorial hoặc font HR Skills.
+- [x] Build lại và xác nhận preview cuối.
+- [x] Đọc tài liệu chính thức UnoCSS/Vite và xác nhận cách cấu hình trong app React Bun.
+- [x] Kiểm toán workspace: Bun install, typecheck/build package nội bộ, apps/web và dependency thiếu.
+- [x] Kiểm tra visual catalog/detail hiện tại về font, màu, menu hover và responsive.
+- [x] Cài UnoCSS, chuyển custom CSS sang utility classes dùng Slate/Blue.
+- [x] Khắc phục runtime preview trống xuất hiện ngay sau migration UnoCSS.
+- [x] Bỏ underline hover ở menu và xác nhận lại catalog/detail qua preview.
+- [x] Chạy kiểm tra cuối toàn workspace, ghi rõ phần còn thiếu nếu có.
+- [x] Đọc tài liệu UnoCSS về font, preset Wind3 và utility layout/loading trước khi chỉnh.
+- [x] Audit app shell hiện tại: vị trí loading, footer, rounded, contrast Slate/Blue và font.
+- [x] Chuyển typography sang Inter body, Manrope heading, Fira Code code qua UnoCSS.
+- [x] Cập nhật app shell min-h-screen, loader giữa trang và footer dính đáy ổn định.
+- [x] Kiểm tra catalog/detail/loading qua preview và chạy build/typecheck.
+- [x] Rà app shell để xác định khoảng trắng và separator cho header/footer.
+- [x] Đổi header/footer sang surface trắng và tăng spacing bằng utility UnoCSS.
+- [x] Xác nhận preview, layout footer ngắn và build sau chỉnh app shell.
+- [x] Đo bounding box, gutter trái–phải và padding của container đang render.
+- [x] Đối chiếu shortcut UnoCSS tạo gutter và báo rõ cách kiểm tra trong F12.
+- [x] Bỏ padding ngang ở content-wrap và đổi nhãn directory thành beta.
+- [x] Đo lại vị trí trái–phải, kiểm tra preview và build app.
+- [x] Quét apps/web tìm file CSS, import stylesheet, inline style và class cũ còn sót.
+- [x] Khởi động dev server sạch và audit stylesheet/runtime layout trên catalog, map, detail.
+- [x] Ghi rõ nguồn gây lệch và sửa khi đã có bằng chứng.
+- [x] Chạy typecheck/build sau khi sửa UnoCSS filesystem extraction và lưu kết quả audit cuối.
+- [x] Chạy lại build/typecheck và bàn giao báo cáo audit.
+- [x] Tạo và bàn giao patch Git áp dụng được cho phần migrate/audit apps/web.
+- [x] Rà toàn bộ UnoCSS config để loại bỏ CSS raw/preflight custom và thay bằng utilities thuần túy.
+- [x] Đọc api.md cùng các package nội bộ để xác định chức năng web còn thiếu trước khi triển khai.
+- [x] Đối chiếu các giao diện tham khảo đáng tin cậy và lập kế hoạch nâng cấp UI/chức năng có căn cứ.
+- [x] Kiểm tra cuối build/runtime/audit import client-only trước khi bàn giao.
+- [x] Chạy lại typecheck và build Bun theo yêu cầu xác nhận mới.
+- [x] Cập nhật dependency Bun catalog và lớp information model cho toast, Markdown, worklist và Claude composer.
+- [x] Thay app shell cũ bằng HR Skills Workspace shell có sidebar, mobile navigation và accessibility primitives.
+- [x] Tái thiết Skill Explorer với URL state, search API, facets, worklist/export và recovery states.
+- [x] Tái thiết People System Canvas cho production map theo active stage workspace.
+- [x] Tái thiết Skill Workspace với React Markdown, provenance, worklist, Claude composer và recommendations.
+- [x] Chạy audit responsive/accessibility/CSS boundary, typecheck/build và browser verification cuối.
+- [x] Rà soát route tree, URL state, Query cache và local worklist để phát hiện render/state không cần thiết.
+- [x] Đo bundle, network loading và runtime trên Explorer, Canvas và Skill Workspace.
+- [x] Áp dụng các tối ưu hiệu năng có bằng chứng và kiểm tra lại typecheck/build/runtime.
+- [x] Đọc và áp dụng quy tắc `.claude`/`.agents` liên quan trước khi sửa app.
+- [x] Audit responsive desktop/tablet/mobile cho Explorer, Canvas, Skill Workspace và overlay navigation.
+- [x] Rà kiến trúc component để tách chức năng dùng chung, giảm coupling và giữ route ownership rõ ràng.
+- [x] Chạy internet-skill discovery cùng SEO/content-gap research với dữ liệu công khai, nêu rõ các giới hạn dữ liệu.
+- [x] Thực hiện các tách module/sửa responsive đã xác minh, sau đó kiểm tra typecheck/build/runtime.
+- [x] Kiểm tra Claude handoff composer trên UI: template, custom prompt, raw-main preview, copy fallback, deep link và privacy.
+- [x] Rà test surface apps/web và bổ sung Bun test cho helper/state có hợp đồng xác định.
+- [x] Chạy Bun test, typecheck, build và browser verification sau bổ sung test.
+- [x] Thiết lập ma trận Playwright cho desktop Windows/Linux/macOS, Android, iPhone và iPad.
+- [x] Ghi nhận lỗi responsive/UX trên Explorer, Canvas và Skill Workspace từ kết quả đa thiết bị.
+- [x] Sửa các lỗi có bằng chứng, rồi xác thực hồi quy bằng Playwright, Bun test, typecheck và build.
+- [x] Chạy kịch bản touch gesture cho navigation overlay, disclosure và Claude composer trên Android/iOS/iPadOS.
+- [x] Chạy orientation portrait/landscape cho mobile/tablet, kiểm tra overflow, trạng thái và focus.
+- [x] Sửa lỗi touch/orientation có bằng chứng rồi xác thực hồi quy toàn bộ suite.
+- [x] Rà Radix UI tương thích React/UnoCSS và chọn primitive cho luồng quan trọng.
+- [x] Tích hợp Radix UI có motion accessible cho các interaction trọng yếu.
+- [x] Chạy validation Bun/Playwright, commit và push các thay đổi đã được xác nhận.

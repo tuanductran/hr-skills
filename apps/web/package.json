@@ -1,31 +1,41 @@
 {
 	"name": "hr-skills-web",
-	"version": "0.2.0",
+	"version": "0.3.0",
 	"private": true,
 	"type": "module",
-	"description": "HR Skills public landing page.",
+	"description": "HR Skills catalog rebuilt from the caezium site UI with React, TanStack, and Bun.",
 	"scripts": {
-		"dev": "next dev",
-		"build": "next build",
-		"start": "next start",
+		"generate:data": "bun scripts/generate-data.ts",
+		"dev": "vite --host 0.0.0.0",
+		"build": "bun run generate:data && vite build",
+		"preview": "vite preview --host 0.0.0.0",
 		"typecheck": "tsc --noEmit",
+		"test": "bun test",
 		"test:e2e": "playwright test"
 	},
 	"dependencies": {
+		"@radix-ui/react-dialog": "catalog:frontend",
+		"@tanstack/react-query": "^5.87.1",
+		"@tanstack/react-router": "^1.139.12",
 		"hr-skills-build": "workspace:*",
 		"lucide-react": "catalog:frontend",
-		"server-only": "catalog:frontend",
-		"next": "catalog:frontend",
 		"react": "catalog:frontend",
-		"react-dom": "catalog:frontend"
+		"react-dom": "catalog:frontend",
+		"react-hot-toast": "catalog:frontend",
+		"react-markdown": "catalog:frontend",
+		"rehype-sanitize": "catalog:frontend",
+		"remark-gfm": "catalog:frontend"
 	},
 	"devDependencies": {
-		"@playwright/test": "catalog:testing",
-		"@tailwindcss/postcss": "catalog:frontend",
+		"@types/bun": "catalog:",
 		"@types/node": "catalog:",
+		"bun-types": "catalog:",
 		"@types/react": "catalog:frontend",
 		"@types/react-dom": "catalog:frontend",
-		"tailwindcss": "catalog:frontend",
-		"typescript": "catalog:"
+		"@vitejs/plugin-react": "catalog:frontend",
+		"@playwright/test": "catalog:testing",
+		"typescript": "catalog:",
+		"unocss": "catalog:",
+		"vite": "catalog:frontend"
 	}
 }
