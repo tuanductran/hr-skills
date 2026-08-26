@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import type { HrSkill, HrSkillsSnapshot } from './types';
+import type { HrSkill, HrSkillSummary, HrSkillsSnapshot } from './types';
 
 const snapshotUrl = `${import.meta.env.BASE_URL}data/hr-skills.json`;
 
@@ -41,6 +41,16 @@ export function useHrSkillDetail(skillId: string, enabled: boolean) {
 		queryFn: ({ signal }) => loadSkillDetail({ skillId, signal }),
 		enabled,
 	});
+}
+
+export function resolveCanonicalSkillId(
+	requestedId: string,
+	skills: ReadonlyArray<Pick<HrSkillSummary, 'id'>>,
+) {
+	const normalized = requestedId.trim().toLowerCase();
+	if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(normalized)) return undefined;
+	const canonicalId = normalized.startsWith('hr-') ? normalized : `hr-${normalized}`;
+	return skills.some((skill) => skill.id === canonicalId) ? canonicalId : undefined;
 }
 
 export function humanize(value: string) {

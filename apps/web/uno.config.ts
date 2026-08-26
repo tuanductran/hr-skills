@@ -10,8 +10,6 @@ export default defineConfig({
 			provider: 'google',
 			fonts: {
 				sans: 'Inter:400,500,600,700',
-				heading: 'Manrope:500,600,700,800',
-				mono: 'Fira Code:400,500,600',
 			},
 		}),
 	],
@@ -31,9 +29,9 @@ export default defineConfig({
 				'workspace-sheet-out 150ms cubic-bezier(0.77, 0, 0.175, 1) both',
 		},
 		fontFamily: {
-			heading: 'Manrope, Inter, system-ui, sans-serif',
 			sans: 'Inter, system-ui, sans-serif',
-			mono: 'Fira Code, ui-monospace, monospace',
+			heading: 'Inter, system-ui, sans-serif',
+			mono: 'Inter, system-ui, sans-serif',
 		},
 		keyframes: {
 			'workspace-dialog-in': {

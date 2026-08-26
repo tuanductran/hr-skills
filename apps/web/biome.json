@@ -1,0 +1,25 @@
+{
+  "$schema": "../../node_modules/@biomejs/biome/configuration_schema.json",
+  "root": false,
+  "extends": ["../../biome.jsonc"],
+  "files": {
+    "includes": [
+      "**",
+      "!dist",
+      "!public/data",
+      "!playwright-report",
+      "!test-results"
+    ]
+  },
+  "formatter": {
+    "enabled": false
+  },
+  "linter": {
+    "rules": {
+      "correctness": {
+        "noUnusedImports": "error",
+        "noUnusedVariables": "error"
+      }
+    }
+  }
+}

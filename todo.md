@@ -60,3 +60,37 @@
 - [x] Rà Radix UI tương thích React/UnoCSS và chọn primitive cho luồng quan trọng.
 - [x] Tích hợp Radix UI có motion accessible cho các interaction trọng yếu.
 - [x] Chạy validation Bun/Playwright, commit và push các thay đổi đã được xác nhận.
+- [x] Tái hiện lỗi slug skill trên dev server và lưu bằng chứng route/runtime.
+- [x] Truy vết canonical ID, slug mapping, generated data và TanStack Router.
+- [x] Thêm alias redirect/regression test cho slug không có prefix `hr-`; không commit hoặc push.
+- [x] Đối chiếu Bun docs về `@types/bun` và cập nhật `types` TypeScript.
+- [x] Xóa `bun-types` khỏi catalog/app, cài lại Bun lockfile và chạy validation; không commit/push.
+- [x] Đối chiếu UnoCSS docs về sizing, box model, overflow và responsive utilities.
+- [x] Audit toàn route ở dev/production trên desktop, mobile và tablet, lưu bằng chứng overflow/lệch.
+- [x] Không phát hiện lỗi overflow/lệch hình học có bằng chứng để sửa; bổ sung regression viewport boundary và không commit/push.
+- [x] Thiết kế shell `min-h-screen` có footer ổn định ở đáy viewport, không gây layout shift.
+- [x] Đồng bộ canonical skill slug/router và audit nhiều skill detail route.
+- [x] Audit responsive, browser/runtime errors và bề mặt an toàn; sửa lỗi được xác minh, không commit/push.
+- [x] Chạy lại full Playwright suite trên production preview và lưu kết quả thời gian thực thi.
+- [x] Tổng hợp chỉ số sandbox có thể đo, nêu giới hạn so với performance người dùng thực; không commit/push.
+- [x] Đọc UnoCSS docs về web fonts/theme và xác nhận Inter là font mặc định của app.
+- [x] Giới hạn Explorer mặc định 6 skill, thêm Load more và search loading không gây layout shift.
+- [x] Chạy typecheck, tests và audit responsive Explorer; không commit/push.
+- [x] Rà soát debounce, committed query, URL state và lifecycle timer của Search Explorer.
+- [x] Rà soát limit/reset, Load more và render list Explorer để loại bỏ update hoặc tính toán không cần thiết.
+- [x] Chạy regression và báo cáo kết quả audit Search/Load more; không commit/push.
+- [x] Chạy lại typecheck, Bun unit test, production build và full Playwright sau tối ưu Search/Load more.
+- [x] Báo cáo kết quả regression toàn bộ và xác nhận không commit/push.
+- [x] Rà soát Explorer, Canvas, Skill Workspace, shell và accessibility để xác định cải tiến còn thiếu có bằng chứng.
+- [x] Chuẩn hóa toàn bộ typography UI về Inter; bỏ các font family chuyên biệt còn lại.
+- [x] Triển khai các cải tiến ưu tiên, chạy validation đa thiết bị và không commit/push.
+- [x] Khởi động lại preview từ dev server mới, kiểm tra phản hồi HTTP và gửi URL hoạt động.
+- [x] Kiểm tra trực tiếp search, Load more và layout Explorer trên preview mới.
+- [x] Đo thời gian render, node/card và khả năng phản hồi Explorer khi tải đủ 146 skills trên preview mới.
+- [x] Báo cáo kết quả audit hiệu suất và đề xuất tối ưu nếu số liệu cho thấy cần thiết.
+- [x] Đọc quy ước hiện hành, thiết lập Biome và audit source/import/dependency không dùng.
+- [x] Chỉ gỡ mục có bằng chứng không được dùng; chạy Biome, typecheck, build và test để xác minh.
+- [x] Báo cáo các mục đã giữ/xóa, không commit/push.
+- [x] Tạo lại production build, thu thập toàn bộ asset size và đối chiếu baseline sau cleanup Biome.
+- [x] Báo cáo tác động bundle size, không commit/push.
+- [ ] Rà soát diff local đã xác thực, tạo commit và push `dev` lên GitHub theo yêu cầu.

@@ -30,6 +30,7 @@ export function StageNavigator({
 							className={`flex items-center gap-2.5 rounded-lg px-2.5 py-2.5 text-left transition focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-blue-200 ${selected ? 'bg-slate-900 text-white shadow-sm' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'}`}
 							key={stage.id}
 							type='button'
+							aria-pressed={selected}
 							onClick={() => onSelect(stage.id)}>
 							<span
 								className={`grid size-6 shrink-0 place-items-center rounded-md font-mono text-[.64rem] ${selected ? 'bg-white/15 text-white' : 'bg-slate-100 text-slate-500'}`}>

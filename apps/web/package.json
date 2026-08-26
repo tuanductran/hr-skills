@@ -10,6 +10,7 @@
 		"build": "bun run generate:data && vite build",
 		"preview": "vite preview --host 0.0.0.0",
 		"typecheck": "tsc --noEmit",
+		"lint": "biome lint src e2e scripts uno.config.ts vite.config.ts playwright.config.ts index.html",
 		"test": "bun test",
 		"test:e2e": "playwright test"
 	},
@@ -26,11 +27,10 @@
 		"rehype-sanitize": "catalog:frontend",
 		"remark-gfm": "catalog:frontend"
 	},
-	"devDependencies": {
-		"@types/bun": "catalog:",
-		"@types/node": "catalog:",
-		"bun-types": "catalog:",
-		"@types/react": "catalog:frontend",
+		"devDependencies": {
+			"@types/bun": "catalog:",
+			"@types/node": "catalog:",
+			"@types/react": "catalog:frontend",
 		"@types/react-dom": "catalog:frontend",
 		"@vitejs/plugin-react": "catalog:frontend",
 		"@playwright/test": "catalog:testing",

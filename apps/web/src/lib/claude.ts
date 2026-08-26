@@ -53,7 +53,6 @@ export function getClaudeTemplatePrompt(templateId: ClaudeTemplateId, skillId: s
 			return `${source}\n\nWhat questions should I validate with a human HR or legal owner before using this ${skillId} guidance in a real workflow? Do not make employment or legal decisions for me.`;
 		case 'adapt':
 			return `${source}\n\nHelp me adapt the ${skillId} skill to a specific workflow. First ask for non-sensitive context only; do not request or process personal, confidential, or employee data.`;
-		case 'read':
 		default:
 			return `Read from ${rawSkillUrl} so I can ask questions about it.`;
 	}

@@ -7,6 +7,7 @@ import {
 	ChevronRight,
 	Clipboard,
 	Filter,
+	LoaderCircle,
 	Pin,
 	RefreshCw,
 	Search,
@@ -14,14 +15,7 @@ import {
 	Sparkles,
 	X,
 } from 'lucide-react';
-import {
-	useCallback,
-	useDeferredValue,
-	useEffect,
-	useMemo,
-	useRef,
-	useState,
-} from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import toast from 'react-hot-toast';
 import { ResponsiveDisclosure } from '../components/ResponsiveDisclosure';
 import { ErrorState, LoadingState } from '../components/States';
@@ -29,6 +23,8 @@ import { useWorklist } from '../components/WorklistProvider';
 import { copyText } from '../lib/clipboard';
 import { useHrSkills } from '../lib/data';
 import { type HrSkill, toRegistry } from '../lib/types';
+
+const RESULTS_PAGE_SIZE = 6;
 
 function sentence(value: string) {
 	const match = value.match(/^(.+?[.!?])(?:\s|$)/);
@@ -50,12 +46,34 @@ export function CatalogPage() {
 	} = useWorklist();
 	const inputRef = useRef<HTMLInputElement>(null);
 	const queryTimer = useRef<number | null>(null);
+	const resultTimer = useRef<number | null>(null);
+	const submittedQuery = useRef<string | null>(null);
 	const [inputValue, setInputValue] = useState(routeSearch.q ?? '');
-	const deferredQuery = useDeferredValue(inputValue.trim());
+	const [visibleCount, setVisibleCount] = useState(RESULTS_PAGE_SIZE);
+	const [isSearchPending, setIsSearchPending] = useState(false);
+	const [committedQuery, setCommittedQuery] = useState(routeSearch.q ?? '');
+	const clearPendingQueryTimers = useCallback(() => {
+		if (queryTimer.current) window.clearTimeout(queryTimer.current);
+		if (resultTimer.current) window.clearTimeout(resultTimer.current);
+		queryTimer.current = null;
+		resultTimer.current = null;
+	}, []);
+	const cancelPendingQueryUpdate = useCallback(() => {
+		clearPendingQueryTimers();
+		submittedQuery.current = null;
+		setIsSearchPending(false);
+	}, [clearPendingQueryTimers]);
 
 	useEffect(() => {
-		setInputValue(routeSearch.q ?? '');
-	}, [routeSearch.q]);
+		const urlQuery = routeSearch.q ?? '';
+		setInputValue(urlQuery);
+		if (submittedQuery.current === urlQuery) {
+			submittedQuery.current = null;
+			return;
+		}
+		cancelPendingQueryUpdate();
+		setCommittedQuery(urlQuery);
+	}, [cancelPendingQueryUpdate, routeSearch.q]);
 
 	useEffect(() => {
 		const focusSearch = () => inputRef.current?.focus();
@@ -74,10 +92,12 @@ export function CatalogPage() {
 	);
 	const updateExplorerQuery = useCallback(
 		(value: string) => {
+			cancelPendingQueryUpdate();
 			setInputValue(value);
-			if (queryTimer.current) window.clearTimeout(queryTimer.current);
+			setIsSearchPending(true);
 			queryTimer.current = window.setTimeout(() => {
 				const q = value.trim() || undefined;
+				submittedQuery.current = q ?? '';
 				void navigate({
 					search: (previous) => ({
 						...previous,
@@ -87,15 +107,20 @@ export function CatalogPage() {
 					replace: true,
 				});
 			}, 180);
+			resultTimer.current = window.setTimeout(() => {
+				setCommittedQuery(value.trim());
+				setIsSearchPending(false);
+			}, 260);
 		},
-		[navigate],
+		[cancelPendingQueryUpdate, navigate],
 	);
 
 	useEffect(
 		() => () => {
-			if (queryTimer.current) window.clearTimeout(queryTimer.current);
+			clearPendingQueryTimers();
+			submittedQuery.current = null;
 		},
-		[],
+		[clearPendingQueryTimers],
 	);
 
 	const registry = useMemo(() => (data ? toRegistry(data) : null), [data]);
@@ -109,16 +134,15 @@ export function CatalogPage() {
 	);
 	const selectedDomain = routeSearch.domain as SkillCategory | undefined;
 	const searchResult = useMemo(() => {
-		if (!data || !registry || !deferredQuery) return null;
+		if (!data || !registry || !committedQuery) return null;
 		return searchSkills(
 			{
-				text: deferredQuery,
-				domain: selectedDomain,
+				text: committedQuery,
 				limit: data.skillCount,
 			},
 			registry,
 		);
-	}, [data, deferredQuery, registry, selectedDomain]);
+	}, [committedQuery, data, registry, selectedDomain]);
 
 	const resultById = useMemo(
 		() =>
@@ -126,6 +150,20 @@ export function CatalogPage() {
 				searchResult?.results.map((result) => [result.skillId, result]) ?? [],
 			),
 		[searchResult],
+	);
+	const searchedSkills = useMemo(
+		() =>
+			searchResult?.results
+				.map((result) => skillById.get(result.skillId))
+				.filter((skill): skill is HrSkill => Boolean(skill)) ?? [],
+		[searchResult, skillById],
+	);
+	const browseSkills = useMemo(
+		() =>
+			data?.skills.filter(
+				(skill) => !selectedDomain || skill.domain === selectedDomain,
+			) ?? [],
+		[data, selectedDomain],
 	);
 	const worklistSkills = useMemo(() => {
 		if (!data) return [];
@@ -137,34 +175,41 @@ export function CatalogPage() {
 		if (!data) return [];
 		if (routeSearch.view === 'worklist') return worklistSkills;
 		if (searchResult) {
-			return searchResult.results
-				.map((result) => skillById.get(result.skillId))
-				.filter((skill): skill is HrSkill => Boolean(skill));
+			return selectedDomain
+				? searchedSkills.filter((skill) => skill.domain === selectedDomain)
+				: searchedSkills;
 		}
-		return data.skills.filter(
-			(skill) => !selectedDomain || skill.domain === selectedDomain,
-		);
-	}, [data, routeSearch.view, searchResult, selectedDomain, skillById, worklistSkills]);
+		return browseSkills;
+	}, [
+		browseSkills,
+		routeSearch.view,
+		searchResult,
+		searchedSkills,
+		selectedDomain,
+		worklistSkills,
+	]);
+	useEffect(() => {
+		setVisibleCount(RESULTS_PAGE_SIZE);
+	}, [committedQuery, routeSearch.view, selectedDomain]);
+	const displayedSkills = visibleSkills.slice(0, visibleCount);
+	const hasMoreSkills = displayedSkills.length < visibleSkills.length;
+	const loadMoreCount = Math.min(
+		RESULTS_PAGE_SIZE,
+		visibleSkills.length - displayedSkills.length,
+	);
+	const isSearching = isSearchPending;
 	const domainCounts = useMemo(() => {
-		if (!data || !registry || !deferredQuery) {
+		if (!data || !searchResult) {
 			return new Map(
 				data?.domains.map((domain) => [domain.id, domain.skillCount]) ?? [],
 			);
 		}
-		return new Map(
-			data.domains.map((domain) => [
-				domain.id,
-				searchSkills(
-					{
-						text: deferredQuery,
-						domain: domain.id,
-						limit: data.skillCount,
-					},
-					registry,
-				).resultCount,
-			]),
-		);
-	}, [data, deferredQuery, registry]);
+		const counts = new Map(data.domains.map((domain) => [domain.id, 0]));
+		for (const result of searchResult.results) {
+			counts.set(result.domain, (counts.get(result.domain) ?? 0) + 1);
+		}
+		return counts;
+	}, [data, searchResult]);
 
 	if (isLoading) return <LoadingState />;
 	if (error || !data)
@@ -247,7 +292,9 @@ export function CatalogPage() {
 											className='rounded-md px-1.5 py-1 text-[.7rem] font-700 text-blue-700 transition hover:bg-blue-50 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-blue-200'
 											type='button'
 											onClick={() => {
+												cancelPendingQueryUpdate();
 												setInputValue('');
+												setCommittedQuery('');
 												setSearch({
 													q: undefined,
 													domain: undefined,
@@ -265,6 +312,10 @@ export function CatalogPage() {
 									<button
 										className={`flex items-center gap-2 rounded-lg px-2.5 py-2 text-left text-[.8rem] transition focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-blue-200 ${!selectedDomain && routeSearch.view === 'all' ? 'bg-slate-900 font-700 text-white' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'}`}
 										type='button'
+										aria-pressed={
+											!selectedDomain &&
+											routeSearch.view !== 'worklist'
+										}
 										onClick={() =>
 											setSearch({ domain: undefined, view: 'all' })
 										}>
@@ -275,9 +326,13 @@ export function CatalogPage() {
 									</button>
 									{data.domains.map((domain) => (
 										<button
-											className={`flex items-center gap-2 rounded-lg px-2.5 py-2 text-left text-[.8rem] transition focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-blue-200 ${selectedDomain === domain.id && routeSearch.view === 'all' ? 'bg-blue-50 font-700 text-blue-800' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'}`}
+											className={`flex items-center gap-2 rounded-lg px-2.5 py-2 text-left text-[.8rem] transition focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-blue-200 ${selectedDomain === domain.id && routeSearch.view !== 'worklist' ? 'bg-blue-50 font-700 text-blue-800' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'}`}
 											key={domain.id}
 											type='button'
+											aria-pressed={
+												selectedDomain === domain.id &&
+												routeSearch.view !== 'worklist'
+											}
 											onClick={() =>
 												setSearch({
 													domain:
@@ -320,6 +375,7 @@ export function CatalogPage() {
 									<button
 										className={`flex w-full items-center justify-between rounded-lg border px-2.5 py-2 text-[.78rem] font-700 transition focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-blue-200 ${routeSearch.view === 'worklist' ? 'border-blue-200 bg-blue-50 text-blue-800' : 'border-slate-200 text-slate-600 hover:border-blue-200 hover:text-blue-700'}`}
 										type='button'
+										aria-pressed={routeSearch.view === 'worklist'}
 										onClick={() =>
 											setSearch({
 												view:
@@ -404,10 +460,11 @@ export function CatalogPage() {
 								<button
 									className='grid size-8 place-items-center rounded-md text-slate-400 transition hover:bg-slate-200 hover:text-slate-700 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-blue-200'
 									type='button'
+									aria-label='Clear skill search'
 									onClick={() => {
-										if (queryTimer.current)
-											window.clearTimeout(queryTimer.current);
+										cancelPendingQueryUpdate();
 										setInputValue('');
+										setCommittedQuery('');
 										setSearch({ q: undefined });
 									}}>
 									<X
@@ -425,9 +482,22 @@ export function CatalogPage() {
 									size={13}
 									aria-hidden='true'
 								/>
-								{routeSearch.view === 'worklist'
-									? `${visibleSkills.length} saved skills`
-									: `${visibleSkills.length} ${visibleSkills.length === 1 ? 'skill' : 'skills'}${domainLabel ? ` in ${domainLabel}` : ''}`}
+								{isSearching ? (
+									<span
+										className='flex items-center gap-1.5 text-blue-700'
+										role='status'>
+										<LoaderCircle
+											className='animate-spin motion-reduce:animate-none'
+											size={13}
+											aria-hidden='true'
+										/>
+										Searching registry…
+									</span>
+								) : routeSearch.view === 'worklist' ? (
+									`${visibleSkills.length} saved skills`
+								) : (
+									`${visibleSkills.length} ${visibleSkills.length === 1 ? 'skill' : 'skills'}${domainLabel ? ` in ${domainLabel}` : ''}`
+								)}
 							</p>
 							<p className='m-0 text-[.7rem] text-slate-400'>
 								Exact and fuzzy registry matching
@@ -457,7 +527,9 @@ export function CatalogPage() {
 								className='mt-5 inline-flex items-center gap-2 rounded-lg bg-blue-700 px-3.5 py-2 text-[.82rem] font-700 text-white transition hover:bg-blue-800 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-blue-200'
 								type='button'
 								onClick={() => {
+									cancelPendingQueryUpdate();
 									setInputValue('');
+									setCommittedQuery('');
 									setSearch({
 										q: undefined,
 										domain: undefined,
@@ -480,7 +552,7 @@ export function CatalogPage() {
 								<span className='sr-only'>Save</span>
 							</div>
 							<div className='divide-y divide-slate-200'>
-								{visibleSkills.map((skill) => {
+								{displayedSkills.map((skill) => {
 									const result = resultById.get(skill.id);
 									const pinnedSkill = isPinned(skill.id);
 									return (
@@ -506,11 +578,8 @@ export function CatalogPage() {
 														{skill.tier}
 													</span>
 													<span className='rounded-full bg-blue-50 px-1.75 py-.5 font-mono text-[.63rem] text-blue-700'>
-														{data.domains.find(
-															(domain) =>
-																domain.id ===
-																skill.domain,
-														)?.label ?? skill.domain}
+														{domainById.get(skill.domain)
+															?.label ?? skill.domain}
 													</span>
 												</div>
 											</div>
@@ -538,6 +607,7 @@ export function CatalogPage() {
 											<button
 												className={`grid size-9 place-items-center rounded-lg border transition focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-blue-200 ${pinnedSkill ? 'border-blue-200 bg-blue-50 text-blue-700' : 'border-transparent text-slate-400 hover:border-slate-200 hover:bg-white hover:text-blue-700'}`}
 												type='button'
+												aria-pressed={pinnedSkill}
 												onClick={() => {
 													togglePinned(skill.id);
 													toast.success(
@@ -566,6 +636,32 @@ export function CatalogPage() {
 										</article>
 									);
 								})}
+							</div>
+							<div className='flex flex-col gap-3 border-t border-slate-200 bg-slate-50/70 px-4 py-3.5 sm:flex-row sm:items-center sm:justify-between'>
+								<p className='m-0 font-mono text-[.68rem] text-slate-500'>
+									Showing {displayedSkills.length} of{' '}
+									{visibleSkills.length} skills
+								</p>
+								{hasMoreSkills && (
+									<button
+										className='inline-flex items-center justify-center gap-2 rounded-lg border border-blue-200 bg-white px-3.5 py-2 text-[.78rem] font-800 text-blue-700 transition hover:border-blue-300 hover:bg-blue-50 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-blue-200'
+										type='button'
+										onClick={() =>
+											setVisibleCount((count) =>
+												Math.min(
+													count + RESULTS_PAGE_SIZE,
+													visibleSkills.length,
+												),
+											)
+										}>
+										Load {loadMoreCount} more{' '}
+										{loadMoreCount === 1 ? 'skill' : 'skills'}
+										<ChevronRight
+											size={15}
+											aria-hidden='true'
+										/>
+									</button>
+								)}
 							</div>
 						</div>
 					)}

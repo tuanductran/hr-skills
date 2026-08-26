@@ -1,4 +1,4 @@
-import { Link, useParams } from '@tanstack/react-router';
+import { Link, useNavigate, useParams } from '@tanstack/react-router';
 import { getRecommendations } from 'hr-skills-build/client';
 import {
 	ArrowLeft,
@@ -18,7 +18,12 @@ import { ErrorState, LoadingState } from '../components/States';
 import { SupportingFiles } from '../components/SupportingFiles';
 import { useWorklist } from '../components/WorklistProvider';
 import { getRawSkillUrl } from '../lib/claude';
-import { humanize, useHrSkillDetail, useHrSkills } from '../lib/data';
+import {
+	humanize,
+	resolveCanonicalSkillId,
+	useHrSkillDetail,
+	useHrSkills,
+} from '../lib/data';
 import { toRegistry } from '../lib/types';
 
 function headingOutline(content: string) {
@@ -41,16 +46,29 @@ function headingOutline(content: string) {
 
 export function SkillPage() {
 	const { skillId } = useParams({ from: '/skills/$skillId' });
+	const navigate = useNavigate();
 	const { data, isLoading, error, refetch, isFetching } = useHrSkills();
 	const { isPinned, togglePinned, recordRecent } = useWorklist();
-	const skillSummary = data?.skills.find((entry) => entry.id === skillId);
+	const canonicalSkillId = data
+		? resolveCanonicalSkillId(skillId, data.skills)
+		: undefined;
+	const skillSummary = data?.skills.find((entry) => entry.id === canonicalSkillId);
 	const {
 		data: skill,
 		isLoading: isDetailLoading,
 		error: detailError,
 		refetch: refetchDetail,
 		isFetching: isDetailFetching,
-	} = useHrSkillDetail(skillId, Boolean(skillSummary));
+	} = useHrSkillDetail(canonicalSkillId ?? skillId, Boolean(skillSummary));
+
+	useEffect(() => {
+		if (!canonicalSkillId || canonicalSkillId === skillId) return;
+		void navigate({
+			to: '/skills/$skillId',
+			params: { skillId: canonicalSkillId },
+			replace: true,
+		});
+	}, [canonicalSkillId, navigate, skillId]);
 
 	useEffect(() => {
 		if (skillSummary) recordRecent(skillSummary.id);
@@ -185,6 +203,7 @@ export function SkillPage() {
 							<button
 								className={`inline-flex items-center justify-center gap-2 rounded-lg border px-3 py-2 text-[.8rem] font-800 transition focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-blue-200 ${pinned ? 'border-blue-200 bg-blue-50 text-blue-800' : 'border-slate-200 bg-white text-slate-600 hover:border-blue-200 hover:text-blue-700'}`}
 								type='button'
+								aria-pressed={pinned}
 								onClick={() => {
 									togglePinned(skill.id);
 									toast.success(

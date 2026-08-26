@@ -1,6 +1,13 @@
 import { Link, useNavigate, useSearch } from '@tanstack/react-router';
 import { searchSkills } from 'hr-skills-build/client';
-import { ArrowUpRight, CircleAlert, Layers3, Search, X } from 'lucide-react';
+import {
+	ArrowUpRight,
+	CircleAlert,
+	Layers3,
+	LoaderCircle,
+	Search,
+	X,
+} from 'lucide-react';
 import {
 	useCallback,
 	useDeferredValue,
@@ -25,6 +32,7 @@ export function MapPage() {
 	const [inventoryQuery, setInventoryQuery] = useState(routeSearch.q ?? '');
 	const inventoryQueryTimer = useRef<number | null>(null);
 	const deferredInventoryQuery = useDeferredValue(inventoryQuery.trim());
+	const isInventorySearchPending = inventoryQuery.trim() !== deferredInventoryQuery;
 	const activeStage =
 		PEOPLE_SYSTEM_STAGES.find((stage) => stage.id === routeSearch.stage) ??
 		PEOPLE_SYSTEM_STAGES[0];
@@ -261,6 +269,7 @@ export function MapPage() {
 									<button
 										className='grid size-7 place-items-center rounded text-slate-400 transition hover:bg-slate-200 hover:text-slate-700 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-blue-200'
 										type='button'
+										aria-label='Clear supporting skill search'
 										onClick={() => setInventorySearch('')}>
 										<X
 											size={14}
@@ -270,6 +279,24 @@ export function MapPage() {
 								)}
 							</div>
 						</div>
+						<p
+							className='m-0 mt-3 flex min-h-4 items-center gap-1.5 font-sans text-[.72rem] text-slate-500'
+							aria-live='polite'>
+							{isInventorySearchPending ? (
+								<span className='flex items-center gap-1.5 text-blue-700'>
+									<LoaderCircle
+										className='animate-spin motion-reduce:animate-none'
+										size={13}
+										aria-hidden='true'
+									/>
+									Matching canonical registry…
+								</span>
+							) : deferredInventoryQuery ? (
+								`${inventoryResults.length} matching skills`
+							) : (
+								'Browse by practice area or search the registry.'
+							)}
+						</p>
 						{deferredInventoryQuery ? (
 							<div className='mt-4 grid gap-2 md:grid-cols-2'>
 								{inventoryResults.length ? (

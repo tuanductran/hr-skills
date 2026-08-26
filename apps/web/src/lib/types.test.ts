@@ -14,7 +14,10 @@ describe('registry adapter', () => {
 
 		expect(first).toBe(second);
 		expect(first.skills).toHaveLength(1);
-		expect(first.skills[0]?.id).toBe('hr-onboarding');
-		expect('content' in first.skills[0]!).toBeFalse();
+		const skill = first.skills[0];
+		expect(skill).toBeDefined();
+		if (!skill) throw new Error('Registry adapter should preserve the skill.');
+		expect(skill.id).toBe('hr-onboarding');
+		expect('content' in skill).toBeFalse();
 	});
 });
