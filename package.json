@@ -51,7 +51,6 @@
 			"frontend": {
 				"@nuxt/test-utils": "^3.19.2",
 				"@iconify-json/lucide": "^1.2.124",
-				"@tailwindcss/postcss": "^4.3.3",
 				"@vitejs/plugin-react": "^5.0.0",
 				"@nuxt/ui": "^4.10.0",
 				"@radix-ui/react-dialog": "^1.1.23",
@@ -67,7 +66,6 @@
 				"react-markdown": "^10.1.0",
 				"rehype-sanitize": "^6.0.0",
 				"remark-gfm": "^4.0.1",
-				"server-only": "^0.0.1",
 				"tailwindcss": "^4.3.3",
 				"vite": "^7.1.0",
 				"vitest": "^4.0.15",

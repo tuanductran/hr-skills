@@ -1,13 +1,11 @@
 import type {
 	DocumentationData,
-	DocumentationDomain,
 	DocumentationSkill,
 	Registry,
 } from 'hr-skills-build/client';
 
 export type HrSkill = DocumentationSkill;
 export type HrSkillSummary = Omit<HrSkill, 'content' | 'prompts' | 'examples'>;
-export type HrDomain = DocumentationDomain;
 export interface HrSkillsSnapshot extends Omit<DocumentationData, 'skills'> {
 	skills: readonly HrSkillSummary[];
 }

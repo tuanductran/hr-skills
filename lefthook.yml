@@ -26,7 +26,9 @@ pre-push:
       run: bun run typecheck
 
     - name: knip
-      run: bunx knip
+      env:
+        KNIP_DISABLE_RAW_TRANSFER: "1"
+      run: bunx nuxt prepare --cwd apps/jd && bunx knip
 
 post-merge:
   jobs:
