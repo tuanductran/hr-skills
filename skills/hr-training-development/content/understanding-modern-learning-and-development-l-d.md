@@ -10,7 +10,7 @@ Modern L&D is no longer simply:
 - slide presentations
 - one-time workshops
 
-In 2026, learning and development increasingly includes:
+Contemporary learning and development increasingly includes:
 
 - continuous learning ecosystems
 - personalized learning paths

@@ -81,4 +81,4 @@ Comprehensive HR analytics support — from defining HR metrics and building das
 - Prioritize data quality over volume — a few accurate, consistent metrics are more valuable than many unreliable ones.
 - Combine quantitative data with qualitative insights (survey comments, focus groups) for richer analysis.
 - Visualize data to tell a story — use trends, comparisons, and benchmarks rather than raw numbers.
-- Protect employee privacy in all analytics work — anonymize data and obtain proper consent.
+- Protect employee privacy in all analytics work — use an approved purpose, proportionate access controls, and qualified privacy guidance for the applicable context.

@@ -84,4 +84,4 @@ End-to-end performance management support — from goal setting and performance 
 - Support ratings with objective behavioral evidence. Require concrete metrics, project deliverables, and specific behavioral examples to support ratings. This minimizes manager bias, subjective evaluations, and potential dispute claims.
 - Calibrate across teams before finalizing ratings. Conduct calibration sessions with peer managers to align rating standards across departments, mitigate lenient or harsh grading tendencies, and maintain organizational fairness.
 - Establish clear, time-bound PIP milestones. Performance Improvement Plans must detail specific gap areas, expected outcomes, support resources, and 30/60/90-day evaluation checkpoints to provide genuinely supportive remediation.
-- Maintain comprehensive documentation across all performance stages — informal feedback and verbal warnings lack legal standing in strict labor law jurisdictions like Vietnam.
+- Maintain comprehensive documentation across all performance stages — follow the organization's records policy and seek qualified local advice when documentation may affect an employment decision.

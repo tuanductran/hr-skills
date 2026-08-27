@@ -1,9 +1,9 @@
-# Conducting performance calibration sessions
+# Performance calibration prompts
 
-This AI assistant can be a helpful tool to conduct performance calibration sessions. With its natural language processing capabilities, it can provide valuable insights and suggestions to help you facilitate the process. It can help you identify potential areas of improvement and provide objective feedback to help you calibrate the performance of your team.
+Use these prompts to prepare, facilitate, and document a performance calibration session. Replace each bracketed value with the relevant context.
 
-- "Can you [provide/generate] [specific/detailed] feedback for [employee/team member] [Name] based on their [performance metrics/goals/competencies], and [suggest/recommend] [specific/actionable] steps they can take to [improve/develop]?"
-- "I'm [having difficulty/facing challenges] [managing/facilitating] performance calibration sessions [with/for] [a large number of team members/a cross-functional team]. Can you provide me with [tailored/situation-specific] guidance on how to [manage/address/resolve] [any conflicts/team member concerns], while [ensuring/fostering] [accountability/engagement] during the sessions?"
-- "What are the [key/essential] strategies for [minimizing/eliminating] [bias/prejudice] during performance calibration sessions? Can you [provide/generate] [scenario-based/examples] of how to [address/deal with/overcome] [any difficult/complex] situations that may arise during the sessions?"
-- "I need to [analyze/assess/review] [large volumes of performance data/metrics] before conducting the calibration sessions. Can you [recommend/suggest] [any advanced tools/techniques] that can [streamline/simplify] the [data analysis/review process], and [help/improve] my [decision-making/feedback] during the sessions?"
-- "How can I [build/foster/sustain] [team cohesion/collaboration] during the calibration sessions, [especially when working with remote/telecommuting team members/teams]? Can you [recommend/suggest] [any specific/innovative] team-building activities that can [encourage/facilitate] [active participation/engagement] and [improve/team performance] during the sessions?"
+1. "Build a performance calibration agenda for [team or function] covering the rating scale, evidence standard, decision owners, conflicts of interest, and the debrief record."
+2. "Create an evidence ledger for [review cycle] that separates observed outcomes, behaviour examples, employee context, manager interpretation, missing evidence, and follow-up questions for each [role or level]."
+3. "Two managers have rated comparable performance differently. Compare the evidence they supplied, identify which rating criteria need clarification, and propose a fair calibration discussion without deciding from manager seniority or confidence."
+4. "Review this proposed rating distribution for [team or function]. Identify possible rater severity, recency, similarity, or access-to-opportunity patterns, state the data limitations, and list the questions the calibration owner should answer before approving changes."
+5. "Draft a post-calibration communication for [employee or manager audience] that explains the decision, development focus, documentation owner, challenge route, and next review date without disclosing another employee's confidential information."

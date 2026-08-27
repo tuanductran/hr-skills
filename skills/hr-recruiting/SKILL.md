@@ -81,5 +81,5 @@ Comprehensive recruiting and talent acquisition support — from writing job des
 - Tailor job descriptions to your company culture and use inclusive language to attract diverse talent.
 - Standardize interview scoring rubrics and track key recruiting metrics (like time-to-fill and offer acceptance rates) to reduce bias and continuously improve.
 - Automate repetitive administrative tasks (scheduling, screening, basic emails) so recruiters can focus on candidate relationships.
-- In Vietnam, salary structures typically comprise base salary, allowances, and bonuses — candidates expect a transparent breakdown of each component during the offer stage.
-- Reference checking in Vietnam is often limited to formal employer references — supplement with informal network checks and always verify through at least two direct managers.
+- Communicate the total offer in terms candidates can understand, separating fixed pay, variable pay, benefits, flexibility, and conditions that may affect the decision.
+- Use a consistent, consent-aware reference process; verify role-relevant evidence through appropriate sources and follow applicable privacy and employment requirements.

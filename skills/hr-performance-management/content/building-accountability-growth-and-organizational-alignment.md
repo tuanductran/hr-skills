@@ -16,7 +16,7 @@ Modern performance management is no longer limited to:
 - rating forms
 - disciplinary processes
 
-In 2026, performance management increasingly focuses on:
+Contemporary performance management increasingly focuses on:
 
 - continuous feedback
 - coaching-based leadership
