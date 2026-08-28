@@ -7,7 +7,7 @@ export default defineConfig({
 	presets: [
 		presetWind3(),
 		presetWebFonts({
-			provider: 'google',
+			provider: 'none',
 			fonts: {
 				sans: 'Inter:400,500,600,700',
 			},
