@@ -11,6 +11,8 @@ duplicate-report/
 *.diff
 .next/
 next-env.d.ts
+.nuxt/
+.output/
 apps/web/data/skills.json
 apps/web/tsconfig.tsbuildinfo
 apps/web/test-results/
