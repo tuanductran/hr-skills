@@ -5,7 +5,7 @@ import { getDocumentationData, getRegistry } from '../lib/docs';
 
 export const metadata: Metadata = {
 	description: 'Browse the complete HR Skills catalog by domain, tier, and metadata.',
-	title: 'Skill catalog | HR Skills',
+	title: 'Skill catalog',
 };
 
 function CatalogFallback() {
@@ -16,7 +16,10 @@ export default async function SkillsPage() {
 	const [data, registry] = await Promise.all([getDocumentationData(), getRegistry()]);
 
 	return (
-		<main className='site-shell page-content'>
+		<main
+			className='site-shell page-content'
+			id='main-content'
+			tabIndex={-1}>
 			<Suspense fallback={<CatalogFallback />}>
 				<SkillCatalog
 					data={data}

@@ -1,6 +1,6 @@
 'use client';
 
-import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react';
+import * as Collapsible from '@radix-ui/react-collapsible';
 import type {
 	EvaluationReport,
 	ExecutionPlan,
@@ -8,6 +8,25 @@ import type {
 } from 'hr-skills-build/client';
 import Link from 'next/link';
 import { useMemo, useState } from 'react';
+
+function ChevronIcon() {
+	return (
+		<svg
+			aria-hidden='true'
+			viewBox='0 0 16 16'
+			width='14'
+			height='14'
+			fill='none'>
+			<path
+				d='M4 6l4 4 4-4'
+				stroke='currentColor'
+				strokeWidth='1.75'
+				strokeLinecap='round'
+				strokeLinejoin='round'
+			/>
+		</svg>
+	);
+}
 
 interface GraphData {
 	readonly nodes: Array<{
@@ -186,20 +205,24 @@ export function RuntimeTraceViewer({ data }: { readonly data: RuntimeData }) {
 			</div>
 			<div className='trace-list'>
 				{data.result.trace.map((entry) => (
-					<Disclosure
-						key={`${entry.order}-${entry.type}`}
-						as='article'
-						className='trace-entry'>
-						<DisclosureButton className='trace-entry__button'>
-							<span className='trace-entry__order'>{entry.order}</span>
-							<strong>{entry.type}</strong>
-							<span>{entry.skillId ?? 'workflow'}</span>
-							<span>View state</span>
-						</DisclosureButton>
-						<DisclosurePanel className='trace-entry__panel'>
-							<pre>{JSON.stringify(entry, null, 2)}</pre>
-						</DisclosurePanel>
-					</Disclosure>
+					<Collapsible.Root
+						asChild
+						key={`${entry.order}-${entry.type}`}>
+						<article className='trace-entry'>
+							<Collapsible.Trigger className='trace-entry__button'>
+								<span className='trace-entry__order'>{entry.order}</span>
+								<strong>{entry.type}</strong>
+								<span>{entry.skillId ?? 'workflow'}</span>
+								<span className='trace-entry__hint'>View state</span>
+								<ChevronIcon />
+							</Collapsible.Trigger>
+							<Collapsible.Content className='trace-entry__panel'>
+								<div className='trace-entry__panel-inner'>
+									<pre>{JSON.stringify(entry, null, 2)}</pre>
+								</div>
+							</Collapsible.Content>
+						</article>
+					</Collapsible.Root>
 				))}
 			</div>
 		</section>
@@ -245,30 +268,36 @@ export function EvaluationDashboard({ data }: { readonly data: EvaluationData })
 			</div>
 			<div className='evaluation-list'>
 				{data.results.map((result) => (
-					<Disclosure
-						key={result.caseId}
-						as='article'
-						className='evaluation-card'>
-						<DisclosureButton className='evaluation-card__button'>
-							<span
-								className={
-									result.regressions.length
-										? 'status status--fail'
-										: 'status status--pass'
-								}>
-								{result.regressions.length ? 'regressed' : 'pass'}
-							</span>
-							<strong>{result.caseId}</strong>
-							<span>{result.category}</span>
-							<span>Details</span>
-						</DisclosureButton>
-						<DisclosurePanel className='evaluation-card__panel'>
-							<p>{result.intent}</p>
-							{result.regressions.length > 0 && (
-								<p>Regressions: {result.regressions.join(', ')}</p>
-							)}
-						</DisclosurePanel>
-					</Disclosure>
+					<Collapsible.Root
+						asChild
+						key={result.caseId}>
+						<article className='evaluation-card'>
+							<Collapsible.Trigger className='evaluation-card__button'>
+								<span
+									className={
+										result.regressions.length
+											? 'status status--fail'
+											: 'status status--pass'
+									}>
+									{result.regressions.length ? 'regressed' : 'pass'}
+								</span>
+								<strong>{result.caseId}</strong>
+								<span>{result.category}</span>
+								<span className='evaluation-card__hint'>Details</span>
+								<ChevronIcon />
+							</Collapsible.Trigger>
+							<Collapsible.Content className='evaluation-card__panel'>
+								<div className='evaluation-card__panel-inner'>
+									<p>{result.intent}</p>
+									{result.regressions.length > 0 && (
+										<p>
+											Regressions: {result.regressions.join(', ')}
+										</p>
+									)}
+								</div>
+							</Collapsible.Content>
+						</article>
+					</Collapsible.Root>
 				))}
 			</div>
 		</section>
