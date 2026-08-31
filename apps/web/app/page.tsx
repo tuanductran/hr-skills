@@ -6,7 +6,9 @@ export default async function Page() {
 	const featuredSkills = data.skills.slice(0, 6);
 
 	return (
-		<main>
+		<main
+			id='main-content'
+			tabIndex={-1}>
 			<section className='hero'>
 				<div className='site-shell hero__inner'>
 					<div className='hero__copy'>

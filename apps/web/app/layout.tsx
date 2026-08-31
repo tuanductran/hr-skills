@@ -22,8 +22,14 @@ export default function RootLayout({ children }: RootLayoutProps) {
 	return (
 		<html
 			lang='en'
-			className={inter.variable}>
+			className={inter.variable}
+			data-scroll-behavior='smooth'>
 			<body>
+				<a
+					className='skip-link'
+					href='#main-content'>
+					Skip to content
+				</a>
 				<SiteHeader />
 				{children}
 				<SiteFooter />

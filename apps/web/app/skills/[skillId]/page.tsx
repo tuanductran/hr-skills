@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { MarkdownContent } from '../../components/markdown-content';
+import { SkillSections } from '../../components/skill-sections';
 import {
 	getDocumentationData,
 	getDocumentationSkill,
@@ -12,10 +13,6 @@ interface SkillPageProps {
 	readonly params: Promise<{ skillId: string }>;
 }
 
-function sourceLabel(fileName: string): string {
-	return fileName.replace(/\.md$/, '').replaceAll('-', ' ');
-}
-
 export async function generateStaticParams() {
 	const data = await getDocumentationData();
 	return data.skills.map((skill) => ({ skillId: skill.id }));
@@ -24,8 +21,8 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: SkillPageProps): Promise<Metadata> {
 	const { skillId } = await params;
 	const skill = await getDocumentationSkill(skillId);
-	if (!skill) return { title: 'Skill not found | HR Skills' };
-	return { description: skill.description, title: `${skill.displayName} | HR Skills` };
+	if (!skill) return { title: 'Skill not found' };
+	return { description: skill.description, title: skill.displayName };
 }
 
 export default async function SkillPage({ params }: SkillPageProps) {
@@ -36,7 +33,10 @@ export default async function SkillPage({ params }: SkillPageProps) {
 	const recommendations = await getSkillRecommendations(skill.id);
 
 	return (
-		<main className='site-shell page-content skill-page'>
+		<main
+			className='site-shell page-content skill-page'
+			id='main-content'
+			tabIndex={-1}>
 			<nav
 				aria-label='Breadcrumb'
 				className='breadcrumb'>
@@ -66,14 +66,7 @@ export default async function SkillPage({ params }: SkillPageProps) {
 							aria-labelledby='skill-prompts-heading'
 							className='skill-content-section'>
 							<h2 id='skill-prompts-heading'>Prompts</h2>
-							{skill.prompts.map((section) => (
-								<details
-									key={section.fileName}
-									open={skill.prompts.length === 1}>
-									<summary>{sourceLabel(section.fileName)}</summary>
-									<MarkdownContent content={section.markdown} />
-								</details>
-							))}
+							<SkillSections sections={skill.prompts} />
 						</section>
 					)}
 					{skill.examples.length > 0 && (
@@ -81,14 +74,7 @@ export default async function SkillPage({ params }: SkillPageProps) {
 							aria-labelledby='skill-examples-heading'
 							className='skill-content-section'>
 							<h2 id='skill-examples-heading'>Examples</h2>
-							{skill.examples.map((section) => (
-								<details
-									key={section.fileName}
-									open={skill.examples.length === 1}>
-									<summary>{sourceLabel(section.fileName)}</summary>
-									<MarkdownContent content={section.markdown} />
-								</details>
-							))}
+							<SkillSections sections={skill.examples} />
 						</section>
 					)}
 				</article>
