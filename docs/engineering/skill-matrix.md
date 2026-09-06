@@ -1,6 +1,6 @@
 # HR Skills — Skill Matrix
 
-> Auto-generated on 2026-08-20 by `bun run matrix`. Do not edit manually.
+> Auto-generated on 2026-09-06 by `bun run matrix`. Do not edit manually.
 
 ## Summary
 
@@ -18,11 +18,11 @@
 | `hr-accessibility-accommodation` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.1 |
 | `hr-agentic-ai` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.1 |
 | `hr-ai` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.1 |
-| `hr-ai-adoption` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.1 |
+| `hr-ai-adoption` | 🟢 Full | ✅ | ✅ | ✅ | 2 | 1.0.1 |
 | `hr-ai-change-management` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.1 |
 | `hr-ai-ethics` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.1 |
 | `hr-ai-evaluation` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.1 |
-| `hr-ai-governance` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.1 |
+| `hr-ai-governance` | 🟢 Full | ✅ | ✅ | ✅ | 2 | 1.0.1 |
 | `hr-ai-privacy` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.1 |
 | `hr-analytics` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.1 |
 | `hr-ar-vr` | 🟢 Full | ✅ | ✅ | ✅ | 1 | 1.0.1 |
