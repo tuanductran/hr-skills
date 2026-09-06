@@ -66,6 +66,9 @@ jobs:
       - name: Build hr-skills-ref
         run: bun run build --filter=hr-skills-ref
 
+      - name: Build hr-skills-build
+        run: bun run build --filter=hr-skills-build
+
       - name: Determine changed skills
         id: changed
         run: |
