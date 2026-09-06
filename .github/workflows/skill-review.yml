@@ -66,6 +66,9 @@ jobs:
       - name: Build hr-skills-ref
         run: bun run build --filter=hr-skills-ref
 
+      - name: Build hr-skills-build
+        run: bun run build --filter=hr-skills-build
+
       - name: Determine changed skills
         id: changed
         run: |
@@ -86,7 +89,7 @@ jobs:
       - name: Generate deterministic report
         if: steps.changed.outputs.count != '0'
         run: |
-          cd packages/hr-skills-build
+          cd packages/hr-skills
           echo "${{ steps.changed.outputs.list }}" > /tmp/changed-skills.txt
           bun run skill-review -- --list-file /tmp/changed-skills.txt > /tmp/skill-review-report.md
           cat /tmp/skill-review-report.md
