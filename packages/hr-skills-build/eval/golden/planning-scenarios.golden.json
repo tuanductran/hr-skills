@@ -1,6 +1,6 @@
 {
 	"dataset": "planning-scenarios",
-	"generatedAt": "2026-07-29",
+	"generatedAt": "2026-09-07",
 	"results": [
 		{
 			"caseId": "recruiting-interview-questions",
@@ -44,7 +44,7 @@
 				"hr-training-development",
 				"hr-career-development",
 				"hr-leadership-development",
-				"hr-business-partner"
+				"hr-performance-review"
 			],
 			"matchedCapabilities": 2,
 			"totalCapabilities": 2,
@@ -56,7 +56,8 @@
 			"skillIds": [
 				"hr-performance-management",
 				"hr-performance-review",
-				"hr-business-partner"
+				"hr-business-partner",
+				"hr-career-development"
 			],
 			"matchedCapabilities": 2,
 			"totalCapabilities": 2,
@@ -68,7 +69,7 @@
 			"skillIds": [
 				"hr-performance-review",
 				"hr-offboarding",
-				"hr-business-partner",
+				"hr-career-development",
 				"hr-coordination"
 			],
 			"matchedCapabilities": 2,

@@ -81,10 +81,16 @@ const EXPLICIT: Readonly<Record<string, SkillClassification>> = {
 
 	// Performance / talent / career
 	'hr-performance-management': { category: 'performance-talent', tags: [] },
-	'hr-performance-review': { category: 'performance-talent', tags: [] },
+	'hr-performance-review': {
+		category: 'performance-talent',
+		tags: ['career-pathway'],
+	},
 	'hr-talent-management': { category: 'performance-talent', tags: [] },
 	'hr-succession-planning': { category: 'performance-talent', tags: [] },
-	'hr-career-development': { category: 'performance-talent', tags: [] },
+	'hr-career-development': {
+		category: 'performance-talent',
+		tags: ['career-pathway'],
+	},
 	'hr-competency-management': { category: 'performance-talent', tags: [] },
 	'hr-manager-effectiveness': { category: 'performance-talent', tags: [] },
 	'hr-coaching-mentoring': { category: 'performance-talent', tags: [] },
@@ -100,7 +106,10 @@ const EXPLICIT: Readonly<Record<string, SkillClassification>> = {
 	'hr-retirement-benefits': { category: 'compensation-rewards', tags: [] },
 
 	// Learning / development
-	'hr-training-development': { category: 'learning-development', tags: [] },
+	'hr-training-development': {
+		category: 'learning-development',
+		tags: ['career-pathway'],
+	},
 	'hr-learning-development': { category: 'learning-development', tags: [] },
 	'hr-learning-strategy': { category: 'learning-development', tags: [] },
 	'hr-leadership-development': { category: 'learning-development', tags: [] },

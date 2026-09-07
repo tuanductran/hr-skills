@@ -917,7 +917,9 @@
       "description": "Help HR teams and managers design career development programs, frameworks, and conversations. Use when asked to create career paths, build individual development plans, design career ladders, run career development conversations, develop career frameworks, or similar career growth tasks.",
       "tier": "full",
       "domain": "performance-talent",
-      "tags": [],
+      "tags": [
+        "career-pathway"
+      ],
       "aliases": [
         "career-development"
       ],
@@ -947,11 +949,11 @@
       },
       "dependencies": [],
       "relatedSkills": [
+        "hr-performance-review",
+        "hr-training-development",
+        "hr-leadership-development",
         "hr-business-partner",
-        "hr-coaching-mentoring",
-        "hr-competency-management",
-        "hr-manager-effectiveness",
-        "hr-leadership-development"
+        "hr-coaching-mentoring"
       ]
     },
     {
@@ -4320,7 +4322,9 @@
       "description": "Help managers, HR professionals, and team leaders write fair, balanced, evidence-based performance reviews, self-assessments, and development plans. Use when asked to write or calibrate an individual performance review, draft manager feedback, evaluate employee performance, write appraisal comments, create a development plan, review employee goals, or any employee performance evaluation task, or write or calibrate individual performance reviews.",
       "tier": "full",
       "domain": "performance-talent",
-      "tags": [],
+      "tags": [
+        "career-pathway"
+      ],
       "aliases": [
         "performance-review"
       ],
@@ -6171,7 +6175,9 @@
       "description": "Help HR managers with learning and development programs. Use when asked to design a training program, create an e-learning course, develop a coaching plan, conduct a needs assessment, write a competency model, design a mentorship program, create a learning plan, or any training and development task, or create a specific training module or course.",
       "tier": "full",
       "domain": "learning-development",
-      "tags": [],
+      "tags": [
+        "career-pathway"
+      ],
       "aliases": [
         "training-development"
       ],
