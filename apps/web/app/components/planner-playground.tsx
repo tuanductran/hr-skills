@@ -1,12 +1,31 @@
 'use client';
 
-import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react';
+import * as Collapsible from '@radix-ui/react-collapsible';
 import {
 	analyzeIntent,
 	generateExecutionPlan,
 	type Registry,
 } from 'hr-skills-build/client';
 import { useMemo, useState } from 'react';
+
+function ChevronIcon() {
+	return (
+		<svg
+			aria-hidden='true'
+			viewBox='0 0 16 16'
+			width='14'
+			height='14'
+			fill='none'>
+			<path
+				d='M4 6l4 4 4-4'
+				stroke='currentColor'
+				strokeWidth='1.75'
+				strokeLinecap='round'
+				strokeLinejoin='round'
+			/>
+		</svg>
+	);
+}
 
 interface PlannerPlaygroundProps {
 	readonly registry: Registry;
@@ -118,28 +137,32 @@ export function PlannerPlayground({ registry }: PlannerPlaygroundProps) {
 					</p>
 					<ol className='planner-steps'>
 						{plan.steps.map((step) => (
-							<li key={step.skillId}>
-								<Disclosure>
-									<DisclosureButton className='planner-step__button'>
+							<li
+								className='planner-step'
+								key={step.skillId}>
+								<Collapsible.Root>
+									<Collapsible.Trigger className='planner-step__button'>
 										<span>
 											{step.order + 1}. {step.skillId}
 										</span>
 										<span>{step.reason}</span>
-										<span aria-hidden='true'>+</span>
-									</DisclosureButton>
-									<DisclosurePanel className='planner-step__panel'>
-										<p>
-											{step.rationale ??
-												'Selected by the deterministic planner.'}
-										</p>
-										{step.dependencies.length > 0 && (
+										<ChevronIcon />
+									</Collapsible.Trigger>
+									<Collapsible.Content className='planner-step__panel'>
+										<div className='planner-step__panel-inner'>
 											<p>
-												Dependencies:{' '}
-												{step.dependencies.join(', ')}
+												{step.rationale ??
+													'Selected by the deterministic planner.'}
 											</p>
-										)}
-									</DisclosurePanel>
-								</Disclosure>
+											{step.dependencies.length > 0 && (
+												<p>
+													Dependencies:{' '}
+													{step.dependencies.join(', ')}
+												</p>
+											)}
+										</div>
+									</Collapsible.Content>
+								</Collapsible.Root>
 							</li>
 						))}
 					</ol>
