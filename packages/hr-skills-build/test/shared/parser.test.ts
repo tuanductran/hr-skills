@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'bun:test';
 
-import { FRONTMATTER_REGEX, TASKS_REGEX } from '../../src/shared/constants.js';
-import { extractMatch, parseSkillFrontmatter } from '../../src/shared/parser.js';
+import { FRONTMATTER_REGEX, TASKS_REGEX } from '../../src/client/shared/constants.js';
+import { extractMatch, parseSkillFrontmatter } from '../../src/client/shared/parser.js';
 
 const SAMPLE_SKILL = `---
 name: hr-test

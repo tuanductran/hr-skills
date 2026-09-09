@@ -2,7 +2,7 @@
 
 Use this prompt for packaging and distributed-bundle honesty passes in hr-skills.
 
-- Start from `AGENTS.md` (root), `packages/hr-skills-build/src/`, and `.distignore`.
+- Start from `AGENTS.md` (root), `packages/hr-skills-build/src/server/`, and `.distignore`.
 - Audit `.distignore`, build scripts, and `dist/` artifact contents together.
 - Verify shipped skill bundles do not include repo-only files or internal tooling.
 - Verify `registry/skills.json` and `.claude-plugin/marketplace.json` reflect the current skills — regenerate if stale with `bun run registry` and `bun run sync`.

@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'bun:test';
 import type { BaseIssue } from 'valibot';
 
-import { ParseError, SkillError, ValidationError } from '../src/errors.js';
+import { ParseError, SkillError, ValidationError } from '../src/client/errors.js';
 
 describe('SkillError', () => {
 	it('is a proper Error subclass', () => {

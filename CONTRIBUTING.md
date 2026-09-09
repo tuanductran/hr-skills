@@ -76,7 +76,7 @@ Update the root router at `.agents/skills/hr-root-router-maintaining` so your sk
 
 - Target the `dev` branch (never `main` directly)
 - Include a short description of the HR domain the skill covers
-- Confirm all four checks pass in the PR description
+- Confirm all listed checks pass in the PR description
 
 ## Improving an existing skill
 

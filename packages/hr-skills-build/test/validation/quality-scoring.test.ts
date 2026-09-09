@@ -25,7 +25,7 @@ import {
 	scoreExampleCoverage,
 	scoreSkillQuality,
 	scoreSkills,
-} from '../../src/validation/quality-scoring.js';
+} from '../../src/server/validation/quality-scoring.js';
 
 // ---------------------------------------------------------------------------
 // Fixtures

@@ -18,7 +18,7 @@ import { afterEach, beforeEach, describe, expect, it } from 'bun:test';
 import { mkdir, mkdtemp, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import type { SkillValidationIssue } from '../../src/shared/types.js';
+import type { SkillValidationIssue } from '../../src/client/shared/types.js';
 import {
 	COPY_MARGIN,
 	COPY_MIN_OTHER_SCORE,
@@ -33,7 +33,7 @@ import {
 	type SkillSemanticContent,
 	topKeywords,
 	validateSemanticConsistency,
-} from '../../src/validation/semantic-validation.js';
+} from '../../src/server/validation/semantic-validation.js';
 
 // ---------------------------------------------------------------------------
 // Helpers

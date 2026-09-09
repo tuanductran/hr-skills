@@ -3,7 +3,7 @@
 Use this prompt when you need to verify that `docs/` and `skills/` still describe one
 coherent hr-skills package.
 
-- Read `AGENTS.md` (root) and `.agents/AGENTS.md` first.
+- Read `AGENTS.md` (root) first, then load the relevant skills from `.agents/skills/`.
 - Read `docs/engineering/skill-matrix.md`, `docs/engineering/registry.md`, and `docs/engineering/evaluation.md`.
 - Read the relevant `SKILL.md` files under `skills/hr-*/`.
 - Audit for:

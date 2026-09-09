@@ -135,27 +135,22 @@ Together, these components provide reusable, version-controlled building blocks 
 
 ```text
 hr-skills/
-├── SKILL.md                         # Master router
-├── skills/                          # Domain-specific HR Skills
-│   ├── hr-recruiting/
-│   │   ├── SKILL.md
-│   │   ├── content/
-│   │   ├── prompts/
-│   │   └── examples/
-│   ├── hr-onboarding/
-│   ├── hr-performance-management/
-│   └── ...
-├── packages/
-│   ├── hr-skills/                   # Publishable CLI for npx/bunx
-│   ├── hr-skills-build/             # Validation, generation & runtime tooling
-│   ├── hr-skills-ref/               # Client-safe and Bun/Node Agent Skills library
-│   └── hr-skills-tsdoc/             # Multi-package TSDoc API generator
-├── docs/
-│   ├── skill-matrix.md
-│   ├── ROADMAP.md
-│   └── ...
-└── ...
+├── apps/                         # Web documentation and Discord bot
+├── packages/                    # CLI, libraries, build tooling, and API docs
+├── skills/                      # Source HR skills
+├── docs/                        # Engineering, product, operations, and integration docs
+├── examples/                    # End-to-end and planner/runtime examples
+├── playground/                  # Experimental integration apps
+├── registry/                    # Generated registry artifacts
+├── .agents/                     # Repository maintenance skills
+├── .claude/                     # Claude Code commands, prompts, rules, and hooks
+├── .claude-plugin/              # Generated marketplace metadata
+└── SKILL.md                    # Root skill router
 ```
+
+See [`AGENTS.md`](AGENTS.md) for the canonical path guide and
+[`docs/engineering/package-architecture.md`](docs/engineering/package-architecture.md)
+for package boundaries.
 
 ## Development
 

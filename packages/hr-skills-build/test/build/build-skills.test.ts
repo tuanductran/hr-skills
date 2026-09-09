@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'bun:test';
 import { inflateRawSync } from 'node:zlib';
 
-import { buildZipBuffer } from '../../src/build/build-skills.js';
+import { buildZipBuffer } from '../../src/server/build/build-skills.js';
 
 const LOCAL_HEADER_SIG = 0x04034b50;
 const CENTRAL_HEADER_SIG = 0x02014b50;

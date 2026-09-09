@@ -10,7 +10,7 @@ metadata:
 
 Copy-paste detector for source code. Use this skill to run jscpd against `packages/*` in this repo and understand its output before handing clones to [`dry-refactoring`](../dry-refactoring/SKILL.md).
 
-> Not to be confused with `packages/hr-skills-build/src/validation/detect-duplicates.ts`, which detects duplicated **HR skill content** (`skills/hr-*/SKILL.md`) at publish time. `jscpd` here targets **TypeScript source code** in `packages/*` only — keep the two concerns separate and never merge their logic.
+> Not to be confused with `packages/hr-skills-build/src/server/validation/detect-duplicates.ts`, which detects duplicated **HR skill content** (`skills/hr-*/SKILL.md`) at publish time. `jscpd` here targets **TypeScript source code** in `packages/*` only — keep the two concerns separate and never merge their logic.
 
 ## Quick start
 
@@ -39,7 +39,8 @@ The `ai` reporter produces compact, token-efficient output:
 
 ```text
 Clones:
-packages/hr-skills-build/src/ validate.ts:53-59 ~ security.ts:89-94
+packages/hr-skills-build/src/server/validation/validate.ts:53-59 ~
+security.ts:89-94
 ---
 N clones · X% duplication
 ```
@@ -60,7 +61,11 @@ Full option reference: `bunx jscpd@5 --help`, or the [upstream configuration doc
 
 ## When to run
 
-- Before opening a PR that adds or edits code under `packages/hr-skills-build/src/**` or `packages/hr-skills-ref/src/**`
+- Before opening a PR that adds or edits code under
+  `packages/hr-skills-build/src/client/**`,
+  `packages/hr-skills-build/src/server/**`,
+  `packages/hr-skills-ref/src/client/**`, or
+  `packages/hr-skills-ref/src/server/**`
 - After a large refactor, to confirm clones were actually eliminated (re-run, don't assume)
 - Optionally wired into `lefthook.yml` as a pre-push (not pre-commit — it's slower than `biome`) step; see [CI and hooks](https://jscpd.dev/ci-and-hooks) for the pattern this repo's `lefthook.yml` follows for other tools
 

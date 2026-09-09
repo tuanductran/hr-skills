@@ -5,7 +5,7 @@ import {
 	loadAllDatasets,
 	loadDataset,
 	loadGoldenFixture,
-} from '../../src/evaluation/evaluation-datasets.js';
+} from '../../src/server/evaluation/evaluation-datasets.js';
 
 describe('loadDataset', () => {
 	it('loads the planning-scenarios dataset', async () => {

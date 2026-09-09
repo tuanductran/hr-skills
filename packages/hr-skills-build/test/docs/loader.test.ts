@@ -1,5 +1,8 @@
 import { describe, expect, test } from 'bun:test';
-import { buildDocumentationData, humanizeIdentifier } from '../../src/docs/loader.js';
+import {
+	buildDocumentationData,
+	humanizeIdentifier,
+} from '../../src/server/docs/loader.js';
 
 describe('public documentation data', () => {
 	test('humanizes identifiers without degrading common HR acronyms', () => {

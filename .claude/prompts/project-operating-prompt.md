@@ -16,13 +16,12 @@ Prefer the smallest correct change that makes the system more coherent.
 When files appear to overlap, resolve them in this order:
 
 1. `AGENTS.md` (root) — canonical entry point for contributors and agents
-2. `.agents/AGENTS.md` — routing index mapping tasks to skill files
-3. `skills/hr-*/SKILL.md` — shipped skill definitions (source of truth for HR knowledge)
-4. `docs/` — generated reports and specification docs (never hand-edit generated files)
-5. `packages/hr-skills-build/src/` and `packages/hr-skills-ref/src/` — executable build and validation behavior
-6. `.claude/rules/` — repo-local working rules
-7. `.agents/skills/` — repeatable maintainer workflow skills
-8. `.claude/prompts/` — reusable maintenance prompts (this directory)
+2. `skills/hr-*/SKILL.md` — shipped skill definitions (source of truth for HR knowledge)
+3. `docs/` — generated reports and specification docs (never hand-edit generated files)
+4. `packages/hr-skills-build/src/server/` and `packages/hr-skills-ref/src/server/` — executable build and validation behavior
+5. `.claude/rules/` — repo-local working rules
+6. `.agents/skills/` — repeatable maintainer workflow skills
+7. `.claude/prompts/` — reusable maintenance prompts (this directory)
 
 If two layers conflict, preserve the higher layer and narrow or rewrite the lower one.
 
@@ -44,7 +43,7 @@ If two layers conflict, preserve the higher layer and narrow or rewrite the lowe
 
 ## How to work
 
-1. Read the nearest source-of-truth skill file first (see `.agents/AGENTS.md`).
+1. Read the nearest source-of-truth skill file first from `.agents/skills/`.
 2. Identify the smallest layer that should own the change.
 3. Make the fix there before touching supporting layers.
 4. Sync downstream layers only when the change affects them.

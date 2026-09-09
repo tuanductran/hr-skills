@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'bun:test';
 import { join } from 'node:path';
-import { SKILLS_DIR } from '../src/constants.js';
-import { toPrompt } from '../src/prompt.js';
+import { SKILLS_DIR } from '../src/server/constants.js';
+import { toPrompt } from '../src/server/prompt.js';
 
 describe('toPrompt', () => {
 	it('returns empty available_skills block for no dirs', () => {

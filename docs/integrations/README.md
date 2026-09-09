@@ -112,7 +112,7 @@ listed as 🟢 Supported in the table above:
    [Platform-specific implementations](#platform-specific-implementations).
 2. **Prefer generation over authoring.** If the platform needs a manifest
    HR Skills doesn't already produce, add a generator under
-   `packages/hr-skills-build/src/` that derives it from
+   `packages/hr-skills-build/src/server/build/` that derives it from
    `buildRegistry()` — the same pattern used for
    `.claude-plugin/marketplace.json` and `docs/engineering/skill-matrix.md` — rather
    than hand-writing platform-specific files.

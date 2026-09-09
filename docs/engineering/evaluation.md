@@ -46,14 +46,18 @@ eval/datasets/*.json (intents)
 
 | Component | File | Responsibility |
 |---|---|---|
-| `EvaluationDataset` loader | `src/evaluation/evaluation-datasets.ts` | Discovers and loads dataset JSON files, and loads/saves golden fixtures. |
-| `runCase` / `runDataset` | `src/evaluation/evaluate.ts` | Runs one case (or a whole dataset) through the Planner and Runtime and captures a `GoldenCaseResult`. |
-| `diffAgainstGolden` | `src/evaluation/evaluate.ts` | Compares an actual result against its golden fixture entry and returns the list of differing fields. |
-| `computeQualityMetrics` | `src/evaluation/evaluate.ts` | Aggregates per-case results into the five `QualityMetrics` ratios. |
-| `runEvaluation` / `toGoldenFixture` | `src/evaluation/evaluate.ts` | Orchestrates a full dataset run into an `EvaluationReport`, and converts a report into a fixture for `--update-golden`. |
+| `EvaluationDataset` loader | `src/server/evaluation/evaluation-datasets.ts` | Discovers and loads dataset JSON files, and loads/saves golden fixtures. |
+| `runCase` / `runDataset` | `src/server/evaluation/evaluate.ts` | Runs one case (or a whole dataset) through the Planner and Runtime and captures a `GoldenCaseResult`. |
+| `diffAgainstGolden` | `src/server/evaluation/evaluate.ts` | Compares an actual result against its golden fixture entry and returns the list of differing fields. |
+| `computeQualityMetrics` | `src/server/evaluation/evaluate.ts` | Aggregates per-case results into the five `QualityMetrics` ratios. |
+| `runEvaluation` / `toGoldenFixture` | `src/server/evaluation/evaluate.ts` | Orchestrates a full dataset run into an `EvaluationReport`, and converts a report into a fixture for `--update-golden`. |
 | CLI (`bun run evaluate`) | `packages/hr-skills/src/cli/run-evaluation.ts` | Runs every dataset, prints a report, writes `eval-report.json`, and exits non-zero on regressions or invalid plans. |
 
-All shared type definitions (`EvaluationCase`, `EvaluationDataset`, `GoldenCaseResult`, `GoldenFixture`, `EvaluationCaseResult`, `QualityMetrics`, `EvaluationReport`) live in `src/shared/types.ts`, alongside the Planner's and Runtime's types.
+The evaluation type definitions (`EvaluationCase`, `EvaluationDataset`,
+`GoldenCaseResult`, `GoldenFixture`, `EvaluationCaseResult`, `QualityMetrics`,
+`EvaluationReport`) live in the surface-local `src/server/shared/types.ts`
+alongside the server Planner and Runtime types. The browser-safe Planner and
+Runtime keep their corresponding types in `src/client/shared/types.ts`.
 
 ## Dataset format
 
@@ -136,10 +140,10 @@ bun run evaluate
 
 This builds the Skill Registry, loads every dataset in `eval/datasets/`, runs each case, diffs it against the matching `eval/golden/*.golden.json` fixture, prints per-case results and the aggregated quality metrics, and writes the full report to `eval-report.json`. Exit code is `0` when every case is regression-free and every plan is valid, `1` otherwise.
 
-To regenerate golden fixtures after an intentional change to the Planner, Runtime, or skill content (a new skill, a renamed capability, and so on), run the script directly from `packages/hr-skills-build` (the `bun run evaluate` root alias does not forward flags through Turborepo):
+To regenerate golden fixtures after an intentional change to the Planner, Runtime, or skill content (a new skill, a renamed capability, and so on), run the CLI directly from `packages/hr-skills`:
 
 ```bash
-cd packages/hr-skills-build
+cd packages/hr-skills
 bun run evaluate --update-golden
 ```
 

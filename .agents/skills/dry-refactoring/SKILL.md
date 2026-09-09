@@ -31,11 +31,18 @@ bunx jscpd@5 packages --reporters ai --format typescript
 
 ## Where extracted code goes in this repo
 
-This repo already separates code by domain under `packages/hr-skills/src/cli and packages/hr-skills-build/src/{shared,validation,planner,runtime,registry,search,build,evaluation}/` and `packages/hr-skills-ref/src/`. Follow that structure — don't dump extracted helpers into whichever file happens to be open:
+This repo separates code by surface and domain under
+`packages/hr-skills/src/cli/`, `packages/hr-skills-build/src/client/`,
+`packages/hr-skills-build/src/server/`, `packages/hr-skills-ref/src/client/`,
+and `packages/hr-skills-ref/src/server/`. Follow that structure — don't dump
+extracted helpers into whichever file happens to be open:
 
-- **Duplicated logic used by 2+ files in the same domain folder** (e.g. two files under `src/validation/`) → new file in that same folder, e.g. `src/validation/security-helpers.ts`, imported by both.
-- **Duplicated logic used across domain folders** (e.g. `src/cli/*` and `src/evaluation/*`) → `src/shared/`, alongside the existing `shared/constants.ts`, `shared/helpers.ts`, `shared/schema.ts`, `shared/types.ts`.
+- **Duplicated logic used by 2+ files in the same domain folder** (e.g. two files under `src/server/validation/`) → new file in that same folder, e.g. `src/server/validation/security-helpers.ts`, imported by both.
+- **Duplicated logic used across domain folders** (e.g. `src/server/build/*` and `src/server/evaluation/*`) → `src/server/shared/`, alongside the existing `shared/constants.ts`, `shared/helpers.ts`, `shared/schema.ts`, `shared/types.ts`.
 - **Duplicated logic across packages** (`hr-skills-build` and `hr-skills-ref` both define it) → do **not** create a third copy in either package. Prefer keeping a single canonical definition in the package it conceptually belongs to (`hr-skills-ref` for skill-file parsing primitives, `hr-skills-build` for build/registry/CLI concerns) and importing it from the other, or promote it to a small shared internal package if both genuinely need to own it independently. Never resolve this by copy-pasting into a third location.
+- **Intentional client/server duplication** → each public surface must remain
+  self-contained. If sharing a module would create a client/server import edge,
+  keep separate surface-local implementations and test both surfaces instead.
 - **Constants** → their own `constants.ts` in the relevant folder; don't fold them into a file that already holds functions or types.
 - **Types/interfaces** → their own `types.ts` (or `*.types.ts` if `types.ts` already exists and would grow unrelated concerns) in the relevant folder — never appended to a functions file "for now."
 

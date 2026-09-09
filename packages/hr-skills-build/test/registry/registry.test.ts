@@ -7,15 +7,15 @@ import * as v from 'valibot';
 import {
 	buildRegistry,
 	loadRelevanceSignalTable,
-} from '../../src/registry/registry.js';
-import type { RelevanceSignalTable } from '../../src/search/relevance-signals.js';
-import { RELEVANCE_SIGNAL_SCHEMA_VERSION } from '../../src/search/relevance-signals.js';
-import { RegistrySchema } from '../../src/shared/schema.js';
-import type { SkillValidationIssue } from '../../src/shared/types.js';
+} from '../../src/server/registry/registry.js';
+import type { RelevanceSignalTable } from '../../src/client/search/relevance-signals.js';
+import { RELEVANCE_SIGNAL_SCHEMA_VERSION } from '../../src/client/search/relevance-signals.js';
+import { RegistrySchema } from '../../src/client/shared/schema.js';
+import type { SkillValidationIssue } from '../../src/client/shared/types.js';
 import {
 	validateRegistryConsistency,
 	validateRelatedSkillsAgainstSignals,
-} from '../../src/validation/validate-registry.js';
+} from '../../src/server/validation/validate-registry.js';
 
 describe('buildRegistry()', () => {
 	it('produces a registry that conforms to RegistrySchema', async () => {
