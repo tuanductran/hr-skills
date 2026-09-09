@@ -1,6 +1,6 @@
 {
 	"name": "hr-skills-discord-bot",
-	"version": "0.0.0",
+	"version": "0.0.1",
 	"private": true,
 	"description": "Discord bot for discovering HR Skills — search, inspect, and get recommendations from the hr-skills registry.",
 	"type": "module",
