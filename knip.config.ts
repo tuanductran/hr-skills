@@ -10,6 +10,10 @@ const config = {
 			project: ['app/**/*.{ts,tsx}'],
 			next: true,
 		},
+		'apps/discord-bot': {
+			entry: ['src/**/*.test.ts'],
+			project: ['src/**/*.ts'],
+		},
 		'packages/hr-skills-build': {
 			project: ['src/**/*.ts'],
 		},

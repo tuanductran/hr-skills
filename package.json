@@ -37,6 +37,7 @@
 		"catalog": {
 			"@clack/prompts": "^1.7.0",
 			"@types/bun": "^1.4.1",
+			"discord.js": "^14.27.0",
 			"knip": "^6.34.0",
 			"ts-morph": "^24.0.0",
 			"valibot": "^1.4.2",
