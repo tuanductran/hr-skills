@@ -10,5 +10,6 @@ export * from '../planner/index.js';
 export * from '../registry/index.js';
 export * from '../runtime/index.js';
 export * from '../search/index.js';
+export * from '../service/index.js';
 export * from '../shared/index.js';
 export * from '../validation/index.js';
