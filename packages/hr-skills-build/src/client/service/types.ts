@@ -20,15 +20,21 @@ export interface ServiceError {
 	details?: Record<string, unknown>;
 }
 
+export interface ServiceResponseMeta {
+	apiVersion: 'v1';
+	requestId?: string;
+}
+
 export interface ServiceResponseSuccess<T> {
 	success: true;
 	data: T;
-	meta?: Record<string, unknown>;
+	meta: ServiceResponseMeta;
 }
 
 export interface ServiceResponseFailure {
 	success: false;
 	error: ServiceError;
+	meta: ServiceResponseMeta;
 }
 
 export type ServiceResponse<T> = ServiceResponseSuccess<T> | ServiceResponseFailure;

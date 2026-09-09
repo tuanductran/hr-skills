@@ -42,6 +42,10 @@ import { buildRegistry, buildDocumentationData } from 'hr-skills-build/server';
 
 The generated API reference is maintained by `hr-skills-tsdoc`. When public surfaces change, run `bun run api-docs` and verify with `bun run api-docs:check`.
 
+The versioned service contract is documented in
+[`platform-integration.md`](platform-integration.md). It defines the future
+HTTP adapter boundary without adding hosted routes to the library package.
+
 ## Relationship to the roadmap
 
 Client/server boundary hardening is a completion constraint for the package architecture and Phase 7 web platform. Phase 8.1 now provides versioned-library service functions for registry search, planning, workflow execution, evaluation, health, and version responses. Hosted HTTP contracts, authentication, rate limiting, observability, and deployment remain in the later Phase 8 work.

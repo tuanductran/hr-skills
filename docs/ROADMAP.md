@@ -443,12 +443,16 @@ Expose the core registry, planner, runtime, and evaluation capabilities through 
 * Evaluation API
 * Health and version endpoints
 
-#### 8.2 Platform integration
+#### 8.2 Platform integration — in progress
 
 * API contracts for web UI and external clients
 * Auth and rate limiting strategy if public endpoints are introduced
 * Request validation and error normalization
 * Deterministic behavior aligned with the library implementations
+
+The version-one contract, initial access policy, request validation rules, and
+normalized response envelope are documented in
+[`docs/engineering/platform-integration.md`](engineering/platform-integration.md).
 
 #### 8.3 Operational concerns
 
