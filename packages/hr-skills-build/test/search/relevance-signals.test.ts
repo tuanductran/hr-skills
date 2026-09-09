@@ -9,8 +9,8 @@ import {
 	OBSERVED_WEIGHT,
 	RELEVANCE_SIGNAL_SCHEMA_VERSION,
 	reRankRelatedSkills,
-} from '../../src/search/relevance-signals.js';
-import type { GoldenFixture } from '../../src/shared/types.js';
+} from '../../src/client/search/relevance-signals.js';
+import type { GoldenFixture } from '../../src/client/shared/types.js';
 
 // ---------------------------------------------------------------------------
 // Fixtures shared across tests

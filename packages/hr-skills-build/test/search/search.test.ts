@@ -5,8 +5,8 @@ import {
 	FIELD_WEIGHTS,
 	InvalidSearchQueryError,
 	searchSkills,
-} from '../../src/search/search.js';
-import type { Registry, RegistryEntry } from '../../src/shared/types.js';
+} from '../../src/client/search/search.js';
+import type { Registry, RegistryEntry } from '../../src/client/shared/types.js';
 
 // ============================================================================
 // Test Fixtures

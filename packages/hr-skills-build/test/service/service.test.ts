@@ -1,4 +1,10 @@
 import { describe, expect, it } from 'bun:test';
+import type {
+	EvaluationDataset,
+	ExecutionPlan,
+	Registry,
+	RegistryEntry,
+} from '../../src/client/shared/types.js';
 import {
 	executeWorkflowService,
 	generatePlanService,
@@ -6,13 +12,7 @@ import {
 	getVersionService,
 	runEvaluationService,
 	searchRegistryService,
-} from '../../src/service/index.js';
-import type {
-	EvaluationDataset,
-	ExecutionPlan,
-	Registry,
-	RegistryEntry,
-} from '../../src/shared/types.js';
+} from '../../src/server/service/index.js';
 
 const mockSkill: RegistryEntry = {
 	id: 'hr-onboarding-workflow',
@@ -97,6 +97,14 @@ describe('Service Layer — Phase 8.1', () => {
 				{ maxResults: 'invalid' as unknown as number },
 				mockRegistry,
 			);
+			expect(res.success).toBe(false);
+			if (!res.success) {
+				expect(res.error.code).toBe('VALIDATION_ERROR');
+			}
+		});
+
+		it('rejects invalid domain values', () => {
+			const res = searchRegistryService({ domain: 'not-a-domain' }, mockRegistry);
 			expect(res.success).toBe(false);
 			if (!res.success) {
 				expect(res.error.code).toBe('VALIDATION_ERROR');

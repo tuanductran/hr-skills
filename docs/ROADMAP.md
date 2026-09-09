@@ -100,48 +100,23 @@ Skills follow the Agent Skills open format and are distributed through:
 
 ```text
 hr-skills/
-│
-├── apps/
-│   └── web/
-│       └── Public Next.js documentation and product surfaces
-│
-├── packages/
-│   ├── hr-skills/
-│   │   └── Publishable CLI executable for npx/bunx and local workflows
-│   ├── hr-skills-build/
-│   │   └── Validation, generation, registry, planner, runtime, evaluation, and build tooling
-│   ├── hr-skills-ref/
-│   │   └── Core Agent Skills library with client-safe and Bun/Node server surfaces
-│   └── hr-skills-tsdoc/
-│       └── TSDoc-compatible API documentation generator for public package surfaces
-
-├── skills/
-│   └── hr-*/
-│       └── Domain-specific HR skills
-│
-├── playground/
-│   ├── next-app/
-│   └── vite-app/
-│       └── Experimental integration and smoke-test applications
-│
-├── .agents/
-│   └── skills/
-│       └── Repository maintenance skills
-│
-├── .claude/
-│   └── Claude Code configuration
-│
-├── .claude-plugin/
-│   └── Generated marketplace manifest
-│
-└── docs/
-    ├── ROADMAP.md
-    ├── api.md
-    └── engineering/
-        └── skill-matrix.md
+├── apps/                 # Web documentation and Discord bot
+├── packages/             # CLI, libraries, build tooling, and API docs
+├── skills/               # Source HR skills
+├── docs/                 # Project documentation
+├── examples/             # Reusable workflow examples
+├── playground/           # Experimental integration apps
+├── registry/             # Generated registry artifacts
+├── .agents/              # Repository maintenance skills
+├── .claude/              # Claude Code configuration
+├── .claude-plugin/       # Generated marketplace metadata
+└── SKILL.md              # Root skill router
 ```
 
-The root workspace is named `hr-skills-monorepo`. Package boundaries are intentional: browser-safe imports use `client` entrypoints, while Bun/Node filesystem and runtime integrations use `server` entrypoints. Generated API documentation is maintained by `hr-skills-tsdoc` and must be refreshed with `bun run api-docs` rather than edited manually.
+The root workspace is named `hr-skills-monorepo`. Detailed package boundaries are
+documented in [`docs/engineering/package-architecture.md`](engineering/package-architecture.md).
+Generated artifacts must be regenerated with the repository commands rather than
+edited manually.
 
 ---
 
@@ -456,11 +431,11 @@ Phase 7 provides a public web product and browser-safe library integration, but 
 
 ### Phase 8 — API & Services
 
-**Status: Not started as a service layer.** The repository already provides the underlying library implementations and stable package surfaces; this phase begins when those capabilities are exposed through versioned service interfaces.
+**Status: In progress.** Phase 8.1 is implemented as a versioned-library service layer. Hosted HTTP contracts and operational concerns remain in 8.2 and 8.3.
 
 Expose the core registry, planner, runtime, and evaluation capabilities through stable service interfaces.
 
-#### 8.1 Service layer
+#### 8.1 Service layer — completed
 
 * Registry search API
 * Planner API
@@ -668,7 +643,7 @@ Potential directions:
 
 ### HR/TA Product Initiatives
 
-These initiatives are proposed product tracks that reuse the existing HR Skills ecosystem. They are intentionally separate from the completed Phase 7 web experience and the future Phase 8 API & Services scope until their requirements, ownership, data model, and delivery plan are formally approved.
+These initiatives are proposed product tracks that reuse the existing HR Skills ecosystem. They are intentionally separate from the completed Phase 7 web experience and the remaining hosted Phase 8 API and Services scope until their requirements, ownership, data model, and delivery plan are formally approved.
 
 #### HR/TA CV Builder
 
@@ -678,7 +653,7 @@ Explore an HR/TA CV Builder that composes role- and locale-specific JSON templat
 
 Build a companion HR/TA JD Builder that composes structured, role- and locale-specific job descriptions from the same skill ecosystem and template registry. It should support position presets, department and reporting-line context, seniority, employment type, work arrangement, country and language, compensation transparency, legally sensitive wording review, inclusive-language checks, required and preferred qualifications, responsibilities, success metrics, interview-process content, and configurable employer-brand sections. The builder should provide a JSON-first template contract validated with TypeScript and Valibot, a guided editor with preview and revision history, reusable section-level templates, localization-aware output, and export formats suitable for ATS, career sites, internal approvals, and recruiter handoff.
 
-The CV Builder and JD Builder should share a common role taxonomy, locale and language model, skills-to-role mapping, validation layer, template versioning, and preview/export primitives. They must not silently invent legal or compensation requirements; region-specific guidance should be explicit, reviewable, and configurable. The preferred delivery order is discovery and domain modeling first, followed by shared template infrastructure, then CV/JD builder verticals, and finally API/service integration when Phase 8 is ready. These initiatives are not part of Phase 7 or Phase 8 until separately scoped.
+The CV Builder and JD Builder should share a common role taxonomy, locale and language model, skills-to-role mapping, validation layer, template versioning, and preview/export primitives. They must not silently invent legal or compensation requirements; region-specific guidance should be explicit, reviewable, and configurable. The preferred delivery order is discovery and domain modeling first, followed by shared template infrastructure, then CV/JD builder verticals, and finally integration with the remaining hosted Phase 8 services. These initiatives are not part of Phase 7 or Phase 8 until separately scoped.
 
 ---
 
@@ -712,4 +687,4 @@ The CV Builder and JD Builder should share a common role taxonomy, locale and la
 
 ---
 
-Last updated: August 17, 2026
+Last updated: September 9, 2026

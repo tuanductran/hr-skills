@@ -4,7 +4,7 @@
 
 `hr-skills-monorepo` is a Bun + Turborepo monorepo of domain-specific Agent Skills for HR and talent acquisition, distributed for Claude Code and claude.ai. Each skill lives at `skills/hr-*/SKILL.md`. The publishable `hr-skills` package provides the `hr-skills` npm executable; `packages/hr-skills-build` and `packages/hr-skills-ref` provide the TypeScript library surfaces, while `packages/hr-skills-tsdoc` owns multi-package TSDoc API generation. Generated artifacts — `docs/engineering/skill-matrix.md`, `registry/skills.json`, `.claude-plugin/marketplace.json` — are derived from skill frontmatter and must never be hand-edited; regenerate them with the corresponding `bun run` command instead.
 
-This file is the canonical, tool-agnostic entry point for both human contributors and AI agents. `CLAUDE.md` is a symlink to this file — edit `AGENTS.md` only. The detailed, day-to-day workflow guidance this file used to duplicate now lives in [`.agents/`](.agents/AGENTS.md) — see [Where things live](#where-things-live) below.
+This file is the canonical, tool-agnostic entry point for both human contributors and AI agents. The detailed, day-to-day workflow guidance lives in [`.agents/skills/`](.agents/skills/) and [`.claude/`](.claude/) — see [Where things live](#where-things-live) below.
 
 ## Branch strategy
 
@@ -47,7 +47,6 @@ This file stays intentionally short. Everything below is a **workflow**, not a o
 | TypeScript, Biome, and Valibot conventions in `packages/*` | [`.agents/skills/typescript/SKILL.md`](.agents/skills/typescript/SKILL.md), [`.agents/skills/biome/SKILL.md`](.agents/skills/biome/SKILL.md), [`.agents/skills/valibot/SKILL.md`](.agents/skills/valibot/SKILL.md) |
 | CLI output patterns (`@clack/prompts`) in `packages/hr-skills/src/cli/*.ts` | [`.agents/skills/clack/SKILL.md`](.agents/skills/clack/SKILL.md) |
 | Detecting and refactoring copy-paste duplication in `packages/*` | [`.agents/skills/jscpd/SKILL.md`](.agents/skills/jscpd/SKILL.md), [`.agents/skills/dry-refactoring/SKILL.md`](.agents/skills/dry-refactoring/SKILL.md) |
-| Everything above, indexed in one place | [`.agents/AGENTS.md`](.agents/AGENTS.md) |
 
 When you add a new skill directory (for example `skills/hr-new-skill/SKILL.md`), run `bun run sync` first — it auto-discovers `hr-*` skill directories from `skills/` and updates `.claude-plugin/marketplace.json`. No manual edits needed.
 

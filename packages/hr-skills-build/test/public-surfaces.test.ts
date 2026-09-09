@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'bun:test';
 import { parseFrontmatter } from 'hr-skills-ref/client';
 import { ROOT_DIR, SKILLS_DIR } from 'hr-skills-ref/server';
-import { searchSkills } from '../src/index.client.js';
+import { searchSkills } from '../src/client/index.js';
 import { buildRegistry } from '../src/server/index.js';
 
 describe('public package surfaces', () => {

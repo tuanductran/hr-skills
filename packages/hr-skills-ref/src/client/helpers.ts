@@ -1,4 +1,4 @@
-import { XML_ESCAPES } from '../constants.js';
+import { XML_ESCAPES } from './constants.js';
 
 /**
  * Check whether a value is a plain object.

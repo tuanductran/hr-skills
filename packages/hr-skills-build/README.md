@@ -72,17 +72,17 @@ Discovers all `skills/hr-*` directories and rebuilds generated references in `.c
 
 | Folder | Purpose |
 |--------|---------|
-| `src/shared/` | Constants, frontmatter parser, and discovery/read helpers used across the package |
-| `src/validation/` | Frontmatter/content/security validators, semantic duplicate detection |
-| `src/registry/` | Builds the skill registry from `skills/hr-*` |
-| `src/build/` | Zip packaging, marketplace sync, skill-matrix generation |
-| `src/search/` | Skill search and recommendations |
-| `src/planner/` | Intent-to-execution-plan generation |
-| `src/runtime/` | Executes a generated plan against the registry |
-| `src/evaluation/` | Scenario-based evaluation harness |
+| `src/client/shared/` | Browser-safe constants, parser, schemas, and shared types |
+| `src/server/validation/` | Frontmatter/content/security validators, semantic duplicate detection |
+| `src/server/registry/` | Builds the skill registry from `skills/hr-*` |
+| `src/server/build/` | Zip packaging, marketplace sync, skill-matrix generation |
+| `src/client/search/` | Browser-safe skill search and recommendations |
+| `src/client/planner/` | Browser-safe intent-to-execution-plan generation |
+| `src/client/runtime/` | Browser-safe workflow runtime |
+| `src/server/evaluation/` | Scenario-based evaluation harness |
 | `packages/hr-skills/` | Publishable `hr-skills` command-line package and executable |
-| `src/server/` | Explicit Bun/Node server barrel for filesystem-backed APIs |
-| `src/index.client.ts` | Browser-safe client barrel for planner, runtime, search, and pure shared APIs |
+| `src/server/` | Bun/Node server surface for filesystem-backed APIs |
+| `src/client/` | Browser-safe client surface for planner, runtime, search, and pure shared APIs |
 
 ## Requirements
 

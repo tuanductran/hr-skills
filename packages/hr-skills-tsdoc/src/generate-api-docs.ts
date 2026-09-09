@@ -50,21 +50,21 @@ const TARGETS: PackageTarget[] = [
 		description:
 			'Server-side build, registry, planner, runtime, and validation APIs.',
 		surface: 'server',
-		entry: 'src/index.ts',
+		entry: 'src/server/index.ts',
 		packageRoot: path.join(REPO_ROOT, 'packages/hr-skills-build'),
 	},
 	{
 		name: 'hr-skills-build',
 		description: 'Browser-safe planner, runtime, search, and shared APIs.',
 		surface: 'client',
-		entry: 'src/index.client.ts',
+		entry: 'src/client/index.ts',
 		packageRoot: path.join(REPO_ROOT, 'packages/hr-skills-build'),
 	},
 	{
 		name: 'hr-skills-ref',
 		description: 'Server-side filesystem and skill-loading APIs.',
 		surface: 'server',
-		entry: 'src/index.ts',
+		entry: 'src/server/index.ts',
 		packageRoot: path.join(REPO_ROOT, 'packages/hr-skills-ref'),
 	},
 	{

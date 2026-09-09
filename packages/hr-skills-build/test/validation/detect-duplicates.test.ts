@@ -13,7 +13,7 @@
  * - the full detectDuplicates() pipeline with mocked content
  */
 import { describe, expect, it } from 'bun:test';
-import type { SkillContent } from '../../src/validation/detect-duplicates.js';
+import type { SkillContent } from '../../src/server/validation/detect-duplicates.js';
 import {
 	buildBigrams,
 	comparePair,
@@ -24,7 +24,7 @@ import {
 	WEIGHT_BIGRAM,
 	WEIGHT_CONTENT,
 	WEIGHT_DESCRIPTION,
-} from '../../src/validation/detect-duplicates.js';
+} from '../../src/server/validation/detect-duplicates.js';
 
 // ---------------------------------------------------------------------------
 // Helpers

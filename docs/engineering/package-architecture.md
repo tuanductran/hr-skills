@@ -21,7 +21,11 @@ Client code must import only from an explicit `/client` entrypoint. This include
 
 Server application code must import from an explicit `/server` entrypoint. The package root remains available for compatibility, but it is not the preferred import for new code. CLI and build tooling may use server surfaces because they execute in Bun/Node.
 
-A server module may compose client-safe values or render Client Components, following the same direction used by Nextra. A client module must never import a server module, a package root that resolves to a server surface, `server-only`, filesystem APIs, process-derived repository paths, or other Node-only built-ins.
+The source graphs are intentionally independent: a server module must not
+import from or re-export a client module, and a client module must not import
+from or re-export a server module. If both surfaces need the same behavior,
+maintain a surface-local implementation or type definition. This keeps future
+changes from accidentally pulling server code into a client bundle.
 
 ## Validation requirements
 
@@ -40,4 +44,4 @@ The generated API reference is maintained by `hr-skills-tsdoc`. When public surf
 
 ## Relationship to the roadmap
 
-Client/server boundary hardening is a completion constraint for the package architecture and Phase 7 web platform. It does not imply that the HTTP API and services described in Phase 8 exist. Phase 8 begins only when these library surfaces are exposed through versioned service contracts.
+Client/server boundary hardening is a completion constraint for the package architecture and Phase 7 web platform. Phase 8.1 now provides versioned-library service functions for registry search, planning, workflow execution, evaluation, health, and version responses. Hosted HTTP contracts, authentication, rate limiting, observability, and deployment remain in the later Phase 8 work.

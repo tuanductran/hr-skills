@@ -1,12 +1,12 @@
 import { describe, expect, it } from 'bun:test';
-import type { SkillValidationIssue } from '../../src/shared/types.js';
+import type { SkillValidationIssue } from '../../src/client/shared/types.js';
 import {
 	validateCredentialLeaks,
 	validateHiddenUnicode,
 	validateSecurityCommands,
 	validateSensitivePaths,
 	validateSuspiciousUrls,
-} from '../../src/validation/security.js';
+} from '../../src/server/validation/security.js';
 
 const SKILL = 'test-skill';
 

@@ -2,11 +2,14 @@ import { describe, expect, it } from 'bun:test';
 import { mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-
-import { SKILLS_DIR } from '../src/constants.js';
-import { ParseError, ValidationError } from '../src/errors.js';
-import { findSkillMd, readProperties } from '../src/loader.js';
-import { parseFrontmatter } from '../src/parser.js';
+import { ParseError as ClientParseError } from '../src/client/errors.js';
+import { parseFrontmatter } from '../src/client/parser.js';
+import { SKILLS_DIR } from '../src/server/constants.js';
+import {
+	ParseError as ServerParseError,
+	ValidationError as ServerValidationError,
+} from '../src/server/errors.js';
+import { findSkillMd, readProperties } from '../src/server/loader.js';
 
 describe('parseFrontmatter', () => {
 	it('parses valid frontmatter', () => {
@@ -32,11 +35,11 @@ describe('parseFrontmatter', () => {
 	});
 
 	it('throws ParseError if content does not start with ---', () => {
-		expect(() => parseFrontmatter('no frontmatter')).toThrow(ParseError);
+		expect(() => parseFrontmatter('no frontmatter')).toThrow(ClientParseError);
 	});
 
 	it('throws ParseError if frontmatter is not closed', () => {
-		expect(() => parseFrontmatter('---\nname: hr-test\n')).toThrow(ParseError);
+		expect(() => parseFrontmatter('---\nname: hr-test\n')).toThrow(ClientParseError);
 	});
 
 	it('handles quoted string values', () => {
@@ -118,7 +121,7 @@ metadata:
 		const tmp = mkdtempSync(join(tmpdir(), 'skill-test-'));
 
 		try {
-			expect(() => readProperties(tmp)).toThrow(ParseError);
+			expect(() => readProperties(tmp)).toThrow(ServerParseError);
 		} finally {
 			rmSync(tmp, {
 				recursive: true,
@@ -133,14 +136,14 @@ metadata:
 		writeFileSync(join(tmp, 'SKILL.md'), '---\ndescription: desc\n---\n');
 
 		try {
-			expect(() => readProperties(tmp)).toThrow(ValidationError);
+			expect(() => readProperties(tmp)).toThrow(ServerValidationError);
 
 			try {
 				readProperties(tmp);
 			} catch (error) {
-				expect(error).toBeInstanceOf(ValidationError);
+				expect(error).toBeInstanceOf(ServerValidationError);
 
-				if (error instanceof ValidationError) {
+				if (error instanceof ServerValidationError) {
 					expect(error.issues.length).toBeGreaterThan(0);
 				}
 			}
@@ -158,14 +161,14 @@ metadata:
 		writeFileSync(join(tmp, 'SKILL.md'), '---\nname: hr-test\n---\n');
 
 		try {
-			expect(() => readProperties(tmp)).toThrow(ValidationError);
+			expect(() => readProperties(tmp)).toThrow(ServerValidationError);
 
 			try {
 				readProperties(tmp);
 			} catch (error) {
-				expect(error).toBeInstanceOf(ValidationError);
+				expect(error).toBeInstanceOf(ServerValidationError);
 
-				if (error instanceof ValidationError) {
+				if (error instanceof ServerValidationError) {
 					expect(error.issues.length).toBeGreaterThan(0);
 				}
 			}
@@ -192,14 +195,14 @@ description:
 		);
 
 		try {
-			expect(() => readProperties(tmp)).toThrow(ValidationError);
+			expect(() => readProperties(tmp)).toThrow(ServerValidationError);
 
 			try {
 				readProperties(tmp);
 			} catch (error) {
-				expect(error).toBeInstanceOf(ValidationError);
+				expect(error).toBeInstanceOf(ServerValidationError);
 
-				if (error instanceof ValidationError) {
+				if (error instanceof ServerValidationError) {
 					expect(error.issues.length).toBeGreaterThan(0);
 				}
 			}

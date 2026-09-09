@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'bun:test';
-import { ALLOWED_TOOLS_KEY } from '../src/constants.js';
-import { toDict } from '../src/models.js';
+import { ALLOWED_TOOLS_KEY } from '../src/client/constants.js';
+import { toDict } from '../src/client/models.js';
 
 describe('toDict', () => {
 	it('returns required fields only', () => {

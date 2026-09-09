@@ -233,7 +233,7 @@ artifact.  No change to the default registry output.
 
 **Deliverables:**
 
-- `src/search/relevance-signals.ts` — pure signal functions and `RelevanceSignalTable`
+- `src/client/search/relevance-signals.ts` — pure signal functions and `RelevanceSignalTable`
   type.
 - `packages/hr-skills/src/cli/generate-relevance-signals.ts` — CLI entry point.
 - `evaluation-datasets.ts` — `loadAllGoldenFixtures()` added.

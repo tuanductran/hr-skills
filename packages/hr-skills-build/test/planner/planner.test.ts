@@ -1,11 +1,18 @@
 import { describe, expect, it } from 'bun:test';
 
-import { analyzeIntent, generateExecutionPlan } from '../../src/planner/planner.js';
-import type { ExecutionPlan, Registry, RegistryEntry } from '../../src/shared/types.js';
+import {
+	analyzeIntent,
+	generateExecutionPlan,
+} from '../../src/client/planner/planner.js';
+import type {
+	ExecutionPlan,
+	Registry,
+	RegistryEntry,
+} from '../../src/client/shared/types.js';
 import {
 	suggestPlanImprovements,
 	validateExecutionPlan,
-} from '../../src/validation/validate-planner.js';
+} from '../../src/server/validation/validate-planner.js';
 
 // ============================================================================
 // Test Fixtures

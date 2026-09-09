@@ -3,7 +3,7 @@
 	"version": "0.0.0",
 	"private": true,
 	"scripts": {
-		"docs-data": "bun ../../packages/hr-skills-build/src/build/generate-docs-data.ts",
+		"docs-data": "bun ../../packages/hr-skills-build/src/server/build/generate-docs-data.ts",
 		"dev": "bun run docs-data && next dev",
 		"build": "bun run docs-data && next build",
 		"typecheck": "bun run docs-data && tsc --noEmit",
