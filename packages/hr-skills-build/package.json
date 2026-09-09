@@ -1,8 +1,8 @@
 {
 	"name": "hr-skills-build",
-	"version": "0.0.0",
+	"version": "0.1.0",
 	"private": true,
-	"description": "Build tooling for HR Skills \u2014 validates, syncs, and packages HR skill definitions",
+	"description": "Build tooling for HR Skills — validates, syncs, and packages HR skill definitions",
 	"type": "module",
 	"license": "MIT",
 	"author": "Tuan Duc Tran",
