@@ -3,7 +3,7 @@
 	"files": {
 		"includes": [
 			"./**/*.{ts,tsx}",
-			"./**/*.{json,jsonc,yml}",
+			"./**/*.{json,jsonc}",
 			"!**/dist",
 			"!**/node_modules",
 			"!**/.turbo",
