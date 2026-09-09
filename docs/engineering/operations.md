@@ -43,6 +43,9 @@ cache availability, and required configuration. A failed dependency returns
 metadata. Health is a liveness signal; readiness is the signal used by a load
 balancer before sending traffic.
 
+HTTP adapters should expose this check through the reserved `GET /api/v1/ready`
+contract and keep it unauthenticated but rate limited.
+
 Adapters should remove an instance from rotation when readiness fails, retry
 transient dependency recovery with bounded backoff, and preserve the last
 known-good immutable registry artifact when a refresh fails. They must not

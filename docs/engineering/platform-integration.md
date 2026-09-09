@@ -22,6 +22,7 @@ The browser-safe `SERVICE_CONTRACTS` export from
 | Operation | Method | Path | Authentication | Limit |
 |---|---|---|---|---|
 | Health | `GET` | `/api/v1/health` | None | 60 requests/minute |
+| Readiness | `GET` | `/api/v1/ready` | None | 60 requests/minute |
 | Version | `GET` | `/api/v1/version` | None | 60 requests/minute |
 | Search | `POST` | `/api/v1/search` | None | 30 requests/minute |
 | Planner | `POST` | `/api/v1/planner` | None | 20 requests/minute |

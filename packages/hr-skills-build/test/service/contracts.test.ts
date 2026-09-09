@@ -8,10 +8,11 @@ import {
 describe('Phase 8.2 service contracts', () => {
 	it('defines every version-one operation with a stable route and policy', () => {
 		expect(SERVICE_API_VERSION).toBe('v1');
-		expect(SERVICE_CONTRACTS).toHaveLength(6);
+		expect(SERVICE_CONTRACTS).toHaveLength(7);
 		expect(SERVICE_CONTRACTS.every((contract) => contract.deterministic)).toBe(true);
 		expect(SERVICE_CONTRACTS.map((contract) => contract.path)).toEqual([
 			'/api/v1/health',
+			'/api/v1/ready',
 			'/api/v1/version',
 			'/api/v1/search',
 			'/api/v1/planner',
@@ -24,6 +25,7 @@ describe('Phase 8.2 service contracts', () => {
 		expect(getServiceContract('runtime').authentication).toBe('api-key');
 		expect(getServiceContract('evaluation').authentication).toBe('api-key');
 		expect(getServiceContract('search').authentication).toBe('none');
+		expect(getServiceContract('readiness').authentication).toBe('none');
 	});
 
 	it('throws for unknown operations instead of returning a silent fallback', () => {

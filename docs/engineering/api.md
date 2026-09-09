@@ -1823,6 +1823,7 @@ interface VersionInfo {
     phase: string;
     apiVersions: {
         health: string;
+        readiness: string;
         version: string;
         search: string;
         planner: string;
@@ -5725,6 +5726,7 @@ import { ServiceOperation } from 'hr-skills-build/client'
 
 ```ts
 type ServiceOperation = | 'health'
+    | 'readiness'
     | 'version'
     | 'search'
     | 'planner'
@@ -5818,7 +5820,7 @@ import { ServiceSuccessContract } from 'hr-skills-build/client'
 interface ServiceSuccessContract<T> {
     readonly success: true;
     readonly data: T;
-    readonly meta?: {
+    readonly meta: {
         readonly requestId?: string;
         readonly apiVersion: typeof SERVICE_API_VERSION;
     };
@@ -5837,7 +5839,7 @@ import { ServiceFailureContract } from 'hr-skills-build/client'
 interface ServiceFailureContract {
     readonly success: false;
     readonly error: ServiceErrorContract;
-    readonly meta?: {
+    readonly meta: {
         readonly requestId?: string;
         readonly apiVersion: typeof SERVICE_API_VERSION;
     };

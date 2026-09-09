@@ -69,6 +69,7 @@ describe('Service Layer — Phase 8.1', () => {
 				expect(res.data.name).toBe('hr-skills-service');
 				expect(res.data.phase).toContain('Phase 8.1');
 				expect(res.data.apiVersions.health).toBe('v1');
+				expect(res.data.apiVersions.readiness).toBe('v1');
 			}
 		});
 	});
@@ -136,13 +137,12 @@ describe('Service Layer — Phase 8.1', () => {
 	});
 
 	describe('executeWorkflowService', () => {
-		it('fails on null or invalid plan structure', () => {
-			executeWorkflowService(null as unknown as ExecutionPlan).then((res) => {
-				expect(res.success).toBe(false);
-				if (!res.success) {
-					expect(res.error.code).toBe('BAD_REQUEST');
-				}
-			});
+		it('fails on null or invalid plan structure', async () => {
+			const res = await executeWorkflowService(null as unknown as ExecutionPlan);
+			expect(res.success).toBe(false);
+			if (!res.success) {
+				expect(res.error.code).toBe('BAD_REQUEST');
+			}
 		});
 
 		it('executes workflow plan successfully', async () => {

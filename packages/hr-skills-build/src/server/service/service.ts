@@ -110,6 +110,7 @@ export function getVersionService(): ServiceResponse<VersionInfo> {
 		phase: 'Phase 8.1 — Service layer',
 		apiVersions: {
 			health: 'v1',
+			readiness: 'v1',
 			version: 'v1',
 			search: 'v1',
 			planner: 'v1',

@@ -4,6 +4,7 @@ export const SERVICE_API_VERSION = 'v1' as const;
 
 export type ServiceOperation =
 	| 'health'
+	| 'readiness'
 	| 'version'
 	| 'search'
 	| 'planner'
@@ -31,6 +32,14 @@ export const SERVICE_CONTRACTS: readonly ServiceContract[] = [
 		operation: 'health',
 		method: 'GET',
 		path: '/api/v1/health',
+		authentication: 'none',
+		rateLimit: { maxRequests: 60, windowSeconds: 60 },
+		deterministic: true,
+	},
+	{
+		operation: 'readiness',
+		method: 'GET',
+		path: '/api/v1/ready',
 		authentication: 'none',
 		rateLimit: { maxRequests: 60, windowSeconds: 60 },
 		deterministic: true,
@@ -86,7 +95,7 @@ export interface ServiceErrorContract {
 export interface ServiceSuccessContract<T> {
 	readonly success: true;
 	readonly data: T;
-	readonly meta?: {
+	readonly meta: {
 		readonly requestId?: string;
 		readonly apiVersion: typeof SERVICE_API_VERSION;
 	};
@@ -95,7 +104,7 @@ export interface ServiceSuccessContract<T> {
 export interface ServiceFailureContract {
 	readonly success: false;
 	readonly error: ServiceErrorContract;
-	readonly meta?: {
+	readonly meta: {
 		readonly requestId?: string;
 		readonly apiVersion: typeof SERVICE_API_VERSION;
 	};
