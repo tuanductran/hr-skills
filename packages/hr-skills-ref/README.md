@@ -11,7 +11,7 @@ bun run build
 
 ## Package outputs
 
-The package builds three ESM surfaces from `src/index.ts`, `src/client/index.ts`, and `src/server/index.ts`, emitting corresponding TypeScript declaration files alongside the compiled output.
+The package builds two ESM surfaces from `src/client/index.ts` and `src/server/index.ts`, emitting corresponding TypeScript declaration files alongside the compiled output.
 
 The published package contents are limited to `dist/`. The package does not expose a command-line interface. The root export remains a Bun/Node compatibility alias; new server consumers should import `hr-skills-ref/server`, while browser-safe consumers must import `hr-skills-ref/client`.
 
@@ -32,7 +32,7 @@ The client surface never imports `node:fs`, `node:path`, `node:os`, or process-d
 | Command | Purpose |
 |---------|---------|
 | `bun run build` | Bundle the library with `tsdown` using `tsdown.config.ts` |
-| `bun run dev` | Watch `src/index.ts` during local development |
+| `bun run dev` | Watch the client and server entrypoints during local development |
 | `bun run test` | Run Bun tests for the package |
 | `bun run typecheck` | Type-check the package without emitting files |
 

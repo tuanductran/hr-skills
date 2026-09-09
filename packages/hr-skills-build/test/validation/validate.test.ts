@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'bun:test';
-import { first, makeKeyPromptsContent } from '../../src/shared/helpers.js';
-import type { SkillValidationIssue } from '../../src/shared/types.js';
+import type { SkillValidationIssue } from '../../src/client/shared/types.js';
+import { first, makeKeyPromptsContent } from '../../src/server/shared/helpers.js';
 import {
 	validateAuthor,
 	validateBlankLines,
@@ -12,7 +12,7 @@ import {
 	validateSubdirectoryContents,
 	validateSupportedTasks,
 	validateTips,
-} from '../../src/validation/validate.js';
+} from '../../src/server/validation/validate.js';
 
 function createErrors(): SkillValidationIssue[] {
 	return [];

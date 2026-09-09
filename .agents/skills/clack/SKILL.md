@@ -1,6 +1,6 @@
 ---
 name: clack
-description: "Repository guidance for @clack/prompts usage in packages/hr-skills/src/cli/* and src/build/*. Covers the intro/spinner/note/outro/log CLI-output pattern this repo actually uses — not clack's interactive text/select/confirm prompts, which this repo does not use."
+description: "Repository guidance for @clack/prompts usage in packages/hr-skills/src/cli/* and packages/hr-skills-build/src/server/build/*. Covers the intro/spinner/note/outro/log CLI-output pattern this repo actually uses — not clack's interactive text/select/confirm prompts, which this repo does not use."
 metadata:
   author: Tuan Duc Tran
   version: "1.0.0"
@@ -8,19 +8,19 @@ metadata:
 
 # clack
 
-Repository guidance for [`@clack/prompts`](https://github.com/bombshell-dev/clack) (`^1.7.0`, see `package.json`) as used across `packages/hr-skills/src/cli/*.ts` and `src/build/sync.ts`.
+Repository guidance for [`@clack/prompts`](https://github.com/bombshell-dev/clack) (`^1.7.0`, see `package.json`) as used across `packages/hr-skills/src/cli/*.ts` and `packages/hr-skills-build/src/server/build/sync.ts`.
 
 > **This repo's clack usage is narrow and deliberate.** Every CLI here (`discover`, `recommend`, `execute-plan`, `generate-plan`, `run-evaluation`, `sync`, `validate`) is a single-shot, non-interactive script driven by `process.argv` — none of them collect input via clack's interactive prompts. Full upstream docs: [Getting Started](https://bomb.sh/docs/clack/basics/getting-started/), [Prompts](https://bomb.sh/docs/clack/packages/prompts/), [Best Practices](https://bomb.sh/docs/clack/guides/best-practices/).
 
 ## What this repo actually uses
 
-Only five clack APIs appear anywhere in this codebase — confirmed by grepping `packages/hr-skills-build/src`:
+Only five clack APIs appear anywhere in this codebase — confirmed by grepping `packages/hr-skills-build/src/server`:
 
 | API | Purpose | Used in |
 |---|---|---|
-| `p.intro(title)` | Announce the CLI at start | Every `cli/*.ts` entry point, plus `build/sync.ts` and `validation/validate.ts` |
+| `p.intro(title)` | Announce the CLI at start | Every `cli/*.ts` entry point, plus `server/build/sync.ts` and `server/validation/validate.ts` |
 | `p.outro(message)` | Announce completion at end — **including every failure path**, or the box is left unterminated | Same as `p.intro` |
-| `p.spinner()` / `.start()` / `.stop()` | Show progress during `buildRegistry()`, validation, plan generation, etc. | Created via `cliSpinner()` in `discover.ts`, `execute-plan.ts`, `generate-plan.ts`, `recommend.ts`, `run-evaluation.ts`, `validation/validate.ts` |
+| `p.spinner()` / `.start()` / `.stop()` | Show progress during `buildRegistry()`, validation, plan generation, and so on | Created via `cliSpinner()` in `discover.ts`, `execute-plan.ts`, `generate-plan.ts`, `recommend.ts`, `run-evaluation.ts`, `server/validation/validate.ts` |
 | `p.note(message, title?)` | Print a multi-line info block (search results, recommendations, usage) | `discover.ts`, `recommend.ts`, `execute-plan.ts`, `generate-plan.ts`, `run-evaluation.ts`, `cli-bootstrap.ts` |
 | `p.log.{info,error,warn,success,message}` | Single-line status/error output | All `cli/*.ts`, routed through `cli/cli-bootstrap.ts` |
 

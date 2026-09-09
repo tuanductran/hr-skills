@@ -1,10 +1,10 @@
 import { describe, expect, it } from 'bun:test';
-import { generateExecutionPlan } from '../../src/planner/planner.js';
-import { buildRegistry } from '../../src/registry/registry.js';
+import { generateExecutionPlan } from '../../src/client/planner/planner.js';
+import { buildRegistry } from '../../src/server/registry/registry.js';
 import {
 	suggestPlanImprovements,
 	validateExecutionPlan,
-} from '../../src/validation/validate-planner.js';
+} from '../../src/server/validation/validate-planner.js';
 
 /**
  * Integration tests for the complete planning pipeline.

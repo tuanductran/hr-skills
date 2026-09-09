@@ -3,8 +3,8 @@ import { describe, expect, it } from 'bun:test';
 import {
 	getRecommendations,
 	UnknownSkillError,
-} from '../../src/search/recommendations.js';
-import type { Registry, RegistryEntry } from '../../src/shared/types.js';
+} from '../../src/client/search/recommendations.js';
+import type { Registry, RegistryEntry } from '../../src/client/shared/types.js';
 
 // ============================================================================
 // Test Fixtures

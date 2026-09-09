@@ -1,17 +1,16 @@
 import { describe, expect, it } from 'bun:test';
-
-import {
-	computeQualityMetrics,
-	diffAgainstGolden,
-	runCase,
-} from '../../src/evaluation/evaluate.js';
 import type {
 	EvaluationCase,
 	EvaluationCaseResult,
 	GoldenCaseResult,
 	Registry,
 	RegistryEntry,
-} from '../../src/shared/types.js';
+} from '../../src/client/shared/types.js';
+import {
+	computeQualityMetrics,
+	diffAgainstGolden,
+	runCase,
+} from '../../src/server/evaluation/evaluate.js';
 
 // ============================================================================
 // Test fixtures

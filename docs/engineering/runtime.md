@@ -53,7 +53,11 @@ ExecutionPlan (from Planner)
 | `TraceCollector` | `runtime-trace.ts` | Pairs each event with a state snapshot to build the execution trace. |
 | `RuntimeError` | `runtime-errors.ts` | Structured, JSON-serializable failure information (code, skill ID, attempt, cause). |
 
-All shared type definitions (`RuntimeContext`, `RuntimeStateSnapshot`, `RuntimeEvent`, `TraceEntry`, `WorkflowResult`, and so on) live in `src/shared/types.ts`, alongside the Planner's types, to keep the shared interfaces used across the Planner, Runtime, and their tests in one place.
+The browser-safe Runtime type definitions (`RuntimeContext`,
+`RuntimeStateSnapshot`, `RuntimeEvent`, `TraceEntry`, `WorkflowResult`, and so
+on) live in `src/client/shared/types.ts` alongside the client Planner types.
+The server surface maintains its independent copies in
+`src/server/shared/types.ts`; neither surface imports the other.
 
 ## Execution lifecycle
 

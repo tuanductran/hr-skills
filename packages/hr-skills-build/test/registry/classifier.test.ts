@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'bun:test';
-import { CATEGORY_META, classifySkill } from '../../src/registry/classifier.js';
+import { CATEGORY_META, classifySkill } from '../../src/server/registry/classifier.js';
 
 // ---------------------------------------------------------------------------
 // EXPLICIT override map

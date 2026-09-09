@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Show complete, copy-pasteable command sequences for the four most common contribution types,
+Show complete, copy-pasteable command sequences for the five most common contribution types,
 so a first-time contributor can match their situation to a working example.
 
 All commands below use scripts and conventions verified in `package.json`, `AGENTS.md`, and

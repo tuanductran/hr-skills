@@ -359,6 +359,259 @@ All committed golden fixtures, sorted by dataset name.
 
 ---
 
+### `VersionedCache`
+
+```ts
+import { VersionedCache } from 'hr-skills-build/server'
+```
+
+```ts
+interface VersionedCache<T> {
+    get(key: string, version: string): T | undefined;
+    set(key: string, version: string, value: T): void;
+    invalidate(key: string): boolean;
+    clear(): void;
+    readonly size: number;
+}
+```
+
+---
+
+### `createVersionedCache`
+
+```ts
+import { createVersionedCache } from 'hr-skills-build/server'
+```
+
+```ts
+function createVersionedCache(): VersionedCache<T>
+```
+
+---
+
+### `createRegistryCache`
+
+```ts
+import { createRegistryCache } from 'hr-skills-build/server'
+```
+
+```ts
+function createRegistryCache(): VersionedCache<T>
+```
+
+---
+
+### `createEvaluationCache`
+
+```ts
+import { createEvaluationCache } from 'hr-skills-build/server'
+```
+
+```ts
+function createEvaluationCache(): VersionedCache<T>
+```
+
+---
+
+### `ServiceLogLevel`
+
+```ts
+import { ServiceLogLevel } from 'hr-skills-build/server'
+```
+
+```ts
+type ServiceLogLevel = 'info' | 'warn' | 'error'
+```
+
+---
+
+### `ServiceLogEvent`
+
+```ts
+import { ServiceLogEvent } from 'hr-skills-build/server'
+```
+
+```ts
+interface ServiceLogEvent {
+    readonly level: ServiceLogLevel;
+    readonly event: string;
+    readonly timestamp: string;
+    readonly operation?: string;
+    readonly requestId?: string;
+    readonly durationMs?: number;
+    readonly details?: Record<string, unknown>;
+}
+```
+
+---
+
+### `ServiceLogSink`
+
+```ts
+import { ServiceLogSink } from 'hr-skills-build/server'
+```
+
+```ts
+function ServiceLogSink(event: ServiceLogEvent): void
+```
+
+#### Parameters
+
+- `event`
+
+---
+
+### `StructuredServiceLogger`
+
+```ts
+import { StructuredServiceLogger } from 'hr-skills-build/server'
+```
+
+```ts
+interface StructuredServiceLogger {
+    log(
+        level: ServiceLogLevel,
+        event: string,
+        context?: Omit<ServiceLogEvent, 'level' | 'event' | 'timestamp'>,
+    ): void;
+    info(
+        event: string,
+        context?: Omit<ServiceLogEvent, 'level' | 'event' | 'timestamp'>,
+    ): void;
+    warn(
+        event: string,
+        context?: Omit<ServiceLogEvent, 'level' | 'event' | 'timestamp'>,
+    ): void;
+    error(
+        event: string,
+        context?: Omit<ServiceLogEvent, 'level' | 'event' | 'timestamp'>,
+    ): void;
+}
+```
+
+---
+
+### `createStructuredLogger`
+
+```ts
+import { createStructuredLogger } from 'hr-skills-build/server'
+```
+
+```ts
+function createStructuredLogger(sink: ServiceLogSink, now?: () => string): StructuredServiceLogger
+```
+
+#### Parameters
+
+- `sink`
+- `now` (optional)
+
+---
+
+### `ServiceMetricSnapshot`
+
+```ts
+import { ServiceMetricSnapshot } from 'hr-skills-build/server'
+```
+
+```ts
+interface ServiceMetricSnapshot {
+    readonly counters: Readonly<Record<string, number>>;
+}
+```
+
+---
+
+### `ServiceMetrics`
+
+```ts
+import { ServiceMetrics } from 'hr-skills-build/server'
+```
+
+```ts
+interface ServiceMetrics {
+    increment(name: string, value?: number): void;
+    snapshot(): ServiceMetricSnapshot;
+    reset(): void;
+}
+```
+
+---
+
+### `createServiceMetrics`
+
+```ts
+import { createServiceMetrics } from 'hr-skills-build/server'
+```
+
+```ts
+function createServiceMetrics(): ServiceMetrics
+```
+
+---
+
+### `ReadinessCheck`
+
+```ts
+import { ReadinessCheck } from 'hr-skills-build/server'
+```
+
+```ts
+interface ReadinessCheck {
+    readonly name: string;
+    readonly status: 'ready' | 'not_ready';
+    readonly message?: string;
+}
+```
+
+---
+
+### `ReadinessStatus`
+
+```ts
+import { ReadinessStatus } from 'hr-skills-build/server'
+```
+
+```ts
+interface ReadinessStatus {
+    readonly status: 'ready' | 'not_ready';
+    readonly checks: readonly ReadinessCheck[];
+}
+```
+
+---
+
+### `ReadinessDependency`
+
+```ts
+import { ReadinessDependency } from 'hr-skills-build/server'
+```
+
+```ts
+interface ReadinessDependency {
+    readonly name: string;
+    readonly check: () => boolean | Promise<boolean>;
+}
+```
+
+---
+
+### `getReadinessService`
+
+```ts
+import { getReadinessService } from 'hr-skills-build/server'
+```
+
+```ts
+function getReadinessService(dependencies: readonly ReadinessDependency[]): Promise<ServiceResponse<ReadinessStatus>>
+```
+
+#### Parameters
+
+- `dependencies`
+
+---
+
 ### `analyzeIntent`
 
 ```ts
@@ -1244,6 +1497,374 @@ filter, or if `limit` is not a positive integer.
 
 ---
 
+### `SearchRequestSchema`
+
+```ts
+import { SearchRequestSchema } from 'hr-skills-build/server'
+```
+
+```ts
+const SearchRequestSchema: SchemaWithPipe<readonly [ObjectSchema<{ readonly text: OptionalSchema<SchemaWithPipe<readonly [StringSchema<undefined>, TrimAction]>, undefined>; readonly query: OptionalSchema<...>; ... 4 more ...; readonly fuzzy: OptionalSchema<...>; }, undefined>, TransformAction<...>]>
+```
+
+---
+
+### `PlannerRequestSchema`
+
+```ts
+import { PlannerRequestSchema } from 'hr-skills-build/server'
+```
+
+```ts
+const PlannerRequestSchema: ObjectSchema<{ readonly intent: SchemaWithPipe<readonly [StringSchema<undefined>, TrimAction, MinLengthAction<string, 1, "Intent must not be empty">]>; }, undefined>
+```
+
+---
+
+### `SearchRequestInput`
+
+```ts
+import { SearchRequestInput } from 'hr-skills-build/server'
+```
+
+```ts
+type SearchRequestInput = v.InferOutput<typeof SearchRequestSchema>
+```
+
+---
+
+### `PlannerRequestInput`
+
+```ts
+import { PlannerRequestInput } from 'hr-skills-build/server'
+```
+
+```ts
+type PlannerRequestInput = v.InferOutput<typeof PlannerRequestSchema>
+```
+
+---
+
+### `successResponse`
+
+```ts
+import { successResponse } from 'hr-skills-build/server'
+```
+
+```ts
+function successResponse(data: T, meta?: Record<string, unknown> | undefined): ServiceResponseSuccess<T>
+```
+
+#### Parameters
+
+- `data`
+- `meta` (optional)
+
+---
+
+### `failureResponse`
+
+```ts
+import { failureResponse } from 'hr-skills-build/server'
+```
+
+```ts
+function failureResponse(code: ServiceErrorCode, message: string, details?: Record<string, unknown> | undefined): ServiceResponseFailure
+```
+
+#### Parameters
+
+- `code`
+- `message`
+- `details` (optional)
+
+---
+
+### `getHealthService`
+
+```ts
+import { getHealthService } from 'hr-skills-build/server'
+```
+
+Health Endpoint Service
+Evaluates service health and optional registry stats.
+
+```ts
+function getHealthService(registry?: Registry | undefined): ServiceResponse<HealthStatus>
+```
+
+#### Parameters
+
+- `registry` (optional)
+
+---
+
+### `getVersionService`
+
+```ts
+import { getVersionService } from 'hr-skills-build/server'
+```
+
+Version Endpoint Service
+Exposes API versioning and phase metadata.
+
+```ts
+function getVersionService(): ServiceResponse<VersionInfo>
+```
+
+---
+
+### `searchRegistryService`
+
+```ts
+import { searchRegistryService } from 'hr-skills-build/server'
+```
+
+Registry Search Service API
+Validates request input and executes deterministic skill search.
+
+```ts
+function searchRegistryService(queryInput: unknown, registry: Registry): ServiceResponse<SkillSearchResponse>
+```
+
+#### Parameters
+
+- `queryInput`
+- `registry`
+
+---
+
+### `generatePlanService`
+
+```ts
+import { generatePlanService } from 'hr-skills-build/server'
+```
+
+Planner Service API
+Validates intent request, generates execution plan, and validates plan correctness.
+
+```ts
+function generatePlanService(requestInput: unknown, registry: Registry): ServiceResponse<PlannerServiceResult>
+```
+
+#### Parameters
+
+- `requestInput`
+- `registry`
+
+---
+
+### `executeWorkflowService`
+
+```ts
+import { executeWorkflowService } from 'hr-skills-build/server'
+```
+
+Runtime Execution Service API
+Executes an ExecutionPlan deterministically through WorkflowExecutor.
+
+```ts
+function executeWorkflowService(plan: ExecutionPlan, options?: ExecuteWorkflowServiceOptions): Promise<ServiceResponse<WorkflowResult>>
+```
+
+#### Parameters
+
+- `plan`
+- `options` (optional)
+
+---
+
+### `runEvaluationService`
+
+```ts
+import { runEvaluationService } from 'hr-skills-build/server'
+```
+
+Evaluation Service API
+Runs evaluation datasets against the registry and compares against golden fixtures.
+
+```ts
+function runEvaluationService(dataset: EvaluationDataset, registry: Registry, golden?: GoldenFixture | undefined): Promise<ServiceResponse<EvaluationReport>>
+```
+
+#### Parameters
+
+- `dataset`
+- `registry`
+- `golden` (optional)
+
+---
+
+### `ServiceErrorCode`
+
+```ts
+import { ServiceErrorCode } from 'hr-skills-build/server'
+```
+
+```ts
+type ServiceErrorCode = | 'BAD_REQUEST'
+    | 'NOT_FOUND'
+    | 'VALIDATION_ERROR'
+    | 'PLANNING_FAILED'
+    | 'RUNTIME_FAILED'
+    | 'SERVICE_UNAVAILABLE'
+    | 'INTERNAL_ERROR'
+```
+
+---
+
+### `ServiceError`
+
+```ts
+import { ServiceError } from 'hr-skills-build/server'
+```
+
+```ts
+interface ServiceError {
+    code: ServiceErrorCode;
+    message: string;
+    details?: Record<string, unknown>;
+}
+```
+
+---
+
+### `ServiceResponseMeta`
+
+```ts
+import { ServiceResponseMeta } from 'hr-skills-build/server'
+```
+
+```ts
+interface ServiceResponseMeta {
+    apiVersion: 'v1';
+    requestId?: string;
+}
+```
+
+---
+
+### `ServiceResponseSuccess`
+
+```ts
+import { ServiceResponseSuccess } from 'hr-skills-build/server'
+```
+
+```ts
+interface ServiceResponseSuccess<T> {
+    success: true;
+    data: T;
+    meta: ServiceResponseMeta;
+}
+```
+
+---
+
+### `ServiceResponseFailure`
+
+```ts
+import { ServiceResponseFailure } from 'hr-skills-build/server'
+```
+
+```ts
+interface ServiceResponseFailure {
+    success: false;
+    error: ServiceError;
+    meta: ServiceResponseMeta;
+}
+```
+
+---
+
+### `ServiceResponse`
+
+```ts
+import { ServiceResponse } from 'hr-skills-build/server'
+```
+
+```ts
+type ServiceResponse = ServiceResponseSuccess<T> | ServiceResponseFailure
+```
+
+---
+
+### `HealthStatus`
+
+```ts
+import { HealthStatus } from 'hr-skills-build/server'
+```
+
+```ts
+interface HealthStatus {
+    status: 'ok' | 'degraded' | 'error';
+    version: string;
+    uptime: number;
+    timestamp: string;
+    registryStats?: {
+        totalSkills: number;
+        domains: number;
+        capabilities: number;
+    };
+}
+```
+
+---
+
+### `VersionInfo`
+
+```ts
+import { VersionInfo } from 'hr-skills-build/server'
+```
+
+```ts
+interface VersionInfo {
+    name: string;
+    version: string;
+    phase: string;
+    apiVersions: {
+        health: string;
+        readiness: string;
+        version: string;
+        search: string;
+        planner: string;
+        runtime: string;
+        evaluation: string;
+    };
+}
+```
+
+---
+
+### `PlannerServiceResult`
+
+```ts
+import { PlannerServiceResult } from 'hr-skills-build/server'
+```
+
+```ts
+interface PlannerServiceResult {
+    plan: ExecutionPlan;
+    validation: PlanValidationResult;
+}
+```
+
+---
+
+### `ExecuteWorkflowServiceOptions`
+
+```ts
+import { ExecuteWorkflowServiceOptions } from 'hr-skills-build/server'
+```
+
+```ts
+interface ExecuteWorkflowServiceOptions {
+    options?: RuntimeOptions;
+    stepExecutor?: StepExecutorFn;
+}
+```
+
+---
+
 ### `GITHUB_BLOB_BASE_URL`
 
 ```ts
@@ -1951,6 +2572,18 @@ TypeScript type inferred from SkillFrontmatterSchema.
 
 ```ts
 type SkillFrontmatter = v.InferOutput<typeof SkillFrontmatterSchema>
+```
+
+---
+
+### `SKILL_CATEGORIES`
+
+```ts
+import { SKILL_CATEGORIES } from 'hr-skills-build/server'
+```
+
+```ts
+const SKILL_CATEGORIES: readonly ["talent-acquisition", "onboarding-offboarding", "performance-talent", "compensation-rewards", "learning-development", "org-design-change", "workforce-analytics", ... 5 more ..., "uncategorized"]
 ```
 
 ---
@@ -5073,6 +5706,393 @@ filter, or if `limit` is not a positive integer.
 
 ---
 
+### `SERVICE_API_VERSION`
+
+```ts
+import { SERVICE_API_VERSION } from 'hr-skills-build/client'
+```
+
+```ts
+const SERVICE_API_VERSION: "v1"
+```
+
+---
+
+### `ServiceOperation`
+
+```ts
+import { ServiceOperation } from 'hr-skills-build/client'
+```
+
+```ts
+type ServiceOperation = | 'health'
+    | 'readiness'
+    | 'version'
+    | 'search'
+    | 'planner'
+    | 'runtime'
+    | 'evaluation'
+```
+
+---
+
+### `ServiceAuthentication`
+
+```ts
+import { ServiceAuthentication } from 'hr-skills-build/client'
+```
+
+```ts
+type ServiceAuthentication = 'none' | 'api-key'
+```
+
+---
+
+### `ServiceRateLimit`
+
+```ts
+import { ServiceRateLimit } from 'hr-skills-build/client'
+```
+
+```ts
+interface ServiceRateLimit {
+    readonly maxRequests: number;
+    readonly windowSeconds: number;
+}
+```
+
+---
+
+### `ServiceContract`
+
+```ts
+import { ServiceContract } from 'hr-skills-build/client'
+```
+
+```ts
+interface ServiceContract {
+    readonly operation: ServiceOperation;
+    readonly method: 'GET' | 'POST';
+    readonly path: `/api/${string}`;
+    readonly authentication: ServiceAuthentication;
+    readonly rateLimit: ServiceRateLimit;
+    readonly deterministic: true;
+}
+```
+
+---
+
+### `SERVICE_CONTRACTS`
+
+```ts
+import { SERVICE_CONTRACTS } from 'hr-skills-build/client'
+```
+
+```ts
+const SERVICE_CONTRACTS: readonly ServiceContract[]
+```
+
+---
+
+### `ServiceErrorContract`
+
+```ts
+import { ServiceErrorContract } from 'hr-skills-build/client'
+```
+
+```ts
+interface ServiceErrorContract {
+    readonly code: ServiceErrorCode;
+    readonly message: string;
+    readonly details?: Record<string, unknown>;
+}
+```
+
+---
+
+### `ServiceSuccessContract`
+
+```ts
+import { ServiceSuccessContract } from 'hr-skills-build/client'
+```
+
+```ts
+interface ServiceSuccessContract<T> {
+    readonly success: true;
+    readonly data: T;
+    readonly meta: {
+        readonly requestId?: string;
+        readonly apiVersion: typeof SERVICE_API_VERSION;
+    };
+}
+```
+
+---
+
+### `ServiceFailureContract`
+
+```ts
+import { ServiceFailureContract } from 'hr-skills-build/client'
+```
+
+```ts
+interface ServiceFailureContract {
+    readonly success: false;
+    readonly error: ServiceErrorContract;
+    readonly meta: {
+        readonly requestId?: string;
+        readonly apiVersion: typeof SERVICE_API_VERSION;
+    };
+}
+```
+
+---
+
+### `ServiceEnvelope`
+
+```ts
+import { ServiceEnvelope } from 'hr-skills-build/client'
+```
+
+```ts
+type ServiceEnvelope = ServiceSuccessContract<T> | ServiceFailureContract
+```
+
+---
+
+### `getServiceContract`
+
+```ts
+import { getServiceContract } from 'hr-skills-build/client'
+```
+
+```ts
+function getServiceContract(operation: ServiceOperation): ServiceContract
+```
+
+#### Parameters
+
+- `operation`
+
+---
+
+### `SearchRequestSchema`
+
+```ts
+import { SearchRequestSchema } from 'hr-skills-build/client'
+```
+
+```ts
+const SearchRequestSchema: SchemaWithPipe<readonly [ObjectSchema<{ readonly text: OptionalSchema<SchemaWithPipe<readonly [StringSchema<undefined>, TrimAction]>, undefined>; readonly query: OptionalSchema<...>; ... 4 more ...; readonly fuzzy: OptionalSchema<...>; }, undefined>, TransformAction<...>]>
+```
+
+---
+
+### `PlannerRequestSchema`
+
+```ts
+import { PlannerRequestSchema } from 'hr-skills-build/client'
+```
+
+```ts
+const PlannerRequestSchema: ObjectSchema<{ readonly intent: SchemaWithPipe<readonly [StringSchema<undefined>, TrimAction, MinLengthAction<string, 1, "Intent must not be empty">]>; }, undefined>
+```
+
+---
+
+### `SearchRequestInput`
+
+```ts
+import { SearchRequestInput } from 'hr-skills-build/client'
+```
+
+```ts
+type SearchRequestInput = v.InferOutput<typeof SearchRequestSchema>
+```
+
+---
+
+### `PlannerRequestInput`
+
+```ts
+import { PlannerRequestInput } from 'hr-skills-build/client'
+```
+
+```ts
+type PlannerRequestInput = v.InferOutput<typeof PlannerRequestSchema>
+```
+
+---
+
+### `ServiceErrorCode`
+
+```ts
+import { ServiceErrorCode } from 'hr-skills-build/client'
+```
+
+```ts
+type ServiceErrorCode = | 'BAD_REQUEST'
+    | 'NOT_FOUND'
+    | 'VALIDATION_ERROR'
+    | 'PLANNING_FAILED'
+    | 'RUNTIME_FAILED'
+    | 'SERVICE_UNAVAILABLE'
+    | 'INTERNAL_ERROR'
+```
+
+---
+
+### `ServiceError`
+
+```ts
+import { ServiceError } from 'hr-skills-build/client'
+```
+
+```ts
+interface ServiceError {
+    code: ServiceErrorCode;
+    message: string;
+    details?: Record<string, unknown>;
+}
+```
+
+---
+
+### `ServiceResponseMeta`
+
+```ts
+import { ServiceResponseMeta } from 'hr-skills-build/client'
+```
+
+```ts
+interface ServiceResponseMeta {
+    apiVersion: 'v1';
+    requestId?: string;
+}
+```
+
+---
+
+### `ServiceResponseSuccess`
+
+```ts
+import { ServiceResponseSuccess } from 'hr-skills-build/client'
+```
+
+```ts
+interface ServiceResponseSuccess<T> {
+    success: true;
+    data: T;
+    meta: ServiceResponseMeta;
+}
+```
+
+---
+
+### `ServiceResponseFailure`
+
+```ts
+import { ServiceResponseFailure } from 'hr-skills-build/client'
+```
+
+```ts
+interface ServiceResponseFailure {
+    success: false;
+    error: ServiceError;
+    meta: ServiceResponseMeta;
+}
+```
+
+---
+
+### `ServiceResponse`
+
+```ts
+import { ServiceResponse } from 'hr-skills-build/client'
+```
+
+```ts
+type ServiceResponse = ServiceResponseSuccess<T> | ServiceResponseFailure
+```
+
+---
+
+### `HealthStatus`
+
+```ts
+import { HealthStatus } from 'hr-skills-build/client'
+```
+
+```ts
+interface HealthStatus {
+    status: 'ok' | 'degraded' | 'error';
+    version: string;
+    uptime: number;
+    timestamp: string;
+    registryStats?: {
+        totalSkills: number;
+        domains: number;
+        capabilities: number;
+    };
+}
+```
+
+---
+
+### `VersionInfo`
+
+```ts
+import { VersionInfo } from 'hr-skills-build/client'
+```
+
+```ts
+interface VersionInfo {
+    name: string;
+    version: string;
+    phase: string;
+    apiVersions: {
+        health: string;
+        version: string;
+        search: string;
+        planner: string;
+        runtime: string;
+        evaluation: string;
+    };
+}
+```
+
+---
+
+### `PlannerServiceResult`
+
+```ts
+import { PlannerServiceResult } from 'hr-skills-build/client'
+```
+
+```ts
+interface PlannerServiceResult {
+    plan: ExecutionPlan;
+    validation: PlanValidationResult;
+}
+```
+
+---
+
+### `ExecuteWorkflowServiceOptions`
+
+```ts
+import { ExecuteWorkflowServiceOptions } from 'hr-skills-build/client'
+```
+
+```ts
+interface ExecuteWorkflowServiceOptions {
+    options?: RuntimeOptions;
+    stepExecutor?: StepExecutorFn;
+}
+```
+
+---
+
 ### `GITHUB_BLOB_BASE_URL`
 
 ```ts
@@ -5394,6 +6414,18 @@ TypeScript type inferred from SkillFrontmatterSchema.
 
 ```ts
 type SkillFrontmatter = v.InferOutput<typeof SkillFrontmatterSchema>
+```
+
+---
+
+### `SKILL_CATEGORIES`
+
+```ts
+import { SKILL_CATEGORIES } from 'hr-skills-build/client'
+```
+
+```ts
+const SKILL_CATEGORIES: readonly ["talent-acquisition", "onboarding-offboarding", "performance-talent", "compensation-rewards", "learning-development", "org-design-change", "workforce-analytics", ... 5 more ..., "uncategorized"]
 ```
 
 ---
@@ -6434,6 +7466,114 @@ interface EvaluationReport {
 
 Server-side filesystem and skill-loading APIs.
 
+### `ALLOWED_TOOLS_KEY`
+
+```ts
+import { ALLOWED_TOOLS_KEY } from 'hr-skills-ref/server'
+```
+
+```ts
+const ALLOWED_TOOLS_KEY: "allowed-tools"
+```
+
+---
+
+### `FRONTMATTER_DELIMITER`
+
+```ts
+import { FRONTMATTER_DELIMITER } from 'hr-skills-ref/server'
+```
+
+```ts
+const FRONTMATTER_DELIMITER: "---"
+```
+
+---
+
+### `SKILL_MD_FILENAMES`
+
+```ts
+import { SKILL_MD_FILENAMES } from 'hr-skills-ref/server'
+```
+
+```ts
+const SKILL_MD_FILENAMES: readonly ["SKILL.md", "skill.md"]
+```
+
+---
+
+### `MAX_SKILL_NAME_LENGTH`
+
+```ts
+import { MAX_SKILL_NAME_LENGTH } from 'hr-skills-ref/server'
+```
+
+```ts
+const MAX_SKILL_NAME_LENGTH: 64
+```
+
+---
+
+### `MAX_DESCRIPTION_LENGTH`
+
+```ts
+import { MAX_DESCRIPTION_LENGTH } from 'hr-skills-ref/server'
+```
+
+```ts
+const MAX_DESCRIPTION_LENGTH: 1024
+```
+
+---
+
+### `MAX_COMPATIBILITY_LENGTH`
+
+```ts
+import { MAX_COMPATIBILITY_LENGTH } from 'hr-skills-ref/server'
+```
+
+```ts
+const MAX_COMPATIBILITY_LENGTH: 500
+```
+
+---
+
+### `SKILL_NAME_REGEX`
+
+```ts
+import { SKILL_NAME_REGEX } from 'hr-skills-ref/server'
+```
+
+```ts
+const SKILL_NAME_REGEX: RegExp
+```
+
+---
+
+### `ALLOWED_FRONTMATTER_FIELDS`
+
+```ts
+import { ALLOWED_FRONTMATTER_FIELDS } from 'hr-skills-ref/server'
+```
+
+```ts
+const ALLOWED_FRONTMATTER_FIELDS: Set<string>
+```
+
+---
+
+### `XML_ESCAPES`
+
+```ts
+import { XML_ESCAPES } from 'hr-skills-ref/server'
+```
+
+```ts
+const XML_ESCAPES: Map<string, string>
+```
+
+---
+
 ### `ROOT_DIR`
 
 ```ts
@@ -6462,134 +7602,44 @@ const SKILLS_DIR: string
 
 ---
 
-### `ALLOWED_TOOLS_KEY`
+### `SkillError`
 
 ```ts
-import { ALLOWED_TOOLS_KEY } from 'hr-skills-ref/server'
+import { SkillError } from 'hr-skills-ref/server'
 ```
 
-The YAML frontmatter key used to specify which Claude tools a skill is allowed to invoke.
-Maps to the `allowedTools` property in SkillProperties .
+Base class for all skill-related errors.
 
 ```ts
-const ALLOWED_TOOLS_KEY: "allowed-tools"
-```
-
----
-
-### `FRONTMATTER_DELIMITER`
-
-```ts
-import { FRONTMATTER_DELIMITER } from 'hr-skills-ref/server'
-```
-
-The delimiter string that opens and closes a YAML frontmatter block in `SKILL.md`.
-
-```ts
-const FRONTMATTER_DELIMITER: "---"
+const SkillError: SkillError
 ```
 
 ---
 
-### `SKILL_MD_FILENAMES`
+### `ParseError`
 
 ```ts
-import { SKILL_MD_FILENAMES } from 'hr-skills-ref/server'
+import { ParseError } from 'hr-skills-ref/server'
 ```
 
-Accepted filenames for a skill's primary markdown file, in priority order.
-`"SKILL.md"` is the canonical name; `"skill.md"` is accepted as a fallback
-for case-insensitive filesystems.
+Thrown when a skill cannot be parsed.
 
 ```ts
-const SKILL_MD_FILENAMES: readonly ["SKILL.md", "skill.md"]
-```
-
----
-
-### `MAX_SKILL_NAME_LENGTH`
-
-```ts
-import { MAX_SKILL_NAME_LENGTH } from 'hr-skills-ref/server'
-```
-
-Maximum allowed character length for the `name` frontmatter field.
-
-```ts
-const MAX_SKILL_NAME_LENGTH: 64
+const ParseError: ParseError
 ```
 
 ---
 
-### `MAX_DESCRIPTION_LENGTH`
+### `ValidationError`
 
 ```ts
-import { MAX_DESCRIPTION_LENGTH } from 'hr-skills-ref/server'
+import { ValidationError } from 'hr-skills-ref/server'
 ```
 
-Maximum allowed character length for the `description` frontmatter field.
+Thrown when skill validation fails.
 
 ```ts
-const MAX_DESCRIPTION_LENGTH: 1024
-```
-
----
-
-### `MAX_COMPATIBILITY_LENGTH`
-
-```ts
-import { MAX_COMPATIBILITY_LENGTH } from 'hr-skills-ref/server'
-```
-
-Maximum allowed character length for the `compatibility` frontmatter field.
-
-```ts
-const MAX_COMPATIBILITY_LENGTH: 500
-```
-
----
-
-### `SKILL_NAME_REGEX`
-
-```ts
-import { SKILL_NAME_REGEX } from 'hr-skills-ref/server'
-```
-
-Valid skill name pattern: lowercase letters, digits, and hyphens only.
-Must be tested against the normalized (trimmed, lowercased) name.
-
-```ts
-const SKILL_NAME_REGEX: RegExp
-```
-
----
-
-### `ALLOWED_FRONTMATTER_FIELDS`
-
-```ts
-import { ALLOWED_FRONTMATTER_FIELDS } from 'hr-skills-ref/server'
-```
-
-The set of YAML frontmatter field names recognized by the skill schema.
-Any key not in this set is treated as an unexpected field during validation.
-
-```ts
-const ALLOWED_FRONTMATTER_FIELDS: Set<string>
-```
-
----
-
-### `XML_ESCAPES`
-
-```ts
-import { XML_ESCAPES } from 'hr-skills-ref/server'
-```
-
-Lookup map of XML special characters to their escaped entity equivalents.
-Used by `escapeXml` in `helpers.ts` when building `<skill>` XML blocks.
-
-```ts
-const XML_ESCAPES: Map<string, string>
+const ValidationError: ValidationError
 ```
 
 ---
@@ -6803,6 +7853,59 @@ The validated SkillProperties extracted from the frontmatter.
 
 ---
 
+### `toDict`
+
+```ts
+import { toDict } from 'hr-skills-ref/server'
+```
+
+Converts validated skill properties to a plain object suitable for
+serialization.
+
+```ts
+function toDict(props: { name: string; description: string; license?: string | undefined; compatibility?: string | undefined; allowedTools?: string | undefined; metadata?: { [x: string]: string; } | undefined; }): Record<string, unknown>
+```
+
+#### Parameters
+
+- `props`
+
+#### Returns
+
+A plain object with only the fields that were present.
+
+---
+
+### `parseFrontmatter`
+
+```ts
+import { parseFrontmatter } from 'hr-skills-ref/server'
+```
+
+Parse the YAML frontmatter block from a `SKILL.md` file.
+
+Expects the content to begin with a `---` delimiter, followed by YAML,
+followed by a closing `---` delimiter. Everything after the closing
+delimiter is returned as the markdown body.
+
+```ts
+function parseFrontmatter(content: string): [Record<string, unknown>, string]
+```
+
+#### Parameters
+
+- `content`
+
+#### Returns
+
+A tuple containing the parsed frontmatter and markdown body.
+
+#### Throws
+
+{ParseError} If the frontmatter is missing, malformed, or contains invalid YAML.
+
+---
+
 ### `toPrompt`
 
 ```ts
@@ -6828,6 +7931,34 @@ function toPrompt(skillDirs: string[]): string
 
 A multi-line XML string wrapped in `<available_skills>` tags,
 ready to embed in a Claude system prompt.
+
+---
+
+### `SkillPropertiesSchema`
+
+```ts
+import { SkillPropertiesSchema } from 'hr-skills-ref/server'
+```
+
+Schema for the properties read from a skill's `SKILL.md` frontmatter.
+
+```ts
+const SkillPropertiesSchema: StrictObjectSchema<{ readonly name: SchemaWithPipe<readonly [StringSchema<undefined>, TrimAction]>; readonly description: SchemaWithPipe<readonly [StringSchema<undefined>, TrimAction]>; readonly license: OptionalSchema<...>; readonly compatibility: OptionalSchema<...>; readonly allowedTools: OptionalSchema<...>; rea...
+```
+
+---
+
+### `SkillProperties`
+
+```ts
+import { SkillProperties } from 'hr-skills-ref/server'
+```
+
+Parsed properties extracted from a skill's `SKILL.md` frontmatter.
+
+```ts
+type SkillProperties = v.InferOutput<typeof SkillPropertiesSchema>
+```
 
 ---
 
@@ -6965,6 +8096,48 @@ const XML_ESCAPES: Map<string, string>
 
 ---
 
+### `SkillError`
+
+```ts
+import { SkillError } from 'hr-skills-ref/client'
+```
+
+Base class for all skill-related errors.
+
+```ts
+const SkillError: SkillError
+```
+
+---
+
+### `ParseError`
+
+```ts
+import { ParseError } from 'hr-skills-ref/client'
+```
+
+Thrown when a skill cannot be parsed.
+
+```ts
+const ParseError: ParseError
+```
+
+---
+
+### `ValidationError`
+
+```ts
+import { ValidationError } from 'hr-skills-ref/client'
+```
+
+Thrown when skill validation fails.
+
+```ts
+const ValidationError: ValidationError
+```
+
+---
+
 ### `isPlainObject`
 
 ```ts
@@ -7050,48 +8223,6 @@ function sanitizeYamlValue(value: unknown): unknown
 #### Returns
 
 A sanitized copy of the input value.
-
----
-
-### `SkillError`
-
-```ts
-import { SkillError } from 'hr-skills-ref/client'
-```
-
-Base class for all skill-related errors.
-
-```ts
-const SkillError: SkillError
-```
-
----
-
-### `ParseError`
-
-```ts
-import { ParseError } from 'hr-skills-ref/client'
-```
-
-Thrown when a skill cannot be parsed.
-
-```ts
-const ParseError: ParseError
-```
-
----
-
-### `ValidationError`
-
-```ts
-import { ValidationError } from 'hr-skills-ref/client'
-```
-
-Thrown when skill validation fails.
-
-```ts
-const ValidationError: ValidationError
-```
 
 ---
 

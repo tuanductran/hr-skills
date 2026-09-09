@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'bun:test';
 import { existsSync } from 'node:fs';
 import { join } from 'node:path';
-import { getHrSkills } from '../../src/registry/discovery.js';
-import { HR_SKILL_PREFIX } from '../../src/shared/constants.js';
+import { getHrSkills } from '../../src/server/registry/discovery.js';
+import { HR_SKILL_PREFIX } from '../../src/client/shared/constants.js';
 import { SKILLS_DIR } from 'hr-skills-ref/server'
 
 describe('getHrSkills()', () => {

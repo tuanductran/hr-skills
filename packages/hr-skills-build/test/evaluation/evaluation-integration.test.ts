@@ -1,11 +1,11 @@
 import { describe, expect, it } from 'bun:test';
 
-import { runEvaluation } from '../../src/evaluation/evaluate.js';
+import { runEvaluation } from '../../src/server/evaluation/evaluate.js';
 import {
 	loadDataset,
 	loadGoldenFixture,
-} from '../../src/evaluation/evaluation-datasets.js';
-import { buildRegistry } from '../../src/registry/registry.js';
+} from '../../src/server/evaluation/evaluation-datasets.js';
+import { buildRegistry } from '../../src/server/registry/registry.js';
 
 /**
  * Integration test for the evaluation framework against the real Skill

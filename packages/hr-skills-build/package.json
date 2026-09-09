@@ -20,17 +20,17 @@
 		"llm",
 		"agents"
 	],
-	"main": "./dist/index.mjs",
-	"module": "./dist/index.mjs",
-	"types": "./dist/index.d.mts",
+	"main": "./dist/server/index.mjs",
+	"module": "./dist/server/index.mjs",
+	"types": "./dist/server/index.d.mts",
 	"exports": {
 		".": {
-			"types": "./dist/index.d.mts",
-			"default": "./dist/index.mjs"
+			"types": "./dist/server/index.d.mts",
+			"default": "./dist/server/index.mjs"
 		},
 		"./client": {
-			"types": "./dist/index.client.d.mts",
-			"default": "./dist/index.client.mjs"
+			"types": "./dist/client/index.d.mts",
+			"default": "./dist/client/index.mjs"
 		},
 		"./server": {
 			"types": "./dist/server/index.d.mts",
@@ -42,14 +42,14 @@
 	],
 	"scripts": {
 		"build": "tsdown",
-		"build-skills": "bun src/build/build-skills.ts",
+		"build-skills": "bun src/server/build/build-skills.ts",
 		"dev": "tsdown --watch",
 		"test": "bun test",
 		"typecheck": "tsc --noEmit",
-		"validate": "bun src/validation/validate.ts",
-		"sync": "bun src/build/sync.ts",
-		"matrix": "bun src/build/generate-skill-matrix.ts",
-		"docs-data": "bun src/build/generate-docs-data.ts"
+		"validate": "bun src/server/validation/validate.ts",
+		"sync": "bun src/server/build/sync.ts",
+		"matrix": "bun src/server/build/generate-skill-matrix.ts",
+		"docs-data": "bun src/server/build/generate-docs-data.ts"
 	},
 	"dependencies": {
 		"hr-skills-ref": "workspace:*",

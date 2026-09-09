@@ -3,9 +3,8 @@ import { mkdirSync, rmSync, writeFileSync } from 'node:fs';
 import { readFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-
-import { syncMarketplace } from '../../src/build/sync.js';
-import type { SkillMeta } from '../../src/shared/types.js';
+import type { SkillMeta } from '../../src/client/shared/types.js';
+import { syncMarketplace } from '../../src/server/build/sync.js';
 
 describe('syncMarketplace()', () => {
 	let tempDir: string;

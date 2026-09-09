@@ -2,9 +2,9 @@ import { describe, expect, it } from 'bun:test';
 import { mkdtempSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { SKILLS_DIR } from '../src/constants.js';
-import { discoverSkillNames, makeTempSkill } from '../src/helpers.js';
-import { validate } from '../src/validator.js';
+import { SKILLS_DIR } from '../src/server/constants.js';
+import { discoverSkillNames, makeTempSkill } from '../src/server/helpers.js';
+import { validate } from '../src/server/validator.js';
 
 describe('validate', () => {
 	it('returns no errors for a real HR skill', () => {
