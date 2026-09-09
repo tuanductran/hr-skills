@@ -170,9 +170,14 @@ Quality commands:
 ```bash
 bun run lint
 bun run lint:md
+bun run test:e2e
 bun run typecheck
 bun run check
 ```
+
+The `playground/next-app` and `playground/vite-app` projects provide browser
+smoke tests for the explicit `hr-skills-build/client` and
+`hr-skills-build/server` package surfaces.
 
 Release commands:
 
