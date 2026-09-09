@@ -1,0 +1,29 @@
+{
+	"name": "hr-skills-discord-bot",
+	"version": "0.0.0",
+	"private": true,
+	"description": "Discord bot for discovering HR Skills — search, inspect, and get recommendations from the hr-skills registry.",
+	"type": "module",
+	"license": "MIT",
+	"author": "Tuan Duc Tran",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/tuanductran/hr-skills.git",
+		"directory": "apps/discord-bot"
+	},
+	"scripts": {
+		"dev": "bun run --watch src/index.ts",
+		"start": "bun run src/index.ts",
+		"deploy-commands": "bun run src/deploy-commands.ts",
+		"typecheck": "tsc --noEmit"
+	},
+	"dependencies": {
+		"discord.js": "catalog:",
+		"hr-skills-build": "workspace:*",
+		"hr-skills-ref": "workspace:*"
+	},
+	"devDependencies": {
+		"@types/bun": "catalog:",
+		"typescript": "catalog:"
+	}
+}

@@ -35,6 +35,19 @@ import { SKILLS_DIR } from 'hr-skills-ref/server';
 const HR_PREFIX_REGEX = /^hr-/;
 
 /**
+ * Maintainer-approved relationships that must remain discoverable even when
+ * the deterministic top-five ranker would otherwise trim them. Generated
+ * registry files remain derived artifacts; this map is source data.
+ */
+const RELATED_SKILL_OVERRIDES: Readonly<Record<string, readonly string[]>> = {
+	'hr-career-development': [
+		'hr-performance-review',
+		'hr-training-development',
+		'hr-leadership-development',
+	],
+};
+
+/**
  * Load the committed usage-informed relevance signal table
  * (`registry/relevance-signals.json`), if present and valid — Phase 6.1-B.
  *
@@ -222,10 +235,16 @@ export async function buildRegistry(
 				byDomain.get(entry.classification.category) ?? [],
 			);
 
-			// Optionally blend static ranking with observed co-selection evidence.
-			const relatedSkills = signalIndex
-				? reRankRelatedSkills(entry.id, staticRelated, signalIndex)
-				: staticRelated;
+				// Optionally blend static ranking with observed co-selection evidence.
+				const rankedRelated = signalIndex
+					? reRankRelatedSkills(entry.id, staticRelated, signalIndex)
+					: staticRelated;
+				const relatedSkills = [
+					...new Set([
+						...(RELATED_SKILL_OVERRIDES[entry.id] ?? []),
+						...rankedRelated,
+					]),
+				].slice(0, 5);
 
 			const registryEntry: RegistryEntry = {
 				id: entry.id,
