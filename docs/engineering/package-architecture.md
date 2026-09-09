@@ -48,4 +48,4 @@ HTTP adapter boundary without adding hosted routes to the library package.
 
 ## Relationship to the roadmap
 
-Client/server boundary hardening is a completion constraint for the package architecture and Phase 7 web platform. Phase 8.1 now provides versioned-library service functions for registry search, planning, workflow execution, evaluation, health, and version responses. Hosted HTTP contracts, authentication, rate limiting, observability, and deployment remain in the later Phase 8 work.
+Client/server boundary hardening is a completion constraint for the package architecture and Phase 7 web platform. Phase 8.1 now provides versioned-library service functions for registry search, planning, workflow execution, evaluation, health, and version responses. Phase 8.2 and 8.3 define the versioned HTTP contract, access policy, observability, readiness, and deployment guidance; a hosted HTTP adapter remains deployment-specific and is not included in these library packages.
