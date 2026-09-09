@@ -27,6 +27,11 @@ import type {
 import { validateExecutionPlan } from '../validation/validate-planner.js';
 
 const START_TIME = Date.now();
+const API_VERSION = 'v1' as const;
+
+function describeError(error: unknown): string {
+	return error instanceof Error ? error.message : String(error);
+}
 
 export function successResponse<T>(
 	data: T,
@@ -35,7 +40,10 @@ export function successResponse<T>(
 	return {
 		success: true,
 		data,
-		...(meta ? { meta } : {}),
+		meta: {
+			...meta,
+			apiVersion: API_VERSION,
+		},
 	};
 }
 
@@ -50,6 +58,9 @@ export function failureResponse(
 			code,
 			message,
 			...(details ? { details } : {}),
+		},
+		meta: {
+			apiVersion: API_VERSION,
 		},
 	};
 }
@@ -132,8 +143,7 @@ export function searchRegistryService(
 		const searchResult = searchSkills(query, registry);
 		return successResponse(searchResult);
 	} catch (err) {
-		const message = err instanceof Error ? err.message : String(err);
-		return failureResponse('BAD_REQUEST', message);
+		return failureResponse('BAD_REQUEST', describeError(err));
 	}
 }
 
@@ -180,8 +190,10 @@ export async function executeWorkflowService(
 		const result = await executeWorkflow(plan, executor, options.options);
 		return successResponse(result);
 	} catch (err) {
-		const message = err instanceof Error ? err.message : String(err);
-		return failureResponse('RUNTIME_FAILED', `Execution failed: ${message}`);
+		return failureResponse(
+			'RUNTIME_FAILED',
+			`Execution failed: ${describeError(err)}`,
+		);
 	}
 }
 
@@ -206,10 +218,9 @@ export async function runEvaluationService(
 		const report = await runEvaluation(dataset, registry, golden);
 		return successResponse(report);
 	} catch (err) {
-		const message = err instanceof Error ? err.message : String(err);
 		return failureResponse(
 			'INTERNAL_ERROR',
-			`Evaluation execution failed: ${message}`,
+			`Evaluation execution failed: ${describeError(err)}`,
 		);
 	}
 }

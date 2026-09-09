@@ -1476,6 +1476,21 @@ interface ServiceError {
 
 ---
 
+### `ServiceResponseMeta`
+
+```ts
+import { ServiceResponseMeta } from 'hr-skills-build/server'
+```
+
+```ts
+interface ServiceResponseMeta {
+    apiVersion: 'v1';
+    requestId?: string;
+}
+```
+
+---
+
 ### `ServiceResponseSuccess`
 
 ```ts
@@ -1486,7 +1501,7 @@ import { ServiceResponseSuccess } from 'hr-skills-build/server'
 interface ServiceResponseSuccess<T> {
     success: true;
     data: T;
-    meta?: Record<string, unknown>;
+    meta: ServiceResponseMeta;
 }
 ```
 
@@ -1502,6 +1517,7 @@ import { ServiceResponseFailure } from 'hr-skills-build/server'
 interface ServiceResponseFailure {
     success: false;
     error: ServiceError;
+    meta: ServiceResponseMeta;
 }
 ```
 
@@ -5436,6 +5452,176 @@ filter, or if `limit` is not a positive integer.
 
 ---
 
+### `SERVICE_API_VERSION`
+
+```ts
+import { SERVICE_API_VERSION } from 'hr-skills-build/client'
+```
+
+```ts
+const SERVICE_API_VERSION: "v1"
+```
+
+---
+
+### `ServiceOperation`
+
+```ts
+import { ServiceOperation } from 'hr-skills-build/client'
+```
+
+```ts
+type ServiceOperation = | 'health'
+    | 'version'
+    | 'search'
+    | 'planner'
+    | 'runtime'
+    | 'evaluation'
+```
+
+---
+
+### `ServiceAuthentication`
+
+```ts
+import { ServiceAuthentication } from 'hr-skills-build/client'
+```
+
+```ts
+type ServiceAuthentication = 'none' | 'api-key'
+```
+
+---
+
+### `ServiceRateLimit`
+
+```ts
+import { ServiceRateLimit } from 'hr-skills-build/client'
+```
+
+```ts
+interface ServiceRateLimit {
+    readonly maxRequests: number;
+    readonly windowSeconds: number;
+}
+```
+
+---
+
+### `ServiceContract`
+
+```ts
+import { ServiceContract } from 'hr-skills-build/client'
+```
+
+```ts
+interface ServiceContract {
+    readonly operation: ServiceOperation;
+    readonly method: 'GET' | 'POST';
+    readonly path: `/api/${string}`;
+    readonly authentication: ServiceAuthentication;
+    readonly rateLimit: ServiceRateLimit;
+    readonly deterministic: true;
+}
+```
+
+---
+
+### `SERVICE_CONTRACTS`
+
+```ts
+import { SERVICE_CONTRACTS } from 'hr-skills-build/client'
+```
+
+```ts
+const SERVICE_CONTRACTS: readonly ServiceContract[]
+```
+
+---
+
+### `ServiceErrorContract`
+
+```ts
+import { ServiceErrorContract } from 'hr-skills-build/client'
+```
+
+```ts
+interface ServiceErrorContract {
+    readonly code: ServiceErrorCode;
+    readonly message: string;
+    readonly details?: Record<string, unknown>;
+}
+```
+
+---
+
+### `ServiceSuccessContract`
+
+```ts
+import { ServiceSuccessContract } from 'hr-skills-build/client'
+```
+
+```ts
+interface ServiceSuccessContract<T> {
+    readonly success: true;
+    readonly data: T;
+    readonly meta?: {
+        readonly requestId?: string;
+        readonly apiVersion: typeof SERVICE_API_VERSION;
+    };
+}
+```
+
+---
+
+### `ServiceFailureContract`
+
+```ts
+import { ServiceFailureContract } from 'hr-skills-build/client'
+```
+
+```ts
+interface ServiceFailureContract {
+    readonly success: false;
+    readonly error: ServiceErrorContract;
+    readonly meta?: {
+        readonly requestId?: string;
+        readonly apiVersion: typeof SERVICE_API_VERSION;
+    };
+}
+```
+
+---
+
+### `ServiceEnvelope`
+
+```ts
+import { ServiceEnvelope } from 'hr-skills-build/client'
+```
+
+```ts
+type ServiceEnvelope = | ServiceSuccessContract<T>
+    | ServiceFailureContract
+```
+
+---
+
+### `getServiceContract`
+
+```ts
+import { getServiceContract } from 'hr-skills-build/client'
+```
+
+```ts
+function getServiceContract(operation: ServiceOperation): ServiceContract
+```
+
+#### Parameters
+
+- `operation`
+
+---
+
 ### `SearchRequestSchema`
 
 ```ts
@@ -5518,6 +5704,21 @@ interface ServiceError {
 
 ---
 
+### `ServiceResponseMeta`
+
+```ts
+import { ServiceResponseMeta } from 'hr-skills-build/client'
+```
+
+```ts
+interface ServiceResponseMeta {
+    apiVersion: 'v1';
+    requestId?: string;
+}
+```
+
+---
+
 ### `ServiceResponseSuccess`
 
 ```ts
@@ -5528,7 +5729,7 @@ import { ServiceResponseSuccess } from 'hr-skills-build/client'
 interface ServiceResponseSuccess<T> {
     success: true;
     data: T;
-    meta?: Record<string, unknown>;
+    meta: ServiceResponseMeta;
 }
 ```
 
@@ -5544,6 +5745,7 @@ import { ServiceResponseFailure } from 'hr-skills-build/client'
 interface ServiceResponseFailure {
     success: false;
     error: ServiceError;
+    meta: ServiceResponseMeta;
 }
 ```
 
