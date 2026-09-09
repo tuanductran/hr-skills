@@ -1,19 +1,12 @@
+import { getReadinessService, getVersionService } from 'hr-skills-build/server';
 import { ClientWidget } from './client-widget';
 
-// Note: a Server Component calling a full fs-backed export like
-// `buildRegistry()` from 'hr-skills-build/server' hits an unrelated,
-// pre-existing issue: `hr-skills-ref` resolves `ROOT_DIR` from `process.cwd()`
-// at module load time, which Next's webpack server bundling does not evaluate
-// correctly for an externalized workspace package symlinked outside
-// `next-app/`. Nothing here works around it — there is deliberately no
-// `next.config.ts`, because the server path is out of scope for this
-// playground. That's a Next.js/ESM interop wrinkle
-// in `hr-skills-ref`, not something the client/server split changed — the fs
-// path is already covered by `bun test` / `bun run validate` in
-// `packages/hr-skills-build`. What this playground exists to prove is the
-// part that's actually new and risky: that `hr-skills-build/client` bundles
-// cleanly for the browser. See `client-widget.tsx`.
-export default function Page() {
+export default async function Page() {
+	const version = getVersionService();
+	const readiness = await getReadinessService([
+		{ name: 'playground', check: () => true },
+	]);
+
 	return (
 		<main style={{ fontFamily: 'monospace', padding: 24 }}>
 			<h1>hr-skills-build playground (Next.js)</h1>
@@ -21,6 +14,18 @@ export default function Page() {
 			<section>
 				<h2>Client: parseSkillFrontmatter() via hr-skills-build/client</h2>
 				<ClientWidget />
+			</section>
+
+			<section>
+				<h2>Server: version and readiness via hr-skills-build/server</h2>
+				<pre
+					style={{
+						whiteSpace: 'pre-wrap',
+						maxWidth: '100%',
+						overflowX: 'auto',
+					}}>
+					{JSON.stringify({ version, readiness }, null, 2)}
+				</pre>
 			</section>
 		</main>
 	);

@@ -162,6 +162,8 @@ maintainer's responsibility when reviewing the release PR.
       `test.yml`, on both `ubuntu-latest` and `windows-latest`)
 - [ ] `bun run lint`, `bun run lint:md`, and `bun run lint:links` pass
       (`lint.yml`)
+- [ ] `bun run test:e2e` passes for Chromium and mobile Chromium
+      (`e2e.yml`)
 - [ ] `bun run knip` reports no unused files or dependencies (`knip.yml`)
 - [ ] Every pending `.changeset/*.md` file is consumed and reflected in the
       generated `CHANGELOG.md` diff
