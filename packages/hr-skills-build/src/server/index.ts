@@ -6,6 +6,7 @@
  */
 export * from './docs/index.js';
 export * from './evaluation/index.js';
+export * from './operations/index.js';
 export * from './planner/index.js';
 export * from './registry/index.js';
 export * from './runtime/index.js';

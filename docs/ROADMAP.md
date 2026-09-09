@@ -431,7 +431,7 @@ Phase 7 provides a public web product and browser-safe library integration, but 
 
 ### Phase 8 — API & Services
 
-**Status: In progress.** Phase 8.1 is implemented as a versioned-library service layer. Hosted HTTP contracts and operational concerns remain in 8.2 and 8.3.
+**Status: In progress.** Phase 8.1 and 8.2 are implemented as versioned-library service and platform-integration layers. Operational concerns remain in 8.3.
 
 Expose the core registry, planner, runtime, and evaluation capabilities through stable service interfaces.
 
@@ -443,7 +443,7 @@ Expose the core registry, planner, runtime, and evaluation capabilities through 
 * Evaluation API
 * Health and version endpoints
 
-#### 8.2 Platform integration — in progress
+#### 8.2 Platform integration — completed
 
 * API contracts for web UI and external clients
 * Auth and rate limiting strategy if public endpoints are introduced
@@ -454,12 +454,16 @@ The version-one contract, initial access policy, request validation rules, and
 normalized response envelope are documented in
 [`docs/engineering/platform-integration.md`](engineering/platform-integration.md).
 
-#### 8.3 Operational concerns
+#### 8.3 Operational concerns — in progress
 
 * Caching strategy for registry and evaluation artifacts
 * Observability and structured logs
 * Backward-compatible versioning for public endpoints
 * Deployment guidance for self-hosted and managed environments
+
+The operational cache, observability, readiness, compatibility, and deployment
+guidance is documented in
+[`docs/engineering/operations.md`](engineering/operations.md).
 
 ---
 

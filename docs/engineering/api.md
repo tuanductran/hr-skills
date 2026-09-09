@@ -359,6 +359,259 @@ All committed golden fixtures, sorted by dataset name.
 
 ---
 
+### `VersionedCache`
+
+```ts
+import { VersionedCache } from 'hr-skills-build/server'
+```
+
+```ts
+interface VersionedCache<T> {
+    get(key: string, version: string): T | undefined;
+    set(key: string, version: string, value: T): void;
+    invalidate(key: string): boolean;
+    clear(): void;
+    readonly size: number;
+}
+```
+
+---
+
+### `createVersionedCache`
+
+```ts
+import { createVersionedCache } from 'hr-skills-build/server'
+```
+
+```ts
+function createVersionedCache(): VersionedCache<T>
+```
+
+---
+
+### `createRegistryCache`
+
+```ts
+import { createRegistryCache } from 'hr-skills-build/server'
+```
+
+```ts
+function createRegistryCache(): VersionedCache<T>
+```
+
+---
+
+### `createEvaluationCache`
+
+```ts
+import { createEvaluationCache } from 'hr-skills-build/server'
+```
+
+```ts
+function createEvaluationCache(): VersionedCache<T>
+```
+
+---
+
+### `ServiceLogLevel`
+
+```ts
+import { ServiceLogLevel } from 'hr-skills-build/server'
+```
+
+```ts
+type ServiceLogLevel = 'info' | 'warn' | 'error'
+```
+
+---
+
+### `ServiceLogEvent`
+
+```ts
+import { ServiceLogEvent } from 'hr-skills-build/server'
+```
+
+```ts
+interface ServiceLogEvent {
+    readonly level: ServiceLogLevel;
+    readonly event: string;
+    readonly timestamp: string;
+    readonly operation?: string;
+    readonly requestId?: string;
+    readonly durationMs?: number;
+    readonly details?: Record<string, unknown>;
+}
+```
+
+---
+
+### `ServiceLogSink`
+
+```ts
+import { ServiceLogSink } from 'hr-skills-build/server'
+```
+
+```ts
+function ServiceLogSink(event: ServiceLogEvent): void
+```
+
+#### Parameters
+
+- `event`
+
+---
+
+### `StructuredServiceLogger`
+
+```ts
+import { StructuredServiceLogger } from 'hr-skills-build/server'
+```
+
+```ts
+interface StructuredServiceLogger {
+    log(
+        level: ServiceLogLevel,
+        event: string,
+        context?: Omit<ServiceLogEvent, 'level' | 'event' | 'timestamp'>,
+    ): void;
+    info(
+        event: string,
+        context?: Omit<ServiceLogEvent, 'level' | 'event' | 'timestamp'>,
+    ): void;
+    warn(
+        event: string,
+        context?: Omit<ServiceLogEvent, 'level' | 'event' | 'timestamp'>,
+    ): void;
+    error(
+        event: string,
+        context?: Omit<ServiceLogEvent, 'level' | 'event' | 'timestamp'>,
+    ): void;
+}
+```
+
+---
+
+### `createStructuredLogger`
+
+```ts
+import { createStructuredLogger } from 'hr-skills-build/server'
+```
+
+```ts
+function createStructuredLogger(sink: ServiceLogSink, now?: () => string): StructuredServiceLogger
+```
+
+#### Parameters
+
+- `sink`
+- `now` (optional)
+
+---
+
+### `ServiceMetricSnapshot`
+
+```ts
+import { ServiceMetricSnapshot } from 'hr-skills-build/server'
+```
+
+```ts
+interface ServiceMetricSnapshot {
+    readonly counters: Readonly<Record<string, number>>;
+}
+```
+
+---
+
+### `ServiceMetrics`
+
+```ts
+import { ServiceMetrics } from 'hr-skills-build/server'
+```
+
+```ts
+interface ServiceMetrics {
+    increment(name: string, value?: number): void;
+    snapshot(): ServiceMetricSnapshot;
+    reset(): void;
+}
+```
+
+---
+
+### `createServiceMetrics`
+
+```ts
+import { createServiceMetrics } from 'hr-skills-build/server'
+```
+
+```ts
+function createServiceMetrics(): ServiceMetrics
+```
+
+---
+
+### `ReadinessCheck`
+
+```ts
+import { ReadinessCheck } from 'hr-skills-build/server'
+```
+
+```ts
+interface ReadinessCheck {
+    readonly name: string;
+    readonly status: 'ready' | 'not_ready';
+    readonly message?: string;
+}
+```
+
+---
+
+### `ReadinessStatus`
+
+```ts
+import { ReadinessStatus } from 'hr-skills-build/server'
+```
+
+```ts
+interface ReadinessStatus {
+    readonly status: 'ready' | 'not_ready';
+    readonly checks: readonly ReadinessCheck[];
+}
+```
+
+---
+
+### `ReadinessDependency`
+
+```ts
+import { ReadinessDependency } from 'hr-skills-build/server'
+```
+
+```ts
+interface ReadinessDependency {
+    readonly name: string;
+    readonly check: () => boolean | Promise<boolean>;
+}
+```
+
+---
+
+### `getReadinessService`
+
+```ts
+import { getReadinessService } from 'hr-skills-build/server'
+```
+
+```ts
+function getReadinessService(dependencies: readonly ReadinessDependency[]): Promise<ServiceResponse<ReadinessStatus>>
+```
+
+#### Parameters
+
+- `dependencies`
+
+---
+
 ### `analyzeIntent`
 
 ```ts
@@ -5600,8 +5853,7 @@ import { ServiceEnvelope } from 'hr-skills-build/client'
 ```
 
 ```ts
-type ServiceEnvelope = | ServiceSuccessContract<T>
-    | ServiceFailureContract
+type ServiceEnvelope = ServiceSuccessContract<T> | ServiceFailureContract
 ```
 
 ---
