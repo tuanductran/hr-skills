@@ -2,8 +2,6 @@
 
 A comprehensive library of domain-specific Agent Skills for Human Resources professionals, designed for AI-powered HR workflows using Claude.ai, Claude Code, and other Agent Skills–compatible platforms.
 
-[![skills.sh](https://skills.sh/b/tuanductran/hr-skills)](https://skills.sh/tuanductran/hr-skills)
-
 Built by [Tuan Duc Tran](https://linkedin.com/in/tuanductran) for the **HR/TA Job Onsite/Hybrid/Remote** community.
 
 HR Skills follows the open **Agent Skills** specification and provides structured, reusable building blocks that help AI agents perform HR tasks consistently, safely, and with domain-specific expertise.
