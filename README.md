@@ -138,7 +138,6 @@ hr-skills/
 ├── skills/                      # Source HR skills
 ├── docs/                        # Engineering, product, operations, and integration docs
 ├── examples/                    # End-to-end and planner/runtime examples
-├── playground/                  # Experimental integration apps
 ├── registry/                    # Generated registry artifacts
 ├── .agents/                     # Repository maintenance skills
 ├── .claude/                     # Claude Code commands, prompts, rules, and hooks
@@ -172,10 +171,6 @@ bun run test:e2e
 bun run typecheck
 bun run check
 ```
-
-The `playground/next-app` and `playground/vite-app` projects provide browser
-smoke tests for the explicit `hr-skills-build/client` and
-`hr-skills-build/server` package surfaces.
 
 Release commands:
 

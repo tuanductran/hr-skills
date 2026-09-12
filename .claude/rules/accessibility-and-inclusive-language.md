@@ -11,8 +11,6 @@ paths:
   - apps/**/*.tsx
   - packages/**/*.ts
   - packages/**/*.tsx
-  - playground/**/*.ts
-  - playground/**/*.tsx
   - .github/workflows/**/*.yml
   - .github/workflows/**/*.yaml
   - .claude/hooks/**/*.sh

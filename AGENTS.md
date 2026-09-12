@@ -59,7 +59,6 @@ When you add a new skill directory (for example `skills/hr-new-skill/SKILL.md`),
 | `skills/hr-*/prompts/` | Optional reusable prompt libraries grouped by HR topic |
 | `skills/hr-*/examples/` | Optional practical end-to-end HR workflows and business scenarios |
 | `apps/web/` | Public Next.js documentation and product surfaces |
-| `playground/` | Experimental Next.js/Vite integration and smoke-test apps |
 | `docs/` | Skill format specification, architecture guidance, generated reports, and archived research |
 | `docs/engineering/skill-matrix.md` | Generated skill maturity snapshot — do not edit manually, run `bun run matrix` |
 | `docs/engineering/evaluation.md` | Evaluation framework architecture, dataset format, and golden fixture workflow |

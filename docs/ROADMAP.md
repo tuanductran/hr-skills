@@ -105,7 +105,6 @@ hr-skills/
 ├── skills/               # Source HR skills
 ├── docs/                 # Project documentation
 ├── examples/             # Reusable workflow examples
-├── playground/           # Experimental integration apps
 ├── registry/             # Generated registry artifacts
 ├── .agents/              # Repository maintenance skills
 ├── .claude/              # Claude Code configuration

@@ -8,8 +8,6 @@ paths:
   - packages/hr-skills-build/eval/**/*.json
   - apps/**/*.ts
   - apps/**/*.tsx
-  - playground/**/*.ts
-  - playground/**/*.tsx
   - .github/workflows/**/*.yml
   - .github/workflows/**/*.yaml
   - .claude/hooks/**/*.sh

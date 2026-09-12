@@ -5,12 +5,9 @@ paths:
   - apps/**/*.tsx
   - packages/**/*.ts
   - packages/**/*.tsx
-  - playground/**/*.ts
-  - playground/**/*.tsx
   - tsconfig.json
   - apps/**/tsconfig.json
   - packages/**/tsconfig.json
-  - playground/**/tsconfig.json
   - biome.jsonc
 ---
 
