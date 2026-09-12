@@ -28,10 +28,6 @@
         "hr-skills-build": "workspace:*",
         "hr-skills-ref": "workspace:*",
       },
-      "devDependencies": {
-        "@types/bun": "catalog:",
-        "typescript": "catalog:",
-      },
     },
     "apps/web": {
       "name": "hr-skills-web",
@@ -68,7 +64,6 @@
         "hr-skills-build": "workspace:*",
         "hr-skills-ref": "workspace:*",
         "tsdown": "catalog:",
-        "typescript": "catalog:",
       },
     },
     "packages/hr-skills-build": {
@@ -101,7 +96,6 @@
       },
       "devDependencies": {
         "tsdown": "catalog:",
-        "typescript": "catalog:",
       },
     },
     "playground/next-app": {
