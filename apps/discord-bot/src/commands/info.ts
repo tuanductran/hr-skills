@@ -1,7 +1,7 @@
 import { MessageFlags, SlashCommandBuilder } from 'discord.js';
 
-import { buildSkillEmbed } from '../embeds.ts';
-import { autocompleteSkills, findSkillById, loadRegistry } from '../registry.ts';
+import { buildSkillEmbed } from '../embeds/index.ts';
+import { autocompleteSkills, findSkillById, loadRegistry } from '../registry/index.ts';
 import type { SkillCommand } from './types.ts';
 
 export const infoCommand: SkillCommand = {

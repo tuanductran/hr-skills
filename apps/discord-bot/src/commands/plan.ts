@@ -1,7 +1,7 @@
 import { SlashCommandBuilder } from 'discord.js';
 
-import { buildPlanEmbed } from '../embeds.ts';
-import { generateExecutionPlan, loadRegistry } from '../registry.ts';
+import { buildPlanEmbed } from '../embeds/index.ts';
+import { generateExecutionPlan, loadRegistry } from '../registry/index.ts';
 import type { SkillCommand } from './types.ts';
 
 export const planCommand: SkillCommand = {

@@ -1,7 +1,7 @@
 import { SlashCommandBuilder } from 'discord.js';
 
-import { buildStatsEmbed } from '../embeds.ts';
-import { loadRegistry } from '../registry.ts';
+import { buildStatsEmbed } from '../embeds/index.ts';
+import { loadRegistry } from '../registry/index.ts';
 import type { SkillCommand } from './types.ts';
 
 export const statsCommand: SkillCommand = {

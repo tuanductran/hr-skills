@@ -1,7 +1,7 @@
 import { SlashCommandBuilder } from 'discord.js';
 
-import { buildSkillEmbed } from '../embeds.ts';
-import { loadRegistry, pickRandomSkill } from '../registry.ts';
+import { buildSkillEmbed } from '../embeds/index.ts';
+import { loadRegistry, pickRandomSkill } from '../registry/index.ts';
 import type { SkillCommand } from './types.ts';
 
 export const randomCommand: SkillCommand = {

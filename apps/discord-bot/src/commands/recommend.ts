@@ -1,12 +1,13 @@
 import { MessageFlags, SlashCommandBuilder } from 'discord.js';
 
-import { buildSkillListEmbed } from '../embeds.ts';
+import { buildSkillListEmbed } from '../embeds/index.ts';
 import {
 	autocompleteSkills,
 	findSkillById,
 	getRecommendations,
 	loadRegistry,
-} from '../registry.ts';
+	UnknownSkillError,
+} from '../registry/index.ts';
 import type { SkillCommand } from './types.ts';
 
 export const recommendCommand: SkillCommand = {
@@ -51,7 +52,20 @@ export const recommendCommand: SkillCommand = {
 			return;
 		}
 
-		const { recommendations } = getRecommendations(source.id, registry, limit);
+		let recommendations: ReturnType<typeof getRecommendations>['recommendations'];
+		try {
+			({ recommendations } = getRecommendations(source.id, registry, limit));
+		} catch (error) {
+			if (error instanceof UnknownSkillError) {
+				await interaction.reply({
+					content: `No skill found matching \`${id}\`. Try \`/skill-find\` first.`,
+					flags: MessageFlags.Ephemeral,
+				});
+				return;
+			}
+			throw error;
+		}
+
 		const skills = recommendations
 			.map((rec) => findSkillById(registry, rec.id))
 			.filter((skill) => skill !== undefined);
