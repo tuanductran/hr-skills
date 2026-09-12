@@ -1,4 +1,5 @@
 {
+	"$schema": "https://json.schemastore.org/package.json",
 	"name": "hr-skills-monorepo",
 	"version": "1.4.0",
 	"private": true,
@@ -38,8 +39,7 @@
 		"packages": [
 			".",
 			"apps/*",
-			"packages/*",
-			"playground/*"
+			"packages/*"
 		],
 		"catalog": {
 			"@clack/prompts": "^1.8.0",

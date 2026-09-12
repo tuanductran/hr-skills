@@ -1,4 +1,5 @@
 {
+  "$schema": "https://www.schemastore.org/codex-plugin-manifest.json",
   "name": "hr-skills",
   "version": "1.4.0",
   "description": "A collection of 146 AI skills for HR managers covering recruiting, performance management, compensation, compliance, and all major HR domains. Built by Tuan Duc Tran for the Zalo HR/TA Job Onsite/Hybrid/Remote community.",

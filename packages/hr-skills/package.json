@@ -1,4 +1,5 @@
 {
+	"$schema": "https://json.schemastore.org/package.json",
 	"name": "hr-skills",
 	"version": "0.0.0",
 	"description": "Command-line tools for discovering, validating, planning, evaluating, and executing HR Skills",
@@ -14,9 +15,6 @@
 	],
 	"publishConfig": {
 		"access": "public"
-	},
-	"engines": {
-		"node": ">=20.19.0"
 	},
 	"license": "MIT",
 	"author": "Tuan Duc Tran",

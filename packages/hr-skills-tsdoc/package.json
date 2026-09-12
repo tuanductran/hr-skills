@@ -1,4 +1,5 @@
 {
+	"$schema": "https://json.schemastore.org/package.json",
 	"name": "hr-skills-tsdoc",
 	"version": "0.0.0",
 	"private": true,

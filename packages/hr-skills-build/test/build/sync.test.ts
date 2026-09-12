@@ -161,6 +161,7 @@ describe('syncClaudePlugin()', () => {
 		repoVersion = version;
 
 		const initialJson = {
+			$schema: 'https://www.schemastore.org/claude-code-plugin-manifest.json',
 			name: 'hr-skills',
 			version: '0.0.0-stale',
 			description: '0 domain-specific AI Agent Skills for HR managers.',
@@ -234,6 +235,7 @@ describe('syncCodexPlugin()', () => {
 		repoVersion = version;
 
 		const initialJson = {
+			$schema: 'https://www.schemastore.org/codex-plugin-manifest.json',
 			name: 'hr-skills',
 			version: '0.0.0-stale',
 			description: 'A collection of 0 AI skills for HR managers.',

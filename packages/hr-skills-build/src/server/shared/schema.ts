@@ -50,6 +50,7 @@ const ClaudePluginAuthorSchema = v.strictObject({
  * auto-discovers every `skills/hr-*` subdirectory containing a `SKILL.md`.
  */
 export const ClaudePluginJsonSchema = v.strictObject({
+	$schema: v.literal('https://www.schemastore.org/claude-code-plugin-manifest.json'),
 	name: NonEmptyString,
 	version: NonEmptyString,
 	description: NonEmptyString,
@@ -82,6 +83,7 @@ const CodexPluginInterfaceSchema = v.strictObject({
  * a `SKILL.md` as an individual skill, so no per-skill manifest is needed.
  */
 export const CodexPluginJsonSchema = v.strictObject({
+	$schema: v.literal('https://www.schemastore.org/codex-plugin-manifest.json'),
 	name: NonEmptyString,
 	version: NonEmptyString,
 	description: NonEmptyString,
