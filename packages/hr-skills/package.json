@@ -53,12 +53,10 @@
 		"registry": "bun src/cli/generate-registry.ts",
 		"signals": "bun src/cli/generate-relevance-signals.ts"
 	},
-	"dependencies": {},
 	"devDependencies": {
 		"@clack/prompts": "catalog:",
 		"hr-skills-build": "workspace:*",
 		"hr-skills-ref": "workspace:*",
-		"tsdown": "catalog:",
-		"typescript": "catalog:"
+		"tsdown": "catalog:"
 	}
 }

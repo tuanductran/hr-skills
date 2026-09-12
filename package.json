@@ -5,6 +5,13 @@
 	"description": "AI skills and technical recruiting knowledge for modern HR and talent acquisition teams.",
 	"type": "module",
 	"packageManager": "bun@1.4.2",
+	"devEngines": {
+		"packageManager": {
+			"name": "bun",
+			"version": "1.4.2",
+			"onFail": "error"
+		}
+	},
 	"author": "Tuan Duc Tran",
 	"license": "MIT",
 	"homepage": "https://github.com/tuanductran/hr-skills#readme",
@@ -35,21 +42,20 @@
 			"playground/*"
 		],
 		"catalog": {
-			"@clack/prompts": "^1.7.0",
-			"@types/bun": "^1.4.1",
+			"@clack/prompts": "^1.8.0",
+			"@types/bun": "^1.4.2",
 			"discord.js": "^14.27.0",
-			"knip": "^6.34.0",
+			"knip": "^6.35.1",
 			"ts-morph": "^24.0.0",
-			"valibot": "^1.4.2",
+			"valibot": "^1.5.0",
 			"tsdown": "^0.22.14",
 			"turbo": "^2.10.12",
 			"typescript": "^6.0.3",
-			"unrun": "^0.3.1",
-			"yaml": "^2.9.0"
+			"yaml": "^2.9.1"
 		},
 		"catalogs": {
 			"biome": {
-				"@biomejs/biome": "^2.5.12"
+				"@biomejs/biome": "^2.5.13"
 			},
 			"commit": {
 				"@changesets/cli": "^2.31.1",
@@ -103,7 +109,9 @@
 		"prepare": "lefthook install",
 		"preinstall": "bunx only-allow bun",
 		"commitlint": "commitlint --edit",
-		"skill-review": "turbo run skill-review --filter=hr-skills --"
+		"skill-review": "turbo run skill-review --filter=hr-skills --",
+		"deps:check": "bunx taze -r --exclude typescript@7",
+		"deps:update": "bunx taze -r -w --exclude typescript@7 && bun install"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "catalog:biome",
@@ -118,7 +126,6 @@
 		"markdown-link-check": "catalog:markdown",
 		"markdownlint-cli": "catalog:markdown",
 		"turbo": "catalog:",
-		"typescript": "catalog:",
-		"unrun": "catalog:"
+		"typescript": "catalog:"
 	}
 }

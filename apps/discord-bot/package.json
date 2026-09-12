@@ -21,9 +21,5 @@
 		"discord.js": "catalog:",
 		"hr-skills-build": "workspace:*",
 		"hr-skills-ref": "workspace:*"
-	},
-	"devDependencies": {
-		"@types/bun": "catalog:",
-		"typescript": "catalog:"
 	}
 }

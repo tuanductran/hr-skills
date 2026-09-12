@@ -31,7 +31,6 @@
 		"ts-morph": "catalog:"
 	},
 	"devDependencies": {
-		"tsdown": "catalog:",
-		"typescript": "catalog:"
+		"tsdown": "catalog:"
 	}
 }
