@@ -1,0 +1,33 @@
+{
+  "name": "hr-skills",
+  "version": "1.4.0",
+  "description": "A collection of 146 AI skills for HR managers covering recruiting, performance management, compensation, compliance, and all major HR domains. Built by Tuan Duc Tran for the Zalo HR/TA Job Onsite/Hybrid/Remote community.",
+  "author": {
+    "name": "Tuan Duc Tran",
+    "url": "https://github.com/tuanductran"
+  },
+  "homepage": "https://github.com/tuanductran/hr-skills",
+  "repository": "https://github.com/tuanductran/hr-skills",
+  "license": "MIT",
+  "keywords": [
+    "hr",
+    "recruiting",
+    "talent-acquisition",
+    "compensation",
+    "compliance",
+    "skills",
+    "codex"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "HR Skills",
+    "shortDescription": "146 AI skills covering the full HR domain",
+    "longDescription": "A collection of 146 AI skills for HR managers covering recruiting, onboarding, performance management, compensation and benefits, learning and development, organizational design, workforce planning, HR technology, compliance, culture and wellbeing, and technical hiring across all major HR domains.",
+    "developerName": "Tuan Duc Tran",
+    "category": "Human Resources",
+    "capabilities": [
+      "Instructions"
+    ],
+    "websiteURL": "https://github.com/tuanductran/hr-skills"
+  }
+}

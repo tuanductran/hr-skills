@@ -1,0 +1,21 @@
+{
+  "name": "hr-skills",
+  "interface": {
+    "displayName": "HR Skills"
+  },
+  "plugins": [
+    {
+      "name": "hr-skills",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/tuanductran/hr-skills.git",
+        "ref": "main"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Human Resources"
+    }
+  ]
+}

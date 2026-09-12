@@ -8,6 +8,8 @@
 			"!**/node_modules",
 			"!**/.turbo",
 			"!**/.claude-plugin",
+			"!**/.codex-plugin",
+			"!**/.agents/plugins",
 			"!**/registry",
 			"!**/.next",
 			"!**/next-env.d.ts",

@@ -1,0 +1,6 @@
+[test]
+# apps/web/e2e/**/*.spec.ts are Playwright specs (run via `bun run test:e2e`),
+# not bun:test files. Without this, a bare `bun test` from the repo root
+# recursively discovers them too and fails, since they import test/expect
+# from `@playwright/test` instead of `bun:test`.
+pathIgnorePatterns = ["apps/web/e2e/**"]
