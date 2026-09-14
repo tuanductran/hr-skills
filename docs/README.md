@@ -13,7 +13,8 @@ Use this folder as the entry point for repository documentation.
 - Integrators and platform adapters: [`integrations/README.md`](integrations/README.md)
 - Release managers: [`operations/release.md`](operations/release.md)
 - End users: [`product/USER.md`](product/USER.md)
-- Roadmap and direction: [`ROADMAP.md`](ROADMAP.md)
+- Roadmap and active direction: [`ROADMAP.md`](ROADMAP.md)
+- Completed roadmap history: [`HISTORY.md`](HISTORY.md)
 
 ## Reference Docs
 
@@ -54,5 +55,8 @@ Use this folder as the entry point for repository documentation.
 
 - [`product/USER.md`](product/USER.md): what HR Skills is and how to use it
 
-- [`ROADMAP.md`](ROADMAP.md): development phases, what shipped, and open future work
+### Project Tracking
+
+- [`ROADMAP.md`](ROADMAP.md): active and planned work only
+- [`HISTORY.md`](HISTORY.md): completed roadmap phases and historical milestones
 - [`archive/README.md`](archive/README.md): historical research and audit notes that are not canonical requirements

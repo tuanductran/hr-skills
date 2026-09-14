@@ -5,488 +5,89 @@
 > **License:** MIT
 > **Status:** Actively maintained
 
-This roadmap describes the long-term direction, architecture evolution, and engineering priorities of the HR Skills library.
+This roadmap contains **active and planned work only**. Completed milestones are archived in [`HISTORY.md`](HISTORY.md), while release-specific version history belongs in [`../CHANGELOG.md`](../CHANGELOG.md).
 
-HR Skills is a Bun/Turborepo monorepo containing domain-specific Agent Skills for Human Resources professionals. The repository focuses on building a structured, validated, and extensible skill ecosystem that enables AI agents to provide reliable HR domain expertise.
-
-For the current skill maturity status, always refer to the generated matrix:
+For current skill maturity, use the generated matrix:
 
 * `docs/engineering/skill-matrix.md`
 
-For active implementation tasks, milestones, and execution tracking:
-
-* GitHub Issues
+For execution-level tasks and milestones, use GitHub Issues.
 
 ---
 
-## Table of Contents
+## Current Focus
 
-1. [Project Vision](#project-vision)
-2. [Repository Overview](#repository-overview)
-3. [Architecture](#architecture)
-4. [Development Phases](#development-phases)
-5. [Validation & Quality System](#validation--quality-system)
-6. [CI/CD & Automation](#cicd--automation)
-7. [Future Direction](#future-direction)
-8. [Success Metrics](#success-metrics)
-9. [Glossary](#glossary)
+The immediate roadmap focus is completing the hosted-service boundary of Phase 8, then building the intelligent agent platform and broader ecosystem capabilities on top of the stable service contracts.
 
----
+### Priority Order
 
-## Project Vision
-
-### Building a Structured HR Agent Skill Ecosystem
-
-HR Skills aims to become a comprehensive, versioned knowledge infrastructure for AI-powered Human Resources workflows.
-The project follows the principle:
-
-> **Content is code.**
-
-Every skill is treated as a maintainable software artifact with:
-
-* Structured metadata
-* Version control
-* Automated validation
-* Security checks
-* Reproducible distribution
-* Continuous improvement
-
-The goal is not only to create documentation, but to provide reliable building blocks for AI agents working in HR domains.
+1. **Phase 8.4 — Hosted HTTP Adapter**
+2. **Phase 9 — Intelligent Agent Platform**
+3. **Phase 10 — Ecosystem & Community**
+4. **HR/TA product initiatives** as separately scoped product tracks
 
 ---
 
-## Repository Overview
+## Phase 8 — API & Services
 
-HR Skills provides domain-specific Agent Skills covering areas including:
+**Status: In progress.** The versioned library service layers, platform contracts, validation, operational guidance, and supporting APIs are complete and archived in [`HISTORY.md`](HISTORY.md). The remaining roadmap work is the deployment-specific hosted HTTP adapter.
 
-* Talent Acquisition
-* People Operations
-* HR Analytics
-* Workforce Planning
-* Learning & Development
-* Compensation & Benefits
-* HR Technology
-* AI for HR
-* Organization Development
-* Employee Experience
+### 8.4 Hosted HTTP Adapter
 
-Skills follow the Agent Skills open format and are distributed through:
+Expose the completed service capabilities through a deployable HTTP service without coupling the core library packages to a particular hosting provider.
 
-* Claude Code / claude.ai marketplace integration
-* skills.sh installation
-* Direct repository cloning
+#### HTTP surface
 
----
+* Route handlers for registry search, planning, runtime execution, evaluation, health, and version information
+* Stable request and response envelopes aligned with [`engineering/platform-integration.md`](engineering/platform-integration.md)
+* Explicit API versioning
+* Deterministic behavior consistent with the library implementations
 
-## Architecture
+#### Security and access
 
-### Technology Stack
+* Apply the existing request-validation and error-normalization contracts
+* Implement the approved authentication and rate-limiting strategy at the HTTP boundary
+* Keep high-risk operations explicit and auditable
+* Avoid embedding provider-specific authentication logic in reusable library packages
 
-| Layer              | Technology                     |
-| ------------------ | ------------------------------ |
-| Runtime            | Bun                            |
-| Monorepo           | Turborepo                      |
-| Language           | TypeScript (strict mode, ESM)  |
-| Validation         | Valibot                        |
-| Formatter / Linter | Biome                          |
-| Markdown Quality   | markdownlint-cli + case-police |
-| Commit Workflow    | Commitlint + Lefthook          |
-| Release Automation | Changesets                     |
-| Dependency Updates | Renovate                       |
+#### Operations
+
+* Connect HTTP requests to the operational observability model in [`engineering/operations.md`](engineering/operations.md)
+* Define readiness and health behavior for deployed instances
+* Preserve cache and registry artifact behavior across deployments
+* Document self-hosted and managed deployment configurations
+
+#### Delivery boundary
+
+Phase 8 is complete only when the hosted adapter is implemented, tested, documented, and deployable independently of the core library packages.
 
 ---
 
-### Repository Structure
-
-```text
-hr-skills/
-├── apps/                 # Web documentation and Discord bot
-├── packages/             # CLI, libraries, build tooling, and API docs
-├── skills/               # Source HR skills
-├── docs/                 # Project documentation
-├── examples/             # Reusable workflow examples
-├── registry/             # Generated registry artifacts
-├── .agents/              # Repository maintenance skills
-├── .claude/              # Claude Code configuration
-├── .claude-plugin/       # Generated marketplace metadata
-└── SKILL.md              # Root skill router
-```
-
-The root workspace is named `hr-skills-monorepo`. Detailed package boundaries are
-documented in [`docs/engineering/package-architecture.md`](engineering/package-architecture.md).
-Generated artifacts must be regenerated with the repository commands rather than
-edited manually.
-
----
-
-### Skill Architecture
-
-Each HR skill follows a structured format:
-
-```text
-skills/hr-example/
-
-├── SKILL.md
-├── content/
-├── prompts/
-└── examples/
-```
-
-A skill contains:
-
-* Frontmatter metadata
-* Supported tasks
-* Domain knowledge
-* Prompt patterns
-* Practical examples
-
-The maturity state of every skill is automatically generated by:
-
-```bash
-bun run matrix
-```
-
-Output:
-
-```text
-docs/engineering/skill-matrix.md
-```
-
----
-
-## Development Phases
-
-### Phase 1 — Foundation
-
-Completed:
-
-* Agent Skills format adoption
-* Repository structure stabilization
-* Bun/Turborepo migration
-* TypeScript tooling
-* Validation framework
-* CI pipeline foundation
-
----
-
-### Phase 2 — Skill Coverage
-
-Completed:
-
-* Large-scale HR domain coverage
-* Skill inventory system
-* Marketplace synchronization
-* Skill metadata validation
-* Automated maturity matrix generation
-
----
-
-### Phase 3 — Skill Maturity Improvement
-
-Completed:
-
-* Repository-wide Full Skill maturity
-* Expanded domain knowledge across all remaining Partial skills
-* Production-ready prompt coverage
-* Production-ready example coverage
-* Repository-wide content consistency improvements
-* Complete Skill Matrix regeneration
-
----
-
-### Phase 4 — AI Agent Foundation
-
-Completed.
-
-#### 4.1 Skill Registry
-
-Build the machine-readable foundation for the skill ecosystem.
-
-> Implemented — see [docs/engineering/registry.md](engineering/registry.md) for the architecture,
-> schema, generation (`bun run registry`), and validation details.
-
-* Registry schema
-* Registry generator
-* Capability registry
-* Alias registry
-* Domain registry
-* Search indexes
-* Relationship graph
-* Dependency graph
-* Registry validation
-* Deterministic skill discovery
-
-#### 4.2 Skill Planner
-
-Build a deterministic planning layer that composes workflows from the Skill Registry.
-
-Completed:
-
-* Intent analysis — deterministic capability extraction from natural language
-* Capability matching — token-based similarity scoring against skill capabilities
-* Skill selection — recursive dependency and related-skill addition
-* Workflow planning — ordered execution plans
-* Dependency-aware execution planning — topological sort (Kahn's algorithm)
-* Context propagation model — foundation for runtime input/output threading
-* Explainable execution plans — every decision includes reasoning
-* Plan validation — detect and report common issues (circular deps, dangling refs, order violations)
-* CLI tool (`bun run plan`) — generate and validate plans from user intent
-* Comprehensive documentation and tests
-
-See [`docs/engineering/planner.md`](engineering/planner.md) for detailed architecture and usage.
-
-#### 4.3 Workflow Runtime
-
-Build a deterministic runtime responsible for executing workflow plans.
-
-> Implemented — see [docs/engineering/runtime.md](engineering/runtime.md) for the architecture,
-> execution lifecycle, and extension points.
-
-Completed:
-
-* Execution engine (`WorkflowExecutor` / `executeWorkflow`) — consumes Planner
-  output directly, executes steps in plan order
-* Workflow state management — pending/running/completed/failed/skipped
-  tracking via `RuntimeStateTracker`
-* Context propagation — explicit `RuntimeContext` threading step outputs
-  between steps
-* Retry handling — pluggable `RetryPolicy` (`noRetryPolicy`,
-  `fixedRetryPolicy`, `exponentialRetryPolicy`), deterministic (no real
-  waiting)
-* Failure handling — structured, JSON-serializable `RuntimeError`;
-  dependency-aware skipping of downstream steps
-* Execution events — `EventDispatcher` with a logical clock for deterministic
-  event ordering
-* Execution tracing — `TraceCollector` pairing each event with a state
-  snapshot
-* CLI tool (`bun run execute`) — generate a plan and run it through the
-  Runtime with a stub step executor
-* Comprehensive documentation and tests
-
-#### 4.4 Quality & Evaluation
-
-Ensure the reliability and correctness of the skill ecosystem.
-
-> Implemented — see [docs/engineering/evaluation.md](engineering/evaluation.md) for the architecture,
-> dataset format, golden fixtures, and how to add new evaluation cases.
-
-Completed:
-
-* Evaluation datasets — representative planning scenarios (`eval/datasets/`)
-* Golden fixtures — committed expected planner/workflow outcomes (`eval/golden/`)
-* Benchmark runner — executes datasets against the real Skill Registry and
-  produces deterministic summaries
-* Quality metrics — capability matching accuracy, skill selection accuracy,
-  execution ordering accuracy, dependency correctness, workflow success rate
-* Regression detection — field-level diff against golden fixtures, reported
-  per case
-* CLI tool (`bun run evaluate`) — run the full evaluation, or
-  `--update-golden` to regenerate fixtures
-* Comprehensive documentation and tests
-
----
-
-### Phase 5 — Community & Distribution
-
-Completed:
-
-* External contributors — see [`GOVERNANCE.md`](../GOVERNANCE.md) for roles, the
-  review/approval workflow, ownership per area, and how roadmap feedback is collected
-* Better documentation — contributor onboarding, workflow, and skill-authoring guides in
-  [`docs/engineering/contributing/`](engineering/contributing/), plus [`docs/engineering/registry.md`](engineering/registry.md),
-  [`docs/operations/release.md`](operations/release.md), [`docs/integrations/README.md`](integrations/README.md), and
-  [`GOVERNANCE.md`](../GOVERNANCE.md)
-* Public examples — see [`examples/`](../examples/README.md) for end-to-end
-  multi-skill workflows and planner/runtime integration examples
-* Ecosystem integrations — see [`docs/integrations/README.md`](integrations/README.md) for
-  the supported-platform matrix, installation/onboarding guides, integration
-  testing strategy, and backward-compatibility requirements
-* Stable package releases — see [`docs/operations/release.md`](operations/release.md) for the
-  release lifecycle, versioning strategy, validation checklist, and
-  release notes workflow
-
----
-
-### Phase 6 — Skill Intelligence & Quality Automation
-
-Completed.
-
-#### 6.1 Skill Intelligence
-
-Build on the Skill Registry's existing relationship and dependency graphs
-(delivered in [4.1](#41-skill-registry)) to surface them to users and
-contributors, rather than leaving them as internal planner input only.
-
-* Recommendation engine — surface `registry/skills.json`'s existing
-  `relatedSkills` graph as user-facing "skills you might also need"
-  suggestions, instead of only consuming it internally in the Planner
-  (4.2). Delivered — see [`docs/engineering/recommendations.md`](engineering/recommendations.md)
-  for the recommendation format, ranking rule, limitations, and intended
-  consumer usage
-* Improved skill discovery — ranked/fuzzy search over the registry
-  (capabilities, tags, aliases) beyond exact trigger-phrase matching.
-  Delivered — see [`docs/engineering/search.md`](engineering/search.md) for supported query
-  types, searchable fields, ranking strategy, determinism guarantees,
-  the public API, and usage examples
-* Usage-informed relevance — once there's a way to observe which skills
-  are actually selected together in practice (for example via evaluation
-  runs or planner telemetry), use that signal to refine
-  `relatedSkills` weighting rather than relying on static classification
-  alone. Delivered (Phase 6.1-A/B/C) — see
-  [`docs/engineering/usage-informed-relevance.md`](engineering/usage-informed-relevance.md) for
-  the architecture, signal pipeline, and implementation roadmap. Signal
-  infrastructure (6.1-A), signal-augmented registry generation with a
-  non-blocking coverage warning (6.1-B), and the recommendation surface
-  (6.1-C, delivered earlier as `getRecommendations()`) are all in place.
-  Richer evidence sources beyond evaluation golden fixtures (6.1-D —
-  curated tables, org-specific overrides, opt-in telemetry) remain future
-  work; the architecture already accepts them as drop-in inputs with no
-  redesign required
-
-#### 6.2 Quality Automation
-
-Extend validation beyond the current structural/format checks
-(`bun run validate`) into content-level quality signals.
-
-* Duplicate content detection — flag skills with substantially
-  overlapping `description`/`content/` before they're merged, not just
-  overlapping directory names. Delivered — see
-  [`docs/engineering/duplicate-detection.md`](engineering/duplicate-detection.md)
-* Semantic validation — check that a skill's `prompts/` and `examples/`
-  are actually consistent with its `description` and `content/`, beyond
-  today's non-empty-directory structural check. Delivered — see
-  [`docs/engineering/semantic-validation.md`](engineering/semantic-validation.md) for the
-  heuristics, calibrated thresholds, determinism guarantees, and
-  maintainer guidance
-* Automated content quality scoring — a repeatable score (clarity,
-  completeness, example coverage) usable as a review aid, not a merge
-  gate, so a low score prompts a closer look rather than an automatic
-  rejection. Delivered — see [`docs/engineering/quality-scoring.md`](engineering/quality-scoring.md)
-  for the scoring dimensions, weights, bands, and public API
-* AI-assisted review workflows — apply
-  [`.agents/skills/skill-vetter/SKILL.md`](../.agents/skills/skill-vetter/SKILL.md)'s
-  pattern (already used for security review) to content quality, and
-  surface its output as a PR comment maintainers can act on directly,
-  consistent with [`GOVERNANCE.md`](../GOVERNANCE.md)'s review criteria.
-  Delivered as an **automated, deterministic** workflow rather than an
-  LLM-backed one — no Anthropic/OpenAI API key is required or used. See
-  [`.github/workflows/skill-review.yml`](../.github/workflows/skill-review.yml):
-  `bun run skill-review` computes the same security findings and
-  quality scores skill-vetter and quality-scoring already produce, for
-  only the skills a PR touches, and posts the result directly as a PR
-  comment via `actions/github-script` — no third-party API calls.
-  Informational only — never blocks merge
-
----
-
-### Phase 7 — Product & Web Platform
-
-Build the user-facing layer that turns the repository into a browsable product rather than only a repository of skills and infrastructure.
-
-Current delivery status: **Phase 7 is complete and hardened**. The public documentation foundation, registry explorer, planner playground, skill graph, runtime trace viewer, evaluation dashboard, release/changelog viewer, and developer-experience foundation are implemented and validated. The subsequent package architecture refactor, client/server boundary hardening, TSDoc generation, Tailwind semantic styling, URL-state fixes, not-found semantics, and expanded Playwright coverage are completion hardening for this phase, not a new product phase.
-
-#### 7.1 Web UI foundation
-
-Completed.
-
-* Public documentation site
-* Responsive skill catalog UI
-* Skill detail pages with content, prompts, examples, and metadata
-* Search and filtering across registry fields
-* Navigation for categories, domains, and tiers
-
-#### 7.2 Interactive product surfaces
-
-Completed:
-
-* Registry explorer through the searchable catalog and canonical registry-backed filters
-* Planner playground backed by the browser-safe planner APIs
-
-Completed:
-
-* Skill graph visualization backed by canonical registry relationships
-* Runtime trace viewer backed by deterministic `executeWorkflow()` trace data
-* Evaluation dashboard backed by the planning dataset and golden fixture
-* Release and changelog viewer backed by repository Changeset metadata
-
-#### 7.3 Developer experience
-
-Completed:
-
-* Local preview workflow with Next.js development server and Playwright webServer configuration
-* Static generation for skill detail routes with server-side canonical data loading
-* Reusable UI components for skill cards, filters, results, navigation, Markdown content, and planner steps
-* Accessibility and mobile-first layout requirements, including keyboard navigation and responsive E2E coverage
-* TailwindCSS v4 semantic styling architecture with shared CSS layers rather than scattered custom styles
-* Stable browser-safe imports from the `client` surfaces of the build and reference packages
-* Automated TSDoc API generation and check coverage through `hr-skills-tsdoc`
-* CLI packaging and smoke-tested command surfaces for `hr-skills`, including npx/bunx-compatible bin metadata
-
-#### 7.4 Completion boundary
-
-Phase 7 provides a public web product and browser-safe library integration, but it does not provide a hosted HTTP service. The existence of `client` and `server` package exports, CLI commands, or Next.js server-side data loading must not be interpreted as completion of Phase 8. API contracts, route handlers, authentication, rate limiting, observability, and deployment concerns remain Phase 8 scope.
-
----
-
-### Phase 8 — API & Services
-
-**Status: In progress.** Phase 8.1–8.3 are implemented as versioned-library service, platform-integration, and operational layers. A hosted HTTP adapter remains deployment-specific and is not included in the library packages.
-
-Expose the core registry, planner, runtime, and evaluation capabilities through stable service interfaces.
-
-#### 8.1 Service layer — completed
-
-* Registry search API
-* Planner API
-* Runtime execution API
-* Evaluation API
-* Health and version endpoints
-
-#### 8.2 Platform integration — completed
-
-* API contracts for web UI and external clients
-* Auth and rate limiting strategy if public endpoints are introduced
-* Request validation and error normalization
-* Deterministic behavior aligned with the library implementations
-
-The version-one contract, initial access policy, request validation rules, and
-normalized response envelope are documented in
-[`docs/engineering/platform-integration.md`](engineering/platform-integration.md).
-
-#### 8.3 Operational concerns — completed
-
-* Caching strategy for registry and evaluation artifacts
-* Observability and structured logs
-* Backward-compatible versioning for public endpoints
-* Deployment guidance for self-hosted and managed environments
-
-The operational cache, observability, readiness, compatibility, and deployment
-guidance is documented in
-[`docs/engineering/operations.md`](engineering/operations.md).
-
----
+## Phase 9 — Intelligent Agent Platform
 
 ### Phase 9 — Intelligent Agent Platform
 
-**Status: Not started.** This phase should follow Phase 8 so orchestration, approvals, audit trails, and policy enforcement can rely on stable service contracts.
+**Status: Not started.** Begin after the Phase 8 hosted-service boundary is stable so orchestration, approvals, audit trails, and policy enforcement can rely on stable service contracts.
 
 Turn HR Skills into an agentic platform for composing, running, and inspecting HR workflows.
 
-#### 9.1 Agent orchestration
+Turn HR Skills into an agentic platform for composing, running, and inspecting HR workflows.
+
+### 9.1 Agent Orchestration
 
 * Multi-step and multi-skill orchestration
 * Visual workflow builder
 * Conditional branching and fallback paths
 * Skill chaining and reusable workflow templates
 
-#### 9.2 Intelligence layer
+### 9.2 Intelligence Layer
 
 * Agent memory and context propagation across sessions
 * Recommendation-aware task routing
 * Adaptive skill selection based on workflow outcomes
 * Human-in-the-loop approvals for sensitive HR actions
 
-#### 9.3 Guardrails
+### 9.3 Guardrails
 
 * Policy enforcement for high-risk HR workflows
 * Audit trails for agent decisions
@@ -495,27 +96,27 @@ Turn HR Skills into an agentic platform for composing, running, and inspecting H
 
 ---
 
-### Phase 10 — Ecosystem & Community
+## Phase 10 — Ecosystem & Community
 
-**Status: Not started.** Existing governance, integrations, and release automation are the foundation for this phase, not completion of its hosted ecosystem goals.
+**Status: Not started.** Existing governance, integrations, and release automation are foundations for this phase, not completion of its hosted ecosystem goals.
 
 Expand HR Skills from a single repository into a sustainable ecosystem with community contributions, interoperability, and long-term governance.
 
-#### 10.1 Ecosystem growth
+### 10.1 Ecosystem Growth
 
 * Community skill submissions
 * Skill certification or review status
 * Extension points for third-party skill packs
 * Ecosystem analytics and adoption metrics
 
-#### 10.2 Distribution and interoperability
+### 10.2 Distribution & Interoperability
 
 * Hosted registry or sync service
 * Plugin and marketplace expansion
 * External platform adapters
 * Cross-repository import/export workflows
 
-#### 10.3 Governance and sustainability
+### 10.3 Governance & Sustainability
 
 * Maintainer model for larger scope
 * Contribution pathways for domain experts
@@ -524,174 +125,64 @@ Expand HR Skills from a single repository into a sustainable ecosystem with comm
 
 ---
 
-## Validation & Quality System
+## HR/TA Product Initiatives
 
-HR Skills uses a multi-layer validation architecture.
+These are proposed product tracks that reuse the existing HR Skills ecosystem. They are intentionally separate from Phases 8–10 until requirements, ownership, data models, and delivery plans are formally approved.
 
-### Generic Validation Layer
+### HR/TA CV Builder
 
-Provided by:
+Explore a CV Builder that composes role- and locale-specific JSON templates from the existing skill ecosystem.
 
-```text
-hr-skills-ref
-```
+Potential scope:
 
-Responsibilities:
+* Role presets such as Talent Acquisition, Recruiter, HR Business Partner, and related HR/TA roles
+* Country, language, seniority, industry, and job-description alignment
+* JSON-first templates validated with TypeScript and Valibot
+* Web preview and export without coupling templates to presentation components
 
-* Agent Skills specification compliance
-* Schema validation
-* Format consistency
+### HR/TA JD Builder
 
----
+Build a companion JD Builder that composes structured, role- and locale-specific job descriptions from the same skill ecosystem and template registry.
 
-### Repository Policy Layer
+Potential scope:
 
-Provided by:
+* Position, department, reporting-line, and seniority context
+* Employment type and work arrangement
+* Country and language localization
+* Compensation transparency and legally sensitive wording review
+* Inclusive-language checks
+* Responsibilities, qualifications, success metrics, and interview-process content
+* Employer-brand sections
+* JSON-first templates with guided editing, preview, revision history, localization, and export
 
-```text
-hr-skills-build
-```
+### Shared Product Foundation
 
-Responsibilities:
+The CV Builder and JD Builder should share:
 
-* Frontmatter validation
-* Content quality checks
-* Required sections
-* Skill structure validation
-* Security checks
+* Common role taxonomy
+* Locale and language model
+* Skills-to-role mapping
+* Validation layer
+* Template versioning
+* Preview and export primitives
 
----
+Region-specific legal or compensation guidance must remain explicit, reviewable, and configurable rather than being silently inferred.
 
-### Security Validation
+Preferred delivery order:
 
-Implemented checks include:
-
-* Dangerous shell commands
-* Sensitive path writes
-* Suspicious external URLs
-* Credential leakage patterns
-* Hidden Unicode characters
-* Prompt injection indicators
-
-Validation command:
-
-```bash
-bun run validate
-```
+1. Discovery and domain modeling
+2. Shared template infrastructure
+3. CV Builder and JD Builder verticals
+4. Integration with the hosted Phase 8 services
 
 ---
 
-## CI/CD & Automation
+## Roadmap Rules
 
-### Current Workflows
+* **Active or planned work** belongs in this file.
+* **Completed milestones** belong in [`HISTORY.md`](HISTORY.md).
+* **Release/version changes** belong in [`../CHANGELOG.md`](../CHANGELOG.md).
+* **Implementation details** belong in the relevant `docs/engineering/`, `docs/operations/`, or `docs/integrations/` document.
+* Do not move completed work back into this file merely to preserve historical context; link to `HISTORY.md` instead.
 
-| Workflow          | Purpose                        |
-| ----------------- | ------------------------------ |
-| lint.yml          | Code and documentation quality |
-| test.yml          | Automated testing              |
-| typecheck.yml     | Type validation                |
-| validate.yml      | Skill quality validation       |
-| knip.yml          | Dead code detection            |
-| matrix.yml        | Skill maturity generation      |
-| release.yml       | Changesets release automation  |
-| publish.yml       | Tag-triggered npm/dist publish |
-| skill-review.yml  | Automated PR skill review      |
-
----
-
-### Release System
-
-The project uses Changesets for release management.
-
-Workflow:
-
-```text
-Change
-  |
-Changeset
-  |
-Release workflow
-  |
-Version update
-  |
-GitHub Release
-```
-
-Commands:
-
-```bash
-bun changeset
-
-bun run release
-```
-
----
-
-## Future Direction
-
-### Skill Intelligence & Quality Automation
-
-Now tracked as [Phase 6](#phase-6--skill-intelligence--quality-automation)
-under Development Phases, since both had grown concrete enough to scope
-as a phase rather than stay as an open-ended list here.
-
----
-
-### Ecosystem Expansion
-
-Potential directions:
-
-* Publish stable packages
-* Improve Agent Skills interoperability — tracked in
-  [`docs/integrations/README.md`](integrations/README.md)
-* Support additional AI platforms — see the Supported platforms table in
-  [`docs/integrations/README.md`](integrations/README.md) for current 🟢/🟡 status
-* Build HR AI tooling ecosystem
-
-### HR/TA Product Initiatives
-
-These initiatives are proposed product tracks that reuse the existing HR Skills ecosystem. They are intentionally separate from the completed Phase 7 web experience and the remaining hosted Phase 8 API and Services scope until their requirements, ownership, data model, and delivery plan are formally approved.
-
-#### HR/TA CV Builder
-
-Explore an HR/TA CV Builder that composes role- and locale-specific JSON templates from the existing skill ecosystem. The product should support role presets such as Talent Acquisition, Talent Acquisition Specialist, Recruiter, HR Business Partner, and related HR/TA positions, while allowing country, language, seniority, industry, and job-description alignment to influence the generated CV structure. The initial template contract should remain JSON-first so it can be validated with TypeScript and Valibot, rendered in the web application, previewed, and exported without coupling templates to presentation components.
-
-#### HR/TA JD Builder
-
-Build a companion HR/TA JD Builder that composes structured, role- and locale-specific job descriptions from the same skill ecosystem and template registry. It should support position presets, department and reporting-line context, seniority, employment type, work arrangement, country and language, compensation transparency, legally sensitive wording review, inclusive-language checks, required and preferred qualifications, responsibilities, success metrics, interview-process content, and configurable employer-brand sections. The builder should provide a JSON-first template contract validated with TypeScript and Valibot, a guided editor with preview and revision history, reusable section-level templates, localization-aware output, and export formats suitable for ATS, career sites, internal approvals, and recruiter handoff.
-
-The CV Builder and JD Builder should share a common role taxonomy, locale and language model, skills-to-role mapping, validation layer, template versioning, and preview/export primitives. They must not silently invent legal or compensation requirements; region-specific guidance should be explicit, reviewable, and configurable. The preferred delivery order is discovery and domain modeling first, followed by shared template infrastructure, then CV/JD builder verticals, and finally integration with the remaining hosted Phase 8 services. These initiatives are not part of Phase 7 or Phase 8 until separately scoped.
-
----
-
-## Success Metrics
-
-| Area           | Direction                                  |
-| -------------- | ------------------------------------------ |
-| Skill Coverage | Maintain broad HR domain coverage          |
-| Skill Quality  | Increase Full maturity percentage          |
-| Validation     | Keep automated quality gates reliable      |
-| Security       | Prevent unsafe skill content               |
-| Documentation  | Keep generated and human docs synchronized |
-| Community      | Enable external contribution               |
-
----
-
-## Glossary
-
-| Term          | Definition                                                    |
-| ------------- | ------------------------------------------------------------- |
-| Skill         | A versioned Agent Skill package focused on one HR domain      |
-| SKILL.md      | Core skill definition file                                    |
-| Full Skill    | Skill containing documentation, prompts, and examples         |
-| Partial Skill | Skill with additional content but missing some optional areas |
-| Bare Skill    | Skill containing only SKILL.md                                |
-| Meta Skill    | Internal skill used by AI agents for repository maintenance   |
-| Router        | Root skill responsible for routing requests                   |
-| Matrix        | Generated report describing skill maturity                    |
-| Validate      | Automated quality and security validation                     |
-| Sync          | Marketplace metadata regeneration                             |
-
----
-
-Last updated: September 9, 2026
+Last updated: September 14, 2026
