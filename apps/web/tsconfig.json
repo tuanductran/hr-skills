@@ -1,13 +1,9 @@
 {
+	"extends": "../../tsconfig.json",
 	"compilerOptions": {
-		"target": "ES2022",
-		"lib": ["dom", "esnext"],
+		"lib": ["dom", "dom.iterable", "esnext"],
 		"jsx": "preserve",
 		"module": "esnext",
-		"moduleResolution": "bundler",
-		"strict": true,
-		"skipLibCheck": true,
-		"noEmit": true,
 		"plugins": [
 			{
 				"name": "next"
@@ -16,8 +12,7 @@
 		"allowJs": true,
 		"incremental": true,
 		"esModuleInterop": true,
-		"resolveJsonModule": true,
-		"isolatedModules": true
+		"resolveJsonModule": true
 	},
 	"include": [
 		"**/*.ts",

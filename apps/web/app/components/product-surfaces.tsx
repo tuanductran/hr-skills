@@ -8,6 +8,7 @@ import type {
 } from 'hr-skills-build/client';
 import Link from 'next/link';
 import { useMemo, useState } from 'react';
+import type { ReleaseEntry } from '../lib/docs';
 
 function ChevronIcon() {
 	return (
@@ -304,12 +305,7 @@ export function EvaluationDashboard({ data }: { readonly data: EvaluationData })
 	);
 }
 
-interface ReleaseData {
-	readonly id: string;
-	readonly packages: Array<{ readonly name: string; readonly bump: string }>;
-	readonly summary: string;
-}
-export function ReleaseViewer({ entries }: { readonly entries: ReleaseData[] }) {
+export function ReleaseViewer({ entries }: { readonly entries: ReleaseEntry[] }) {
 	return (
 		<section className='surface-stack'>
 			<div className='surface-intro'>

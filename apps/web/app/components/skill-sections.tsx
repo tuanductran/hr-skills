@@ -33,7 +33,9 @@ interface SkillSectionsProps {
 
 /** Independently expandable Markdown sections (skill Prompts / Examples). */
 export function SkillSections({ sections }: SkillSectionsProps) {
-	const defaultValue = sections.length === 1 ? [sections[0].fileName] : [];
+	const [firstSection] = sections;
+	const defaultValue =
+		sections.length === 1 && firstSection ? [firstSection.fileName] : [];
 
 	return (
 		<Accordion.Root

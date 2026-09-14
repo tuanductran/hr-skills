@@ -103,9 +103,12 @@ export async function getReleaseEntries(): Promise<ReleaseEntry[]> {
 		files.sort().map(async (file) => {
 			const source = await readFile(join(directory, file), 'utf8');
 			const [, frontmatter = '', summary = ''] = source.split('---', 3);
-			const packages = [...frontmatter.matchAll(/"([^"]+)":\s+(\w+)/g)].map(
-				(match) => ({ name: match[1], bump: match[2] }),
-			);
+			const packages = [...frontmatter.matchAll(/"([^"]+)":\s+(\w+)/g)]
+				.map((match) => ({ name: match[1], bump: match[2] }))
+				.filter(
+					(pkg): pkg is { name: string; bump: string } =>
+						pkg.name !== undefined && pkg.bump !== undefined,
+				);
 			return { id: file.replace(/\.md$/, ''), packages, summary: summary.trim() };
 		}),
 	);

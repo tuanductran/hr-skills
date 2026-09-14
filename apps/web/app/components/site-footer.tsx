@@ -7,7 +7,12 @@ export function SiteFooter() {
 				<p>Documentation generated from the HR Skills repository source.</p>
 				<div>
 					<Link href='/skills'>Skill catalog</Link>
-					<a href='https://github.com/tuanductran/hr-skills'>View source</a>
+					<a
+						href='https://github.com/tuanductran/hr-skills'
+						rel='noreferrer'
+						target='_blank'>
+						View source
+					</a>
 				</div>
 			</div>
 		</footer>

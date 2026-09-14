@@ -37,8 +37,8 @@ export function SkillCatalog({ data, registry }: SkillCatalogProps) {
 						{
 							text: query,
 							fuzzy: false,
-							domain: (domain || undefined) as SkillCategory | undefined,
 							limit: data.skillCount,
+							...(domain ? { domain: domain as SkillCategory } : {}),
 						},
 						registry,
 					)

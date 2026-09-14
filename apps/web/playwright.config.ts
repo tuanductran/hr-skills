@@ -1,19 +1,21 @@
 import { defineConfig, devices } from '@playwright/test';
 
-const baseURL = process.env.PLAYWRIGHT_BASE_URL ?? 'http://127.0.0.1:3010';
+const isCI = Boolean(process.env['CI']);
+const baseURL = process.env['PLAYWRIGHT_BASE_URL'] ?? 'http://127.0.0.1:3010';
+const chromiumExecutablePath = process.env['PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH'];
 
 export default defineConfig({
 	testDir: './e2e',
 	fullyParallel: true,
-	forbidOnly: Boolean(process.env.CI),
-	retries: process.env.CI ? 2 : 0,
-	workers: process.env.CI ? 1 : undefined,
+	forbidOnly: isCI,
+	retries: isCI ? 2 : 0,
+	...(isCI ? { workers: 1 } : {}),
 	reporter: [['list'], ['html', { open: 'never' }]],
 	use: {
 		baseURL,
 		trace: 'on-first-retry',
-		launchOptions: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH
-			? { executablePath: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH }
+		launchOptions: chromiumExecutablePath
+			? { executablePath: chromiumExecutablePath }
 			: {},
 	},
 	projects: [
@@ -29,7 +31,7 @@ export default defineConfig({
 	webServer: {
 		command: 'bun run dev -- --port 3010',
 		url: baseURL,
-		reuseExistingServer: !process.env.CI,
+		reuseExistingServer: !isCI,
 		stdout: 'ignore',
 		stderr: 'pipe',
 		timeout: 120_000,

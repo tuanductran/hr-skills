@@ -103,7 +103,9 @@ export function SiteHeader() {
 					</DropdownMenu.Root>
 					<a
 						className='site-nav__github'
-						href='https://github.com/tuanductran/hr-skills'>
+						href='https://github.com/tuanductran/hr-skills'
+						rel='noreferrer'
+						target='_blank'>
 						GitHub <span aria-hidden='true'>↗</span>
 					</a>
 				</nav>
@@ -151,7 +153,10 @@ export function SiteHeader() {
 							<DropdownMenu.Item
 								asChild
 								className='nav-menu-item'>
-								<a href='https://github.com/tuanductran/hr-skills'>
+								<a
+									href='https://github.com/tuanductran/hr-skills'
+									rel='noreferrer'
+									target='_blank'>
 									GitHub ↗
 								</a>
 							</DropdownMenu.Item>
