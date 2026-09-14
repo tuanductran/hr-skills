@@ -4,4 +4,5 @@ dist
 .turbo
 CHANGELOG.md
 docs/engineering/skill-matrix.md
-CLAUDE.md
+test-results
+playwright-report

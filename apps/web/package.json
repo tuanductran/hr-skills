@@ -1,7 +1,17 @@
 {
+	"$schema": "https://json.schemastore.org/package.json",
 	"name": "hr-skills-web",
 	"version": "0.0.0",
 	"private": true,
+	"description": "Web documentation and product surfaces for the HR Skills registry — catalog, planner, runtime trace, evaluation, and changelog.",
+	"type": "module",
+	"license": "MIT",
+	"author": "Tuan Duc Tran",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/tuanductran/hr-skills.git",
+		"directory": "apps/web"
+	},
 	"scripts": {
 		"dev": "next dev",
 		"build": "next build",

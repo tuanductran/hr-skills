@@ -18,10 +18,14 @@
 	},
 	"license": "MIT",
 	"author": "Tuan Duc Tran",
+	"homepage": "https://github.com/tuanductran/hr-skills/tree/main/packages/hr-skills#readme",
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/tuanductran/hr-skills.git",
 		"directory": "packages/hr-skills"
+	},
+	"bugs": {
+		"url": "https://github.com/tuanductran/hr-skills/issues"
 	},
 	"keywords": [
 		"hr",
