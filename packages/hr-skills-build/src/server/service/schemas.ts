@@ -18,8 +18,8 @@ export const SearchRequestSchema = v.pipe(
 				]),
 			),
 		),
-		limit: v.optional(v.number()),
-		maxResults: v.optional(v.number()),
+		limit: v.optional(v.pipe(v.number(), v.integer(), v.minValue(1))),
+		maxResults: v.optional(v.pipe(v.number(), v.integer(), v.minValue(1))),
 		fuzzy: v.optional(v.boolean()),
 	}),
 	v.transform(

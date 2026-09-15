@@ -57,6 +57,7 @@ export interface VersionInfo {
 	phase: string;
 	apiVersions: {
 		health: string;
+		readiness: string;
 		version: string;
 		search: string;
 		planner: string;
