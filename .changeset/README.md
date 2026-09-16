@@ -16,9 +16,9 @@ Follow the interactive prompts to select the bump type (major / minor / patch) a
 
 Do **not** run `bun changeset version` locally and push straight to `main`.
 `.github/workflows/release.yml` already does this for you on every push to
-`main`: it runs `bun run validate`, then `changesets/action@v1`, which opens
+`main`: it runs `bun run validate`, then `changesets/action@v1.9.0`, which opens
 (or updates) a `chore(release): version packages` pull request that
-consumes every pending changeset, bumps `package.json`, and updates
+consumes every pending changeset, bumps package versions, and updates
 `CHANGELOG.md`. Running `bun changeset version` manually beforehand
 consumes the changesets yourself, so the workflow has nothing left to put
 in that PR.
@@ -32,7 +32,7 @@ in that PR.
 # 3. Tag and push from the updated main — this is a maintainer action;
 #    no workflow creates the git tag itself.
 git pull
-git tag v$(node -p "require('./package.json').version")
+git tag v$(node -p "require('./packages/hr-skills/package.json').version")
 git push --tags
 
 # 4. Pushing the tag triggers .github/workflows/publish.yml, which builds
