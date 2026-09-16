@@ -39,10 +39,20 @@ jobs:
       - name: Generate skill registry
         run: bun run registry
 
-      - name: Commit updated skill matrix and registry
+      - name: Synchronize plugin manifests and skill router
+        run: bun run sync
+
+      - name: Commit updated generated artifacts
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add docs/engineering/skill-matrix.md registry/skills.json
-          git diff --cached --quiet || git commit -m "chore(docs): regenerate skill registry and matrix [skip ci]"
+          git add \
+            docs/engineering/skill-matrix.md \
+            registry/skills.json \
+            .claude-plugin/marketplace.json \
+            .claude-plugin/plugin.json \
+            .codex-plugin/plugin.json \
+            .agents/plugins/marketplace.json \
+            SKILL.md
+          git diff --cached --quiet || git commit -m "chore(docs): regenerate skill artifacts [skip ci]"
           git push
