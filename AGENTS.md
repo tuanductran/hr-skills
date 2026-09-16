@@ -12,13 +12,15 @@ This file is the canonical, tool-agnostic entry point for both human contributor
 > **Never develop on the `main` branch.**
 >
 > - `main` is the **publishing branch** and only contains released skills.
-> - `dev` is the **development branch** where all feature work, fixes, and content updates should occur.
-> - Always create pull requests against `dev`, not `main`.
+> - `dev` is the **development branch** where feature work, fixes, experiments, and content updates occur directly.
+> - Pull requests are opened against `main` when changes from `dev` are ready for release.
 
 | Branch | Purpose | Direct commits |
 |--------|---------|----------------|
 | `main` | Publishing (`npx hr-skills --help`) | Forbidden |
-| `dev` | Development, tests, experiments | Via PR only |
+| `dev` | Development, tests, experiments | Allowed |
+
+CI runs automatically on every push to `dev`. The protected `main` branch accepts changes through pull requests with the required status checks.
 
 ## Quick start
 
@@ -80,4 +82,4 @@ When you add a new skill directory (for example `skills/hr-new-skill/SKILL.md`),
 | `docs/engineering/package-architecture.md` | Canonical client/server package boundaries and import rules |
 | `.claude/rules/package-architecture.md` | Path-scoped enforcement guidance for client/server imports |
 
-This repository uses Bun workspaces with Turborepo task orchestration; the packages above live under `packages/*`, and their build outputs are cached through Turborepo based on `turbo.jsonc`.
+This repository uses Bun workspaces with Turborepo task orchestration; the packages above live under `packages/*`, and their build outputs are cached through `turbo.jsonc`.

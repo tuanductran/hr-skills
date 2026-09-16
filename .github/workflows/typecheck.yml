@@ -1,8 +1,10 @@
 name: Type Check
 
 on:
+  push:
+    branches: [dev]
   pull_request:
-    branches: [main, dev]
+    branches: [main]
 
 permissions:
   contents: read

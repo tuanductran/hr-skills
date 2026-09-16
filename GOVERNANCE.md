@@ -80,10 +80,11 @@ contributor-docs proposal (item 3) and the `[Unknown]` review-SLA notes in
 [`docs/engineering/contributing/workflow.md`](docs/engineering/contributing/workflow.md) and
 [`docs/engineering/contributing/onboarding.md`](docs/engineering/contributing/onboarding.md).
 
-### 1. Automated gates (required, apply to every PR)
+### 1. Automated gates (required, apply to every PR to `main`)
 
-Every PR must pass CI before a maintainer reviews content — this is not
-negotiable per-PR and is enforced by `.github/workflows/`:
+Every PR to `main` must pass CI before a maintainer reviews content. The
+protected `main` ruleset requires the repository's CI checks to pass before
+merge:
 
 - `bun run validate` — `SKILL.md` spec compliance
 - `bun run check` / `bun run lint` / `bun run lint:md` / `bun run lint:links`
@@ -95,6 +96,9 @@ negotiable per-PR and is enforced by `.github/workflows/`:
 A PR failing any of these is not ready for human review — fix the failure
 first. See [`docs/engineering/contributing/workflow.md`](docs/engineering/contributing/workflow.md)
 for what each command checks.
+
+Pushes to `dev` run the same core CI workflows automatically, so direct
+development commits are validated without requiring a PR to `dev`.
 
 ### 2. Manual review criteria (by content type)
 
@@ -121,11 +125,10 @@ pass doesn't cover.
 
 ### 3. Approval
 
-`.github/CODEOWNERS` requires the listed owner's approval before merge —
-today that means every PR needs @tuanductran's review, since there is one
-owner for the whole tree. There is no separate "approved by two
-maintainers" rule because there is currently only one; this document will be
-updated if and when `CODEOWNERS` gains area-scoped owners.
+`.github/CODEOWNERS` identifies the repository owner for review and
+ownership, but approval is not currently a required merge condition. The
+`main` ruleset currently permits zero required approving reviews; the
+maintainer reviews and decides whether to merge each PR.
 
 ### 4. Response time
 
@@ -231,5 +234,5 @@ for prioritization) — not needed yet.
 - [`docs/ROADMAP.md`](docs/ROADMAP.md) — project vision and phased goals
 - [`docs/operations/release.md`](docs/operations/release.md) — release lifecycle and versioning
 - [`docs/integrations/README.md`](docs/integrations/README.md) — supported platforms
-- [`.github/CODEOWNERS`](.github/CODEOWNERS) — enforced review requirement
+- [`.github/CODEOWNERS`](.github/CODEOWNERS) — repository ownership and review routing
 - [`.agents/skills/skill-vetter/SKILL.md`](.agents/skills/skill-vetter/SKILL.md) — security review checklist for skill content

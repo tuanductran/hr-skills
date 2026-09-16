@@ -48,7 +48,7 @@ Directory name rules: lowercase, hyphens only, must start with `hr-`.
 
 ### 2. Write SKILL.md
 
-Use the canonical template in [`.github/skill-template.md`](../.github/skill-template.md).
+Use the canonical template in [`.github/skill-template.md`](.github/skill-template.md).
 
 See [`docs/engineering/format.md`](./docs/engineering/format.md) for the full specification.
 
@@ -74,9 +74,9 @@ Update the root router at `.agents/skills/hr-root-router-maintaining` so your sk
 
 ### 5. Open a pull request
 
-- Target the `dev` branch (never `main` directly)
-- Include a short description of the HR domain the skill covers
-- Confirm all listed checks pass in the PR description
+- Push development changes directly to `dev`
+- Open a pull request from `dev` to `main` when the changes are ready for release
+- Confirm the required `main` checks pass before merge
 
 ## Improving an existing skill
 
@@ -104,7 +104,7 @@ Changes there should:
 
 ## Review process
 
-Pull requests are reviewed by the repository owner (see
+Pull requests to `main` are reviewed by the repository owner (see
 [`.github/CODEOWNERS`](.github/CODEOWNERS)). The working target is an
 initial response within 7 days; every PR gets an explicit signal
 (approve, requested changes, or a reason it's paused) rather than sitting
