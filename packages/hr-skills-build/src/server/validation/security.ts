@@ -200,19 +200,20 @@ export function validateCredentialLeaks(
 	);
 }
 
-// Zero-width, invisible, bidi-control, and private-use characters can hide
-// injected instructions or alter the visual/logical order of text.
+// These patterns intentionally omit the global flag because RegExp.test()
+// retains lastIndex for global expressions. The validators are reused across
+// many skills, so stateful regexes here could otherwise miss a later match.
 const HIDDEN_UNICODE_RANGES = [
-	/\u200B/g,
-	/\u200C/g,
-	/\u200D/g,
-	/\u200E/g,
-	/\u200F/g,
-	/[\u202A-\u202E]/g, // LRE, RLE, PDF, LRO, RLO
-	/[\u2066-\u2069]/g, // LRI, RLI, FSI, PDI
-	/\uFEFF/g,
-	/\u2060/g,
-	/[\uE000-\uF8FF]/g,
+	/\u200B/,
+	/\u200C/,
+	/\u200D/,
+	/\u200E/,
+	/\u200F/,
+	/[\u202A-\u202E]/, // LRE, RLE, PDF, LRO, RLO
+	/[\u2066-\u2069]/, // LRI, RLI, FSI, PDI
+	/\uFEFF/,
+	/\u2060/,
+	/[\uE000-\uF8FF]/,
 ];
 
 export function validateHiddenUnicode(
