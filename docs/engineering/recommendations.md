@@ -1,6 +1,6 @@
 # Skill Recommendations
 
-> Exposes the [Skill Registry](registry.md)'s existing `relatedSkills` graph as a user-facing
+> Exposes the [Skill Registry](registry.md)'s `relatedSkills` graph as a user-facing
 > "skills you might also need" API, instead of leaving it as internal
 > [Planner](planner.md) input only.
 
@@ -11,10 +11,10 @@
 already-computed `relatedSkills` list from a `Registry` object (as produced
 from `registry/skills.json`) and returns it in a stable, documented shape.
 
-This is a read-only lookup layer, not a new ranking system. The ranking
-itself already exists — `rankRelatedSkills()` in
-`packages/hr-skills-build/src/server/registry/registry.ts` computes it once, at registry
-generation time, and this module simply surfaces that result.
+This is a read-only lookup layer, not a separate ranking system. The ranking
+is performed during registry generation by `buildRegistry()` in
+`packages/hr-skills-build/src/server/registry/registry.ts`; this module simply
+surfaces that result.
 
 ## Recommendation format
 
@@ -40,15 +40,17 @@ requested `skillId` plus its ranked `recommendations`, capped at `limit`
 ## Ranking rule
 
 Recommendations preserve the order already present in
-`RegistryEntry.relatedSkills` — same-domain skills ranked by shared-tag
-overlap, ties broken alphabetically (see [`registry.md`'s field
-notes](registry.md#field-notes)). This module does not re-rank, re-score,
-or introduce any new signal:
+`RegistryEntry.relatedSkills`. The registry starts with same-domain skills
+ranked by shared-tag overlap, then can blend observed usage/co-selection
+signals from `registry/relevance-signals.json` through `reRankRelatedSkills()`.
+Maintainer-approved relationships in `RELATED_SKILL_OVERRIDES` can also be
+preserved before the final five-item cap.
 
-- No AI ranking, embeddings, or runtime heuristics.
+This module does not re-rank, re-score, or introduce a new signal:
+
+- No AI ranking or embeddings.
 - No parsing of `SKILL.md` — the only input is a `Registry` object.
-- Deterministic — the same registry state and skill ID always produce the
-  same output, in the same order.
+- Deterministic for a given generated registry and skill ID.
 
 A dangling `relatedSkills` reference (an ID no longer present in the
 registry) is silently skipped rather than surfaced or thrown — registry
@@ -96,13 +98,13 @@ additive.
 
 ## Limitations
 
-- Capped at 5 recommendations per skill by default (matching the cap
-  already applied when `relatedSkills` is generated) — there is no larger
-  pool to page through.
-- Recommendations only ever come from the same `domain` as the source
-  skill, because that's what `relatedSkills` was computed from. Cross-domain
+- Capped at 5 recommendations per skill by default; the generated registry
+  currently caps `relatedSkills` at five after applying ranking and overrides.
+- Recommendations come from the same `domain` as the source skill because
+  the registry's related-skill candidate pool is same-domain. Cross-domain
   suggestions are out of scope for this module.
-- Static per registry generation — recommendations only change when
-  `registry/skills.json` is regenerated (`bun run registry`), not in
-  response to usage patterns. Usage-informed weighting is tracked
-  separately as future roadmap work.
+- Recommendations change when the generated registry changes. The registry
+  can incorporate `registry/relevance-signals.json`, so usage-informed
+  weighting is part of the current generation pipeline rather than a future
+  roadmap-only feature. The signal artifact is optional; without it, the
+  registry falls back to static tag-overlap ranking.
