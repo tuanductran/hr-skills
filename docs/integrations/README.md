@@ -1,7 +1,6 @@
 # Ecosystem Integrations
 
-> Phase 5 of the [roadmap](../ROADMAP.md) — extending HR Skills interoperability
-> across AI agent platforms and marketplaces.
+> How HR Skills extends interoperability across AI agent platforms and marketplaces.
 
 ## What it is
 
@@ -50,7 +49,8 @@ a supported integration target — see
 
 🟢 Supported = works today with no repository changes.
 🟡 Candidate = compatible with the architecture, no generated adapter exists
-yet. Adding one is a Phase 5 task, not a redesign.
+yet. New adapters belong in the active roadmap rather than this document's
+phase numbering.
 
 ## Installation & onboarding
 
@@ -199,4 +199,4 @@ integration patterns" principle this document follows.
 - [`docs/engineering/format.md`](../engineering/format.md) — skill package structure and maturity tiers
 - [`docs/engineering/registry.md`](../engineering/registry.md) — machine-readable skill index used by
   generated adapters
-- [`docs/ROADMAP.md`](../ROADMAP.md) — Phase 5, Community & Distribution
+- [`docs/ROADMAP.md`](../ROADMAP.md) — active and planned project work
