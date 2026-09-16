@@ -25,8 +25,16 @@ You will receive a response within 72 hours. Once a fix is confirmed, a patch wi
 
 This repository contains HR prompt content (Markdown) and TypeScript build tooling. Security concerns most likely to apply:
 
-- **Dependency vulnerabilities** in `package.json` devDependencies
-- **Supply chain issues** in the Bun/Node ecosystem packages used by the build tooling
-- **Sensitive data** accidentally committed (for example credentials, personal information)
+- **Dependency vulnerabilities** in `package.json` dependencies and devDependencies
+- **Supply-chain issues** in the Bun/Node ecosystem packages used by the build tooling
+- **Sensitive data** accidentally committed (for example credentials or personal information)
+- **Prompt-injection and instruction-safety risks** in skill content consumed by AI agents
+- **Generated-artifact integrity** when manifests or registries are produced from skill metadata
 
-Prompt content itself (the `SKILL.md` files) does not execute code and poses no direct security risk.
+`SKILL.md` files do not execute code by themselves, but they are instruction content that an AI agent may read and follow. They can therefore carry prompt-injection, unsafe-instruction, misleading-link, credential-disclosure, or other supply-chain risks. The repository's security validators scan skill content for several known dangerous patterns, but those checks are defense-in-depth rather than a proof that content is safe.
+
+When evaluating a report involving skill content, distinguish between:
+
+1. **Repository execution risk** — whether the repository tooling executes something unexpectedly.
+2. **Agent instruction risk** — whether a skill can cause an AI agent or downstream integration to take an unsafe or unintended action.
+3. **Distribution integrity risk** — whether generated manifests or packaged skill content differ from the canonical source.
