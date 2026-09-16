@@ -9,40 +9,29 @@
  *  2. Sensitive path write patterns (/etc/, /root/, ~/.ssh/, etc.)
  *  3. Suspicious external URLs (IP addresses, known data-exfil patterns)
  *  4. Credential leak patterns (tokens, secrets, passwords in content)
- *  5. Hidden Unicode (zero-width chars, homoglyphs used for prompt injection)
+ *  5. Hidden Unicode (zero-width chars, bidi controls, private-use chars)
  */
 
 import type { SkillValidationIssue } from '../shared/types.js';
 import { checkPatternList, pushIssue } from './issue-helpers.js';
 
-// ---------------------------------------------------------------------------
-// 1. Dangerous shell command patterns
-// ---------------------------------------------------------------------------
-
 const DANGEROUS_COMMANDS: ReadonlyArray<{ pattern: RegExp; label: string }> = [
 	{ pattern: /rm\s+-rf?\s+[/~]/, label: 'rm -rf targeting root or home path' },
 	{ pattern: /chmod\s+[0-7]*7[0-7]{2}\s/, label: 'chmod with world-write permission' },
 	{
-		// [^|\n]* instead of .* — eliminates O(n) backtracking when no pipe is present
 		pattern: /curl\s+[^|\n]*\|\s*(bash|sh)/,
 		label: 'curl piped to shell (remote code execution)',
 	},
 	{
-		// [^|\n]* instead of .* — same fix as curl
 		pattern: /wget\s+[^|\n]*\|\s*(bash|sh)/,
 		label: 'wget piped to shell (remote code execution)',
 	},
 	{
-		// [^$\n]* instead of .* — stops at $ so no backtracking through subshell chars
 		pattern: /eval\s*\([^$\n]*\$\(/,
 		label: 'eval with subshell substitution',
 	},
 	{ pattern: />\s*\/dev\/sd[a-z]/, label: 'write to raw block device' },
-	{
-		// [^\n]* instead of .* — newline-bounded, avoids cross-line backtracking
-		pattern: /dd\s+[^\n]*of=\/dev\//,
-		label: 'dd targeting raw device',
-	},
+	{ pattern: /dd\s+[^\n]*of=\/dev\//, label: 'dd targeting raw device' },
 	{ pattern: /mkfs\s+/, label: 'mkfs — formats a filesystem' },
 	{ pattern: /:\(\)\{:\|:&\}/, label: 'fork bomb pattern' },
 	{
@@ -51,20 +40,11 @@ const DANGEROUS_COMMANDS: ReadonlyArray<{ pattern: RegExp; label: string }> = [
 	},
 ];
 
-/**
- * Scans fenced shell code blocks in a skill's content for destructive command
- * patterns (raw device writes, `mkfs`, fork bombs, piped base64 decodes).
- *
- * @param skillName - Skill ID, used to attribute reported issues.
- * @param content - Full skill content (e.g. `SKILL.md` body) to scan.
- * @param errors - Mutated in place with one {@link SkillValidationIssue} per match.
- */
 export function validateSecurityCommands(
 	skillName: string,
 	content: string,
 	errors: SkillValidationIssue[],
 ): void {
-	// Only scan code blocks — shell commands in prose context are informational
 	const codeBlockRegex = /```(?:bash|sh|shell|zsh)?\n([\s\S]*?)```/g;
 	const blocks = [...content.matchAll(codeBlockRegex)].map((m) => m[1] ?? '');
 
@@ -80,10 +60,6 @@ export function validateSecurityCommands(
 	}
 }
 
-// ---------------------------------------------------------------------------
-// 2. Sensitive path write patterns
-// ---------------------------------------------------------------------------
-
 const SENSITIVE_PATHS: ReadonlyArray<{ pattern: RegExp; label: string }> = [
 	{ pattern: />\s*\/etc\//, label: 'write to /etc/' },
 	{ pattern: />\s*\/root\//, label: 'write to /root/' },
@@ -95,15 +71,6 @@ const SENSITIVE_PATHS: ReadonlyArray<{ pattern: RegExp; label: string }> = [
 	{ pattern: />\s*\/tmp\/[^'"\s]*\.(sh|py|js|rb)/, label: 'write executable to /tmp/' },
 ];
 
-/**
- * Scans fenced code blocks for writes to sensitive filesystem paths
- * (`/etc/`, `/root/`, `~/.ssh/`, shell rc files, `/usr/local/bin/`, `/tmp/`
- * executables).
- *
- * @param skillName - Skill ID, used to attribute reported issues.
- * @param content - Full skill content to scan.
- * @param errors - Mutated in place with one {@link SkillValidationIssue} per match.
- */
 export function validateSensitivePaths(
 	skillName: string,
 	content: string,
@@ -123,24 +90,8 @@ export function validateSensitivePaths(
 	);
 }
 
-// ---------------------------------------------------------------------------
-// 3. Suspicious external URLs
-// ---------------------------------------------------------------------------
-
 const URL_REGEX = /https?:\/\/[^\s<>"')]+/gi;
 
-/**
- * Known data-exfiltration / request-inspection hosts.
- *
- * Includes all current ngrok tunnel domains:
- *   - ngrok.io      — legacy v2 tunnels
- *   - ngrok.app     — v3 tunnels (HSTS preloaded)
- *   - ngrok.dev     — v3 dev tunnels (HSTS preloaded)
- *   - ngrok-free.app / ngrok-free.dev — v3 free-tier static domains
- *
- * The suffix-walk in isSuspiciousHost() means any subdomain of these
- * (e.g. abc123.ngrok.app, my-tunnel.eu.ngrok.io) is also caught.
- */
 const SUSPICIOUS_HOSTS = new Set([
 	'ngrok.io',
 	'ngrok.app',
@@ -163,31 +114,18 @@ function normalizeHost(hostname: string): string {
 function isSuspiciousHost(hostname: string): string | undefined {
 	const host = normalizeHost(hostname);
 
-	if (RAW_IP.test(host)) {
-		return 'raw IP address';
-	}
+	if (RAW_IP.test(host)) return 'raw IP address';
 
 	const labels = host.split('.');
 
 	for (let i = 0; i < labels.length; i++) {
 		const candidate = labels.slice(i).join('.');
-
-		if (SUSPICIOUS_HOSTS.has(candidate)) {
-			return candidate;
-		}
+		if (SUSPICIOUS_HOSTS.has(candidate)) return candidate;
 	}
 
 	return undefined;
 }
 
-/**
- * Flags URLs pointing at raw IP addresses, known suspicious hosts, or
- * plain-text mentions of exfiltration services (e.g. requestbin).
- *
- * @param skillName - Skill identifier, used to attribute any issues found.
- * @param content - Raw skill markdown to scan.
- * @param errors - Issue list to push findings onto (mutated in place).
- */
 export function validateSuspiciousUrls(
 	skillName: string,
 	content: string,
@@ -196,12 +134,9 @@ export function validateSuspiciousUrls(
 	for (const match of content.matchAll(URL_REGEX)) {
 		try {
 			const url = new URL(match[0]);
-
 			const suspicious = isSuspiciousHost(url.hostname);
 
-			if (!suspicious) {
-				continue;
-			}
+			if (!suspicious) continue;
 
 			pushIssue(
 				errors,
@@ -215,7 +150,6 @@ export function validateSuspiciousUrls(
 		}
 	}
 
-	// requestbin is commonly referenced as plain text instead of a hostname.
 	if (/\brequestbin\b/i.test(content)) {
 		pushIssue(
 			errors,
@@ -224,10 +158,6 @@ export function validateSuspiciousUrls(
 		);
 	}
 }
-
-// ---------------------------------------------------------------------------
-// 4. Credential leak patterns
-// ---------------------------------------------------------------------------
 
 const CREDENTIAL_PATTERNS: ReadonlyArray<{ pattern: RegExp; label: string }> = [
 	{
@@ -256,14 +186,6 @@ const CREDENTIAL_PATTERNS: ReadonlyArray<{ pattern: RegExp; label: string }> = [
 	},
 ];
 
-/**
- * Flags content matching known credential/secret patterns (API keys,
- * hardcoded passwords, GitHub/OpenAI/Slack/AWS token shapes).
- *
- * @param skillName - Skill identifier, used to attribute any issues found.
- * @param content - Raw skill markdown to scan.
- * @param errors - Issue list to push findings onto (mutated in place).
- */
 export function validateCredentialLeaks(
 	skillName: string,
 	content: string,
@@ -278,31 +200,21 @@ export function validateCredentialLeaks(
 	);
 }
 
-// ---------------------------------------------------------------------------
-// 5. Hidden Unicode (prompt injection / homoglyph attacks)
-// ---------------------------------------------------------------------------
-
-// Zero-width and invisible characters often used to hide injected instructions
+// Zero-width, invisible, bidi-control, and private-use characters can hide
+// injected instructions or alter the visual/logical order of text.
 const HIDDEN_UNICODE_RANGES = [
-	/\u200B/g, // zero-width space
-	/\u200C/g, // zero-width non-joiner
-	/\u200D/g, // zero-width joiner
-	/\u200E/g, // left-to-right mark
-	/\u200F/g, // right-to-left mark
-	/\uFEFF/g, // byte order mark / zero-width no-break space
-	/\u2060/g, // word joiner
-	/[\uE000-\uF8FF]/g, // private use area (unexpected in markdown)
+	/\u200B/g,
+	/\u200C/g,
+	/\u200D/g,
+	/\u200E/g,
+	/\u200F/g,
+	/[\u202A-\u202E]/g, // LRE, RLE, PDF, LRO, RLO
+	/[\u2066-\u2069]/g, // LRI, RLI, FSI, PDI
+	/\uFEFF/g,
+	/\u2060/g,
+	/[\uE000-\uF8FF]/g,
 ];
 
-/**
- * Flags zero-width, directional-override, and private-use-area Unicode
- * characters — commonly used to hide injected instructions in text that
- * looks clean when rendered.
- *
- * @param skillName - Skill identifier, used to attribute any issues found.
- * @param content - Raw skill markdown to scan.
- * @param errors - Issue list to push findings onto (mutated in place).
- */
 export function validateHiddenUnicode(
 	skillName: string,
 	content: string,
@@ -315,19 +227,11 @@ export function validateHiddenUnicode(
 				skillName,
 				'Security: hidden Unicode character detected — potential prompt injection or encoding attack',
 			);
-			// Report once per skill, not once per character type
 			return;
 		}
 	}
 }
 
-/**
- * Run all security validators on skill content.
- *
- * @param skillName - Skill identifier, used to attribute any issues found.
- * @param content - Raw skill markdown to scan.
- * @param errors - Issue list to push findings onto (mutated in place).
- */
 export function validateSecurityChecks(
 	skillName: string,
 	content: string,
