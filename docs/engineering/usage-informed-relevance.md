@@ -6,368 +6,129 @@
 
 ## Why this exists
 
-Today the registry generates `relatedSkills` deterministically from static
-metadata: up to five other skills in the same domain, ranked by shared-tag
-overlap and tied alphabetically.
+The registry generates `relatedSkills` from static metadata and, when the committed relevance-signal table is available, observed co-selection evidence. Static structure provides the baseline; usage evidence can promote or surface skills that are actually selected together in planning scenarios.
 
-This is a strong, low-noise baseline — but it is blind to actual usage.  Two
-skills that are frequently chosen together by the Planner for real user intents
-may belong to different domains and carry no overlapping tags.  Structural
-similarity and observed co-selection are complementary signals.
-
-Phase 6.1 defines a deterministic pipeline for blending these two signals
-without changing any existing registry behavior, introducing runtime learning,
-or depending on undocumented external services.
-
----
+Phase 6.1 defines a deterministic pipeline for blending these signals without runtime learning or undocumented external services. The signal table is generated from committed golden fixtures and consumed at registry-generation time.
 
 ## Architecture overview
 
 ```text
 Evidence Sources (read-only, committed)
   eval/golden/*.golden.json
-          │
-          ▼
-  generate-relevance-signals.ts  (CLI)
-          │
-          ▼
-  relevance-signals.ts           (pure functions)
-   ├── extractCoSelectionCounts()
-   ├── extractSkillObservationCounts()
-   ├── computeSignals()
-   └── buildRelevanceSignalTable()
-          │
-          ▼
-  registry/relevance-signals.json  (committed generated artifact)
-          │
-          ▼
-  registry.ts  buildRegistry(signalTable?)
-   ├── rankRelatedSkills()      ← static tag-overlap (unchanged)
-   └── reRankRelatedSkills()    ← blended ranking (optional)
-          │
-          ▼
-  registry/skills.json          (committed generated artifact)
+          |
+          v
+  generate-relevance-signals.ts
+          |
+          v
+  relevance-signals.ts
+          |
+          v
+  registry/relevance-signals.json
+          |
+          v
+  registry.ts buildRegistry(signalTable?)
+   |-- rankRelatedSkills()      <- static tag-overlap baseline
+   `-- reRankRelatedSkills()    <- blended ranking / cross-domain surfacing
+          |
+          v
+  registry/skills.json
 ```
-
----
 
 ## Separation of responsibilities
 
 | Layer | File | Responsibility |
 |---|---|---|
-| **Observation** | `eval/golden/*.golden.json` | Committed golden fixtures — the only evidence source currently supported. |
+| **Observation** | `eval/golden/*.golden.json` | Committed golden fixtures — the current evidence source. |
 | **Signal generation** | `relevance-signals.ts` | Pure functions that convert observations into a normalised weight table. |
-| **Signal CLI** | `generate-relevance-signals.ts` | Reads fixtures from disk, calls `buildRelevanceSignalTable`, writes `registry/relevance-signals.json`. |
-| **Registry generation** | `registry.ts` `buildRegistry(signalTable?)` | Optionally merges the signal table into `relatedSkills` at build time. |
-| **Recommendation** | Registry consumers (Planner, Phase 6.1 UI) | Read the committed `registry/skills.json` — no awareness of how weights were computed. |
+| **Signal CLI** | `generate-relevance-signals.ts` | Reads fixtures and writes `registry/relevance-signals.json`. |
+| **Registry generation** | `registry.ts` `buildRegistry(signalTable?)` | Applies the signal table to `relatedSkills` when available. |
+| **Recommendation** | Registry consumers | Read the resolved registry; they do not perform runtime signal learning. |
 
-**No layer performs runtime learning.**  The signal table is a static,
-committed file.  The Planner and any recommendation UI only read the
-fully-resolved registry.
-
----
+**No layer performs runtime learning.** The signal table is a static, committed file.
 
 ## Evidence sources
 
 ### Golden fixtures (`eval/golden/*.golden.json`)
 
-Each golden fixture records the ordered `skillIds` selected by the Planner for
-a set of planning scenarios.  When two skill IDs appear in the same result's
-`skillIds` list, that is one **co-selection observation**.
-
-| Property | Value |
-|---|---|
-| What is observed | Pairs of skill IDs that the Planner selected together for a real intent |
-| Why it is useful | Direct evidence of which skills are used together — not just structurally similar |
-| Deterministic? | Yes — golden fixtures are committed, immutable files |
-| Privacy concerns? | None — fixtures contain only skill IDs and counts, no user data |
-| Reproducibility? | Yes — same fixtures always produce the same signal table |
+Each golden fixture records the ordered `skillIds` selected by the Planner for planning scenarios. When two skill IDs appear in the same result, that is one co-selection observation.
 
 ### Future evidence sources (not yet implemented)
 
-The architecture is designed to accept additional fixture-like inputs in the
-future.  Examples include:
-
-- **Curated co-selection datasets** — hand-authored tables expressing known
-  domain expertise ("these skills should always be recommended together").
-- **Organisation-specific signal files** — optional files outside the
-  repository that local deployments can supply to personalise recommendations.
-- **Self-hosted telemetry** — opt-in runtime logging that can be periodically
-  reduced to a golden-fixture-compatible format and committed.
-
-None of these future sources are required by the current implementation.  The
-`buildRelevanceSignalTable()` function accepts any array of `GoldenFixture`
-objects — additional sources just contribute more entries to that array.
-
----
+The architecture can accept additional fixture-like inputs in the future, including curated co-selection tables, organisation-specific signal files, and optional self-hosted telemetry reduced to the golden-fixture format. None of these sources are required by the current implementation.
 
 ## Signal processing
 
-### Collection
-
-`loadAllGoldenFixtures()` in `evaluation-datasets.ts` discovers and loads every
-committed `*.golden.json` file from `eval/golden/`, sorted by dataset name for
-deterministic ordering.
-
-### Normalisation
-
-Each planning-scenario result's `skillIds` list contributes:
-
-- **Bidirectional co-selection counts** — for every unordered pair `(A, B)` in
-  the list, both `(A → B)` and `(B → A)` counts are incremented.
-- **Per-skill observation counts** — for every ID in the list, the skill's
-  appearance count is incremented.
-
-Results with fewer than two skill IDs are skipped (no pair to observe).
-
-### Aggregation
+`loadAllGoldenFixtures()` discovers committed `*.golden.json` files from `eval/golden/` in deterministic order. Each scenario contributes bidirectional co-selection counts and per-skill observation counts.
 
 ```text
-coSelectionRate(A → B) = coSelectionCount(A, B) / observationCount(A)
+coSelectionRate(A -> B) = coSelectionCount(A, B) / observationCount(A)
 ```
 
-This is the fraction of plans that contained skill A in which skill B also
-appeared.  It is bounded to [0.0, 1.0] by construction.
+The aggregated table is written to `registry/relevance-signals.json` and committed as a static artifact.
 
-### Persistence
-
-The aggregated signal table is written to `registry/relevance-signals.json`
-and **committed to the repository** — the same pattern used by
-`registry/skills.json` and `docs/engineering/skill-matrix.md`.  It is a static artifact,
-not a database or runtime cache.
-
-### Versioning
-
-`RelevanceSignalTable.schemaVersion` (currently `1`) is incremented for
-breaking shape changes.  The `generatedAt` field records the ISO date the
-table was produced; it is informational and does not affect determinism of
-signal values.
-
-### Regeneration
+Regenerate it with:
 
 ```bash
 bun run signals
-# or, from packages/hr-skills-build:
-bun run signals
 ```
 
-Regenerate whenever golden fixtures change (after `bun run evaluate
---update-golden`).  Commit the updated `registry/relevance-signals.json`
-alongside the fixture changes.
-
----
+Regenerate whenever golden fixtures change and commit the updated signal artifact alongside those fixture changes.
 
 ## Registry integration
 
-### How signals are applied
+`buildRegistry(signalTable?)` accepts an optional `RelevanceSignalTable`. When present:
 
-`buildRegistry(signalTable?)` accepts an optional `RelevanceSignalTable`.
-When present:
-
-1. `indexSignalsBySource(table)` builds a `Map<sourceSkill, Map<targetSkill, rate>>`
-   for O(1) per-skill lookups.
-2. For each skill, the static tag-overlap `relatedSkills` list is computed as
-   before (unchanged).
-3. `reRankRelatedSkills(skillId, staticRelated, signalIndex)` blends the two
-   signals:
+1. `indexSignalsBySource(table)` builds efficient per-source lookups.
+2. The deterministic static tag-overlap `relatedSkills` list is computed as the baseline.
+3. `reRankRelatedSkills()` blends static relevance with observed co-selection evidence.
 
 ```text
 blendedScore = staticScore × (1 − OBSERVED_WEIGHT)
              + observedRate × OBSERVED_WEIGHT
 ```
 
-where `staticScore` decays linearly from 1.0 for the top-ranked static entry.
-`OBSERVED_WEIGHT` is currently `0.3` — conservative, since the evaluation
-dataset is small.  Ties are broken alphabetically, consistent with the static
-ranker.
+`OBSERVED_WEIGHT` is currently `0.3`. Ties remain deterministic. The re-ranker can also surface strongly observed skills that were not present in the static list, including cross-domain co-selections. `RELATED_SKILL_OVERRIDES` can preserve maintainer-approved relationships before the final five-item cap.
 
-`reRankRelatedSkills` can also surface skills that were **not** in the static
-list but appear strongly in observed evidence (cross-domain co-selections).
+### Current generation behavior
 
-### Where the signal table lives
+`generate-registry.ts` loads `registry/relevance-signals.json` when the file is present and valid, then passes it to `buildRegistry()`. Therefore the default registry generation path is signal-aware. If the signal file is absent or invalid, generation falls back to deterministic static ranking.
 
-`registry/relevance-signals.json` sits alongside `registry/skills.json`.  Both
-are generated, committed artifacts.
+`validate-registry.ts` uses the same signal table when recomputing the expected registry, so validation matches the generation path.
 
-### Backward compatibility
-
-When `buildRegistry()` is called without a `signalTable` argument — the
-default, and the current behavior of `generate-registry.ts` and `validate.ts`
-— it behaves exactly as before.  The static `relatedSkills` ranking is
-unchanged.  No existing tests break.
-
-To opt into signal-augmented registry generation, the caller loads
-`registry/relevance-signals.json` and passes it:
-
-```typescript
-import { buildRegistry } from './registry.js';
-import type { RelevanceSignalTable } from './types.js';
-import signalData from '../../registry/relevance-signals.json' assert { type: 'json' };
-
-const registry = await buildRegistry(signalData as RelevanceSignalTable);
-```
-
----
+The recommendation CLI also loads the relevance signal table so ad-hoc recommendations match the committed signal-aware registry.
 
 ## Determinism guarantees
 
 | Guarantee | How it is maintained |
 |---|---|
-| Same fixtures → same signal table | `buildRelevanceSignalTable` is a pure function; fixture array is sorted by dataset name before processing |
-| Stable output ordering | Signals are sorted by `sourceSkill` then `targetSkill` (string comparison); `relatedSkills` ties broken alphabetically |
-| No runtime mutation | The signal table is a static committed file; the registry is never mutated at runtime |
-| No wall-clock non-determinism | `generatedAt` is injected by the CLI, not by any pure function; pure functions produce identical results regardless of when they run |
-| No floating-point non-determinism | `coSelectionRate` is a simple integer ratio; `blendedScore` uses only addition and multiplication of bounded floats |
-| Schema integrity | `schemaVersion` guards against consuming a table with a shape the current code does not understand |
-
----
+| Same fixtures -> same signal table | Pure signal functions and deterministic fixture ordering |
+| Stable output ordering | Stable signal ordering and alphabetical tie-breaking |
+| No runtime mutation | The signal table is a static committed artifact |
+| No wall-clock non-determinism | `generatedAt` is informational and injected by the CLI |
+| Schema integrity | `schemaVersion` guards the signal-table shape |
 
 ## Implementation roadmap
 
-### Phase 6.1-A — Signal infrastructure (this PR)
+### Phase 6.1-A — Signal infrastructure
 
-**Status: Delivered.**
-
-**Objective:** Introduce the signal processing pipeline and its generated
-artifact.  No change to the default registry output.
-
-**Deliverables:**
-
-- `src/client/search/relevance-signals.ts` — pure signal functions and `RelevanceSignalTable`
-  type.
-- `packages/hr-skills/src/cli/generate-relevance-signals.ts` — CLI entry point.
-- `evaluation-datasets.ts` — `loadAllGoldenFixtures()` added.
-- `constants.ts` — `RELEVANCE_SIGNALS_PATH` added.
-- `registry.ts` — `buildRegistry(signalTable?)` — optional signal integration,
-  backwards-compatible.
-- `registry/relevance-signals.json` — initial generated artifact from the
-  existing golden fixtures.
-- `test/relevance-signals.test.ts` — full unit-test coverage.
-- `docs/engineering/usage-informed-relevance.md` — this document.
-- `package.json` / `turbo.jsonc` — `signals` script and Turborepo task.
-
-**Dependencies:** Phase 4.4 (Evaluation framework) — golden fixtures must
-exist before signals can be generated.
-
-**Expected output:** `registry/relevance-signals.json` committed alongside
-existing golden fixtures; default registry output unchanged.
+**Status: Delivered.** Introduced signal processing and the generated relevance artifact without changing the default registry output at that stage.
 
 ### Phase 6.1-B — Signal-augmented registry generation
 
-**Status: Delivered.**
+**Status: Delivered.** Wired the signal table into default registry generation and added validation/test coverage for signal-aware output, including cross-domain surfacing and stale-registry detection.
 
-**Objective:** Wire the signal table into the default registry generation and
-validate that the blended `relatedSkills` output is regression-free.
+### Phase 6.1-C — Recommendation surface
 
-**Deliverables:**
-
-- `generate-registry.ts` loads `registry/relevance-signals.json` via the new
-  `loadRelevanceSignalTable()` (in `registry.ts`) when present and passes it
-  to `buildRegistry()`. Absent or invalid (bad JSON, wrong `schemaVersion`)
-  falls back to the static, signal-free ranking — no hard failure.
-- `validate-registry.ts` fixes a staleness-check bug this wiring would
-  otherwise introduce (it previously recomputed the "expected" registry with
-  `buildRegistry()` and no signal table, which would make a signal-blended
-  committed `skills.json` always look stale) — the check now loads and
-  passes the same signal table `generate-registry.ts` uses.
-- `validate-registry.ts` adds `validateRelatedSkillsAgainstSignals()`,
-  which warns (does not fail the build) when a high-evidence signal
-  (`coSelectionRate ≥ 0.5` and `observedCount ≥ 2`) is absent from a
-  skill's `relatedSkills` — wired into `validate.ts`'s existing
-  warnings group alongside duplicate-detection and semantic-validation.
-- `test/registry/registry.test.ts` expanded with signal-augmented
-  `buildRegistry()` coverage, `loadRelevanceSignalTable()` coverage, and a
-  dedicated `validateRelatedSkillsAgainstSignals()` suite.
-- `registry/relevance-signals.json` and `registry/skills.json` regenerated
-  (`bun run signals && bun run registry`) so the committed registry
-  actually reflects blended `relatedSkills`.
-
-**Dependencies:** Phase 6.1-A.
-
-### Phase 6.1-C — Recommendation surface (Phase 6.1 UI)
-
-**Status: Delivered** — as `getRecommendations()` in `search/recommendations.ts`
-(same `(skillId, registry, limit?)` shape and "reads the committed registry,
-no runtime signal computation" design this section originally called
-`recommendRelatedSkills()`; the name differs, the deliverable doesn't) plus
-the `bun run recommend` CLI (`cli/recommend.ts`). What Phase 6.1-B added on
-top: `cli/recommend.ts` now also loads `registry/relevance-signals.json` and
-passes it to `buildRegistry()`, so ad-hoc CLI recommendations match what's
-actually committed to `registry/skills.json` instead of silently falling
-back to static tag-overlap-only ranking.
-
-**Objective:** Surface `relatedSkills` as user-facing "skills you might also
-need" suggestions (the Recommendation engine milestone in the roadmap).
-
-**Deliverables:**
-
-- A `recommendRelatedSkills(skillId, registry, limit?)` helper that reads the
-  committed registry (no runtime signal computation).
-- Integration with the Planner or a future CLI `recommend` command.
-
-**Dependencies:** Phase 6.1-B, Phase 4.2 (Planner).
+**Status: Delivered** — as `getRecommendations()` in `search/recommendations.ts` plus the `bun run recommend` CLI. The CLI loads `registry/relevance-signals.json` so recommendations match the signal-aware committed registry.
 
 ### Phase 6.1-D — Richer evidence sources (future)
 
-**Objective:** Accept additional evidence beyond evaluation golden fixtures.
-
-**Candidates:**
-
-- Curated co-selection tables (`eval/curated/*.json` with the same
-  `GoldenFixture` shape).
-- Organisation-specific override files supplied at build time.
-- Optional self-hosted telemetry reduced to the `GoldenFixture` format.
-
-**Dependencies:** Phase 6.1-A (all three future sources are drop-in inputs to
-`buildRelevanceSignalTable` — no architectural change required).
-
----
+Accept additional evidence beyond evaluation golden fixtures, such as curated co-selection tables, organisation-specific overrides, or optional self-hosted telemetry reduced to the `GoldenFixture` format.
 
 ## Future evolution
 
-The architecture is deliberately conservative today because the evaluation
-dataset is small (eight scenarios in one fixture file).  As the dataset grows:
-
-- Increase `OBSERVED_WEIGHT` incrementally so observed evidence carries more
-  influence relative to structural similarity.
-- Add a minimum `observedCount` threshold below which a signal is not applied
-  (prevents sparse evidence from dominating).
-- Add per-domain weight tuning once per-domain observation counts are large
-  enough to be statistically meaningful.
-- Introduce `validateRelevanceSignalConsistency()` in `validate-registry.ts`
-  to fail CI when the committed signal table is stale relative to the golden
-  fixtures (same "recompute and diff" pattern used for `skills.json`).
-
-None of these require changes to the core architecture — they are tuning knobs
-and validation additions on top of the pipeline described here.
-
----
+The architecture is deliberately conservative because the evaluation dataset is small. As the dataset grows, observed weighting, evidence thresholds, and per-domain tuning can be revisited. These are tuning and validation additions rather than changes to the core architecture.
 
 ## Tests
 
-`test/relevance-signals.test.ts` covers:
-
-- `extractCoSelectionCounts` — bidirectional counting, solo-skill exclusion,
-  multi-fixture accumulation, determinism.
-- `extractSkillObservationCounts` — per-skill counts, multi-fixture totals,
-  determinism.
-- `computeSignals` — rate computation, stable sort, determinism, empty input.
-- `buildRelevanceSignalTable` — schema version, date injection, dataset
-  ordering, total observations, fixture-order invariance, empty input.
-- `indexSignalsBySource` — lookup correctness, empty table.
-- `reRankRelatedSkills` — promotion of high-evidence skills, limit parameter,
-  determinism, graceful fallback to static order, cross-domain surfacing,
-  self-reference exclusion.
-
-Delivered in Phase 6.1-B (`test/registry/registry.test.ts`):
-
-- `buildRegistry(signalTable)` produces `relatedSkills` lists that differ from
-  the no-signal baseline for skills with strong observed co-selection evidence
-  (including surfacing a signal-only pair absent from the static ranking),
-  and is unaffected for skills with no matching signals.
-- `loadRelevanceSignalTable()` — missing file, invalid JSON, mismatched
-  `schemaVersion`, missing/non-array `signals`, and the valid-table path.
-- `validateRelatedSkillsAgainstSignals()` — warns on a high-evidence pair
-  missing from `relatedSkills`, stays silent when already reflected, below
-  the rate/observation thresholds, or when `sourceSkill` is a dangling
-  reference; no-ops with no signal table.
+Signal tests cover extraction, aggregation, determinism, schema generation, indexing, and re-ranking. Registry tests cover signal-augmented `buildRegistry()`, signal-table loading, cross-domain surfacing, and signal-aware validation.
