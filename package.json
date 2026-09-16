@@ -79,7 +79,7 @@
 		"build-skills": "turbo run build-skills --filter=hr-skills-build",
 		"dev": "turbo run dev --filter=!hr-skills-monorepo",
 		"test": "turbo run test --filter=!hr-skills-monorepo",
-		"test:e2e": "turbo run test:e2e --filter=hr-skills-web",
+		"test:e2e": "turbo run test:e2e --filter=hr-skills-web --",
 		"typecheck": "turbo run typecheck --filter=!hr-skills-monorepo",
 		"check": "biome check .",
 		"lint": "biome check .",
