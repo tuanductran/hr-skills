@@ -65,11 +65,7 @@ Phase 8 is complete only when the hosted adapter is implemented, tested, documen
 
 ## Phase 9 — Intelligent Agent Platform
 
-### Phase 9 — Intelligent Agent Platform
-
 **Status: Not started.** Begin after the Phase 8 hosted-service boundary is stable so orchestration, approvals, audit trails, and policy enforcement can rely on stable service contracts.
-
-Turn HR Skills into an agentic platform for composing, running, and inspecting HR workflows.
 
 Turn HR Skills into an agentic platform for composing, running, and inspecting HR workflows.
 
