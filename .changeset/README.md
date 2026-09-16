@@ -1,6 +1,6 @@
 # Changesets
 
-This directory is used by [Changesets](https://github.com/changesets/changesets) to manage versioning and changelog generation for `hr-skills`.
+This directory is used by [Changesets](https://github.com/changesets/changesets) to manage versioning and changelog generation for `hr-skills` and the workspace packages that participate in release bookkeeping.
 
 ## Workflow
 
@@ -12,14 +12,16 @@ bun changeset
 
 Follow the interactive prompts to select the bump type (major / minor / patch) and describe the change. A `.md` file will be created in this directory — commit it alongside your changes.
 
+The repository enables Changesets versioning for private workspace packages with `privatePackages.version: true` and `privatePackages.tag: false`. This lets internal packages such as `hr-skills-build` participate in version history and changelogs without creating release tags for them. Do not treat a private package as an npm-published artifact.
+
 ### Releasing (maintainer only)
 
 Do **not** run `bun changeset version` locally and push straight to `main`.
 `.github/workflows/release.yml` already does this for you on every push to
 `main`: it runs `bun run validate`, then `changesets/action@v1.9.0`, which opens
 (or updates) a `chore(release): version packages` pull request that
-consumes every pending changeset, bumps package versions, and updates
-`CHANGELOG.md`. Running `bun changeset version` manually beforehand
+consumes every pending changeset, bumps participating package versions, and
+updates `CHANGELOG.md`. Running `bun changeset version` manually beforehand
 consumes the changesets yourself, so the workflow has nothing left to put
 in that PR.
 
