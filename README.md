@@ -1,79 +1,46 @@
 # HR Skills
 
-A comprehensive library of domain-specific Agent Skills for Human Resources professionals, designed for AI-powered HR workflows using Claude.ai, Claude Code, and other Agent Skills–compatible platforms.
+A reusable library of **Agent Skills for HR, Talent Acquisition, and technical recruiting**. Built for AI-assisted HR workflows with structured domain knowledge, prompts, examples, and reusable workflows.
 
 Built by [Tuan Duc Tran](https://linkedin.com/in/tuanductran) for the **HR/TA Job Onsite/Hybrid/Remote** community.
 
-HR Skills follows the open **Agent Skills** specification and provides structured, reusable building blocks that help AI agents perform HR tasks consistently, safely, and with domain-specific expertise.
+## What’s Inside
 
-## What's Inside
-
-HR Skills covers the complete employee lifecycle together with strategic HR, workforce planning, organizational effectiveness, AI adoption, and HR technology.
-
-### Core HR Functions
+HR Skills covers the employee lifecycle, strategic HR, recruiting, analytics, HR technology, and AI adoption.
 
 - Talent Acquisition & Recruiting
 - Onboarding & Offboarding
-- Performance Management
-- Career Development & Succession Planning
+- Performance & Career Development
 - Compensation & Benefits
 - Learning & Development
-- Employee Experience
-- HR Business Partnering
-
-### Strategy & Analytics
-
-- Workforce Planning
-- HR Analytics
-- Workforce Intelligence
-- Talent Intelligence
-- Skills Intelligence
-- Strategic Planning
-- Organizational Design
-- Organizational Development
-- Change & Transformation
-
-### HR Technology & AI
-
-- HR Technology
-- HR Automation
-- Prompt Engineering for HR
-- Agentic AI for HR
-- AI Governance
-- AI Adoption
-- AI Evaluation
-
-### Specialized Domains
-
-- Compliance & Labor Relations
-- Culture & Engagement
-- Wellbeing
-- Diversity, Equity & Inclusion
-- Global HR
+- Employee Experience & HRBP
+- Workforce & Talent Intelligence
+- Organizational Design & Development
+- HR Analytics & Workforce Planning
+- HR Technology & Automation
+- AI Adoption, Governance & Evaluation
 - Technical Recruiting
-- Vietnam HR & Labor Law
+- Compliance, Labor Relations & Vietnam HR
 
-> **Skill maturity is continuously generated.** See [`docs/engineering/skill-matrix.md`](docs/engineering/skill-matrix.md) for the latest inventory and maturity status.
+Each skill is organized as a reusable package built around `SKILL.md`, with supporting knowledge and examples where needed.
 
 ## Quick Start
 
-### Claude Code (Recommended)
+### Claude Code
 
-Install a single skill:
+Install a skill:
 
 ```bash
 cp -r skills/hr-recruiting ~/.claude/skills/
 ```
 
-Install the complete library:
+Or install the HR skill collection:
 
 ```bash
 cp -r skills/hr-* ~/.claude/skills/
 ```
 
-Once installed, simply describe your HR task. Claude Code automatically discovers and loads the most relevant skills.
-
-Example:
+Then describe the HR task you want the agent to perform.
 
 ```text
 Create competency-based interview questions for a Senior Product Manager.
@@ -81,122 +48,59 @@ Create competency-based interview questions for a Senior Product Manager.
 
 ### Claude.ai
 
-1. Create or open a Project.
-2. Upload the desired `SKILL.md` file to Project Knowledge.
-3. Start chatting.
+Create or open a Project, then upload the required `SKILL.md` files to Project Knowledge.
 
-Multiple skills can be combined to support more complex HR workflows.
+For packaged downloads such as `hr-skills.zip` or `hr-skills.skill`, see [`docs/product/USER.md`](docs/product/USER.md).
 
-### Downloaded a package?
+## Skill Structure
 
-If you have `hr-skills.zip` or `hr-skills.skill` instead of a clone of this
-repository, see [`docs/product/USER.md`](docs/product/USER.md) — it covers
-loading the package into Claude, ChatGPT, and other AI tools.
+```text
+skill-name/
+├── SKILL.md       # Instructions and metadata
+├── content/       # Domain knowledge and references
+├── prompts/       # Reusable prompt templates
+└── examples/      # Practical examples
+```
 
-### Examples
+The generated [Skill Matrix](docs/engineering/skill-matrix.md) is the authoritative inventory and maturity view.
 
-See [`examples/`](examples/README.md) for practical, end-to-end usage:
-single-skill prompt → expected output examples, multi-skill HR workflows
-(hiring, onboarding, succession), and how to drive the same workflows
-programmatically with the [Skill Planner](docs/engineering/planner.md) and
-[Workflow Runtime](docs/engineering/runtime.md).
-
-## Available Skills
-
-The repository contains a broad collection of HR Agent Skills organized by functional domain.
-
-Key navigation documents:
-
-- **Router:** [`SKILL.md`](SKILL.md) — Master routing guide for all skills
-- **Skill Matrix:** [`docs/engineering/skill-matrix.md`](docs/engineering/skill-matrix.md) — Generated inventory and maturity status
-- **Roadmap:** [`docs/ROADMAP.md`](docs/ROADMAP.md) — Project vision, architecture, and future direction
-- **Ecosystem Integrations:** [`docs/integrations/README.md`](docs/integrations/README.md) — Supported platforms, installation guides, and compatibility testing strategy
-- **Release Process:** [`docs/operations/release.md`](docs/operations/release.md) — Release lifecycle, versioning strategy, validation checklist, and release notes workflow
-- **Governance:** [`GOVERNANCE.md`](GOVERNANCE.md) — Roles, review and approval workflow, ownership, and roadmap feedback process
-
-The Skill Matrix is the authoritative source for repository coverage and maturity.
-
-## What Are Agent Skills?
-
-Agent Skills are reusable prompt packages that extend AI assistants with specialized domain expertise.
-
-Each HR Skill follows a consistent structure:
-
-- **SKILL.md** — Core capability definition
-- **content/** — Domain knowledge and reference material
-- **prompts/** — Reusable prompt templates
-- **examples/** — Practical HR scenarios and example interactions
-
-Together, these components provide reusable, version-controlled building blocks for HR AI workflows.
-
-## Repository Structure
+## Repository
 
 ```text
 hr-skills/
-├── apps/                         # Web documentation and Discord bot
-├── packages/                    # CLI, libraries, build tooling, and API docs
-├── skills/                      # Source HR skills
-├── docs/                        # Engineering, product, operations, and integration docs
-├── examples/                    # End-to-end and planner/runtime examples
-├── registry/                    # Generated registry artifacts
-├── .agents/                     # Repository maintenance skills
-├── .claude/                     # Claude Code commands, prompts, rules, and hooks
-├── .claude-plugin/              # Generated marketplace metadata
-└── SKILL.md                    # Root skill router
+├── skills/        # HR Agent Skills
+├── apps/          # Web and bot applications
+├── packages/      # CLI and supporting libraries
+├── docs/          # Project documentation
+├── examples/      # End-to-end examples
+└── registry/      # Generated skill registry
 ```
 
-See [`AGENTS.md`](AGENTS.md) for the canonical path guide and
-[`docs/engineering/package-architecture.md`](docs/engineering/package-architecture.md)
-for package boundaries.
+Useful entry points:
+
+- [`SKILL.md`](SKILL.md) — master skill router
+- [`docs/engineering/skill-matrix.md`](docs/engineering/skill-matrix.md) — skill inventory
+- [`docs/ROADMAP.md`](docs/ROADMAP.md) — project direction
+- [`CONTRIBUTING.md`](CONTRIBUTING.md) — contribution guide
+- [`GOVERNANCE.md`](GOVERNANCE.md) — project governance
 
 ## Development
 
-HR Skills is built as a Bun + Turborepo monorepo.
-
-Core commands:
+HR Skills uses **Bun + Turborepo**.
 
 ```bash
 bun install
 bun run build
 bun run validate
 bun run matrix
-```
-
-Quality commands:
-
-```bash
-bun run lint
-bun run lint:md
-bun run test:e2e
-bun run typecheck
 bun run check
 ```
 
-Release commands:
-
-```bash
-bun run changeset
-bun run release
-```
-
-For additional scripts, see [`package.json`](package.json).
-
-## Packages
-
-| Package           | Purpose                                                                  |
-| ----------------- | ------------------------------------------------------------------------ |
-| `hr-skills`       | Publishable `npx hr-skills` / `bunx hr-skills` command-line package       |
-| `hr-skills-build` | Validation, matrix generation, metadata synchronization, and runtime tooling |
-| `hr-skills-ref`   | TypeScript library with explicit client and Bun/Node server surfaces     |
-| `hr-skills-tsdoc` | TSDoc-compatible API documentation generator for all public packages    |
+See [`package.json`](package.json) for the complete command list.
 
 ## Contributing
 
-Contributions are welcome. See [`CONTRIBUTING.md`](CONTRIBUTING.md) for the step-by-step
-guide and [`GOVERNANCE.md`](GOVERNANCE.md) for how review, ownership, and roadmap feedback
-work.
-
-Before opening a pull request, ensure the repository passes validation:
+Contributions are welcome. Before opening a pull request:
 
 ```bash
 bun install
@@ -204,7 +108,7 @@ bun run validate
 bun run matrix
 ```
 
-Follow the Conventional Commits specification for commit messages.
+See [`CONTRIBUTING.md`](CONTRIBUTING.md) for the full workflow.
 
 ## License
 
