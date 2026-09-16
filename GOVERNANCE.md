@@ -220,8 +220,8 @@ Issues/Discussions and `docs/ROADMAP.md` itself — for a solo-maintainer
 project, adding a second prioritization surface would fragment feedback
 rather than concentrate it. **[Proposed]** If the contributor base grows
 enough that issue volume makes triage hard, revisit this (for example,
-GitHub's built-in reactions/upvotes on Discussions could become the
-signal for prioritization) — not needed yet.
+GitHub's built-in reactions/upvotes on Discussions could become the signal
+for prioritization) — not needed yet.
 
 ## Related documents
 
