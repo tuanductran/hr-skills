@@ -23,25 +23,9 @@ Two designs were considered:
 2. **Generate a registry** from existing content and a small amount of
    already-existing classification logic.
 
-Option 2 was chosen because:
-
-- It keeps `SKILL.md` focused on its current job (human-readable skill
-  documentation) instead of turning it into a metadata store that all skills
-  would need to be kept in sync by hand.
-- Almost all of the metadata the registry needs **already exists** somewhere
-  in the repository — it just isn't indexed in one machine-readable place:
-  - Domain + tags → `classifySkill()` in `packages/hr-skills-build/src/server/registry/classifier.ts`
-    (already used to build the root `SKILL.md` router)
-  - Capabilities → the `## Supported tasks` section, already parsed by
-    `parseSkillMeta()`
-  - Trigger phrases → the `## Key prompts` section, already parsed by
-    `parseSkillMeta()`
-  - Tier (full/partial/bare) → subdirectory presence, already computed for
-    `docs/engineering/skill-matrix.md`
-- Generating the registry from these existing sources means there is exactly
-  one place each fact is authored — the registry can never drift from
-  `SKILL.md` or the classifier the way hand-maintained duplicate metadata
-  would.
+Option 2 was chosen because it keeps `SKILL.md` focused on documentation,
+avoids manually maintained duplicate metadata, and derives registry data from
+existing repository sources.
 
 ## File location
 
@@ -51,10 +35,8 @@ registry/
 ```
 
 `registry/` sits at the repository root, as a sibling of `docs/`, `skills/`,
-and `packages/`. This matches the existing convention for other generated,
-committed artifacts (`docs/engineering/skill-matrix.md`, `.claude-plugin/marketplace.json`)
-rather than introducing a hidden `.generated/` directory — the registry is a
-first-class, browsable part of the repository, not build cache.
+and `packages/`. It is a generated, committed artifact rather than build
+cache.
 
 ## Schema
 
@@ -69,7 +51,7 @@ first-class, browsable part of the repository, not build cache.
       "name": "hr-onboarding",
       "version": "1.0.0",
       "description": "...",
-      "tier": "full",           // "full" | "partial" | "bare"
+      "tier": "full",
       "domain": "onboarding-offboarding",
       "tags": [],
       "aliases": ["onboarding"],
@@ -83,7 +65,7 @@ first-class, browsable part of the repository, not build cache.
 }
 ```
 
-The schema is defined with [valibot](https://valibot.dev) in
+The schema is defined with Valibot in
 `packages/hr-skills-build/src/client/shared/schema.ts` (`RegistrySchema`) and typed in
 `packages/hr-skills-build/src/client/shared/types.ts` (`Registry`, `RegistryEntry`). Bump
 `schemaVersion` (`REGISTRY_SCHEMA_VERSION` in `constants.ts`) if you make a
@@ -91,27 +73,20 @@ breaking change to the shape of an entry.
 
 ### Field notes
 
-- **`domain`** — one of the routing categories already defined in
-  `classifier.ts` (`talent-acquisition`, `compensation-rewards`, etc.), or
-  `uncategorized`.
-- **`tags`** — free-form cross-reference tags from the same classifier
-  (`engineering`, `ai`, `vietnam`, `core`, ...).
+- **`domain`** — one of the routing categories already defined by the
+  classifier, or `uncategorized`.
+- **`tags`** — free-form cross-reference tags from the same classifier.
 - **`aliases`** — one derived short-form lookup key per skill: the id with
-  its `hr-` prefix stripped (`hr-onboarding` → `onboarding`). Intentionally
-  simple; extend `deriveAliases()` in `registry.ts` if richer aliasing is
-  needed later.
-- **`dependencies`** — skill IDs a skill is commonly paired with, extracted
-  from `CATEGORY_META.preamble` in `classifier.ts`. Today only the
-  `technical-hiring` domain has a preamble (pointing technical specialist
-  skills at `hr-recruiting`, `hr-job-description`, `hr-interviewing`), so
-  only those skills have non-empty `dependencies`. This is deliberate — it's
-  real, already-authored guidance rather than a guessed dependency graph.
-- **`relatedSkills`** — up to 5 other skills in the same `domain`. Generation
-  first ranks candidates by shared-tag overlap, then optionally re-ranks them
-  with usage/co-selection signals from `registry/relevance-signals.json`.
-  `RELATED_SKILL_OVERRIDES` can preserve maintainer-approved relationships
-  before the final five-item cap. Without a relevance-signal table, the
-  ranking falls back to the deterministic tag-overlap order.
+  its `hr-` prefix stripped (`hr-onboarding` → `onboarding`).
+- **`dependencies`** — skill IDs commonly paired with a skill when that
+  relationship is explicitly authored by the classifier metadata.
+- **`relatedSkills`** — up to 5 other skills. Generation first creates a
+  deterministic static candidate ranking from shared-tag overlap. When the
+  committed relevance-signal table is available, observed co-selection
+  evidence can re-rank those candidates and can also surface strongly
+  observed cross-domain relationships. `RELATED_SKILL_OVERRIDES` can preserve
+  maintainer-approved relationships before the final five-item cap. Without a
+  relevance-signal table, generation falls back to the static ranking.
 
 ## Generation
 
@@ -121,72 +96,48 @@ bun run registry
 
 This runs `packages/hr-skills/src/cli/generate-registry.ts`, which calls
 the pure function `buildRegistry()` (`packages/hr-skills-build/src/server/registry/registry.ts`)
-and writes the result to `registry/skills.json`. `buildRegistry()` has no
-side effects, which is what lets validation reuse it (see below) instead of
-re-implementing the same logic.
+and writes the result to `registry/skills.json`.
 
-`buildRegistry()` builds the related-skill graph from current skill metadata.
-The static candidate ranking is deterministic for a given filesystem state;
-when `registry/relevance-signals.json` is available and valid, its observed
+When `registry/relevance-signals.json` is available and valid, its observed
 co-selection signals are incorporated into the related-skill order. The
 maintainer override map is applied before the final five-item cap.
 
 The generated file also contains `generatedAt` (today's date), so that field
-can change when the registry is regenerated even when the skill content does
-not. The committed registry is a generated artifact and should be refreshed
-through the repository's normal generation workflow rather than hand-edited.
+can change when the registry is regenerated even when skill content does not.
+The committed registry should be refreshed through the normal generation
+workflow rather than hand-edited.
 
 Regenerate the registry any time skills are added, removed, or reclassified,
 and commit the result — the same workflow as `bun run matrix`.
 
 ## Validation
 
-`bun run validate` (which every PR and the `validate.yml` / `matrix.yml` CI
-workflows already run) now also calls `validateRegistryConsistency()`
-(`packages/hr-skills-build/src/server/validation/validate-registry.ts`), which checks:
-
-1. **File exists and is valid JSON** conforming to `RegistrySchema`.
-2. **Staleness** — recomputes the registry in memory via `buildRegistry()`
-   and deep-compares it to the committed file (ignoring `generatedAt`). If
-   they differ, validation fails with instructions to rerun
-   `bun run registry`. This is the same "recompute and diff" pattern already
-   used for `marketplace.json` and the root `SKILL.md` router.
-3. **Duplicate IDs.**
-4. **Dangling references** — every ID in `dependencies` and `relatedSkills`
-   must resolve to a real skill in the registry.
-5. **Circular dependencies** — an iterative depth-first search (no recursion
-   depth limit) over the `dependencies` graph, run from every skill.
-
-All failures report a skill ID and an actionable message, consistent with
-every other validator in `validate.ts`.
+`bun run validate` checks registry consistency by recomputing the expected
+registry with the same signal-aware generation path and comparing it with the
+committed artifact, while ignoring `generatedAt`. It also checks schema
+validity, duplicate IDs, dangling references, and circular dependencies.
 
 ## Build integration
 
 - `packages/hr-skills/package.json` — `registry` script
-  (`bun run registry`)
 - root `package.json` — `registry` script
-  (`turbo run registry --filter=hr-skills`)
-- `turbo.jsonc` — `registry` task (uncached, output `registry/skills.json`)
-- `.github/workflows/matrix.yml` — regenerates and commits
-  `registry/skills.json` on every push to `main`, alongside
-  `docs/engineering/skill-matrix.md`
+- `turbo.jsonc` — `registry` task
+- `.github/workflows/matrix.yml` — regenerates and commits the registry on
+  pushes to `main`
 - `bun run validate` — fails CI if the committed registry is stale or
-  internally inconsistent (see above)
+  internally inconsistent
 
 ## Extension guidelines
 
-- **Adding a field to every entry:** add it to `RegistryEntry`
-  (`types.ts`), `RegistryEntrySchema` (`schema.ts`), and populate it in
-  `buildRegistry()` (`registry.ts`). Prefer deriving it from something that
-  already exists in the repository (frontmatter, a `SKILL.md` section, the
-  classifier) over introducing a new manually maintained source of truth.
+- **Adding a field to every entry:** add it to `RegistryEntry` (`types.ts`),
+  `RegistryEntrySchema` (`schema.ts`), and populate it in `buildRegistry()`.
+  Prefer deriving it from existing repository sources over introducing a new
+  manually maintained source of truth.
 - **Bumping the schema:** increment `REGISTRY_SCHEMA_VERSION` in
-  `constants.ts` for breaking shape changes (removing/renaming a field,
-  changing a field's type). Additive, optional fields don't require a bump.
+  `constants.ts` for breaking shape changes. Additive optional fields do not
+  require a bump.
 - **New validation rules:** add them to `validateRegistryConsistency()` in
-  `validate-registry.ts`, following the existing pattern of pushing
-  `{ skill, message }` issues rather than throwing.
-- **Consuming the registry from other packages:** import
-  `buildRegistry()` from `hr-skills-build/server` rather than reading and
-  re-parsing `registry/skills.json` by hand, the same way
-  `sync.ts` and `validate.ts` already do.
+  `validate-registry.ts`, following the existing validation pattern.
+- **Consuming the registry:** import `buildRegistry()` from
+  `hr-skills-build/server` rather than reading and re-parsing generated
+  `registry/skills.json` by hand.
