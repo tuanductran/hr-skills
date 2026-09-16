@@ -2,7 +2,7 @@
 
 ## Project overview
 
-`hr-skills-monorepo` is a Bun + Turborepo monorepo of domain-specific Agent Skills for HR and talent acquisition, distributed for Claude Code and claude.ai. Each skill lives at `skills/hr-*/SKILL.md`. The publishable `hr-skills` package provides the `hr-skills` npm executable; `packages/hr-skills-build` and `packages/hr-skills-ref` provide the TypeScript library surfaces, while `packages/hr-skills-tsdoc` owns multi-package TSDoc API generation. Generated artifacts — `docs/engineering/skill-matrix.md`, `registry/skills.json`, `.claude-plugin/marketplace.json` — are derived from skill frontmatter and must never be hand-edited; regenerate them with the corresponding `bun run` command instead.
+`hr-skills-monorepo` is a Bun + Turborepo monorepo of domain-specific Agent Skills for HR and talent acquisition, distributed for Claude Code and claude.ai. Each skill lives at `skills/hr-*/SKILL.md`. The publishable `hr-skills` package provides the `hr-skills` executable; `packages/hr-skills-build` and `packages/hr-skills-ref` provide the TypeScript library surfaces, while `packages/hr-skills-tsdoc` owns multi-package TSDoc API generation. Generated artifacts — `docs/engineering/skill-matrix.md`, `docs/engineering/api.md`, `registry/skills.json`, `registry/relevance-signals.json`, `.claude-plugin/marketplace.json`, `.claude-plugin/plugin.json`, `.codex-plugin/plugin.json`, `.agents/plugins/marketplace.json`, and the root `SKILL.md` router — are derived from canonical source data and must never be hand-edited; regenerate them with the corresponding `bun run` command instead.
 
 This file is the canonical, tool-agnostic entry point for both human contributors and AI agents. The detailed, day-to-day workflow guidance lives in [`.agents/skills/`](.agents/skills/) and [`.claude/`](.claude/) — see [Where things live](#where-things-live) below.
 
@@ -48,7 +48,7 @@ This file stays intentionally short. Everything below is a **workflow**, not a o
 | CLI output patterns (`@clack/prompts`) in `packages/hr-skills/src/cli/*.ts` | [`.agents/skills/clack/SKILL.md`](.agents/skills/clack/SKILL.md) |
 | Detecting and refactoring copy-paste duplication in `packages/*` | [`.agents/skills/jscpd/SKILL.md`](.agents/skills/jscpd/SKILL.md), [`.agents/skills/dry-refactoring/SKILL.md`](.agents/skills/dry-refactoring/SKILL.md) |
 
-When you add a new skill directory (for example `skills/hr-new-skill/SKILL.md`), run `bun run sync` first — it auto-discovers `hr-*` skill directories from `skills/` and updates `.claude-plugin/marketplace.json`. No manual edits needed.
+When you add a new skill directory (for example `skills/hr-new-skill/SKILL.md`), run `bun run sync` first — it auto-discovers `hr-*` skill directories from `skills/` and updates the generated plugin manifests and root `SKILL.md` router. No manual edits needed.
 
 ## Project structure
 
@@ -61,12 +61,18 @@ When you add a new skill directory (for example `skills/hr-new-skill/SKILL.md`),
 | `apps/web/` | Public Next.js documentation and product surfaces |
 | `docs/` | Skill format specification, architecture guidance, generated reports, and archived research |
 | `docs/engineering/skill-matrix.md` | Generated skill maturity snapshot — do not edit manually, run `bun run matrix` |
+| `docs/engineering/api.md` | Generated API reference — do not edit manually, run `bun run api-docs` |
 | `docs/engineering/evaluation.md` | Evaluation framework architecture, dataset format, and golden fixture workflow |
 | `packages/hr-skills-build/eval/datasets/` | Hand-authored evaluation datasets (planning scenarios) |
 | `packages/hr-skills-build/eval/golden/` | Committed golden fixtures — regenerate with `bun run evaluate -- --update-golden` from the repo root |
 | `docs/engineering/registry.md` | Skill Registry architecture, schema, and extension guide |
 | `registry/skills.json` | Generated machine-readable skill registry — do not edit manually, run `bun run registry` |
-| `.claude-plugin/marketplace.json` | Generated marketplace metadata synced from skill frontmatter |
+| `registry/relevance-signals.json` | Generated relevance signal table — do not edit manually, run `bun run signals` |
+| `.claude-plugin/marketplace.json` | Generated Claude marketplace metadata |
+| `.claude-plugin/plugin.json` | Generated Claude plugin manifest |
+| `.codex-plugin/plugin.json` | Generated Codex plugin manifest |
+| `.agents/plugins/marketplace.json` | Generated Codex marketplace manifest |
+| `SKILL.md` | Generated root skill router |
 | `packages/hr-skills` | Publishable `hr-skills` executable package for npx/bunx and local CLI workflows |
 | `packages/hr-skills-build` | Build and maintenance tooling — validation, sync, registry/planner/runtime generation, and packaging |
 | `packages/hr-skills-ref` | TypeScript library with explicit `client` and Bun/Node `server` surfaces for reading and validating skill files |
