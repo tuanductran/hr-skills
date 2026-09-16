@@ -9,8 +9,8 @@ pre-commit:
       stage_fixed: true
 
     - name: markdown
-      glob: "*.md"
-      run: bun run lint:md:fix
+      glob: "**/*.md"
+      run: bunx markdownlint --fix {staged_files} && bunx case-police {staged_files} --fix
       stage_fixed: true
 
 commit-msg:
