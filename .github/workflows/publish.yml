@@ -50,6 +50,9 @@ jobs:
       - name: Validate skills
         run: bun run validate
 
+      - name: Validate generated API docs
+        run: bun run api-docs:check
+
       - name: Build distribution artifacts
         run: bun run build-skills
 
