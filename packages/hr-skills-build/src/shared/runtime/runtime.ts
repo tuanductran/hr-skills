@@ -30,7 +30,7 @@ import type {
 	StepExecutorFn,
 	StepResult,
 	WorkflowResult,
-} from '../shared/types.js';
+} from '../types.js';
 import { createRuntimeContext } from './runtime-context.js';
 import { describeCause, RuntimeError } from './runtime-errors.js';
 import { EventDispatcher } from './runtime-events.js';
@@ -252,7 +252,7 @@ export class WorkflowExecutor {
 		state: RuntimeStateTracker,
 		extras: {
 			result?: unknown;
-			error?: import('../shared/types.js').RuntimeErrorInfo;
+			error?: import('../types.js').RuntimeErrorInfo;
 		} = {},
 	): void {
 		const event = this.events.emit(type, details);

@@ -8,8 +8,8 @@ import {
 	buildRegistry,
 	loadRelevanceSignalTable,
 } from '../../src/server/registry/registry.js';
-import type { RelevanceSignalTable } from '../../src/client/search/relevance-signals.js';
-import { RELEVANCE_SIGNAL_SCHEMA_VERSION } from '../../src/client/search/relevance-signals.js';
+import type { RelevanceSignalTable } from '../../src/shared/search/relevance-signals.js';
+import { RELEVANCE_SIGNAL_SCHEMA_VERSION } from '../../src/shared/search/relevance-signals.js';
 import { RegistrySchema } from '../../src/client/shared/schema.js';
 import type { SkillValidationIssue } from '../../src/client/shared/types.js';
 import {

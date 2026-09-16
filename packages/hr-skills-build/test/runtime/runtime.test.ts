@@ -1,15 +1,15 @@
 import { describe, expect, it } from 'bun:test';
-import { executeWorkflow, WorkflowExecutor } from '../../src/client/runtime/runtime.js';
-import {
-	exponentialRetryPolicy,
-	fixedRetryPolicy,
-} from '../../src/client/runtime/runtime-retry.js';
 import type {
 	ExecutionPlan,
 	ExecutionStep,
 	RuntimeContext,
 	RuntimeEvent,
 } from '../../src/client/shared/types.js';
+import { executeWorkflow, WorkflowExecutor } from '../../src/shared/runtime/runtime.js';
+import {
+	exponentialRetryPolicy,
+	fixedRetryPolicy,
+} from '../../src/shared/runtime/runtime-retry.js';
 
 // ============================================================================
 // Test fixtures

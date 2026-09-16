@@ -28,7 +28,7 @@ import {
 	indexSignalsBySource,
 	RELEVANCE_SIGNAL_SCHEMA_VERSION,
 	reRankRelatedSkills,
-} from '../search/relevance-signals.js';
+} from '../../shared/search/relevance-signals.js';
 import type { Registry, RegistryEntry, RelevanceSignalTable } from '../shared/types.js';
 import { SKILLS_DIR } from 'hr-skills-ref/server';
 

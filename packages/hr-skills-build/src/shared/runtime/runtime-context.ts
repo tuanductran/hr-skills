@@ -8,7 +8,7 @@
  * to unit test in isolation from the executor.
  */
 
-import type { RuntimeContext } from '../shared/types.js';
+import type { RuntimeContext } from '../types.js';
 
 class RuntimeContextImpl implements RuntimeContext {
 	readonly intent: string;

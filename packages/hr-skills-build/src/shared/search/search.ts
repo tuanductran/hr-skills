@@ -29,7 +29,7 @@ import type {
 	SkillSearchQuery,
 	SkillSearchResponse,
 	SkillSearchResult,
-} from '../shared/types.js';
+} from '../types.js';
 
 // ============================================================================
 // Tuning constants — documented in docs/engineering/search.md

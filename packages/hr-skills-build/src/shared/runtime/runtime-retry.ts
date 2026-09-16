@@ -9,7 +9,7 @@
  * real API might read `context` or a wrapping scheduler might sleep).
  */
 
-import type { RetryPolicy } from '../shared/types.js';
+import type { RetryPolicy } from '../types.js';
 
 /**
  * Create a retry policy that never retries — the step fails immediately

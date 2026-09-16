@@ -1,12 +1,11 @@
 import { describe, expect, it } from 'bun:test';
-
+import type { Registry, RegistryEntry } from '../../src/client/shared/types.js';
 import {
 	ALL_SEARCHABLE_FIELDS,
 	FIELD_WEIGHTS,
 	InvalidSearchQueryError,
 	searchSkills,
-} from '../../src/client/search/search.js';
-import type { Registry, RegistryEntry } from '../../src/client/shared/types.js';
+} from '../../src/shared/search/search.js';
 
 // ============================================================================
 // Test Fixtures

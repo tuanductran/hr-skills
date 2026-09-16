@@ -9,7 +9,7 @@
  * about the outcome changed.
  */
 
-import type { RuntimeEvent, RuntimeEventType } from '../shared/types.js';
+import type { RuntimeEvent, RuntimeEventType } from '../types.js';
 
 /** Records runtime events in emission order and assigns each a logical-clock `order`. */
 export class EventDispatcher {

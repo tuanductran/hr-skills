@@ -28,7 +28,7 @@
  *   and the metadata needed to verify and regenerate it.
  */
 
-import type { GoldenFixture } from '../shared/types.js';
+import type { GoldenFixture } from '../types.js';
 
 // ---------------------------------------------------------------------------
 // Types

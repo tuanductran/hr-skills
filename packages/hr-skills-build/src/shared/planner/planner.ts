@@ -24,13 +24,13 @@ import type {
 	Registry,
 	RegistryEntry,
 	SelectionReason,
-} from '../shared/types.js';
+} from '../types.js';
 
 // ============================================================================
 // Execution Plan Model
 // ============================================================================
 
-// Planner types live in src/client/shared/types.ts to centralize shared
+// Planner types live in src/shared/types.ts to centralize shared
 // interfaces and avoid duplication. See that file for the canonical
 // definitions used across planner, validator, and tests.
 

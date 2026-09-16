@@ -14,7 +14,7 @@ import type {
 	RuntimeEvent,
 	RuntimeStateSnapshot,
 	TraceEntry,
-} from '../shared/types.js';
+} from '../types.js';
 
 /** Builds a replayable `TraceEntry[]` — one entry per runtime event, each with a state snapshot. */
 export class TraceCollector {

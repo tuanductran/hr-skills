@@ -42,7 +42,7 @@
 		"dist"
 	],
 	"scripts": {
-		"build": "tsdown",
+		"build": "tsdown && bun run verify-client-bundle",
 		"build-skills": "bun src/server/build/build-skills.ts",
 		"dev": "tsdown --watch",
 		"test": "bun test",
@@ -50,7 +50,8 @@
 		"validate": "bun src/server/validation/validate.ts",
 		"sync": "bun src/server/build/sync.ts",
 		"matrix": "bun src/server/build/generate-skill-matrix.ts",
-		"docs-data": "bun src/server/build/generate-docs-data.ts"
+		"docs-data": "bun src/server/build/generate-docs-data.ts",
+		"verify-client-bundle": "bun src/server/build/verify-client-bundle.ts"
 	},
 	"dependencies": {
 		"@clack/prompts": "catalog:",

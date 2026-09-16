@@ -6,7 +6,7 @@
  * it was, and a machine-readable code for programmatic handling.
  */
 
-import type { RuntimeErrorInfo } from '../shared/types.js';
+import type { RuntimeErrorInfo } from '../types.js';
 
 /**
  * Machine-readable codes for runtime failures.

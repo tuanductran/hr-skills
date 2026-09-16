@@ -16,11 +16,7 @@
  * `registry/skills.json`) — never parses `SKILL.md` files directly.
  */
 
-import type {
-	RecommendationResult,
-	Registry,
-	SkillRecommendation,
-} from '../shared/types.js';
+import type { RecommendationResult, Registry, SkillRecommendation } from '../types.js';
 
 /**
  * Thrown when a recommendation is requested for a skill ID that does not

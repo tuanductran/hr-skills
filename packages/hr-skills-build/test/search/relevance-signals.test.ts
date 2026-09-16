@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'bun:test';
-
+import type { GoldenFixture } from '../../src/client/shared/types.js';
 import {
 	buildRelevanceSignalTable,
 	computeSignals,
@@ -9,8 +9,7 @@ import {
 	OBSERVED_WEIGHT,
 	RELEVANCE_SIGNAL_SCHEMA_VERSION,
 	reRankRelatedSkills,
-} from '../../src/client/search/relevance-signals.js';
-import type { GoldenFixture } from '../../src/client/shared/types.js';
+} from '../../src/shared/search/relevance-signals.js';
 
 // ---------------------------------------------------------------------------
 // Fixtures shared across tests

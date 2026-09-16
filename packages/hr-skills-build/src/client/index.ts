@@ -8,5 +8,5 @@ export type * from './docs/types.js';
 export * from './planner/index.js';
 export * from './runtime/index.js';
 export * from './search/index.js';
-export * from './service/index.client.js';
-export * from './shared/index.client.js';
+export * from './service/index.js';
+export * from './shared/index.js';

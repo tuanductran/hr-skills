@@ -46,10 +46,11 @@
 		"dist"
 	],
 	"scripts": {
-		"build": "tsdown",
+		"build": "tsdown && bun run verify-client-bundle",
 		"dev": "tsdown --watch",
 		"test": "bun test",
-		"typecheck": "tsc --noEmit"
+		"typecheck": "tsc --noEmit",
+		"verify-client-bundle": "bun scripts/verify-client-bundle.ts"
 	},
 	"dependencies": {
 		"valibot": "catalog:",

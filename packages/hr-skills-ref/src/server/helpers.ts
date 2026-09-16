@@ -2,51 +2,16 @@ import { mkdtempSync, readdirSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 
-import { SKILLS_DIR, XML_ESCAPES } from './constants.js';
+import { SKILLS_DIR } from './constants.js';
 import { findSkillMd, readProperties } from './loader.js';
 
-/**
- * Check whether a value is a plain object (i.e. created via `{}` or `Object.create(null)`).
- * Returns `false` for arrays, class instances, `null`, and primitives.
- *
- * @param value - The value to test.
- * @returns `true` if `value` is a plain object, `false` otherwise.
- */
-export function isPlainObject(value: unknown): value is Record<string, unknown> {
-	if (value === null || typeof value !== 'object') {
-		return false;
-	}
+export {
+	isPlainObject,
+	sanitizeYamlValue,
+	toStringOrUndefined,
+} from '../shared/helpers.js';
 
-	const prototype = Object.getPrototypeOf(value);
-
-	return prototype === Object.prototype || prototype === null;
-}
-
-/**
- * Convert a nullable/undefined value to a trimmed string, or `undefined` if
- * the result would be empty.
- *
- * @param value - The value to convert.
- * @returns A non-empty trimmed string, or `undefined` if `value` is `null`,
- *   `undefined`, or whitespace-only.
- */
-export function toStringOrUndefined(value: unknown): string | undefined {
-	return value != null ? String(value).trim() || undefined : undefined;
-}
-
-/**
- * Escape XML special characters in a string so it can be safely embedded
- * in an XML attribute value or element body.
- *
- * Escapes: `&` → `&amp;`, `<` → `&lt;`, `>` → `&gt;`,
- *           `"` → `&quot;`, `'` → `&apos;`.
- *
- * @param value - The raw string to escape.
- * @returns The XML-escaped string.
- */
-function escapeXml(value: string): string {
-	return value.replace(/[&<>"']/g, (char) => XML_ESCAPES.get(char) ?? char);
-}
+import { escapeXml } from '../shared/helpers.js';
 
 /**
  * Build an XML `<skill>` block for the given skill directory.
@@ -105,37 +70,4 @@ export function makeTempSkill(content: string): string {
 	const tmp = mkdtempSync(join(tmpdir(), 'skill-test-'));
 	writeFileSync(join(tmp, 'SKILL.md'), content, 'utf8');
 	return tmp;
-}
-
-/**
- * Recursively removes keys that could be used for prototype pollution from a
- * parsed YAML value.
- *
- * Object keys named `__proto__`, `constructor`, and `prototype` are discarded.
- * Arrays are sanitized recursively, while primitive values are returned
- * unchanged.
- *
- * @param value - Parsed YAML value.
- * @returns A sanitized copy of the input value.
- */
-export function sanitizeYamlValue(value: unknown): unknown {
-	if (Array.isArray(value)) {
-		return value.map(sanitizeYamlValue);
-	}
-
-	if (value && typeof value === 'object') {
-		const output = Object.create(null) as Record<string, unknown>;
-
-		for (const [key, child] of Object.entries(value)) {
-			if (key === '__proto__' || key === 'constructor' || key === 'prototype') {
-				continue;
-			}
-
-			output[key] = sanitizeYamlValue(child);
-		}
-
-		return output;
-	}
-
-	return value;
 }

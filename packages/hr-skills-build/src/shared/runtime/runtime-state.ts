@@ -12,7 +12,7 @@
  * extend with future buckets (e.g. 'blocked') without touching the executor.
  */
 
-import type { RuntimeStateSnapshot, StepStatus } from '../shared/types.js';
+import type { RuntimeStateSnapshot, StepStatus } from '../types.js';
 
 /** Tracks which lifecycle bucket (`pending`/`running`/`completed`/`failed`/`skipped`) each skill ID is currently in. */
 export class RuntimeStateTracker {

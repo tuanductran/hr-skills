@@ -11,8 +11,8 @@
  * real pipeline, not a parallel approximation of it.
  */
 
-import { generateExecutionPlan } from '../planner/planner.js';
-import { executeWorkflow } from '../runtime/runtime.js';
+import { generateExecutionPlan } from '../../shared/planner/planner.js';
+import { executeWorkflow } from '../../shared/runtime/runtime.js';
 import { stubStepExecutor } from '../shared/helpers.js';
 import type {
 	EvaluationCase,
