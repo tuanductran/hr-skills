@@ -1,7 +1,7 @@
 # Skill Registry
 
 > Phase 4.1 of the [roadmap](../ROADMAP.md) — the machine-readable foundation for
-> deterministic AI agent routing over the skill catalog.
+deterministic AI agent routing over the skill catalog.
 
 ## What it is
 
@@ -26,7 +26,7 @@ Two designs were considered:
 Option 2 was chosen because:
 
 - It keeps `SKILL.md` focused on its current job (human-readable skill
-  documentation) instead of turning it into a metadata store that 146 files
+  documentation) instead of turning it into a metadata store that all skills
   would need to be kept in sync by hand.
 - Almost all of the metadata the registry needs **already exists** somewhere
   in the repository — it just isn't indexed in one machine-readable place:
@@ -91,7 +91,7 @@ breaking change to the shape of an entry.
 
 ### Field notes
 
-- **`domain`** — one of the 12 routing categories already defined in
+- **`domain`** — one of the routing categories already defined in
   `classifier.ts` (`talent-acquisition`, `compensation-rewards`, etc.), or
   `uncategorized`.
 - **`tags`** — free-form cross-reference tags from the same classifier
@@ -106,9 +106,12 @@ breaking change to the shape of an entry.
   skills at `hr-recruiting`, `hr-job-description`, `hr-interviewing`), so
   only those skills have non-empty `dependencies`. This is deliberate — it's
   real, already-authored guidance rather than a guessed dependency graph.
-- **`relatedSkills`** — up to 5 other skills in the same `domain`, ranked by
-  shared-tag overlap (ties broken alphabetically). A minimal, fully
-  deterministic recommendation graph with no manual curation required.
+- **`relatedSkills`** — up to 5 other skills in the same `domain`. Generation
+  first ranks candidates by shared-tag overlap, then optionally re-ranks them
+  with usage/co-selection signals from `registry/relevance-signals.json`.
+  `RELATED_SKILL_OVERRIDES` can preserve maintainer-approved relationships
+  before the final five-item cap. Without a relevance-signal table, the
+  ranking falls back to the deterministic tag-overlap order.
 
 ## Generation
 
@@ -122,11 +125,16 @@ and writes the result to `registry/skills.json`. `buildRegistry()` has no
 side effects, which is what lets validation reuse it (see below) instead of
 re-implementing the same logic.
 
-`buildRegistry()` is deterministic for a given filesystem state: the same
-`skills/` content always produces the same `skills` array in the same order
-(sorted by `id`). The only field that changes run-to-run without a content
-change is `generatedAt` (today's date) — the same convention already used by
-`docs/engineering/skill-matrix.md`.
+`buildRegistry()` builds the related-skill graph from current skill metadata.
+The static candidate ranking is deterministic for a given filesystem state;
+when `registry/relevance-signals.json` is available and valid, its observed
+co-selection signals are incorporated into the related-skill order. The
+maintainer override map is applied before the final five-item cap.
+
+The generated file also contains `generatedAt` (today's date), so that field
+can change when the registry is regenerated even when the skill content does
+not. The committed registry is a generated artifact and should be refreshed
+through the repository's normal generation workflow rather than hand-edited.
 
 Regenerate the registry any time skills are added, removed, or reclassified,
 and commit the result — the same workflow as `bun run matrix`.
