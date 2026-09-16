@@ -36,4 +36,4 @@ jobs:
         run: bunx playwright install --with-deps chromium
 
       - name: Run end-to-end tests
-        run: bun run test:e2e -- -- --project=${{ matrix.project }}
+        run: bun run test:e2e -- --project=${{ matrix.project }}
