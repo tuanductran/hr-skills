@@ -13,9 +13,10 @@
 import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
+import * as v from 'valibot';
 import { CATEGORY_META, classifySkill } from './classifier.js';
 import { computeTier } from './tier.js';
-import { REGISTRY_SCHEMA_VERSION, SKILL_LINK_REGEX } from '../shared/constants.js';
+import { REGISTRY_SCHEMA_VERSION, HR_SKILL_PREFIX, SKILL_LINK_REGEX } from '../shared/constants.js';
 import {
 	countFiles,
 	deriveSkillMeta,
@@ -32,7 +33,35 @@ import {
 import type { Registry, RegistryEntry, RelevanceSignalTable } from '../shared/types.js';
 import { SKILLS_DIR } from 'hr-skills-ref/server';
 
-const HR_PREFIX_REGEX = /^hr-/;
+/**
+ * Valibot schema for a single relevance signal entry.
+ * Mirrors the `RelevanceSignal` interface; used to validate loaded JSON
+ * before the cast in {@link loadRelevanceSignalTable}.
+ */
+const RelevanceSignalSchema = v.object({
+	sourceSkill: v.string(),
+	targetSkill: v.string(),
+	coSelectionRate: v.number(),
+	coSelectionCount: v.number(),
+	observedCount: v.number(),
+});
+
+/**
+ * Valibot schema for the full relevance signal table artifact.
+ * Validates the shape of `registry/relevance-signals.json` before it is
+ * used in registry construction, preventing malformed data from being
+ * silently cast to `RelevanceSignalTable`.
+ */
+const RelevanceSignalTableSchema = v.object({
+	schemaVersion: v.literal(RELEVANCE_SIGNAL_SCHEMA_VERSION),
+	generatedAt: v.string(),
+	sourceDatasets: v.array(v.string()),
+	totalObservations: v.number(),
+	signals: v.array(RelevanceSignalSchema),
+});
+
+/** Regex derived from {@link HR_SKILL_PREFIX} — strips the prefix to produce an alias slug. */
+const HR_PREFIX_REGEX = new RegExp(`^${HR_SKILL_PREFIX}`);
 
 /**
  * Maintainer-approved relationships that must remain discoverable even when
@@ -83,18 +112,10 @@ export async function loadRelevanceSignalTable(
 		return undefined;
 	}
 
-	if (
-		typeof parsed !== 'object' ||
-		parsed === null ||
-		!('schemaVersion' in parsed) ||
-		(parsed as { schemaVersion: unknown }).schemaVersion !== RELEVANCE_SIGNAL_SCHEMA_VERSION ||
-		!('signals' in parsed) ||
-		!Array.isArray((parsed as { signals: unknown }).signals)
-	) {
-		return undefined;
-	}
+	const result = v.safeParse(RelevanceSignalTableSchema, parsed);
+	if (!result.success) return undefined;
 
-	return parsed as RelevanceSignalTable;
+	return result.output;
 }
 
 /**
