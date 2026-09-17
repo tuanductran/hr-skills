@@ -35,30 +35,58 @@ import { SKILLS_DIR } from 'hr-skills-ref/server';
 
 /**
  * Valibot schema for a single relevance signal entry.
- * Mirrors the `RelevanceSignal` interface; used to validate loaded JSON
- * before the cast in {@link loadRelevanceSignalTable}.
+ * Mirrors the `RelevanceSignal` interface and enforces its domain invariants;
+ * used to validate loaded JSON before the cast in {@link loadRelevanceSignalTable}.
  */
-const RelevanceSignalSchema = v.object({
-	sourceSkill: v.string(),
-	targetSkill: v.string(),
-	coSelectionRate: v.number(),
-	coSelectionCount: v.number(),
-	observedCount: v.number(),
-});
+const RelevanceSignalSchema = v.pipe(
+	v.object({
+		sourceSkill: v.string(),
+		targetSkill: v.string(),
+		coSelectionRate: v.number(),
+		coSelectionCount: v.number(),
+		observedCount: v.number(),
+	}),
+	v.check(
+		(signal) =>
+			signal.sourceSkill !== signal.targetSkill &&
+			signal.coSelectionRate >= 0 &&
+			signal.coSelectionRate <= 1 &&
+			Number.isInteger(signal.coSelectionCount) &&
+			signal.coSelectionCount >= 0 &&
+			Number.isInteger(signal.observedCount) &&
+			signal.observedCount > 0 &&
+			signal.coSelectionCount <= signal.observedCount &&
+			Math.abs(
+				signal.coSelectionRate -
+					signal.coSelectionCount / signal.observedCount,
+			) <= 1e-9,
+		'Invalid relevance signal invariants',
+	),
+);
 
 /**
  * Valibot schema for the full relevance signal table artifact.
- * Validates the shape of `registry/relevance-signals.json` before it is
- * used in registry construction, preventing malformed data from being
- * silently cast to `RelevanceSignalTable`.
+ * Validates the shape and domain invariants of `registry/relevance-signals.json`
+ * before it is used in registry construction.
  */
-const RelevanceSignalTableSchema = v.object({
-	schemaVersion: v.literal(RELEVANCE_SIGNAL_SCHEMA_VERSION),
-	generatedAt: v.string(),
-	sourceDatasets: v.array(v.string()),
-	totalObservations: v.number(),
-	signals: v.array(RelevanceSignalSchema),
-});
+const RelevanceSignalTableSchema = v.pipe(
+	v.object({
+		schemaVersion: v.literal(RELEVANCE_SIGNAL_SCHEMA_VERSION),
+		generatedAt: v.string(),
+		sourceDatasets: v.array(v.string()),
+		totalObservations: v.number(),
+		signals: v.array(RelevanceSignalSchema),
+	}),
+	v.check(
+		(table) =>
+			Number.isInteger(table.totalObservations) &&
+			table.totalObservations >= 0 &&
+			table.signals.every(
+				(signal) => signal.observedCount <= table.totalObservations,
+			),
+		'Invalid relevance signal table invariants',
+	),
+);
 
 /** Regex derived from {@link HR_SKILL_PREFIX} — strips the prefix to produce an alias slug. */
 const HR_PREFIX_REGEX = new RegExp(`^${HR_SKILL_PREFIX}`);
@@ -256,16 +284,16 @@ export async function buildRegistry(
 				byDomain.get(entry.classification.category) ?? [],
 			);
 
-				// Optionally blend static ranking with observed co-selection evidence.
-				const rankedRelated = signalIndex
-					? reRankRelatedSkills(entry.id, staticRelated, signalIndex)
-					: staticRelated;
-				const relatedSkills = [
-					...new Set([
-						...(RELATED_SKILL_OVERRIDES[entry.id] ?? []),
-						...rankedRelated,
-					]),
-				].slice(0, 5);
+			// Optionally blend static ranking with observed co-selection evidence.
+			const rankedRelated = signalIndex
+				? reRankRelatedSkills(entry.id, staticRelated, signalIndex)
+				: staticRelated;
+			const relatedSkills = [
+				...new Set([
+					...(RELATED_SKILL_OVERRIDES[entry.id] ?? []),
+					...rankedRelated,
+				]),
+			].slice(0, 5);
 
 			const registryEntry: RegistryEntry = {
 				id: entry.id,
