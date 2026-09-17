@@ -220,6 +220,50 @@ describe('loadRelevanceSignalTable()', () => {
 		expect(result).toBeUndefined();
 	});
 
+	it('returns undefined when signals contains null', async () => {
+		const path = join(tmpDir, 'null-signal.json');
+		await writeFile(
+			path,
+			JSON.stringify({
+				schemaVersion: RELEVANCE_SIGNAL_SCHEMA_VERSION,
+				generatedAt: '2026-01-01',
+				sourceDatasets: ['test-fixture'],
+				totalObservations: 1,
+				signals: [null],
+			}),
+			'utf8',
+		);
+
+		const result = await loadRelevanceSignalTable(path);
+		expect(result).toBeUndefined();
+	});
+
+	it('returns undefined when a signal entry has missing or invalid fields', async () => {
+		const path = join(tmpDir, 'invalid-signal-entry.json');
+		await writeFile(
+			path,
+			JSON.stringify({
+				schemaVersion: RELEVANCE_SIGNAL_SCHEMA_VERSION,
+				generatedAt: '2026-01-01',
+				sourceDatasets: ['test-fixture'],
+				totalObservations: 1,
+				signals: [
+					{
+						sourceSkill: 'hr-a',
+						// targetSkill missing
+						coSelectionRate: 'invalid-type-string',
+						coSelectionCount: 1,
+						observedCount: 1,
+					},
+				],
+			}),
+			'utf8',
+		);
+
+		const result = await loadRelevanceSignalTable(path);
+		expect(result).toBeUndefined();
+	});
+
 	it('loads a valid signal table', async () => {
 		const path = join(tmpDir, 'valid.json');
 		const table: RelevanceSignalTable = {

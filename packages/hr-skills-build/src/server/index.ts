@@ -4,10 +4,9 @@
  * This surface includes filesystem-backed registry, validation, evaluation,
  * documentation loading, and other APIs that must not enter browser bundles.
  *
- * Every export here is deliberate package API. Internal implementation
- * (test fixtures, stub/demo helpers) lives under `server/internal/` and is
- * re-exported individually below only when a real external consumer
- * (typically a CLI command in `packages/hr-skills/src/cli/`) depends on it.
+ * Every export here is deliberate package public API. Internal implementation
+ * and test-only helpers live under `server/internal/` and are not exported
+ * from this surface.
  */
 export * from './docs/index.js';
 export * from './evaluation/index.js';

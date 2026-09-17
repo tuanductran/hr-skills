@@ -19,11 +19,11 @@ import { computeTier } from './tier.js';
 import { REGISTRY_SCHEMA_VERSION, HR_SKILL_PREFIX, SKILL_LINK_REGEX } from '../shared/constants.js';
 import {
 	countFiles,
-	deriveSkillMeta,
 	dirExists,
 	discoverSkills,
 	readSkill,
 } from '../filesystem/index.js';
+import { deriveSkillMeta } from '../filesystem/metadata.js';
 import { RELEVANCE_SIGNALS_PATH } from '../filesystem/paths.js';
 import {
 	indexSignalsBySource,

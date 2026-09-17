@@ -27,7 +27,6 @@
   - [`RELEVANCE_SIGNALS_PATH`](#relevance_signals_path)
   - [`readSkill`](#readskill)
   - [`readSkillContent`](#readskillcontent)
-  - [`deriveSkillMeta`](#deriveskillmeta)
   - [`parseSkillMeta`](#parseskillmeta)
   - [`VersionedCache`](#versionedcache)
   - [`createVersionedCache`](#createversionedcache)
@@ -871,37 +870,6 @@ file was not found (in which case an issue has been added to `errors`).
 
 ---
 
-### `deriveSkillMeta`
-
-```ts
-import { deriveSkillMeta } from 'hr-skills-build/server'
-```
-
-Derive display metadata from already-loaded `SKILL.md` content and its
-parsed frontmatter — \*\*pure, no filesystem I/O\*\*.
-
-Callers that need to load a skill \*and\* derive its metadata in a single
-step should use parseSkillMeta. Callers that already hold the
-loaded content (e.g. `buildRegistry()`, which reads each skill once and
-reuses the result for both registry construction and metadata derivation)
-should call this function directly to avoid a second `SKILL.md` read.
-
-```ts
-function deriveSkillMeta(skillName: string, content: string, frontmatter: { name?: string | undefined; description?: string | undefined; metadata?: { author?: string | undefined; version?: string | undefined; } | undefined; }): SkillMeta
-```
-
-#### Parameters
-
-- `skillName`
-- `content`
-- `frontmatter`
-
-#### Returns
-
-Display metadata derived from the frontmatter and body.
-
----
-
 ### `parseSkillMeta`
 
 ```ts
@@ -915,9 +883,7 @@ description split at "Use when" into `coverage`/`scopeSentence`, the
 
 Lives here (not in `shared/parser.ts`) because it calls `readSkill`, which
 reads from the filesystem — `shared/parser.ts` is part of the browser-safe
-`client` surface and must stay pure. If a caller already has `SKILL.md`
-content in hand (e.g. fetched over HTTP in a browser context), use
-deriveSkillMeta directly with the already-loaded content instead.
+`client` surface and must stay pure.
 
 ```ts
 function parseSkillMeta(skillName: string): Promise<SkillMeta>
