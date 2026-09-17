@@ -1269,16 +1269,10 @@ A promise that resolves to an array of skill directory names (not full paths).
 import { loadRelevanceSignalTable } from 'hr-skills-build/server'
 ```
 
-Load the committed usage-informed relevance signal table
-(`registry/relevance-signals.json`), if present and valid — Phase 6.1-B.
+Load and validate the generated relevance-signal table.
 
-Returns `undefined` — rather than throwing — when the file is missing,
-unparsable, or has an unrecognized `schemaVersion`, so callers can always
-fall back to the static, signal-free ranking. This is what keeps
-`buildRegistry()`'s `signalTable` parameter genuinely optional: nothing
-downstream needs to know whether the artifact exists yet, and a
-corrupted or stale-schema file degrades gracefully instead of breaking
-registry generation.
+Referential integrity against the discovered skill registry is enforced by
+buildRegistry(), which is the boundary that consumes the table.
 
 ```ts
 function loadRelevanceSignalTable(path?: string): Promise<RelevanceSignalTable | undefined>
@@ -1290,7 +1284,8 @@ function loadRelevanceSignalTable(path?: string): Promise<RelevanceSignalTable |
 
 #### Returns
 
-The parsed signal table, or `undefined` if the file doesn't exist yet.
+The validated signal table, or undefined when the file is missing,
+malformed, or violates the schema invariants.
 
 ---
 
@@ -1300,8 +1295,6 @@ The parsed signal table, or `undefined` if the file doesn't exist yet.
 import { buildRegistry } from 'hr-skills-build/server'
 ```
 
-Build the full Skill Registry from the current state of skills/ on disk.
-
 ```ts
 function buildRegistry(signalTable?: RelevanceSignalTable | undefined): Promise<Registry>
 ```
@@ -1309,10 +1302,6 @@ function buildRegistry(signalTable?: RelevanceSignalTable | undefined): Promise<
 #### Parameters
 
 - `signalTable` (optional)
-
-#### Returns
-
-The full registry, including every skill's classification, capabilities, and related skills.
 
 ---
 
