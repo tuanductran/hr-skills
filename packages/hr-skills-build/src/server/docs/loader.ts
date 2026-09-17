@@ -7,8 +7,8 @@ import type {
 	DocumentationSection,
 	DocumentationSkill,
 } from '../docs/types.js';
+import { readSkill } from '../filesystem/index.js';
 import { buildRegistry } from '../registry/registry.js';
-import { readSkill } from '../shared/helpers.js';
 import type { SkillCategory } from '../shared/types.js';
 
 const ACRONYMS = new Set(['ai', 'api', 'hr', 'hris', 'kpi', 'lms', 'ma', 'ui', 'ux']);

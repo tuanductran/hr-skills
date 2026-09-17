@@ -3,6 +3,8 @@ import { generateExecutionPlan } from '../../shared/planner/planner.js';
 import { executeWorkflow } from '../../shared/runtime/runtime.js';
 import { searchSkills } from '../../shared/search/search.js';
 import { runEvaluation } from '../evaluation/evaluate.js';
+import { stubStepExecutor } from '../internal/runtime/stub-executor.js';
+import { SERVICE_API_VERSION } from '../service/contracts.js';
 import { PlannerRequestSchema, SearchRequestSchema } from '../service/schemas.js';
 import type {
 	ExecuteWorkflowServiceOptions,
@@ -14,7 +16,6 @@ import type {
 	ServiceResponseSuccess,
 	VersionInfo,
 } from '../service/types.js';
-import { stubStepExecutor } from '../shared/helpers.js';
 import type {
 	EvaluationDataset,
 	EvaluationReport,
@@ -27,7 +28,6 @@ import type {
 import { validateExecutionPlan } from '../validation/validate-planner.js';
 
 const START_TIME = Date.now();
-const API_VERSION = 'v1' as const;
 
 function describeError(error: unknown): string {
 	return error instanceof Error ? error.message : String(error);
@@ -42,7 +42,7 @@ export function successResponse<T>(
 		data,
 		meta: {
 			...meta,
-			apiVersion: API_VERSION,
+			apiVersion: SERVICE_API_VERSION,
 		},
 	};
 }
@@ -60,7 +60,7 @@ export function failureResponse(
 			...(details ? { details } : {}),
 		},
 		meta: {
-			apiVersion: API_VERSION,
+			apiVersion: SERVICE_API_VERSION,
 		},
 	};
 }
@@ -109,13 +109,13 @@ export function getVersionService(): ServiceResponse<VersionInfo> {
 		version: '1.0.0',
 		phase: 'Phase 8.1 — Service layer',
 		apiVersions: {
-			health: 'v1',
-			readiness: 'v1',
-			version: 'v1',
-			search: 'v1',
-			planner: 'v1',
-			runtime: 'v1',
-			evaluation: 'v1',
+			health: SERVICE_API_VERSION,
+			readiness: SERVICE_API_VERSION,
+			version: SERVICE_API_VERSION,
+			search: SERVICE_API_VERSION,
+			planner: SERVICE_API_VERSION,
+			runtime: SERVICE_API_VERSION,
+			evaluation: SERVICE_API_VERSION,
 		},
 	});
 }

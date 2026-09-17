@@ -39,6 +39,7 @@
 import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { SKILLS_DIR } from 'hr-skills-ref/server';
+import { countFiles, discoverSkills } from '../filesystem/index.js';
 import {
 	KEY_PROMPTS_REGEX,
 	MIN_CONTENT_LENGTH,
@@ -48,7 +49,6 @@ import {
 	TIPS_REGEX,
 	USE_WHEN_REGEX,
 } from '../shared/constants.js';
-import { countFiles, discoverSkills } from '../shared/helpers.js';
 import { extractMatch, parseSkillFrontmatter } from '../shared/parser.js';
 
 // ---------------------------------------------------------------------------

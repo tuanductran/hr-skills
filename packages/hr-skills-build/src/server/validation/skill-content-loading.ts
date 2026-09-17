@@ -9,8 +9,8 @@
 
 import { readdir, readFile } from 'node:fs/promises';
 import { join } from 'node:path';
+import { dirExists } from '../filesystem/index.js';
 import { FRONTMATTER_REGEX } from '../shared/constants.js';
-import { dirExists } from '../shared/helpers.js';
 
 /**
  * Extract the frontmatter `description` field from raw SKILL.md content.

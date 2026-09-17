@@ -8,14 +8,8 @@ import { writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
 import { ROOT_DIR, SKILLS_DIR } from 'hr-skills-ref/server';
-import {
-	computeTier,
-	countFiles,
-	discoverSkills,
-	readSkill,
-	tierIcon,
-	tierLabel,
-} from '../shared/helpers.js';
+import { countFiles, discoverSkills, readSkill } from '../filesystem/index.js';
+import { computeTier, tierIcon, tierLabel } from '../registry/tier.js';
 import type { SkillRow } from '../shared/types.js';
 
 // ---------------------------------------------------------------------------

@@ -46,80 +46,6 @@ function buildDocumentationData(): Promise<DocumentationData>
 
 ---
 
-### `DocumentationSection`
-
-```ts
-import { DocumentationSection } from 'hr-skills-build/server'
-```
-
-A Markdown file associated with a skill, preserved in stable filename order.
-
-```ts
-interface DocumentationSection {
-    readonly fileName: string;
-    readonly markdown: string;
-}
-```
-
----
-
-### `DocumentationSkill`
-
-```ts
-import { DocumentationSkill } from 'hr-skills-build/server'
-```
-
-A registry entry enriched with the source Markdown needed for the public site.
-
-```ts
-interface DocumentationSkill extends RegistryEntry {
-    readonly displayName: string;
-    readonly content: string;
-    readonly prompts: readonly DocumentationSection[];
-    readonly examples: readonly DocumentationSection[];
-}
-```
-
----
-
-### `DocumentationDomain`
-
-```ts
-import { DocumentationDomain } from 'hr-skills-build/server'
-```
-
-A stable catalog grouping derived from the canonical registry domain.
-
-```ts
-interface DocumentationDomain {
-    readonly id: SkillCategory;
-    readonly label: string;
-    readonly skillCount: number;
-}
-```
-
----
-
-### `DocumentationData`
-
-```ts
-import { DocumentationData } from 'hr-skills-build/server'
-```
-
-The generated, app-consumable public documentation artifact.
-
-```ts
-interface DocumentationData {
-    readonly schemaVersion: 1;
-    readonly generatedAt: string;
-    readonly skillCount: number;
-    readonly domains: readonly DocumentationDomain[];
-    readonly skills: readonly DocumentationSkill[];
-}
-```
-
----
-
 ### `runCase`
 
 ```ts
@@ -356,6 +282,243 @@ function loadAllGoldenFixtures(): Promise<GoldenFixture[]>
 #### Returns
 
 All committed golden fixtures, sorted by dataset name.
+
+---
+
+### `discoverSkills`
+
+```ts
+import { discoverSkills } from 'hr-skills-build/server'
+```
+
+Discover all `hr-\*` skill directory names under `skills/`, sorted.
+
+Does not verify `SKILL.md` exists in each directory — callers that need
+that guarantee (e.g. filtering out incomplete/in-progress skill folders)
+should use `registry/discovery.ts#getHrSkills()` instead, which checks
+for `SKILL.md` via `fs.access` and supports a configurable prefix. This
+function is the lighter-weight default used by most of `validation/`,
+`build/`, and `search/`, which read (and error-handle) `SKILL.md`
+themselves immediately after.
+
+```ts
+function discoverSkills(): Promise<string[]>
+```
+
+#### Returns
+
+A promise that resolves to a sorted array of skill directory names.
+
+---
+
+### `dirExists`
+
+```ts
+import { dirExists } from 'hr-skills-build/server'
+```
+
+Check whether a filesystem path exists and is a directory.
+
+```ts
+function dirExists(path: string): Promise<boolean>
+```
+
+#### Parameters
+
+- `path`
+
+#### Returns
+
+A promise that resolves to `true` if `path` is an existing directory,
+or `false` if it does not exist or is not a directory.
+
+---
+
+### `countFiles`
+
+```ts
+import { countFiles } from 'hr-skills-build/server'
+```
+
+Count the number of `.md` files directly inside a directory.
+Returns `0` if the directory does not exist or cannot be read.
+
+```ts
+function countFiles(dirPath: string): Promise<number>
+```
+
+#### Parameters
+
+- `dirPath`
+
+#### Returns
+
+A promise that resolves to the count of `.md` files found.
+
+---
+
+### `EVAL_DATASETS_DIR`
+
+```ts
+import { EVAL_DATASETS_DIR } from 'hr-skills-build/server'
+```
+
+Absolute path to the `eval/datasets/` directory containing hand-authored evaluation cases.
+
+```ts
+const EVAL_DATASETS_DIR: string
+```
+
+---
+
+### `EVAL_GOLDEN_DIR`
+
+```ts
+import { EVAL_GOLDEN_DIR } from 'hr-skills-build/server'
+```
+
+Absolute path to the `eval/golden/` directory containing committed golden fixtures.
+
+```ts
+const EVAL_GOLDEN_DIR: string
+```
+
+---
+
+### `RELEVANCE_SIGNALS_PATH`
+
+```ts
+import { RELEVANCE_SIGNALS_PATH } from 'hr-skills-build/server'
+```
+
+Absolute path to the generated relevance-signals artifact at the repo root.
+
+```ts
+const RELEVANCE_SIGNALS_PATH: string
+```
+
+---
+
+### `readSkill`
+
+```ts
+import { readSkill } from 'hr-skills-build/server'
+```
+
+Read a skill's `SKILL.md` content and parse its YAML frontmatter.
+
+```ts
+function readSkill(skillName: string): Promise<{ content: string; frontmatter: { name?: string | undefined; description?: string | undefined; metadata?: { author?: string | undefined; version?: string | undefined; } | undefined; }; }>
+```
+
+#### Parameters
+
+- `skillName`
+
+#### Returns
+
+A promise that resolves to an object containing the raw `content`
+string and the parsed `frontmatter` record.
+
+#### Throws
+
+If `SKILL.md` cannot be read from the filesystem.
+
+---
+
+### `readSkillContent`
+
+```ts
+import { readSkillContent } from 'hr-skills-build/server'
+```
+
+Read a skill's `SKILL.md` content, collecting a validation issue instead of
+throwing if the file is not found.
+
+```ts
+function readSkillContent(skillName: string, errors: SkillValidationIssue[]): Promise<string | null>
+```
+
+#### Parameters
+
+- `skillName`
+- `errors`
+
+#### Returns
+
+A promise that resolves to the raw file content, or `null` if the
+file was not found (in which case an issue has been added to `errors`).
+
+---
+
+### `parseSkillMeta`
+
+```ts
+import { parseSkillMeta } from 'hr-skills-build/server'
+```
+
+Read a skill's `SKILL.md` and derive display metadata from it: the
+description split at "Use when" into `coverage`/`scopeSentence`, the
+`## Supported tasks` list, and up to 5 quoted example prompts from
+`## Key prompts` as `triggerPhrases`.
+
+Lives here (not in `shared/parser.ts`) because it calls `readSkill`, which
+reads from the filesystem — `shared/parser.ts` is part of the browser-safe
+`client` surface and must stay pure. If a caller already has `SKILL.md`
+content in hand (e.g. fetched over HTTP in a browser context), parse it
+directly with the pure helpers in `shared/parser.ts`/`shared/constants.ts`
+instead of this function.
+
+```ts
+function parseSkillMeta(skillName: string): Promise<SkillMeta>
+```
+
+#### Parameters
+
+- `skillName`
+
+#### Returns
+
+Display metadata derived from the skill's frontmatter and body.
+
+#### Throws
+
+If `SKILL.md` cannot be read from the filesystem (see `readSkill`).
+
+---
+
+### `stubStepExecutor`
+
+```ts
+import { stubStepExecutor } from 'hr-skills-build/server'
+```
+
+A stub `StepExecutorFn` that returns a deterministic placeholder output
+instead of actually invoking a skill. Shared by `cli/execute-plan.ts` (CLI
+demonstration) and `evaluation/evaluate.ts` (so evaluation results
+characterize the Planner/Runtime's sequencing and validation behavior, not
+a divergent stand-in) — previously duplicated independently in both files.
+
+Lives under `internal/` because it is a placeholder implementation detail,
+not core runtime logic — but it IS re-exported deliberately from the
+package's public server entrypoint (`server/index.ts`), since the CLI
+genuinely depends on it. See that file for the intentional re-export.
+
+Real integrations should supply their own `StepExecutorFn` that actually
+invokes the skill (for example, loading its SKILL.md and prompting a model).
+
+```ts
+function stubStepExecutor(step: ExecutionStep, context: RuntimeContext): unknown
+```
+
+#### Parameters
+
+- `step`
+- `context`
+
+#### Returns
+
+A placeholder output object, never a rejected promise.
 
 ---
 
@@ -612,62 +775,6 @@ function getReadinessService(dependencies: readonly ReadinessDependency[]): Prom
 
 ---
 
-### `analyzeIntent`
-
-```ts
-import { analyzeIntent } from 'hr-skills-build/server'
-```
-
-Extract capabilities and key phrases from user intent.
-
-Uses simple heuristics to identify what the user is asking for:
-- Split by commas and "and"
-- Recognize patterns like "create", "write", "develop", "design", etc.
-- Normalize to lowercase
-
-This is intentionally simple and deterministic — not powered by ML.
-Future extensions could replace this with semantic analysis if needed.
-
-```ts
-function analyzeIntent(intent: string): string[]
-```
-
-#### Parameters
-
-- `intent`
-
-#### Returns
-
-Extracted capability phrases, normalized to lowercase.
-
----
-
-### `generateExecutionPlan`
-
-```ts
-import { generateExecutionPlan } from 'hr-skills-build/server'
-```
-
-Generate a complete execution plan for user intent using the Skill Registry.
-
-Pure function — no side effects, deterministic output for a given input
-and registry state.
-
-```ts
-function generateExecutionPlan(intent: string, registry: Registry): ExecutionPlan
-```
-
-#### Parameters
-
-- `intent`
-- `registry`
-
-#### Returns
-
-The generated plan, including matched capabilities and ordered steps.
-
----
-
 ### `SkillClassification`
 
 ```ts
@@ -757,7 +864,7 @@ A directory is included only if:
 
 Currently used only by `build/sync.ts`, which needs that `SKILL.md`
 guarantee before generating marketplace.json entries. Most other callers
-use the lighter `shared/helpers.ts#discoverSkills()` instead (no
+use the lighter `filesystem/discovery.ts#discoverSkills()` instead (no
 existence check, no options) since they read `SKILL.md` themselves right
 after and handle a missing file there.
 
@@ -825,6 +932,1914 @@ function buildRegistry(signalTable?: RelevanceSignalTable | undefined): Promise<
 #### Returns
 
 The full registry, including every skill's classification, capabilities, and related skills.
+
+---
+
+### `computeTier`
+
+```ts
+import { computeTier } from 'hr-skills-build/server'
+```
+
+Compute a skill's maturity tier based on which optional subdirectories it contains.
+
+Tier rules:
+- `'full'`    — all three subdirectories (`content/`, `prompts/`, `examples/`) are present.
+- `'bare'`    — none of the subdirectories are present.
+- `'partial'` — one or two subdirectories are present.
+
+This is the single source of truth for tier classification — used by both
+`build/generate-skill-matrix.ts` and `registry/registry.ts` so the matrix
+and the registry can never disagree about a skill's tier.
+
+```ts
+function computeTier(hasContent: boolean, hasPrompts: boolean, hasExamples: boolean): Tier
+```
+
+#### Parameters
+
+- `hasContent`
+- `hasPrompts`
+- `hasExamples`
+
+#### Returns
+
+The computed Tier for the skill.
+
+---
+
+### `tierIcon`
+
+```ts
+import { tierIcon } from 'hr-skills-build/server'
+```
+
+Return the emoji icon associated with a skill maturity tier.
+
+- `'full'`    → `'🟢'`
+- `'partial'` → `'🟡'`
+- `'bare'`    → `'🔴'`
+
+```ts
+function tierIcon(tier: Tier): string
+```
+
+#### Parameters
+
+- `tier`
+
+#### Returns
+
+A single emoji string representing the tier.
+
+---
+
+### `tierLabel`
+
+```ts
+import { tierLabel } from 'hr-skills-build/server'
+```
+
+Return the human-readable display label for a skill maturity tier.
+
+```ts
+function tierLabel(tier: Tier): string
+```
+
+#### Parameters
+
+- `tier`
+
+#### Returns
+
+`'Full'`, `'Partial'`, or `'Bare'`.
+
+---
+
+### `successResponse`
+
+```ts
+import { successResponse } from 'hr-skills-build/server'
+```
+
+```ts
+function successResponse(data: T, meta?: Record<string, unknown> | undefined): ServiceResponseSuccess<T>
+```
+
+#### Parameters
+
+- `data`
+- `meta` (optional)
+
+---
+
+### `failureResponse`
+
+```ts
+import { failureResponse } from 'hr-skills-build/server'
+```
+
+```ts
+function failureResponse(code: ServiceErrorCode, message: string, details?: Record<string, unknown> | undefined): ServiceResponseFailure
+```
+
+#### Parameters
+
+- `code`
+- `message`
+- `details` (optional)
+
+---
+
+### `getHealthService`
+
+```ts
+import { getHealthService } from 'hr-skills-build/server'
+```
+
+Health Endpoint Service
+Evaluates service health and optional registry stats.
+
+```ts
+function getHealthService(registry?: Registry | undefined): ServiceResponse<HealthStatus>
+```
+
+#### Parameters
+
+- `registry` (optional)
+
+---
+
+### `getVersionService`
+
+```ts
+import { getVersionService } from 'hr-skills-build/server'
+```
+
+Version Endpoint Service
+Exposes API versioning and phase metadata.
+
+```ts
+function getVersionService(): ServiceResponse<VersionInfo>
+```
+
+---
+
+### `searchRegistryService`
+
+```ts
+import { searchRegistryService } from 'hr-skills-build/server'
+```
+
+Registry Search Service API
+Validates request input and executes deterministic skill search.
+
+```ts
+function searchRegistryService(queryInput: unknown, registry: Registry): ServiceResponse<SkillSearchResponse>
+```
+
+#### Parameters
+
+- `queryInput`
+- `registry`
+
+---
+
+### `generatePlanService`
+
+```ts
+import { generatePlanService } from 'hr-skills-build/server'
+```
+
+Planner Service API
+Validates intent request, generates execution plan, and validates plan correctness.
+
+```ts
+function generatePlanService(requestInput: unknown, registry: Registry): ServiceResponse<PlannerServiceResult>
+```
+
+#### Parameters
+
+- `requestInput`
+- `registry`
+
+---
+
+### `executeWorkflowService`
+
+```ts
+import { executeWorkflowService } from 'hr-skills-build/server'
+```
+
+Runtime Execution Service API
+Executes an ExecutionPlan deterministically through WorkflowExecutor.
+
+```ts
+function executeWorkflowService(plan: ExecutionPlan, options?: ExecuteWorkflowServiceOptions): Promise<ServiceResponse<WorkflowResult>>
+```
+
+#### Parameters
+
+- `plan`
+- `options` (optional)
+
+---
+
+### `runEvaluationService`
+
+```ts
+import { runEvaluationService } from 'hr-skills-build/server'
+```
+
+Evaluation Service API
+Runs evaluation datasets against the registry and compares against golden fixtures.
+
+```ts
+function runEvaluationService(dataset: EvaluationDataset, registry: Registry, golden?: GoldenFixture | undefined): Promise<ServiceResponse<EvaluationReport>>
+```
+
+#### Parameters
+
+- `dataset`
+- `registry`
+- `golden` (optional)
+
+---
+
+### `WEIGHT_DESCRIPTION`
+
+```ts
+import { WEIGHT_DESCRIPTION } from 'hr-skills-build/server'
+```
+
+Weight applied to the description-level Jaccard score.
+
+```ts
+const WEIGHT_DESCRIPTION: 0.35
+```
+
+---
+
+### `WEIGHT_CONTENT`
+
+```ts
+import { WEIGHT_CONTENT } from 'hr-skills-build/server'
+```
+
+Weight applied to the content-level token Jaccard score.
+
+```ts
+const WEIGHT_CONTENT: 0.4
+```
+
+---
+
+### `WEIGHT_BIGRAM`
+
+```ts
+import { WEIGHT_BIGRAM } from 'hr-skills-build/server'
+```
+
+Weight applied to the bigram Jaccard score.
+
+```ts
+const WEIGHT_BIGRAM: 0.25
+```
+
+---
+
+### `DUPLICATE_THRESHOLD`
+
+```ts
+import { DUPLICATE_THRESHOLD } from 'hr-skills-build/server'
+```
+
+Composite similarity score at or above which a pair is reported as a
+potential duplicate.  Range: 0–1.  Default: 0.55.
+
+```ts
+const DUPLICATE_THRESHOLD: 0.55
+```
+
+---
+
+### `HR_STOP_WORDS`
+
+```ts
+import { HR_STOP_WORDS } from 'hr-skills-build/server'
+```
+
+Common HR vocabulary that is expected to appear in many skills.
+Filtering these terms out prevents domain-vocabulary overlap from
+triggering false-positive duplicate warnings.
+
+```ts
+const HR_STOP_WORDS: Set<string>
+```
+
+---
+
+### `tokenise`
+
+```ts
+import { tokenise } from 'hr-skills-build/server'
+```
+
+Tokenise a normalised string: split on whitespace, remove stop-words and
+tokens shorter than 3 characters.  Returns a sorted array for determinism.
+
+```ts
+function tokenise(text: string): string[]
+```
+
+#### Parameters
+
+- `text`
+
+#### Returns
+
+Sorted, filtered tokens.
+
+---
+
+### `buildBigrams`
+
+```ts
+import { buildBigrams } from 'hr-skills-build/server'
+```
+
+Build bigrams (consecutive token pairs) from a token list.
+The list must be in its natural (unsorted) order before calling this;
+the returned bigrams are sorted for determinism.
+
+```ts
+function buildBigrams(tokens: string[]): string[]
+```
+
+#### Parameters
+
+- `tokens`
+
+#### Returns
+
+Sorted `"tokenA|tokenB"` bigrams.
+
+---
+
+### `jaccardSimilarity`
+
+```ts
+import { jaccardSimilarity } from 'hr-skills-build/server'
+```
+
+Jaccard similarity between two token arrays treated as multisets.
+
+|A ∩ B| / |A ∪ B| — both computed from the frequency-aware intersection
+so a token appearing twice in A but once in B only contributes 1 to the
+intersection.  Returns 0 when both arrays are empty.
+
+```ts
+function jaccardSimilarity(a: string[], b: string[]): number
+```
+
+#### Parameters
+
+- `a`
+- `b`
+
+#### Returns
+
+Jaccard similarity in `[0, 1]`.
+
+---
+
+### `SkillContent`
+
+```ts
+import { SkillContent } from 'hr-skills-build/server'
+```
+
+Parsed representation of a single skill used by the detector.
+
+```ts
+interface SkillContent {
+    /** Skill directory name, e.g. "hr-onboarding". */
+    name: string;
+    /** Raw frontmatter description string. */
+    description: string;
+    /** Concatenated body text extracted from SKILL.md + content/ files. */
+    body: string;
+}
+```
+
+---
+
+### `DuplicateWarning`
+
+```ts
+import { DuplicateWarning } from 'hr-skills-build/server'
+```
+
+A single duplicate-detection finding for one pair of skills.
+
+```ts
+interface DuplicateWarning {
+    /** First skill ID (lexicographically smaller). */
+    skillA: string;
+    /** Second skill ID. */
+    skillB: string;
+    /** Weighted composite similarity score (0–1). */
+    score: number;
+    /** Jaccard similarity of the description tokens alone. */
+    descriptionSimilarity: number;
+    /** Jaccard similarity of the content tokens alone. */
+    contentSimilarity: number;
+    /** Jaccard similarity of the content bigrams alone. */
+    bigramSimilarity: number;
+    /** Human-readable explanation of what drove the score. */
+    explanation: string;
+}
+```
+
+---
+
+### `comparePair`
+
+```ts
+import { comparePair } from 'hr-skills-build/server'
+```
+
+Compute the composite duplicate score for a pair of pre-loaded skills.
+
+```ts
+function comparePair(a: SkillContent, b: SkillContent, threshold?: number): DuplicateWarning | null
+```
+
+#### Parameters
+
+- `a`
+- `b`
+- `threshold` (optional)
+
+#### Returns
+
+A `DuplicateWarning` when `score >= threshold`, or `null`.
+
+---
+
+### `detectDuplicates`
+
+```ts
+import { detectDuplicates } from 'hr-skills-build/server'
+```
+
+Run duplicate detection across all provided skill names and emit findings
+as `SkillValidationIssue` warnings (message prefix `[duplicate-warning]`).
+
+Pairs are evaluated in a stable, alphabetically-sorted order.
+The function never throws — I/O errors for individual skills are silently
+skipped so that other validation can still proceed.
+
+```ts
+function detectDuplicates(skillNames: string[], warnings: SkillValidationIssue[], threshold?: number): Promise<DuplicateWarning[]>
+```
+
+#### Parameters
+
+- `skillNames`
+- `warnings`
+- `threshold` (optional)
+
+#### Returns
+
+Resolves once every pair has been compared; findings are pushed onto `warnings`.
+
+---
+
+### `CLARITY_WEIGHT`
+
+```ts
+import { CLARITY_WEIGHT } from 'hr-skills-build/server'
+```
+
+Weight of the clarity dimension in the overall score.
+
+```ts
+const CLARITY_WEIGHT: 0.3
+```
+
+---
+
+### `COMPLETENESS_WEIGHT`
+
+```ts
+import { COMPLETENESS_WEIGHT } from 'hr-skills-build/server'
+```
+
+Weight of the completeness dimension in the overall score.
+
+```ts
+const COMPLETENESS_WEIGHT: 0.4
+```
+
+---
+
+### `EXAMPLE_COVERAGE_WEIGHT`
+
+```ts
+import { EXAMPLE_COVERAGE_WEIGHT } from 'hr-skills-build/server'
+```
+
+Weight of the example-coverage dimension in the overall score.
+
+```ts
+const EXAMPLE_COVERAGE_WEIGHT: 0.3
+```
+
+---
+
+### `QUALITY_BAND_THRESHOLDS`
+
+```ts
+import { QUALITY_BAND_THRESHOLDS } from 'hr-skills-build/server'
+```
+
+Score thresholds for the human-readable quality band.
+
+```ts
+const QUALITY_BAND_THRESHOLDS: { readonly excellent: 85; readonly good: 70; readonly needsReview: 50; }
+```
+
+---
+
+### `QualityBand`
+
+```ts
+import { QualityBand } from 'hr-skills-build/server'
+```
+
+Human-readable quality band derived from the overall score.
+
+```ts
+type QualityBand = 'excellent' | 'good' | 'needs-review' | 'poor'
+```
+
+---
+
+### `QualityDimensionScore`
+
+```ts
+import { QualityDimensionScore } from 'hr-skills-build/server'
+```
+
+Score and supporting notes for a single quality dimension.
+
+```ts
+interface QualityDimensionScore {
+    /** 0-100 score for this dimension. */
+    score: number;
+    /** Human-readable observations explaining the score (empty if perfect). */
+    notes: string[];
+}
+```
+
+---
+
+### `SkillQualityScore`
+
+```ts
+import { SkillQualityScore } from 'hr-skills-build/server'
+```
+
+Full quality-score report for one skill.
+
+```ts
+interface SkillQualityScore {
+    /** Affected skill's directory name. */
+    skill: string;
+    /** How clear and well-triggered the skill's description/body is. */
+    clarity: QualityDimensionScore;
+    /** How complete the skill's sections are relative to the ideal band. */
+    completeness: QualityDimensionScore;
+    /** How well supported tasks are backed by prompts and example material. */
+    exampleCoverage: QualityDimensionScore;
+    /** Weighted overall score in [0, 100]. */
+    overall: number;
+    /** Human-readable band derived from {@link overall}. */
+    band: QualityBand;
+}
+```
+
+---
+
+### `scoreClarity`
+
+```ts
+import { scoreClarity } from 'hr-skills-build/server'
+```
+
+Score description length and "Use when" trigger presence, plus body
+readability (average words per sentence).
+
+```ts
+function scoreClarity(description: string, content: string): QualityDimensionScore
+```
+
+#### Parameters
+
+- `description`
+- `content`
+
+#### Returns
+
+Clarity dimension score with explanatory notes.
+
+---
+
+### `scoreCompleteness`
+
+```ts
+import { scoreCompleteness } from 'hr-skills-build/server'
+```
+
+Score how close the skill's tasks/tips/prompt-subtopic counts and body
+length are to the ideal (center-weighted) band, not just inside the hard
+pass/fail range.
+
+```ts
+function scoreCompleteness(content: string): QualityDimensionScore
+```
+
+#### Parameters
+
+- `content`
+
+#### Returns
+
+Completeness dimension score with explanatory notes.
+
+---
+
+### `scoreExampleCoverage`
+
+```ts
+import { scoreExampleCoverage } from 'hr-skills-build/server'
+```
+
+Score whether the skill has `content/`/`examples/` material and whether
+supported tasks are proportionally backed by quoted example prompts.
+
+```ts
+function scoreExampleCoverage(skillsDir: string, skillName: string, content: string): Promise<QualityDimensionScore>
+```
+
+#### Parameters
+
+- `skillsDir`
+- `skillName`
+- `content`
+
+#### Returns
+
+Example-coverage dimension score with explanatory notes.
+
+---
+
+### `scoreSkillQuality`
+
+```ts
+import { scoreSkillQuality } from 'hr-skills-build/server'
+```
+
+Compute a full quality-score report for one skill.
+
+```ts
+function scoreSkillQuality(skillsDir: string, skillName: string): Promise<SkillQualityScore>
+```
+
+#### Parameters
+
+- `skillsDir`
+- `skillName`
+
+#### Returns
+
+A promise resolving to the skill's SkillQualityScore.
+
+---
+
+### `scoreAllSkills`
+
+```ts
+import { scoreAllSkills } from 'hr-skills-build/server'
+```
+
+Compute quality-score reports for every HR skill in the repository,
+sorted alphabetically by skill name.
+
+```ts
+function scoreAllSkills(): Promise<SkillQualityScore[]>
+```
+
+#### Returns
+
+A promise resolving to an array of SkillQualityScore.
+
+---
+
+### `scoreSkills`
+
+```ts
+import { scoreSkills } from 'hr-skills-build/server'
+```
+
+Compute quality-score reports for a specific subset of skills — used by
+the CI workflow to score only the skills touched by a pull request
+instead of the entire corpus.
+
+```ts
+function scoreSkills(skillNames: string[]): Promise<SkillQualityScore[]>
+```
+
+#### Parameters
+
+- `skillNames`
+
+#### Returns
+
+A promise resolving to an array of SkillQualityScore, in
+the same order as `skillNames`.
+
+---
+
+### `validateSecurityCommands`
+
+```ts
+import { validateSecurityCommands } from 'hr-skills-build/server'
+```
+
+```ts
+function validateSecurityCommands(skillName: string, content: string, errors: SkillValidationIssue[]): void
+```
+
+#### Parameters
+
+- `skillName`
+- `content`
+- `errors`
+
+---
+
+### `validateSensitivePaths`
+
+```ts
+import { validateSensitivePaths } from 'hr-skills-build/server'
+```
+
+```ts
+function validateSensitivePaths(skillName: string, content: string, errors: SkillValidationIssue[]): void
+```
+
+#### Parameters
+
+- `skillName`
+- `content`
+- `errors`
+
+---
+
+### `validateSuspiciousUrls`
+
+```ts
+import { validateSuspiciousUrls } from 'hr-skills-build/server'
+```
+
+```ts
+function validateSuspiciousUrls(skillName: string, content: string, errors: SkillValidationIssue[]): void
+```
+
+#### Parameters
+
+- `skillName`
+- `content`
+- `errors`
+
+---
+
+### `validateCredentialLeaks`
+
+```ts
+import { validateCredentialLeaks } from 'hr-skills-build/server'
+```
+
+```ts
+function validateCredentialLeaks(skillName: string, content: string, errors: SkillValidationIssue[]): void
+```
+
+#### Parameters
+
+- `skillName`
+- `content`
+- `errors`
+
+---
+
+### `validateHiddenUnicode`
+
+```ts
+import { validateHiddenUnicode } from 'hr-skills-build/server'
+```
+
+```ts
+function validateHiddenUnicode(skillName: string, content: string, errors: SkillValidationIssue[]): void
+```
+
+#### Parameters
+
+- `skillName`
+- `content`
+- `errors`
+
+---
+
+### `validateSecurityChecks`
+
+```ts
+import { validateSecurityChecks } from 'hr-skills-build/server'
+```
+
+```ts
+function validateSecurityChecks(skillName: string, content: string, errors: SkillValidationIssue[]): void
+```
+
+#### Parameters
+
+- `skillName`
+- `content`
+- `errors`
+
+---
+
+### `PROMPT_DRIFT_THRESHOLD`
+
+```ts
+import { PROMPT_DRIFT_THRESHOLD } from 'hr-skills-build/server'
+```
+
+Minimum Jaccard similarity between a skill's purpose tokens and its
+`prompts/` tokens. Below this, prompts are considered drifted from the
+skill's documented purpose. Calibrated below the lowest legitimate score
+(~0.018) observed across this repository's skills.
+
+```ts
+const PROMPT_DRIFT_THRESHOLD: 0.015
+```
+
+---
+
+### `EXAMPLE_DRIFT_THRESHOLD`
+
+```ts
+import { EXAMPLE_DRIFT_THRESHOLD } from 'hr-skills-build/server'
+```
+
+Minimum Jaccard similarity between a skill's purpose tokens and its
+`examples/` tokens. Calibrated below the lowest legitimate score
+(~0.041) observed across this repository's skills.
+
+```ts
+const EXAMPLE_DRIFT_THRESHOLD: 0.03
+```
+
+---
+
+### `COPY_MARGIN`
+
+```ts
+import { COPY_MARGIN } from 'hr-skills-build/server'
+```
+
+Minimum margin by which another skill's purpose tokens must out-score a
+skill's own purpose tokens (against the same prompts/examples tokens)
+before the material is flagged as possibly copied. Calibrated above the
+highest legitimate margin (~0.059) observed across this repository.
+
+```ts
+const COPY_MARGIN: 0.06
+```
+
+---
+
+### `COPY_MIN_OTHER_SCORE`
+
+```ts
+import { COPY_MIN_OTHER_SCORE } from 'hr-skills-build/server'
+```
+
+Minimum absolute similarity to the \*other\* skill's purpose tokens
+required before a possible-copy finding is reported, so two skills that
+both score near-zero against everything don't trigger on margin alone.
+
+```ts
+const COPY_MIN_OTHER_SCORE: 0.12
+```
+
+---
+
+### `MIN_COVERAGE_RATIO`
+
+```ts
+import { MIN_COVERAGE_RATIO } from 'hr-skills-build/server'
+```
+
+Minimum fraction of top description keywords that must appear somewhere
+in `prompts/` + `examples/` + `content/` combined. Calibrated below the
+lowest legitimate ratio (0.4) observed across this repository.
+
+```ts
+const MIN_COVERAGE_RATIO: 0.3
+```
+
+---
+
+### `MIN_PURPOSE_TOKENS`
+
+```ts
+import { MIN_PURPOSE_TOKENS } from 'hr-skills-build/server'
+```
+
+Skills whose purpose token set is smaller than this are skipped for
+drift/coverage checks — too little documented text to compare against
+reliably, so flagging would be noise rather than signal.
+
+```ts
+const MIN_PURPOSE_TOKENS: 5
+```
+
+---
+
+### `SkillSemanticContent`
+
+```ts
+import { SkillSemanticContent } from 'hr-skills-build/server'
+```
+
+One skill's token sets and raw description, used for semantic checks.
+
+```ts
+interface SkillSemanticContent {
+    /** Skill directory name, e.g. "hr-onboarding". */
+    name: string;
+    /** Raw frontmatter description string (pre-tokenisation). */
+    description: string;
+    /** Normalised tokens from description + SKILL.md body + content/. */
+    purposeTokens: string[];
+    /** Normalised tokens from prompts/*.md. Empty when prompts/ is absent. */
+    promptsTokens: string[];
+    /** Normalised tokens from examples/*.md. Empty when examples/ is absent. */
+    examplesTokens: string[];
+    /** Normalised tokens from content/*.md alone. Empty when content/ is absent. */
+    contentTokens: string[];
+    /** Whether prompts/ exists and contains at least one .md file. */
+    hasPrompts: boolean;
+    /** Whether examples/ exists and contains at least one .md file. */
+    hasExamples: boolean;
+}
+```
+
+---
+
+### `loadSkillSemanticContent`
+
+```ts
+import { loadSkillSemanticContent } from 'hr-skills-build/server'
+```
+
+Load one skill's semantic content: purpose/prompts/examples token sets.
+
+```ts
+function loadSkillSemanticContent(skillsDir: string, skillName: string): Promise<SkillSemanticContent>
+```
+
+#### Parameters
+
+- `skillsDir`
+- `skillName`
+
+#### Returns
+
+The skill's purpose/prompt/example token sets and content flags.
+
+---
+
+### `topKeywords`
+
+```ts
+import { topKeywords } from 'hr-skills-build/server'
+```
+
+Extract the top `count` most frequent normalised tokens from `description`.
+Ties are broken alphabetically so the result is deterministic.
+
+```ts
+function topKeywords(description: string, count?: number): string[]
+```
+
+#### Parameters
+
+- `description`
+- `count` (optional)
+
+#### Returns
+
+Top tokens, most frequent first.
+
+---
+
+### `SemanticFinding`
+
+```ts
+import { SemanticFinding } from 'hr-skills-build/server'
+```
+
+A single semantic-consistency finding for one skill.
+
+```ts
+interface SemanticFinding {
+    /** Affected skill's directory name. */
+    skill: string;
+    /** Affected subdirectory/file, e.g. "prompts/", "examples/". */
+    file: string;
+    /** Which heuristic triggered this finding. */
+    heuristic: SemanticHeuristic;
+    /** Deterministic confidence score in [0, 1] — higher means more confident. */
+    confidence: number;
+    /** Human-readable explanation, including the heuristic and suggested action. */
+    explanation: string;
+}
+```
+
+---
+
+### `checkDrift`
+
+```ts
+import { checkDrift } from 'hr-skills-build/server'
+```
+
+Check `prompts/` and `examples/` for drift against a skill's own purpose
+tokens (checks 1 and 2), skipping skills whose purpose vocabulary is too
+small to compare against reliably.
+
+```ts
+function checkDrift(skill: SkillSemanticContent): SemanticFinding[]
+```
+
+#### Parameters
+
+- `skill`
+
+#### Returns
+
+Drift findings, empty when nothing is flagged.
+
+---
+
+### `checkPossibleCopy`
+
+```ts
+import { checkPossibleCopy } from 'hr-skills-build/server'
+```
+
+Check whether `prompts/` or `examples/` match another skill's purpose
+tokens meaningfully better than they match their own skill (check 3).
+
+```ts
+function checkPossibleCopy(skill: SkillSemanticContent, allSkills: SkillSemanticContent[]): SemanticFinding[]
+```
+
+#### Parameters
+
+- `skill`
+- `allSkills`
+
+#### Returns
+
+Possible-copy findings, empty when nothing is flagged.
+
+---
+
+### `checkConceptCoverage`
+
+```ts
+import { checkConceptCoverage } from 'hr-skills-build/server'
+```
+
+Check that the skill's top description keywords are actually covered
+somewhere in its supporting material (check 4).
+
+```ts
+function checkConceptCoverage(skill: SkillSemanticContent): SemanticFinding[]
+```
+
+#### Parameters
+
+- `skill`
+
+#### Returns
+
+Concept-coverage findings, empty when nothing is flagged.
+
+---
+
+### `validateSemanticConsistency`
+
+```ts
+import { validateSemanticConsistency } from 'hr-skills-build/server'
+```
+
+Run semantic consistency validation across all provided skill names and
+emit findings as `SkillValidationIssue` warnings (message prefix
+`[semantic-warning]`).
+
+Skills are processed in alphabetically-sorted order and findings are
+sorted by skill name, then by heuristic name, so the same repository
+state always produces identical output.
+
+The function never throws — I/O errors for individual skills simply
+result in empty token sets, which cannot spuriously trigger a finding
+(empty prompts/examples are skipped; empty purpose is below
+MIN_PURPOSE_TOKENS and skipped too).
+
+```ts
+function validateSemanticConsistency(skillsDir: string, skillNames: string[], warnings: SkillValidationIssue[]): Promise<SemanticFinding[]>
+```
+
+#### Parameters
+
+- `skillsDir`
+- `skillNames`
+- `warnings`
+
+#### Returns
+
+Resolves once every skill has been checked; findings are pushed onto `warnings`.
+
+---
+
+### `validateExecutionPlan`
+
+```ts
+import { validateExecutionPlan } from 'hr-skills-build/server'
+```
+
+Validate an execution plan against the registry and detect common issues.
+
+```ts
+function validateExecutionPlan(plan: ExecutionPlan, registry: Registry): PlanValidationResult
+```
+
+#### Parameters
+
+- `plan`
+- `registry`
+
+#### Returns
+
+Whether the plan is valid, plus any issues found.
+
+---
+
+### `suggestPlanImprovements`
+
+```ts
+import { suggestPlanImprovements } from 'hr-skills-build/server'
+```
+
+Suggest improvements to an execution plan.
+
+Non-binding suggestions for better organization or coverage.
+
+```ts
+function suggestPlanImprovements(plan: ExecutionPlan, _registry: Registry): string[]
+```
+
+#### Parameters
+
+- `plan`
+- `_registry`
+
+#### Returns
+
+Human-readable suggestions, empty when the plan looks fine.
+
+---
+
+### `validateRegistryConsistency`
+
+```ts
+import { validateRegistryConsistency } from 'hr-skills-build/server'
+```
+
+Validate the Skill Registry: schema conformance, staleness against the
+current filesystem, duplicate IDs, dangling relationship references, and
+dependency cycles.
+
+Mirrors the pattern already used for marketplace.json / router consistency
+in validate.ts — recompute the expected artifact in memory and compare,
+rather than trusting the committed file blindly.
+
+```ts
+function validateRegistryConsistency(errors: SkillValidationIssue[]): Promise<void>
+```
+
+#### Parameters
+
+- `errors`
+
+#### Returns
+
+Resolves once every check has run; findings are pushed onto `errors`.
+
+---
+
+### `validateRelatedSkillsAgainstSignals`
+
+```ts
+import { validateRelatedSkillsAgainstSignals } from 'hr-skills-build/server'
+```
+
+Warn when a high-evidence usage-informed relevance signal (Phase 6.1) is
+absent from a skill's `relatedSkills` list — Phase 6.1-B's second
+deliverable.
+
+This is deliberately a warning, not an error: `reRankRelatedSkills()`
+already tends to surface high-evidence pairs (see relevance-signals.ts),
+so a miss here usually means a skill already has `limit` (5) higher-
+scored entries crowding it out — worth a maintainer's attention, not a
+build failure. Follows the same `(input, warnings)` shape as
+`detectDuplicates()` and `validateSemanticConsistency()` so `validate.ts`
+can run all three concurrently in its warnings group.
+
+A signal counts as "high evidence" when its `coSelectionRate` is at
+least HIGH_EVIDENCE_CO_SELECTION_RATE AND it's backed by at
+least HIGH_EVIDENCE_MIN_OBSERVATIONS observations — see the
+constants' doc comments for the rationale.
+
+```ts
+function validateRelatedSkillsAgainstSignals(registry: { skills: readonly Pick<RegistryEntry, "relatedSkills" | "id">[]; }, signalTable: RelevanceSignalTable | undefined, warnings: SkillValidationIssue[]): void
+```
+
+#### Parameters
+
+- `registry`
+- `signalTable`
+- `warnings`
+
+---
+
+### `validateFrontmatter`
+
+```ts
+import { validateFrontmatter } from 'hr-skills-build/server'
+```
+
+Validate the frontmatter of a skill. \*
+
+```ts
+function validateFrontmatter(skillName: string, content: string, errors: SkillValidationIssue[]): void
+```
+
+#### Parameters
+
+- `skillName`
+- `content`
+- `errors`
+
+---
+
+### `validateRequiredSections`
+
+```ts
+import { validateRequiredSections } from 'hr-skills-build/server'
+```
+
+Validate the required sections of a skill. \*
+
+```ts
+function validateRequiredSections(skillName: string, content: string, errors: SkillValidationIssue[]): void
+```
+
+#### Parameters
+
+- `skillName`
+- `content`
+- `errors`
+
+---
+
+### `validateContentLength`
+
+```ts
+import { validateContentLength } from 'hr-skills-build/server'
+```
+
+Validate the content length of a skill. \*
+
+```ts
+function validateContentLength(skillName: string, content: string, errors: SkillValidationIssue[]): void
+```
+
+#### Parameters
+
+- `skillName`
+- `content`
+- `errors`
+
+---
+
+### `validateLineCount`
+
+```ts
+import { validateLineCount } from 'hr-skills-build/server'
+```
+
+Validate the line count of a skill. \*
+
+```ts
+function validateLineCount(skillName: string, content: string, errors: SkillValidationIssue[]): void
+```
+
+#### Parameters
+
+- `skillName`
+- `content`
+- `errors`
+
+---
+
+### `validateSupportedTasks`
+
+```ts
+import { validateSupportedTasks } from 'hr-skills-build/server'
+```
+
+Validate the supported tasks of a skill. \*
+
+```ts
+function validateSupportedTasks(skillName: string, content: string, errors: SkillValidationIssue[]): void
+```
+
+#### Parameters
+
+- `skillName`
+- `content`
+- `errors`
+
+---
+
+### `validateTips`
+
+```ts
+import { validateTips } from 'hr-skills-build/server'
+```
+
+Validate the tips of a skill. \*
+
+```ts
+function validateTips(skillName: string, content: string, errors: SkillValidationIssue[]): void
+```
+
+#### Parameters
+
+- `skillName`
+- `content`
+- `errors`
+
+---
+
+### `validateBlankLines`
+
+```ts
+import { validateBlankLines } from 'hr-skills-build/server'
+```
+
+Validate the blank lines of a skill. \*
+
+```ts
+function validateBlankLines(skillName: string, content: string, errors: SkillValidationIssue[]): void
+```
+
+#### Parameters
+
+- `skillName`
+- `content`
+- `errors`
+
+---
+
+### `validateAuthor`
+
+```ts
+import { validateAuthor } from 'hr-skills-build/server'
+```
+
+Validate the author of a skill.
+
+```ts
+function validateAuthor(skillName: string, author: string | undefined, errors: SkillValidationIssue[]): void
+```
+
+#### Parameters
+
+- `skillName`
+- `author`
+- `errors`
+
+---
+
+### `validatePromptStructure`
+
+```ts
+import { validatePromptStructure } from 'hr-skills-build/server'
+```
+
+Validate the structure of the ## Key prompts section.
+
+Per docs/engineering/format.md: 3-6 subtopics (H3 headings) and 4-7 quoted prompts per subtopic.
+
+```ts
+function validatePromptStructure(skillName: string, content: string, errors: SkillValidationIssue[]): void
+```
+
+#### Parameters
+
+- `skillName`
+- `content`
+- `errors`
+
+---
+
+### `validateRouterConsistency`
+
+```ts
+import { validateRouterConsistency } from 'hr-skills-build/server'
+```
+
+Validate three-way consistency: router (root SKILL.md) ↔ filesystem (skills/) ↔ marketplace.json.
+
+All three sources must agree on which skills exist. A mismatch means either a skill
+was added without syncing, or the router wasn't updated after a rename/deletion.
+
+```ts
+function validateRouterConsistency(skillNames: string[], errors: SkillValidationIssue[]): Promise<void>
+```
+
+#### Parameters
+
+- `skillNames`
+- `errors`
+
+#### Returns
+
+Resolves once all three sources have been compared; findings are pushed onto `errors`.
+
+---
+
+### `validateSubdirectoryContents`
+
+```ts
+import { validateSubdirectoryContents } from 'hr-skills-build/server'
+```
+
+Validate that optional subdirectories (content, prompts, examples), if present, are non-empty.
+
+```ts
+function validateSubdirectoryContents(skillName: string, skillDir: string, errors: SkillValidationIssue[]): Promise<void>
+```
+
+#### Parameters
+
+- `skillName`
+- `skillDir`
+- `errors`
+
+#### Returns
+
+Resolves once every subdirectory has been checked; findings are pushed onto `errors`.
+
+---
+
+### `GITHUB_BLOB_BASE_URL`
+
+```ts
+import { GITHUB_BLOB_BASE_URL } from 'hr-skills-build/server'
+```
+
+Base URL for linking to a file in this repo on GitHub, e.g. for use in
+generated Markdown that's posted somewhere with no "current file" context
+(a PR comment, a Slack message) where a relative link like `../docs/x.md`
+cannot resolve. Append a repo-root-relative path, e.g.
+`` `${GITHUB_BLOB_BASE_URL}/docs/engineering/quality-scoring.md` ``.
+
+```ts
+const GITHUB_BLOB_BASE_URL: "https://github.com/tuanductran/hr-skills/blob/main"
+```
+
+---
+
+### `TASK_ITEM_REGEX`
+
+```ts
+import { TASK_ITEM_REGEX } from 'hr-skills-build/server'
+```
+
+Matches a markdown task-list item line, e.g. `- some task`.
+
+```ts
+const TASK_ITEM_REGEX: RegExp
+```
+
+---
+
+### `HR_SKILL_PREFIX`
+
+```ts
+import { HR_SKILL_PREFIX } from 'hr-skills-build/server'
+```
+
+The directory-name prefix shared by all HR skill folders, e.g. `hr-`.
+
+```ts
+const HR_SKILL_PREFIX: "hr-"
+```
+
+---
+
+### `KEY_PROMPTS_REGEX`
+
+```ts
+import { KEY_PROMPTS_REGEX } from 'hr-skills-build/server'
+```
+
+Captures the body of a `## Key prompts` section (including sub-headings)
+up to the next `##` section, a `---` divider, or end of file.
+Capture group 1 contains the raw block text.
+
+```ts
+const KEY_PROMPTS_REGEX: RegExp
+```
+
+---
+
+### `QUOTED_PROMPT_REGEX`
+
+```ts
+import { QUOTED_PROMPT_REGEX } from 'hr-skills-build/server'
+```
+
+Matches a numbered or bulleted quoted prompt line inside a Key prompts block,
+e.g. `1. "Create a job description for..."` or `- "Draft an offer letter..."`.
+Capture group 1 contains the quoted prompt text (without surrounding quotes).
+
+```ts
+const QUOTED_PROMPT_REGEX: RegExp
+```
+
+---
+
+### `USE_WHEN_REGEX`
+
+```ts
+import { USE_WHEN_REGEX } from 'hr-skills-build/server'
+```
+
+Case-insensitive match for the phrase `Use when` inside a skill description,
+used to split a description into its "coverage" and "trigger" clauses.
+
+```ts
+const USE_WHEN_REGEX: RegExp
+```
+
+---
+
+### `PERIOD_REGEX`
+
+```ts
+import { PERIOD_REGEX } from 'hr-skills-build/server'
+```
+
+Matches a trailing period at the end of a string — used to strip it before appending a new one.
+
+```ts
+const PERIOD_REGEX: RegExp
+```
+
+---
+
+### `FRONTMATTER_REGEX`
+
+```ts
+import { FRONTMATTER_REGEX } from 'hr-skills-build/server'
+```
+
+Captures YAML frontmatter delimited by `---` at the start of a markdown file.
+Capture group 1 contains the raw YAML text between the delimiters.
+
+```ts
+const FRONTMATTER_REGEX: RegExp
+```
+
+---
+
+### `TASKS_REGEX`
+
+```ts
+import { TASKS_REGEX } from 'hr-skills-build/server'
+```
+
+Captures the body of a `## Supported tasks` section up to the next `##` heading
+or end of file. Capture group 1 contains the raw block text.
+
+```ts
+const TASKS_REGEX: RegExp
+```
+
+---
+
+### `REQUIRED_SECTIONS`
+
+```ts
+import { REQUIRED_SECTIONS } from 'hr-skills-build/server'
+```
+
+The three markdown section headings that every skill SKILL.md must contain.
+Validated by `validateRequiredSections` in validate.ts.
+
+```ts
+const REQUIRED_SECTIONS: string[]
+```
+
+---
+
+### `MIN_DESCRIPTION_LENGTH`
+
+```ts
+import { MIN_DESCRIPTION_LENGTH } from 'hr-skills-build/server'
+```
+
+Minimum character length for a skill's frontmatter `description` field.
+
+```ts
+const MIN_DESCRIPTION_LENGTH: 50
+```
+
+---
+
+### `MIN_CONTENT_LENGTH`
+
+```ts
+import { MIN_CONTENT_LENGTH } from 'hr-skills-build/server'
+```
+
+Minimum character length for the full SKILL.md content body.
+
+```ts
+const MIN_CONTENT_LENGTH: 1000
+```
+
+---
+
+### `TIPS_REGEX`
+
+```ts
+import { TIPS_REGEX } from 'hr-skills-build/server'
+```
+
+Captures the body of a `## Tips` section up to the next `##` heading or end of file.
+Capture group 1 contains the raw block text.
+
+```ts
+const TIPS_REGEX: RegExp
+```
+
+---
+
+### `SKILL_LINK_REGEX`
+
+```ts
+import { SKILL_LINK_REGEX } from 'hr-skills-build/server'
+```
+
+Matches markdown links that reference another skill, e.g.
+`[hr-recruiting](skills/hr-recruiting)`.
+Capture group 1 contains the skill ID (`hr-<slug>`).
+
+Shared by router consistency validation and registry dependency extraction
+(`CATEGORY_META.preamble` in classifier.ts) so both stay in sync.
+
+```ts
+const SKILL_LINK_REGEX: RegExp
+```
+
+---
+
+### `REGISTRY_SCHEMA_VERSION`
+
+```ts
+import { REGISTRY_SCHEMA_VERSION } from 'hr-skills-build/server'
+```
+
+Schema version for `registry/skills.json`.
+Increment this when the shape of RegistryEntry  changes in a breaking way.
+
+```ts
+const REGISTRY_SCHEMA_VERSION: 1
+```
+
+---
+
+### `DocumentationSection`
+
+```ts
+import { DocumentationSection } from 'hr-skills-build/server'
+```
+
+A Markdown file associated with a skill, preserved in stable filename order.
+
+```ts
+interface DocumentationSection {
+    readonly fileName: string;
+    readonly markdown: string;
+}
+```
+
+---
+
+### `DocumentationSkill`
+
+```ts
+import { DocumentationSkill } from 'hr-skills-build/server'
+```
+
+A registry entry enriched with the source Markdown needed for the public site.
+
+```ts
+interface DocumentationSkill extends RegistryEntry {
+    readonly displayName: string;
+    readonly content: string;
+    readonly prompts: readonly DocumentationSection[];
+    readonly examples: readonly DocumentationSection[];
+}
+```
+
+---
+
+### `DocumentationDomain`
+
+```ts
+import { DocumentationDomain } from 'hr-skills-build/server'
+```
+
+A stable catalog grouping derived from the canonical registry domain.
+
+```ts
+interface DocumentationDomain {
+    readonly id: SkillCategory;
+    readonly label: string;
+    readonly skillCount: number;
+}
+```
+
+---
+
+### `DocumentationData`
+
+```ts
+import { DocumentationData } from 'hr-skills-build/server'
+```
+
+The generated, app-consumable public documentation artifact.
+
+```ts
+interface DocumentationData {
+    readonly schemaVersion: 1;
+    readonly generatedAt: string;
+    readonly skillCount: number;
+    readonly domains: readonly DocumentationDomain[];
+    readonly skills: readonly DocumentationSkill[];
+}
+```
+
+---
+
+### `extractMatch`
+
+```ts
+import { extractMatch } from 'hr-skills-build/server'
+```
+
+Extract and trim the first capture group from a regex match against `content`.
+
+Duplicated (not imported) from `helpers.ts` on purpose: this file is part
+of the browser-safe `client` surface and must not import `helpers.ts`,
+which pulls in `node:fs/promises` and `node:path`.
+
+```ts
+function extractMatch(regex: RegExp, content: string): string | null
+```
+
+#### Parameters
+
+- `regex`
+- `content`
+
+#### Returns
+
+The trimmed contents of capture group 1, or `null` if the regex did not match.
+
+---
+
+### `parseSkillFrontmatter`
+
+```ts
+import { parseSkillFrontmatter } from 'hr-skills-build/server'
+```
+
+Parse and validate a markdown document's YAML frontmatter against
+SkillFrontmatterSchema.
+
+Never throws: missing frontmatter, invalid YAML, and schema validation
+failures all resolve to `{}` rather than raising an error, so callers can
+treat every field as optional.
+
+```ts
+function parseSkillFrontmatter(content: string): { name?: string | undefined; description?: string | undefined; metadata?: { author?: string | undefined; version?: string | undefined; } | undefined; }
+```
+
+#### Parameters
+
+- `content`
+
+#### Returns
+
+Parsed frontmatter fields, or `{}` if none/invalid.
+
+---
+
+### `analyzeIntent`
+
+```ts
+import { analyzeIntent } from 'hr-skills-build/server'
+```
+
+Extract capabilities and key phrases from user intent.
+
+Uses simple heuristics to identify what the user is asking for:
+- Split by commas and "and"
+- Recognize patterns like "create", "write", "develop", "design", etc.
+- Normalize to lowercase
+
+This is intentionally simple and deterministic — not powered by ML.
+Future extensions could replace this with semantic analysis if needed.
+
+```ts
+function analyzeIntent(intent: string): string[]
+```
+
+#### Parameters
+
+- `intent`
+
+#### Returns
+
+Extracted capability phrases, normalized to lowercase.
+
+---
+
+### `generateExecutionPlan`
+
+```ts
+import { generateExecutionPlan } from 'hr-skills-build/server'
+```
+
+Generate a complete execution plan for user intent using the Skill Registry.
+
+Pure function — no side effects, deterministic output for a given input
+and registry state.
+
+```ts
+function generateExecutionPlan(intent: string, registry: Registry): ExecutionPlan
+```
+
+#### Parameters
+
+- `intent`
+- `registry`
+
+#### Returns
+
+The generated plan, including matched capabilities and ordered steps.
 
 ---
 
@@ -1072,6 +3087,86 @@ function executeWorkflow(plan: ExecutionPlan, executeStep: StepExecutorFn, optio
 #### Returns
 
 The overall workflow status plus a per-step result list.
+
+---
+
+### `NonEmptyString`
+
+```ts
+import { NonEmptyString } from 'hr-skills-build/server'
+```
+
+```ts
+const NonEmptyString: SchemaWithPipe<readonly [SchemaWithPipe<readonly [StringSchema<undefined>, TrimAction]>, MinLengthAction<string, 1, undefined>]>
+```
+
+---
+
+### `MarketplaceJsonSchema`
+
+```ts
+import { MarketplaceJsonSchema } from 'hr-skills-build/server'
+```
+
+Schema for `.claude-plugin/marketplace.json`.
+
+```ts
+const MarketplaceJsonSchema: StrictObjectSchema<{ readonly $schema: LiteralSchema<"https://json.schemastore.org/claude-code-marketplace.json", undefined>; readonly name: SchemaWithPipe<readonly [SchemaWithPipe<readonly [StringSchema<undefined>, TrimAction]>, MinLengthAction<...>]>; readonly description: SchemaWithPipe<...>; readonly owner: Stri...
+```
+
+---
+
+### `SkillFrontmatterSchema`
+
+```ts
+import { SkillFrontmatterSchema } from 'hr-skills-build/server'
+```
+
+Schema for `SKILL.md` frontmatter.
+
+```ts
+const SkillFrontmatterSchema: StrictObjectSchema<{ readonly name: OptionalSchema<SchemaWithPipe<readonly [SchemaWithPipe<readonly [StringSchema<undefined>, TrimAction]>, MinLengthAction<string, 1, undefined>]>, undefined>; readonly description: OptionalSchema<...>; readonly metadata: OptionalSchema<...>; }, undefined>
+```
+
+---
+
+### `SkillFrontmatter`
+
+```ts
+import { SkillFrontmatter } from 'hr-skills-build/server'
+```
+
+TypeScript type inferred from SkillFrontmatterSchema.
+
+```ts
+type SkillFrontmatter = v.InferOutput<typeof SkillFrontmatterSchema>
+```
+
+---
+
+### `SKILL_CATEGORIES`
+
+```ts
+import { SKILL_CATEGORIES } from 'hr-skills-build/server'
+```
+
+```ts
+const SKILL_CATEGORIES: readonly ["talent-acquisition", "onboarding-offboarding", "performance-talent", "compensation-rewards", "learning-development", "org-design-change", "workforce-analytics", ... 5 more ..., "uncategorized"]
+```
+
+---
+
+### `RegistrySchema`
+
+```ts
+import { RegistrySchema } from 'hr-skills-build/server'
+```
+
+Schema for `registry/skills.json`.
+
+```ts
+const RegistrySchema: StrictObjectSchema<{ readonly schemaVersion: SchemaWithPipe<readonly [NumberSchema<undefined>, MinValueAction<number, 1, undefined>]>; readonly generatedAt: SchemaWithPipe<...>; readonly skillCount: SchemaWithPipe<...>; readonly skills: ArraySchema<...>; }, undefined>
+```
 
 ---
 
@@ -1497,6 +3592,176 @@ filter, or if `limit` is not a positive integer.
 
 ---
 
+### `SERVICE_API_VERSION`
+
+```ts
+import { SERVICE_API_VERSION } from 'hr-skills-build/server'
+```
+
+```ts
+const SERVICE_API_VERSION: "v1"
+```
+
+---
+
+### `ServiceOperation`
+
+```ts
+import { ServiceOperation } from 'hr-skills-build/server'
+```
+
+```ts
+type ServiceOperation = | 'health'
+    | 'readiness'
+    | 'version'
+    | 'search'
+    | 'planner'
+    | 'runtime'
+    | 'evaluation'
+```
+
+---
+
+### `ServiceAuthentication`
+
+```ts
+import { ServiceAuthentication } from 'hr-skills-build/server'
+```
+
+```ts
+type ServiceAuthentication = 'none' | 'api-key'
+```
+
+---
+
+### `ServiceRateLimit`
+
+```ts
+import { ServiceRateLimit } from 'hr-skills-build/server'
+```
+
+```ts
+interface ServiceRateLimit {
+    readonly maxRequests: number;
+    readonly windowSeconds: number;
+}
+```
+
+---
+
+### `ServiceContract`
+
+```ts
+import { ServiceContract } from 'hr-skills-build/server'
+```
+
+```ts
+interface ServiceContract {
+    readonly operation: ServiceOperation;
+    readonly method: 'GET' | 'POST';
+    readonly path: `/api/${string}`;
+    readonly authentication: ServiceAuthentication;
+    readonly rateLimit: ServiceRateLimit;
+    readonly deterministic: true;
+}
+```
+
+---
+
+### `SERVICE_CONTRACTS`
+
+```ts
+import { SERVICE_CONTRACTS } from 'hr-skills-build/server'
+```
+
+```ts
+const SERVICE_CONTRACTS: readonly ServiceContract[]
+```
+
+---
+
+### `ServiceErrorContract`
+
+```ts
+import { ServiceErrorContract } from 'hr-skills-build/server'
+```
+
+```ts
+interface ServiceErrorContract {
+    readonly code: ServiceErrorCode;
+    readonly message: string;
+    readonly details?: Record<string, unknown>;
+}
+```
+
+---
+
+### `ServiceSuccessContract`
+
+```ts
+import { ServiceSuccessContract } from 'hr-skills-build/server'
+```
+
+```ts
+interface ServiceSuccessContract<T> {
+    readonly success: true;
+    readonly data: T;
+    readonly meta: {
+        readonly requestId?: string;
+        readonly apiVersion: typeof SERVICE_API_VERSION;
+    };
+}
+```
+
+---
+
+### `ServiceFailureContract`
+
+```ts
+import { ServiceFailureContract } from 'hr-skills-build/server'
+```
+
+```ts
+interface ServiceFailureContract {
+    readonly success: false;
+    readonly error: ServiceErrorContract;
+    readonly meta: {
+        readonly requestId?: string;
+        readonly apiVersion: typeof SERVICE_API_VERSION;
+    };
+}
+```
+
+---
+
+### `ServiceEnvelope`
+
+```ts
+import { ServiceEnvelope } from 'hr-skills-build/server'
+```
+
+```ts
+type ServiceEnvelope = ServiceSuccessContract<T> | ServiceFailureContract
+```
+
+---
+
+### `getServiceContract`
+
+```ts
+import { getServiceContract } from 'hr-skills-build/server'
+```
+
+```ts
+function getServiceContract(operation: ServiceOperation): ServiceContract
+```
+
+#### Parameters
+
+- `operation`
+
+---
+
 ### `SearchRequestSchema`
 
 ```ts
@@ -1542,156 +3807,6 @@ import { PlannerRequestInput } from 'hr-skills-build/server'
 ```ts
 type PlannerRequestInput = v.InferOutput<typeof PlannerRequestSchema>
 ```
-
----
-
-### `successResponse`
-
-```ts
-import { successResponse } from 'hr-skills-build/server'
-```
-
-```ts
-function successResponse(data: T, meta?: Record<string, unknown> | undefined): ServiceResponseSuccess<T>
-```
-
-#### Parameters
-
-- `data`
-- `meta` (optional)
-
----
-
-### `failureResponse`
-
-```ts
-import { failureResponse } from 'hr-skills-build/server'
-```
-
-```ts
-function failureResponse(code: ServiceErrorCode, message: string, details?: Record<string, unknown> | undefined): ServiceResponseFailure
-```
-
-#### Parameters
-
-- `code`
-- `message`
-- `details` (optional)
-
----
-
-### `getHealthService`
-
-```ts
-import { getHealthService } from 'hr-skills-build/server'
-```
-
-Health Endpoint Service
-Evaluates service health and optional registry stats.
-
-```ts
-function getHealthService(registry?: Registry | undefined): ServiceResponse<HealthStatus>
-```
-
-#### Parameters
-
-- `registry` (optional)
-
----
-
-### `getVersionService`
-
-```ts
-import { getVersionService } from 'hr-skills-build/server'
-```
-
-Version Endpoint Service
-Exposes API versioning and phase metadata.
-
-```ts
-function getVersionService(): ServiceResponse<VersionInfo>
-```
-
----
-
-### `searchRegistryService`
-
-```ts
-import { searchRegistryService } from 'hr-skills-build/server'
-```
-
-Registry Search Service API
-Validates request input and executes deterministic skill search.
-
-```ts
-function searchRegistryService(queryInput: unknown, registry: Registry): ServiceResponse<SkillSearchResponse>
-```
-
-#### Parameters
-
-- `queryInput`
-- `registry`
-
----
-
-### `generatePlanService`
-
-```ts
-import { generatePlanService } from 'hr-skills-build/server'
-```
-
-Planner Service API
-Validates intent request, generates execution plan, and validates plan correctness.
-
-```ts
-function generatePlanService(requestInput: unknown, registry: Registry): ServiceResponse<PlannerServiceResult>
-```
-
-#### Parameters
-
-- `requestInput`
-- `registry`
-
----
-
-### `executeWorkflowService`
-
-```ts
-import { executeWorkflowService } from 'hr-skills-build/server'
-```
-
-Runtime Execution Service API
-Executes an ExecutionPlan deterministically through WorkflowExecutor.
-
-```ts
-function executeWorkflowService(plan: ExecutionPlan, options?: ExecuteWorkflowServiceOptions): Promise<ServiceResponse<WorkflowResult>>
-```
-
-#### Parameters
-
-- `plan`
-- `options` (optional)
-
----
-
-### `runEvaluationService`
-
-```ts
-import { runEvaluationService } from 'hr-skills-build/server'
-```
-
-Evaluation Service API
-Runs evaluation datasets against the registry and compares against golden fixtures.
-
-```ts
-function runEvaluationService(dataset: EvaluationDataset, registry: Registry, golden?: GoldenFixture | undefined): Promise<ServiceResponse<EvaluationReport>>
-```
-
-#### Parameters
-
-- `dataset`
-- `registry`
-- `golden` (optional)
 
 ---
 
@@ -1861,743 +3976,6 @@ interface ExecuteWorkflowServiceOptions {
     options?: RuntimeOptions;
     stepExecutor?: StepExecutorFn;
 }
-```
-
----
-
-### `GITHUB_BLOB_BASE_URL`
-
-```ts
-import { GITHUB_BLOB_BASE_URL } from 'hr-skills-build/server'
-```
-
-Base URL for linking to a file in this repo on GitHub, e.g. for use in
-generated Markdown that's posted somewhere with no "current file" context
-(a PR comment, a Slack message) where a relative link like `../docs/x.md`
-cannot resolve. Append a repo-root-relative path, e.g.
-`` `${GITHUB_BLOB_BASE_URL}/docs/engineering/quality-scoring.md` ``.
-
-```ts
-const GITHUB_BLOB_BASE_URL: "https://github.com/tuanductran/hr-skills/blob/main"
-```
-
----
-
-### `TASK_ITEM_REGEX`
-
-```ts
-import { TASK_ITEM_REGEX } from 'hr-skills-build/server'
-```
-
-Matches a markdown task-list item line, e.g. `- some task`.
-
-```ts
-const TASK_ITEM_REGEX: RegExp
-```
-
----
-
-### `HR_SKILL_PREFIX`
-
-```ts
-import { HR_SKILL_PREFIX } from 'hr-skills-build/server'
-```
-
-The directory-name prefix shared by all HR skill folders, e.g. `hr-`.
-
-```ts
-const HR_SKILL_PREFIX: "hr-"
-```
-
----
-
-### `KEY_PROMPTS_REGEX`
-
-```ts
-import { KEY_PROMPTS_REGEX } from 'hr-skills-build/server'
-```
-
-Captures the body of a `## Key prompts` section (including sub-headings)
-up to the next `##` section, a `---` divider, or end of file.
-Capture group 1 contains the raw block text.
-
-```ts
-const KEY_PROMPTS_REGEX: RegExp
-```
-
----
-
-### `QUOTED_PROMPT_REGEX`
-
-```ts
-import { QUOTED_PROMPT_REGEX } from 'hr-skills-build/server'
-```
-
-Matches a numbered or bulleted quoted prompt line inside a Key prompts block,
-e.g. `1. "Create a job description for..."` or `- "Draft an offer letter..."`.
-Capture group 1 contains the quoted prompt text (without surrounding quotes).
-
-```ts
-const QUOTED_PROMPT_REGEX: RegExp
-```
-
----
-
-### `USE_WHEN_REGEX`
-
-```ts
-import { USE_WHEN_REGEX } from 'hr-skills-build/server'
-```
-
-Case-insensitive match for the phrase `Use when` inside a skill description,
-used to split a description into its "coverage" and "trigger" clauses.
-
-```ts
-const USE_WHEN_REGEX: RegExp
-```
-
----
-
-### `PERIOD_REGEX`
-
-```ts
-import { PERIOD_REGEX } from 'hr-skills-build/server'
-```
-
-Matches a trailing period at the end of a string — used to strip it before appending a new one.
-
-```ts
-const PERIOD_REGEX: RegExp
-```
-
----
-
-### `FRONTMATTER_REGEX`
-
-```ts
-import { FRONTMATTER_REGEX } from 'hr-skills-build/server'
-```
-
-Captures YAML frontmatter delimited by `---` at the start of a markdown file.
-Capture group 1 contains the raw YAML text between the delimiters.
-
-```ts
-const FRONTMATTER_REGEX: RegExp
-```
-
----
-
-### `TASKS_REGEX`
-
-```ts
-import { TASKS_REGEX } from 'hr-skills-build/server'
-```
-
-Captures the body of a `## Supported tasks` section up to the next `##` heading
-or end of file. Capture group 1 contains the raw block text.
-
-```ts
-const TASKS_REGEX: RegExp
-```
-
----
-
-### `REQUIRED_SECTIONS`
-
-```ts
-import { REQUIRED_SECTIONS } from 'hr-skills-build/server'
-```
-
-The three markdown section headings that every skill SKILL.md must contain.
-Validated by `validateRequiredSections` in validate.ts.
-
-```ts
-const REQUIRED_SECTIONS: string[]
-```
-
----
-
-### `MIN_DESCRIPTION_LENGTH`
-
-```ts
-import { MIN_DESCRIPTION_LENGTH } from 'hr-skills-build/server'
-```
-
-Minimum character length for a skill's frontmatter `description` field.
-
-```ts
-const MIN_DESCRIPTION_LENGTH: 50
-```
-
----
-
-### `MIN_CONTENT_LENGTH`
-
-```ts
-import { MIN_CONTENT_LENGTH } from 'hr-skills-build/server'
-```
-
-Minimum character length for the full SKILL.md content body.
-
-```ts
-const MIN_CONTENT_LENGTH: 1000
-```
-
----
-
-### `TIPS_REGEX`
-
-```ts
-import { TIPS_REGEX } from 'hr-skills-build/server'
-```
-
-Captures the body of a `## Tips` section up to the next `##` heading or end of file.
-Capture group 1 contains the raw block text.
-
-```ts
-const TIPS_REGEX: RegExp
-```
-
----
-
-### `SKILL_LINK_REGEX`
-
-```ts
-import { SKILL_LINK_REGEX } from 'hr-skills-build/server'
-```
-
-Matches markdown links that reference another skill, e.g.
-`[hr-recruiting](skills/hr-recruiting)`.
-Capture group 1 contains the skill ID (`hr-<slug>`).
-
-Shared by router consistency validation and registry dependency extraction
-(`CATEGORY_META.preamble` in classifier.ts) so both stay in sync.
-
-```ts
-const SKILL_LINK_REGEX: RegExp
-```
-
----
-
-### `REGISTRY_SCHEMA_VERSION`
-
-```ts
-import { REGISTRY_SCHEMA_VERSION } from 'hr-skills-build/server'
-```
-
-Schema version for `registry/skills.json`.
-Increment this when the shape of RegistryEntry  changes in a breaking way.
-
-```ts
-const REGISTRY_SCHEMA_VERSION: 1
-```
-
----
-
-### `discoverSkills`
-
-```ts
-import { discoverSkills } from 'hr-skills-build/server'
-```
-
-Discover all `hr-\*` skill directory names under `skills/`, sorted.
-
-Does not verify `SKILL.md` exists in each directory — callers that need
-that guarantee (e.g. filtering out incomplete/in-progress skill folders)
-should use `registry/discovery.ts#getHrSkills()` instead, which checks
-for `SKILL.md` via `fs.access` and supports a configurable prefix. This
-function is the lighter-weight default used by most of `validation/`,
-`build/`, and `search/`, which read (and error-handle) `SKILL.md`
-themselves immediately after.
-
-```ts
-function discoverSkills(): Promise<string[]>
-```
-
----
-
-### `readSkill`
-
-```ts
-import { readSkill } from 'hr-skills-build/server'
-```
-
-Read a skill's `SKILL.md` content and parse its YAML frontmatter.
-
-```ts
-function readSkill(skillName: string): Promise<{ content: string; frontmatter: { name?: string | undefined; description?: string | undefined; metadata?: { author?: string | undefined; version?: string | undefined; } | undefined; }; }>
-```
-
-#### Parameters
-
-- `skillName`
-
-#### Returns
-
-A promise that resolves to an object containing the raw `content`
-string and the parsed `frontmatter` record.
-
-#### Throws
-
-If `SKILL.md` cannot be read from the filesystem.
-
----
-
-### `parseSkillMeta`
-
-```ts
-import { parseSkillMeta } from 'hr-skills-build/server'
-```
-
-Read a skill's `SKILL.md` and derive display metadata from it: the
-description split at "Use when" into `coverage`/`scopeSentence`, the
-`## Supported tasks` list, and up to 5 quoted example prompts from
-`## Key prompts` as `triggerPhrases`.
-
-Lives here (not in `parser.ts`) because it calls `readSkill`, which reads
-from the filesystem — `parser.ts` is part of the browser-safe `client`
-surface and must stay pure. If a caller already has `SKILL.md` content in
-hand (e.g. fetched over HTTP in a browser context), parse it directly with
-the pure helpers in `parser.ts`/`constants.ts` instead of this function.
-
-```ts
-function parseSkillMeta(skillName: string): Promise<SkillMeta>
-```
-
-#### Parameters
-
-- `skillName`
-
-#### Returns
-
-Display metadata derived from the skill's frontmatter and body.
-
-#### Throws
-
-If `SKILL.md` cannot be read from the filesystem (see `readSkill`).
-
----
-
-### `readSkillContent`
-
-```ts
-import { readSkillContent } from 'hr-skills-build/server'
-```
-
-Read a skill's `SKILL.md` content, collecting a validation issue instead of
-throwing if the file is not found.
-
-```ts
-function readSkillContent(skillName: string, errors: SkillValidationIssue[]): Promise<string | null>
-```
-
-#### Parameters
-
-- `skillName`
-- `errors`
-
-#### Returns
-
-A promise that resolves to the raw file content, or `null` if the
-file was not found (in which case an issue has been added to `errors`).
-
----
-
-### `normalizeAuthorName`
-
-```ts
-import { normalizeAuthorName } from 'hr-skills-build/server'
-```
-
-Normalize an author name to Title Case.
-
-Each whitespace-separated word is capitalized; all other characters are
-lower-cased. Leading and trailing whitespace is stripped.
-
-```ts
-function normalizeAuthorName(name: string): string
-```
-
-#### Parameters
-
-- `name`
-
-#### Returns
-
-The normalized Title Case author name.
-
----
-
-### `first`
-
-```ts
-import { first } from 'hr-skills-build/server'
-```
-
-Return the first element of a non-empty readonly array.
-
-```ts
-function first(items: readonly T[]): T
-```
-
-#### Parameters
-
-- `items`
-
-#### Returns
-
-The first element of `items`.
-
-#### Throws
-
-{Error} If `items` is empty.
-
----
-
-### `dirExists`
-
-```ts
-import { dirExists } from 'hr-skills-build/server'
-```
-
-Check whether a filesystem path exists and is a directory.
-
-```ts
-function dirExists(path: string): Promise<boolean>
-```
-
-#### Parameters
-
-- `path`
-
-#### Returns
-
-A promise that resolves to `true` if `path` is an existing directory,
-or `false` if it does not exist or is not a directory.
-
----
-
-### `countFiles`
-
-```ts
-import { countFiles } from 'hr-skills-build/server'
-```
-
-Count the number of `.md` files directly inside a directory.
-Returns `0` if the directory does not exist or cannot be read.
-
-```ts
-function countFiles(dirPath: string): Promise<number>
-```
-
-#### Parameters
-
-- `dirPath`
-
-#### Returns
-
-A promise that resolves to the count of `.md` files found.
-
----
-
-### `computeTier`
-
-```ts
-import { computeTier } from 'hr-skills-build/server'
-```
-
-Compute a skill's maturity tier based on which optional subdirectories it contains.
-
-Tier rules:
-- `'full'`    — all three subdirectories (`content/`, `prompts/`, `examples/`) are present.
-- `'bare'`    — none of the subdirectories are present.
-- `'partial'` — one or two subdirectories are present.
-
-This is the single source of truth for tier classification — used by both
-`build/generate-skill-matrix.ts` and `registry/registry.ts` so the matrix
-and the registry can never disagree about a skill's tier.
-
-```ts
-function computeTier(hasContent: boolean, hasPrompts: boolean, hasExamples: boolean): Tier
-```
-
-#### Parameters
-
-- `hasContent`
-- `hasPrompts`
-- `hasExamples`
-
-#### Returns
-
-The computed Tier for the skill.
-
----
-
-### `tierIcon`
-
-```ts
-import { tierIcon } from 'hr-skills-build/server'
-```
-
-Return the emoji icon associated with a skill maturity tier.
-
-- `'full'`    → `'🟢'`
-- `'partial'` → `'🟡'`
-- `'bare'`    → `'🔴'`
-
-```ts
-function tierIcon(tier: Tier): string
-```
-
-#### Parameters
-
-- `tier`
-
-#### Returns
-
-A single emoji string representing the tier.
-
----
-
-### `tierLabel`
-
-```ts
-import { tierLabel } from 'hr-skills-build/server'
-```
-
-Return the human-readable display label for a skill maturity tier.
-
-```ts
-function tierLabel(tier: Tier): string
-```
-
-#### Parameters
-
-- `tier`
-
-#### Returns
-
-`'Full'`, `'Partial'`, or `'Bare'`.
-
----
-
-### `makeKeyPromptsContent`
-
-```ts
-import { makeKeyPromptsContent } from 'hr-skills-build/server'
-```
-
-Build a SKILL.md content string with a `## Key prompts` section containing
-`subtopics` H3 sub-headings, each with `promptsEach` numbered quoted prompts.
-
-Used in unit tests to generate fixture content of a specific size without
-manually crafting strings.
-
-```ts
-function makeKeyPromptsContent(subtopics: number, promptsEach: number): string
-```
-
-#### Parameters
-
-- `subtopics`
-- `promptsEach`
-
-#### Returns
-
-A full SKILL.md string with valid frontmatter and the generated prompts section.
-
----
-
-### `stubStepExecutor`
-
-```ts
-import { stubStepExecutor } from 'hr-skills-build/server'
-```
-
-A stub `StepExecutorFn` that returns a deterministic placeholder output
-instead of actually invoking a skill. Shared by `cli/execute-plan.ts` (CLI
-demonstration) and `evaluation/evaluate.ts` (so evaluation results
-characterize the Planner/Runtime's sequencing and validation behavior, not
-a divergent stand-in) — previously duplicated independently in both files.
-
-Real integrations should supply their own `StepExecutorFn` that actually
-invokes the skill (for example, loading its SKILL.md and prompting a model).
-
-```ts
-function stubStepExecutor(step: ExecutionStep, context: RuntimeContext): unknown
-```
-
-#### Parameters
-
-- `step`
-- `context`
-
-#### Returns
-
-A placeholder output object, never a rejected promise.
-
----
-
-### `extractMatch`
-
-```ts
-import { extractMatch } from 'hr-skills-build/server'
-```
-
-Extract and trim the first capture group from a regex match against `content`.
-
-Duplicated (not imported) from `helpers.ts` on purpose: this file is part
-of the browser-safe `client` surface and must not import `helpers.ts`,
-which pulls in `node:fs/promises` and `node:path`.
-
-```ts
-function extractMatch(regex: RegExp, content: string): string | null
-```
-
-#### Parameters
-
-- `regex`
-- `content`
-
-#### Returns
-
-The trimmed contents of capture group 1, or `null` if the regex did not match.
-
----
-
-### `parseSkillFrontmatter`
-
-```ts
-import { parseSkillFrontmatter } from 'hr-skills-build/server'
-```
-
-Parse and validate a markdown document's YAML frontmatter against
-SkillFrontmatterSchema.
-
-Never throws: missing frontmatter, invalid YAML, and schema validation
-failures all resolve to `{}` rather than raising an error, so callers can
-treat every field as optional.
-
-```ts
-function parseSkillFrontmatter(content: string): { name?: string | undefined; description?: string | undefined; metadata?: { author?: string | undefined; version?: string | undefined; } | undefined; }
-```
-
-#### Parameters
-
-- `content`
-
-#### Returns
-
-Parsed frontmatter fields, or `{}` if none/invalid.
-
----
-
-### `EVAL_DATASETS_DIR`
-
-```ts
-import { EVAL_DATASETS_DIR } from 'hr-skills-build/server'
-```
-
-Absolute path to the `eval/datasets/` directory containing hand-authored evaluation cases.
-
-```ts
-const EVAL_DATASETS_DIR: string
-```
-
----
-
-### `EVAL_GOLDEN_DIR`
-
-```ts
-import { EVAL_GOLDEN_DIR } from 'hr-skills-build/server'
-```
-
-Absolute path to the `eval/golden/` directory containing committed golden fixtures.
-
-```ts
-const EVAL_GOLDEN_DIR: string
-```
-
----
-
-### `RELEVANCE_SIGNALS_PATH`
-
-```ts
-import { RELEVANCE_SIGNALS_PATH } from 'hr-skills-build/server'
-```
-
-Absolute path to the generated relevance-signals artifact at the repo root.
-
-```ts
-const RELEVANCE_SIGNALS_PATH: string
-```
-
----
-
-### `MarketplaceJsonSchema`
-
-```ts
-import { MarketplaceJsonSchema } from 'hr-skills-build/server'
-```
-
-Schema for `.claude-plugin/marketplace.json`.
-
-```ts
-const MarketplaceJsonSchema: StrictObjectSchema<{ readonly $schema: LiteralSchema<"https://json.schemastore.org/claude-code-marketplace.json", undefined>; readonly name: SchemaWithPipe<readonly [SchemaWithPipe<readonly [StringSchema<undefined>, TrimAction]>, MinLengthAction<...>]>; readonly description: SchemaWithPipe<...>; readonly owner: Stri...
-```
-
----
-
-### `SkillFrontmatterSchema`
-
-```ts
-import { SkillFrontmatterSchema } from 'hr-skills-build/server'
-```
-
-Schema for `SKILL.md` frontmatter.
-
-```ts
-const SkillFrontmatterSchema: StrictObjectSchema<{ readonly name: OptionalSchema<SchemaWithPipe<readonly [SchemaWithPipe<readonly [StringSchema<undefined>, TrimAction]>, MinLengthAction<string, 1, undefined>]>, undefined>; readonly description: OptionalSchema<...>; readonly metadata: OptionalSchema<...>; }, undefined>
-```
-
----
-
-### `SkillFrontmatter`
-
-```ts
-import { SkillFrontmatter } from 'hr-skills-build/server'
-```
-
-TypeScript type inferred from SkillFrontmatterSchema.
-
-```ts
-type SkillFrontmatter = v.InferOutput<typeof SkillFrontmatterSchema>
-```
-
----
-
-### `SKILL_CATEGORIES`
-
-```ts
-import { SKILL_CATEGORIES } from 'hr-skills-build/server'
-```
-
-```ts
-const SKILL_CATEGORIES: readonly ["talent-acquisition", "onboarding-offboarding", "performance-talent", "compensation-rewards", "learning-development", "org-design-change", "workforce-analytics", ... 5 more ..., "uncategorized"]
-```
-
----
-
-### `RegistrySchema`
-
-```ts
-import { RegistrySchema } from 'hr-skills-build/server'
-```
-
-Schema for `registry/skills.json`.
-
-```ts
-const RegistrySchema: StrictObjectSchema<{ readonly schemaVersion: SchemaWithPipe<readonly [NumberSchema<undefined>, MinValueAction<number, 1, undefined>]>; readonly generatedAt: SchemaWithPipe<...>; readonly skillCount: SchemaWithPipe<...>; readonly skills: ArraySchema<...>; }, undefined>
 ```
 
 ---
@@ -3620,1292 +4998,238 @@ interface EvaluationReport {
 
 ---
 
-### `WEIGHT_DESCRIPTION`
-
-```ts
-import { WEIGHT_DESCRIPTION } from 'hr-skills-build/server'
-```
-
-Weight applied to the description-level Jaccard score.
-
-```ts
-const WEIGHT_DESCRIPTION: 0.35
-```
-
----
-
-### `WEIGHT_CONTENT`
-
-```ts
-import { WEIGHT_CONTENT } from 'hr-skills-build/server'
-```
-
-Weight applied to the content-level token Jaccard score.
-
-```ts
-const WEIGHT_CONTENT: 0.4
-```
-
----
-
-### `WEIGHT_BIGRAM`
-
-```ts
-import { WEIGHT_BIGRAM } from 'hr-skills-build/server'
-```
-
-Weight applied to the bigram Jaccard score.
-
-```ts
-const WEIGHT_BIGRAM: 0.25
-```
-
----
-
-### `DUPLICATE_THRESHOLD`
-
-```ts
-import { DUPLICATE_THRESHOLD } from 'hr-skills-build/server'
-```
-
-Composite similarity score at or above which a pair is reported as a
-potential duplicate.  Range: 0–1.  Default: 0.55.
-
-```ts
-const DUPLICATE_THRESHOLD: 0.55
-```
-
----
-
-### `HR_STOP_WORDS`
-
-```ts
-import { HR_STOP_WORDS } from 'hr-skills-build/server'
-```
-
-Common HR vocabulary that is expected to appear in many skills.
-Filtering these terms out prevents domain-vocabulary overlap from
-triggering false-positive duplicate warnings.
-
-```ts
-const HR_STOP_WORDS: Set<string>
-```
-
----
-
-### `tokenise`
-
-```ts
-import { tokenise } from 'hr-skills-build/server'
-```
-
-Tokenise a normalised string: split on whitespace, remove stop-words and
-tokens shorter than 3 characters.  Returns a sorted array for determinism.
-
-```ts
-function tokenise(text: string): string[]
-```
-
-#### Parameters
-
-- `text`
-
-#### Returns
-
-Sorted, filtered tokens.
-
----
-
-### `buildBigrams`
-
-```ts
-import { buildBigrams } from 'hr-skills-build/server'
-```
-
-Build bigrams (consecutive token pairs) from a token list.
-The list must be in its natural (unsorted) order before calling this;
-the returned bigrams are sorted for determinism.
-
-```ts
-function buildBigrams(tokens: string[]): string[]
-```
-
-#### Parameters
-
-- `tokens`
-
-#### Returns
-
-Sorted `"tokenA|tokenB"` bigrams.
-
----
-
-### `jaccardSimilarity`
-
-```ts
-import { jaccardSimilarity } from 'hr-skills-build/server'
-```
-
-Jaccard similarity between two token arrays treated as multisets.
-
-|A ∩ B| / |A ∪ B| — both computed from the frequency-aware intersection
-so a token appearing twice in A but once in B only contributes 1 to the
-intersection.  Returns 0 when both arrays are empty.
-
-```ts
-function jaccardSimilarity(a: string[], b: string[]): number
-```
-
-#### Parameters
-
-- `a`
-- `b`
-
-#### Returns
-
-Jaccard similarity in `[0, 1]`.
-
----
-
-### `SkillContent`
-
-```ts
-import { SkillContent } from 'hr-skills-build/server'
-```
-
-Parsed representation of a single skill used by the detector.
-
-```ts
-interface SkillContent {
-    /** Skill directory name, e.g. "hr-onboarding". */
-    name: string;
-    /** Raw frontmatter description string. */
-    description: string;
-    /** Concatenated body text extracted from SKILL.md + content/ files. */
-    body: string;
-}
-```
-
----
-
-### `DuplicateWarning`
-
-```ts
-import { DuplicateWarning } from 'hr-skills-build/server'
-```
-
-A single duplicate-detection finding for one pair of skills.
-
-```ts
-interface DuplicateWarning {
-    /** First skill ID (lexicographically smaller). */
-    skillA: string;
-    /** Second skill ID. */
-    skillB: string;
-    /** Weighted composite similarity score (0–1). */
-    score: number;
-    /** Jaccard similarity of the description tokens alone. */
-    descriptionSimilarity: number;
-    /** Jaccard similarity of the content tokens alone. */
-    contentSimilarity: number;
-    /** Jaccard similarity of the content bigrams alone. */
-    bigramSimilarity: number;
-    /** Human-readable explanation of what drove the score. */
-    explanation: string;
-}
-```
-
----
-
-### `comparePair`
-
-```ts
-import { comparePair } from 'hr-skills-build/server'
-```
-
-Compute the composite duplicate score for a pair of pre-loaded skills.
-
-```ts
-function comparePair(a: SkillContent, b: SkillContent, threshold?: number): DuplicateWarning | null
-```
-
-#### Parameters
-
-- `a`
-- `b`
-- `threshold` (optional)
-
-#### Returns
-
-A `DuplicateWarning` when `score >= threshold`, or `null`.
-
----
-
-### `detectDuplicates`
-
-```ts
-import { detectDuplicates } from 'hr-skills-build/server'
-```
-
-Run duplicate detection across all provided skill names and emit findings
-as `SkillValidationIssue` warnings (message prefix `[duplicate-warning]`).
-
-Pairs are evaluated in a stable, alphabetically-sorted order.
-The function never throws — I/O errors for individual skills are silently
-skipped so that other validation can still proceed.
-
-```ts
-function detectDuplicates(skillNames: string[], warnings: SkillValidationIssue[], threshold?: number): Promise<DuplicateWarning[]>
-```
-
-#### Parameters
-
-- `skillNames`
-- `warnings`
-- `threshold` (optional)
-
-#### Returns
-
-Resolves once every pair has been compared; findings are pushed onto `warnings`.
-
----
-
-### `CLARITY_WEIGHT`
-
-```ts
-import { CLARITY_WEIGHT } from 'hr-skills-build/server'
-```
-
-Weight of the clarity dimension in the overall score.
-
-```ts
-const CLARITY_WEIGHT: 0.3
-```
-
----
-
-### `COMPLETENESS_WEIGHT`
-
-```ts
-import { COMPLETENESS_WEIGHT } from 'hr-skills-build/server'
-```
-
-Weight of the completeness dimension in the overall score.
-
-```ts
-const COMPLETENESS_WEIGHT: 0.4
-```
-
----
-
-### `EXAMPLE_COVERAGE_WEIGHT`
-
-```ts
-import { EXAMPLE_COVERAGE_WEIGHT } from 'hr-skills-build/server'
-```
-
-Weight of the example-coverage dimension in the overall score.
-
-```ts
-const EXAMPLE_COVERAGE_WEIGHT: 0.3
-```
-
----
-
-### `QUALITY_BAND_THRESHOLDS`
-
-```ts
-import { QUALITY_BAND_THRESHOLDS } from 'hr-skills-build/server'
-```
-
-Score thresholds for the human-readable quality band.
-
-```ts
-const QUALITY_BAND_THRESHOLDS: { readonly excellent: 85; readonly good: 70; readonly needsReview: 50; }
-```
-
----
-
-### `QualityBand`
-
-```ts
-import { QualityBand } from 'hr-skills-build/server'
-```
-
-Human-readable quality band derived from the overall score.
-
-```ts
-type QualityBand = 'excellent' | 'good' | 'needs-review' | 'poor'
-```
-
----
-
-### `QualityDimensionScore`
-
-```ts
-import { QualityDimensionScore } from 'hr-skills-build/server'
-```
-
-Score and supporting notes for a single quality dimension.
-
-```ts
-interface QualityDimensionScore {
-    /** 0-100 score for this dimension. */
-    score: number;
-    /** Human-readable observations explaining the score (empty if perfect). */
-    notes: string[];
-}
-```
-
----
-
-### `SkillQualityScore`
-
-```ts
-import { SkillQualityScore } from 'hr-skills-build/server'
-```
-
-Full quality-score report for one skill.
-
-```ts
-interface SkillQualityScore {
-    /** Affected skill's directory name. */
-    skill: string;
-    /** How clear and well-triggered the skill's description/body is. */
-    clarity: QualityDimensionScore;
-    /** How complete the skill's sections are relative to the ideal band. */
-    completeness: QualityDimensionScore;
-    /** How well supported tasks are backed by prompts and example material. */
-    exampleCoverage: QualityDimensionScore;
-    /** Weighted overall score in [0, 100]. */
-    overall: number;
-    /** Human-readable band derived from {@link overall}. */
-    band: QualityBand;
-}
-```
-
----
-
-### `scoreClarity`
-
-```ts
-import { scoreClarity } from 'hr-skills-build/server'
-```
-
-Score description length and "Use when" trigger presence, plus body
-readability (average words per sentence).
-
-```ts
-function scoreClarity(description: string, content: string): QualityDimensionScore
-```
-
-#### Parameters
-
-- `description`
-- `content`
-
-#### Returns
-
-Clarity dimension score with explanatory notes.
-
----
-
-### `scoreCompleteness`
-
-```ts
-import { scoreCompleteness } from 'hr-skills-build/server'
-```
-
-Score how close the skill's tasks/tips/prompt-subtopic counts and body
-length are to the ideal (center-weighted) band, not just inside the hard
-pass/fail range.
-
-```ts
-function scoreCompleteness(content: string): QualityDimensionScore
-```
-
-#### Parameters
-
-- `content`
-
-#### Returns
-
-Completeness dimension score with explanatory notes.
-
----
-
-### `scoreExampleCoverage`
-
-```ts
-import { scoreExampleCoverage } from 'hr-skills-build/server'
-```
-
-Score whether the skill has `content/`/`examples/` material and whether
-supported tasks are proportionally backed by quoted example prompts.
-
-```ts
-function scoreExampleCoverage(skillsDir: string, skillName: string, content: string): Promise<QualityDimensionScore>
-```
-
-#### Parameters
-
-- `skillsDir`
-- `skillName`
-- `content`
-
-#### Returns
-
-Example-coverage dimension score with explanatory notes.
-
----
-
-### `scoreSkillQuality`
-
-```ts
-import { scoreSkillQuality } from 'hr-skills-build/server'
-```
-
-Compute a full quality-score report for one skill.
-
-```ts
-function scoreSkillQuality(skillsDir: string, skillName: string): Promise<SkillQualityScore>
-```
-
-#### Parameters
-
-- `skillsDir`
-- `skillName`
-
-#### Returns
-
-A promise resolving to the skill's SkillQualityScore.
-
----
-
-### `scoreAllSkills`
-
-```ts
-import { scoreAllSkills } from 'hr-skills-build/server'
-```
-
-Compute quality-score reports for every HR skill in the repository,
-sorted alphabetically by skill name.
-
-```ts
-function scoreAllSkills(): Promise<SkillQualityScore[]>
-```
-
-#### Returns
-
-A promise resolving to an array of SkillQualityScore.
-
----
-
-### `scoreSkills`
-
-```ts
-import { scoreSkills } from 'hr-skills-build/server'
-```
-
-Compute quality-score reports for a specific subset of skills — used by
-the CI workflow to score only the skills touched by a pull request
-instead of the entire corpus.
-
-```ts
-function scoreSkills(skillNames: string[]): Promise<SkillQualityScore[]>
-```
-
-#### Parameters
-
-- `skillNames`
-
-#### Returns
-
-A promise resolving to an array of SkillQualityScore, in
-the same order as `skillNames`.
-
----
-
-### `validateSecurityCommands`
-
-```ts
-import { validateSecurityCommands } from 'hr-skills-build/server'
-```
-
-Scans fenced shell code blocks in a skill's content for destructive command
-patterns (raw device writes, `mkfs`, fork bombs, piped base64 decodes).
-
-```ts
-function validateSecurityCommands(skillName: string, content: string, errors: SkillValidationIssue[]): void
-```
-
-#### Parameters
-
-- `skillName`
-- `content`
-- `errors`
-
----
-
-### `validateSensitivePaths`
-
-```ts
-import { validateSensitivePaths } from 'hr-skills-build/server'
-```
-
-Scans fenced code blocks for writes to sensitive filesystem paths
-(`/etc/`, `/root/`, `~/.ssh/`, shell rc files, `/usr/local/bin/`, `/tmp/`
-executables).
-
-```ts
-function validateSensitivePaths(skillName: string, content: string, errors: SkillValidationIssue[]): void
-```
-
-#### Parameters
-
-- `skillName`
-- `content`
-- `errors`
-
----
-
-### `validateSuspiciousUrls`
-
-```ts
-import { validateSuspiciousUrls } from 'hr-skills-build/server'
-```
-
-Flags URLs pointing at raw IP addresses, known suspicious hosts, or
-plain-text mentions of exfiltration services (e.g. requestbin).
-
-```ts
-function validateSuspiciousUrls(skillName: string, content: string, errors: SkillValidationIssue[]): void
-```
-
-#### Parameters
-
-- `skillName`
-- `content`
-- `errors`
-
----
-
-### `validateCredentialLeaks`
-
-```ts
-import { validateCredentialLeaks } from 'hr-skills-build/server'
-```
-
-Flags content matching known credential/secret patterns (API keys,
-hardcoded passwords, GitHub/OpenAI/Slack/AWS token shapes).
-
-```ts
-function validateCredentialLeaks(skillName: string, content: string, errors: SkillValidationIssue[]): void
-```
-
-#### Parameters
-
-- `skillName`
-- `content`
-- `errors`
-
----
-
-### `validateHiddenUnicode`
-
-```ts
-import { validateHiddenUnicode } from 'hr-skills-build/server'
-```
-
-Flags zero-width, directional-override, and private-use-area Unicode
-characters — commonly used to hide injected instructions in text that
-looks clean when rendered.
-
-```ts
-function validateHiddenUnicode(skillName: string, content: string, errors: SkillValidationIssue[]): void
-```
-
-#### Parameters
-
-- `skillName`
-- `content`
-- `errors`
-
----
-
-### `validateSecurityChecks`
-
-```ts
-import { validateSecurityChecks } from 'hr-skills-build/server'
-```
-
-Run all security validators on skill content.
-
-```ts
-function validateSecurityChecks(skillName: string, content: string, errors: SkillValidationIssue[]): void
-```
-
-#### Parameters
-
-- `skillName`
-- `content`
-- `errors`
-
----
-
-### `PROMPT_DRIFT_THRESHOLD`
-
-```ts
-import { PROMPT_DRIFT_THRESHOLD } from 'hr-skills-build/server'
-```
-
-Minimum Jaccard similarity between a skill's purpose tokens and its
-`prompts/` tokens. Below this, prompts are considered drifted from the
-skill's documented purpose. Calibrated below the lowest legitimate score
-(~0.018) observed across this repository's skills.
-
-```ts
-const PROMPT_DRIFT_THRESHOLD: 0.015
-```
-
----
-
-### `EXAMPLE_DRIFT_THRESHOLD`
-
-```ts
-import { EXAMPLE_DRIFT_THRESHOLD } from 'hr-skills-build/server'
-```
-
-Minimum Jaccard similarity between a skill's purpose tokens and its
-`examples/` tokens. Calibrated below the lowest legitimate score
-(~0.041) observed across this repository's skills.
-
-```ts
-const EXAMPLE_DRIFT_THRESHOLD: 0.03
-```
-
----
-
-### `COPY_MARGIN`
-
-```ts
-import { COPY_MARGIN } from 'hr-skills-build/server'
-```
-
-Minimum margin by which another skill's purpose tokens must out-score a
-skill's own purpose tokens (against the same prompts/examples tokens)
-before the material is flagged as possibly copied. Calibrated above the
-highest legitimate margin (~0.059) observed across this repository.
-
-```ts
-const COPY_MARGIN: 0.06
-```
-
----
-
-### `COPY_MIN_OTHER_SCORE`
-
-```ts
-import { COPY_MIN_OTHER_SCORE } from 'hr-skills-build/server'
-```
-
-Minimum absolute similarity to the \*other\* skill's purpose tokens
-required before a possible-copy finding is reported, so two skills that
-both score near-zero against everything don't trigger on margin alone.
-
-```ts
-const COPY_MIN_OTHER_SCORE: 0.12
-```
-
----
-
-### `MIN_COVERAGE_RATIO`
-
-```ts
-import { MIN_COVERAGE_RATIO } from 'hr-skills-build/server'
-```
-
-Minimum fraction of top description keywords that must appear somewhere
-in `prompts/` + `examples/` + `content/` combined. Calibrated below the
-lowest legitimate ratio (0.4) observed across this repository.
-
-```ts
-const MIN_COVERAGE_RATIO: 0.3
-```
-
----
-
-### `MIN_PURPOSE_TOKENS`
-
-```ts
-import { MIN_PURPOSE_TOKENS } from 'hr-skills-build/server'
-```
-
-Skills whose purpose token set is smaller than this are skipped for
-drift/coverage checks — too little documented text to compare against
-reliably, so flagging would be noise rather than signal.
-
-```ts
-const MIN_PURPOSE_TOKENS: 5
-```
-
----
-
-### `SkillSemanticContent`
-
-```ts
-import { SkillSemanticContent } from 'hr-skills-build/server'
-```
-
-One skill's token sets and raw description, used for semantic checks.
-
-```ts
-interface SkillSemanticContent {
-    /** Skill directory name, e.g. "hr-onboarding". */
-    name: string;
-    /** Raw frontmatter description string (pre-tokenisation). */
-    description: string;
-    /** Normalised tokens from description + SKILL.md body + content/. */
-    purposeTokens: string[];
-    /** Normalised tokens from prompts/*.md. Empty when prompts/ is absent. */
-    promptsTokens: string[];
-    /** Normalised tokens from examples/*.md. Empty when examples/ is absent. */
-    examplesTokens: string[];
-    /** Normalised tokens from content/*.md alone. Empty when content/ is absent. */
-    contentTokens: string[];
-    /** Whether prompts/ exists and contains at least one .md file. */
-    hasPrompts: boolean;
-    /** Whether examples/ exists and contains at least one .md file. */
-    hasExamples: boolean;
-}
-```
-
----
-
-### `loadSkillSemanticContent`
-
-```ts
-import { loadSkillSemanticContent } from 'hr-skills-build/server'
-```
-
-Load one skill's semantic content: purpose/prompts/examples token sets.
-
-```ts
-function loadSkillSemanticContent(skillsDir: string, skillName: string): Promise<SkillSemanticContent>
-```
-
-#### Parameters
-
-- `skillsDir`
-- `skillName`
-
-#### Returns
-
-The skill's purpose/prompt/example token sets and content flags.
-
----
-
-### `topKeywords`
-
-```ts
-import { topKeywords } from 'hr-skills-build/server'
-```
-
-Extract the top `count` most frequent normalised tokens from `description`.
-Ties are broken alphabetically so the result is deterministic.
-
-```ts
-function topKeywords(description: string, count?: number): string[]
-```
-
-#### Parameters
-
-- `description`
-- `count` (optional)
-
-#### Returns
-
-Top tokens, most frequent first.
-
----
-
-### `SemanticFinding`
-
-```ts
-import { SemanticFinding } from 'hr-skills-build/server'
-```
-
-A single semantic-consistency finding for one skill.
-
-```ts
-interface SemanticFinding {
-    /** Affected skill's directory name. */
-    skill: string;
-    /** Affected subdirectory/file, e.g. "prompts/", "examples/". */
-    file: string;
-    /** Which heuristic triggered this finding. */
-    heuristic: SemanticHeuristic;
-    /** Deterministic confidence score in [0, 1] — higher means more confident. */
-    confidence: number;
-    /** Human-readable explanation, including the heuristic and suggested action. */
-    explanation: string;
-}
-```
-
----
-
-### `checkDrift`
-
-```ts
-import { checkDrift } from 'hr-skills-build/server'
-```
-
-Check `prompts/` and `examples/` for drift against a skill's own purpose
-tokens (checks 1 and 2), skipping skills whose purpose vocabulary is too
-small to compare against reliably.
-
-```ts
-function checkDrift(skill: SkillSemanticContent): SemanticFinding[]
-```
-
-#### Parameters
-
-- `skill`
-
-#### Returns
-
-Drift findings, empty when nothing is flagged.
-
----
-
-### `checkPossibleCopy`
-
-```ts
-import { checkPossibleCopy } from 'hr-skills-build/server'
-```
-
-Check whether `prompts/` or `examples/` match another skill's purpose
-tokens meaningfully better than they match their own skill (check 3).
-
-```ts
-function checkPossibleCopy(skill: SkillSemanticContent, allSkills: SkillSemanticContent[]): SemanticFinding[]
-```
-
-#### Parameters
-
-- `skill`
-- `allSkills`
-
-#### Returns
-
-Possible-copy findings, empty when nothing is flagged.
-
----
-
-### `checkConceptCoverage`
-
-```ts
-import { checkConceptCoverage } from 'hr-skills-build/server'
-```
-
-Check that the skill's top description keywords are actually covered
-somewhere in its supporting material (check 4).
-
-```ts
-function checkConceptCoverage(skill: SkillSemanticContent): SemanticFinding[]
-```
-
-#### Parameters
-
-- `skill`
-
-#### Returns
-
-Concept-coverage findings, empty when nothing is flagged.
-
----
-
-### `validateSemanticConsistency`
-
-```ts
-import { validateSemanticConsistency } from 'hr-skills-build/server'
-```
-
-Run semantic consistency validation across all provided skill names and
-emit findings as `SkillValidationIssue` warnings (message prefix
-`[semantic-warning]`).
-
-Skills are processed in alphabetically-sorted order and findings are
-sorted by skill name, then by heuristic name, so the same repository
-state always produces identical output.
-
-The function never throws — I/O errors for individual skills simply
-result in empty token sets, which cannot spuriously trigger a finding
-(empty prompts/examples are skipped; empty purpose is below
-MIN_PURPOSE_TOKENS and skipped too).
-
-```ts
-function validateSemanticConsistency(skillsDir: string, skillNames: string[], warnings: SkillValidationIssue[]): Promise<SemanticFinding[]>
-```
-
-#### Parameters
-
-- `skillsDir`
-- `skillNames`
-- `warnings`
-
-#### Returns
-
-Resolves once every skill has been checked; findings are pushed onto `warnings`.
-
----
-
-### `validateExecutionPlan`
-
-```ts
-import { validateExecutionPlan } from 'hr-skills-build/server'
-```
-
-Validate an execution plan against the registry and detect common issues.
-
-```ts
-function validateExecutionPlan(plan: ExecutionPlan, registry: Registry): PlanValidationResult
-```
-
-#### Parameters
-
-- `plan`
-- `registry`
-
-#### Returns
-
-Whether the plan is valid, plus any issues found.
-
----
-
-### `suggestPlanImprovements`
-
-```ts
-import { suggestPlanImprovements } from 'hr-skills-build/server'
-```
-
-Suggest improvements to an execution plan.
-
-Non-binding suggestions for better organization or coverage.
-
-```ts
-function suggestPlanImprovements(plan: ExecutionPlan, _registry: Registry): string[]
-```
-
-#### Parameters
-
-- `plan`
-- `_registry`
-
-#### Returns
-
-Human-readable suggestions, empty when the plan looks fine.
-
----
-
-### `validateRegistryConsistency`
-
-```ts
-import { validateRegistryConsistency } from 'hr-skills-build/server'
-```
-
-Validate the Skill Registry: schema conformance, staleness against the
-current filesystem, duplicate IDs, dangling relationship references, and
-dependency cycles.
-
-Mirrors the pattern already used for marketplace.json / router consistency
-in validate.ts — recompute the expected artifact in memory and compare,
-rather than trusting the committed file blindly.
-
-```ts
-function validateRegistryConsistency(errors: SkillValidationIssue[]): Promise<void>
-```
-
-#### Parameters
-
-- `errors`
-
-#### Returns
-
-Resolves once every check has run; findings are pushed onto `errors`.
-
----
-
-### `validateRelatedSkillsAgainstSignals`
-
-```ts
-import { validateRelatedSkillsAgainstSignals } from 'hr-skills-build/server'
-```
-
-Warn when a high-evidence usage-informed relevance signal (Phase 6.1) is
-absent from a skill's `relatedSkills` list — Phase 6.1-B's second
-deliverable.
-
-This is deliberately a warning, not an error: `reRankRelatedSkills()`
-already tends to surface high-evidence pairs (see relevance-signals.ts),
-so a miss here usually means a skill already has `limit` (5) higher-
-scored entries crowding it out — worth a maintainer's attention, not a
-build failure. Follows the same `(input, warnings)` shape as
-`detectDuplicates()` and `validateSemanticConsistency()` so `validate.ts`
-can run all three concurrently in its warnings group.
-
-A signal counts as "high evidence" when its `coSelectionRate` is at
-least HIGH_EVIDENCE_CO_SELECTION_RATE AND it's backed by at
-least HIGH_EVIDENCE_MIN_OBSERVATIONS observations — see the
-constants' doc comments for the rationale.
-
-```ts
-function validateRelatedSkillsAgainstSignals(registry: { skills: readonly Pick<RegistryEntry, "relatedSkills" | "id">[]; }, signalTable: RelevanceSignalTable | undefined, warnings: SkillValidationIssue[]): void
-```
-
-#### Parameters
-
-- `registry`
-- `signalTable`
-- `warnings`
-
----
-
-### `validateFrontmatter`
-
-```ts
-import { validateFrontmatter } from 'hr-skills-build/server'
-```
-
-Validate the frontmatter of a skill. \*
-
-```ts
-function validateFrontmatter(skillName: string, content: string, errors: SkillValidationIssue[]): void
-```
-
-#### Parameters
-
-- `skillName`
-- `content`
-- `errors`
-
----
-
-### `validateRequiredSections`
-
-```ts
-import { validateRequiredSections } from 'hr-skills-build/server'
-```
-
-Validate the required sections of a skill. \*
-
-```ts
-function validateRequiredSections(skillName: string, content: string, errors: SkillValidationIssue[]): void
-```
-
-#### Parameters
-
-- `skillName`
-- `content`
-- `errors`
-
----
-
-### `validateContentLength`
-
-```ts
-import { validateContentLength } from 'hr-skills-build/server'
-```
-
-Validate the content length of a skill. \*
-
-```ts
-function validateContentLength(skillName: string, content: string, errors: SkillValidationIssue[]): void
-```
-
-#### Parameters
-
-- `skillName`
-- `content`
-- `errors`
-
----
-
-### `validateLineCount`
-
-```ts
-import { validateLineCount } from 'hr-skills-build/server'
-```
-
-Validate the line count of a skill. \*
-
-```ts
-function validateLineCount(skillName: string, content: string, errors: SkillValidationIssue[]): void
-```
-
-#### Parameters
-
-- `skillName`
-- `content`
-- `errors`
-
----
-
-### `validateSupportedTasks`
-
-```ts
-import { validateSupportedTasks } from 'hr-skills-build/server'
-```
-
-Validate the supported tasks of a skill. \*
-
-```ts
-function validateSupportedTasks(skillName: string, content: string, errors: SkillValidationIssue[]): void
-```
-
-#### Parameters
-
-- `skillName`
-- `content`
-- `errors`
-
----
-
-### `validateTips`
-
-```ts
-import { validateTips } from 'hr-skills-build/server'
-```
-
-Validate the tips of a skill. \*
-
-```ts
-function validateTips(skillName: string, content: string, errors: SkillValidationIssue[]): void
-```
-
-#### Parameters
-
-- `skillName`
-- `content`
-- `errors`
-
----
-
-### `validateBlankLines`
-
-```ts
-import { validateBlankLines } from 'hr-skills-build/server'
-```
-
-Validate the blank lines of a skill. \*
-
-```ts
-function validateBlankLines(skillName: string, content: string, errors: SkillValidationIssue[]): void
-```
-
-#### Parameters
-
-- `skillName`
-- `content`
-- `errors`
-
----
-
-### `validateAuthor`
-
-```ts
-import { validateAuthor } from 'hr-skills-build/server'
-```
-
-Validate the author of a skill.
-
-```ts
-function validateAuthor(skillName: string, author: string | undefined, errors: SkillValidationIssue[]): void
-```
-
-#### Parameters
-
-- `skillName`
-- `author`
-- `errors`
-
----
-
-### `validatePromptStructure`
-
-```ts
-import { validatePromptStructure } from 'hr-skills-build/server'
-```
-
-Validate the structure of the ## Key prompts section.
-
-Per docs/engineering/format.md: 3-6 subtopics (H3 headings) and 4-7 quoted prompts per subtopic.
-
-```ts
-function validatePromptStructure(skillName: string, content: string, errors: SkillValidationIssue[]): void
-```
-
-#### Parameters
-
-- `skillName`
-- `content`
-- `errors`
-
----
-
-### `validateRouterConsistency`
-
-```ts
-import { validateRouterConsistency } from 'hr-skills-build/server'
-```
-
-Validate three-way consistency: router (root SKILL.md) ↔ filesystem (skills/) ↔ marketplace.json.
-
-All three sources must agree on which skills exist. A mismatch means either a skill
-was added without syncing, or the router wasn't updated after a rename/deletion.
-
-```ts
-function validateRouterConsistency(skillNames: string[], errors: SkillValidationIssue[]): Promise<void>
-```
-
-#### Parameters
-
-- `skillNames`
-- `errors`
-
-#### Returns
-
-Resolves once all three sources have been compared; findings are pushed onto `errors`.
-
----
-
-### `validateSubdirectoryContents`
-
-```ts
-import { validateSubdirectoryContents } from 'hr-skills-build/server'
-```
-
-Validate that optional subdirectories (content, prompts, examples), if present, are non-empty.
-
-```ts
-function validateSubdirectoryContents(skillName: string, skillDir: string, errors: SkillValidationIssue[]): Promise<void>
-```
-
-#### Parameters
-
-- `skillName`
-- `skillDir`
-- `errors`
-
-#### Returns
-
-Resolves once every subdirectory has been checked; findings are pushed onto `errors`.
-
----
-
 ## hr-skills-build — client
 
 Browser-safe planner, runtime, search, and shared APIs.
+
+### `GITHUB_BLOB_BASE_URL`
+
+```ts
+import { GITHUB_BLOB_BASE_URL } from 'hr-skills-build/client'
+```
+
+Base URL for linking to a file in this repo on GitHub, e.g. for use in
+generated Markdown that's posted somewhere with no "current file" context
+(a PR comment, a Slack message) where a relative link like `../docs/x.md`
+cannot resolve. Append a repo-root-relative path, e.g.
+`` `${GITHUB_BLOB_BASE_URL}/docs/engineering/quality-scoring.md` ``.
+
+```ts
+const GITHUB_BLOB_BASE_URL: "https://github.com/tuanductran/hr-skills/blob/main"
+```
+
+---
+
+### `TASK_ITEM_REGEX`
+
+```ts
+import { TASK_ITEM_REGEX } from 'hr-skills-build/client'
+```
+
+Matches a markdown task-list item line, e.g. `- some task`.
+
+```ts
+const TASK_ITEM_REGEX: RegExp
+```
+
+---
+
+### `HR_SKILL_PREFIX`
+
+```ts
+import { HR_SKILL_PREFIX } from 'hr-skills-build/client'
+```
+
+The directory-name prefix shared by all HR skill folders, e.g. `hr-`.
+
+```ts
+const HR_SKILL_PREFIX: "hr-"
+```
+
+---
+
+### `KEY_PROMPTS_REGEX`
+
+```ts
+import { KEY_PROMPTS_REGEX } from 'hr-skills-build/client'
+```
+
+Captures the body of a `## Key prompts` section (including sub-headings)
+up to the next `##` section, a `---` divider, or end of file.
+Capture group 1 contains the raw block text.
+
+```ts
+const KEY_PROMPTS_REGEX: RegExp
+```
+
+---
+
+### `QUOTED_PROMPT_REGEX`
+
+```ts
+import { QUOTED_PROMPT_REGEX } from 'hr-skills-build/client'
+```
+
+Matches a numbered or bulleted quoted prompt line inside a Key prompts block,
+e.g. `1. "Create a job description for..."` or `- "Draft an offer letter..."`.
+Capture group 1 contains the quoted prompt text (without surrounding quotes).
+
+```ts
+const QUOTED_PROMPT_REGEX: RegExp
+```
+
+---
+
+### `USE_WHEN_REGEX`
+
+```ts
+import { USE_WHEN_REGEX } from 'hr-skills-build/client'
+```
+
+Case-insensitive match for the phrase `Use when` inside a skill description,
+used to split a description into its "coverage" and "trigger" clauses.
+
+```ts
+const USE_WHEN_REGEX: RegExp
+```
+
+---
+
+### `PERIOD_REGEX`
+
+```ts
+import { PERIOD_REGEX } from 'hr-skills-build/client'
+```
+
+Matches a trailing period at the end of a string — used to strip it before appending a new one.
+
+```ts
+const PERIOD_REGEX: RegExp
+```
+
+---
+
+### `FRONTMATTER_REGEX`
+
+```ts
+import { FRONTMATTER_REGEX } from 'hr-skills-build/client'
+```
+
+Captures YAML frontmatter delimited by `---` at the start of a markdown file.
+Capture group 1 contains the raw YAML text between the delimiters.
+
+```ts
+const FRONTMATTER_REGEX: RegExp
+```
+
+---
+
+### `TASKS_REGEX`
+
+```ts
+import { TASKS_REGEX } from 'hr-skills-build/client'
+```
+
+Captures the body of a `## Supported tasks` section up to the next `##` heading
+or end of file. Capture group 1 contains the raw block text.
+
+```ts
+const TASKS_REGEX: RegExp
+```
+
+---
+
+### `REQUIRED_SECTIONS`
+
+```ts
+import { REQUIRED_SECTIONS } from 'hr-skills-build/client'
+```
+
+The three markdown section headings that every skill SKILL.md must contain.
+Validated by `validateRequiredSections` in validate.ts.
+
+```ts
+const REQUIRED_SECTIONS: string[]
+```
+
+---
+
+### `MIN_DESCRIPTION_LENGTH`
+
+```ts
+import { MIN_DESCRIPTION_LENGTH } from 'hr-skills-build/client'
+```
+
+Minimum character length for a skill's frontmatter `description` field.
+
+```ts
+const MIN_DESCRIPTION_LENGTH: 50
+```
+
+---
+
+### `MIN_CONTENT_LENGTH`
+
+```ts
+import { MIN_CONTENT_LENGTH } from 'hr-skills-build/client'
+```
+
+Minimum character length for the full SKILL.md content body.
+
+```ts
+const MIN_CONTENT_LENGTH: 1000
+```
+
+---
+
+### `TIPS_REGEX`
+
+```ts
+import { TIPS_REGEX } from 'hr-skills-build/client'
+```
+
+Captures the body of a `## Tips` section up to the next `##` heading or end of file.
+Capture group 1 contains the raw block text.
+
+```ts
+const TIPS_REGEX: RegExp
+```
+
+---
+
+### `SKILL_LINK_REGEX`
+
+```ts
+import { SKILL_LINK_REGEX } from 'hr-skills-build/client'
+```
+
+Matches markdown links that reference another skill, e.g.
+`[hr-recruiting](skills/hr-recruiting)`.
+Capture group 1 contains the skill ID (`hr-<slug>`).
+
+Shared by router consistency validation and registry dependency extraction
+(`CATEGORY_META.preamble` in classifier.ts) so both stay in sync.
+
+```ts
+const SKILL_LINK_REGEX: RegExp
+```
+
+---
+
+### `REGISTRY_SCHEMA_VERSION`
+
+```ts
+import { REGISTRY_SCHEMA_VERSION } from 'hr-skills-build/client'
+```
+
+Schema version for `registry/skills.json`.
+Increment this when the shape of RegistryEntry  changes in a breaking way.
+
+```ts
+const REGISTRY_SCHEMA_VERSION: 1
+```
+
+---
 
 ### `DocumentationSection`
 
@@ -4978,6 +5302,60 @@ interface DocumentationData {
     readonly skills: readonly DocumentationSkill[];
 }
 ```
+
+---
+
+### `extractMatch`
+
+```ts
+import { extractMatch } from 'hr-skills-build/client'
+```
+
+Extract and trim the first capture group from a regex match against `content`.
+
+Duplicated (not imported) from `helpers.ts` on purpose: this file is part
+of the browser-safe `client` surface and must not import `helpers.ts`,
+which pulls in `node:fs/promises` and `node:path`.
+
+```ts
+function extractMatch(regex: RegExp, content: string): string | null
+```
+
+#### Parameters
+
+- `regex`
+- `content`
+
+#### Returns
+
+The trimmed contents of capture group 1, or `null` if the regex did not match.
+
+---
+
+### `parseSkillFrontmatter`
+
+```ts
+import { parseSkillFrontmatter } from 'hr-skills-build/client'
+```
+
+Parse and validate a markdown document's YAML frontmatter against
+SkillFrontmatterSchema.
+
+Never throws: missing frontmatter, invalid YAML, and schema validation
+failures all resolve to `{}` rather than raising an error, so callers can
+treat every field as optional.
+
+```ts
+function parseSkillFrontmatter(content: string): { name?: string | undefined; description?: string | undefined; metadata?: { author?: string | undefined; version?: string | undefined; } | undefined; }
+```
+
+#### Parameters
+
+- `content`
+
+#### Returns
+
+Parsed frontmatter fields, or `{}` if none/invalid.
 
 ---
 
@@ -5281,6 +5659,86 @@ function executeWorkflow(plan: ExecutionPlan, executeStep: StepExecutorFn, optio
 #### Returns
 
 The overall workflow status plus a per-step result list.
+
+---
+
+### `NonEmptyString`
+
+```ts
+import { NonEmptyString } from 'hr-skills-build/client'
+```
+
+```ts
+const NonEmptyString: SchemaWithPipe<readonly [SchemaWithPipe<readonly [StringSchema<undefined>, TrimAction]>, MinLengthAction<string, 1, undefined>]>
+```
+
+---
+
+### `MarketplaceJsonSchema`
+
+```ts
+import { MarketplaceJsonSchema } from 'hr-skills-build/client'
+```
+
+Schema for `.claude-plugin/marketplace.json`.
+
+```ts
+const MarketplaceJsonSchema: StrictObjectSchema<{ readonly $schema: LiteralSchema<"https://json.schemastore.org/claude-code-marketplace.json", undefined>; readonly name: SchemaWithPipe<readonly [SchemaWithPipe<readonly [StringSchema<undefined>, TrimAction]>, MinLengthAction<...>]>; readonly description: SchemaWithPipe<...>; readonly owner: Stri...
+```
+
+---
+
+### `SkillFrontmatterSchema`
+
+```ts
+import { SkillFrontmatterSchema } from 'hr-skills-build/client'
+```
+
+Schema for `SKILL.md` frontmatter.
+
+```ts
+const SkillFrontmatterSchema: StrictObjectSchema<{ readonly name: OptionalSchema<SchemaWithPipe<readonly [SchemaWithPipe<readonly [StringSchema<undefined>, TrimAction]>, MinLengthAction<string, 1, undefined>]>, undefined>; readonly description: OptionalSchema<...>; readonly metadata: OptionalSchema<...>; }, undefined>
+```
+
+---
+
+### `SkillFrontmatter`
+
+```ts
+import { SkillFrontmatter } from 'hr-skills-build/client'
+```
+
+TypeScript type inferred from SkillFrontmatterSchema.
+
+```ts
+type SkillFrontmatter = v.InferOutput<typeof SkillFrontmatterSchema>
+```
+
+---
+
+### `SKILL_CATEGORIES`
+
+```ts
+import { SKILL_CATEGORIES } from 'hr-skills-build/client'
+```
+
+```ts
+const SKILL_CATEGORIES: readonly ["talent-acquisition", "onboarding-offboarding", "performance-talent", "compensation-rewards", "learning-development", "org-design-change", "workforce-analytics", ... 5 more ..., "uncategorized"]
+```
+
+---
+
+### `RegistrySchema`
+
+```ts
+import { RegistrySchema } from 'hr-skills-build/client'
+```
+
+Schema for `registry/skills.json`.
+
+```ts
+const RegistrySchema: StrictObjectSchema<{ readonly schemaVersion: SchemaWithPipe<readonly [NumberSchema<undefined>, MinValueAction<number, 1, undefined>]>; readonly generatedAt: SchemaWithPipe<...>; readonly skillCount: SchemaWithPipe<...>; readonly skills: ArraySchema<...>; }, undefined>
+```
 
 ---
 
@@ -6052,6 +6510,7 @@ interface VersionInfo {
     phase: string;
     apiVersions: {
         health: string;
+        readiness: string;
         version: string;
         search: string;
         planner: string;
@@ -6089,357 +6548,6 @@ interface ExecuteWorkflowServiceOptions {
     options?: RuntimeOptions;
     stepExecutor?: StepExecutorFn;
 }
-```
-
----
-
-### `GITHUB_BLOB_BASE_URL`
-
-```ts
-import { GITHUB_BLOB_BASE_URL } from 'hr-skills-build/client'
-```
-
-Base URL for linking to a file in this repo on GitHub, e.g. for use in
-generated Markdown that's posted somewhere with no "current file" context
-(a PR comment, a Slack message) where a relative link like `../docs/x.md`
-cannot resolve. Append a repo-root-relative path, e.g.
-`` `${GITHUB_BLOB_BASE_URL}/docs/engineering/quality-scoring.md` ``.
-
-```ts
-const GITHUB_BLOB_BASE_URL: "https://github.com/tuanductran/hr-skills/blob/main"
-```
-
----
-
-### `TASK_ITEM_REGEX`
-
-```ts
-import { TASK_ITEM_REGEX } from 'hr-skills-build/client'
-```
-
-Matches a markdown task-list item line, e.g. `- some task`.
-
-```ts
-const TASK_ITEM_REGEX: RegExp
-```
-
----
-
-### `HR_SKILL_PREFIX`
-
-```ts
-import { HR_SKILL_PREFIX } from 'hr-skills-build/client'
-```
-
-The directory-name prefix shared by all HR skill folders, e.g. `hr-`.
-
-```ts
-const HR_SKILL_PREFIX: "hr-"
-```
-
----
-
-### `KEY_PROMPTS_REGEX`
-
-```ts
-import { KEY_PROMPTS_REGEX } from 'hr-skills-build/client'
-```
-
-Captures the body of a `## Key prompts` section (including sub-headings)
-up to the next `##` section, a `---` divider, or end of file.
-Capture group 1 contains the raw block text.
-
-```ts
-const KEY_PROMPTS_REGEX: RegExp
-```
-
----
-
-### `QUOTED_PROMPT_REGEX`
-
-```ts
-import { QUOTED_PROMPT_REGEX } from 'hr-skills-build/client'
-```
-
-Matches a numbered or bulleted quoted prompt line inside a Key prompts block,
-e.g. `1. "Create a job description for..."` or `- "Draft an offer letter..."`.
-Capture group 1 contains the quoted prompt text (without surrounding quotes).
-
-```ts
-const QUOTED_PROMPT_REGEX: RegExp
-```
-
----
-
-### `USE_WHEN_REGEX`
-
-```ts
-import { USE_WHEN_REGEX } from 'hr-skills-build/client'
-```
-
-Case-insensitive match for the phrase `Use when` inside a skill description,
-used to split a description into its "coverage" and "trigger" clauses.
-
-```ts
-const USE_WHEN_REGEX: RegExp
-```
-
----
-
-### `PERIOD_REGEX`
-
-```ts
-import { PERIOD_REGEX } from 'hr-skills-build/client'
-```
-
-Matches a trailing period at the end of a string — used to strip it before appending a new one.
-
-```ts
-const PERIOD_REGEX: RegExp
-```
-
----
-
-### `FRONTMATTER_REGEX`
-
-```ts
-import { FRONTMATTER_REGEX } from 'hr-skills-build/client'
-```
-
-Captures YAML frontmatter delimited by `---` at the start of a markdown file.
-Capture group 1 contains the raw YAML text between the delimiters.
-
-```ts
-const FRONTMATTER_REGEX: RegExp
-```
-
----
-
-### `TASKS_REGEX`
-
-```ts
-import { TASKS_REGEX } from 'hr-skills-build/client'
-```
-
-Captures the body of a `## Supported tasks` section up to the next `##` heading
-or end of file. Capture group 1 contains the raw block text.
-
-```ts
-const TASKS_REGEX: RegExp
-```
-
----
-
-### `REQUIRED_SECTIONS`
-
-```ts
-import { REQUIRED_SECTIONS } from 'hr-skills-build/client'
-```
-
-The three markdown section headings that every skill SKILL.md must contain.
-Validated by `validateRequiredSections` in validate.ts.
-
-```ts
-const REQUIRED_SECTIONS: string[]
-```
-
----
-
-### `MIN_DESCRIPTION_LENGTH`
-
-```ts
-import { MIN_DESCRIPTION_LENGTH } from 'hr-skills-build/client'
-```
-
-Minimum character length for a skill's frontmatter `description` field.
-
-```ts
-const MIN_DESCRIPTION_LENGTH: 50
-```
-
----
-
-### `MIN_CONTENT_LENGTH`
-
-```ts
-import { MIN_CONTENT_LENGTH } from 'hr-skills-build/client'
-```
-
-Minimum character length for the full SKILL.md content body.
-
-```ts
-const MIN_CONTENT_LENGTH: 1000
-```
-
----
-
-### `TIPS_REGEX`
-
-```ts
-import { TIPS_REGEX } from 'hr-skills-build/client'
-```
-
-Captures the body of a `## Tips` section up to the next `##` heading or end of file.
-Capture group 1 contains the raw block text.
-
-```ts
-const TIPS_REGEX: RegExp
-```
-
----
-
-### `SKILL_LINK_REGEX`
-
-```ts
-import { SKILL_LINK_REGEX } from 'hr-skills-build/client'
-```
-
-Matches markdown links that reference another skill, e.g.
-`[hr-recruiting](skills/hr-recruiting)`.
-Capture group 1 contains the skill ID (`hr-<slug>`).
-
-Shared by router consistency validation and registry dependency extraction
-(`CATEGORY_META.preamble` in classifier.ts) so both stay in sync.
-
-```ts
-const SKILL_LINK_REGEX: RegExp
-```
-
----
-
-### `REGISTRY_SCHEMA_VERSION`
-
-```ts
-import { REGISTRY_SCHEMA_VERSION } from 'hr-skills-build/client'
-```
-
-Schema version for `registry/skills.json`.
-Increment this when the shape of RegistryEntry  changes in a breaking way.
-
-```ts
-const REGISTRY_SCHEMA_VERSION: 1
-```
-
----
-
-### `extractMatch`
-
-```ts
-import { extractMatch } from 'hr-skills-build/client'
-```
-
-Extract and trim the first capture group from a regex match against `content`.
-
-Duplicated (not imported) from `helpers.ts` on purpose: this file is part
-of the browser-safe `client` surface and must not import `helpers.ts`,
-which pulls in `node:fs/promises` and `node:path`.
-
-```ts
-function extractMatch(regex: RegExp, content: string): string | null
-```
-
-#### Parameters
-
-- `regex`
-- `content`
-
-#### Returns
-
-The trimmed contents of capture group 1, or `null` if the regex did not match.
-
----
-
-### `parseSkillFrontmatter`
-
-```ts
-import { parseSkillFrontmatter } from 'hr-skills-build/client'
-```
-
-Parse and validate a markdown document's YAML frontmatter against
-SkillFrontmatterSchema.
-
-Never throws: missing frontmatter, invalid YAML, and schema validation
-failures all resolve to `{}` rather than raising an error, so callers can
-treat every field as optional.
-
-```ts
-function parseSkillFrontmatter(content: string): { name?: string | undefined; description?: string | undefined; metadata?: { author?: string | undefined; version?: string | undefined; } | undefined; }
-```
-
-#### Parameters
-
-- `content`
-
-#### Returns
-
-Parsed frontmatter fields, or `{}` if none/invalid.
-
----
-
-### `MarketplaceJsonSchema`
-
-```ts
-import { MarketplaceJsonSchema } from 'hr-skills-build/client'
-```
-
-Schema for `.claude-plugin/marketplace.json`.
-
-```ts
-const MarketplaceJsonSchema: StrictObjectSchema<{ readonly $schema: LiteralSchema<"https://json.schemastore.org/claude-code-marketplace.json", undefined>; readonly name: SchemaWithPipe<readonly [SchemaWithPipe<readonly [StringSchema<undefined>, TrimAction]>, MinLengthAction<...>]>; readonly description: SchemaWithPipe<...>; readonly owner: Stri...
-```
-
----
-
-### `SkillFrontmatterSchema`
-
-```ts
-import { SkillFrontmatterSchema } from 'hr-skills-build/client'
-```
-
-Schema for `SKILL.md` frontmatter.
-
-```ts
-const SkillFrontmatterSchema: StrictObjectSchema<{ readonly name: OptionalSchema<SchemaWithPipe<readonly [SchemaWithPipe<readonly [StringSchema<undefined>, TrimAction]>, MinLengthAction<string, 1, undefined>]>, undefined>; readonly description: OptionalSchema<...>; readonly metadata: OptionalSchema<...>; }, undefined>
-```
-
----
-
-### `SkillFrontmatter`
-
-```ts
-import { SkillFrontmatter } from 'hr-skills-build/client'
-```
-
-TypeScript type inferred from SkillFrontmatterSchema.
-
-```ts
-type SkillFrontmatter = v.InferOutput<typeof SkillFrontmatterSchema>
-```
-
----
-
-### `SKILL_CATEGORIES`
-
-```ts
-import { SKILL_CATEGORIES } from 'hr-skills-build/client'
-```
-
-```ts
-const SKILL_CATEGORIES: readonly ["talent-acquisition", "onboarding-offboarding", "performance-talent", "compensation-rewards", "learning-development", "org-design-change", "workforce-analytics", ... 5 more ..., "uncategorized"]
-```
-
----
-
-### `RegistrySchema`
-
-```ts
-import { RegistrySchema } from 'hr-skills-build/client'
-```
-
-Schema for `registry/skills.json`.
-
-```ts
-const RegistrySchema: StrictObjectSchema<{ readonly schemaVersion: SchemaWithPipe<readonly [NumberSchema<undefined>, MinValueAction<number, 1, undefined>]>; readonly generatedAt: SchemaWithPipe<...>; readonly skillCount: SchemaWithPipe<...>; readonly skills: ArraySchema<...>; }, undefined>
 ```
 
 ---
@@ -7466,6 +7574,219 @@ interface EvaluationReport {
 
 Server-side filesystem and skill-loading APIs.
 
+### `ROOT_DIR`
+
+```ts
+import { ROOT_DIR } from 'hr-skills-ref/server'
+```
+
+Absolute path to the repository root.
+
+```ts
+const ROOT_DIR: string
+```
+
+---
+
+### `SKILLS_DIR`
+
+```ts
+import { SKILLS_DIR } from 'hr-skills-ref/server'
+```
+
+Absolute path to the `skills/` directory at the repository root.
+
+```ts
+const SKILLS_DIR: string
+```
+
+---
+
+### `createSkillBlock`
+
+```ts
+import { createSkillBlock } from 'hr-skills-ref/server'
+```
+
+Build an XML `<skill>` block for the given skill directory.
+
+The block includes the skill's `<name>`, `<description>`, and the absolute
+`<location>` path to its `SKILL.md`. All values are XML-escaped.
+
+```ts
+function createSkillBlock(skillDir: string): string
+```
+
+#### Parameters
+
+- `skillDir`
+
+#### Returns
+
+A multi-line XML string representing the skill.
+
+---
+
+### `discoverSkillNames`
+
+```ts
+import { discoverSkillNames } from 'hr-skills-ref/server'
+```
+
+Discover all HR skill directory names in the `skills/` folder, sorted
+lexicographically. Only directories whose names begin with `"hr-"` are returned.
+
+This is hr-skills-ref's own copy of the same "discover hr-\* directories"
+logic that also exists as `hr-skills-build`'s
+`shared/helpers.ts#discoverSkills()` and `registry/discovery.ts#getHrSkills()`.
+Kept separate deliberately — hr-skills-ref must not depend on
+hr-skills-build (it's the lower-level package the other one builds on)
+— not an accidental duplication to merge.
+
+```ts
+function discoverSkillNames(): string[]
+```
+
+#### Returns
+
+A sorted array of skill directory names (not full paths).
+
+---
+
+### `makeTempSkill`
+
+```ts
+import { makeTempSkill } from 'hr-skills-ref/server'
+```
+
+Create a temporary directory containing a single `SKILL.md` file with the
+given content. The directory is created in the OS temp directory.
+
+Intended for use in tests that need a real filesystem path to pass to
+skill-loading functions without polluting the repository.
+
+```ts
+function makeTempSkill(content: string): string
+```
+
+#### Parameters
+
+- `content`
+
+#### Returns
+
+The absolute path to the newly created temporary directory.
+
+---
+
+### `findSkillMd`
+
+```ts
+import { findSkillMd } from 'hr-skills-ref/server'
+```
+
+Find the `SKILL.md` file inside a skill directory.
+
+Checks filenames in the order defined by `SKILL_MD_FILENAMES` and
+returns the path to the first one that exists on disk.
+
+```ts
+function findSkillMd(skillDir: string): string | null
+```
+
+#### Parameters
+
+- `skillDir`
+
+#### Returns
+
+The absolute path to the found file, or `null` if neither filename exists.
+
+---
+
+### `readProperties`
+
+```ts
+import { readProperties } from 'hr-skills-ref/server'
+```
+
+Read and parse the properties of a skill from its `SKILL.md` frontmatter.
+
+Steps:
+ 1. Locate `SKILL.md` (or `skill.md`) in `skillDir`.
+ 2. Read the file as UTF-8.
+ 3. Parse the YAML frontmatter.
+ 4. Validate the parsed data against SkillPropertiesSchema.
+
+```ts
+function readProperties(skillDir: string): { name: string; description: string; license?: string | undefined; compatibility?: string | undefined; allowedTools?: string | undefined; metadata?: { [x: string]: string; } | undefined; }
+```
+
+#### Parameters
+
+- `skillDir`
+
+#### Returns
+
+The validated SkillProperties extracted from the frontmatter.
+
+#### Throws
+
+{ParseError} If `SKILL.md` is not found or cannot be parsed.
+{ValidationError} If the frontmatter does not satisfy the schema.
+
+---
+
+### `toPrompt`
+
+```ts
+import { toPrompt } from 'hr-skills-ref/server'
+```
+
+Generate an `<available_skills>` XML block for inclusion in an agent system prompt.
+
+Each skill directory is represented as a `<skill>` element containing the
+skill's `<name>`, `<description>`, and the absolute `<location>` of its
+`SKILL.md` file. When `skillDirs` is empty, the function returns a valid
+but empty `<available_skills>` block rather than throwing.
+
+```ts
+function toPrompt(skillDirs: string[]): string
+```
+
+#### Parameters
+
+- `skillDirs`
+
+#### Returns
+
+A multi-line XML string wrapped in `<available_skills>` tags,
+ready to embed in a Claude system prompt.
+
+---
+
+### `validate`
+
+```ts
+import { validate } from 'hr-skills-ref/server'
+```
+
+Validates a skill directory.
+
+```ts
+function validate(skillDir: string): string[]
+```
+
+#### Parameters
+
+- `skillDir`
+
+#### Returns
+
+Human-readable error messages; empty when the skill is valid.
+
+---
+
 ### `ALLOWED_TOOLS_KEY`
 
 ```ts
@@ -7574,34 +7895,6 @@ const XML_ESCAPES: Map<string, string>
 
 ---
 
-### `ROOT_DIR`
-
-```ts
-import { ROOT_DIR } from 'hr-skills-ref/server'
-```
-
-Absolute path to the repository root.
-
-```ts
-const ROOT_DIR: string
-```
-
----
-
-### `SKILLS_DIR`
-
-```ts
-import { SKILLS_DIR } from 'hr-skills-ref/server'
-```
-
-Absolute path to the `skills/` directory at the repository root.
-
-```ts
-const SKILLS_DIR: string
-```
-
----
-
 ### `SkillError`
 
 ```ts
@@ -7650,8 +7943,7 @@ const ValidationError: ValidationError
 import { isPlainObject } from 'hr-skills-ref/server'
 ```
 
-Check whether a value is a plain object (i.e. created via `{}` or `Object.create(null)`).
-Returns `false` for arrays, class instances, `null`, and primitives.
+Check whether a value is a plain object.
 
 ```ts
 function isPlainObject(value: unknown): boolean
@@ -7663,7 +7955,7 @@ function isPlainObject(value: unknown): boolean
 
 #### Returns
 
-`true` if `value` is a plain object, `false` otherwise.
+`true` for object literals and null-prototype objects.
 
 ---
 
@@ -7673,8 +7965,7 @@ function isPlainObject(value: unknown): boolean
 import { toStringOrUndefined } from 'hr-skills-ref/server'
 ```
 
-Convert a nullable/undefined value to a trimmed string, or `undefined` if
-the result would be empty.
+Convert a value to a trimmed non-empty string.
 
 ```ts
 function toStringOrUndefined(value: unknown): string | undefined
@@ -7686,85 +7977,7 @@ function toStringOrUndefined(value: unknown): string | undefined
 
 #### Returns
 
-A non-empty trimmed string, or `undefined` if `value` is `null`,
-`undefined`, or whitespace-only.
-
----
-
-### `createSkillBlock`
-
-```ts
-import { createSkillBlock } from 'hr-skills-ref/server'
-```
-
-Build an XML `<skill>` block for the given skill directory.
-
-The block includes the skill's `<name>`, `<description>`, and the absolute
-`<location>` path to its `SKILL.md`. All values are XML-escaped.
-
-```ts
-function createSkillBlock(skillDir: string): string
-```
-
-#### Parameters
-
-- `skillDir`
-
-#### Returns
-
-A multi-line XML string representing the skill.
-
----
-
-### `discoverSkillNames`
-
-```ts
-import { discoverSkillNames } from 'hr-skills-ref/server'
-```
-
-Discover all HR skill directory names in the `skills/` folder, sorted
-lexicographically. Only directories whose names begin with `"hr-"` are returned.
-
-This is hr-skills-ref's own copy of the same "discover hr-\* directories"
-logic that also exists as `hr-skills-build`'s
-`shared/helpers.ts#discoverSkills()` and `registry/discovery.ts#getHrSkills()`.
-Kept separate deliberately — hr-skills-ref must not depend on
-hr-skills-build (it's the lower-level package the other one builds on)
-— not an accidental duplication to merge.
-
-```ts
-function discoverSkillNames(): string[]
-```
-
-#### Returns
-
-A sorted array of skill directory names (not full paths).
-
----
-
-### `makeTempSkill`
-
-```ts
-import { makeTempSkill } from 'hr-skills-ref/server'
-```
-
-Create a temporary directory containing a single `SKILL.md` file with the
-given content. The directory is created in the OS temp directory.
-
-Intended for use in tests that need a real filesystem path to pass to
-skill-loading functions without polluting the repository.
-
-```ts
-function makeTempSkill(content: string): string
-```
-
-#### Parameters
-
-- `content`
-
-#### Returns
-
-The absolute path to the newly created temporary directory.
+A trimmed string or `undefined` for empty/nullish values.
 
 ---
 
@@ -7774,12 +7987,7 @@ The absolute path to the newly created temporary directory.
 import { sanitizeYamlValue } from 'hr-skills-ref/server'
 ```
 
-Recursively removes keys that could be used for prototype pollution from a
-parsed YAML value.
-
-Object keys named `__proto__`, `constructor`, and `prototype` are discarded.
-Arrays are sanitized recursively, while primitive values are returned
-unchanged.
+Remove prototype-pollution keys recursively from parsed YAML values.
 
 ```ts
 function sanitizeYamlValue(value: unknown): unknown
@@ -7792,64 +8000,6 @@ function sanitizeYamlValue(value: unknown): unknown
 #### Returns
 
 A sanitized copy of the input value.
-
----
-
-### `findSkillMd`
-
-```ts
-import { findSkillMd } from 'hr-skills-ref/server'
-```
-
-Find the `SKILL.md` file inside a skill directory.
-
-Checks filenames in the order defined by `SKILL_MD_FILENAMES` and
-returns the path to the first one that exists on disk.
-
-```ts
-function findSkillMd(skillDir: string): string | null
-```
-
-#### Parameters
-
-- `skillDir`
-
-#### Returns
-
-The absolute path to the found file, or `null` if neither filename exists.
-
----
-
-### `readProperties`
-
-```ts
-import { readProperties } from 'hr-skills-ref/server'
-```
-
-Read and parse the properties of a skill from its `SKILL.md` frontmatter.
-
-Steps:
- 1. Locate `SKILL.md` (or `skill.md`) in `skillDir`.
- 2. Read the file as UTF-8.
- 3. Parse the YAML frontmatter.
- 4. Validate the parsed data against SkillPropertiesSchema.
-
-```ts
-function readProperties(skillDir: string): { name: string; description: string; license?: string | undefined; compatibility?: string | undefined; allowedTools?: string | undefined; metadata?: { [x: string]: string; } | undefined; }
-```
-
-#### Parameters
-
-- `skillDir`
-
-#### Returns
-
-The validated SkillProperties extracted from the frontmatter.
-
-#### Throws
-
-{ParseError} If `SKILL.md` is not found or cannot be parsed.
-{ValidationError} If the frontmatter does not satisfy the schema.
 
 ---
 
@@ -7906,34 +8056,6 @@ A tuple containing the parsed frontmatter and markdown body.
 
 ---
 
-### `toPrompt`
-
-```ts
-import { toPrompt } from 'hr-skills-ref/server'
-```
-
-Generate an `<available_skills>` XML block for inclusion in an agent system prompt.
-
-Each skill directory is represented as a `<skill>` element containing the
-skill's `<name>`, `<description>`, and the absolute `<location>` of its
-`SKILL.md` file. When `skillDirs` is empty, the function returns a valid
-but empty `<available_skills>` block rather than throwing.
-
-```ts
-function toPrompt(skillDirs: string[]): string
-```
-
-#### Parameters
-
-- `skillDirs`
-
-#### Returns
-
-A multi-line XML string wrapped in `<available_skills>` tags,
-ready to embed in a Claude system prompt.
-
----
-
 ### `SkillPropertiesSchema`
 
 ```ts
@@ -7959,28 +8081,6 @@ Parsed properties extracted from a skill's `SKILL.md` frontmatter.
 ```ts
 type SkillProperties = v.InferOutput<typeof SkillPropertiesSchema>
 ```
-
----
-
-### `validate`
-
-```ts
-import { validate } from 'hr-skills-ref/server'
-```
-
-Validates a skill directory.
-
-```ts
-function validate(skillDir: string): string[]
-```
-
-#### Parameters
-
-- `skillDir`
-
-#### Returns
-
-Human-readable error messages; empty when the skill is valid.
 
 ---
 
@@ -8182,28 +8282,6 @@ A trimmed string or `undefined` for empty/nullish values.
 
 ---
 
-### `escapeXml`
-
-```ts
-import { escapeXml } from 'hr-skills-ref/client'
-```
-
-Escape XML special characters.
-
-```ts
-function escapeXml(value: string): string
-```
-
-#### Parameters
-
-- `value`
-
-#### Returns
-
-An XML-safe string.
-
----
-
 ### `sanitizeYamlValue`
 
 ```ts
@@ -8223,6 +8301,28 @@ function sanitizeYamlValue(value: unknown): unknown
 #### Returns
 
 A sanitized copy of the input value.
+
+---
+
+### `escapeXml`
+
+```ts
+import { escapeXml } from 'hr-skills-ref/client'
+```
+
+Escape XML special characters.
+
+```ts
+function escapeXml(value: string): string
+```
+
+#### Parameters
+
+- `value`
+
+#### Returns
+
+An XML-safe string.
 
 ---
 

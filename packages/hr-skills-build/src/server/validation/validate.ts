@@ -4,6 +4,12 @@ import process from 'node:process';
 import * as p from '@clack/prompts';
 import { ROOT_DIR, SKILLS_DIR, validate as validateRef } from 'hr-skills-ref/server';
 import { type CliUsage, cliSpinner, runCli } from '../build/cli-bootstrap.js';
+import {
+	countFiles,
+	dirExists,
+	discoverSkills,
+	readSkillContent,
+} from '../filesystem/index.js';
 import { buildRegistry, loadRelevanceSignalTable } from '../registry/registry.js';
 import {
 	HR_SKILL_PREFIX,
@@ -16,17 +22,11 @@ import {
 	TASKS_REGEX,
 	TIPS_REGEX,
 } from '../shared/constants.js';
-import {
-	countFiles,
-	dirExists,
-	discoverSkills,
-	normalizeAuthorName,
-	readSkillContent,
-} from '../shared/helpers.js';
 import { extractMatch, parseSkillFrontmatter } from '../shared/parser.js';
 import type { SkillValidationIssue } from '../shared/types.js';
 import { detectDuplicates } from './detect-duplicates.js';
 import { pushIssue } from './issue-helpers.js';
+import { normalizeAuthorName } from './normalize-author.js';
 import { validateSecurityChecks } from './security.js';
 import { validateSemanticConsistency } from './semantic-validation.js';
 import {

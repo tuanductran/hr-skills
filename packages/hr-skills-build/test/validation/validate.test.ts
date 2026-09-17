@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'bun:test';
 import type { SkillValidationIssue } from '../../src/client/shared/types.js';
-import { first, makeKeyPromptsContent } from '../../src/server/shared/helpers.js';
+import { makeKeyPromptsContent } from '../../src/server/internal/fixtures/key-prompts.js';
+import { first } from '../../src/server/internal/testing.js';
 import {
 	validateAuthor,
 	validateBlankLines,

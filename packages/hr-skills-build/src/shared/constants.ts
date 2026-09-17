@@ -88,4 +88,4 @@ export const REGISTRY_SCHEMA_VERSION = 1;
 // module is shared by both the `client` and `server` surfaces (re-exported
 // from `../client/shared/constants.js` and `../server/shared/constants.js`)
 // and must never import `node:path` or other Node builtins. Server-only path
-// constants live in `../server/shared/paths.js`.
+// constants live in `../server/filesystem/paths.js`.

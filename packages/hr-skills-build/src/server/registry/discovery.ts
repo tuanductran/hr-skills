@@ -14,7 +14,7 @@ import { SKILLS_DIR } from 'hr-skills-ref/server';
  *
  * Currently used only by `build/sync.ts`, which needs that `SKILL.md`
  * guarantee before generating marketplace.json entries. Most other callers
- * use the lighter `shared/helpers.ts#discoverSkills()` instead (no
+ * use the lighter `filesystem/discovery.ts#discoverSkills()` instead (no
  * existence check, no options) since they read `SKILL.md` themselves right
  * after and handle a missing file there.
  *

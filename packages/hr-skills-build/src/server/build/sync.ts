@@ -3,15 +3,15 @@ import { join } from 'node:path';
 import * as p from '@clack/prompts';
 import { ROOT_DIR } from 'hr-skills-ref/server';
 import * as v from 'valibot';
+import { parseSkillMeta } from '../filesystem/index.js';
 import { getHrSkills } from '../registry/discovery.js';
-import { parseSkillMeta } from '../shared/helpers.js';
+import { MarketplaceJsonSchema } from '../shared/schema.js';
+import type { SkillMeta } from '../shared/types.js';
 import {
 	ClaudePluginJsonSchema,
 	CodexMarketplaceJsonSchema,
 	CodexPluginJsonSchema,
-	MarketplaceJsonSchema,
-} from '../shared/schema.js';
-import type { SkillMeta } from '../shared/types.js';
+} from './plugin-schemas.js';
 import { syncRouter } from './router.js';
 
 /**

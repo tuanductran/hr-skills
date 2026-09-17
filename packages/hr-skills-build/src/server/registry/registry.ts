@@ -14,16 +14,16 @@ import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
 import { CATEGORY_META, classifySkill } from './classifier.js';
+import { computeTier } from './tier.js';
 import { REGISTRY_SCHEMA_VERSION, SKILL_LINK_REGEX } from '../shared/constants.js';
-import { RELEVANCE_SIGNALS_PATH } from '../shared/paths.js';
 import {
-	computeTier,
 	countFiles,
 	dirExists,
 	discoverSkills,
 	parseSkillMeta,
 	readSkill,
-} from '../shared/helpers.js';
+} from '../filesystem/index.js';
+import { RELEVANCE_SIGNALS_PATH } from '../filesystem/paths.js';
 import {
 	indexSignalsBySource,
 	RELEVANCE_SIGNAL_SCHEMA_VERSION,
