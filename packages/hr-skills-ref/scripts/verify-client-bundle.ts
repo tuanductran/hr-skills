@@ -10,8 +10,12 @@ const CLIENT_ENTRY = join(DIST_DIR, 'client/index.mjs');
  */
 const NODE_IMPORT_PATTERN = /(?:from\s+|require\()\s*["']node:/;
 
-/** Matches a relative import/re-export specifier to follow into the bundle graph. */
-const RELATIVE_IMPORT_PATTERN = /from\s+["'](\.\.?\/[^"']+)["']/g;
+/**
+ * Matches a relative import/re-export/dynamic-import specifier to follow
+ * into the bundle graph — both static (`import ... from './x'`,
+ * `export ... from './x'`) and dynamic (`import('./x')`) forms.
+ */
+const RELATIVE_IMPORT_PATTERN = /(?:from\s+|import\s*\(\s*)["'](\.\.?\/[^"']+)["']/g;
 
 /**
  * Verifies that `dist/client/index.mjs` and every module it transitively
