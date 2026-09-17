@@ -69,10 +69,17 @@ function hasValidSignalReferences(table: RelevanceSignalTable, allowedSkillIds: 
 	return true;
 }
 
-export async function loadRelevanceSignalTable(
-	path: string = RELEVANCE_SIGNALS_PATH,
-	allowedSkillIds?: ReadonlySet<string>,
-): Promise<RelevanceSignalTable | undefined> {
+/**
+ * Load and validate the generated relevance-signal table.
+ *
+ * Referential integrity against the discovered skill registry is enforced by
+ * buildRegistry(), which is the boundary that consumes the table.
+ *
+ * @param path - Optional path to the generated relevance-signal JSON file.
+ * @returns The validated signal table, or undefined when the file is missing,
+ * malformed, or violates the schema invariants.
+ */
+export async function loadRelevanceSignalTable(path: string = RELEVANCE_SIGNALS_PATH): Promise<RelevanceSignalTable | undefined> {
 	let raw: string;
 	try {
 		raw = await readFile(path, 'utf8');
@@ -87,7 +94,6 @@ export async function loadRelevanceSignalTable(
 	}
 	const result = v.safeParse(RelevanceSignalTableSchema, parsed);
 	if (!result.success) return undefined;
-	if (allowedSkillIds && !hasValidSignalReferences(result.output, allowedSkillIds)) return undefined;
 	return result.output;
 }
 
