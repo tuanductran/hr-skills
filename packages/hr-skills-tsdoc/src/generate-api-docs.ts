@@ -182,6 +182,56 @@ function buildEntry(
 	};
 }
 
+/**
+ * Convert a Markdown heading text to an anchor slug that matches what
+ * markdownlint MD051 considers valid.
+ *
+ * Mirrors the algorithm from markdownlint's md051.mjs (which in turn follows
+ * GitHub's html-pipeline TocFilter, based on Ruby's \p{Word} expansion):
+ * 1. Lowercase.
+ * 2. Strip backticks (rendered away before anchor generation).
+ * 3. Remove any character that is NOT a Unicode Letter, Mark, Number,
+ *    Connector_Punctuation, hyphen `-`, or ASCII space.
+ *    Em dash — and other punctuation are stripped at this step.
+ * 4. Replace spaces with hyphens.
+ *
+ * Note: consecutive hyphens are NOT collapsed — "hr-skills — cli" becomes
+ * "hr-skills--cli" (the space before and after the em dash each become "-").
+ */
+function headingToAnchor(text: string): string {
+	return text
+		.toLowerCase()
+		.replace(/`/g, '') // strip backticks around symbol names
+		.replace(/[^\p{Letter}\p{Mark}\p{Number}\p{Connector_Punctuation}\- ]/gu, '') // MD051 strip
+		.replace(/ /gu, '-'); // spaces → hyphens
+}
+
+/**
+ * Build a Markdown TOC from the generated content string.
+ * Strips code blocks first (per the blog.itcode.dev technique) to avoid
+ * matching # comment lines inside fenced code examples.
+ * Only includes ## (package sections) and ### (symbol entries) — #### sub-
+ * headings (Parameters/Returns/Throws) are too granular for navigation.
+ */
+function buildToc(content: string): string {
+	// Strip fenced code blocks before scanning for headings
+	const stripped = content.replace(/```[\s\S]*?```/gm, '');
+
+	const lines: string[] = ['## Table of Contents', ''];
+
+	for (const match of stripped.matchAll(/^(#{2,3}) (.+)$/gm)) {
+		const hashes = match[1];
+		const text = match[2];
+		if (!hashes || !text) continue;
+		const level = hashes.length; // 2 = ##, 3 = ###
+		const anchor = headingToAnchor(text.trim());
+		const indent = level === 2 ? '' : '  '; // two-space indent for ###
+		lines.push(`${indent}- [${text.trim()}](#${anchor})`);
+	}
+
+	return lines.join('\n');
+}
+
 function renderEntry(entry: DocEntry, target: PackageTarget): string {
 	const lines = [
 		`### \`${entry.name}\``,
@@ -226,17 +276,19 @@ async function collectTarget(target: PackageTarget): Promise<DocEntry[]> {
 }
 
 async function generate(): Promise<string> {
-	const output: string[] = [
+	const header: string[] = [
 		'# API Reference',
 		'',
 		'> This file is generated from TSDoc-compatible comments. Do not edit it by hand; update exported declarations and run `bun run api-docs`.',
 		'',
 	];
+
+	const body: string[] = [];
 	for (const target of TARGETS) {
 		const entries = await collectTarget(target);
-		output.push(`## ${target.name} — ${target.surface}`, '', target.description, '');
+		body.push(`## ${target.name} — ${target.surface}`, '', target.description, '');
 		if (!entries.length) {
-			output.push(
+			body.push(
 				'This surface exposes a command dispatcher rather than importable declarations.',
 				'',
 				'---',
@@ -244,11 +296,19 @@ async function generate(): Promise<string> {
 			);
 			continue;
 		}
-		for (const entry of entries) output.push(renderEntry(entry, target));
+		for (const entry of entries) body.push(renderEntry(entry, target));
 	}
-	return `${output
+
+	// Build the body string first so we can scan its headings for the TOC.
+	const bodyStr = body
 		.join('\n')
 		.replaceAll('\t', '    ')
+		.replace(/\n{3,}/g, '\n\n');
+
+	const toc = buildToc(bodyStr);
+
+	return `${[...header, toc, '', bodyStr]
+		.join('\n')
 		.replace(/\n{3,}/g, '\n\n')
 		.trimEnd()}\n`;
 }
