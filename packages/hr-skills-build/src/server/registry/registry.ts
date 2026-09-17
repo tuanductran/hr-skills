@@ -18,9 +18,9 @@ import { computeTier } from './tier.js';
 import { REGISTRY_SCHEMA_VERSION, SKILL_LINK_REGEX } from '../shared/constants.js';
 import {
 	countFiles,
+	deriveSkillMeta,
 	dirExists,
 	discoverSkills,
-	parseSkillMeta,
 	readSkill,
 } from '../filesystem/index.js';
 import { RELEVANCE_SIGNALS_PATH } from '../filesystem/paths.js';
@@ -171,10 +171,10 @@ export async function buildRegistry(
 	const draft = await Promise.all(
 		skillIds.map(async (id) => {
 			const skillDir = join(SKILLS_DIR, id);
-			const [meta, { frontmatter }] = await Promise.all([
-				parseSkillMeta(id),
-				readSkill(id),
-			]);
+			// Load the skill once and derive metadata from the already-loaded
+			// content — avoids reading the same SKILL.md twice per skill.
+			const { content, frontmatter } = await readSkill(id);
+			const meta = deriveSkillMeta(id, content, frontmatter);
 			const classification = classifySkill(id);
 			const version = frontmatter.metadata?.version ?? '0.0.0';
 

@@ -62,25 +62,26 @@ export async function readSkillContent(
 }
 
 /**
- * Read a skill's `SKILL.md` and derive display metadata from it: the
- * description split at "Use when" into `coverage`/`scopeSentence`, the
- * `## Supported tasks` list, and up to 5 quoted example prompts from
- * `## Key prompts` as `triggerPhrases`.
+ * Derive display metadata from already-loaded `SKILL.md` content and its
+ * parsed frontmatter — **pure, no filesystem I/O**.
  *
- * Lives here (not in `shared/parser.ts`) because it calls `readSkill`, which
- * reads from the filesystem — `shared/parser.ts` is part of the browser-safe
- * `client` surface and must stay pure. If a caller already has `SKILL.md`
- * content in hand (e.g. fetched over HTTP in a browser context), parse it
- * directly with the pure helpers in `shared/parser.ts`/`shared/constants.ts`
- * instead of this function.
+ * Callers that need to load a skill *and* derive its metadata in a single
+ * step should use {@link parseSkillMeta}. Callers that already hold the
+ * loaded content (e.g. `buildRegistry()`, which reads each skill once and
+ * reuses the result for both registry construction and metadata derivation)
+ * should call this function directly to avoid a second `SKILL.md` read.
  *
- * @throws If `SKILL.md` cannot be read from the filesystem (see `readSkill`).
- * @param skillName - Skill directory name to load.
- * @returns Display metadata derived from the skill's frontmatter and body.
+ * @param skillName - The skill directory name, used as a display-name
+ *   fallback when `frontmatter.name` is absent.
+ * @param content - The raw `SKILL.md` file content.
+ * @param frontmatter - The parsed YAML frontmatter from the same file.
+ * @returns Display metadata derived from the frontmatter and body.
  */
-export async function parseSkillMeta(skillName: string): Promise<SkillMeta> {
-	const { content, frontmatter } = await readSkill(skillName);
-
+export function deriveSkillMeta(
+	skillName: string,
+	content: string,
+	frontmatter: SkillFrontmatter,
+): SkillMeta {
 	const name = frontmatter.name ?? skillName;
 	const description = frontmatter.description ?? '';
 
@@ -123,4 +124,25 @@ export async function parseSkillMeta(skillName: string): Promise<SkillMeta> {
 		triggerPhrases,
 		supportedTasks,
 	};
+}
+
+/**
+ * Read a skill's `SKILL.md` and derive display metadata from it: the
+ * description split at "Use when" into `coverage`/`scopeSentence`, the
+ * `## Supported tasks` list, and up to 5 quoted example prompts from
+ * `## Key prompts` as `triggerPhrases`.
+ *
+ * Lives here (not in `shared/parser.ts`) because it calls `readSkill`, which
+ * reads from the filesystem — `shared/parser.ts` is part of the browser-safe
+ * `client` surface and must stay pure. If a caller already has `SKILL.md`
+ * content in hand (e.g. fetched over HTTP in a browser context), use
+ * {@link deriveSkillMeta} directly with the already-loaded content instead.
+ *
+ * @throws If `SKILL.md` cannot be read from the filesystem (see `readSkill`).
+ * @param skillName - Skill directory name to load.
+ * @returns Display metadata derived from the skill's frontmatter and body.
+ */
+export async function parseSkillMeta(skillName: string): Promise<SkillMeta> {
+	const { content, frontmatter } = await readSkill(skillName);
+	return deriveSkillMeta(skillName, content, frontmatter);
 }
