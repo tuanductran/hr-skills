@@ -3,7 +3,7 @@ import { mkdtemp, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 
-import { loadRelevanceSignalTable } from '../../src/server/registry/registry.js';
+import { buildRegistry, loadRelevanceSignalTable } from '../../src/server/registry/registry.js';
 import { RELEVANCE_SIGNAL_SCHEMA_VERSION } from '../../src/shared/search/relevance-signals.js';
 import type { RelevanceSignalTable } from '../../src/shared/search/relevance-signals.js';
 
@@ -21,7 +21,6 @@ describe('loadRelevanceSignalTable() semantic invariants', () => {
 	async function loadWithSignals(
 		signals: ReadonlyArray<Record<string, unknown>>,
 		totalObservations = 10,
-		allowedSkillIds?: ReadonlySet<string>,
 	): Promise<RelevanceSignalTable | undefined> {
 		const path = join(tmpDir, `${Math.random().toString(36).slice(2)}.json`);
 		await writeFile(
@@ -35,7 +34,7 @@ describe('loadRelevanceSignalTable() semantic invariants', () => {
 			}),
 			'utf8',
 		);
-		return loadRelevanceSignalTable(path, allowedSkillIds);
+		return loadRelevanceSignalTable(path);
 	}
 
 	const validSignal = {
@@ -109,22 +108,55 @@ describe('loadRelevanceSignalTable() semantic invariants', () => {
 		const result = await loadWithSignals([validSignal], 9);
 		expect(result).toBeUndefined();
 	});
+});
 
-	it('rejects duplicate source-target pairs', async () => {
-		const result = await loadWithSignals([
-			validSignal,
-			{ ...validSignal, coSelectionRate: 0.4, coSelectionCount: 4 },
-		]);
-		expect(result).toBeUndefined();
+describe('buildRegistry() relevance-signal boundary validation', () => {
+	it('ignores duplicate source-target pairs', async () => {
+		const duplicateSignals: RelevanceSignalTable = {
+			schemaVersion: RELEVANCE_SIGNAL_SCHEMA_VERSION,
+			generatedAt: '2026-01-01',
+			sourceDatasets: ['test-fixture'],
+			totalObservations: 10,
+			signals: [
+				{
+					sourceSkill: 'hr-career-development',
+					targetSkill: 'hr-performance-review',
+					coSelectionRate: 0.5,
+					coSelectionCount: 5,
+					observedCount: 10,
+				},
+				{
+					sourceSkill: 'hr-career-development',
+					targetSkill: 'hr-performance-review',
+					coSelectionRate: 0.4,
+					coSelectionCount: 4,
+					observedCount: 10,
+				},
+			],
+		};
+
+		const [withoutSignals, withDuplicateSignals] = await Promise.all([buildRegistry(), buildRegistry(duplicateSignals)]);
+		expect(withDuplicateSignals.skills).toEqual(withoutSignals.skills);
 	});
 
-	it('rejects unknown source or target skill IDs when a skill set is supplied', async () => {
-		const result = await loadWithSignals([validSignal], 10, new Set(['hr-a', 'hr-c']));
-		expect(result).toBeUndefined();
-	});
+	it('ignores unknown source or target skill IDs', async () => {
+		const unknownSignal: RelevanceSignalTable = {
+			schemaVersion: RELEVANCE_SIGNAL_SCHEMA_VERSION,
+			generatedAt: '2026-01-01',
+			sourceDatasets: ['test-fixture'],
+			totalObservations: 10,
+			signals: [
+				{
+					sourceSkill: 'hr-does-not-exist',
+					targetSkill: 'hr-performance-review',
+					coSelectionRate: 0.5,
+					coSelectionCount: 5,
+					observedCount: 10,
+				},
+			],
+		};
 
-	it('accepts known source and target skill IDs when a skill set is supplied', async () => {
-		const result = await loadWithSignals([validSignal], 10, new Set(['hr-a', 'hr-b', 'hr-c']));
-		expect(result?.signals).toEqual([validSignal]);
+		const [withoutSignals, withUnknownSignal] = await Promise.all([buildRegistry(), buildRegistry(unknownSignal)]);
+		expect(withUnknownSignal.skills).toEqual(withoutSignals.skills);
 	});
 });
