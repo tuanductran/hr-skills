@@ -12,11 +12,6 @@
 export * from './docs/index.js';
 export * from './evaluation/index.js';
 export * from './filesystem/index.js';
-// Deliberately public: `cli/execute-plan.ts` uses it as its plan-execution
-// demo step executor, and `evaluation/evaluate.ts` uses it so evaluation
-// results characterize the Planner/Runtime's own sequencing behavior rather
-// than a divergent stand-in. See `internal/runtime/stub-executor.ts`.
-export { stubStepExecutor } from './internal/runtime/stub-executor.js';
 export * from './operations/index.js';
 export * from './planner/index.js';
 export * from './registry/index.js';

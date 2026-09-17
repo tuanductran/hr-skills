@@ -15,13 +15,6 @@ const SERVER_INDEX = join(SERVER_DIR, 'index.ts');
  */
 const INTERNAL_TEST_ONLY_SYMBOLS = ['makeKeyPromptsContent', 'first'] as const;
 
-/**
- * Symbols that live under `src/server/internal/` but ARE deliberately
- * re-exported from `server/index.ts` because a real external consumer
- * depends on them (see `server/index.ts` for the reasoning per symbol).
- */
-const INTERNAL_BUT_DELIBERATELY_PUBLIC_SYMBOLS = ['stubStepExecutor'] as const;
-
 describe('server public API surface', () => {
 	it('does not blanket re-export server/internal/ via `export *`', async () => {
 		const source = await readFile(SERVER_INDEX, 'utf8');
@@ -68,10 +61,18 @@ describe('server public API surface', () => {
 		}
 	});
 
-	it('deliberately re-exports the internal symbols real consumers need', () => {
-		for (const symbol of INTERNAL_BUT_DELIBERATELY_PUBLIC_SYMBOLS) {
-			expect(Object.hasOwn(serverSurface, symbol)).toBe(true);
-		}
+	it('stubStepExecutor is public via server/runtime/, not a cross-domain internal re-export', () => {
+		// stubStepExecutor now lives in server/runtime/stub-executor.ts — a
+		// first-class runtime domain — and reaches the public surface cleanly
+		// through runtime/index.ts → server/index.ts, not via a special-cased
+		// `export { x } from './internal/...'` exception.
+		expect(Object.hasOwn(serverSurface, 'stubStepExecutor')).toBe(true);
+	});
+
+	it('server/index.ts does not import from internal/ at all', async () => {
+		const source = await readFile(SERVER_INDEX, 'utf8');
+		const anyInternalImport = /from\s+["']\.\/internal\//;
+		expect(anyInternalImport.test(source)).toBe(false);
 	});
 
 	it('server/shared/ stays a thin, pure re-export — not a dumping ground', async () => {

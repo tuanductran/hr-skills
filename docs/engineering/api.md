@@ -451,6 +451,37 @@ file was not found (in which case an issue has been added to `errors`).
 
 ---
 
+### `deriveSkillMeta`
+
+```ts
+import { deriveSkillMeta } from 'hr-skills-build/server'
+```
+
+Derive display metadata from already-loaded `SKILL.md` content and its
+parsed frontmatter — \*\*pure, no filesystem I/O\*\*.
+
+Callers that need to load a skill \*and\* derive its metadata in a single
+step should use parseSkillMeta. Callers that already hold the
+loaded content (e.g. `buildRegistry()`, which reads each skill once and
+reuses the result for both registry construction and metadata derivation)
+should call this function directly to avoid a second `SKILL.md` read.
+
+```ts
+function deriveSkillMeta(skillName: string, content: string, frontmatter: { name?: string | undefined; description?: string | undefined; metadata?: { author?: string | undefined; version?: string | undefined; } | undefined; }): SkillMeta
+```
+
+#### Parameters
+
+- `skillName`
+- `content`
+- `frontmatter`
+
+#### Returns
+
+Display metadata derived from the frontmatter and body.
+
+---
+
 ### `parseSkillMeta`
 
 ```ts
@@ -465,9 +496,8 @@ description split at "Use when" into `coverage`/`scopeSentence`, the
 Lives here (not in `shared/parser.ts`) because it calls `readSkill`, which
 reads from the filesystem — `shared/parser.ts` is part of the browser-safe
 `client` surface and must stay pure. If a caller already has `SKILL.md`
-content in hand (e.g. fetched over HTTP in a browser context), parse it
-directly with the pure helpers in `shared/parser.ts`/`shared/constants.ts`
-instead of this function.
+content in hand (e.g. fetched over HTTP in a browser context), use
+deriveSkillMeta directly with the already-loaded content instead.
 
 ```ts
 function parseSkillMeta(skillName: string): Promise<SkillMeta>
@@ -484,41 +514,6 @@ Display metadata derived from the skill's frontmatter and body.
 #### Throws
 
 If `SKILL.md` cannot be read from the filesystem (see `readSkill`).
-
----
-
-### `stubStepExecutor`
-
-```ts
-import { stubStepExecutor } from 'hr-skills-build/server'
-```
-
-A stub `StepExecutorFn` that returns a deterministic placeholder output
-instead of actually invoking a skill. Shared by `cli/execute-plan.ts` (CLI
-demonstration) and `evaluation/evaluate.ts` (so evaluation results
-characterize the Planner/Runtime's sequencing and validation behavior, not
-a divergent stand-in) — previously duplicated independently in both files.
-
-Lives under `internal/` because it is a placeholder implementation detail,
-not core runtime logic — but it IS re-exported deliberately from the
-package's public server entrypoint (`server/index.ts`), since the CLI
-genuinely depends on it. See that file for the intentional re-export.
-
-Real integrations should supply their own `StepExecutorFn` that actually
-invokes the skill (for example, loading its SKILL.md and prompting a model).
-
-```ts
-function stubStepExecutor(step: ExecutionStep, context: RuntimeContext): unknown
-```
-
-#### Parameters
-
-- `step`
-- `context`
-
-#### Returns
-
-A placeholder output object, never a rejected promise.
 
 ---
 
@@ -1013,6 +1008,41 @@ function tierLabel(tier: Tier): string
 #### Returns
 
 `'Full'`, `'Partial'`, or `'Bare'`.
+
+---
+
+### `stubStepExecutor`
+
+```ts
+import { stubStepExecutor } from 'hr-skills-build/server'
+```
+
+A stub `StepExecutorFn` that returns a deterministic placeholder output
+instead of actually invoking a skill. Shared by `cli/execute-plan.ts` (CLI
+demonstration) and `evaluation/evaluate.ts` (so evaluation results
+characterise the Planner/Runtime's sequencing and validation behaviour, not
+a divergent stand-in) — previously duplicated independently in both files.
+
+Lives in `server/runtime/` because it is a legitimate runtime
+implementation (albeit a stub/demo one) and is deliberately part of the
+package's public server surface: the CLI in `packages/hr-skills` consumes
+it via the `hr-skills-build/server` entry point, so it must be public.
+
+Real integrations should supply their own `StepExecutorFn` that actually
+invokes the skill (for example, loading its SKILL.md and prompting a model).
+
+```ts
+function stubStepExecutor(step: ExecutionStep, context: RuntimeContext): unknown
+```
+
+#### Parameters
+
+- `step`
+- `context`
+
+#### Returns
+
+A placeholder output object, never a rejected promise.
 
 ---
 

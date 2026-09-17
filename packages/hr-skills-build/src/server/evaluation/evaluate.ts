@@ -13,7 +13,7 @@
 
 import { generateExecutionPlan } from '../../shared/planner/planner.js';
 import { executeWorkflow } from '../../shared/runtime/runtime.js';
-import { stubStepExecutor } from '../internal/runtime/stub-executor.js';
+import { stubStepExecutor } from '../runtime/stub-executor.js';
 import type {
 	EvaluationCase,
 	EvaluationCaseResult,
