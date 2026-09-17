@@ -1,9 +1,9 @@
 ---
 name: markdown
-description: "Repository guidance for writing, formatting, and validating Markdown documentation using markdownlint-cli, case-police, and markdown-link-check within the hr-skills monorepo."
+description: "Repository guidance for writing, formatting, and validating Markdown documentation using markdownlint-cli, case-police, and markdown-link-check within the hr-skills monorepo, including the CLAUDE.md/AGENTS.md symlink convention."
 metadata:
   author: Tuan Duc Tran
-  version: "1.1.0"
+  version: "1.2.0"
 ---
 
 # Markdown
@@ -64,6 +64,36 @@ Always leave a blank line between a heading or bold label and the list that foll
 This applies to every Markdown file in the repository — `AGENTS.md`, `README.md`, `SKILL.md`, `docs/*.md`, and generated files. AI tools in particular must insert a blank line every time a heading (`##`, `###`) or a bold label (`**Label:**`) is immediately followed by a list — this is easy to get wrong when generating Markdown programmatically.
 
 Run `bun run validate` (for `SKILL.md` files) and `bun run lint:md` (for everything else) before committing any Markdown change.
+
+## `CLAUDE.md` is a symlink
+
+`CLAUDE.md` at the repository root is a symlink to `AGENTS.md`
+(`CLAUDE.md -> AGENTS.md`), so Claude Code loads the same guidance
+automatically without a second copy to keep in sync.
+
+**Never edit or delete `CLAUDE.md` directly, and never regenerate it as a
+plain file.** A tool that writes through a symlink transparently (most
+editors, `str_replace`-style edits) is fine; one that doesn't preserve
+symlinks (some AI file-writing tools, a plain overwrite, or a `rm` followed
+by `write`) silently replaces the symlink with an independent copy, and the
+two files then drift apart with no lint rule to catch it. If a change is
+needed, edit `AGENTS.md` and let `CLAUDE.md` keep resolving to it.
+
+Before editing either file, confirm the symlink is still intact:
+
+```bash
+readlink CLAUDE.md   # must print: AGENTS.md
+```
+
+If it prints nothing (or file content instead of a path), `CLAUDE.md` has
+already diverged into a real file — restore the symlink and re-apply any
+content it was missing into `AGENTS.md` instead:
+
+```bash
+rm CLAUDE.md
+ln -s AGENTS.md CLAUDE.md
+git add CLAUDE.md
+```
 
 ## Repository tooling
 
@@ -210,6 +240,7 @@ bun run lint:md:fix
 - Mixed heading styles.
 - Duplicated documentation.
 - Invalid Markdown formatting.
+- Editing `CLAUDE.md` directly instead of `AGENTS.md`, breaking the symlink.
 
 ## Best practices
 
@@ -219,3 +250,4 @@ bun run lint:md:fix
 - Validate documentation before every commit.
 - Prefer relative links whenever possible.
 - Separate documentation changes from functional code changes.
+- Edit `AGENTS.md`, never `CLAUDE.md`, which must stay a symlink to it.
