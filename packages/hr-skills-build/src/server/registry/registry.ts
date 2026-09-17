@@ -84,10 +84,7 @@ export async function loadRelevanceSignalTable(
 		const pair = `${signal.sourceSkill}\0${signal.targetSkill}`;
 		if (seenPairs.has(pair)) return undefined;
 		seenPairs.add(pair);
-
-		if (allowedSkillIds && (!allowedSkillIds.has(signal.sourceSkill) || !allowedSkillIds.has(signal.targetSkill))) {
-			return undefined;
-		}
+		if (allowedSkillIds && (!allowedSkillIds.has(signal.sourceSkill) || !allowedSkillIds.has(signal.targetSkill))) return undefined;
 	}
 
 	return result.output;
@@ -108,12 +105,7 @@ function extractDomainDependencies(domain: keyof typeof CATEGORY_META): string[]
 	return deps;
 }
 
-function rankRelatedSkills(
-	skillId: string,
-	tags: string[],
-	sameDomainSkills: ReadonlyArray<{ id: string; tags: string[] }>,
-	limit = 5,
-): string[] {
+function rankRelatedSkills(skillId: string, tags: string[], sameDomainSkills: ReadonlyArray<{ id: string; tags: string[] }>, limit = 5): string[] {
 	const tagSet = new Set(tags);
 	return sameDomainSkills
 		.filter((other) => other.id !== skillId)
