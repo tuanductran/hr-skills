@@ -42,6 +42,12 @@ describe('parseFrontmatter', () => {
 		expect(() => parseFrontmatter('---\nname: hr-test\n')).toThrow(ClientParseError);
 	});
 
+	it('throws ParseError for malformed YAML', () => {
+		expect(() => parseFrontmatter('---\nname: [hr-test\n---\n')).toThrow(
+			ClientParseError,
+		);
+	});
+
 	it('handles quoted string values', () => {
 		const content = '---\nname: "hr-test"\ndescription: "A quoted skill"\n---\n';
 

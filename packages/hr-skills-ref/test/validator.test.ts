@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'bun:test';
-import { mkdtempSync, rmSync } from 'node:fs';
+import { mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { SKILLS_DIR } from '../src/server/constants.js';
@@ -28,6 +28,18 @@ describe('validate', () => {
 		const errors = validate('/non/existent/path');
 		expect(errors.length).toBeGreaterThan(0);
 		expect(errors[0]).toContain('Path does not exist');
+	});
+
+	it('returns an error when the path is a file rather than a directory', () => {
+		const tmp = mkdtempSync(join(tmpdir(), 'skill-test-'));
+		const filePath = join(tmp, 'not-a-skill.md');
+		writeFileSync(filePath, '# Not a skill\n', 'utf8');
+
+		try {
+			expect(validate(filePath)).toContain(`Not a directory: ${filePath}`);
+		} finally {
+			rmSync(tmp, { recursive: true, force: true });
+		}
 	});
 
 	it('returns error for missing SKILL.md', () => {
@@ -100,6 +112,36 @@ description: desc
 		try {
 			const errors = validate(tmp);
 			expect(errors.some((e) => e.includes('consecutive hyphens'))).toBe(true);
+		} finally {
+			rmSync(tmp, { recursive: true, force: true });
+		}
+	});
+
+	it('returns an error for names with invalid characters', () => {
+		const tmp = makeTempSkill(`---
+name: hr_test
+description: desc
+---`);
+		try {
+			const errors = validate(tmp);
+			expect(errors.some((error) => error.includes('invalid characters'))).toBe(
+				true,
+			);
+		} finally {
+			rmSync(tmp, { recursive: true, force: true });
+		}
+	});
+
+	it('returns an error for names with edge hyphens', () => {
+		const tmp = makeTempSkill(`---
+name: -hr-test-
+description: desc
+---`);
+		try {
+			const errors = validate(tmp);
+			expect(
+				errors.some((error) => error.includes('start or end with a hyphen')),
+			).toBe(true);
 		} finally {
 			rmSync(tmp, { recursive: true, force: true });
 		}

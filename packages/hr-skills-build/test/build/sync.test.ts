@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it } from 'bun:test';
-import { mkdirSync, rmSync, writeFileSync } from 'node:fs';
+import { mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 import { readFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
@@ -17,8 +17,7 @@ describe('syncMarketplace()', () => {
 	let tempMarketplacePath: string;
 
 	beforeEach(() => {
-		tempDir = join(tmpdir(), `sync-test-${Date.now()}`);
-		mkdirSync(tempDir, { recursive: true });
+		tempDir = mkdtempSync(join(tmpdir(), 'sync-test-'));
 
 		tempMarketplacePath = join(tempDir, 'marketplace.json');
 
@@ -150,8 +149,7 @@ describe('syncClaudePlugin()', () => {
 	let repoVersion: string;
 
 	beforeEach(async () => {
-		tempDir = join(tmpdir(), `sync-claude-plugin-test-${Date.now()}`);
-		mkdirSync(tempDir, { recursive: true });
+		tempDir = mkdtempSync(join(tmpdir(), 'sync-claude-plugin-test-'));
 
 		tempPluginPath = join(tempDir, 'plugin.json');
 
@@ -224,8 +222,7 @@ describe('syncCodexPlugin()', () => {
 	let repoVersion: string;
 
 	beforeEach(async () => {
-		tempDir = join(tmpdir(), `sync-codex-plugin-test-${Date.now()}`);
-		mkdirSync(tempDir, { recursive: true });
+		tempDir = mkdtempSync(join(tmpdir(), 'sync-codex-plugin-test-'));
 
 		tempPluginPath = join(tempDir, 'plugin.json');
 
@@ -311,8 +308,7 @@ describe('syncCodexMarketplace()', () => {
 	let validJson: Record<string, unknown>;
 
 	beforeEach(() => {
-		tempDir = join(tmpdir(), `sync-codex-marketplace-test-${Date.now()}`);
-		mkdirSync(tempDir, { recursive: true });
+		tempDir = mkdtempSync(join(tmpdir(), 'sync-codex-marketplace-test-'));
 
 		tempMarketplacePath = join(tempDir, 'marketplace.json');
 
