@@ -43,3 +43,6 @@ jobs:
 
       - name: Run skill validation
         run: bun run validate
+
+      - name: Validate generated API docs
+        run: bun run api-docs:check
