@@ -198,7 +198,7 @@ function buildEntry(
  * Note: consecutive hyphens are NOT collapsed — "hr-skills — cli" becomes
  * "hr-skills--cli" (the space before and after the em dash each become "-").
  */
-function headingToAnchor(text: string): string {
+export function headingToAnchor(text: string): string {
 	return text
 		.toLowerCase()
 		.replace(/`/g, '') // strip backticks around symbol names
@@ -213,7 +213,7 @@ function headingToAnchor(text: string): string {
  * Only includes ## (package sections) and ### (symbol entries) — #### sub-
  * headings (Parameters/Returns/Throws) are too granular for navigation.
  */
-function buildToc(content: string): string {
+export function buildToc(content: string): string {
 	// Strip fenced code blocks before scanning for headings
 	const stripped = content.replace(/```[\s\S]*?```/gm, '');
 
@@ -270,12 +270,16 @@ async function collectTarget(target: PackageTarget): Promise<DocEntry[]> {
 		const entry = buildEntry(declaration, project, target.packageRoot);
 		if (entry) entries.push(entry);
 	}
-	return entries.sort(
-		(a, b) => a.filePath.localeCompare(b.filePath) || a.line - b.line,
-	);
+	return entries.sort(compareDocEntries);
 }
 
-async function generate(): Promise<string> {
+export function compareDocEntries(a: DocEntry, b: DocEntry): number {
+	if (a.filePath < b.filePath) return -1;
+	if (a.filePath > b.filePath) return 1;
+	return a.line - b.line;
+}
+
+export async function generate(): Promise<string> {
 	const header: string[] = [
 		'# API Reference',
 		'',
@@ -313,16 +317,18 @@ async function generate(): Promise<string> {
 		.trimEnd()}\n`;
 }
 
-const content = await generate();
-if (process.argv.includes('--check')) {
-	const existing = await readFile(OUT_FILE, 'utf8').catch(() => '');
-	if (existing !== content) {
-		console.error('docs/engineering/api.md is stale — run `bun run api-docs`.');
-		process.exitCode = 1;
+if (import.meta.main) {
+	const content = await generate();
+	if (process.argv.includes('--check')) {
+		const existing = await readFile(OUT_FILE, 'utf8').catch(() => '');
+		if (existing !== content) {
+			console.error('docs/engineering/api.md is stale — run `bun run api-docs`.');
+			process.exitCode = 1;
+		} else {
+			console.log('docs/engineering/api.md is up to date.');
+		}
 	} else {
-		console.log('docs/engineering/api.md is up to date.');
+		await writeFile(OUT_FILE, content, 'utf8');
+		console.log('Wrote docs/engineering/api.md');
 	}
-} else {
-	await writeFile(OUT_FILE, content, 'utf8');
-	console.log('Wrote docs/engineering/api.md');
 }
