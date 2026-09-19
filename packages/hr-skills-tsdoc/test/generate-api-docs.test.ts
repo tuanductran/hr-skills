@@ -5,6 +5,7 @@ import path from 'node:path';
 import {
 	buildToc,
 	compareDocEntries,
+	normalizeLineEndings,
 	generate,
 	headingToAnchor,
 } from '../src/generate-api-docs.ts';
@@ -30,7 +31,7 @@ describe('buildToc', () => {
 			'# Not a Markdown heading',
 			'## Also not a heading',
 			'```',
-		].join('\\n');
+		].join('\n');
 
 		expect(buildToc(content)).toBe(
 			[
@@ -72,6 +73,6 @@ describe('generate', () => {
 			readFile(apiPath, 'utf8'),
 		]);
 
-		expect(generated).toBe(committed);
+		expect(generated).toBe(normalizeLineEndings(committed));
 	});
 });
