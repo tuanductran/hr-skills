@@ -5,8 +5,6 @@ import path from 'node:path';
 import {
 	buildToc,
 	compareDocEntries,
-	normalizeLineEndings,
-	generate,
 	generate,
 	headingToAnchor,
 	normalizeLineEndings,
