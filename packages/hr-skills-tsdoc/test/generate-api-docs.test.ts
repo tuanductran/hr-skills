@@ -10,6 +10,12 @@ import {
 	normalizeLineEndings,
 } from '../src/generate-api-docs.ts';
 
+describe('normalizeLineEndings', () => {
+	test('canonicalizes CRLF and CR to LF', () => {
+		expect(normalizeLineEndings('a\r\nb\rc\n')).toBe('a\nb\nc\n');
+	});
+});
+
 describe('headingToAnchor', () => {
 	test('creates GitHub-compatible anchors from Markdown headings', () => {
 		expect(headingToAnchor('hr-skills — cli')).toBe('hr-skills--cli');
