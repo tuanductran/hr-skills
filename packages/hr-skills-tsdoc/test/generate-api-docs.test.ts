@@ -12,7 +12,9 @@ import {
 describe('headingToAnchor', () => {
 	test('creates GitHub-compatible anchors from Markdown headings', () => {
 		expect(headingToAnchor('hr-skills — cli')).toBe('hr-skills--cli');
-		expect(headingToAnchor('\`parseFrontmatter\` & Types')).toBe('parsefrontmatter--types');
+		expect(headingToAnchor('`parseFrontmatter` & Types')).toBe(
+			'parsefrontmatter--types',
+		);
 		expect(headingToAnchor('Tiếng Việt & Unicode')).toBe('tiếng-việt--unicode');
 	});
 });
@@ -22,7 +24,7 @@ describe('buildToc', () => {
 		const content = [
 			'## Package',
 			'',
-			'### \`publicApi\`',
+			'### `publicApi`',
 			'',
 			'```ts',
 			'# Not a Markdown heading',
@@ -35,7 +37,7 @@ describe('buildToc', () => {
 				'## Table of Contents',
 				'',
 				'- [Package](#package)',
-				'  - [\`publicApi\`](#publicapi)',
+				'  - [`publicApi`](#publicapi)',
 			].join('\\n'),
 		);
 	});
