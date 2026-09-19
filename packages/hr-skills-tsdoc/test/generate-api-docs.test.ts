@@ -7,7 +7,14 @@ import {
 	compareDocEntries,
 	generate,
 	headingToAnchor,
+	normalizeLineEndings,
 } from '../src/generate-api-docs.ts';
+
+describe('normalizeLineEndings', () => {
+	test('canonicalizes CRLF and CR to LF', () => {
+		expect(normalizeLineEndings('a\r\nb\rc\n')).toBe('a\nb\nc\n');
+	});
+});
 
 describe('headingToAnchor', () => {
 	test('creates GitHub-compatible anchors from Markdown headings', () => {
@@ -30,7 +37,7 @@ describe('buildToc', () => {
 			'# Not a Markdown heading',
 			'## Also not a heading',
 			'```',
-		].join('\\n');
+		].join('\n');
 
 		expect(buildToc(content)).toBe(
 			[
@@ -38,7 +45,7 @@ describe('buildToc', () => {
 				'',
 				'- [Package](#package)',
 				'  - [`publicApi`](#publicapi)',
-			].join('\\n'),
+			].join('\n'),
 		);
 	});
 });
@@ -72,6 +79,6 @@ describe('generate', () => {
 			readFile(apiPath, 'utf8'),
 		]);
 
-		expect(generated).toBe(committed);
+		expect(generated).toBe(normalizeLineEndings(committed));
 	});
 });

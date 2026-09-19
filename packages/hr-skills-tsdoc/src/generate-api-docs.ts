@@ -9,7 +9,7 @@ import { readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import type { ExportedDeclarations, Symbol as TsSymbol, Type } from 'ts-morph';
+import type { ExportedDeclarations, Node, Symbol as TsSymbol, Type } from 'ts-morph';
 import { Project, SyntaxKind, ts } from 'ts-morph';
 
 const PACKAGE_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -17,6 +17,47 @@ const REPO_ROOT = path.resolve(PACKAGE_ROOT, '../..');
 const OUT_FILE = path.join(REPO_ROOT, 'docs/engineering/api.md');
 
 type Surface = 'client' | 'server' | 'cli';
+
+export function normalizeLineEndings(value: string): string {
+	return value.replace(/\r\n?/g, '\n');
+}
+
+function compareStrings(a: string, b: string): number {
+	if (a < b) return -1;
+	if (a > b) return 1;
+	return 0;
+}
+
+function canonicalSourcePath(node: Node): string {
+	return normalizeLineEndings(node.getSourceFile().getFilePath())
+		.replaceAll('\\', '/')
+		.toLowerCase();
+}
+
+export function compareDeclarations(
+	a: ExportedDeclarations,
+	b: ExportedDeclarations,
+): number {
+	const pathOrder = compareStrings(canonicalSourcePath(a), canonicalSourcePath(b));
+	if (pathOrder !== 0) return pathOrder;
+	const lineOrder = a.getStartLineNumber() - b.getStartLineNumber();
+	if (lineOrder !== 0) return lineOrder;
+	const kindOrder = compareStrings(a.getKindName(), b.getKindName());
+	if (kindOrder !== 0) return kindOrder;
+	return compareStrings(normalizeLineEndings(a.getText()), normalizeLineEndings(b.getText()));
+}
+
+export function selectExportDeclaration(
+	exportName: string,
+	declarations: readonly ExportedDeclarations[],
+): ExportedDeclarations | undefined {
+	return [...declarations].sort((a, b) => {
+		const aExact = a.getSymbol()?.getName() === exportName ? 0 : 1;
+		const bExact = b.getSymbol()?.getName() === exportName ? 0 : 1;
+		return aExact - bExact || compareDeclarations(a, b);
+	})[0];
+}
+
 
 interface PackageTarget {
 	name: string;
@@ -80,14 +121,14 @@ function getTags(symbol: TsSymbol): Record<string, string> {
 	const tags: Record<string, string> = Object.create(null);
 	for (const tag of symbol.getJsDocTags()) {
 		const name = tag.getName();
-		const value = ts.displayPartsToString(tag.getText());
+		const value = normalizeLineEndings(ts.displayPartsToString(tag.getText()));
 		tags[name] = name in tags ? `${tags[name]}\n${value}` : value;
 	}
 	return tags;
 }
 
 function renderProse(raw: string): string {
-	return raw
+	return normalizeLineEndings(raw)
 		.split('\n')
 		.map((line) => line.replace(/^\s*\*\s?/, ''))
 		.join('\n')
@@ -98,7 +139,9 @@ function renderProse(raw: string): string {
 }
 
 function formatType(type: Type): string {
-	return type.getText(undefined, ts.TypeFormatFlags.UseAliasDefinedOutsideCurrentScope);
+	return normalizeLineEndings(
+		type.getText(undefined, ts.TypeFormatFlags.UseAliasDefinedOutsideCurrentScope),
+	);
 }
 
 function formatSignature(
@@ -127,10 +170,10 @@ function formatSignature(
 		return `function ${name}(${params}): ${formatType(returnType)}`;
 	}
 	if (declaration.isKind(SyntaxKind.TypeAliasDeclaration)) {
-		return `type ${name} = ${declaration.asKindOrThrow(SyntaxKind.TypeAliasDeclaration).getTypeNodeOrThrow().getText()}`;
+		return `type ${name} = ${normalizeLineEndings(declaration.asKindOrThrow(SyntaxKind.TypeAliasDeclaration).getTypeNodeOrThrow().getText())}`;
 	}
 	if (declaration.isKind(SyntaxKind.InterfaceDeclaration)) {
-		return declaration.getText().replace(/^export\s+/, '');
+		return normalizeLineEndings(declaration.getText()).replace(/^export\s+/, '');
 	}
 	return `const ${name}: ${formatType(type)}`;
 }
@@ -264,8 +307,8 @@ async function collectTarget(target: PackageTarget): Promise<DocEntry[]> {
 	const indexFile = project.getSourceFile(path.join(target.packageRoot, target.entry));
 	if (!indexFile) return [];
 	const entries: DocEntry[] = [];
-	for (const declarations of indexFile.getExportedDeclarations().values()) {
-		const declaration = declarations[0];
+	for (const [exportName, declarations] of indexFile.getExportedDeclarations()) {
+		const declaration = selectExportDeclaration(exportName, declarations);
 		if (!declaration) continue;
 		const entry = buildEntry(declaration, project, target.packageRoot);
 		if (entry) entries.push(entry);
@@ -274,8 +317,8 @@ async function collectTarget(target: PackageTarget): Promise<DocEntry[]> {
 }
 
 export function compareDocEntries(a: DocEntry, b: DocEntry): number {
-	if (a.filePath < b.filePath) return -1;
-	if (a.filePath > b.filePath) return 1;
+	const pathOrder = compareStrings(a.filePath, b.filePath);
+	if (pathOrder !== 0) return pathOrder;
 	return a.line - b.line;
 }
 
@@ -321,7 +364,7 @@ if (import.meta.main) {
 	const content = await generate();
 	if (process.argv.includes('--check')) {
 		const existing = await readFile(OUT_FILE, 'utf8').catch(() => '');
-		if (existing !== content) {
+		if (normalizeLineEndings(existing) !== content) {
 			console.error('docs/engineering/api.md is stale — run `bun run api-docs`.');
 			process.exitCode = 1;
 		} else {
