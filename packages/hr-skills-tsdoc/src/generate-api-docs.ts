@@ -322,13 +322,6 @@ export function compareDocEntries(a: DocEntry, b: DocEntry): number {
 	return a.line - b.line;
 }
 
-/* legacy comparator body removed */
-export function _compareDocEntriesLegacy(a: DocEntry, b: DocEntry): number {
-	if (a.filePath < b.filePath) return -1;
-	if (a.filePath > b.filePath) return 1;
-	return a.line - b.line;
-}
-
 export async function generate(): Promise<string> {
 	const header: string[] = [
 		'# API Reference',
