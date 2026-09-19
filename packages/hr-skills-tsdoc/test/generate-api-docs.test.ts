@@ -7,7 +7,9 @@ import {
 	compareDocEntries,
 	normalizeLineEndings,
 	generate,
+	generate,
 	headingToAnchor,
+	normalizeLineEndings,
 } from '../src/generate-api-docs.ts';
 
 describe('headingToAnchor', () => {
@@ -39,7 +41,7 @@ describe('buildToc', () => {
 				'',
 				'- [Package](#package)',
 				'  - [`publicApi`](#publicapi)',
-			].join('\\n'),
+			].join('\n'),
 		);
 	});
 });
