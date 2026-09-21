@@ -37,14 +37,14 @@ const mockRegistry: Registry = {
 	skills: [mockSkill],
 };
 
-describe('Service Layer — Phase 8.1', () => {
+describe('Service Layer — Phase 8', () => {
 	describe('getHealthService', () => {
 		it('returns ok health status and uptime without registry', () => {
 			const res = getHealthService();
 			expect(res.success).toBe(true);
 			if (res.success) {
 				expect(res.data.status).toBe('ok');
-				expect(res.data.version).toBe('1.0.0');
+				expect(res.data.version).toBe('0.0.0');
 				expect(typeof res.data.uptime).toBe('number');
 				expect(res.data.registryStats).toBeUndefined();
 			}
@@ -67,7 +67,7 @@ describe('Service Layer — Phase 8.1', () => {
 			expect(res.success).toBe(true);
 			if (res.success) {
 				expect(res.data.name).toBe('hr-skills-service');
-				expect(res.data.phase).toContain('Phase 8.1');
+				expect(res.data.phase).toBe('Phase 8 — API & Services');
 				expect(res.data.apiVersions.health).toBe('v1');
 				expect(res.data.apiVersions.readiness).toBe('v1');
 			}
