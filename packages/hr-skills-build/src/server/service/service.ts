@@ -28,6 +28,8 @@ import type {
 import { validateExecutionPlan } from '../validation/validate-planner.js';
 
 const START_TIME = Date.now();
+const SERVICE_VERSION = '0.0.0';
+const SERVICE_PHASE = 'Phase 8 — API & Services';
 
 function describeError(error: unknown): string {
 	return error instanceof Error ? error.message : String(error);
@@ -92,7 +94,7 @@ export function getHealthService(registry?: Registry): ServiceResponse<HealthSta
 
 	return successResponse({
 		status: 'ok',
-		version: '1.0.0',
+		version: SERVICE_VERSION,
 		uptime,
 		timestamp,
 		...(registryStats ? { registryStats } : {}),
@@ -106,8 +108,8 @@ export function getHealthService(registry?: Registry): ServiceResponse<HealthSta
 export function getVersionService(): ServiceResponse<VersionInfo> {
 	return successResponse({
 		name: 'hr-skills-service',
-		version: '1.0.0',
-		phase: 'Phase 8.1 — Service layer',
+		version: SERVICE_VERSION,
+		phase: SERVICE_PHASE,
 		apiVersions: {
 			health: SERVICE_API_VERSION,
 			readiness: SERVICE_API_VERSION,
