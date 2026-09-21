@@ -2,15 +2,35 @@ import { describe, expect, it } from 'bun:test';
 import { readdir, readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
-const SRC_DIR = join(import.meta.dirname, '../src');
+const PACKAGE_DIR = join(import.meta.dirname, '..');
+const SRC_DIR = join(PACKAGE_DIR, 'src');
 const CLIENT_DIR = join(SRC_DIR, 'client');
 const SERVER_DIR = join(SRC_DIR, 'server');
+
+const { name: PACKAGE_NAME } = (await Bun.file(
+	join(PACKAGE_DIR, 'package.json'),
+).json()) as { name: string };
 
 /**
  * Matches a relative import/re-export specifier (static or dynamic) so its
  * target can be resolved and checked against the forbidden directory.
  */
 const RELATIVE_IMPORT_PATTERN = /(?:from\s+|import\s*\(\s*)["'](\.\.?\/[^"']+)["']/g;
+
+/**
+ * Matches a self-referencing package-subpath import/re-export, e.g.
+ * `from 'hr-skills-ref/server'`. A relative-import scan alone misses this:
+ * `src/client/foo.ts` importing `'hr-skills-ref/server'` never contains a
+ * `./` or `../` specifier, so it slips past `RELATIVE_IMPORT_PATTERN`
+ * entirely even though it pulls the forbidden surface in exactly the same
+ * way a relative import would.
+ */
+function packageImportPattern(surface: 'client' | 'server'): RegExp {
+	return new RegExp(
+		`(?:from\\s+|import\\s*\\(\\s*)["'](${PACKAGE_NAME}/${surface})["']`,
+		'g',
+	);
+}
 
 async function collectTsFiles(dir: string): Promise<string[]> {
 	const entries = await readdir(dir, { withFileTypes: true });
@@ -25,13 +45,16 @@ async function collectTsFiles(dir: string): Promise<string[]> {
 }
 
 /**
- * Collect every relative import in `file` that resolves to a path inside
- * `forbiddenDir` (given as a `path.resolve`-style absolute directory).
+ * Collect every import in `file` — relative or self-referencing
+ * package-subpath — that resolves to `forbiddenSurface` (given as both the
+ * absolute directory, for relative-import resolution, and the bare surface
+ * name, for the package-subpath pattern above).
  */
 function findImportsInto(
 	source: string,
 	filePath: string,
 	forbiddenDir: string,
+	forbiddenSurface: 'client' | 'server',
 ): string[] {
 	const hits: string[] = [];
 
@@ -45,6 +68,10 @@ function findImportsInto(
 		if (resolved.startsWith(`${forbiddenDir}/`) || resolved === forbiddenDir) {
 			hits.push(specifier);
 		}
+	}
+
+	for (const match of source.matchAll(packageImportPattern(forbiddenSurface))) {
+		if (match[1]) hits.push(match[1]);
 	}
 
 	return hits;
@@ -62,12 +89,7 @@ function findImportsInto(
  * outside `client/` and `server/`, so a relative import from either surface
  * into `shared/` never matches `CLIENT_DIR`/`SERVER_DIR` below. This is a
  * static source scan (no build required), matching the pattern used by
- * `shared-node-boundary.test.ts` and by hr-skills-build's
- * `test/architecture/client-server-boundary.test.ts`, which this mirrors —
- * hr-skills-ref has the same src/client + src/server split (see README:
- * "browser-safe consumers must import `hr-skills-ref/client`") but had no
- * source-level test protecting the direction of that split, only the
- * build-time `verify-client-bundle.ts` check for Node built-ins.
+ * `shared-node-boundary.test.ts`.
  */
 describe('client/server import boundary', () => {
 	it('src/client/ never imports from src/server/', async () => {
@@ -77,7 +99,7 @@ describe('client/server import boundary', () => {
 		const violations: string[] = [];
 		for (const file of files) {
 			const source = await readFile(file, 'utf8');
-			const hits = findImportsInto(source, file, SERVER_DIR);
+			const hits = findImportsInto(source, file, SERVER_DIR, 'server');
 			if (hits.length > 0) {
 				violations.push(
 					`${file.replace(`${SRC_DIR}/`, 'src/')}: ${hits.join(', ')}`,
@@ -95,7 +117,7 @@ describe('client/server import boundary', () => {
 		const violations: string[] = [];
 		for (const file of files) {
 			const source = await readFile(file, 'utf8');
-			const hits = findImportsInto(source, file, CLIENT_DIR);
+			const hits = findImportsInto(source, file, CLIENT_DIR, 'client');
 			if (hits.length > 0) {
 				violations.push(
 					`${file.replace(`${SRC_DIR}/`, 'src/')}: ${hits.join(', ')}`,
