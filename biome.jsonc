@@ -55,6 +55,31 @@
 			}
 		}
 	},
+	"overrides": [
+		{
+			"includes": ["apps/web/app/components/**/*.{ts,tsx}"],
+			"linter": {
+				"rules": {
+					"style": {
+						"noRestrictedImports": {
+							"level": "error",
+							"options": {
+								"paths": {
+									"hr-skills-build/server": "This directory holds client components ('use client'). Import from 'hr-skills-build/client' instead — the server surface uses Node built-ins that break in the browser."
+								},
+								"patterns": [
+									{
+										"group": ["node:*", "node:*/**"],
+										"message": "This directory holds client components ('use client'). Node built-ins are server-only — move this logic into apps/web/app/lib/ and pass the result in as a prop."
+									}
+								]
+							}
+						}
+					}
+				}
+			}
+		}
+	],
 	"vcs": {
 		"defaultBranch": "main",
 		"clientKind": "git",
