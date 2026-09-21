@@ -44,7 +44,10 @@ export function compareDeclarations(
 	if (lineOrder !== 0) return lineOrder;
 	const kindOrder = compareStrings(a.getKindName(), b.getKindName());
 	if (kindOrder !== 0) return kindOrder;
-	return compareStrings(normalizeLineEndings(a.getText()), normalizeLineEndings(b.getText()));
+	return compareStrings(
+		normalizeLineEndings(a.getText()),
+		normalizeLineEndings(b.getText()),
+	);
 }
 
 export function selectExportDeclaration(
@@ -57,7 +60,6 @@ export function selectExportDeclaration(
 		return aExact - bExact || compareDeclarations(a, b);
 	})[0];
 }
-
 
 interface PackageTarget {
 	name: string;
