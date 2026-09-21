@@ -14,7 +14,7 @@
 			"!**/.next",
 			"!**/next-env.d.ts",
 			"!apps/web/data/skills.json",
-			"!packages/hr-skills-build/eval-report.json"
+			"!packages/hr-skills/eval-report.json"
 		]
 	},
 	"assist": {
