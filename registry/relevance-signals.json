@@ -1,6 +1,6 @@
 {
 	"schemaVersion": 1,
-	"generatedAt": "2026-08-14",
+	"generatedAt": "2026-09-21",
 	"sourceDatasets": [
 		"planning-scenarios"
 	],
@@ -23,51 +23,23 @@
 		{
 			"sourceSkill": "hr-business-partner",
 			"targetSkill": "hr-career-development",
-			"coSelectionRate": 0.5,
+			"coSelectionRate": 1,
 			"coSelectionCount": 2,
-			"observedCount": 4
-		},
-		{
-			"sourceSkill": "hr-business-partner",
-			"targetSkill": "hr-coordination",
-			"coSelectionRate": 0.25,
-			"coSelectionCount": 1,
-			"observedCount": 4
-		},
-		{
-			"sourceSkill": "hr-business-partner",
-			"targetSkill": "hr-leadership-development",
-			"coSelectionRate": 0.25,
-			"coSelectionCount": 1,
-			"observedCount": 4
-		},
-		{
-			"sourceSkill": "hr-business-partner",
-			"targetSkill": "hr-offboarding",
-			"coSelectionRate": 0.25,
-			"coSelectionCount": 1,
-			"observedCount": 4
+			"observedCount": 2
 		},
 		{
 			"sourceSkill": "hr-business-partner",
 			"targetSkill": "hr-performance-management",
-			"coSelectionRate": 0.25,
+			"coSelectionRate": 0.5,
 			"coSelectionCount": 1,
-			"observedCount": 4
+			"observedCount": 2
 		},
 		{
 			"sourceSkill": "hr-business-partner",
 			"targetSkill": "hr-performance-review",
-			"coSelectionRate": 0.75,
-			"coSelectionCount": 3,
-			"observedCount": 4
-		},
-		{
-			"sourceSkill": "hr-business-partner",
-			"targetSkill": "hr-training-development",
-			"coSelectionRate": 0.25,
-			"coSelectionCount": 1,
-			"observedCount": 4
+			"coSelectionRate": 1,
+			"coSelectionCount": 2,
+			"observedCount": 2
 		},
 		{
 			"sourceSkill": "hr-candidate-assessment",
@@ -79,30 +51,51 @@
 		{
 			"sourceSkill": "hr-career-development",
 			"targetSkill": "hr-business-partner",
-			"coSelectionRate": 1,
+			"coSelectionRate": 0.5,
 			"coSelectionCount": 2,
-			"observedCount": 2
+			"observedCount": 4
+		},
+		{
+			"sourceSkill": "hr-career-development",
+			"targetSkill": "hr-coordination",
+			"coSelectionRate": 0.25,
+			"coSelectionCount": 1,
+			"observedCount": 4
 		},
 		{
 			"sourceSkill": "hr-career-development",
 			"targetSkill": "hr-leadership-development",
-			"coSelectionRate": 0.5,
+			"coSelectionRate": 0.25,
 			"coSelectionCount": 1,
-			"observedCount": 2
+			"observedCount": 4
+		},
+		{
+			"sourceSkill": "hr-career-development",
+			"targetSkill": "hr-offboarding",
+			"coSelectionRate": 0.25,
+			"coSelectionCount": 1,
+			"observedCount": 4
+		},
+		{
+			"sourceSkill": "hr-career-development",
+			"targetSkill": "hr-performance-management",
+			"coSelectionRate": 0.25,
+			"coSelectionCount": 1,
+			"observedCount": 4
 		},
 		{
 			"sourceSkill": "hr-career-development",
 			"targetSkill": "hr-performance-review",
-			"coSelectionRate": 0.5,
-			"coSelectionCount": 1,
-			"observedCount": 2
+			"coSelectionRate": 1,
+			"coSelectionCount": 4,
+			"observedCount": 4
 		},
 		{
 			"sourceSkill": "hr-career-development",
 			"targetSkill": "hr-training-development",
-			"coSelectionRate": 0.5,
+			"coSelectionRate": 0.25,
 			"coSelectionCount": 1,
-			"observedCount": 2
+			"observedCount": 4
 		},
 		{
 			"sourceSkill": "hr-compensation-benefits",
@@ -113,7 +106,7 @@
 		},
 		{
 			"sourceSkill": "hr-coordination",
-			"targetSkill": "hr-business-partner",
+			"targetSkill": "hr-career-development",
 			"coSelectionRate": 1,
 			"coSelectionCount": 1,
 			"observedCount": 1
@@ -141,14 +134,14 @@
 		},
 		{
 			"sourceSkill": "hr-leadership-development",
-			"targetSkill": "hr-business-partner",
+			"targetSkill": "hr-career-development",
 			"coSelectionRate": 1,
 			"coSelectionCount": 1,
 			"observedCount": 1
 		},
 		{
 			"sourceSkill": "hr-leadership-development",
-			"targetSkill": "hr-career-development",
+			"targetSkill": "hr-performance-review",
 			"coSelectionRate": 1,
 			"coSelectionCount": 1,
 			"observedCount": 1
@@ -162,7 +155,7 @@
 		},
 		{
 			"sourceSkill": "hr-offboarding",
-			"targetSkill": "hr-business-partner",
+			"targetSkill": "hr-career-development",
 			"coSelectionRate": 1,
 			"coSelectionCount": 1,
 			"observedCount": 1
@@ -190,6 +183,13 @@
 		},
 		{
 			"sourceSkill": "hr-performance-management",
+			"targetSkill": "hr-career-development",
+			"coSelectionRate": 1,
+			"coSelectionCount": 1,
+			"observedCount": 1
+		},
+		{
+			"sourceSkill": "hr-performance-management",
 			"targetSkill": "hr-performance-review",
 			"coSelectionRate": 1,
 			"coSelectionCount": 1,
@@ -198,48 +198,55 @@
 		{
 			"sourceSkill": "hr-performance-review",
 			"targetSkill": "hr-business-partner",
-			"coSelectionRate": 1,
-			"coSelectionCount": 3,
-			"observedCount": 3
+			"coSelectionRate": 0.5,
+			"coSelectionCount": 2,
+			"observedCount": 4
 		},
 		{
 			"sourceSkill": "hr-performance-review",
 			"targetSkill": "hr-career-development",
-			"coSelectionRate": 0.3333333333333333,
-			"coSelectionCount": 1,
-			"observedCount": 3
+			"coSelectionRate": 1,
+			"coSelectionCount": 4,
+			"observedCount": 4
 		},
 		{
 			"sourceSkill": "hr-performance-review",
 			"targetSkill": "hr-coordination",
-			"coSelectionRate": 0.3333333333333333,
+			"coSelectionRate": 0.25,
 			"coSelectionCount": 1,
-			"observedCount": 3
+			"observedCount": 4
+		},
+		{
+			"sourceSkill": "hr-performance-review",
+			"targetSkill": "hr-leadership-development",
+			"coSelectionRate": 0.25,
+			"coSelectionCount": 1,
+			"observedCount": 4
 		},
 		{
 			"sourceSkill": "hr-performance-review",
 			"targetSkill": "hr-offboarding",
-			"coSelectionRate": 0.3333333333333333,
+			"coSelectionRate": 0.25,
 			"coSelectionCount": 1,
-			"observedCount": 3
+			"observedCount": 4
 		},
 		{
 			"sourceSkill": "hr-performance-review",
 			"targetSkill": "hr-performance-management",
-			"coSelectionRate": 0.3333333333333333,
+			"coSelectionRate": 0.25,
 			"coSelectionCount": 1,
-			"observedCount": 3
+			"observedCount": 4
+		},
+		{
+			"sourceSkill": "hr-performance-review",
+			"targetSkill": "hr-training-development",
+			"coSelectionRate": 0.25,
+			"coSelectionCount": 1,
+			"observedCount": 4
 		},
 		{
 			"sourceSkill": "hr-total-rewards",
 			"targetSkill": "hr-compensation-benefits",
-			"coSelectionRate": 1,
-			"coSelectionCount": 1,
-			"observedCount": 1
-		},
-		{
-			"sourceSkill": "hr-training-development",
-			"targetSkill": "hr-business-partner",
 			"coSelectionRate": 1,
 			"coSelectionCount": 1,
 			"observedCount": 1
@@ -254,6 +261,13 @@
 		{
 			"sourceSkill": "hr-training-development",
 			"targetSkill": "hr-leadership-development",
+			"coSelectionRate": 1,
+			"coSelectionCount": 1,
+			"observedCount": 1
+		},
+		{
+			"sourceSkill": "hr-training-development",
+			"targetSkill": "hr-performance-review",
 			"coSelectionRate": 1,
 			"coSelectionCount": 1,
 			"observedCount": 1

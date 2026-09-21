@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-09",
+  "generatedAt": "2026-09-21",
   "skillCount": 146,
   "skills": [
     {
@@ -768,8 +768,8 @@
         "hr-career-development",
         "hr-coaching-mentoring",
         "hr-competency-management",
-        "hr-manager-effectiveness",
-        "hr-performance-review"
+        "hr-performance-review",
+        "hr-manager-effectiveness"
       ]
     },
     {
@@ -1501,7 +1501,7 @@
         "hr-offboarding",
         "hr-employee-self-service",
         "hr-management",
-        "hr-business-partner"
+        "hr-career-development"
       ]
     },
     {
@@ -3310,7 +3310,7 @@
         "hr-learning-strategy",
         "hr-training-development",
         "hr-skills-management",
-        "hr-business-partner"
+        "hr-career-development"
       ]
     },
     {
@@ -3725,7 +3725,7 @@
         "hr-coordination",
         "hr-employee-lifecycle",
         "hr-employee-self-service",
-        "hr-business-partner",
+        "hr-career-development",
         "hr-performance-review"
       ]
     },
@@ -4356,8 +4356,8 @@
       },
       "dependencies": [],
       "relatedSkills": [
-        "hr-business-partner",
         "hr-career-development",
+        "hr-business-partner",
         "hr-coaching-mentoring",
         "hr-competency-management",
         "hr-manager-effectiveness"
@@ -6210,8 +6210,8 @@
         "hr-leadership-development",
         "hr-learning-development",
         "hr-learning-strategy",
-        "hr-business-partner",
-        "hr-career-development"
+        "hr-career-development",
+        "hr-performance-review"
       ]
     },
     {
