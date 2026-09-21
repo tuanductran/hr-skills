@@ -53,7 +53,8 @@
 		"evaluate": "bun src/cli/run-evaluation.ts",
 		"skill-review": "bun src/cli/skill-review.ts",
 		"registry": "bun src/cli/generate-registry.ts",
-		"signals": "bun src/cli/generate-relevance-signals.ts"
+		"signals": "bun src/cli/generate-relevance-signals.ts",
+		"signals:check": "bun src/cli/generate-relevance-signals.ts --check"
 	},
 	"devDependencies": {
 		"@clack/prompts": "catalog:",

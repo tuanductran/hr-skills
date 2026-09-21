@@ -46,3 +46,6 @@ jobs:
 
       - name: Validate generated API docs
         run: bun run api-docs:check
+
+      - name: Validate relevance signal registry
+        run: bun run signals:check

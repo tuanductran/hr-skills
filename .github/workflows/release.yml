@@ -42,6 +42,9 @@ jobs:
       - name: Validate generated API docs
         run: bun run api-docs:check
 
+      - name: Validate relevance signal registry
+        run: bun run signals:check
+
       - name: Create Release PR or publish version
         uses: changesets/action@v1.9.0
         with:

@@ -64,6 +64,11 @@
 			"outputs": ["registry/relevance-signals.json"],
 			"dependsOn": ["^build", "evaluate"]
 		},
+		"signals:check": {
+			"cache": false,
+			"dependsOn": ["^build", "evaluate"],
+			"outputs": ["registry/relevance-signals.json"]
+		},
 		"plan": {
 			"cache": false,
 			"outputs": ["execution-plan.json"],

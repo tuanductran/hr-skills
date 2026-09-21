@@ -98,6 +98,7 @@
 		"api-docs:check": "turbo run api-docs:check --filter=hr-skills-tsdoc",
 		"docs-data": "turbo run docs-data --filter=hr-skills-build",
 		"signals": "turbo run signals --filter=hr-skills",
+		"signals:check": "turbo run signals:check --filter=hr-skills",
 		"plan": "turbo run plan --filter=hr-skills --",
 		"discover": "turbo run discover --filter=hr-skills --",
 		"find": "turbo run find --filter=hr-skills --",
