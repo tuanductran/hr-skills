@@ -1,0 +1,46 @@
+name: Generated Artifacts
+
+on:
+  push:
+    branches: [dev]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  generated:
+    name: Generated Artifacts (Ubuntu)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v7
+
+      - name: Install bun
+        uses: oven-sh/setup-bun@v2
+
+      - name: Install dependencies
+        run: bun ci
+
+      - name: Regenerate committed artifacts
+        run: |
+          bun run matrix
+          bun run registry
+          bun run sync
+          bun run api-docs
+          bun run signals
+
+      - name: Verify generated artifacts are committed
+        run: |
+          git diff --exit-code -- \
+            docs/engineering/skill-matrix.md \
+            docs/engineering/api.md \
+            registry/skills.json \
+            registry/relevance-signals.json \
+            .claude-plugin/marketplace.json \
+            .claude-plugin/plugin.json \
+            .codex-plugin/plugin.json \
+            .agents/plugins/marketplace.json \
+            SKILL.md
