@@ -34,7 +34,12 @@ jobs:
 
       - name: Verify generated artifacts are committed
         run: |
-          git diff --exit-code -- \
+          # generatedAt/Auto-generated-on fields are intentionally time-dependent;
+          # all substantive generated content must still match the committed files.
+          git diff --exit-code \
+            -I '^> Auto-generated on [0-9]{4}-[0-9]{2}-[0-9]{2} by' \
+            -I '^\\s*"generatedAt": "[0-9]{4}-[0-9]{2}-[0-9]{2}"' \
+            -- \
             docs/engineering/skill-matrix.md \
             docs/engineering/api.md \
             registry/skills.json \
