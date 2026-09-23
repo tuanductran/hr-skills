@@ -121,14 +121,14 @@ describe('Phase 8.3 operational concerns', () => {
 		if (!failed.success) {
 			expect(failed.error.code).toBe('SERVICE_UNAVAILABLE');
 			expect(failed.error.details).toMatchObject({
-			checks: [
-				{
-					name: 'registry',
-					status: 'not_ready',
-					message: 'registry unavailable',
-				},
-			],
-		});
+				checks: [
+					{
+						name: 'registry',
+						status: 'not_ready',
+						message: 'registry unavailable',
+					},
+				],
+			});
 		}
 	});
 });
