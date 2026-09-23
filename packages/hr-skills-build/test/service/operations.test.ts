@@ -105,13 +105,16 @@ describe('Phase 8.3 operational concerns', () => {
 		expect(ready.success).toBe(true);
 		if (ready.success) {
 			expect(ready.data.status).toBe('ready');
-			expect(ready.data.checks).toEqual([
-			{ name: 'registry', status: 'ready' },
-		]);
+			expect(ready.data.checks).toEqual([{ name: 'registry', status: 'ready' }]);
 		}
 
 		const failed = await getReadinessService([
-			{ name: 'registry', check: () => { throw new Error('registry unavailable'); } },
+			{
+				name: 'registry',
+				check: () => {
+					throw new Error('registry unavailable');
+				},
+			},
 		]);
 
 		expect(failed.success).toBe(false);
@@ -128,5 +131,4 @@ describe('Phase 8.3 operational concerns', () => {
 		});
 		}
 	});
-
 });
