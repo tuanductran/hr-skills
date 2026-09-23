@@ -1,0 +1,23 @@
+{
+	"$schema": "https://json.schemastore.org/package.json",
+	"name": "hr-skills-api",
+	"version": "0.0.0",
+	"private": true,
+	"description": "Hosted HTTP adapter scaffold for HR Skills — exposes hr-skills-build/server over Bun + Elysia.",
+	"type": "module",
+	"license": "MIT",
+	"author": "Tuan Duc Tran",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/tuanductran/hr-skills.git",
+		"directory": "apps/api"
+	},
+	"scripts": {
+		"dev": "bun run --watch src/index.ts",
+		"start": "bun run src/index.ts",
+		"typecheck": "tsc --noEmit"
+	},
+	"dependencies": {
+		"elysia": "^1.4.30"
+	}
+}
