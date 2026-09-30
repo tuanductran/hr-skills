@@ -8,7 +8,7 @@ layer, the web product, and future external clients.
 The repository exposes deterministic library services from
 `hr-skills-build/server`. `apps/api` implements the seven reserved routes as a
 Bun + Elysia adapter over those services, with `Authorization: Bearer` API-key
-authentication for runtime and evaluation but without rate limiting yet (see
+authentication for runtime and evaluation and per-caller rate limiting (see
 [`apps/api/README.md`](../../apps/api/README.md)). The
 contract metadata remains the source of truth for adapters, and is not a claim
 that these URLs are deployed.

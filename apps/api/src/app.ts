@@ -6,14 +6,20 @@
  *
  * Exposes the seven reserved `/api/v1/*` operations from `SERVICE_CONTRACTS`.
  * Routes delegate to the existing services in `hr-skills-build/server`; see
- * `routes/v1.ts`. Rate limiting is not implemented yet. `runtime` and
- * `evaluation` require an API key via `Authorization: Bearer` (see `http/auth.ts`).
+ * `routes/v1.ts`. `runtime` and `evaluation` require an API key via
+ * `Authorization: Bearer` (see `http/auth.ts`). Every operation is rate limited per
+ * caller using the limits in `SERVICE_CONTRACTS` (see `http/rate-limit.ts`).
  */
 
 import { Elysia } from 'elysia';
 import type { ReadinessDependency, ServiceOperation } from 'hr-skills-build/server';
 import { getServiceContract, SERVICE_CONTRACTS } from 'hr-skills-build/server';
 import type { ApiKeyAuthenticator } from './http/auth.ts';
+import type { ClientAddressResolver, RateLimiter } from './http/rate-limit.ts';
+import {
+	createClientAddressResolverFromEnv,
+	createRateLimiterFromEnv,
+} from './http/rate-limit-config.ts';
 import { resolveRequestId } from './http/request-id.ts';
 import { adapterFailure, toHttpResponse } from './http/response.ts';
 import type { RegistryProvider } from './registry.ts';
@@ -27,6 +33,15 @@ export interface AppOptions {
 	readonly readinessDependencies?: readonly ReadinessDependency[];
 	/** API-key authenticator for `runtime` and `evaluation`. Omit to fail closed (503). */
 	readonly authenticateApiKey?: ApiKeyAuthenticator;
+	/**
+	 * Enforces the per-operation limits. Defaults to the store named by
+	 * `HR_SKILLS_RATE_LIMIT_STORE`; in production that variable is mandatory and
+	 * `createApp` throws `RateLimitConfigError` when it is missing. Inject a shared
+	 * store here for multi-instance deployments.
+	 */
+	readonly rateLimiter?: RateLimiter;
+	/** Identifies the caller of unauthenticated operations. Defaults to the socket address. */
+	readonly resolveClientAddress?: ClientAddressResolver;
 }
 
 /**
@@ -42,6 +57,9 @@ export interface AppOptions {
  */
 export function createApp(options: AppOptions = {}) {
 	const getRegistry = options.getRegistry ?? loadRegistry;
+	const rateLimiter = options.rateLimiter ?? createRateLimiterFromEnv(Bun.env);
+	const resolveClientAddress =
+		options.resolveClientAddress ?? createClientAddressResolverFromEnv(Bun.env);
 
 	const readinessDependencies: readonly ReadinessDependency[] =
 		options.readinessDependencies ?? [
@@ -64,6 +82,8 @@ export function createApp(options: AppOptions = {}) {
 		getRegistry,
 		readinessDependencies,
 		authenticateApiKey: options.authenticateApiKey,
+		rateLimiter,
+		resolveClientAddress,
 	});
 
 	const path = (operation: ServiceOperation) => getServiceContract(operation).path;

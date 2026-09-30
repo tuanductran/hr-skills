@@ -47,6 +47,18 @@ function digest(value: string): Buffer {
 }
 
 /**
+ * Stable, non-reversible identifier for the key a request presented, used to give
+ * each API key its own rate-limit counters. It is derived from the key but is never
+ * the key itself, so counter stores and logs never hold key material. Call it only
+ * after the key has been accepted.
+ */
+export function apiKeyFingerprint(request: Request): string | undefined {
+	const token = extractBearerToken(request);
+
+	return token === undefined ? undefined : digest(token).toString('hex').slice(0, 32);
+}
+
+/**
  * Parses a comma-separated list of API keys (for example from a deployment
  * secret). Whitespace around each key is trimmed and empty entries are dropped.
  */
