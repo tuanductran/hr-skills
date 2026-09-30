@@ -6,6 +6,10 @@ const config = {
 			project: ['app/**/*.{ts,tsx,css}'],
 			next: true,
 		},
+		'apps/api': {
+			entry: ['src/**/*.test.ts'],
+			project: ['src/**/*.ts'],
+		},
 		'apps/discord-bot': {
 			entry: ['src/**/*.test.ts'],
 			project: ['src/**/*.ts'],

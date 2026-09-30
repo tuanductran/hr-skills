@@ -1,7 +1,7 @@
 # hr-skills-api
 
-Hosted HTTP adapter scaffold for [HR Skills](../../README.md) (Phase 8.4).
-This app will eventually expose the deterministic service layer in
+Hosted HTTP adapter for [HR Skills](../../README.md) (Phase 8.4).
+This app exposes the deterministic service layer in
 `hr-skills-build/server` — registry search, planning, runtime execution,
 evaluation, health, and version information — over HTTP, following the
 versioned contract documented in
@@ -9,17 +9,79 @@ versioned contract documented in
 
 ## Status
 
-This is the **initial scaffold only**. It proves the app boots on
-Bun + [Elysia](https://elysiajs.com) and establishes the module layout for
-later work. It does not yet implement:
+The seven reserved `/api/v1/*` routes are implemented as thin adapters over the
+existing services in `hr-skills-build/server`. Every response is a
+`ServiceEnvelope<T>` with `meta.apiVersion = "v1"` and a `meta.requestId`.
 
-- The `/api/v1/*` routes or response envelope
-- Authentication or rate limiting
+Not implemented yet:
+
+- Rate limiting
+- The approved API-key authentication strategy (a fail-closed placeholder is in
+  place; see [Authentication placeholder](#authentication-placeholder))
 - Observability wiring described in
   [`docs/engineering/operations.md`](../../docs/engineering/operations.md)
 - Deployment configuration
 
-Those land in a follow-up Phase 8.4 change.
+## Routes
+
+| Method | Path | Service | Request body |
+| --- | --- | --- | --- |
+| `GET` | `/api/v1/health` | `getHealthService` | none |
+| `GET` | `/api/v1/ready` | `getReadinessService` | none |
+| `GET` | `/api/v1/version` | `getVersionService` | none |
+| `POST` | `/api/v1/search` | `searchRegistryService` | `SearchRequestSchema` |
+| `POST` | `/api/v1/planner` | `generatePlanService` | `PlannerRequestSchema` |
+| `POST` | `/api/v1/runtime` | `executeWorkflowService` | `{ "plan": ExecutionPlan }` |
+| `POST` | `/api/v1/evaluation` | `runEvaluationService` | `{ "dataset": EvaluationDataset, "golden"?: GoldenFixture }` |
+
+Request bodies are validated by the services themselves. `search` and `planner`
+use the exported Valibot schemas; `runtime` and `evaluation` currently rely on
+the structural guards inside their services.
+
+## Request IDs
+
+A well-formed inbound `X-Request-Id` (up to 128 characters of `A-Z a-z 0-9 . _ : -`)
+is propagated. Otherwise the adapter generates `req_<uuid>`. The ID is returned in
+`meta.requestId` and in the `X-Request-Id` response header, and is never used by
+service logic.
+
+## Error mapping
+
+Service errors keep their `ServiceErrorCode`; the adapter only chooses the HTTP
+status.
+
+| Code | Status |
+| --- | --- |
+| `BAD_REQUEST` | 400 |
+| `NOT_FOUND` | 404 |
+| `VALIDATION_ERROR` | 422 |
+| `PLANNING_FAILED` | 422 |
+| `RUNTIME_FAILED` | 500 |
+| `SERVICE_UNAVAILABLE` | 503 |
+| `INTERNAL_ERROR` | 500 |
+
+Adapter-level cases use the same envelope and existing codes only:
+
+| Case | Status | Code |
+| --- | --- | --- |
+| Malformed JSON body | 400 | `BAD_REQUEST` |
+| Known path, wrong method (`Allow` header set) | 405 | `BAD_REQUEST` |
+| Unknown path | 404 | `NOT_FOUND` |
+| Registry artifact cannot be loaded | 503 | `SERVICE_UNAVAILABLE` |
+| API key rejected | 401 | `BAD_REQUEST` |
+| Unexpected exception | 500 | `INTERNAL_ERROR` |
+
+Unexpected exceptions and registry load failures return fixed messages so stack
+traces and filesystem paths are never exposed.
+
+## Authentication placeholder
+
+`runtime` and `evaluation` are `authentication: "api-key"` in `SERVICE_CONTRACTS`.
+The approved strategy is not implemented, so `createApp()` accepts an optional
+`authenticateApiKey` callback and **fails closed** without it: those two routes
+return `503 SERVICE_UNAVAILABLE` ("API key authentication is not configured").
+When a callback is supplied, returning `false` yields `401`. Nothing in this app
+reads, stores, or validates keys.
 
 ## Structure
 
@@ -27,6 +89,12 @@ Those land in a follow-up Phase 8.4 change.
 | --- | --- |
 | `src/app.ts` | Constructs and returns the Elysia application. No side effects, no port binding — safe to import from tests. |
 | `src/index.ts` | Starts the server by calling `createApp()` and binding a port. |
+| `src/routes/v1.ts` | Route handlers: authentication seam, body parsing, service call, envelope. |
+| `src/http/request-id.ts` | Request ID resolution. |
+| `src/http/response.ts` | Envelope serialisation and error-code to status mapping. |
+| `src/http/auth.ts` | API-key authenticator type (placeholder). |
+| `src/registry.ts` | Loads the committed `registry/skills.json`. |
+| `src/app.test.ts` | Adapter-level tests for all seven routes. |
 
 ## Setup
 
@@ -49,7 +117,10 @@ Override the port with the `PORT` environment variable.
 
 ## Testing
 
-Type checks run from the repo root (`bun run typecheck`) or from this
-directory (`bun run typecheck`). `createApp()` is exported specifically so
-future tests can exercise the app with Elysia's `.handle()` or Eden Treaty
-without starting a real server.
+```sh
+bun run test       # adapter-level tests (exercise createApp() via .handle())
+bun run typecheck
+```
+
+Tests inject a mock registry and authenticator into `createApp()`, so they need
+neither a running server nor the committed registry.

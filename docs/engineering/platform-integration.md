@@ -5,10 +5,12 @@ layer, the web product, and future external clients.
 
 ## Current boundary
 
-The repository currently exposes deterministic library services from
-`hr-skills-build/server`. It does not expose hosted HTTP route handlers yet.
-The contract metadata is therefore a stable implementation guide for future
-adapters, not a claim that these URLs are already deployed.
+The repository exposes deterministic library services from
+`hr-skills-build/server`. `apps/api` implements the seven reserved routes as a
+Bun + Elysia adapter over those services, without rate limiting or the approved
+API-key strategy yet (see [`apps/api/README.md`](../../apps/api/README.md)). The
+contract metadata remains the source of truth for adapters, and is not a claim
+that these URLs are deployed.
 
 Browser code should continue to use `hr-skills-build/client`. Server loaders
 and future route handlers should use `hr-skills-build/server`. Neither surface
