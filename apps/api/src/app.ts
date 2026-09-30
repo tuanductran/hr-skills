@@ -6,8 +6,8 @@
  *
  * Exposes the seven reserved `/api/v1/*` operations from `SERVICE_CONTRACTS`.
  * Routes delegate to the existing services in `hr-skills-build/server`; see
- * `routes/v1.ts`. Rate limiting is not implemented yet, and API-key
- * authentication is a fail-closed placeholder (see `http/auth.ts`).
+ * `routes/v1.ts`. Rate limiting is not implemented yet. `runtime` and
+ * `evaluation` require an API key via `Authorization: Bearer` (see `http/auth.ts`).
  */
 
 import { Elysia } from 'elysia';
@@ -25,7 +25,7 @@ export interface AppOptions {
 	readonly getRegistry?: RegistryProvider;
 	/** Dependencies checked by `GET /api/v1/ready`. Defaults to registry loadability. */
 	readonly readinessDependencies?: readonly ReadinessDependency[];
-	/** API-key authenticator placeholder for `runtime` and `evaluation`. */
+	/** API-key authenticator for `runtime` and `evaluation`. Omit to fail closed (503). */
 	readonly authenticateApiKey?: ApiKeyAuthenticator;
 }
 

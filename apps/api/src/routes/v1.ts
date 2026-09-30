@@ -78,8 +78,7 @@ async function checkAuthentication(
 		return undefined;
 	}
 
-	// PLACEHOLDER: the approved authentication strategy is not implemented yet.
-	// Fail closed instead of leaving api-key operations open.
+	// Fail closed: without a configured authenticator these operations are never open.
 	if (authenticate === undefined) {
 		return toHttpResponse(
 			adapterFailure(
@@ -90,11 +89,13 @@ async function checkAuthentication(
 		);
 	}
 
+	// Missing, malformed, and invalid keys share one response (same status, code,
+	// message, and headers). The key is never echoed or logged.
 	if (!(await authenticate(request))) {
 		return toHttpResponse(
 			adapterFailure('BAD_REQUEST', 'Missing or invalid API key'),
 			requestId,
-			{ status: 401 },
+			{ status: 401, headers: { 'WWW-Authenticate': 'Bearer' } },
 		);
 	}
 

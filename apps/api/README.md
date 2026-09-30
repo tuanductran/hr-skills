@@ -16,8 +16,6 @@ existing services in `hr-skills-build/server`. Every response is a
 Not implemented yet:
 
 - Rate limiting
-- The approved API-key authentication strategy (a fail-closed placeholder is in
-  place; see [Authentication placeholder](#authentication-placeholder))
 - Observability wiring described in
   [`docs/engineering/operations.md`](../../docs/engineering/operations.md)
 - Deployment configuration
@@ -68,20 +66,37 @@ Adapter-level cases use the same envelope and existing codes only:
 | Known path, wrong method (`Allow` header set) | 405 | `BAD_REQUEST` |
 | Unknown path | 404 | `NOT_FOUND` |
 | Registry artifact cannot be loaded | 503 | `SERVICE_UNAVAILABLE` |
-| API key rejected | 401 | `BAD_REQUEST` |
+| API key missing, malformed, or invalid | 401 | `BAD_REQUEST` |
 | Unexpected exception | 500 | `INTERNAL_ERROR` |
 
 Unexpected exceptions and registry load failures return fixed messages so stack
 traces and filesystem paths are never exposed.
 
-## Authentication placeholder
+## Authentication
 
 `runtime` and `evaluation` are `authentication: "api-key"` in `SERVICE_CONTRACTS`.
-The approved strategy is not implemented, so `createApp()` accepts an optional
-`authenticateApiKey` callback and **fails closed** without it: those two routes
-return `503 SERVICE_UNAVAILABLE` ("API key authentication is not configured").
-When a callback is supplied, returning `false` yields `401`. Nothing in this app
-reads, stores, or validates keys.
+`health`, `ready`, `version`, `search`, and `planner` need no key.
+
+Send the key as `Authorization: Bearer <key>`. Keys are never read from the query
+string, request body, or other headers. The scheme is case-insensitive; the header
+must be exactly `Bearer`, one space, and the key.
+
+| Situation | Status | Code |
+| --- | --- | --- |
+| No key store configured (`HR_SKILLS_API_KEYS` unset or empty) | 503 | `SERVICE_UNAVAILABLE` |
+| Header missing, malformed, or key unknown | 401 | `BAD_REQUEST` |
+| Key accepted | request proceeds | — |
+
+Missing, malformed, and invalid keys return one identical response (same status,
+code, message, and `WWW-Authenticate: Bearer` header), so callers cannot probe which
+check failed. No new error codes were added. Authentication runs before the body is
+read.
+
+Configure keys with `HR_SKILLS_API_KEYS`, a comma-separated list from the deployment
+secret manager (several keys allow rotation). Keys are compared in constant time
+against every configured key. The adapter never logs, echoes, or includes a key in an
+error message; `createApp()` accepts an optional `authenticateApiKey` callback for
+tests and alternative strategies.
 
 ## Structure
 
@@ -92,7 +107,7 @@ reads, stores, or validates keys.
 | `src/routes/v1.ts` | Route handlers: authentication seam, body parsing, service call, envelope. |
 | `src/http/request-id.ts` | Request ID resolution. |
 | `src/http/response.ts` | Envelope serialisation and error-code to status mapping. |
-| `src/http/auth.ts` | API-key authenticator type (placeholder). |
+| `src/http/auth.ts` | Bearer API-key authenticator: header parsing, constant-time comparison, key list parsing. |
 | `src/registry.ts` | Loads the committed `registry/skills.json`. |
 | `src/app.test.ts` | Adapter-level tests for all seven routes. |
 

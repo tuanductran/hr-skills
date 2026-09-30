@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'bun:test';
+import { describe, expect, it, spyOn } from 'bun:test';
 import type {
 	Registry,
 	RegistryEntry,
@@ -6,6 +6,7 @@ import type {
 	ServiceErrorCode,
 } from 'hr-skills-build/server';
 import { type AppOptions, createApp } from './app.ts';
+import { createApiKeyAuthenticator, parseApiKeys } from './http/auth.ts';
 import { ERROR_STATUS } from './http/response.ts';
 
 const mockSkill: RegistryEntry = {
@@ -434,5 +435,290 @@ describe('POST /api/v1/evaluation', () => {
 			body: VALID_BODIES['evaluation'],
 		});
 		expectFailure(result, 401, 'BAD_REQUEST');
+	});
+});
+
+describe('API key authentication (runtime and evaluation)', () => {
+	const PRIMARY_KEY = 'test-key-primary-0123456789';
+	const ROTATED_KEY = 'test-key-rotated-abcdefghij';
+	const PROTECTED = [
+		{ name: 'runtime', path: '/api/v1/runtime' },
+		{ name: 'evaluation', path: '/api/v1/evaluation' },
+	] as const;
+
+	function authApp() {
+		return buildApp({
+			authenticateApiKey: createApiKeyAuthenticator([PRIMARY_KEY, ROTATED_KEY]),
+		});
+	}
+
+	function withAuthorization(
+		authorization: string | undefined,
+	): Record<string, string> {
+		return authorization === undefined ? {} : { authorization };
+	}
+
+	for (const route of PROTECTED) {
+		const body = VALID_BODIES[route.name];
+
+		describe(`POST ${route.path}`, () => {
+			it('rejects a missing Authorization header with 401', async () => {
+				const result = await call(authApp(), 'POST', route.path, { body });
+				expectFailure(result, 401, 'BAD_REQUEST');
+				expect(result.response.headers.get('www-authenticate')).toBe('Bearer');
+			});
+
+			it('rejects malformed Authorization headers with 401', async () => {
+				const malformed = [
+					'',
+					'Bearer',
+					'Bearer ',
+					`Bearer  ${PRIMARY_KEY}`,
+					`Bearer ${PRIMARY_KEY} extra`,
+					`Bearer ${PRIMARY_KEY},`,
+					`Basic ${PRIMARY_KEY}`,
+					`Token ${PRIMARY_KEY}`,
+					`BearerX ${PRIMARY_KEY}`,
+					PRIMARY_KEY,
+				];
+
+				for (const authorization of malformed) {
+					const result = await call(authApp(), 'POST', route.path, {
+						body,
+						headers: withAuthorization(authorization),
+					});
+					expectFailure(result, 401, 'BAD_REQUEST');
+				}
+			});
+
+			it('rejects invalid keys with 401', async () => {
+				const invalid = [
+					'wrong-key',
+					PRIMARY_KEY.slice(0, -1),
+					`${PRIMARY_KEY}x`,
+					PRIMARY_KEY.toUpperCase(),
+				];
+
+				for (const key of invalid) {
+					const result = await call(authApp(), 'POST', route.path, {
+						body,
+						headers: withAuthorization(`Bearer ${key}`),
+					});
+					expectFailure(result, 401, 'BAD_REQUEST');
+					expect(result.response.headers.get('www-authenticate')).toBe(
+						'Bearer',
+					);
+				}
+			});
+
+			it('accepts every configured key', async () => {
+				for (const key of [PRIMARY_KEY, ROTATED_KEY]) {
+					const result = await call(authApp(), 'POST', route.path, {
+						body,
+						headers: withAuthorization(`Bearer ${key}`),
+					});
+					expectSuccess(result);
+				}
+			});
+
+			it('treats the Bearer scheme as case-insensitive', async () => {
+				const result = await call(authApp(), 'POST', route.path, {
+					body,
+					headers: withAuthorization(`bearer ${PRIMARY_KEY}`),
+				});
+				expectSuccess(result);
+			});
+
+			it('does not accept a key from the query string or another header', async () => {
+				for (const query of [
+					'api_key',
+					'apikey',
+					'key',
+					'access_token',
+					'token',
+				]) {
+					const result = await call(
+						authApp(),
+						'POST',
+						`${route.path}?${query}=${PRIMARY_KEY}`,
+						{ body },
+					);
+					expectFailure(result, 401, 'BAD_REQUEST');
+				}
+
+				const viaHeader = await call(authApp(), 'POST', route.path, {
+					body,
+					headers: { 'x-api-key': PRIMARY_KEY },
+				});
+				expectFailure(viaHeader, 401, 'BAD_REQUEST');
+			});
+
+			it('returns an identical response for missing, malformed, and invalid keys', async () => {
+				const variants = [
+					undefined,
+					'Basic abc',
+					`Bearer  ${PRIMARY_KEY}`,
+					'Bearer wrong-key',
+				];
+				const responses = new Set<string>();
+
+				for (const authorization of variants) {
+					const { response, json } = await call(authApp(), 'POST', route.path, {
+						body,
+						headers: {
+							'x-request-id': 'req-fixed',
+							...withAuthorization(authorization),
+						},
+					});
+					responses.add(
+						JSON.stringify({
+							status: response.status,
+							www: response.headers.get('www-authenticate'),
+							json,
+						}),
+					);
+				}
+
+				expect(responses.size).toBe(1);
+			});
+
+			it('authenticates before reading the body', async () => {
+				const result = await call(authApp(), 'POST', route.path, {
+					rawBody: '{',
+				});
+				expectFailure(result, 401, 'BAD_REQUEST');
+			});
+
+			it('never exposes the submitted or configured key in logs, errors, or headers', async () => {
+				const submitted = 'Bearer leaked-candidate-key-987654321';
+				const spies = (['log', 'info', 'warn', 'error', 'debug'] as const).map(
+					(level) => spyOn(console, level).mockImplementation(() => undefined),
+				);
+
+				try {
+					const observed: string[] = [];
+					const attempts = [
+						submitted,
+						`Bearer ${PRIMARY_KEY}`,
+						`Bearer ${PRIMARY_KEY.slice(0, -1)}`,
+						undefined,
+					];
+
+					for (const authorization of attempts) {
+						const { response, json } = await call(
+							authApp(),
+							'POST',
+							route.path,
+							{
+								body,
+								headers: withAuthorization(authorization),
+							},
+						);
+						observed.push(
+							JSON.stringify(json),
+							JSON.stringify([...response.headers.entries()]),
+						);
+					}
+
+					const secrets = [
+						'leaked-candidate-key-987654321',
+						PRIMARY_KEY,
+						ROTATED_KEY,
+					];
+					for (const text of observed) {
+						for (const secret of secrets) {
+							expect(text).not.toContain(secret);
+						}
+					}
+					for (const spy of spies) {
+						expect(spy).not.toHaveBeenCalled();
+					}
+				} finally {
+					for (const spy of spies) spy.mockRestore();
+				}
+			});
+
+			it('does not leak key material when the authenticator throws', async () => {
+				const spies = (['log', 'info', 'warn', 'error', 'debug'] as const).map(
+					(level) => spyOn(console, level).mockImplementation(() => undefined),
+				);
+
+				try {
+					const app = buildApp({
+						authenticateApiKey: (request) => {
+							throw new Error(
+								`boom ${request.headers.get('authorization')}`,
+							);
+						},
+					});
+					const result = await call(app, 'POST', route.path, {
+						body,
+						headers: withAuthorization(`Bearer ${PRIMARY_KEY}`),
+					});
+
+					expectFailure(result, 500, 'INTERNAL_ERROR');
+					expect(JSON.stringify(result.json)).not.toContain(PRIMARY_KEY);
+					for (const spy of spies) {
+						expect(spy).not.toHaveBeenCalled();
+					}
+				} finally {
+					for (const spy of spies) spy.mockRestore();
+				}
+			});
+		});
+	}
+
+	it('keeps health, ready, version, search, and planner open, with or without a key', async () => {
+		const open = ROUTES.filter(
+			(route) => !['runtime', 'evaluation'].includes(route.name),
+		);
+
+		for (const route of open) {
+			const body = VALID_BODIES[route.name];
+			const init: CallInit = body === undefined ? {} : { body };
+
+			expectSuccess(await call(authApp(), route.method, route.path, init));
+			expectSuccess(
+				await call(authApp(), route.method, route.path, {
+					...init,
+					headers: { authorization: 'Bearer wrong-key' },
+				}),
+			);
+		}
+	});
+
+	it('still fails closed with 503 when no authenticator is configured', async () => {
+		const app = createApp({ getRegistry: okRegistry });
+
+		for (const route of PROTECTED) {
+			const result = await call(app, 'POST', route.path, {
+				body: VALID_BODIES[route.name],
+				headers: { authorization: `Bearer ${PRIMARY_KEY}` },
+			});
+			expectFailure(result, 503, 'SERVICE_UNAVAILABLE');
+		}
+	});
+});
+
+describe('API key helpers', () => {
+	it('parses a comma-separated key list, trimming and dropping empty entries', () => {
+		expect(parseApiKeys(undefined)).toEqual([]);
+		expect(parseApiKeys('')).toEqual([]);
+		expect(parseApiKeys(' , ,')).toEqual([]);
+		expect(parseApiKeys('a')).toEqual(['a']);
+		expect(parseApiKeys(' a , b,,c ')).toEqual(['a', 'b', 'c']);
+	});
+
+	it('refuses to build an authenticator without a usable key', () => {
+		expect(() => createApiKeyAuthenticator([])).toThrow();
+		expect(() => createApiKeyAuthenticator([''])).toThrow();
+	});
+
+	it('does not put key material in the configuration error', () => {
+		try {
+			createApiKeyAuthenticator(['']);
+		} catch (error) {
+			expect(String(error)).not.toContain('Bearer');
+		}
 	});
 });
