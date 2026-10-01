@@ -6,6 +6,7 @@ This document defines the public package boundaries for the HR Skills monorepo. 
 
 | Surface | Intended consumers | Allowed responsibilities |
 |---|---|---|
+| `apps/api` | Bun deployments that expose the hosted HTTP service | Host-platform-neutral Elysia adapter: HTTP routes, request/response mapping, API-key authentication, rate limiting, request IDs, and adapter observability. It delegates service behavior to `hr-skills-build/server` and remains outside the reusable library packages. |
 | `hr-skills-build/client` | Browser bundles, React Client Components, edge-safe consumers | Pure planner, runtime, search, parser, schema, constants, types, and documentation types. It must not import filesystem, process-derived paths, Node built-ins, or `server-only`. |
 | `hr-skills-build/server` | Next.js Server Components, route handlers, scripts, Bun/Node services | Registry, filesystem-backed documentation loading, evaluation fixtures, validation, build tooling, and server-compatible planner/runtime/search APIs. |
 | `hr-skills-build` | Server-compatible backward-compatible root surface | Alias for the server surface. New application code must prefer the explicit `/server` subpath. |
@@ -42,15 +43,19 @@ The generated API reference is maintained by `hr-skills-tsdoc`. When public
 surfaces change, run `bun run api-docs` and verify with `bun run api-docs:check`.
 
 The versioned service contract is documented in
-[`platform-integration.md`](platform-integration.md). It defines the future
-HTTP adapter boundary without adding hosted routes to the library package.
+[`platform-integration.md`](platform-integration.md) and implemented by
+`apps/api`. The app is a separate workspace application, not a library export:
+it imports `hr-skills-build/server`, which may re-export shared, environment-safe
+contracts and types. HTTP, API-key authentication, and rate-limit policy remain
+in `apps/api`; deployment-specific infrastructure is injected there. Neither
+the server library nor shared modules may depend on the app.
 
 ## Relationship to the roadmap
 
 Client/server boundary hardening is a completion constraint for the package
-architecture. The current service-library work provides versioned-library
-functions for registry search, planning, workflow execution, evaluation, health,
-and version responses. The versioned HTTP contract, access policy, observability,
-readiness, and deployment guidance remain documented separately; a hosted HTTP
-adapter remains deployment-specific and is not included in these library
-packages.
+architecture. `hr-skills-build/server` provides the reusable services for
+registry search, planning, workflow execution, evaluation, health, and version
+responses. `apps/api` exposes those services over HTTP without duplicating their
+business logic. The app is independent of any hosting provider, but production
+deployment infrastructure such as a shared rate-limit store remains a separate
+deployment decision and is not included in the reusable library packages.

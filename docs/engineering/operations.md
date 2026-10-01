@@ -1,30 +1,37 @@
 # Operational concerns
 
-This document defines the operational behavior for Phase 8.3. The repository
-provides library-level operational primitives in `hr-skills-build/server`;
-deployment adapters remain responsible for connecting them to a cache, log
-collector, metrics backend, and hosting platform. [`apps/api`](../../apps/api/README.md)
-is the first adapter and wires the logger, metrics, and readiness primitives as
-described in [HTTP adapter wiring](#http-adapter-wiring); the cache primitives
-are not used by it.
+This document describes the library primitives, the state currently held by
+the hosted HTTP adapter, and infrastructure that a deployment must provide.
+These are separate layers:
+
+- `hr-skills-build/server` exports process-local versioned cache, structured
+  logger, metrics, and readiness primitives. They do not provide distributed
+  storage or a deployment backend.
+- [`apps/api`](../../apps/api/README.md) is a host-platform-neutral Bun/Elysia
+  application outside the reusable packages. It wires logging, metrics, and
+  readiness, but does not use the library cache primitives.
+- A production deployment must supply infrastructure such as an atomic shared
+  rate-limit store. No provider or shared datastore is selected or configured
+  by this repository.
 
 ## Artifact caching
 
-Registry and evaluation artifacts use separate versioned caches from
-`hr-skills-build/server`:
+`hr-skills-build/server` exports separate in-process versioned cache primitives
+for registry and evaluation artifacts:
 
-- Registry entries are keyed by the committed registry version, normally
-  `registry.generatedAt` plus the registry schema version.
-- Evaluation reports are keyed by the dataset name, dataset version, golden
-  fixture version, and registry version.
-- A version mismatch is a cache miss. The old value is never returned for a
-  newer source version.
-- Deployments must invalidate both caches when the registry schema or
-  evaluation fixture format changes.
+- `get(key, version)` returns a value only when its stored version matches.
+- `set` replaces the value for a key; `invalidate` removes one key and `clear`
+  removes all entries.
+- The caller supplies the key and version. The primitive does not derive
+  source versions, expire entries, persist values, or invalidate them
+  automatically.
 
-The cache primitives do not add time-based expiry. Deployments may add a TTL
-for resource protection, but version checks remain mandatory so identical
-inputs continue to produce deterministic results.
+The API adapter does not use these primitives. It loads the committed
+`registry/skills.json` artifact once per process and does not cache evaluation
+reports. This process-local registry state suits immutable deployments: a
+changed artifact takes effect after restart. No cache hit/miss metrics or
+distributed cache are configured. Add cache integration only when a concrete
+refreshable artifact or reusable evaluation result needs versioned caching.
 
 ## Logging and metrics
 
@@ -33,15 +40,18 @@ name, level, timestamp, operation, request ID, duration, and optional details.
 Production adapters should send these events to their structured log backend
 and must redact API keys, skill content, prompts, and personal data.
 
-`createServiceMetrics()` provides counters for request totals, validation
-failures, service failures, cache hits, cache misses, and readiness failures.
-Adapters should publish snapshots to their metrics system and include the
-operation and API version in metric dimensions.
+`createServiceMetrics()` provides process-local counters. The API adapter
+records request totals, validation failures, service failures, and readiness
+failures, with operation and API version in counter names. It does not record
+cache hits or misses because it does not use a cache. Deployments can collect
+periodic counter snapshots from the adapter's structured logs; no metrics
+endpoint or external metrics backend is included.
 
 ## Readiness and failure recovery
 
-`getReadinessService()` checks deployment dependencies such as registry loading,
-cache availability, and required configuration. A failed dependency returns
+`getReadinessService()` evaluates the dependencies supplied by the adapter. The
+API adapter checks registry loading and required API-key configuration. It
+does not check a cache or rate-limit store by default. A failed dependency returns
 `SERVICE_UNAVAILABLE` with the failing checks and API version in the response
 metadata. Health is a liveness signal; readiness is the signal used by a load
 balancer before sending traffic.
@@ -49,10 +59,9 @@ balancer before sending traffic.
 HTTP adapters should expose this check through the reserved `GET /api/v1/ready`
 contract and keep it unauthenticated but rate limited.
 
-Adapters should remove an instance from rotation when readiness fails, retry
-transient dependency recovery with bounded backoff, and preserve the last
-known-good immutable registry artifact when a refresh fails. They must not
-silently serve a newer partial registry.
+Deployments should remove an instance from rotation when readiness fails and
+retry transient dependency recovery with bounded backoff. The API adapter does
+not refresh registry artifacts or keep a last-known-good copy.
 
 ## Version compatibility
 
@@ -69,20 +78,22 @@ Public routes use the `/api/v1/` prefix. Within `v1`:
 
 ### Self-hosted
 
-Run the service adapter beside the Bun/Node server package (`apps/api` runs on
-Bun from a repository checkout; see its README for requirements). Store API keys and
-cache credentials in the deployment secret manager, terminate TLS at the
-trusted edge, and use a shared cache when multiple instances serve traffic.
-Use the readiness check for process supervision and graceful rollout.
+Run `apps/api` with Bun from a repository checkout; see its README for
+requirements. Store API keys and any selected infrastructure credentials in a
+deployment secret manager, terminate TLS at the trusted edge, and use readiness
+for process supervision and rollout. The built-in rate-limit store is
+in-memory, so multi-instance production deployments need an injected shared
+store. No shared cache is required or configured by the adapter.
 
 ### Managed
 
 `apps/api` ships no managed-platform configuration and has not been verified on
-any hosting provider. Use the platform's secret store, request tracing,
-rate-limit store, and deployment health checks. Pin the package version and registry artifact
-together, deploy immutable builds, and retain structured logs and metrics for
-the configured retention period. Do not rely on local filesystem state for
-cross-instance cache or recovery behavior.
+any hosting provider. No production rate-limit backend has been selected.
+Choose and inject a deployment-backed atomic store before using multiple
+instances in production; the in-memory store is not a production substitute.
+Use the platform's secret store and health checks, deploy immutable builds, and
+ship structured logs and metrics snapshots to the platform's observability
+systems. The adapter does not rely on cross-instance cache state.
 
 ## HTTP adapter wiring
 
@@ -122,6 +133,9 @@ adopts the cache primitives.
 
 ## Operational test matrix
 
-Adapters must test cache version changes, cold starts, stale artifacts,
-dependency failure, log redaction, metric increments, readiness transitions,
-and old-client compatibility with additive response fields.
+The library cache primitive tests cover version mismatches, cold starts, and
+explicit invalidation. API adapter tests cover dependency failures, log
+redaction, metric increments, readiness transitions, and request ID linkage.
+Cache integration and cache-specific adapter tests apply only if an adapter
+actually adopts the cache primitives. Continue to test old-client
+compatibility when adding response fields.

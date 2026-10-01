@@ -17,7 +17,7 @@ For execution-level tasks and milestones, use GitHub Issues.
 
 ## Current Focus
 
-The immediate roadmap focus is completing the hosted-service boundary of Phase 8, then building the intelligent agent platform and broader ecosystem capabilities on top of the stable service contracts.
+The immediate roadmap focus is resolving the production rate-limit infrastructure requirement in Phase 8.4. Once that hosted-service boundary is ready for production, Phase 9 can build on its stable service contracts.
 
 ### Priority Order
 
@@ -30,36 +30,31 @@ The immediate roadmap focus is completing the hosted-service boundary of Phase 8
 
 ## Phase 8 — API & Services
 
-**Status: In progress.** The versioned library service layers, platform contracts, validation, operational guidance, and supporting APIs are complete and archived in [`HISTORY.md`](HISTORY.md). The remaining roadmap work is the deployment-specific hosted HTTP adapter.
+**Status: In progress.** The versioned library service layers, platform contracts, validation, and operational guidance are complete and archived in [`HISTORY.md`](HISTORY.md). The hosted HTTP adapter is implemented in `apps/api`; the remaining Phase 8.4 production requirement is a deployment-backed rate-limit store. No deployment backend has been selected. The existing in-memory store is suitable only for local development or a single instance and does not satisfy that requirement.
 
 ### 8.4 Hosted HTTP Adapter
 
-Expose the completed service capabilities through a deployable HTTP service without coupling the core library packages to a particular hosting provider.
+Expose the completed service capabilities through the host-platform-neutral Bun/Elysia application in `apps/api`, outside the reusable library packages. The application delegates service behavior to `hr-skills-build/server`; its HTTP, authentication, and rate-limiting concerns do not belong in those libraries.
 
-#### HTTP surface
+#### Implemented HTTP surface
 
-* Route handlers for registry search, planning, runtime execution, evaluation, health, and version information
-* Stable request and response envelopes aligned with [`engineering/platform-integration.md`](engineering/platform-integration.md)
-* Explicit API versioning
-* Deterministic behavior consistent with the library implementations
+The adapter implements all seven reserved `/api/v1` routes: health, readiness, version, search, planner, runtime, and evaluation. It preserves the documented response envelopes and error codes, and adds request IDs only at the HTTP boundary.
 
-#### Security and access
+#### Implemented security and access
 
-* Apply the existing request-validation and error-normalization contracts
-* Implement the approved authentication and rate-limiting strategy at the HTTP boundary
-* Keep high-risk operations explicit and auditable
-* Avoid embedding provider-specific authentication logic in reusable library packages
+Runtime and evaluation require API keys; all operations use the limits in `SERVICE_CONTRACTS`. Authentication and rate limiting remain in the adapter. Rate-limit store failures fail closed with `503 SERVICE_UNAVAILABLE`.
 
-#### Operations
+#### Implemented operations
 
-* Connect HTTP requests to the operational observability model in [`engineering/operations.md`](engineering/operations.md)
-* Define readiness and health behavior for deployed instances
-* Preserve cache and registry artifact behavior across deployments
-* Document self-hosted and managed deployment configurations
+Structured request logging, process-local metrics, and readiness checks are wired and tested. The adapter loads its committed registry artifact once per process. It does not wire the library's versioned cache primitives or provide a shared cache.
 
-#### Delivery boundary
+#### Remaining production requirement
 
-Phase 8 is complete only when the hosted adapter is implemented, tested, documented, and deployable independently of the core library packages.
+A production deployment needs an atomic, deployment-backed `RateLimitStore`. The repository has no selected datastore or provider implementation, so the adapter currently provides only an injectable store abstraction and an in-memory implementation. Do not treat explicit in-memory configuration as production-ready or add a provider before an infrastructure decision.
+
+The existing library cache primitives are process-local and are not required by the adapter's immutable, process-lifetime registry loading. Do not add distributed caching without a concrete refresh or reuse requirement.
+
+Phase 8 is complete when the adapter is independently buildable and deployable outside the reusable library packages, and the production rate-limit backend is selected, implemented, tested, and documented.
 
 ---
 
