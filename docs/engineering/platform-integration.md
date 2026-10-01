@@ -16,8 +16,8 @@ contract metadata remains the source of truth for adapters, and is not a claim
 that these URLs are deployed.
 
 Browser code should continue to use `hr-skills-build/client`. Server loaders
-and future route handlers should use `hr-skills-build/server`. Neither surface
-may import from the other.
+and route handlers, including `apps/api`, should use `hr-skills-build/server`.
+Neither surface may import from the other.
 
 ## Versioned operations
 
@@ -87,16 +87,19 @@ adapter must identify the caller before applying the per-operation limit and
 return a normalized `SERVICE_UNAVAILABLE` response when its rate-limit store
 is unavailable rather than silently disabling the control.
 
-The initial implementation should use a shared, deployment-backed counter
-with a fixed one-minute window. A later deployment may use a token bucket or
-sliding window if it preserves the documented limits and response behavior.
+The adapter uses an in-memory counter with a fixed one-minute window by default,
+which is suitable for local development and single-instance deployments. The
+current adapter has no built-in shared store; multi-instance deployments must
+inject a shared, deployment-backed counter. If that store is unavailable, the
+adapter returns `SERVICE_UNAVAILABLE` rather than silently disabling rate limits.
 
 ## Validation and determinism
 
-Adapters must validate request bodies with the exported service schemas before
-calling the server services. Invalid input returns `VALIDATION_ERROR`; missing
-required resources return `BAD_REQUEST` or `NOT_FOUND`; execution failures
-must retain their operation-specific error code.
+Adapters pass request bodies to the server services, which own validation.
+Search and planner use the exported service schemas, while runtime and
+evaluation use their service-level structural guards. Invalid input returns
+`VALIDATION_ERROR`; missing required resources return `BAD_REQUEST` or
+`NOT_FOUND`; execution failures must retain their operation-specific error code.
 
 The adapter must pass the validated input to the existing deterministic
 registry, planner, runtime, and evaluation functions. It must not add ranking,
@@ -111,8 +114,8 @@ writes them to its request logs.
 - Request fields may be added only as optional fields.
 - A breaking request or response change requires a new API version and a
   changeset for the affected package.
-- Contract tests must cover web-shaped calls and external-client-shaped calls
-  before a hosted adapter is introduced.
+- Adapter tests must cover web-shaped calls and external-client-shaped calls
+  as the hosted adapter evolves.
 
 See [`package-architecture.md`](package-architecture.md) for package import
 rules and the service exports in

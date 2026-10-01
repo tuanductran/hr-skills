@@ -20,9 +20,9 @@ The adapter runs as a Bun process from a checkout of this monorepo; see
 provide:
 
 - A shared (multi-instance) rate-limit store. Only the in-memory store is built in.
-- Deployment artifacts. There is no Dockerfile, process manifest, infrastructure
-  template, or provider-specific configuration, and no CI job builds or deploys this
-  app. The adapter has not been verified on any hosting provider.
+- Deployment configuration. There is no Dockerfile, process manifest, infrastructure
+  template, provider-specific configuration, or CI deployment job. CI builds the Bun
+  adapter bundle, but the adapter has not been verified on any hosting provider.
 - A metrics endpoint or exporter. Counters live in the process and can be written to
   the log; see [Metrics](#metrics).
 - Graceful shutdown. The adapter installs no signal handlers and does not drain

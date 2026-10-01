@@ -3,7 +3,7 @@
 	"name": "hr-skills-api",
 	"version": "0.0.0",
 	"private": true,
-	"description": "Hosted HTTP adapter scaffold for HR Skills — exposes hr-skills-build/server over Bun + Elysia.",
+	"description": "Hosted HTTP adapter for HR Skills — exposes hr-skills-build/server over Bun + Elysia.",
 	"type": "module",
 	"license": "MIT",
 	"author": "Tuan Duc Tran",
@@ -13,6 +13,7 @@
 		"directory": "apps/api"
 	},
 	"scripts": {
+		"build": "bun build src/index.ts --target=bun --outdir=dist",
 		"dev": "bun run --watch src/index.ts",
 		"start": "bun run src/index.ts",
 		"test": "bun test",
