@@ -9,7 +9,8 @@
  * business logic lives here.
  *
  * Rate limiting runs after authentication and before the body is read; see
- * `http/rate-limit.ts`.
+ * `http/rate-limit.ts`. Every request ends in exactly one `http.request.completed`
+ * log event and counter update; see `http/observability.ts`.
  */
 
 import type {
@@ -18,6 +19,7 @@ import type {
 	GoldenFixture,
 	ReadinessDependency,
 	ServiceEnvelope,
+	ServiceErrorCode,
 	ServiceOperation,
 } from 'hr-skills-build/server';
 import {
@@ -32,6 +34,8 @@ import {
 } from 'hr-skills-build/server';
 import type { ApiKeyAuthenticator } from '../http/auth.ts';
 import { apiKeyFingerprint } from '../http/auth.ts';
+import type { ApiObservability, RequestOutcome } from '../http/observability.ts';
+import { errorName, recordRequest } from '../http/observability.ts';
 import type {
 	ClientAddressResolver,
 	RateLimitDecision,
@@ -48,7 +52,11 @@ export interface RouteDependencies {
 	readonly authenticateApiKey: ApiKeyAuthenticator | undefined;
 	readonly rateLimiter: RateLimiter;
 	readonly resolveClientAddress: ClientAddressResolver;
+	readonly observability: ApiObservability;
 }
+
+/** Adds fixed-vocabulary fields to the request's completion log event. Never pass request data. */
+type Annotate = (details: Readonly<Record<string, unknown>>) => void;
 
 interface RouteContext {
 	readonly request: Request;
@@ -140,13 +148,18 @@ async function checkRateLimit(
 	server: ServerLike | null | undefined,
 	requestId: string,
 	deps: RouteDependencies,
+	annotate: Annotate,
 ): Promise<Response | undefined> {
 	const caller = identifyCaller(operation, request, server, deps.resolveClientAddress);
 	let decision: RateLimitDecision;
 
 	try {
 		decision = await deps.rateLimiter.check(operation, caller);
-	} catch {
+	} catch (error) {
+		// Without this the 503 below would be unexplained: the store failure is
+		// otherwise swallowed. Class name only; the caller key must not be logged.
+		annotate({ reason: 'rate_limit_store_unavailable', errorName: errorName(error) });
+
 		// Fail closed: an unreachable store must never mean "no limit".
 		return toHttpResponse(
 			adapterFailure('SERVICE_UNAVAILABLE', 'Rate limiting is unavailable'),
@@ -166,10 +179,29 @@ async function checkRateLimit(
 	);
 }
 
+/** Names of the readiness checks that reported `not_ready`, from the failure's `details.checks`. */
+function failedCheckNames(details: unknown): string[] {
+	const checks = isRecord(details) ? details['checks'] : undefined;
+
+	if (!Array.isArray(checks)) return [];
+
+	return checks.flatMap((check: unknown) =>
+		isRecord(check) &&
+		check['status'] === 'not_ready' &&
+		typeof check['name'] === 'string'
+			? [check['name']]
+			: [],
+	);
+}
+
 export function createV1Handlers(deps: RouteDependencies) {
 	/**
 	 * Shared request pipeline. `run` receives the parsed body and the loaded
 	 * registry (when `needsRegistry`), and returns the service envelope.
+	 *
+	 * Whatever path the request takes (refusal, service result, or unexpected
+	 * exception) it is recorded once, after the response is built, under the same
+	 * request ID the response carries.
 	 */
 	async function handle<T>(
 		operation: ServiceOperation,
@@ -182,11 +214,19 @@ export function createV1Handlers(deps: RouteDependencies) {
 		run: (input: {
 			readonly body: unknown;
 			readonly registry: Awaited<ReturnType<RegistryProvider>> | undefined;
+			readonly annotate: Annotate;
 		}) => Promise<ServiceEnvelope<T>> | ServiceEnvelope<T>,
 	): Promise<Response> {
+		const startedAt = performance.now();
 		const requestId = resolveRequestId(request);
+		const details: Record<string, unknown> = {};
+		const annotate: Annotate = (extra) => {
+			Object.assign(details, extra);
+		};
+		let errorCode: ServiceErrorCode | undefined;
+		let outcome: RequestOutcome | undefined;
 
-		try {
+		async function dispatch(): Promise<Response> {
 			const refusal = await checkAuthentication(
 				operation,
 				request,
@@ -201,6 +241,7 @@ export function createV1Handlers(deps: RouteDependencies) {
 				server,
 				requestId,
 				deps,
+				annotate,
 			);
 			if (limited) return limited;
 
@@ -220,7 +261,13 @@ export function createV1Handlers(deps: RouteDependencies) {
 			if (options.needsRegistry) {
 				try {
 					registry = await deps.getRegistry();
-				} catch {
+				} catch (error) {
+					// Class name only: load errors can quote file contents or paths.
+					annotate({
+						reason: 'registry_unavailable',
+						errorName: errorName(error),
+					});
+
 					return toHttpResponse(
 						adapterFailure(
 							'SERVICE_UNAVAILABLE',
@@ -231,14 +278,44 @@ export function createV1Handlers(deps: RouteDependencies) {
 				}
 			}
 
-			return toHttpResponse(await run({ body, registry }), requestId);
-		} catch {
+			const envelope = await run({ body, registry, annotate });
+
+			if (!envelope.success) {
+				errorCode = envelope.error.code;
+				// The readiness service only fails when a dependency is not ready.
+				if (operation === 'readiness') outcome = 'readiness_failure';
+			}
+
+			return toHttpResponse(envelope, requestId);
+		}
+
+		let response: Response;
+
+		try {
+			response = await dispatch();
+		} catch (error) {
 			// Never leak stack traces or filesystem paths from unexpected failures.
-			return toHttpResponse(
+			// The log gets the class name only; see `errorName`.
+			annotate({ errorName: errorName(error) });
+			errorCode = 'INTERNAL_ERROR';
+			outcome = undefined;
+			response = toHttpResponse(
 				adapterFailure('INTERNAL_ERROR', 'Unexpected internal error'),
 				requestId,
 			);
 		}
+
+		recordRequest(deps.observability, {
+			operation,
+			requestId,
+			status: response.status,
+			errorCode,
+			outcome,
+			durationMs: Math.round((performance.now() - startedAt) * 100) / 100,
+			details,
+		});
+
+		return response;
 	}
 
 	const health: RouteHandler = ({ request, server }) =>
@@ -247,8 +324,21 @@ export function createV1Handlers(deps: RouteDependencies) {
 		);
 
 	const ready: RouteHandler = ({ request, server }) =>
-		handle('readiness', request, server, { body: false, needsRegistry: false }, () =>
-			getReadinessService(deps.readinessDependencies),
+		handle(
+			'readiness',
+			request,
+			server,
+			{ body: false, needsRegistry: false },
+			async ({ annotate }) => {
+				const result = await getReadinessService(deps.readinessDependencies);
+
+				// Names only: dependency messages can carry exception text.
+				if (!result.success) {
+					annotate({ failedChecks: failedCheckNames(result.error.details) });
+				}
+
+				return result;
+			},
 		);
 
 	const version: RouteHandler = ({ request, server }) =>

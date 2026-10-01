@@ -10,15 +10,23 @@ versioned contract documented in
 ## Status
 
 The seven reserved `/api/v1/*` routes are implemented as thin adapters over the
-existing services in `hr-skills-build/server`. Every response is a
-`ServiceEnvelope<T>` with `meta.apiVersion = "v1"` and a `meta.requestId`.
+existing services in `hr-skills-build/server`, with Bearer API-key authentication for
+`runtime` and `evaluation`, per-caller rate limiting, structured request logging,
+request counters, and a readiness check. Every response is a `ServiceEnvelope<T>` with
+`meta.apiVersion = "v1"` and a `meta.requestId`.
 
-Not implemented yet:
+The adapter runs as a Bun process from a checkout of this monorepo; see
+[Deployment requirements](#deployment-requirements). This repository does **not**
+provide:
 
-- A shared (multi-instance) rate-limit store; only the in-memory store is built in
-- Observability wiring described in
-  [`docs/engineering/operations.md`](../../docs/engineering/operations.md)
-- Deployment configuration
+- A shared (multi-instance) rate-limit store. Only the in-memory store is built in.
+- Deployment artifacts. There is no Dockerfile, process manifest, infrastructure
+  template, or provider-specific configuration, and no CI job builds or deploys this
+  app. The adapter has not been verified on any hosting provider.
+- A metrics endpoint or exporter. Counters live in the process and can be written to
+  the log; see [Metrics](#metrics).
+- Graceful shutdown. The adapter installs no signal handlers and does not drain
+  in-flight requests.
 
 ## Routes
 
@@ -40,8 +48,10 @@ the structural guards inside their services.
 
 A well-formed inbound `X-Request-Id` (up to 128 characters of `A-Z a-z 0-9 . _ : -`)
 is propagated. Otherwise the adapter generates `req_<uuid>`. The ID is returned in
-`meta.requestId` and in the `X-Request-Id` response header, and is never used by
-service logic.
+`meta.requestId` and in the `X-Request-Id` response header, is written to the request's
+log event (see [Observability](#observability)), and is never used by service logic.
+A request keeps one ID for its whole life, so the header, the body, and the log always
+agree.
 
 ## Error mapping
 
@@ -159,40 +169,243 @@ instances. Use it for single-instance deployments only.
 The in-memory store holds at most 100,000 live counters and fails closed (`503`) beyond
 that, so a flood of distinct callers cannot exhaust memory.
 
+## Observability
+
+The adapter uses the logger and counters that already exist in
+`hr-skills-build/server` (`createStructuredLogger`, `createServiceMetrics`), as
+described in [`docs/engineering/operations.md`](../../docs/engineering/operations.md).
+It adds no second observability layer: `src/http/observability.ts` only decides what is
+recorded and keeps that safe.
+
+### Logs
+
+`src/index.ts` writes every event as one JSON line: `info` to stdout, `warn` and `error`
+to stderr. `createApp()` writes nothing unless it is given an `observability` option, so
+importing or testing it has no console output.
+
+Each request produces exactly one `http.request.completed` event, however it ends
+(success, `401`, `429`, `404`, unexpected exception):
+
+```json
+{"level":"info","event":"http.request.completed","timestamp":"2026-10-01T08:34:51.845Z","operation":"search","requestId":"trace-e2e-1","durationMs":139.8,"details":{"status":200,"outcome":"ok"}}
+```
+
+| Field | Meaning |
+| --- | --- |
+| `level` | `info` below 400, `warn` for 4xx, `error` for 5xx. |
+| `operation` | One of the seven operations, or `unrouted` for `404`/`405` and errors raised outside a handler. |
+| `requestId` | The same ID as `meta.requestId` and the `X-Request-Id` header. |
+| `durationMs` | Time spent in the handler. Absent for `unrouted`. |
+| `details.status` | HTTP status returned. |
+| `details.outcome` | `ok`, `unauthorized`, `rate_limited`, `validation_failure`, `service_failure`, `readiness_failure`, or `not_matched`. |
+| `details.errorCode` | Stable `ServiceErrorCode`, present when the response came from a service, the error handler, or an unexpected exception. Adapter refusals (`401`, `429`, malformed body, registry or rate-limit outage) are identified by `outcome` and `reason` instead. |
+| `details.reason` | `registry_unavailable` or `rate_limit_store_unavailable` when an outage produced a `503`. |
+| `details.errorName` | Class name of an unexpected exception. |
+| `details.failedChecks` | Names of the readiness checks that were not ready. |
+
+Startup produces `server.started`, and these warnings or errors when relevant:
+`server.config.api_keys_missing`, `server.config.rate_limit_store_memory`,
+`server.config.metrics_interval_invalid`, and `server.config.invalid` (which is followed
+by exit code 1).
+
+To follow one request, search the logs for the `X-Request-Id` the caller received. A
+well-formed inbound ID is propagated, so a caller's own trace ID can be searched
+directly. A malformed inbound ID is replaced and never logged.
+
+**Never logged:** API keys or anything derived from them (this includes the key
+fingerprint used for rate-limit counters), the `Authorization` header or any other
+header, request or response bodies, query strings, the path of an unmatched route,
+client addresses, exception messages, and stack traces. Unexpected exceptions are
+recorded by class name only, because messages can echo input. A log sink or metrics
+backend that throws cannot fail a request.
+
+If you pass your own `readinessDependencies`, have each check return a boolean rather
+than throw: the readiness service copies a thrown message into the response body. The
+adapter's own logs never include it.
+
+### Metrics
+
+Counters are cumulative since the process started and are named
+`service.<apiVersion>.<operation>.<counter>`, for example
+`service.v1.search.requests`. A counter appears once it has been incremented.
+
+| Counter | Counts |
+| --- | --- |
+| `requests` | Every completed request. |
+| `unauthorized` | `401` responses. |
+| `rate_limited` | `429` responses. |
+| `validation_failures` | Malformed JSON bodies, `VALIDATION_ERROR` results, and any other `400`. |
+| `service_failures` | Every other response of 400 or above, including `PLANNING_FAILED`, `RUNTIME_FAILED`, adapter-created `503`s, and unexpected exceptions. |
+| `readiness_failures` | `readiness` only: a dependency was not ready. |
+
+The `unrouted` operation counts `requests` for `404` and `405` and `service_failures`
+for a `500`.
+
+There is no metrics endpoint. Two ways to read the counters:
+
+- Set `HR_SKILLS_METRICS_LOG_INTERVAL_SECONDS` to write a `service.metrics.snapshot` log
+  event with the current counters on that interval, and derive metrics in your log
+  pipeline. Counters are per process; sum them across instances yourself.
+- Embed the app: pass `createApp({ observability })` and read
+  `observability.metrics.snapshot()`.
+
+### Caching
+
+The adapter does not use `createRegistryCache` or `createEvaluationCache`. It reads the
+committed `registry/skills.json` once per process and keeps it in memory
+(`src/registry.ts`). A failed load is not remembered, so a later request can recover.
+This suits immutable builds, with consequences to plan for:
+
+- A registry file replaced while the process runs is not picked up until the process
+  restarts.
+- No cache hit or miss counters exist, because there is no versioned cache to measure.
+- Evaluation results are not cached; `evaluation` is limited to 5 requests per minute
+  per key.
+
+## Readiness
+
+`GET /api/v1/health` is a liveness signal and checks no dependencies. `GET /api/v1/ready`
+returns the `getReadinessService` result for these checks:
+
+| Check | Ready when |
+| --- | --- |
+| `registry` | The registry artifact loads. A failed load is retried on each probe, so the check recovers as soon as the file is readable. |
+| `api-keys` | `HR_SKILLS_API_KEYS` yielded at least one key. Without one, `runtime` and `evaluation` answer `503`, so the instance cannot serve its full contract. |
+
+When a check is not ready the response is `503 SERVICE_UNAVAILABLE` with
+`error.details.checks` listing each check and its status (the message is the generic
+`Dependency is not ready`; no paths or exception text). The log event for that request
+carries `details.failedChecks`, and the `readiness_failures` counter is incremented.
+
+The rate-limit store is not a readiness check. The built-in in-memory store has nothing
+to probe, and a store that throws already fails requests closed with `503` (logged with
+`reason: "rate_limit_store_unavailable"`). A deployment that injects a shared store
+should add its own check through `readinessDependencies`. That option replaces the
+defaults above, so include the `registry` and `api-keys` equivalents too.
+
+Readiness is open (no key) and rate limited like the other unauthenticated operations,
+which affects how often probes may run; see [Deployment requirements](#deployment-requirements).
+
+## Configuration
+
+All configuration is read from the environment by `src/index.ts`.
+
+| Variable | Required | Purpose |
+| --- | --- | --- |
+| `PORT` | No | Port to listen on. Defaults to `3001`. |
+| `NODE_ENV` | No | `production` makes `HR_SKILLS_RATE_LIMIT_STORE` mandatory. |
+| `HR_SKILLS_API_KEYS` | For `runtime` and `evaluation` | Comma-separated API keys from the deployment secret manager. Unset or empty: those routes answer `503`, readiness reports `api-keys` as not ready, and the server still starts. |
+| `HR_SKILLS_RATE_LIMIT_STORE` | In production | Only `memory` is built in. A missing or unsupported value stops startup (exit code 1) with a `server.config.invalid` event. |
+| `HR_SKILLS_CLIENT_IP_HEADER` | No | Header set by a trusted reverse proxy, used to identify callers of unauthenticated operations. See [Rate limiting](#rate-limiting). |
+| `HR_SKILLS_METRICS_LOG_INTERVAL_SECONDS` | No | Whole seconds from 1 to 86400 between `service.metrics.snapshot` events. Unset turns them off; an invalid value is reported once and turns them off. |
+
+Never put keys in the repository, in command-line arguments, or in a query string.
+
+## Deployment requirements
+
+What exists today is a Bun process started with `bun run start`. To run it you need:
+
+1. **Bun**, at the version pinned by `packageManager` in the root `package.json`. The
+   adapter uses Bun APIs and does not run on Node.
+2. **A full checkout of this repository**, with dependencies installed and the library
+   packages built, because the adapter imports their `dist/` output:
+
+   ```sh
+   bun install
+   bunx turbo run build --filter=hr-skills-build --filter=hr-skills-ref
+   ```
+
+3. **The right working directory.** `hr-skills-ref` finds the repository root from the
+   current directory: the directory itself if it contains `skills/`, otherwise two
+   levels up. Start the process from the repository root or from `apps/api`. From
+   anywhere else the registry cannot be found and readiness reports `registry` as not
+   ready.
+4. **A current `registry/skills.json`.** It is a committed, generated artifact (run
+   `bun run registry` at the root to regenerate it). Restart the process after it
+   changes.
+5. **TLS terminated in front of the process.** The adapter serves plain HTTP and has no
+   TLS support. Put a TLS-terminating reverse proxy or ingress in front of it.
+6. **Secrets from your secret manager**, injected as environment variables.
+7. **Log collection** for both stdout and stderr.
+8. **A single instance, unless you provide a shared rate-limit store.** With
+   `HR_SKILLS_RATE_LIMIT_STORE=memory` each instance keeps its own counters, so the
+   effective limit is multiplied by the number of instances. This repository ships no
+   shared store: running several instances means writing a `RateLimitStore`
+   and a small entrypoint that calls `createApp({ rateLimiter })`.
+
+Health probes count against the same limits as any caller (60 requests per minute per
+caller for `health` and `ready`), and a `429` reads as a failed probe. Probe each
+instance no more than once every few seconds. Behind a shared proxy or load balancer all
+probes arrive from one address unless `HR_SKILLS_CLIENT_IP_HEADER` identifies the real
+caller, so leave generous headroom.
+
+Because there is no graceful shutdown, take an instance out of rotation (readiness or
+the load balancer) before stopping it.
+
+Example production start, with values coming from your secret manager and proxy:
+
+```sh
+NODE_ENV=production \
+HR_SKILLS_RATE_LIMIT_STORE=memory \
+HR_SKILLS_CLIENT_IP_HEADER=x-forwarded-for \
+HR_SKILLS_METRICS_LOG_INTERVAL_SECONDS=60 \
+bun run start   # HR_SKILLS_API_KEYS is already present in the environment
+```
+
+`HR_SKILLS_CLIENT_IP_HEADER=x-forwarded-for` is only correct when every request passes
+through a proxy that sets or appends that header. `memory` is for a single instance.
+
 ## Structure
 
 | Path | Responsibility |
 | --- | --- |
-| `src/app.ts` | Constructs and returns the Elysia application. No side effects, no port binding — safe to import from tests. |
-| `src/index.ts` | Starts the server by calling `createApp()` and binding a port. |
+| `src/app.ts` | Constructs and returns the Elysia application. No side effects, no port binding, no log output by default — safe to import from tests. |
+| `src/index.ts` | Starts the server: reads the environment, installs the JSON log sink, calls `createApp()`, binds the port. |
 | `src/routes/v1.ts` | Route handlers: authentication, rate limiting, body parsing, service call, envelope. |
 | `src/http/request-id.ts` | Request ID resolution. |
 | `src/http/response.ts` | Envelope serialisation and error-code to status mapping. |
 | `src/http/rate-limit.ts` | Fixed-window limiter, `RateLimitStore` interface, in-memory store, client address resolver. |
 | `src/http/rate-limit-config.ts` | Environment-driven limiter and resolver configuration; production guard. |
+| `src/http/observability.ts` | Wires the shared structured logger and counters: JSON sink, one completion event and counters per request, safe error descriptions. |
 | `src/http/auth.ts` | Bearer API-key authenticator: header parsing, constant-time comparison, key list parsing. |
 | `src/registry.ts` | Loads the committed `registry/skills.json`. |
 | `src/app.test.ts` | Adapter-level tests for all seven routes. |
+| `src/http/observability.test.ts` | Request ID linkage, counters, redaction, failing sinks, readiness transitions, JSON sink. |
 | `src/http/rate-limit.test.ts` | Rate limiting: limits per operation, window reset, caller isolation, store failures, configuration. |
 
-## Setup
+## Local development
 
-From the repo root, install dependencies and build the workspace's
-TypeScript packages once so `hr-skills-build` resolves:
+From the repo root, install dependencies and build the library packages once so
+`hr-skills-build` resolves:
 
 ```sh
 bun install
-bun run build
+bunx turbo run build --filter=hr-skills-build --filter=hr-skills-ref
 ```
+
+(`bun run build` at the root also works but additionally builds `apps/web`, which needs
+network access to fetch fonts.)
 
 Then, from this directory:
 
 ```sh
-bun run dev     # starts the API with --watch on http://localhost:3001
-bun run start   # starts the API without --watch
+HR_SKILLS_API_KEYS=dev-key bun run dev     # starts with --watch on http://localhost:3001
+HR_SKILLS_API_KEYS=dev-key bun run start   # starts without --watch
 ```
 
-Override the port with the `PORT` environment variable.
+Override the port with `PORT`. Outside production an unset `HR_SKILLS_RATE_LIMIT_STORE`
+defaults to the in-memory store. Without `HR_SKILLS_API_KEYS` the server still starts
+and `search` and `planner` work, but `runtime` and `evaluation` answer `503` and
+`GET /api/v1/ready` reports `api-keys` as not ready.
+
+```sh
+curl -i http://localhost:3001/api/v1/health
+curl -s http://localhost:3001/api/v1/ready
+curl -s -X POST http://localhost:3001/api/v1/search \
+  -H 'content-type: application/json' -d '{"query":"onboarding"}'
+```
+
+Each call prints a JSON log line in the terminal running the server.
 
 ## Testing
 
@@ -201,5 +414,6 @@ bun run test       # adapter-level tests (exercise createApp() via .handle())
 bun run typecheck
 ```
 
-Tests inject a mock registry and authenticator into `createApp()`, so they need
-neither a running server nor the committed registry.
+Tests inject a mock registry, authenticator, rate limiter, and observability instance
+into `createApp()`, so they need neither a running server nor the committed registry,
+and they read log events and counters directly instead of capturing output.

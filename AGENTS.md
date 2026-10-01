@@ -61,6 +61,7 @@ When you add a new skill directory (for example `skills/hr-new-skill/SKILL.md`),
 | `skills/hr-*/prompts/` | Optional reusable prompt libraries grouped by HR topic |
 | `skills/hr-*/examples/` | Optional practical end-to-end HR workflows and business scenarios |
 | `apps/web/` | Public Next.js documentation and product surfaces |
+| `apps/api/` | Bun + Elysia hosted HTTP adapter for the `/api/v1` service contract; see [`apps/api/README.md`](apps/api/README.md) |
 | `docs/` | Skill format specification, architecture guidance, generated reports, and archived research |
 | `docs/engineering/skill-matrix.md` | Generated skill maturity snapshot — do not edit manually, run `bun run matrix` |
 | `docs/engineering/api.md` | Generated API reference — do not edit manually, run `bun run api-docs` |

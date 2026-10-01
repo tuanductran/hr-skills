@@ -8,8 +8,10 @@ layer, the web product, and future external clients.
 The repository exposes deterministic library services from
 `hr-skills-build/server`. `apps/api` implements the seven reserved routes as a
 Bun + Elysia adapter over those services, with `Authorization: Bearer` API-key
-authentication for runtime and evaluation and per-caller rate limiting (see
-[`apps/api/README.md`](../../apps/api/README.md)). The
+authentication for runtime and evaluation, per-caller rate limiting, structured
+request logging, request counters, and a readiness check (see
+[`apps/api/README.md`](../../apps/api/README.md) and
+[`operations.md`](operations.md)). The
 contract metadata remains the source of truth for adapters, and is not a claim
 that these URLs are deployed.
 
@@ -99,7 +101,8 @@ must retain their operation-specific error code.
 The adapter must pass the validated input to the existing deterministic
 registry, planner, runtime, and evaluation functions. It must not add ranking,
 planning, retries, timestamps, or random identifiers to service results.
-Request IDs may be added to response metadata for tracing only.
+Request IDs may be added to response metadata for tracing only; the adapter also
+writes them to its request logs.
 
 ## Compatibility policy
 

@@ -49,8 +49,10 @@ export function createRateLimiterFromEnv(env: Environment): RateLimiter {
 		return createRateLimiter({ store: createInMemoryRateLimitStore() });
 	}
 
+	// The value is not echoed: a mistaken setting (for example a connection string)
+	// can contain credentials, and this message is written to the startup log.
 	throw new RateLimitConfigError(
-		`Unsupported ${RATE_LIMIT_STORE_ENV} value "${selected}". ` +
+		`Unsupported ${RATE_LIMIT_STORE_ENV} value. ` +
 			'The only built-in store is "memory"; inject any other store with createApp({ rateLimiter }).',
 	);
 }
