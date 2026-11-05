@@ -97,7 +97,7 @@ loading the package into Claude, ChatGPT, and other AI tools.
 
 ### Examples
 
-See [`examples/`](examples/README.md) for practical HR scenarios and expected outputs. These examples illustrate how to use the Markdown skills; they do not require the deferred planner or workflow runtime.
+See [`examples/`](examples/README.md) for practical HR scenarios and expected outputs. These examples illustrate how to use the Markdown skills. The programmatic examples in `examples/planner-runtime/` require the Skill Planner and Workflow Runtime code in this repository.
 
 ## Available Skills
 
