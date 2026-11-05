@@ -6,7 +6,7 @@ A comprehensive library of domain-specific Agent Skills for Human Resources prof
 
 Built by [Tuan Duc Tran](https://linkedin.com/in/tuanductran) for the **HR/TA Job Onsite/Hybrid/Remote** community.
 
-HR Skills follows the open **Agent Skills** specification and provides structured, reusable building blocks that help AI agents perform HR tasks consistently, safely, and with domain-specific expertise.
+HR Skills is a **Markdown-first HR knowledge and Agent Skills library**. Human-authored Markdown is the canonical source for HR knowledge and skill behavior; build tooling exists to validate and distribute that content, not to become a second source of domain knowledge. See the [Markdown-first product scope](docs/decisions/0001-markdown-first-product-scope.md) for the architecture decision.
 
 ## What's Inside
 
@@ -97,11 +97,7 @@ loading the package into Claude, ChatGPT, and other AI tools.
 
 ### Examples
 
-See [`examples/`](examples/README.md) for practical, end-to-end usage:
-single-skill prompt → expected output examples, multi-skill HR workflows
-(hiring, onboarding, succession), and how to drive the same workflows
-programmatically with the [Skill Planner](docs/engineering/planner.md) and
-[Workflow Runtime](docs/engineering/runtime.md).
+See [`examples/`](examples/README.md) for practical HR scenarios and expected outputs. These examples illustrate how to use the Markdown skills; they do not require the deferred planner or workflow runtime.
 
 ## Available Skills
 
@@ -111,7 +107,8 @@ Key navigation documents:
 
 - **Router:** [`SKILL.md`](SKILL.md) — Master routing guide for all skills
 - **Skill Matrix:** [`docs/engineering/skill-matrix.md`](docs/engineering/skill-matrix.md) — Generated inventory and maturity status
-- **Roadmap:** [`docs/ROADMAP.md`](docs/ROADMAP.md) — Project vision, architecture, and future direction
+- **Product scope:** [`docs/decisions/0001-markdown-first-product-scope.md`](docs/decisions/0001-markdown-first-product-scope.md) — Canonical product boundary and deferred capabilities
+- **Roadmap:** [`docs/ROADMAP.md`](docs/ROADMAP.md) — Historical implementation record and follow-up direction
 - **Ecosystem Integrations:** [`docs/integrations/README.md`](docs/integrations/README.md) — Supported platforms, installation guides, and compatibility testing strategy
 - **Release Process:** [`docs/operations/release.md`](docs/operations/release.md) — Release lifecycle, versioning strategy, validation checklist, and release notes workflow
 - **Governance:** [`GOVERNANCE.md`](GOVERNANCE.md) — Roles, review and approval workflow, ownership, and roadmap feedback process
@@ -148,13 +145,11 @@ hr-skills/
 └── SKILL.md                    # Root skill router
 ```
 
-See [`AGENTS.md`](AGENTS.md) for the canonical path guide and
-[`docs/engineering/package-architecture.md`](docs/engineering/package-architecture.md)
-for package boundaries.
+See [`AGENTS.md`](AGENTS.md) for contributor guidance and the [product-scope decision](docs/decisions/0001-markdown-first-product-scope.md) for the target architecture. Existing package boundaries are transitional and will be narrowed through the follow-up architecture work.
 
 ## Development
 
-HR Skills is built as a Bun + Turborepo monorepo.
+The current repository still uses Bun + Turborepo for its existing maintenance and build implementation. This toolchain is transitional, not the product definition; the retained minimum is being classified in [Issue #287](https://github.com/tuanductran/hr-skills/issues/287).
 
 Core commands:
 
