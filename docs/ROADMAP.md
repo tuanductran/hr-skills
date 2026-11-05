@@ -5,7 +5,9 @@
 > **License:** MIT
 > **Status:** Actively maintained
 
-This roadmap describes the long-term direction, architecture evolution, and engineering priorities of the HR Skills library.
+This roadmap records the historical direction, architecture evolution, and engineering work of the HR Skills library.
+
+> **Current product scope:** [ADR 0001 — Markdown-First Product Scope](decisions/0001-markdown-first-product-scope.md) supersedes the architecture and phase plans in this document wherever they conflict. HR Skills is now scoped as a Markdown-first HR knowledge and Agent Skills library with only essential skill-build and maintenance tooling retained. Planner/runtime, hosted API, web, Discord, registry, and other advanced product capabilities are deferred unless a retained build dependency is demonstrated. Existing implementations are not deleted by this scope decision; see Issues [#287](https://github.com/tuanductran/hr-skills/issues/287), [#288](https://github.com/tuanductran/hr-skills/issues/288), and [#289](https://github.com/tuanductran/hr-skills/issues/289) for classification and follow-up work.
 
 HR Skills is a Bun/Turborepo monorepo containing domain-specific Agent Skills for Human Resources professionals. The repository focuses on building a structured, validated, and extensible skill ecosystem that enables AI agents to provide reliable HR domain expertise.
 
