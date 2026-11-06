@@ -56,6 +56,8 @@ type WorkspaceEdge = {
   section: string;
 };
 
+const compare = (left: string, right: string) =>
+  left < right ? -1 : left > right ? 1 : 0;
 const relative = (file: string) =>
   path.relative(ROOT, file).split(path.sep).join("/");
 const isRelativeSpecifier = (value: string) =>
@@ -64,7 +66,7 @@ const isRelativeSpecifier = (value: string) =>
 async function walk(directory: string): Promise<string[]> {
   const entries = await readdir(directory, { withFileTypes: true });
   const files: string[] = [];
-  entries.sort((a, b) => a.name.localeCompare(b.name, "en"));
+  entries.sort((a, b) => compare(a.name, b.name));
   for (const entry of entries) {
     if (entry.isDirectory()) {
       if (!EXCLUDED.has(entry.name)) {
@@ -247,20 +249,20 @@ async function run(): Promise<void> {
   }
 
   edges.sort((a, b) =>
-    a.from.localeCompare(b.from, "en") ||
+    compare(a.from, b.from) ||
     a.line - b.line ||
-    a.specifier.localeCompare(b.specifier, "en") ||
-    a.kind.localeCompare(b.kind, "en"),
+    compare(a.specifier, b.specifier) ||
+    compare(a.kind, b.kind),
   );
   workspaceEdges.sort((a, b) =>
     a.from.localeCompare(b.from, "en") ||
-    a.dependency.localeCompare(b.dependency, "en") ||
-    a.section.localeCompare(b.section, "en"),
+    compare(a.dependency, b.dependency) ||
+    compare(a.section, b.section),
   );
 
   const summary = {
     schemaVersion: 1,
-    scope: "tracked-worktree source files; generated and dependency directories excluded",
+    scope: "repository-worktree source files; generated and dependency directories excluded",
     filesScanned: files.length,
     staticImportEdges: edges.length,
     internalImportEdges: edges.filter((edge) => edge.resolution === "internal").length,
