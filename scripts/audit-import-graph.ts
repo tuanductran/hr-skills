@@ -19,7 +19,6 @@ const EXCLUDED = new Set([
   "node_modules",
   ".next",
   "out",
-  "build",
 ]);
 const SOURCE_EXTENSIONS = new Set([
   ".ts",
@@ -79,10 +78,6 @@ async function walk(directory: string): Promise<string[]> {
     }
   }
   return files;
-}
-
-function main(): void {
-  // The async entrypoint below performs filesystem discovery before reporting.
 }
 
 async function run(): Promise<void> {
@@ -218,7 +213,7 @@ async function run(): Promise<void> {
       : edge.specifier.split("/")[0]!;
     const workspacePath = workspaceNames.get(packageName);
     if (!workspacePath) continue;
-    const subpath = edge.specifier.slice(packageName.length).replace(/^\\//, "");
+    const subpath = edge.specifier.slice(packageName.length).replace(/^\//, "");
     edge.resolution = "internal";
     const workspaceDirectory = path.posix.dirname(workspacePath);
     edge.resolved = subpath
@@ -255,7 +250,7 @@ async function run(): Promise<void> {
     compare(a.kind, b.kind),
   );
   workspaceEdges.sort((a, b) =>
-    a.from.localeCompare(b.from, "en") ||
+    compare(a.from, b.from) ||
     compare(a.dependency, b.dependency) ||
     compare(a.section, b.section),
   );
