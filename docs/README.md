@@ -18,7 +18,8 @@ Use this folder as the entry point for repository documentation.
 ## Architecture and Build Boundary
 
 - [`engineering/minimal-build-boundary.md`](engineering/minimal-build-boundary.md): current command/package inventory and proposed minimal retained build path (Issue #287)
-- [`engineering/skill-build-consumer-graph.md`](engineering/skill-build-consumer-graph.md): workspace dependency graph, direct import consumers, build/validation coupling, CI dependencies and migration sequence (Issue #287)\n- [`engineering/source-import-inventory.md`](engineering/source-import-inventory.md): deterministic, read-only import/workspace inventory command and its limitations (Issue #287)
+- [`engineering/skill-build-consumer-graph.md`](engineering/skill-build-consumer-graph.md): workspace dependency graph, direct import consumers, build/validation coupling, CI dependencies and migration sequence (Issue #287)
+- [`engineering/source-import-inventory.md`](engineering/source-import-inventory.md): deterministic, read-only import/workspace inventory command and its limitations (Issue #287)
 
 ## Architecture Decisions
 
