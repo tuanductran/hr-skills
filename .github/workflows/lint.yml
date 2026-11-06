@@ -29,6 +29,9 @@ jobs:
       - name: Lint
         run: bun run lint
 
+      - name: Audit source imports
+        run: bun run audit:imports > /dev/null
+
       - name: Lint Markdown
         run: bun run lint:md
 
