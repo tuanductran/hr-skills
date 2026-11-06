@@ -5,7 +5,7 @@
  * This is a migration aid, not a dead-code detector. It records static edges
  * and flags non-literal dynamic imports for manual review. It never edits files.
  */
-import { readdir, readFile } from "node:fs/promises";
+import { access, readdir, readFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import ts from "typescript";
@@ -176,15 +176,20 @@ async function run(): Promise<void> {
     visit(source);
   }
 
-  const manifestPaths = [
-    "package.json",
-    ...(await walk(path.join(ROOT, "apps")))
-      .filter((file) => path.basename(file) === "package.json"),
-    ...(await walk(path.join(ROOT, "packages")))
-      .filter((file) => path.basename(file) === "package.json"),
-    ...(await walk(path.join(ROOT, "playground")))
-      .filter((file) => path.basename(file) === "package.json"),
-  ];
+  const manifestPaths = ["package.json"];
+  for (const workspaceRoot of ["apps", "packages", "playground"]) {
+    const rootPath = path.join(ROOT, workspaceRoot);
+    for (const entry of await readdir(rootPath, { withFileTypes: true })) {
+      if (!entry.isDirectory()) continue;
+      const manifest = path.join(workspaceRoot, entry.name, "package.json");
+      try {
+        await access(path.join(ROOT, manifest));
+        manifestPaths.push(manifest);
+      } catch {
+        // A workspace directory without a package manifest is not a package.
+      }
+    }
+  }
   const manifests = await Promise.all(
     [...new Set(manifestPaths)].map(async (manifestPath) => ({
       file: manifestPath,
@@ -202,6 +207,24 @@ async function run(): Promise<void> {
       .filter(({ value }) => value.name)
       .map(({ file, value }) => [value.name!, relative(path.join(ROOT, file))]),
   );
+  // Resolve bare workspace package imports to their owning workspace even
+  // when the package export points at generated dist/ files.
+  for (const edge of edges) {
+    if (edge.resolution !== "external") continue;
+    const packageName = edge.specifier.startsWith("@")
+      ? edge.specifier.split("/").slice(0, 2).join("/")
+      : edge.specifier.split("/")[0]!;
+    const workspacePath = workspaceNames.get(packageName);
+    if (!workspacePath) continue;
+    const subpath = edge.specifier.slice(packageName.length).replace(/^\\//, "");
+    edge.resolution = "internal";
+    edge.resolved = subpath
+      ? `${path.posix.dirname(workspacePath)}/${path.posix.basename(workspacePath)}/${subpath}`
+      : path.posix.dirname(workspacePath) === "."
+        ? "."
+        : workspacePath.replace(/\\/package\\.json$/, "");
+  }
+
   const workspaceEdges: WorkspaceEdge[] = [];
   for (const { file, value } of manifests) {
     for (const section of [
