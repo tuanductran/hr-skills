@@ -28,7 +28,7 @@ The output file is intentionally not committed by the command. Reviewers can com
 - Workspace dependency declarations from root and workspace `package.json` files, including dependency section.
 - Unresolved relative imports and non-literal dynamic `import()` calls that need manual inspection.
 
-The report sorts files and edges before serialization so repeated runs against the same worktree produce the same logical JSON.
+The report sorts files and edges before serialization so repeated runs against the same worktree produce the same logical JSON. The pull-request lint workflow runs the command as a smoke test and discards the report output.
 
 ## Scope and limitations
 
