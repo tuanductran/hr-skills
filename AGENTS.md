@@ -1,5 +1,7 @@
 # HR skills development guide
 
+> **Product scope:** [ADR 0001 — Markdown-First Product Scope](docs/decisions/0001-markdown-first-product-scope.md) is authoritative for the product boundary. HR knowledge and skill behavior belong in Markdown. The Bun/Turborepo package and application layout described below records the current implementation, not a commitment that every surface remains in scope. The minimal retained build boundary is tracked in [Issue #287](https://github.com/tuanductran/hr-skills/issues/287).
+
 ## Project overview
 
 `hr-skills-monorepo` is a Bun + Turborepo monorepo of domain-specific Agent Skills for HR and talent acquisition, distributed for Claude Code and claude.ai. Each skill lives at `skills/hr-*/SKILL.md`. The publishable `hr-skills` package provides the `hr-skills` npm executable; `packages/hr-skills-build` and `packages/hr-skills-ref` provide the TypeScript library surfaces, while `packages/hr-skills-tsdoc` owns multi-package TSDoc API generation. Generated artifacts — `docs/engineering/skill-matrix.md`, `registry/skills.json`, `.claude-plugin/marketplace.json` — are derived from skill frontmatter and must never be hand-edited; regenerate them with the corresponding `bun run` command instead.

@@ -15,6 +15,10 @@ Use this folder as the entry point for repository documentation.
 - End users: [`product/USER.md`](product/USER.md)
 - Roadmap and direction: [`ROADMAP.md`](ROADMAP.md)
 
+## Architecture Decisions
+
+- [`0001-markdown-first-product-scope.md`](decisions/0001-markdown-first-product-scope.md): canonical Markdown-first product boundary, retained build capability, deferred surfaces, and the scripts/ and packages/ principles
+
 ## Reference Docs
 
 ### Engineering
