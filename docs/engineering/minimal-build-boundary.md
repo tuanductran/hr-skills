@@ -65,6 +65,23 @@ The classification below is based on the root `package.json` scripts and the pac
 
 Dependencies should be removed only after their last retained consumer is removed or replaced and the resulting lockfile/build/CI behavior is verified.
 
+## Package-level script entrypoints
+
+The root command table above describes the supported root interface. This table records the underlying package-level scripts so that workspace tasks are not hidden by Turborepo indirection.
+
+| Workspace manifest | Package-level scripts | Actual use case | Classification |
+|---|---|---|---|
+| `packages/hr-skills-build` | `build`, `build-skills`, `dev`, `test`, `typecheck`, `validate`, `sync`, `matrix`, `docs-data` | Bundle the build package; create ZIP/`.skill` archives; watch/build during development; run package tests/types; validate skills; regenerate marketplace/router metadata; generate matrix and web data | Keep only archive build, focused validation, and any explicitly retained metadata generator; package build/watch/test/typecheck exist only as implementation support |
+| `packages/hr-skills-ref` | `build`, `dev`, `test`, `typecheck` | Bundle and verify shared Agent Skill parsing, schema, model, loader, prompt, and validation APIs | Retain only if the narrowed build/validation path has multiple real consumers; otherwise merge needed primitives into the retained build package |
+| `packages/hr-skills` | `build`, `test`, `dev`, `typecheck`, `prepublishOnly`, `prepack`, `postpack`, `discover`, `find`, `list`, `init`, `recommend`, `plan`, `execute`, `evaluate`, `skill-review`, `registry`, `signals` | Publishable CLI packaging and command entrypoints for discovery, initialization, planning/execution, recommendation, evaluation, skill review, registry and relevance-signal generation | Defer the CLI product and its package lifecycle scripts; separately assess `skill-review` for extraction into Markdown maintenance tooling |
+| `packages/hr-skills-tsdoc` | `build`, `dev`, `api-docs`, `api-docs:check`, `typecheck` | Bundle and run TSDoc API reference generation/checking using `ts-morph` | Defer with public TypeScript package APIs |
+| `apps/web` | `docs-data`, `dev`, `build`, `typecheck`, `test:e2e` | Generate catalog JSON and run/build/typecheck the Next.js documentation app; run Playwright E2E | Defer with the web app |
+| `apps/discord-bot` | `dev`, `start`, `deploy-commands`, `typecheck` | Run the Discord bot, deploy slash commands, and typecheck the adapter | Defer with the Discord integration |
+| `playground/next-app` | `dev`, `build` | Run/build a Next.js integration experiment | Defer |
+| `playground/vite-app` | `dev`, `build` | Run/build a Vite integration experiment | Defer |
+
+The package-level `build`, `dev`, `test`, and `typecheck` commands are not automatically core product capabilities: they are engineering tasks for the package that owns them. They should remain only for source packages that survive the boundary reduction. In particular, package build/watch commands are not part of the end-user Markdown-to-archive workflow.
+
 ## Workspace and package inventory
 
 | Workspace | Current responsibility and evidence | Classification | Target boundary |
