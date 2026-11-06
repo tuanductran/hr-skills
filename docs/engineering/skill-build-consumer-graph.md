@@ -44,6 +44,7 @@ flowchart TD
   next -->|"dependency"| build
   vite -->|"dependency"| build
   root -->|"workspace + task orchestration"| build
+  root -->|"workspace member"| ref
   root --> cli
   root --> tsdoc
   root --> web
@@ -119,14 +120,19 @@ flowchart TD
   helpers["shared parser/helpers/schema/types"]
   registry["registry + relevance signals"]
   output["dist/hr-skills.zip + dist/hr-skills.skill"]
-  derived[".claude-plugin/marketplace.json + generated root routing table"]
+  derived[".claude-plugin/marketplace.json"]
+  rootRouter["Generated routing table in root SKILL.md"]
   quality["Validation findings"]
 
   md --> archive
+  md --> sync
+  md --> validate
   rootScripts --> archive
   rootScripts --> sync
   rootScripts --> validate
   sync --> router
+  sync --> rootRouter
+  rootRouter --> archive
   sync --> ref
   sync --> helpers
   archive --> ref
@@ -153,7 +159,7 @@ flowchart TD
 
 `build-skills.ts` imports `ROOT_DIR` from `hr-skills-ref/server`. The reference package's `exports` map points that subpath to `dist/server/index.mjs`, and its build config emits that file from TypeScript source.
 
-In `turbo.jsonc`, the `build-skills` task is marked `cache: false` but does **not** declare `dependsOn: ["^build"]`. By contrast, `validate`, `sync`, and `matrix` do declare the upstream build dependency. The release workflow runs validation before `build-skills`, which currently gives the reference package a prior build opportunity. A direct clean-checkout invocation of `bun run build-skills` is therefore a task-graph risk that has not been proven independently by this static audit.
+In `turbo.jsonc`, the `build-skills` task is marked `cache: false` but does **not** declare `dependsOn: ["^build"]`. By contrast, `validate`, `sync`, and `matrix` do declare the upstream build dependency. The `.github/workflows/publish.yml` workflow runs validation before `build-skills`, which currently gives the reference package a prior build opportunity. A direct clean-checkout invocation of `bun run build-skills` is therefore a task-graph risk that has not been proven independently by this static audit.
 
 **Implementation requirement:** verify `bun run build-skills` from a clean checkout with no pre-existing `dist/`. Either declare the required upstream build edge or remove the unnecessary compiled-package dependency from the archive entrypoint. Do not rely on an incidental earlier command.
 
