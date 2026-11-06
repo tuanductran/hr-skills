@@ -32,7 +32,7 @@ The report sorts files and edges before serialization so repeated runs against t
 
 ## Scope and limitations
 
-The scanner excludes `.git`, `.turbo`, `node_modules`, `dist`, `.next`, `out`, `build` and `coverage`. It does not modify source files, manifests, package exports, workflows or generated artifacts.
+The scanner excludes `.git`, `.turbo`, `node_modules`, `dist`, `.next`, `out` and `coverage`. It does not modify source files, manifests, package exports, workflows or generated artifacts.
 
 This is a static reference inventory, not a complete runtime dependency graph or dead-code detector. It cannot infer computed module specifiers, runtime plugin loading, reflection, or imports assembled from variables. Non-literal dynamic imports are counted but not resolved. External packages are recorded as external edges and are not expanded. A recorded import is evidence of a reference, not proof that a feature is essential or removable.
 
