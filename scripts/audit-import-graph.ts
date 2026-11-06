@@ -218,11 +218,10 @@ async function run(): Promise<void> {
     if (!workspacePath) continue;
     const subpath = edge.specifier.slice(packageName.length).replace(/^\\//, "");
     edge.resolution = "internal";
+    const workspaceDirectory = path.posix.dirname(workspacePath);
     edge.resolved = subpath
-      ? `${path.posix.dirname(workspacePath)}/${path.posix.basename(workspacePath)}/${subpath}`
-      : path.posix.dirname(workspacePath) === "."
-        ? "."
-        : workspacePath.replace(/\\/package\\.json$/, "");
+      ? path.posix.join(workspaceDirectory, subpath)
+      : workspaceDirectory;
   }
 
   const workspaceEdges: WorkspaceEdge[] = [];
