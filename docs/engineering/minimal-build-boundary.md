@@ -54,7 +54,7 @@ The classification below is based on the root `package.json` scripts and the pac
 | `prepare` | Installs Lefthook hooks | Contributor workflow maintenance | Optional repository hygiene |
 | `preinstall` | Enforces Bun via `only-allow` | Toolchain policy | Retain only while Bun is the agreed toolchain; this issue does not decide a migration |
 | `commitlint` | Commit message validation | Contributor workflow maintenance | Optional repository hygiene |
- 
+
 ### Root-level dependencies implied by commands
 
 - Workspace orchestration: `turbo` is required only while root scripts dispatch to workspace tasks.
