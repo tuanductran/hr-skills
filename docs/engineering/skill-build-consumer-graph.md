@@ -190,6 +190,7 @@ It writes `docs/engineering/api.md`. This tool therefore couples documentation g
 | `.github/workflows/validate.yml` | Runs root `validate`, filtered to `hr-skills-build`; Turborepo task declares upstream build dependency | Current validation depends on the build package and its upstream `hr-skills-ref` build. |
 | `.github/workflows/lint.yml` | Runs Biome, Markdown lint/case checks and link checks | Markdown quality is core; Biome should be scoped to source/config that remains maintained. |
 | `.github/workflows/knip.yml` | Runs Knip over configured app/build/ref workspaces | Knip config explicitly includes `apps/web`, `apps/discord-bot`, `hr-skills-build` and `hr-skills-ref`; re-scope it after the retained boundary is implemented. |
+| `.github/workflows/skill-review.yml` | For PRs changing `skills/hr-*/**`, explicitly builds `hr-skills-ref` and `hr-skills-build`, then runs `bun run skill-review` and posts a non-blocking report | Preserves a real security/quality review consumer. Extract this capability before deferring the CLI package; do not drop the workflow silently. |
 | `.github/workflows/matrix.yml` | On `main`, generates the skill matrix and registry, then commits changed artifacts | Couples matrix and registry generation to every main push. Decide separately whether both artifacts remain maintained outputs. |
 | `.github/workflows/release.yml` | Runs validation and Changesets versioning on main pushes | Keeps release/package versioning in the current CI lifecycle even though the product scope is Markdown-first. |
 | `.github/workflows/publish.yml` | On version tags, runs validation then `build-skills`, and attaches ZIP/`.skill` artifacts to a GitHub Release | The release archive is a real retained distribution consumer. Preserve its reproducibility and validate the clean-checkout build edge above. |
@@ -233,6 +234,6 @@ Primary source files inspected:
 - Package entrypoints: `packages/hr-skills-build/src/{client,server}/index.ts` and `packages/hr-skills-ref/src/{client,server}/index.ts`.
 - Product consumers: `apps/web/app/lib/docs.ts`, `apps/web/app/components/*`, `apps/discord-bot/src/registry.ts`, `playground/next-app/app/client-widget.tsx`, `playground/vite-app/src/App.tsx`, and `packages/hr-skills/src/cli/*`.
 - Review/API documentation consumers: `packages/hr-skills/src/cli/skill-review.ts`, `packages/hr-skills-tsdoc/src/generate-api-docs.ts`.
-- Workflow evidence: `.github/workflows/{test,typecheck,validate,lint,knip,matrix,release,publish}.yml`.
+- Workflow evidence: `.github/workflows/{test,typecheck,validate,lint,knip,skill-review,matrix,release,publish}.yml`.
 
 This graph should be treated as the review baseline for implementation, not as evidence that any deferred package or feature has already been removed.
