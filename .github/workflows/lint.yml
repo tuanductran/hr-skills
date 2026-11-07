@@ -26,6 +26,12 @@ jobs:
       - name: Install Dependencies
         run: bun ci
 
+      - name: Build skill archives from clean checkout
+        run: |
+          bun run build-skills
+          test -s dist/hr-skills.zip
+          test -s dist/hr-skills.skill
+
       - name: Lint
         run: bun run lint
 
