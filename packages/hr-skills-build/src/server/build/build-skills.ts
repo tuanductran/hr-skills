@@ -31,11 +31,13 @@
  */
 
 import { mkdir, readdir, readFile, stat } from 'node:fs/promises';
-import { join, relative } from 'node:path';
+import { join, relative, resolve } from 'node:path';
 import { parseArgs } from 'node:util';
 import { deflateRawSync } from 'node:zlib';
 
-import { ROOT_DIR } from 'hr-skills-ref/server';
+// Resolve the repository root from this source file, not a compiled workspace package.
+// The script lives at packages/hr-skills-build/src/server/build/.
+const ROOT_DIR = resolve(import.meta.dir, '../../../../../');
 
 /**
  * File entry to include in the generated ZIP archive.
