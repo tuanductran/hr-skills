@@ -103,7 +103,8 @@
 		"prepare": "lefthook install",
 		"preinstall": "bunx only-allow bun",
 		"commitlint": "commitlint --edit",
-		"skill-review": "turbo run skill-review --filter=hr-skills --"
+		"skill-review": "turbo run skill-review --filter=hr-skills --",
+		"audit:imports": "bun scripts/audit-import-graph.ts"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "catalog:biome",
