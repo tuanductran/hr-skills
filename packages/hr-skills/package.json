@@ -1,6 +1,6 @@
 {
 	"name": "hr-skills",
-	"version": "0.0.0",
+	"version": "0.1.0",
 	"description": "Command-line tools for discovering, validating, planning, evaluating, and executing HR Skills",
 	"type": "module",
 	"bin": {
