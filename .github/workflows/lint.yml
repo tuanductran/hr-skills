@@ -31,8 +31,8 @@ jobs:
           bun run build-skills
           test -s dist/hr-skills.zip
           test -s dist/hr-skills.skill
-          unzip -Z1 dist/hr-skills.zip | grep -Eq '^skills/.+/SKILL\\.md$'
-          unzip -Z1 dist/hr-skills.skill | grep -Eq '^skills/.+/SKILL\\.md$'
+          unzip -Z1 dist/hr-skills.zip | grep -Eq '^skills/.+/SKILL\.md$'
+          unzip -Z1 dist/hr-skills.skill | grep -Eq '^skills/.+/SKILL\.md$'
 
       - name: Lint
         run: bun run lint
