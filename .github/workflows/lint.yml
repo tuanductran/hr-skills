@@ -33,8 +33,8 @@ jobs:
           test -s dist/hr-skills.skill
           zip_listing="$(unzip -Z1 dist/hr-skills.zip)"
           skill_listing="$(unzip -Z1 dist/hr-skills.skill)"
-          printf '%s\n' "$zip_listing" | grep -Eq '^skills/.+/SKILL\\.md$'
-          printf '%s\n' "$skill_listing" | grep -Eq '^skills/.+/SKILL\\.md$'
+          printf '%s\n' "$zip_listing" | grep -Eq '^skills/.+/SKILL\.md$'
+          printf '%s\n' "$skill_listing" | grep -Eq '^skills/.+/SKILL\.md$'
 
       - name: Lint
         run: bun run lint
