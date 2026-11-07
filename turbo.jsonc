@@ -7,8 +7,7 @@
 			"outputs": ["dist/**", ".next/**"]
 		},
 		"build-skills": {
-			"cache": false,
-			"dependsOn": ["^build"]
+			"cache": false
 		},
 		"dev": {
 			// The playground dev servers resolve `hr-skills-build/client` to
