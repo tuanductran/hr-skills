@@ -39,8 +39,6 @@ import { deflateRawSync } from 'node:zlib';
 // The script lives at packages/hr-skills-build/src/server/build/.
 const ROOT_DIR = resolve(import.meta.dir, '../../../../../');
 
-
-
 /**
  * File entry to include in the generated ZIP archive.
  */
