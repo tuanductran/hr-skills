@@ -42,7 +42,7 @@
 	],
 	"scripts": {
 		"build": "tsdown",
-		"build-skills": "bun --filter hr-skills-ref build && bun src/server/build/build-skills.ts",
+		"build-skills": "bun src/server/build/build-skills.ts",
 		"dev": "tsdown --watch",
 		"test": "bun test",
 		"typecheck": "tsc --noEmit",
